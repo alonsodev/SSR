@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Data
+namespace Domain.Entities
 {
-    public class Class1
+    class SearchUserFiltersViewModel
     {
     }
 }
