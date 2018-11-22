@@ -190,11 +190,16 @@
     <Content Include="Assets\js\plugins\bootstrap-switch.js" />
     <Content Include="Assets\js\plugins\bootstrap-tagsinput.js" />
     <Content Include="Assets\js\plugins\chartjs.min.js" />
+    <Content Include="Assets\js\plugins\datatable\buttons.html5.min.js" />
+    <Content Include="Assets\js\plugins\datatable\dataTables.buttons.min.js" />
+    <Content Include="Assets\js\plugins\datatable\jquery.dataTables.min.js" />
+    <Content Include="Assets\js\plugins\datatable\jszip.min.js" />
+    <Content Include="Assets\js\plugins\datatable\pdfmake.min.js" />
+    <Content Include="Assets\js\plugins\datatable\vfs_fonts.js" />
     <Content Include="Assets\js\plugins\fullcalendar.min.js" />
     <Content Include="Assets\js\plugins\jasny-bootstrap.min.js" />
     <Content Include="Assets\js\plugins\jquery-jvectormap.js" />
     <Content Include="Assets\js\plugins\jquery.bootstrap-wizard.js" />
-    <Content Include="Assets\js\plugins\jquery.dataTables.min.js" />
     <Content Include="Assets\js\plugins\jquery.validate.min.js" />
     <Content Include="Assets\js\plugins\moment.min.js" />
     <Content Include="Assets\js\plugins\nouislider.min.js" />
@@ -213,6 +218,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\media\language\spanish.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
