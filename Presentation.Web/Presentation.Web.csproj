@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\custom.css" />
     <Content Include="Assets\css\now-ui-dashboard.min69ea.css" />
     <Content Include="Assets\demo\demo.css" />
     <Content Include="Assets\demo\demo.js" />
