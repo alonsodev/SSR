@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
 
-        Now UI Dashboard PRO  by Creative Tim
+        Now UI Dashboard PRO  by Creative Tim - @ViewBag.Title -  @ViewBag.active
 
 
 
@@ -208,39 +208,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                     <li>
 
-                        <a data-toggle="collapse" href="#user_management">
+                        <a data-toggle="collapse" href="#security">
 
                             <i class="now-ui-icons design_image"></i>
 
                             <p>
-                                Administración de Usuarios <b class="caret"></b>
+                                Seguridad <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse " id="user_management">
+                        <div class="collapse " id="security">
                             <ul class="nav">
 
                                 <li>
-                                    <a href="/User">
+
+                                    <a data-toggle="collapse" href="#user_management">
+
+
                                         <span class="sidebar-mini-icon">U</span>
-                                        <span class="sidebar-normal"> Usuarios </span>
+                                        <p>
+                                            Usuarios <b class="caret"></b>
+                                        </p>
                                     </a>
+                                    <div class="collapse " id="user_management">
+                                        <ul class="nav">
+
+                                            <li>
+                                                <a href="/User">
+                                                    <span class="sidebar-mini-icon">VU</span>
+                                                    <span class="sidebar-normal"> Ver Usuarios </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="/Roles">
+                                                    <span class="sidebar-mini-icon">CU</span>
+                                                    <span class="sidebar-normal"> Crear Usuario </span>
+                                                </a>
+                                            </li>
+
+
+
+
+
+                                        </ul>
+                                    </div>
                                 </li>
 
-                                <li>
-                                    <a href="pages/rtl.html">
-                                        <span class="sidebar-mini-icon">R</span>
-                                        <span class="sidebar-normal"> Roles </span>
-                                    </a>
-                                </li>
+                             
 
-                                <li>
-                                    <a href="pages/timeline.html">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Permisos </span>
-                                    </a>
-                                </li>
-
-                               
 
                             </ul>
                         </div>
