@@ -15,12 +15,13 @@ namespace Infrastructure.Data
     public partial class users
     {
         public int id { get; set; }
-        public Nullable<byte> is_super_admin { get; set; }
-        public Nullable<System.DateTime> user_date_last_login { get; set; }
+        public string user_name { get; set; }
         public string user_email { get; set; }
         public string user_pass { get; set; }
         public Nullable<int> user_role_id { get; set; }
         public Nullable<int> user_status_id { get; set; }
+        public Nullable<byte> is_super_admin { get; set; }
+        public Nullable<System.DateTime> user_date_last_login { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFramework.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,9 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
-
+        public void deleteMultiple(int role_id)
+        {
+            Set.Where(a => a.id_role == role_id).Delete();
+        }
     }
 }

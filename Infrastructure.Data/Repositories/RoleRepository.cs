@@ -14,7 +14,7 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
-
+      
         public RoleViewModel ObtenerRole(int id_permission)
         {
             var query = Set.Where(a => a.role_id == id_permission).Select(a => new RoleViewModel

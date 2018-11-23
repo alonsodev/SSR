@@ -59,12 +59,13 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="is_super_admin" Type="tinyint" />
-          <Property Name="user_date_last_login" Type="datetime" />
+          <Property Name="user_name" Type="varchar" MaxLength="100" />
           <Property Name="user_email" Type="varchar" MaxLength="150" />
           <Property Name="user_pass" Type="varchar" MaxLength="60" />
           <Property Name="user_role_id" Type="int" />
           <Property Name="user_status_id" Type="int" />
+          <Property Name="is_super_admin" Type="tinyint" />
+          <Property Name="user_date_last_login" Type="datetime" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
@@ -145,6 +146,29 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SSRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SSREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="permissions" EntityType="SSRModel.permissions" />
+          <EntitySet Name="role_permissions" EntityType="SSRModel.role_permissions" />
+          <EntitySet Name="roles" EntityType="SSRModel.roles" />
+          <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
+          <EntitySet Name="users" EntityType="SSRModel.users" />
+          <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
+            <End Role="user_status" EntitySet="user_status" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="permissions">
           <Key>
             <PropertyRef Name="id_permission" />
@@ -157,7 +181,7 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="role_permissions" Relationship="Self.FK_role_permissions_permissions" FromRole="permissions" ToRole="role_permissions" />
+          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="permissions" ToRole="role_permissions" />
         </EntityType>
         <EntityType Name="role_permissions">
           <Key>
@@ -171,8 +195,8 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="permissions" Relationship="Self.FK_role_permissions_permissions" FromRole="role_permissions" ToRole="permissions" />
-          <NavigationProperty Name="roles" Relationship="Self.FK_role_permissions_roles" FromRole="role_permissions" ToRole="roles" />
+          <NavigationProperty Name="permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="role_permissions" ToRole="permissions" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_role_permissions_roles" FromRole="role_permissions" ToRole="roles" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -185,8 +209,8 @@
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="role_permissions" Relationship="Self.FK_role_permissions_roles" FromRole="roles" ToRole="role_permissions" />
-          <NavigationProperty Name="users" Relationship="Self.FK_users_roles" FromRole="roles" ToRole="users" />
+          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_roles" FromRole="roles" ToRole="role_permissions" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_roles" FromRole="roles" ToRole="users" />
         </EntityType>
         <EntityType Name="user_status">
           <Key>
@@ -198,29 +222,30 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="users" Relationship="Self.FK_users_user_status" FromRole="user_status" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_user_status" FromRole="user_status" ToRole="users" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="is_super_admin" Type="Byte" />
-          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="user_role_id" Type="Int32" />
           <Property Name="user_status_id" Type="Int32" />
+          <Property Name="is_super_admin" Type="Byte" />
+          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
           <Property Name="date_created" Type="DateTime" Precision="3" />
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="roles" Relationship="Self.FK_users_roles" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="user_status" Relationship="Self.FK_users_user_status" FromRole="users" ToRole="user_status" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
         </EntityType>
         <Association Name="FK_role_permissions_permissions">
-          <End Role="permissions" Type="Self.permissions" Multiplicity="1" />
-          <End Role="role_permissions" Type="Self.role_permissions" Multiplicity="*" />
+          <End Type="SSRModel.permissions" Role="permissions" Multiplicity="1" />
+          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="permissions">
               <PropertyRef Name="id_permission" />
@@ -231,8 +256,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_role_permissions_roles">
-          <End Role="roles" Type="Self.roles" Multiplicity="1" />
-          <End Role="role_permissions" Type="Self.role_permissions" Multiplicity="*" />
+          <End Type="SSRModel.roles" Role="roles" Multiplicity="1" />
+          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="roles">
               <PropertyRef Name="role_id" />
@@ -243,8 +268,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_users_roles">
-          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
-          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="roles">
               <PropertyRef Name="role_id" />
@@ -255,8 +280,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_users_user_status">
-          <End Role="user_status" Type="Self.user_status" Multiplicity="0..1" />
-          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <End Type="SSRModel.user_status" Role="user_status" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="user_status">
               <PropertyRef Name="user_status_id" />
@@ -266,30 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SSREntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="permissions" EntityType="Self.permissions" />
-          <EntitySet Name="role_permissions" EntityType="Self.role_permissions" />
-          <EntitySet Name="roles" EntityType="Self.roles" />
-          <EntitySet Name="user_status" EntityType="Self.user_status" />
-          <EntitySet Name="users" EntityType="Self.users" />
-          <AssociationSet Name="FK_role_permissions_permissions" Association="Self.FK_role_permissions_permissions">
-            <End Role="permissions" EntitySet="permissions" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_role_permissions_roles" Association="Self.FK_role_permissions_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_roles" Association="Self.FK_users_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_user_status" Association="Self.FK_users_user_status">
-            <End Role="user_status" EntitySet="user_status" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -298,69 +300,70 @@
           <EntitySetMapping Name="permissions">
             <EntityTypeMapping TypeName="SSRModel.permissions">
               <MappingFragment StoreEntitySet="permissions">
-                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="is_only_for_super_admin" ColumnName="is_only_for_super_admin" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
                 <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="is_only_for_super_admin" ColumnName="is_only_for_super_admin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="role_permissions">
             <EntityTypeMapping TypeName="SSRModel.role_permissions">
               <MappingFragment StoreEntitySet="role_permissions">
-                <ScalarProperty Name="id_role" ColumnName="id_role" />
-                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
                 <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roles">
             <EntityTypeMapping TypeName="SSRModel.roles">
               <MappingFragment StoreEntitySet="roles">
-                <ScalarProperty Name="role_id" ColumnName="role_id" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
                 <ScalarProperty Name="dev_name" ColumnName="dev_name" />
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="user_status">
             <EntityTypeMapping TypeName="SSRModel.user_status">
               <MappingFragment StoreEntitySet="user_status">
-                <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
                 <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="SSRModel.users">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="is_super_admin" ColumnName="is_super_admin" />
-                <ScalarProperty Name="user_date_last_login" ColumnName="user_date_last_login" />
-                <ScalarProperty Name="user_email" ColumnName="user_email" />
-                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
-                <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
-                <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
                 <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="user_date_last_login" ColumnName="user_date_last_login" />
+                <ScalarProperty Name="is_super_admin" ColumnName="is_super_admin" />
+                <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
+                <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
+                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

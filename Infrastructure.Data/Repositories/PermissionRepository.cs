@@ -31,6 +31,26 @@ namespace Infrastructure.Data.Repositories
             return query.Take(1).FirstOrDefault();
         }
 
+        public List<PermissionViewModel> ObtenerListaPermisos()
+        {
+            var query = Set.Select(a => new PermissionViewModel
+            {
+                id_permission = a.id_permission,
+                name = a.name,
+                title = a.title
+            });
+            return query.ToList();
+        }
+
+        public List<int> ObtenerListaPermisos(int role_id)
+        {
+            var lista = this.Context.Set<role_permissions>();
+
+            List<int> Ids = lista.Where(a => a.id_role == role_id).Select(c => c.id_permission).Distinct().ToList();
+
+            return Ids;
+        }
+
         public GridModel<PermissionViewModel> ObtenerLista(PermissionFiltersViewModel filters)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;

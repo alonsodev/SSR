@@ -13,14 +13,29 @@ namespace Business.Logic
     public class RoleBL
     {
         private static RoleRepository oRepositorio;
+        private static RolePermissionRepository oRolePermissionRepository;
         private static UnitOfWork oUnitOfWork;
 
         public RoleBL()
         {
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.RoleRepository;
+            oRolePermissionRepository = oUnitOfWork.RolePermissionRepository;
         }
-        
+        public void GuardarPermisos(int role_id, string ids)
+        {
+            oRolePermissionRepository.deleteMultiple(role_id);
+            string[] permissions = ids.Split(',');
+            foreach (string permission in permissions)
+            {
+                role_permissions orole_permissions = new role_permissions();
+                orole_permissions.id_role = role_id;
+                orole_permissions.id_permission = Int32.Parse(permission);
+                orole_permissions.status = 1;
+                oRolePermissionRepository.Add(orole_permissions);
+            }
+            oUnitOfWork.SaveChanges();
+        }
 
         public RoleViewModel ObtenerRole(int pIntID)
         {

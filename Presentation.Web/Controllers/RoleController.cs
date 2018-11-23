@@ -50,6 +50,54 @@ namespace Presentation.Web.Controllers
 
         }
 
+        public ActionResult Permisos(string id)
+        {
+            RoleBL oBL = new RoleBL();
+            PermissionBL oPermissionBL = new PermissionBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            RoleViewModel pRoleViewModel = oBL.ObtenerRole(pIntID);
+            ViewBag.NameRole = pRoleViewModel.role;
+            ViewBag.role_id = pRoleViewModel.role_id;
+
+            var all=oPermissionBL.ObtenerListaPermisos();
+
+            List<CheckboxViewModel> permisos = new List<CheckboxViewModel>();
+            var permission_enabled = oPermissionBL.ObtenerListaPermisos(pIntID);
+            foreach (var permiso in all) {
+                CheckboxViewModel oCheckboxViewModel = new CheckboxViewModel();
+                oCheckboxViewModel.Name = permiso.title;
+                oCheckboxViewModel.Value = permiso.id_permission.ToString();
+                if (permission_enabled.Contains(permiso.id_permission))
+                    oCheckboxViewModel.Checked = "checked";
+                else
+                    oCheckboxViewModel.Checked = String.Empty;
+
+                permisos.Add(oCheckboxViewModel);
+            }
+
+            ViewBag.permisos = permisos;
+
+            return View(pRoleViewModel);
+        }
+        [HttpPost]
+        public JsonResult Permisos(int role_id, string ids)
+        {
+
+            RoleBL oRoleBL = new RoleBL();
+
+            /* oRoleBL.Eliminar(id);*/
+            oRoleBL.GuardarPermisos(role_id, ids);
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
+
+        }
+
+
         public ActionResult Editar(string id)
         {
             RoleBL oBL = new RoleBL();
@@ -76,15 +124,20 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-
-        public ActionResult Eliminar(int id)
+        [HttpPost]
+        public JsonResult Eliminar(int id)
         {
 
             RoleBL oRoleBL = new RoleBL();
 
             oRoleBL.Eliminar(id);
 
-            return RedirectToAction("Index");
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+               
+            });
 
         }
 

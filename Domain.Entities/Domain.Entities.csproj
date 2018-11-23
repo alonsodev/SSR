@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="CheckboxViewModel.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DataTableViewModel.cs" />
+    <Compile Include="SelectOptionItem.cs" />
+    <Compile Include="UserFiltersViewModel.cs" />
     <Compile Include="RoleViewModel.cs" />
     <Compile Include="RoleFiltersViewModel.cs" />
     <Compile Include="PermissionFiltersViewModel.cs" />

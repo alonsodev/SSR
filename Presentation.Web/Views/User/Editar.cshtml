@@ -1,0 +1,106 @@
+﻿@model Domain.Entities.UserViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "user");
+    ViewBag.HeaderTitle = "Usuarios";
+    ViewBag.Title = "Editar Usuarios";
+
+    ViewBag.active = "users";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Editar", "User", FormMethod.Post, new { id = "form-user", title = "Editar User" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.user_name, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+
+                </div>
+
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.user_role_id, htmlAttributes: new { @class = "" })
+                    
+                    @Html.DropDownList("user_role_id", (IEnumerable<SelectListItem>)ViewBag.roles, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.user_role_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.user_status_id, htmlAttributes: new { @class = "" })
+                    
+                    @Html.DropDownList("user_status_id", (IEnumerable<SelectListItem>)ViewBag.estatus, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.user_status_id, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div><!-- end content-->
+                <div class="card-footer text-right">
+                    
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $("#user_role_id").select2({ theme: "bootstrap" });
+            $("#user_status_id").select2({ theme: "bootstrap" });
+
+        });
+      
+        $("#btnCancelar").click(function () {
+            window.location.href = "/User";
+        });
+
+        $('#form-user').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            if ($("#form-user").valid()) {
+
+
+                form.submit();
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

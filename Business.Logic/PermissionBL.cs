@@ -20,8 +20,15 @@ namespace Business.Logic
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.PermissionRepository;
         }
-      
+        public List<PermissionViewModel> ObtenerListaPermisos()
+        {
+            return oRepositorio.ObtenerListaPermisos();
+        }
 
+        public List<int> ObtenerListaPermisos(int role_id)
+        {
+            return oRepositorio.ObtenerListaPermisos(role_id);
+        }
         public PermissionViewModel ObtenerPermission(int pIntID)
         {
 

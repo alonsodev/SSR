@@ -1,13 +1,13 @@
-﻿@model Domain.Entities.PermissionViewModel
+﻿@model Domain.Entities.RoleViewModel
 
 
 
 @{
-    ViewBag.HeaderTitleLink = Url.Action("index", "permission");
-    ViewBag.HeaderTitle = "Permisos";
-    ViewBag.Title = "Editar Permiso";
+    ViewBag.HeaderTitleLink = Url.Action("index", "role");
+    ViewBag.HeaderTitle = "Roles";
+    ViewBag.Title = "Editar Role";
 
-    ViewBag.active = "permissions";
+    ViewBag.active = "roles";
 
 }
 <div class="row">
@@ -16,29 +16,23 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Editar", "Permission", FormMethod.Post, new { id = "form-permiso", title = "Editar Permiso" }))
+            @using (Html.BeginForm("Editar", "Role", FormMethod.Post, new { id = "form-role", title = "Editar Role" }))
             {
             <div class="card-body">
 
 
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.id_permission)
+                @Html.HiddenFor(model => model.role_id)
                 <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.role, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
 
                 </div>
 
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                </div>
-
+              
 
 
 
@@ -63,15 +57,15 @@
 
 
         $("#btnCancelar").click(function () {
-            window.location.href = "/Permission";
+            window.location.href = "/Role";
         });
 
-        $('#form-permiso').on('submit', function (e) { //use on if jQuery 1.7+
+        $('#form-role').on('submit', function (e) { //use on if jQuery 1.7+
             //prevent form from submitting
             debugger;
             e.preventDefault();
             var form = this;
-            if ($("#form-permiso").valid()) {
+            if ($("#form-role").valid()) {
 
 
                 form.submit();

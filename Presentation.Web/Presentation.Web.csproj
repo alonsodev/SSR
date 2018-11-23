@@ -162,6 +162,7 @@
     <Content Include="Assets\css\custom.css" />
     <Content Include="Assets\css\now-ui-dashboard.min69ea.css" />
     <Content Include="Assets\css\responsive.dataTables.min.css" />
+    <Content Include="Assets\css\select2.min.css" />
     <Content Include="Assets\demo\demo.css" />
     <Content Include="Assets\demo\demo.js" />
     <Content Include="Assets\demo\jquery.sharrre.js" />
@@ -215,6 +216,7 @@
     <Content Include="Assets\js\plugins\moment.min.js" />
     <Content Include="Assets\js\plugins\nouislider.min.js" />
     <Content Include="Assets\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Assets\js\plugins\select2.min.js" />
     <Content Include="Assets\js\plugins\sweetalert2.min.js" />
     <Content Include="Assets\use.fontawesome.com\releases\v5.0.6\css\all.css" />
     <Content Include="Content\bootstrap.css" />
@@ -255,13 +257,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Permission\Index.cshtml" />
     <Content Include="Views\Permission\Editar.cshtml" />
     <Content Include="Views\Role\Crear.cshtml" />
     <Content Include="Views\Role\Editar.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
+    <Content Include="Views\User\Crear.cshtml" />
+    <Content Include="Views\User\Editar.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Role\Permisos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +289,10 @@
     <ProjectReference Include="..\Business.Logic\Business.Logic.csproj">
       <Project>{332a8f15-0a51-4ac7-ba53-a65de9888ecf}</Project>
       <Name>Business.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CrossCutting.Helper\CrossCutting.Helper.csproj">
+      <Project>{3ecde0a3-b8ca-46b7-ae2e-1a52502f057f}</Project>
+      <Name>CrossCutting.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
       <Project>{56e37732-a6c5-4e0c-8ec7-72e399f92814}</Project>

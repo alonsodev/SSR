@@ -15,7 +15,8 @@ namespace Infrastructure.Data
 
         private UserRepository _userRepository;
         private PermissionRepository _permissionRepository;
-        private RoleRepository _roleRepositoryy;
+        private RoleRepository _roleRepository;
+        private RolePermissionRepository _rolePermissionRepository;
         
         #endregion
 
@@ -27,18 +28,21 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public RolePermissionRepository RolePermissionRepository
+        {
+            get { return _rolePermissionRepository ?? (_rolePermissionRepository = new RolePermissionRepository(_context)); }
+        }
         public UserRepository UserRepository
         {
             get { return _userRepository ?? (_userRepository = new UserRepository(_context)); }
         }
-
         public PermissionRepository PermissionRepository
         {
             get { return _permissionRepository ?? (_permissionRepository = new PermissionRepository(_context)); }
         }
         public RoleRepository RoleRepository
         {
-            get { return _roleRepositoryy ?? (_roleRepositoryy = new RoleRepository(_context)); }
+            get { return _roleRepository ?? (_roleRepository = new RoleRepository(_context)); }
         }
 
         public int SaveChanges()
@@ -75,8 +79,10 @@ namespace Infrastructure.Data
         {
             this._userRepository = null;
             this._permissionRepository = null;
-            this._roleRepositoryy = null;
-            
+            this._roleRepository = null;
+
+            this._rolePermissionRepository = null;
+
             _context.Dispose();
         }
         #endregion

@@ -64,7 +64,7 @@
                         "proccessing": true,
                         "serverSide": true,
                         "ajax": {
-                            url: "@Url.Action("ObtenerLista", "Roles")",
+                            url: "@Url.Action("ObtenerLista", "Role")",
                             type: 'POST'
                         },
                         language: {
@@ -95,7 +95,7 @@
                                 }
                             },
                             {
-                                text: '<i class="fa fa-plus"></i> Agregar Permiso',
+                                text: '<i class="fa fa-plus"></i> Agregar Role',
                                 className: "btn btn-primary pull-right",
                                 action: function (e, dt, node, config) {
                                     window.location = "@Url.Action("Crear", "Role")";
@@ -117,7 +117,8 @@
                             { 'className': 'text-center', 'targets': [1] },
                             {
                                 render: function (data, type, row) {
-                                    return '<a href="/Role/Editar/' + row.role_id+'" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
+                                    return '<a href="/Role/Permisos/' + row.role_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Permisos"><i class="now-ui-icons loader_gear"></i></a> ' +
+                                        '<a href="/Role/Editar/' + row.role_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
                                         + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.role_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
                                 },
                                 targets: 1,
