@@ -20,36 +20,6 @@ namespace Business.Logic
             oRepositorio = oUnitOfWork.UserRepository;
         }
 
-        public void Agregar(ControlCombustibleViewModel pControlCombustibleViewModel, bool pIsTransaction = false)
-        {
-            GL_ControlCombustible oGL_ControlCombustible = new GL_ControlCombustible
-            {
-                ControlCombustibleID = 0,
-                Combustible = pControlCombustibleViewModel.Combustible,
-                Comentarios = pControlCombustibleViewModel.Comentarios,
-                FechaHora = pControlCombustibleViewModel.FechaHora,
-                Horometro = pControlCombustibleViewModel.Horometro,
-                Horometro2 = pControlCombustibleViewModel.Horometro2,
-                LanchaID = pControlCombustibleViewModel.LanchaID,
-                LanchaProveedoraID = pControlCombustibleViewModel.LanchaProveedoraID,
-                NroFactura = pControlCombustibleViewModel.NroFactura,
-                ProveedorGrifo = pControlCombustibleViewModel.ProveedorGrifo,
-                Tipo = pControlCombustibleViewModel.Tipo,
-                TipoAbastecimiento = pControlCombustibleViewModel.TipoAbastecimiento,
-                AbastLanchaCtrlCombID = pControlCombustibleViewModel.AbastLanchaCtrlCombID,
-                FechaCreacion = pControlCombustibleViewModel.FechaHora,
-                FechaModificacion = pControlCombustibleViewModel.FechaHora,
-                UsuarioCreacion = pControlCombustibleViewModel.Usuario,
-                UsuarioModificacion = pControlCombustibleViewModel.Usuario
-            };
-            oRepositorio.Add(oGL_ControlCombustible);
-            if (!pIsTransaction)
-            {
-                oUnitOfWork.SaveChanges();
-            }
-
-
-            pControlCombustibleViewModel.ControlCombustibleID = oGL_ControlCombustible.ControlCombustibleID;
-        }
+       
     }
 }

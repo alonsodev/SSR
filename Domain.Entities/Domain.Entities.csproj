@@ -43,10 +43,15 @@
   <ItemGroup>
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="DataTableViewModel.cs" />
+    <Compile Include="RoleViewModel.cs" />
+    <Compile Include="RoleFiltersViewModel.cs" />
+    <Compile Include="PermissionFiltersViewModel.cs" />
     <Compile Include="SearchUserFiltersViewModel.cs" />
     <Compile Include="GridViewModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PermissionViewModel.cs" />
     <Compile Include="UserViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

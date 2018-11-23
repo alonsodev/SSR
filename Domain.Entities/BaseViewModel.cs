@@ -8,9 +8,10 @@ namespace Domain.Entities
 {
     public class BaseViewModel
     {
-        public Nullable<System.DateTime> DateCreated { get; set; }
-        public Nullable<System.DateTime> DateModified { get; set; }
-        public Nullable<int> UserIdCreated { get; set; }
-        public Nullable<int> UserIdModified { get; set; }
+        public Nullable<System.DateTime> date_created { get; set; }
+        public Nullable<System.DateTime> date_modified { get; set; }
+        public Nullable<int> user_id_created { get; set; }
+        public Nullable<int> user_id_modified { get; set; }
+
     }
 }

@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
 
-        Now UI Dashboard PRO  by Creative Tim - @ViewBag.Title -  @ViewBag.active
+        ARCA - @ViewBag.Title
 
 
 
@@ -27,9 +27,9 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="../assets/use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="/assets/use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
 
 
     <link href="@Url.Content("/assets/css/now-ui-dashboard.min69ea.css?v=1.1.2")" rel="stylesheet" />
@@ -38,16 +38,17 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="@Url.Content("/assets/demo/demo.css")" rel="stylesheet" />
     <link href="@Url.Content("/assets/css/custom.css")" rel="stylesheet" />
+    <link href="@Url.Content("/assets/css/responsive.dataTables.min.css")" rel="stylesheet" />
 
     <!-- Google Tag Manager -->
     <script>
-(function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        }); var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                '../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');</script>
     <!-- End Google Tag Manager -->
 
@@ -125,12 +126,7 @@
 
                 <ul class="nav">
 
-
-
-
-
-
-                    <li class="active">
+                    <li class=" @ViewBag.dashboard">
 
                         <a href="dashboard.html">
 
@@ -140,7 +136,6 @@
                         </a>
 
                     </li>
-
                     <li>
 
                         <a data-toggle="collapse" href="#pagesExamples">
@@ -210,7 +205,7 @@
 
 
 
-                    <li>
+                    <li class="@(ViewBag.active=="users" || ViewBag.active=="permissions"|| ViewBag.active=="create_permission"?"active":"")">
 
                         <a data-toggle="collapse" href="#security">
 
@@ -220,23 +215,23 @@
                                 Seguridad <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse " id="security">
+
+                        <div class="@("collapse " + (ViewBag.active=="users" || ViewBag.active=="permissions" || ViewBag.active=="create_permission"? "show" : ""))" id="security">
+
                             <ul class="nav">
 
                                 <li>
-
                                     <a data-toggle="collapse" href="#user_management">
 
-
-                                        <span class="sidebar-mini-icon">U</span>
-                                        <p>
-                                            Usuarios <b class="caret"></b>
-                                        </p>
+                                        <i class="now-ui-icons design_image"></i>
+                                        <p>Usuarios<b class="caret"></b></p>
                                     </a>
-                                    <div class="collapse " id="user_management">
+
+
+                                    <div class="@("collapse " + (ViewBag.active=="users"? "show" : ""))" id="user_management">
                                         <ul class="nav">
 
-                                            <li>
+                                            <li class="@(ViewBag.active=="users"?"active":"")">
                                                 <a href="/User">
                                                     <span class="sidebar-mini-icon">VU</span>
                                                     <span class="sidebar-normal"> Ver Usuarios </span>
@@ -244,7 +239,7 @@
                                             </li>
 
                                             <li>
-                                                <a href="/Roles">
+                                                <a href="/User/0">
                                                     <span class="sidebar-mini-icon">CU</span>
                                                     <span class="sidebar-normal"> Crear Usuario </span>
                                                 </a>
@@ -258,11 +253,44 @@
                                     </div>
                                 </li>
 
-                             
 
+
+                                <li>
+                                    <a data-toggle="collapse" href="#permissions_management">
+
+                                        <i class="now-ui-icons design_image"></i>
+                                        <p>Permisos<b class="caret"></b></p>
+                                    </a>
+
+
+                                    <div class="@("collapse " + (ViewBag.active=="permissions" || ViewBag.active=="create_permission"? "show" : ""))" id="permissions_management">
+                                        <ul class="nav">
+
+                                            <li class="@(ViewBag.active=="permissions"?"active":"")">
+                                                <a href="/Permission">
+                                                    <span class="sidebar-mini-icon">VP</span>
+                                                    <span class="sidebar-normal"> Ver Permisos </span>
+                                                </a>
+                                            </li>
+
+                                            <li class="@(ViewBag.active=="create_permission"?"active":"")">
+                                                <a href="/Permission/Crear">
+                                                    <span class="sidebar-mini-icon">CP</span>
+                                                    <span class="sidebar-normal"> Crear Permiso </span>
+                                                </a>
+                                            </li>
+
+
+
+
+
+                                        </ul>
+                                    </div>
+                                </li>
 
                             </ul>
                         </div>
+
 
                     </li>
 
@@ -694,6 +722,7 @@
     <script src="@Url.Content("/assets/js/plugins/sweetalert2.min.js")"></script>
     <!-- Forms Validations Plugin -->
     <script src="@Url.Content("/assets/js/plugins/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("/Scripts/jquery.validate.unobtrusive.min.js")"></script>
     <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="@Url.Content("/assets/js/plugins/jquery.bootstrap-wizard.js")"></script>
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -702,6 +731,7 @@
     <script src="@Url.Content("/assets/js/plugins/bootstrap-datetimepicker.js")"></script>
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
     <script src="@Url.Content("/assets/js/plugins/datatable/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("/assets/js/plugins/datatable/dataTables.responsive.min.js")"></script>
     <script src="@Url.Content("/assets/js/plugins/datatable/buttons.html5.min.js")"></script>
     <script src="@Url.Content("/assets/js/plugins/datatable/dataTables.buttons.min.js")"></script>
     <script src="@Url.Content("/assets/js/plugins/datatable/jszip.min.js")"></script>
@@ -978,9 +1008,9 @@
     <script>
         $(document).ready(function () {
             // Javascript method's body can be found in assets/js/demos.js
-            demo.initDashboardPageCharts();
+            // demo.initDashboardPageCharts();
 
-            demo.initVectorMap();
+            //demo.initVectorMap();
 
         });</script>
 

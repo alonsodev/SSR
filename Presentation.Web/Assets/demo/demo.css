@@ -50,3 +50,7 @@
   width: 100%;
   height: 100vh;
 }
+div.dataTables_wrapper div.dataTables_info {
+   
+    white-space: normal !important;
+}

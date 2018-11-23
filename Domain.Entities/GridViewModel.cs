@@ -8,9 +8,11 @@ namespace Domain.Entities
 {
     public class GridModel<T>
     {
-        public String records { get; set; }
+        
         public int page { get; set; }
         public int total { get; set; }
+        public int recordsFiltered { get; set; }
+        
         public List<T> rows { get; set; }
     }
 }

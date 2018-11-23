@@ -14,6 +14,9 @@ namespace Infrastructure.Data
         private readonly ApplicationDbContext _context;
 
         private UserRepository _userRepository;
+        private PermissionRepository _permissionRepository;
+        private RoleRepository _roleRepositoryy;
+        
         #endregion
 
         #region Constructors
@@ -27,6 +30,15 @@ namespace Infrastructure.Data
         public UserRepository UserRepository
         {
             get { return _userRepository ?? (_userRepository = new UserRepository(_context)); }
+        }
+
+        public PermissionRepository PermissionRepository
+        {
+            get { return _permissionRepository ?? (_permissionRepository = new PermissionRepository(_context)); }
+        }
+        public RoleRepository RoleRepository
+        {
+            get { return _roleRepositoryy ?? (_roleRepositoryy = new RoleRepository(_context)); }
         }
 
         public int SaveChanges()
@@ -62,6 +74,9 @@ namespace Infrastructure.Data
         public void Dispose()
         {
             this._userRepository = null;
+            this._permissionRepository = null;
+            this._roleRepositoryy = null;
+            
             _context.Dispose();
         }
         #endregion
