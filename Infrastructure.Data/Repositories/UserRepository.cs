@@ -128,7 +128,8 @@ namespace Infrastructure.Data.Repositories
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.user_name.ToLower().Contains(srch) || s.user_email.ToLower().Contains(srch) || s.roles.role.ToLower().Contains(srch)) );
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.user_name.ToLower().Contains(srch) || s.user_email.ToLower().Contains(srch) 
+                || s.roles.role.ToLower().Contains(srch) || s.doc_nro.ToLower().Contains(srch)) );
 
 
                 count_records_filtered = queryFilters.Count();
@@ -142,7 +143,8 @@ namespace Infrastructure.Data.Repositories
                 user_email = a.user_email,
                 user_pass = a.user_pass,
                 user_role = a.roles.role,
-
+                document_type= a.document_types.name,
+                doc_nro= a.doc_nro,
                 user_status = a.user_status.name,
 
             });
