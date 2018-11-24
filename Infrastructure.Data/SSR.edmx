@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SSRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="document_types">
+          <Key>
+            <PropertyRef Name="document_type_id" />
+          </Key>
+          <Property Name="document_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="institutions">
+          <Key>
+            <PropertyRef Name="institution_id" />
+          </Key>
+          <Property Name="institution_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="nationalities">
+          <Key>
+            <PropertyRef Name="nationality_id" />
+          </Key>
+          <Property Name="nationality_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
         <EntityType Name="permissions">
           <Key>
             <PropertyRef Name="id_permission" />
@@ -62,6 +95,12 @@
           <Property Name="user_name" Type="varchar" MaxLength="100" />
           <Property Name="user_email" Type="varchar" MaxLength="150" />
           <Property Name="user_pass" Type="varchar" MaxLength="60" />
+          <Property Name="document_type_id" Type="int" />
+          <Property Name="doc_nro" Type="varchar" MaxLength="20" />
+          <Property Name="nationality_id" Type="int" />
+          <Property Name="contract_name" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
           <Property Name="user_role_id" Type="int" />
           <Property Name="user_status_id" Type="int" />
           <Property Name="is_super_admin" Type="tinyint" />
@@ -95,6 +134,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_users_document_types">
+          <End Role="document_types" Type="Self.document_types" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document_types">
+              <PropertyRef Name="document_type_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="document_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_nationalities">
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="nationality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_users_roles">
           <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
@@ -120,6 +183,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SSRModelStoreContainer">
+          <EntitySet Name="document_types" EntityType="Self.document_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="institutions" EntityType="Self.institutions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nationalities" EntityType="Self.nationalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permissions" EntityType="Self.permissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role_permissions" EntityType="Self.role_permissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
@@ -132,6 +198,14 @@
           <AssociationSet Name="FK_role_permissions_roles" Association="Self.FK_role_permissions_roles">
             <End Role="roles" EntitySet="roles" />
             <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_document_types" Association="Self.FK_users_document_types">
+            <End Role="document_types" EntitySet="document_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_nationalities" Association="Self.FK_users_nationalities">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="FK_users_roles" Association="Self.FK_users_roles">
             <End Role="roles" EntitySet="roles" />
@@ -151,7 +225,6 @@
           <EntitySet Name="role_permissions" EntityType="SSRModel.role_permissions" />
           <EntitySet Name="roles" EntityType="SSRModel.roles" />
           <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
-          <EntitySet Name="users" EntityType="SSRModel.users" />
           <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
             <End Role="permissions" EntitySet="permissions" />
             <End Role="role_permissions" EntitySet="role_permissions" />
@@ -159,6 +232,18 @@
           <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
             <End Role="roles" EntitySet="roles" />
             <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <EntitySet Name="document_types" EntityType="SSRModel.document_types" />
+          <EntitySet Name="institutions" EntityType="SSRModel.institutions" />
+          <EntitySet Name="nationalities" EntityType="SSRModel.nationalities" />
+          <EntitySet Name="users" EntityType="SSRModel.users" />
+          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
+            <End Role="document_types" EntitySet="document_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_nationalities" Association="SSRModel.FK_users_nationalities">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
             <End Role="roles" EntitySet="roles" />
@@ -168,7 +253,7 @@
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="permissions">
           <Key>
             <PropertyRef Name="id_permission" />
@@ -224,25 +309,6 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_users_user_status" FromRole="user_status" ToRole="users" />
         </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="user_role_id" Type="Int32" />
-          <Property Name="user_status_id" Type="Int32" />
-          <Property Name="is_super_admin" Type="Byte" />
-          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
-        </EntityType>
         <Association Name="FK_role_permissions_permissions">
           <End Type="SSRModel.permissions" Role="permissions" Multiplicity="1" />
           <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
@@ -264,6 +330,92 @@
             </Principal>
             <Dependent Role="role_permissions">
               <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="document_types">
+          <Key>
+            <PropertyRef Name="document_type_id" />
+          </Key>
+          <Property Name="document_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_document_types" FromRole="document_types" ToRole="users" />
+        </EntityType>
+        <EntityType Name="institutions">
+          <Key>
+            <PropertyRef Name="institution_id" />
+          </Key>
+          <Property Name="institution_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
+        <EntityType Name="nationalities">
+          <Key>
+            <PropertyRef Name="nationality_id" />
+          </Key>
+          <Property Name="nationality_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_nationalities" FromRole="nationalities" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="document_type_id" Type="Int32" />
+          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nationality_id" Type="Int32" />
+          <Property Name="contract_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_role_id" Type="Int32" />
+          <Property Name="user_status_id" Type="Int32" />
+          <Property Name="is_super_admin" Type="Byte" />
+          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
+          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
+        </EntityType>
+        <Association Name="FK_users_document_types">
+          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document_types">
+              <PropertyRef Name="document_type_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="document_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_nationalities">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="nationality_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,6 +501,42 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="document_types">
+            <EntityTypeMapping TypeName="SSRModel.document_types">
+              <MappingFragment StoreEntitySet="document_types">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="document_type_id" ColumnName="document_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="institutions">
+            <EntityTypeMapping TypeName="SSRModel.institutions">
+              <MappingFragment StoreEntitySet="institutions">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nationalities">
+            <EntityTypeMapping TypeName="SSRModel.nationalities">
+              <MappingFragment StoreEntitySet="nationalities">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="nationality_id" ColumnName="nationality_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="SSRModel.users">
               <MappingFragment StoreEntitySet="users">
@@ -360,6 +548,12 @@
                 <ScalarProperty Name="is_super_admin" ColumnName="is_super_admin" />
                 <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
                 <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="contract_name" ColumnName="contract_name" />
+                <ScalarProperty Name="nationality_id" ColumnName="nationality_id" />
+                <ScalarProperty Name="doc_nro" ColumnName="doc_nro" />
+                <ScalarProperty Name="document_type_id" ColumnName="document_type_id" />
                 <ScalarProperty Name="user_pass" ColumnName="user_pass" />
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />

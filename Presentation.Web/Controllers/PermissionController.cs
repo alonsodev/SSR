@@ -74,18 +74,44 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-
-        public ActionResult Eliminar(int id)
+        [HttpPost]
+        public JsonResult Eliminar(int id)
         {
 
             PermissionBL oPermissionBL = new PermissionBL();
 
             oPermissionBL.Eliminar(id);
 
-            return RedirectToAction("Index");
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
 
         }
 
+        [HttpPost]
+        public JsonResult Verificar(int id_permission, string name)
+        {
+
+            PermissionBL oPermissionBL = new PermissionBL();
+
+
+           
+
+            var resultado =oPermissionBL.VerificarDuplicado(id_permission, name);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                valido = resultado,
+
+            });
+
+        }
+
+        
 
         public JsonResult ObtenerListaPermisos(PermissionFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {

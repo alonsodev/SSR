@@ -29,7 +29,7 @@
                     @Html.LabelFor(model => model.role, htmlAttributes: new { @class = "" })
                     @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
-
+                    <span class="text-danger field-validation-error role-error"></span>
                 </div>
 
               
@@ -65,10 +65,44 @@
             debugger;
             e.preventDefault();
             var form = this;
+            $('.role-error').html('');
             if ($("#form-role").valid()) {
 
 
-                form.submit();
+                 var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "Role")",
+                        type: "POST",
+                     data: { id_role: $('#role_id').val(), name: $('#role').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.role-error').html('<span id="name-error" class="">Ya existe un role con el mismo nombre.</span>');
+                    return false;
+                }
+
 
 
 

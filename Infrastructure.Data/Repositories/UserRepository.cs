@@ -14,6 +14,29 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
+        public List<SelectOptionItem> DocumentTypesSelector()
+        {
+            var lista = this.Context.Set<document_types>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.document_type_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> NationalitiesSelector()
+        {
+            var lista = this.Context.Set<nationalities>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.nationality_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
         public List<SelectOptionItem> RolesSelector()
         {
             var lista = this.Context.Set<roles>();
@@ -37,6 +60,15 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+        public bool VerificarDuplicado(int user_id, string email)
+        {
+
+            email = email.Trim().ToLower();
+            var count = Set.Where(a => a.id != user_id && a.user_email.ToLower() == email).Count();
+
+            return count == 0;
+        }
+
         public UserViewModel ObtenerUser(int id)
         {
             var query = Set.Where(a => a.id == id).Select(a => new UserViewModel
@@ -53,7 +85,14 @@ namespace Infrastructure.Data.Repositories
                 date_created = a.date_created,
                 date_modified = a.date_modified,
                 user_id_created = a.user_id_created,
-                user_id_modified = a.user_id_modified
+                user_id_modified = a.user_id_modified,
+                document_type_id=a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contract_name = a.contract_name,
+                phone = a.phone,
+                address = a.address,
             });
 
             return query.Take(1).FirstOrDefault();

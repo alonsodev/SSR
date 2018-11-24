@@ -22,6 +22,12 @@ namespace Business.Logic
             oRepositorio = oUnitOfWork.RoleRepository;
             oRolePermissionRepository = oUnitOfWork.RolePermissionRepository;
         }
+
+        public bool VerificarDuplicado(int id_role, string name)
+        {
+            return oRepositorio.VerificarDuplicado(id_role, name);
+        }
+
         public void GuardarPermisos(int role_id, string ids)
         {
             oRolePermissionRepository.deleteMultiple(role_id);

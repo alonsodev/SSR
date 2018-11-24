@@ -29,6 +29,9 @@ namespace Infrastructure.Data
         public virtual DbSet<role_permissions> role_permissions { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<user_status> user_status { get; set; }
+        public virtual DbSet<document_types> document_types { get; set; }
+        public virtual DbSet<institutions> institutions { get; set; }
+        public virtual DbSet<nationalities> nationalities { get; set; }
         public virtual DbSet<users> users { get; set; }
     }
 }

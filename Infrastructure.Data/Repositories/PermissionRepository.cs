@@ -15,8 +15,14 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
-      
-       
+
+        public bool VerificarDuplicado(int id_permission, string name) {
+
+            name = name.Trim().ToLower();
+            var count = Set.Where(a => a.id_permission != id_permission && a.name.ToLower() == name).Count();
+
+            return count == 0;
+        }
 
         public PermissionViewModel ObtenerPermission(int id_permission)
         {

@@ -28,6 +28,26 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        public JsonResult Verificar(int id_role, string name)
+        {
+
+            RoleBL oBL = new RoleBL();
+
+
+
+
+            var resultado = oBL.VerificarDuplicado(id_role, name);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                valido = resultado,
+
+            });
+
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
 
         public ActionResult Crear([Bind(Include = "role_id,role")] RoleViewModel pRoleViewModel)

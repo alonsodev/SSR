@@ -9,12 +9,17 @@
         <EntityTypeShape EntityType="SSRModel.role_permissions" Width="1.5" PointX="6" PointY="4.75" />
         <EntityTypeShape EntityType="SSRModel.roles" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="SSRModel.user_status" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="4.25" />
         <AssociationConnector Association="SSRModel.FK_role_permissions_permissions" />
         <AssociationConnector Association="SSRModel.FK_role_permissions_roles" />
+        <EntityTypeShape EntityType="SSRModel.document_types" Width="1.5" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="SSRModel.institutions" Width="1.5" PointX="0.75" PointY="15.125" />
+        <EntityTypeShape EntityType="SSRModel.nationalities" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="5.125" />
+        <AssociationConnector Association="SSRModel.FK_users_document_types" />
+        <AssociationConnector Association="SSRModel.FK_users_nationalities" />
         <AssociationConnector Association="SSRModel.FK_users_roles" />
         <AssociationConnector Association="SSRModel.FK_users_user_status" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

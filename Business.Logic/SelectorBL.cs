@@ -26,5 +26,16 @@ namespace Business.Logic
         {
             return oRepositorio.EstatusUserSelector();
         }
+
+        public List<SelectOptionItem> DocumentTypesSelector()
+        {
+            return oRepositorio.DocumentTypesSelector();
+        }
+
+
+        public List<SelectOptionItem> NationalitiesSelector()
+        {
+            return oRepositorio.NationalitiesSelector();
+        }
     }
 }

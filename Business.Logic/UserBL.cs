@@ -20,9 +20,12 @@ namespace Business.Logic
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.UserRepository;
         }
-       
 
 
+        public bool VerificarDuplicado(int user_id, string email)
+        {
+            return oRepositorio.VerificarDuplicado(user_id, email);
+        }
         public UserViewModel ObtenerUser(int pIntID)
         {
 
@@ -44,7 +47,16 @@ namespace Business.Logic
             ousers.user_email = pUserViewModel.user_email;
             ousers.user_role_id = pUserViewModel.user_role_id;
             ousers.user_status_id = pUserViewModel.user_status_id;
-          
+
+            ousers.document_type_id = pUserViewModel.document_type_id;
+
+            ousers.doc_nro = pUserViewModel.doc_nro;
+            ousers.nationality_id = pUserViewModel.nationality_id;
+            ousers.contract_name = pUserViewModel.contract_name;
+            ousers.phone = pUserViewModel.phone;
+            ousers.address = pUserViewModel.address;
+
+
             ousers.user_id_modified = pUserViewModel.user_id_modified;
             ousers.date_modified = DateTime.Now;
             oRepositorio.Update(ousers);
@@ -72,6 +84,14 @@ namespace Business.Logic
                 user_email = pUserViewModel.user_email,
                 user_role_id = pUserViewModel.user_role_id,
                 user_status_id = pUserViewModel.user_status_id,
+                document_type_id = pUserViewModel.document_type_id,
+
+                doc_nro = pUserViewModel.doc_nro,
+                nationality_id = pUserViewModel.nationality_id,
+                contract_name = pUserViewModel.contract_name,
+                phone = pUserViewModel.phone,
+                address = pUserViewModel.address,
+
                 date_created = DateTime.Now,
                 user_id_created = pUserViewModel.user_id_created
 

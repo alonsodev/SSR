@@ -22,18 +22,28 @@ namespace Presentation.Web.Controllers
 
             List<SelectOptionItem> oEstatus = oSelectorBL.EstatusUserSelector();
             List<SelectOptionItem> oRoles = oSelectorBL.RolesSelector();
+
+            List<SelectOptionItem> oNationalities = oSelectorBL.NationalitiesSelector();
+            List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
+
+
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
 
+            List<SelectListItem> nationalities = Helper.ConstruirDropDownList<SelectOptionItem>(oNationalities, "Value", "Text", "", true, "", "");
+            List<SelectListItem> documentTypes = Helper.ConstruirDropDownList<SelectOptionItem>(oDocumentTypes, "Value", "Text", "", true, "", "");
+
             ViewBag.estatus = estatus;
             ViewBag.roles = roles;
+            ViewBag.nationalities = nationalities;
+            ViewBag.documentTypes = documentTypes;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
@@ -63,11 +73,21 @@ namespace Presentation.Web.Controllers
 
             List<SelectOptionItem> oEstatus = oSelectorBL.EstatusUserSelector();
             List<SelectOptionItem> oRoles = oSelectorBL.RolesSelector();
+
+            List<SelectOptionItem> oNationalities = oSelectorBL.NationalitiesSelector();
+            List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
+
+
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
 
+            List<SelectListItem> nationalities = Helper.ConstruirDropDownList<SelectOptionItem>(oNationalities, "Value", "Text", "", true, "", "");
+            List<SelectListItem> documentTypes = Helper.ConstruirDropDownList<SelectOptionItem>(oDocumentTypes, "Value", "Text", "", true, "", "");
+
             ViewBag.estatus = estatus;
             ViewBag.roles = roles;
+            ViewBag.nationalities = nationalities;
+            ViewBag.documentTypes = documentTypes;
 
             return View(pUserViewModel);
         }
@@ -75,7 +95,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
@@ -88,15 +108,37 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
+        [HttpPost]
+        public JsonResult Verificar(int user_id, string email)
+        {
 
-        public ActionResult Eliminar(int id)
+            UserBL oUserBL = new UserBL();
+            var resultado = oUserBL.VerificarDuplicado(user_id, email);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                valido = resultado,
+
+            });
+
+        }
+
+
+        [HttpPost]
+        public JsonResult Eliminar(int id)
         {
 
             UserBL oUserBL = new UserBL();
 
             oUserBL.Eliminar(id);
 
-            return RedirectToAction("Index");
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
 
         }
 

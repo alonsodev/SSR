@@ -7,7 +7,7 @@
     ViewBag.HeaderTitle = "Permisos";
     ViewBag.Title = "Crear Permiso";
 
-    ViewBag.active = "create_permission";
+    ViewBag.active = "permissions";
 
 }
 <div class="row">
@@ -18,33 +18,35 @@
             </div>
             @using (Html.BeginForm("Crear", "Permission", FormMethod.Post, new { id = "form-registrar-permiso", title = "Crear Permiso" }))
             {
-            <div class="card-body">
+                <div class="card-body">
 
 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group has-label">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
 
-                </div>
+                    </div>
 
-                <div class="form-group has-label">
+                    <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                </div>
+                        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+
+                        <span class="text-danger field-validation-error name-error"></span>
+                    </div>
 
 
 
 
 
-            </div><!-- end content-->
+                </div><!-- end content-->
                 <div class="card-footer text-right">
-                    
+
                     <button type="submit" class="btn btn-primary">Crear</button>
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
                 </div>
@@ -67,13 +69,44 @@
 
         $('#form-registrar-permiso').on('submit', function (e) { //use on if jQuery 1.7+
             //prevent form from submitting
-            debugger;
+
             e.preventDefault();
             var form = this;
+            $('.name-error').html('');
             if ($("#form-registrar-permiso").valid()) {
+                var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "Permission")",
+                        type: "POST",
+                        data: { id_permission: 0, name: $('#name').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
 
 
-                form.submit();
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.name-error').html('<span id="name-error" class="">Ya existe un permiso con la misma llave.</span>');
+                    return false;
+                }
 
 
 

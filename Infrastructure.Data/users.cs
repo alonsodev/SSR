@@ -18,6 +18,12 @@ namespace Infrastructure.Data
         public string user_name { get; set; }
         public string user_email { get; set; }
         public string user_pass { get; set; }
+        public Nullable<int> document_type_id { get; set; }
+        public string doc_nro { get; set; }
+        public Nullable<int> nationality_id { get; set; }
+        public string contract_name { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
         public Nullable<int> user_role_id { get; set; }
         public Nullable<int> user_status_id { get; set; }
         public Nullable<byte> is_super_admin { get; set; }
@@ -27,6 +33,8 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
+        public virtual document_types document_types { get; set; }
+        public virtual nationalities nationalities { get; set; }
         public virtual roles roles { get; set; }
         public virtual user_status user_status { get; set; }
     }

@@ -14,7 +14,15 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
-      
+        public bool VerificarDuplicado(int role_id, string name)
+        {
+
+            name = name.Trim().ToLower();
+            var count = Set.Where(a => a.role_id != role_id && a.role.ToLower() == name).Count();
+
+            return count == 0;
+        }
+
         public RoleViewModel ObtenerRole(int id_permission)
         {
             var query = Set.Where(a => a.role_id == id_permission).Select(a => new RoleViewModel

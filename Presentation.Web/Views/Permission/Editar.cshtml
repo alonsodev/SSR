@@ -37,6 +37,7 @@
                     @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
                     @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
                 </div>
 
 
@@ -65,16 +66,47 @@
         $("#btnCancelar").click(function () {
             window.location.href = "/Permission";
         });
-
+        $('.name-error').html('');
         $('#form-permiso').on('submit', function (e) { //use on if jQuery 1.7+
             //prevent form from submitting
-            debugger;
+
             e.preventDefault();
             var form = this;
+            $('.name-error').html('');
             if ($("#form-permiso").valid()) {
+                var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "Permission")",
+                        type: "POST",
+                     data: { id_permission: $('#id_permission').val() , name: $('#name').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
 
 
-                form.submit();
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.name-error').html('<span id="name-error" class="">Ya existe un permiso con la misma llave.</span>');
+                    return false;
+                }
 
 
 
