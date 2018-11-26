@@ -17,6 +17,10 @@ namespace Business.Logic
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.UserRepository;
         }
+        public List<SelectOptionItem> GendersSelector()
+        {
+            return oRepositorio.GendersSelector();
+        }
         public List<SelectOptionItem> RolesSelector()
         {
             return oRepositorio.RolesSelector();

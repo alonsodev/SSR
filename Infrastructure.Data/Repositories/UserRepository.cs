@@ -14,6 +14,17 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
+        public List<SelectOptionItem>GendersSelector()
+        {
+            var lista = this.Context.Set<genders>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.gender_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
         public List<SelectOptionItem> DocumentTypesSelector()
         {
             var lista = this.Context.Set<document_types>();

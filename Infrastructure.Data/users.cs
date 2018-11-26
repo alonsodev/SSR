@@ -14,6 +14,12 @@ namespace Infrastructure.Data
     
     public partial class users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public users()
+        {
+            this.investigators = new HashSet<investigators>();
+        }
+    
         public int id { get; set; }
         public string user_name { get; set; }
         public string user_email { get; set; }
@@ -37,5 +43,7 @@ namespace Infrastructure.Data
         public virtual nationalities nationalities { get; set; }
         public virtual roles roles { get; set; }
         public virtual user_status user_status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
     }
 }

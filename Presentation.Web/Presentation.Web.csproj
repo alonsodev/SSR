@@ -151,6 +151,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\AccountController .cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,7 @@
     <Content Include="Assets\js\plugins\jquery-jvectormap.js" />
     <Content Include="Assets\js\plugins\jquery.bootstrap-wizard.js" />
     <Content Include="Assets\js\plugins\jquery.validate.min.js" />
+    <Content Include="Assets\js\plugins\moment-with-locale-es.js" />
     <Content Include="Assets\js\plugins\moment.min.js" />
     <Content Include="Assets\js\plugins\nouislider.min.js" />
     <Content Include="Assets\js\plugins\perfect-scrollbar.jquery.min.js" />
@@ -262,11 +264,13 @@
     <Content Include="Views\Role\Crear.cshtml" />
     <Content Include="Views\Role\Editar.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Account\Crear.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Role\Permisos.cshtml" />
+    <Content Include="Views\Shared\_PublicLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

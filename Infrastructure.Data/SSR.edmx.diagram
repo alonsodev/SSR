@@ -13,12 +13,17 @@
         <AssociationConnector Association="SSRModel.FK_role_permissions_roles" />
         <EntityTypeShape EntityType="SSRModel.document_types" Width="1.5" PointX="0.75" PointY="12.125" />
         <EntityTypeShape EntityType="SSRModel.institutions" Width="1.5" PointX="0.75" PointY="15.125" />
-        <EntityTypeShape EntityType="SSRModel.nationalities" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="SSRModel.nationalities" Width="1.5" PointX="6.375" PointY="8.625" />
         <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="5.125" />
         <AssociationConnector Association="SSRModel.FK_users_document_types" />
         <AssociationConnector Association="SSRModel.FK_users_nationalities" />
         <AssociationConnector Association="SSRModel.FK_users_roles" />
         <AssociationConnector Association="SSRModel.FK_users_user_status" />
+        <EntityTypeShape EntityType="SSRModel.genders" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="SSRModel.investigation_groups" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SSRModel.investigators" Width="1.5" PointX="5.25" PointY="11.75" />
+        <AssociationConnector Association="SSRModel.FK_investigators_genders" />
+        <AssociationConnector Association="SSRModel.FK_investigators_users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

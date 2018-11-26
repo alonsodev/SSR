@@ -17,6 +17,8 @@ namespace Infrastructure.Data
         private PermissionRepository _permissionRepository;
         private RoleRepository _roleRepository;
         private RolePermissionRepository _rolePermissionRepository;
+
+        private InvestigatorRepository _investigatorRepository;
         
         #endregion
 
@@ -28,6 +30,12 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public InvestigatorRepository InvestigatorRepository
+        {
+            get { return _investigatorRepository ?? (_investigatorRepository = new  InvestigatorRepository(_context)); }
+
+        }
+
         public RolePermissionRepository RolePermissionRepository
         {
             get { return _rolePermissionRepository ?? (_rolePermissionRepository = new RolePermissionRepository(_context)); }
@@ -82,6 +90,8 @@ namespace Infrastructure.Data
             this._roleRepository = null;
 
             this._rolePermissionRepository = null;
+
+            this._investigatorRepository = null;
 
             _context.Dispose();
         }

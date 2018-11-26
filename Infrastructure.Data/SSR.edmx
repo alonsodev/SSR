@@ -16,6 +16,13 @@
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
         </EntityType>
+        <EntityType Name="genders">
+          <Key>
+            <PropertyRef Name="gender_id" />
+          </Key>
+          <Property Name="gender_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="institutions">
           <Key>
             <PropertyRef Name="institution_id" />
@@ -26,6 +33,32 @@
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="investigation_groups">
+          <Key>
+            <PropertyRef Name="investigation_group_id" />
+          </Key>
+          <Property Name="investigation_group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="institution_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="investigators">
+          <Key>
+            <PropertyRef Name="investigator_id" />
+          </Key>
+          <Property Name="investigator_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="first_name" Type="varchar" MaxLength="100" />
+          <Property Name="second_name" Type="varchar" MaxLength="100" />
+          <Property Name="last_name" Type="varchar" MaxLength="100" />
+          <Property Name="second_last_name" Type="varchar" MaxLength="100" />
+          <Property Name="gender_id" Type="int" />
+          <Property Name="mobile_phone" Type="varchar" MaxLength="20" />
+          <Property Name="birthdate" Type="datetime" />
         </EntityType>
         <EntityType Name="nationalities">
           <Key>
@@ -110,6 +143,30 @@
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
         </EntityType>
+        <Association Name="FK_investigators_genders">
+          <End Role="genders" Type="Self.genders" Multiplicity="0..1" />
+          <End Role="investigators" Type="Self.investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="investigators" Type="Self.investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_role_permissions_permissions">
           <End Role="permissions" Type="Self.permissions" Multiplicity="1" />
           <End Role="role_permissions" Type="Self.role_permissions" Multiplicity="*" />
@@ -184,13 +241,24 @@
         </Association>
         <EntityContainer Name="SSRModelStoreContainer">
           <EntitySet Name="document_types" EntityType="Self.document_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genders" EntityType="Self.genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="institutions" EntityType="Self.institutions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="investigation_groups" EntityType="Self.investigation_groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="investigators" EntityType="Self.investigators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nationalities" EntityType="Self.nationalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permissions" EntityType="Self.permissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role_permissions" EntityType="Self.role_permissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_status" EntityType="Self.user_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_investigators_genders" Association="Self.FK_investigators_genders">
+            <End Role="genders" EntitySet="genders" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_users" Association="Self.FK_investigators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
           <AssociationSet Name="FK_role_permissions_permissions" Association="Self.FK_role_permissions_permissions">
             <End Role="permissions" EntitySet="permissions" />
             <End Role="role_permissions" EntitySet="role_permissions" />
@@ -252,6 +320,17 @@
           <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <EntitySet Name="genders" EntityType="SSRModel.genders" />
+          <EntitySet Name="investigation_groups" EntityType="SSRModel.investigation_groups" />
+          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
+          <AssociationSet Name="FK_investigators_genders" Association="SSRModel.FK_investigators_genders">
+            <End Role="genders" EntitySet="genders" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="permissions">
@@ -394,6 +473,7 @@
           <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
           <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
         </EntityType>
         <Association Name="FK_users_document_types">
           <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
@@ -440,6 +520,66 @@
             </Principal>
             <Dependent Role="users">
               <PropertyRef Name="user_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="genders">
+          <Key>
+            <PropertyRef Name="gender_id" />
+          </Key>
+          <Property Name="gender_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_genders" FromRole="genders" ToRole="investigators" />
+        </EntityType>
+        <EntityType Name="investigation_groups">
+          <Key>
+            <PropertyRef Name="investigation_group_id" />
+          </Key>
+          <Property Name="investigation_group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="institution_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
+        <EntityType Name="investigators">
+          <Key>
+            <PropertyRef Name="investigator_id" />
+          </Key>
+          <Property Name="investigator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="second_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="second_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gender_id" Type="Int32" />
+          <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="genders" Relationship="SSRModel.FK_investigators_genders" FromRole="investigators" ToRole="genders" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_investigators_users" FromRole="investigators" ToRole="users" />
+        </EntityType>
+        <Association Name="FK_investigators_genders">
+          <End Type="SSRModel.genders" Role="genders" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -558,6 +698,42 @@
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genders">
+            <EntityTypeMapping TypeName="SSRModel.genders">
+              <MappingFragment StoreEntitySet="genders">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigation_groups">
+            <EntityTypeMapping TypeName="SSRModel.investigation_groups">
+              <MappingFragment StoreEntitySet="investigation_groups">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
+                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigators">
+            <EntityTypeMapping TypeName="SSRModel.investigators">
+              <MappingFragment StoreEntitySet="investigators">
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

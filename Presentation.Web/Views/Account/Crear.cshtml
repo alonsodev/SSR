@@ -1,0 +1,344 @@
+﻿@model Domain.Entities.InvestigatorViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "user");
+    ViewBag.HeaderTitle = "Investigador";
+    ViewBag.Title = "Registrar Investigador";
+
+
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+            <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Políticas de Uso
+
+                        <i class="now-ui-icons arrows-1_minimal-down"></i>
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-body">
+                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+
+                        <div class="form-check mt-3">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-sign"></span>
+                               Aceptar
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Registro
+
+                        <i class="now-ui-icons arrows-1_minimal-down"></i>
+                    </a>
+                </div>
+                <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <h3> Datos Básicos</h3>
+                                    @using (Html.BeginForm("Crear", "Account", FormMethod.Post, new { id = "form-investigator", title = "Crear Investigador" }))
+                                    {
+                                    <div class="card-body">
+
+
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.document_type_id, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.DropDownList("document_type_id", (IEnumerable<SelectListItem>)ViewBag.documentTypes, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.document_type_id, "", new { @class = "text-danger" })
+                                                </div>
+
+                                            </div>
+
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.doc_nro, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.doc_nro, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.doc_nro, "", new { @class = "text-danger" })
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_name, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.second_name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.second_name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_last_name, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.second_last_name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.second_last_name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.gender_id, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    
+                                                    @Html.DropDownList("gender_id", (IEnumerable<SelectListItem>)ViewBag.genders, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.gender_id, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.mobile_phone, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.mobile_phone, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.birthdate, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.birthdate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    @Html.ValidationMessageFor(model => model.birthdate, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                       
+                                    
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.nationality_id, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                    @Html.DropDownList("nationality_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.nationality_id, "", new { @class = "text-danger" })
+                                                </div>
+
+                                            </div>
+
+                                            <label class="col-sm-2 col-form-label">  @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "" })</label>
+
+                                            <div class="col-sm-4">
+
+                                                <div class="form-group">
+                                                  
+                                                    @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+
+
+                                                    <span class="text-danger field-validation-error email-error"></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group has-label">
+
+                                            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
+                                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                                        </div>
+                                      
+
+
+
+
+                                    </div><!-- end content-->
+                                    <div class="card-footer text-right">
+
+                                        <button type="submit" class="btn btn-primary">Crear</button>
+                                        <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                                    </div>
+                                }
+                                </div><!--  end card  -->
+                            </div> <!-- end col-md-12 -->
+                        </div> <!-- end row -->
+                    </div>
+                </div>
+            </div>
+            <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingThree">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Informacion de Caracterización
+
+                        <i class="now-ui-icons arrows-1_minimal-down"></i>
+                    </a>
+                </div>
+                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+    @section Scripts {
+
+        <script type="text/javascript">
+        $(function () {
+            $("#user_role_id").select2({ theme: "bootstrap" });
+            $("#user_status_id").select2({ theme: "bootstrap" });
+            $("#nationality_id").select2({ theme: "bootstrap" });
+            $("#document_type_id").select2({ theme: "bootstrap" });
+            $("#gender_id").select2({ theme: "bootstrap" });
+            $('.datepicker').datetimepicker({
+                locale: 'es',
+                format: 'MM/DD/YYYY',
+                icons: {
+                    time: "now-ui-icons tech_watch-time",
+                    date: "now-ui-icons ui-1_calendar-60",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'now-ui-icons arrows-1_minimal-left',
+                    next: 'now-ui-icons arrows-1_minimal-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        });
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/User";
+        });
+        $('.email-error').html('');
+        $('#form-investigator').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            if ($("#form-investigator").valid()) {
+
+
+                var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "User")",
+                        type: "POST",
+                     data: { user_id: 0, email: $('#user_email').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.email-error').html('<span id="name-error" class="">Ya existe un usuario con el mismo correo electrónico.</span>');
+                    return false;
+                }
+
+
+
+
+            }
+
+            return false;
+        });
+
+        </script>
+    }

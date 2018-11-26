@@ -13,12 +13,14 @@ namespace Business.Logic
     public class UserBL
     {
         private static UserRepository oRepositorio;
+        private static InvestigatorRepository oRepositorioInvestigator;
         private static UnitOfWork oUnitOfWork;
 
         public UserBL()
         {
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.UserRepository;
+            oRepositorioInvestigator = oUnitOfWork.InvestigatorRepository;
         }
 
 
@@ -99,6 +101,54 @@ namespace Business.Logic
             oRepositorio.Add(ousers);
             oUnitOfWork.SaveChanges();
         }
+
+        public void AgregarInvestigador(InvestigatorViewModel pInvestigatorViewModel)
+        {
+
+
+            users ousers = new users
+            {
+                id = 0,
+                user_name = pInvestigatorViewModel.user_name,
+                user_email = pInvestigatorViewModel.user_email,
+                user_role_id =3,
+                user_status_id =1,
+                document_type_id = pInvestigatorViewModel.document_type_id,
+
+                doc_nro = pInvestigatorViewModel.doc_nro,
+                nationality_id = pInvestigatorViewModel.nationality_id,
+              //  contract_name = pInvestigatorViewModel.contract_name,
+                phone = pInvestigatorViewModel.phone,
+                address = pInvestigatorViewModel.address,
+
+                date_created = DateTime.Now,
+                user_id_created = pInvestigatorViewModel.user_id_created
+
+            };
+            ousers= oRepositorio.Add(ousers);
+
+            investigators oinvestigators = new investigators
+            {
+                investigator_id = 0,
+                user_id= ousers.id,
+                first_name = pInvestigatorViewModel.first_name,
+                second_name = pInvestigatorViewModel.second_name,
+                last_name = pInvestigatorViewModel.last_name,
+                second_last_name = pInvestigatorViewModel.second_last_name,
+
+                gender_id = pInvestigatorViewModel.gender_id,
+                mobile_phone = pInvestigatorViewModel.mobile_phone,
+                birthdate = pInvestigatorViewModel.birthdate,
+
+              
+
+            };
+            oinvestigators = oRepositorioInvestigator.Add(oinvestigators);
+
+            oUnitOfWork.SaveChanges();
+        }
+
+
 
     }
 }
