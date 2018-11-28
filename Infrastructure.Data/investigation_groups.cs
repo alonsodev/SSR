@@ -14,6 +14,13 @@ namespace Infrastructure.Data
     
     public partial class investigation_groups
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public investigation_groups()
+        {
+            this.interest_areas = new HashSet<interest_areas>();
+            this.investigators = new HashSet<investigators>();
+        }
+    
         public int investigation_group_id { get; set; }
         public int institution_id { get; set; }
         public string name { get; set; }
@@ -21,5 +28,11 @@ namespace Infrastructure.Data
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
+    
+        public virtual institutions institutions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<interest_areas> interest_areas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
     }
 }

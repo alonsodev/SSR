@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpressiveAnnotations.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -76,14 +77,17 @@ namespace Domain.Entities
         //[DataType(DataType.Date)]
 //        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> birthdate { get; set; }
+        [Display(Name = "Fecha de Nacimiento")]
+        [Required(ErrorMessage = "Fecha de Nacimiento es obligatorio.")]
+        public string birthdate_text { get; set; }
 
         [Display(Name = "Nacionalidad")]
         [Required(ErrorMessage = "Nacionalidad es obligatorio.")]
         public Nullable<int> nationality_id { get; set; }
 
-      
 
-      
+
+        public string contact_name { get; set; }
         [Display(Name = "Lugar de residencia")]
         [Required(ErrorMessage = "Lugar de residencia es obligatorio.")]
         public string address { get; set; }
@@ -93,14 +97,35 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El Correo electrónico usuario es obligatorio.")]
         public string user_email { get; set; }
 
-      
 
 
-      
-      
-       
-     
-     
-       
+
+        [Display(Name = "Contraseña")]
+        [Required(ErrorMessage = "La Contraseña es obligatoria.")]
+        [DataType(DataType.Password)]
+        public string user_pass { get; set; }
+
+        [Display(Name = "Confirmar Contraseña")]
+        [Required(ErrorMessage = "Confirmar Contraseña es obligatoria.")]
+        [DataType(DataType.Password)]
+        [AssertThat("user_pass2==user_pass", ErrorMessage = "Confirmar Contraseña no coincide con la contraseña ingresada previamente.")]
+        public string user_pass2 { get; set; }
+
+        [Display(Name = "Nombre de institución")]
+        [Required(ErrorMessage = "Nombre de institución es obligatorio.")]
+        public Nullable<int> institution_id { get; set; }
+
+        [Display(Name = "Grupo de investigación a la que pertenece")]
+        [Required(ErrorMessage = "Grupo de investigación a la que pertenece es obligatorio.")]
+        public Nullable<int> investigation_group_id { get; set; }
+
+        [Display(Name = "Código del grupo")]
+        
+        public Nullable<int> program_id { get; set; }
+
+        [Display(Name = "Áreas de interés")]
+        [Required(ErrorMessage = "Áreas de interés es obligatorio.")]
+        public int[] interest_areas { get; set; }
+
     }
 }

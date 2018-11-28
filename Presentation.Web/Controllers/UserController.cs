@@ -1,6 +1,7 @@
 ﻿using Business.Logic;
 using CrossCutting.Helper;
 using Domain.Entities;
+using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Presentation.Web.Controllers
 {
     public class UserController : Controller
     {
+        [AuthorizeUser(Permissions  = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.module_access_users })]
+        
         // GET: User
         public ActionResult Index()
         {
@@ -43,7 +46,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
@@ -54,7 +57,7 @@ namespace Presentation.Web.Controllers
             pUserViewModel.id = 0;
 
             pUserViewModel.user_id_created = 0;
-
+            pUserViewModel.user_pass = Helper.Encripta("1234Abcd");
             UserBL oBL = new UserBL();
 
             oBL.Agregar(pUserViewModel);
@@ -95,7 +98,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 

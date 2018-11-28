@@ -71,6 +71,9 @@
     <Compile Include="institutions.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="interest_areas.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="investigation_groups.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
@@ -81,6 +84,9 @@
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="permissions.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="programs.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

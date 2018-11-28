@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Domain.Entities;
+@using System.Configuration;
+@using Presentation.Web.Filters;
+<!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from demos.creative-tim.com/now-ui-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Aug 2018 20:53:28 GMT -->
@@ -76,11 +79,11 @@
                 Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
             -->
             <div class="logo">
-                <a href="http://www.creative-tim.com/" class="simple-text logo-mini">
-                    CT
+                <a href="/" class="simple-text logo-mini">
+                    AR
                 </a>
-                <a href="http://www.creative-tim.com/" class="simple-text logo-normal">
-                    Creative Tim
+                <a href="/" class="simple-text logo-normal">
+                   ARCA
                 </a>
 
                 <div class="navbar-minimize">
@@ -100,7 +103,8 @@
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" class="collapsed">
                             <span>
-                                James Amos
+                               
+                                @AuthorizeUserAttribute.UsuarioLogeado().name
                                 <b class="caret"></b>
                             </span>
                         </a>
@@ -120,9 +124,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span class="sidebar-mini-icon">S</span>
-                                        <span class="sidebar-normal">Settings</span>
+                                    <a href="/Account/CerrarSesion">
+                                        <span class="sidebar-mini-icon">CS</span>
+                                        <span class="sidebar-normal">Cerrar Sesión</span>
                                     </a>
                                 </li>
                             </ul>
@@ -270,229 +274,7 @@
 
                     </li>
 
-                    <li>
-
-                        <a data-toggle="collapse" href="#componentsExamples">
-
-                            <i class="now-ui-icons education_atom"></i>
-
-                            <p>
-                                Components <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse " id="componentsExamples">
-                            <ul class="nav">
-
-                                <li>
-                                    <a href="components/buttons.html">
-                                        <span class="sidebar-mini-icon">B</span>
-                                        <span class="sidebar-normal"> Buttons </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="components/grid.html">
-                                        <span class="sidebar-mini-icon">G</span>
-                                        <span class="sidebar-normal"> Grid System </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="components/panels.html">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Panels </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="components/sweet-alert.html">
-                                        <span class="sidebar-mini-icon">SA</span>
-                                        <span class="sidebar-normal"> Sweet Alert </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="components/notifications.html">
-                                        <span class="sidebar-mini-icon">N</span>
-                                        <span class="sidebar-normal"> Notifications </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="components/icons.html">
-                                        <span class="sidebar-mini-icon">I</span>
-                                        <span class="sidebar-normal"> Icons </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="components/typography.html">
-                                        <span class="sidebar-mini-icon">T</span>
-                                        <span class="sidebar-normal"> Typography </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li>
-
-                        <a data-toggle="collapse" href="#formsExamples">
-
-                            <i class="now-ui-icons files_single-copy-04"></i>
-
-                            <p>
-                                Forms <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse " id="formsExamples">
-                            <ul class="nav">
-
-                                <li>
-                                    <a href="forms/regular.html">
-                                        <span class="sidebar-mini-icon">RF</span>
-                                        <span class="sidebar-normal"> Regular Forms </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="forms/extended.html">
-                                        <span class="sidebar-mini-icon">EF</span>
-                                        <span class="sidebar-normal"> Extended Forms </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="forms/validation.html">
-                                        <span class="sidebar-mini-icon">V</span>
-                                        <span class="sidebar-normal"> Validation Forms </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="forms/wizard.html">
-                                        <span class="sidebar-mini-icon">W</span>
-                                        <span class="sidebar-normal"> Wizard </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li>
-
-                        <a data-toggle="collapse" href="#tablesExamples">
-
-                            <i class="now-ui-icons design_bullet-list-67"></i>
-
-                            <p>
-                                Tables <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse " id="tablesExamples">
-                            <ul class="nav">
-
-                                <li>
-                                    <a href="tables/regular.html">
-                                        <span class="sidebar-mini-icon">RT</span>
-                                        <span class="sidebar-normal"> Regular Tables </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="tables/extended.html">
-                                        <span class="sidebar-mini-icon">ET</span>
-                                        <span class="sidebar-normal"> Extended Tables </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="tables/datatables.net.html">
-                                        <span class="sidebar-mini-icon">DT</span>
-                                        <span class="sidebar-normal"> DataTables.net </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li>
-
-                        <a data-toggle="collapse" href="#mapsExamples">
-
-                            <i class="now-ui-icons location_pin"></i>
-
-                            <p>
-                                Maps <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse " id="mapsExamples">
-                            <ul class="nav">
-
-                                <li>
-                                    <a href="maps/google.html">
-                                        <span class="sidebar-mini-icon">GM</span>
-                                        <span class="sidebar-normal"> Google Maps </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="maps/fullscreen.html">
-                                        <span class="sidebar-mini-icon">FM</span>
-                                        <span class="sidebar-normal"> Full Screen Map </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="maps/vector.html">
-                                        <span class="sidebar-mini-icon">VM</span>
-                                        <span class="sidebar-normal"> Vector Map </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li>
-
-                        <a href="widgets.html">
-
-                            <i class="now-ui-icons objects_diamond"></i>
-
-                            <p>Widgets</p>
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a href="charts.html">
-
-                            <i class="now-ui-icons business_chart-pie-36"></i>
-
-                            <p>Charts</p>
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a href="calendar.html">
-
-                            <i class="now-ui-icons media-1_album"></i>
-
-                            <p>Calendar</p>
-                        </a>
-
-                    </li>
+                 
 
 
 
@@ -699,6 +481,7 @@
     <!-- Forms Validations Plugin -->
     <script src="@Url.Content("/assets/js/plugins/jquery.validate.min.js")"></script>
     <script src="@Url.Content("/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("/Scripts/expressive.annotations.validate.min.js")"></script>
     <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="@Url.Content("/assets/js/plugins/jquery.bootstrap-wizard.js")"></script>
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -714,7 +497,7 @@
     <script src="@Url.Content("/assets/js/plugins/datatable/pdfmake.min.js")"></script>
     <script src="@Url.Content("/assets/js/plugins/datatable/vfs_fonts.js")"></script>
     <script src="@Url.Content("/assets/js/plugins/select2.min.js")"></script>
-    
+
     <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
     <script src="@Url.Content("/assets/js/plugins/bootstrap-tagsinput.js")"></script>
     <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
