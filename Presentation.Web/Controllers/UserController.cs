@@ -19,6 +19,7 @@ namespace Presentation.Web.Controllers
         {
             return View();
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_user })]
         public ActionResult Crear()
         {
             SelectorBL oSelectorBL = new SelectorBL();
@@ -45,7 +46,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_user })]
         public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
@@ -65,7 +66,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_user })]
         public ActionResult Editar(string id)
         {
             UserBL oBL = new UserBL();
@@ -97,7 +98,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_user })]
         public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
@@ -112,6 +113,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_user, AuthorizeUserAttribute.Permission.form_new_user })]
         public JsonResult Verificar(int user_id, string email)
         {
 
@@ -129,6 +131,7 @@ namespace Presentation.Web.Controllers
 
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_user })]
         public JsonResult Eliminar(int id)
         {
 
@@ -145,7 +148,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.module_access_users })]
         public JsonResult ObtenerLista(UserFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {
             UserBL oUserBL = new UserBL();
