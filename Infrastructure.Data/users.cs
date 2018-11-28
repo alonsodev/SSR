@@ -21,7 +21,7 @@ namespace Infrastructure.Data
         public Nullable<int> document_type_id { get; set; }
         public string doc_nro { get; set; }
         public Nullable<int> nationality_id { get; set; }
-        public string contract_name { get; set; }
+        public string contact_name { get; set; }
         public string phone { get; set; }
         public string address { get; set; }
         public Nullable<int> user_role_id { get; set; }

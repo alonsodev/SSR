@@ -30,8 +30,14 @@ namespace Infrastructure.Data
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<user_status> user_status { get; set; }
         public virtual DbSet<document_types> document_types { get; set; }
-        public virtual DbSet<institutions> institutions { get; set; }
         public virtual DbSet<nationalities> nationalities { get; set; }
+        public virtual DbSet<genders> genders { get; set; }
+        public virtual DbSet<institutions> institutions { get; set; }
+        public virtual DbSet<interest_areas> interest_areas { get; set; }
+        public virtual DbSet<investigation_groups> investigation_groups { get; set; }
+        public virtual DbSet<investigators> investigators { get; set; }
+        public virtual DbSet<programs> programs { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<commissions> commissions { get; set; }
     }
 }

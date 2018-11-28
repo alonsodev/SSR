@@ -44,9 +44,9 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Nacionalidad es obligatorio.")]
         public Nullable<int> nationality_id { get; set; }
 
-        [Display(Name = "Nombre de contrato")]
-        [Required(ErrorMessage = "Nombre de contrato es obligatorio.")]
-        public string contract_name { get; set; }
+        [Display(Name = "Nombre de contacto")]
+        [Required(ErrorMessage = "Nombre de contacto es obligatorio.")]
+        public string contact_name { get; set; }
 
         [Display(Name = "Telefóno de contacto")]
         [Required(ErrorMessage = "Telefóno de contacto es obligatorio.")]

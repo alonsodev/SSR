@@ -62,10 +62,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="commissions.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="document_types.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="genders.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="institutions.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="interest_areas.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="investigation_groups.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="investigators.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="nationalities.cs">
@@ -74,9 +89,18 @@
     <Compile Include="permissions.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="programs.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\InterestAreaRepository.cs" />
+    <Compile Include="Repositories\InvestigationGroupRepository.cs" />
+    <Compile Include="Repositories\CommissionRepository.cs" />
+    <Compile Include="Repositories\ProgramRepository.cs" />
+    <Compile Include="Repositories\InstitutionRepository.cs" />
     <Compile Include="Repositories\PermissionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\InvestigatorRepository .cs" />
     <Compile Include="Repositories\RolePermissionRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

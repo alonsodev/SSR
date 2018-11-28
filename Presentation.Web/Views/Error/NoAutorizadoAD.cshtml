@@ -1,0 +1,8 @@
+﻿@using System.Configuration;
+@using System.Collections.Specialized;
+
+@{
+    ViewBag.Title = "Error de acceso";
+}
+
+<h2>Usted no pertenece al grupo "@(((NameValueCollection)ConfigurationManager.GetSection("roles"))["RolAdministrador"])" del active directory configurado. Comuníquese con el Administrador si desea acceder.</h2>

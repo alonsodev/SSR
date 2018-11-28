@@ -17,6 +17,24 @@ namespace Business.Logic
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.UserRepository;
         }
+        public List<SelectOptionItem> InterestAreasSelector(int investigation_group_id)
+        {
+            return oRepositorio.InterestAreasSelector(investigation_group_id);
+        }
+        
+        public List<SelectOptionItem> InvestigationGroupsSelector(int institution_id)
+        {
+            return oRepositorio.InvestigationGroupsSelector(institution_id);
+        }
+        public List<SelectOptionItem> ProgramsSelector()
+        {
+            return oRepositorio.ProgramsSelector();
+        }
+        
+        public List<SelectOptionItem> GendersSelector()
+        {
+            return oRepositorio.GendersSelector();
+        }
         public List<SelectOptionItem> RolesSelector()
         {
             return oRepositorio.RolesSelector();

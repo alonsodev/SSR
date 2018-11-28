@@ -1,0 +1,115 @@
+﻿@model Domain.Entities.InstitutionViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "institution");
+    ViewBag.HeaderTitle = "Instituciones";
+    ViewBag.Title = "Crear Institución";
+
+    ViewBag.active = "institutions";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Crear", "Institution", FormMethod.Post, new { id = "form-registrar", title = "Crear Institution" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+
+              
+
+
+
+
+
+            </div><!-- end content-->
+                <div class="card-footer text-right">
+                    
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/Institution";
+        });
+
+        $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            $('.name-error').html('');
+            if ($("#form-registrar").valid()) {
+
+
+               var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "Institution")",
+                        type: "POST",
+                     data: { id_institution: 0, name: $('#name').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.name-error').html('<span id="name-error" class="">Ya existe un institution con el mismo nombre.</span>');
+                    return false;
+                }
+
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

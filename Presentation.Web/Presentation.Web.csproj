@@ -52,6 +52,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExpressiveAnnotations, Version=2.7.4.0, Culture=neutral, PublicKeyToken=d3e372f3c1e83cec, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExpressiveAnnotations.2.9.6\lib\net45\ExpressiveAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressiveAnnotations.MvcUnobtrusive, Version=2.5.4.0, Culture=neutral, PublicKeyToken=d3e372f3c1e83cec, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExpressiveAnnotations.2.9.6\lib\net45\ExpressiveAnnotations.MvcUnobtrusive.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -148,10 +154,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\InvestigationGroupController.cs" />
+    <Compile Include="Controllers\ProgramController.cs" />
+    <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\AccountController .cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\AuthorizeUserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +226,7 @@
     <Content Include="Assets\js\plugins\jquery-jvectormap.js" />
     <Content Include="Assets\js\plugins\jquery.bootstrap-wizard.js" />
     <Content Include="Assets\js\plugins\jquery.validate.min.js" />
+    <Content Include="Assets\js\plugins\moment-with-locale-es.js" />
     <Content Include="Assets\js\plugins\moment.min.js" />
     <Content Include="Assets\js\plugins\nouislider.min.js" />
     <Content Include="Assets\js\plugins\perfect-scrollbar.jquery.min.js" />
@@ -233,6 +247,8 @@
     </Content>
     <Content Include="Assets\media\language\spanish.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\expressive.annotations.validate.js" />
+    <Content Include="Scripts\expressive.annotations.validate.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -259,14 +275,33 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Permission\Index.cshtml" />
     <Content Include="Views\Permission\Editar.cshtml" />
-    <Content Include="Views\Role\Crear.cshtml" />
-    <Content Include="Views\Role\Editar.cshtml" />
+    <Content Include="Views\Institution\Crear.cshtml" />
+    <Content Include="Views\Institution\Editar.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Account\Crear.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Error\IntentosExcedidos.cshtml" />
+    <Content Include="Views\Error\NoAutorizado.cshtml" />
+    <Content Include="Views\Error\NoAutorizadoAD.cshtml" />
+    <Content Include="Views\Error\NoSesion.cshtml" />
+    <Content Include="Views\Program\Crear.cshtml" />
+    <Content Include="Views\Program\Editar.cshtml" />
+    <Content Include="Views\Program\Index.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Role\Permisos.cshtml" />
+    <Content Include="Views\Shared\_PublicLayout.cshtml" />
+    <Content Include="Views\Role\Crear.cshtml" />
+    <Content Include="Views\Role\Editar.cshtml" />
+    <Content Include="Views\Institution\Index.cshtml" />
+    <Content Include="Views\Commission\Crear.cshtml" />
+    <Content Include="Views\Commission\Editar.cshtml" />
+    <Content Include="Views\Commission\Index.cshtml" />
+    <Content Include="Views\InvestigationGroup\Crear.cshtml" />
+    <Content Include="Views\InvestigationGroup\Editar.cshtml" />
+    <Content Include="Views\InvestigationGroup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

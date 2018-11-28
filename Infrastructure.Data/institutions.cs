@@ -14,11 +14,23 @@ namespace Infrastructure.Data
     
     public partial class institutions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public institutions()
+        {
+            this.investigation_groups = new HashSet<investigation_groups>();
+            this.investigators = new HashSet<investigators>();
+        }
+    
         public int institution_id { get; set; }
         public string name { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigation_groups> investigation_groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
     }
 }

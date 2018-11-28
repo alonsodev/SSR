@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpressiveAnnotations.MvcUnobtrusive.Providers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,13 @@ namespace Presentation.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+            ModelValidatorProviders.Providers.Remove(
+      ModelValidatorProviders.Providers
+          .FirstOrDefault(x => x is DataAnnotationsModelValidatorProvider));
+            ModelValidatorProviders.Providers.Add(
+                new ExpressiveAnnotationsModelValidatorProvider());
         }
     }
 }

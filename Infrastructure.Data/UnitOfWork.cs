@@ -17,7 +17,16 @@ namespace Infrastructure.Data
         private PermissionRepository _permissionRepository;
         private RoleRepository _roleRepository;
         private RolePermissionRepository _rolePermissionRepository;
-        
+
+        private InvestigatorRepository _investigatorRepository;
+
+        private InstitutionRepository _institutionRepository;
+        private ProgramRepository _programRepository;
+        private InvestigationGroupRepository _investigationGroupRepository;
+        private InterestAreaRepository _interestAreaRepository;
+
+        private CommissionRepository _commissionRepository;
+
         #endregion
 
         #region Constructors
@@ -28,6 +37,42 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+
+        public CommissionRepository CommissionRepository
+        {
+            get { return _commissionRepository ?? (_commissionRepository = new CommissionRepository(_context)); }
+
+        }
+        public InstitutionRepository InstitutionRepository
+        {
+            get { return _institutionRepository ?? (_institutionRepository = new InstitutionRepository(_context)); }
+
+        }
+
+        public ProgramRepository ProgramRepository
+        {
+            get { return _programRepository ?? (_programRepository = new ProgramRepository(_context)); }
+
+        }
+
+        public InvestigationGroupRepository InvestigationGroupRepository
+        {
+            get { return _investigationGroupRepository ?? (_investigationGroupRepository = new InvestigationGroupRepository(_context)); }
+
+        }
+
+        public InvestigatorRepository InvestigatorRepository
+        {
+            get { return _investigatorRepository ?? (_investigatorRepository = new InvestigatorRepository(_context)); }
+
+        }
+
+        public InterestAreaRepository InterestAreaRepository
+        {
+            get { return _interestAreaRepository ?? (_interestAreaRepository = new InterestAreaRepository(_context)); }
+
+        }
+
         public RolePermissionRepository RolePermissionRepository
         {
             get { return _rolePermissionRepository ?? (_rolePermissionRepository = new RolePermissionRepository(_context)); }
@@ -82,6 +127,15 @@ namespace Infrastructure.Data
             this._roleRepository = null;
 
             this._rolePermissionRepository = null;
+
+            this._investigatorRepository = null;
+
+            this._institutionRepository = null;
+            this._interestAreaRepository = null;
+            this._programRepository = null;
+            this._investigationGroupRepository = null;
+
+            this._commissionRepository = null;
 
             _context.Dispose();
         }
