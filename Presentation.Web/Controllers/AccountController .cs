@@ -35,7 +35,7 @@ namespace Presentation.Web.Controllers
         public ActionResult Login([Bind(Include = "user_email,user_pass")] LoginViewModel pLoginModel, string returnUrl)
         {
 
-           
+
 
             int tipo_error = 0;
             UserBL oUserBL = new UserBL();
@@ -49,7 +49,7 @@ namespace Presentation.Web.Controllers
 
                 Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = result;
 
-                return Redirect("/User");
+                return RedirectToAction("Index","Home");
 
                 /* if (result.perfiles.Count() > 0)
                  {
@@ -136,7 +136,7 @@ namespace Presentation.Web.Controllers
             {
                 return HttpNotFound();
             }
-            pViewModel.investigator_id= 0;
+            pViewModel.investigator_id = 0;
 
             pViewModel.user_id_created = 0;
             pViewModel.birthdate = DateTime.ParseExact(pViewModel.birthdate_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -144,11 +144,16 @@ namespace Presentation.Web.Controllers
             pViewModel.user_pass = Helper.Encripta(pViewModel.user_pass);
             pViewModel.user_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
             pViewModel.contact_name = pViewModel.user_name;
-           UserBL oBL = new UserBL();
+            UserBL oBL = new UserBL();
 
             oBL.AgregarInvestigador(pViewModel);
+            int tipo_error = 0;
 
-            return RedirectToAction("Index","User");
+
+            
+            CurrentUserViewModel result = oBL.ValidarUsuario(pViewModel.user_email, Helper.Encripta(pViewModel.user_pass), ref tipo_error);
+            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = result;
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -178,7 +183,7 @@ namespace Presentation.Web.Controllers
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
 
-      
+
             return View(pUserViewModel);
         }
 

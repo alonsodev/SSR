@@ -70,6 +70,9 @@ namespace Business.Logic
         {
             return oRepositorio.ValidarUsuario(usuario, contrasena, ref tipo_error);
         }
+
+        
+
         public void Eliminar(int id)
         {
             users oUser = new users

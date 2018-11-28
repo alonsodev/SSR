@@ -101,6 +101,8 @@ namespace Presentation.Web.Filters
 
         private bool verificarPermisoPorPerfil(CurrentUserViewModel usuario)
         {
+            if (Permissions.Count() == 0)
+                return true;
             foreach (Permission item in Permissions)
             {
                 if (usuario.permissions.Contains( (int)item) )
@@ -108,6 +110,7 @@ namespace Presentation.Web.Filters
                     return true;
                 }
             }
+           
 
             motivoNoAutorizado = eMotivoNoAutorizado.PerfilNoAutorizado;
 

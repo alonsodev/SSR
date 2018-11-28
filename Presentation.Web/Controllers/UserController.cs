@@ -113,7 +113,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_user, AuthorizeUserAttribute.Permission.form_new_user })]
+      //  [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_user, AuthorizeUserAttribute.Permission.form_new_user })]
         public JsonResult Verificar(int user_id, string email)
         {
 

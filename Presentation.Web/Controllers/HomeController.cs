@@ -9,10 +9,10 @@ namespace Presentation.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.module_access_users })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
         public ActionResult Index()
         {
-            RedirectToAction("Index", "User");
+           
             return View();
         }
 
