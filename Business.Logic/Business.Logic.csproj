@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommissionBL.cs" />
+    <Compile Include="InvestigationGroupBL.cs" />
+    <Compile Include="ProgramBL.cs" />
+    <Compile Include="InstitutionBL.cs" />
     <Compile Include="RoleBL.cs" />
     <Compile Include="PermissionBL.cs" />
     <Compile Include="SelectorBL.cs" />

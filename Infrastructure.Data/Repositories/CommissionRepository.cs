@@ -9,28 +9,28 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Repositories
 {
-    public class ProgramRepository : Repository<programs>
+    public class CommissionRepository : Repository<commissions>
     {
-        internal ProgramRepository(ApplicationDbContext context)
+        internal CommissionRepository(ApplicationDbContext context)
             : base(context)
         {
         }
 
-        public bool VerificarDuplicado(int program_id, string name)
+        public bool VerificarDuplicado(int commission_id, string name)
         {
 
             name = name.Trim().ToLower();
-            var count = Set.Where(a => a.program_id != program_id && a.name.ToLower() == name).Count();
+            var count = Set.Where(a => a.commission_id != commission_id && a.name.ToLower() == name).Count();
 
             return count == 0;
         }
 
-        public ProgramViewModel Obtener(int program_id)
+        public CommissionViewModel Obtener(int commission_id)
         {
-            var query = Set.Where(a => a.program_id == program_id).Select(a => new ProgramViewModel
+            var query = Set.Where(a => a.commission_id == commission_id).Select(a => new CommissionViewModel
             {
 
-                program_id = a.program_id,
+                commission_id = a.commission_id,
                 name = a.name
             });
 
@@ -39,7 +39,7 @@ namespace Infrastructure.Data.Repositories
 
 
 
-        public GridModel<ProgramViewModel> ObtenerLista(DataTableAjaxPostModel filters)
+        public GridModel<CommissionViewModel> ObtenerLista(DataTableAjaxPostModel filters)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -55,8 +55,8 @@ namespace Infrastructure.Data.Repositories
             }
 
 
-            GridModel<ProgramViewModel> resultado = new GridModel<ProgramViewModel>();
-            IQueryable<programs> queryFilters = Set;
+            GridModel<CommissionViewModel> resultado = new GridModel<CommissionViewModel>();
+            IQueryable<commissions> queryFilters = Set;
 
 
 
@@ -76,17 +76,17 @@ namespace Infrastructure.Data.Repositories
             }
 
 
-            var query = queryFilters.Select(a => new ProgramViewModel
+            var query = queryFilters.Select(a => new CommissionViewModel
             {
-                program_id = a.program_id,
+                commission_id = a.commission_id,
                 name = a.name
             });
 
-            if (String.IsNullOrEmpty(sortBy)) sortBy = "program_id";
+            if (String.IsNullOrEmpty(sortBy)) sortBy = "commission_id";
             if (String.IsNullOrEmpty(sortDir)) sortDir = "asc";
             string sortExpression = sortBy.Trim() + " " + sortDir.Trim();
             if (sortExpression.Trim() != "")
-                query = OrderByDinamic.OrderBy<ProgramViewModel>(query, sortExpression.Trim());
+                query = OrderByDinamic.OrderBy<CommissionViewModel>(query, sortExpression.Trim());
             resultado.rows = query.Skip(filters.start).Take(filters.length).ToList();
 
 

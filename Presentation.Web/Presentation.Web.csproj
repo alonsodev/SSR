@@ -156,6 +156,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\InvestigationGroupController.cs" />
+    <Compile Include="Controllers\ProgramController.cs" />
+    <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\AccountController .cs" />
@@ -271,8 +275,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Permission\Index.cshtml" />
     <Content Include="Views\Permission\Editar.cshtml" />
-    <Content Include="Views\Role\Crear.cshtml" />
-    <Content Include="Views\Role\Editar.cshtml" />
+    <Content Include="Views\Institution\Crear.cshtml" />
+    <Content Include="Views\Institution\Editar.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Account\Crear.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -280,12 +284,24 @@
     <Content Include="Views\Error\NoAutorizado.cshtml" />
     <Content Include="Views\Error\NoAutorizadoAD.cshtml" />
     <Content Include="Views\Error\NoSesion.cshtml" />
+    <Content Include="Views\Program\Crear.cshtml" />
+    <Content Include="Views\Program\Editar.cshtml" />
+    <Content Include="Views\Program\Index.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Role\Permisos.cshtml" />
     <Content Include="Views\Shared\_PublicLayout.cshtml" />
+    <Content Include="Views\Role\Crear.cshtml" />
+    <Content Include="Views\Role\Editar.cshtml" />
+    <Content Include="Views\Institution\Index.cshtml" />
+    <Content Include="Views\Commission\Crear.cshtml" />
+    <Content Include="Views\Commission\Editar.cshtml" />
+    <Content Include="Views\Commission\Index.cshtml" />
+    <Content Include="Views\InvestigationGroup\Crear.cshtml" />
+    <Content Include="Views\InvestigationGroup\Editar.cshtml" />
+    <Content Include="Views\InvestigationGroup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,5 +38,6 @@ namespace Infrastructure.Data
         public virtual DbSet<investigators> investigators { get; set; }
         public virtual DbSet<programs> programs { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<commissions> commissions { get; set; }
     }
 }

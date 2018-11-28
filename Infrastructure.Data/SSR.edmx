@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SSRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="commissions">
+          <Key>
+            <PropertyRef Name="commission_id" />
+          </Key>
+          <Property Name="commission_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
         <EntityType Name="document_types">
           <Key>
             <PropertyRef Name="document_type_id" />
@@ -346,6 +357,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SSRModelStoreContainer">
+          <EntitySet Name="commissions" EntityType="Self.commissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="document_types" EntityType="Self.document_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="genders" EntityType="Self.genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="institutions" EntityType="Self.institutions" Schema="dbo" store:Type="Tables" />
@@ -487,6 +499,7 @@
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <EntitySet Name="commissions" EntityType="SSRModel.commissions" />
           </EntityContainer>
         <EntityType Name="permissions">
           <Key>
@@ -826,6 +839,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="commissions">
+          <Key>
+            <PropertyRef Name="commission_id" />
+          </Key>
+          <Property Name="commission_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1013,6 +1037,18 @@
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="commissions">
+            <EntityTypeMapping TypeName="SSRModel.commissions">
+              <MappingFragment StoreEntitySet="commissions">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="commission_id" ColumnName="commission_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

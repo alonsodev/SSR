@@ -55,7 +55,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CurrentUserViewModel.cs" />
     <Compile Include="DataTableViewModel.cs" />
+    <Compile Include="CommissionViewModel.cs" />
+    <Compile Include="InvestigationGroupViewModel.cs" />
+    <Compile Include="ProgramViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
+    <Compile Include="InstitutionViewModel.cs" />
     <Compile Include="Select2Model.cs" />
     <Compile Include="SelectOptionItem.cs" />
     <Compile Include="UserFiltersViewModel.cs" />
