@@ -45,7 +45,7 @@ namespace Business.Logic
         
             investigation_groups oinvestigation_groups =oRepositorio.FindById(pInvestigationGroupViewModel.investigation_group_id);
             oinvestigation_groups.name = pInvestigationGroupViewModel.name;
-            
+            oinvestigation_groups.institution_id = pInvestigationGroupViewModel.institution_id;
             oinvestigation_groups.user_id_modified = pInvestigationGroupViewModel.user_id_modified;
 
             oinvestigation_groups.date_modified = DateTime.Now;
@@ -70,7 +70,8 @@ namespace Business.Logic
             investigation_groups oinvestigation_groups = new investigation_groups
             {
                 investigation_group_id = 0,
-                name= pInvestigationGroupViewModel.name,               
+                name= pInvestigationGroupViewModel.name,      
+                institution_id=pInvestigationGroupViewModel.institution_id,
                 date_created=DateTime.Now,
                 user_id_created= pInvestigationGroupViewModel.user_id_created
 

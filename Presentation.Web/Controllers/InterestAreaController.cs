@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace Presentation.Web.Controllers
 {
-    public class InvestigationGroupController : Controller
+    public class InterestAreaController : Controller
     {
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
         // GET: User
@@ -29,15 +29,17 @@ namespace Presentation.Web.Controllers
             List<SelectListItem> oListaVacia = Helper.ConstruirDropDownList<SelectOptionItem>(new List<SelectOptionItem>(), "Value", "Text", "", true, "", "");
 
             ViewBag.institutions = oListaVacia;
+
+            ViewBag.investigation_groups = oListaVacia;
             return View();
         }
 
         [HttpPost]
-        public JsonResult Verificar(int id_investigation_group, string name)
+        public JsonResult Verificar(int id_interest_area, string name)
         {
 
-            InvestigationGroupBL oBL = new InvestigationGroupBL();
-            var resultado = oBL.VerificarDuplicado(id_investigation_group, name);
+            InterestAreaBL oBL = new InterestAreaBL();
+            var resultado = oBL.VerificarDuplicado(id_interest_area, name);
 
             return Json(new
             {
@@ -51,19 +53,19 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Crear([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
+        public ActionResult Crear([Bind(Include = "interest_area_id,investigation_group_id,name")] InterestAreaViewModel pInterestAreaViewModel)
         {
             // TODO: Add insert logic here
 
-            if (pInvestigationGroupViewModel == null)
+            if (pInterestAreaViewModel == null)
             {
                 return HttpNotFound();
             }
-            pInvestigationGroupViewModel.investigation_group_id = 0;
-            pInvestigationGroupViewModel.user_id_created = 0;
+            pInterestAreaViewModel.interest_area_id = 0;
+            pInterestAreaViewModel.user_id_created = 0;
 
-            InvestigationGroupBL oBL = new InvestigationGroupBL();
-            oBL.Agregar(pInvestigationGroupViewModel);
+            InterestAreaBL oBL = new InterestAreaBL();
+            oBL.Agregar(pInterestAreaViewModel);
             return RedirectToAction("Index");
 
         }
@@ -73,35 +75,40 @@ namespace Presentation.Web.Controllers
 
         public ActionResult Editar(string id)
         {
-            InvestigationGroupBL oBL = new InvestigationGroupBL();
+            InterestAreaBL oBL = new InterestAreaBL();
+            SelectorBL oSelectorBL = new SelectorBL();
             int pIntID = 0;
             int.TryParse(id, out pIntID);
-            InvestigationGroupViewModel pInvestigationGroupViewModel = oBL.Obtener(pIntID);
+            InterestAreaViewModel pInterestAreaViewModel = oBL.Obtener(pIntID);
 
             SelectOptionItem oSelectOptionItem = new SelectOptionItem();
-            oSelectOptionItem.Text = pInvestigationGroupViewModel.institution;
-            oSelectOptionItem.Value = pInvestigationGroupViewModel.institution_id.ToString();
+            oSelectOptionItem.Text = pInterestAreaViewModel.institution;
+            oSelectOptionItem.Value = pInterestAreaViewModel.institution_id.ToString();
             var oLista = new List<SelectOptionItem>();
             oLista.Add(oSelectOptionItem);
             List<SelectListItem> institutions = Helper.ConstruirDropDownList<SelectOptionItem>(oLista, "Value", "Text", "", true, "", "");
 
+            var oInvestigationGroups= oSelectorBL.InvestigationGroupsSelector(pInterestAreaViewModel.institution_id);
+            List<SelectListItem> investigation_groups = Helper.ConstruirDropDownList<SelectOptionItem>(oInvestigationGroups, "Value", "Text", "", true, "", "");
+
             ViewBag.institutions = institutions;
-            return View(pInvestigationGroupViewModel);
+            ViewBag.investigation_groups = investigation_groups;
+            return View(pInterestAreaViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Editar([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
+        public ActionResult Editar([Bind(Include = "interest_area_id,investigation_group_id,name")] InterestAreaViewModel pInterestAreaViewModel)
         {
             // TODO: Add insert logic here
 
-            if (pInvestigationGroupViewModel == null)
+            if (pInterestAreaViewModel == null)
             {
                 return HttpNotFound();
             }
-            InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();
-            oInvestigationGroupBL.Modificar(pInvestigationGroupViewModel);
+            InterestAreaBL oInterestAreaBL = new InterestAreaBL();
+            oInterestAreaBL.Modificar(pInterestAreaViewModel);
             return RedirectToAction("Index");
 
         }
@@ -109,9 +116,9 @@ namespace Presentation.Web.Controllers
         public JsonResult Eliminar(int id)
         {
 
-            InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();
+            InterestAreaBL oInterestAreaBL = new InterestAreaBL();
 
-            oInvestigationGroupBL.Eliminar(id);
+            oInterestAreaBL.Eliminar(id);
 
             return Json(new
             {
@@ -125,9 +132,9 @@ namespace Presentation.Web.Controllers
 
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
-            InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();
-            //InvestigationGroupFiltersViewModel ofilters = new InvestigationGroupFiltersViewModel();
-            GridModel<InvestigationGroupViewModel> grid = oInvestigationGroupBL.ObtenerLista(ofilters);
+            InterestAreaBL oInterestAreaBL = new InterestAreaBL();
+            //InterestAreaFiltersViewModel ofilters = new InterestAreaFiltersViewModel();
+            GridModel<InterestAreaViewModel> grid = oInterestAreaBL.ObtenerLista(ofilters);
 
             return Json(new
             {

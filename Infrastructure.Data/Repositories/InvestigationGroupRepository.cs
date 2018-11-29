@@ -31,6 +31,7 @@ namespace Infrastructure.Data.Repositories
 
                 investigation_group_id = a.investigation_group_id,
                 institution_id=a.institution_id,
+                institution= a.institutions.name,
                 name = a.name
             });
 

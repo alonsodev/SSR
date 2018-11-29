@@ -56,6 +56,7 @@
     <Compile Include="CurrentUserViewModel.cs" />
     <Compile Include="DataTableViewModel.cs" />
     <Compile Include="CommissionViewModel.cs" />
+    <Compile Include="InterestAreaViewModel.cs" />
     <Compile Include="InvestigationGroupViewModel.cs" />
     <Compile Include="ProgramViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />

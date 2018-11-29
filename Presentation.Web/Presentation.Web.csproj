@@ -157,6 +157,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\InterestAreaController.cs" />
     <Compile Include="Controllers\InvestigationGroupController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
@@ -287,6 +288,9 @@
     <Content Include="Views\Program\Crear.cshtml" />
     <Content Include="Views\Program\Editar.cshtml" />
     <Content Include="Views\Program\Index.cshtml" />
+    <Content Include="Views\InterestArea\Crear.cshtml" />
+    <Content Include="Views\InterestArea\Editar.cshtml" />
+    <Content Include="Views\InterestArea\Index.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
