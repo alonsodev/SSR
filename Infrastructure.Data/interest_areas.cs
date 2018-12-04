@@ -18,18 +18,19 @@ namespace Infrastructure.Data
         public interest_areas()
         {
             this.investigators = new HashSet<investigators>();
+            this.draft_laws = new HashSet<draft_laws>();
         }
     
         public int interest_area_id { get; set; }
-        public int investigation_group_id { get; set; }
         public string name { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        public virtual investigation_groups investigation_groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<investigators> investigators { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<draft_laws> draft_laws { get; set; }
     }
 }

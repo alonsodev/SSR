@@ -24,15 +24,37 @@ namespace Infrastructure.Data.Repositories
             return count == 0;
         }
 
+       
+        public List<InterestAreaViewModel> ObtenerTodos()
+        {
+            var query = Set.Select(a => new InterestAreaViewModel
+            {
+
+                interest_area_id = a.interest_area_id,
+                name = a.name
+            });
+
+            return query.ToList();
+        }
+        public InterestAreaViewModel ObtenerPorNombre(string name)
+        {
+            var query = Set.Where(a => a.name.ToLower() == name).Select(a => new InterestAreaViewModel
+            {
+
+                interest_area_id = a.interest_area_id,
+               
+                name = a.name
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
         public InterestAreaViewModel Obtener(int interest_area_id)
         {
             var query = Set.Where(a => a.interest_area_id == interest_area_id).Select(a => new InterestAreaViewModel
             {
 
                 interest_area_id = a.interest_area_id,
-                investigation_group_id= a.investigation_group_id,
-                institution_id = a.investigation_groups.institution_id,
-                institution = a.investigation_groups.institutions.name,
+               
                 name = a.name
             });
 
@@ -82,9 +104,7 @@ namespace Infrastructure.Data.Repositories
             {
                 
                 interest_area_id = a.interest_area_id,
-                investigation_group = a.investigation_groups.name,
-                institution_id = a.investigation_groups.institution_id,
-                institution = a.investigation_groups.institutions.name,
+              
                 name = a.name
             });
 

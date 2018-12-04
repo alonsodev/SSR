@@ -21,16 +21,14 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Institución</th>
-                            <th>Grupo de Investigación</th>
+                            
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Nombre</th>
-                            <th>Institución</th>
-                            <th>Grupo de Investigación</th>
+                            
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </tfoot>
@@ -112,18 +110,17 @@
                         "columns": [
                             
                             { "data": "name" },                          
-                            { "data": "institution" },                           
-                            { "data": "investigation_group" },
+                           
                             { "data": "interest_area_id" }
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [3] },
+                            { 'className': 'text-center', 'targets': [1] },
                             {
                                 render: function (data, type, row) {
                                     return '<a href="/InterestArea/Editar/' + row.interest_area_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
                                         + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.interest_area_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
                                 },
-                                targets: 3,
+                                targets: 1,
                                 orderable: false
                             }
                         ],

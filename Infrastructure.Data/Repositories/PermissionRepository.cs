@@ -39,7 +39,7 @@ namespace Infrastructure.Data.Repositories
 
         public List<PermissionViewModel> ObtenerListaPermisos()
         {
-            var query = Set.Select(a => new PermissionViewModel
+            var query = Set.OrderBy(a => a.sequence).Select(a => new PermissionViewModel
             {
                 id_permission = a.id_permission,
                 name = a.name,
@@ -52,7 +52,7 @@ namespace Infrastructure.Data.Repositories
         {
             var lista = this.Context.Set<role_permissions>();
 
-            List<int> Ids = lista.Where(a => a.id_role == role_id).Select(c => c.id_permission).Distinct().ToList();
+            List<int> Ids = lista.Where(a => a.id_role == role_id).OrderBy(a=> a.permissions.sequence).Select(c => c.id_permission).Distinct().ToList();
 
             return Ids;
         }

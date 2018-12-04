@@ -24,7 +24,17 @@ namespace Infrastructure.Data.Repositories
 
             return count == 0;
         }
+        public List<CommissionViewModel> ObtenerTodos()
+        {
+            var query = Set.Select(a => new CommissionViewModel
+            {
 
+                commission_id = a.commission_id,
+                name = a.name
+            });
+
+            return query.ToList();
+        }
         public CommissionViewModel Obtener(int commission_id)
         {
             var query = Set.Where(a => a.commission_id == commission_id).Select(a => new CommissionViewModel

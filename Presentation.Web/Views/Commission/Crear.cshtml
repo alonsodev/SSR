@@ -18,28 +18,28 @@
             </div>
             @using (Html.BeginForm("Crear", "Commission", FormMethod.Post, new { id = "form-registrar", title = "Crear Comisión" }))
             {
-            <div class="card-body">
+                <div class="card-body">
 
 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group has-label">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
-                </div>
-
-              
-
+                        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error name-error"></span>
+                    </div>
 
 
 
 
-            </div><!-- end content-->
+
+
+
+                </div><!-- end content-->
                 <div class="card-footer text-right">
-                    
+
                     <button type="submit" class="btn btn-primary">Crear</button>
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
                 </div>
@@ -113,3 +113,4 @@
 
     </script>
 }
+

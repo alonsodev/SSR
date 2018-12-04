@@ -13,6 +13,8 @@ namespace Domain.Entities
         public string name { get; set; }
         public string pass { get; set; }
         public int? status_id { get; set; }
+
+        public int investigator_id { get; set; }
         
         public List<int> permissions { get; set; }
     }

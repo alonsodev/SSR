@@ -26,11 +26,7 @@ namespace Presentation.Web.Controllers
         public ActionResult Crear()
         {
 
-            List<SelectListItem> oListaVacia = Helper.ConstruirDropDownList<SelectOptionItem>(new List<SelectOptionItem>(), "Value", "Text", "", true, "", "");
-
-            ViewBag.institutions = oListaVacia;
-
-            ViewBag.investigation_groups = oListaVacia;
+          
             return View();
         }
 
@@ -53,7 +49,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Crear([Bind(Include = "interest_area_id,investigation_group_id,name")] InterestAreaViewModel pInterestAreaViewModel)
+        public ActionResult Crear([Bind(Include = "interest_area_id,name")] InterestAreaViewModel pInterestAreaViewModel)
         {
             // TODO: Add insert logic here
 
@@ -76,30 +72,19 @@ namespace Presentation.Web.Controllers
         public ActionResult Editar(string id)
         {
             InterestAreaBL oBL = new InterestAreaBL();
-            SelectorBL oSelectorBL = new SelectorBL();
+            
             int pIntID = 0;
             int.TryParse(id, out pIntID);
             InterestAreaViewModel pInterestAreaViewModel = oBL.Obtener(pIntID);
 
-            SelectOptionItem oSelectOptionItem = new SelectOptionItem();
-            oSelectOptionItem.Text = pInterestAreaViewModel.institution;
-            oSelectOptionItem.Value = pInterestAreaViewModel.institution_id.ToString();
-            var oLista = new List<SelectOptionItem>();
-            oLista.Add(oSelectOptionItem);
-            List<SelectListItem> institutions = Helper.ConstruirDropDownList<SelectOptionItem>(oLista, "Value", "Text", "", true, "", "");
-
-            var oInvestigationGroups= oSelectorBL.InvestigationGroupsSelector(pInterestAreaViewModel.institution_id);
-            List<SelectListItem> investigation_groups = Helper.ConstruirDropDownList<SelectOptionItem>(oInvestigationGroups, "Value", "Text", "", true, "", "");
-
-            ViewBag.institutions = institutions;
-            ViewBag.investigation_groups = investigation_groups;
+           
             return View(pInterestAreaViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Editar([Bind(Include = "interest_area_id,investigation_group_id,name")] InterestAreaViewModel pInterestAreaViewModel)
+        public ActionResult Editar([Bind(Include = "interest_area_id,name")] InterestAreaViewModel pInterestAreaViewModel)
         {
             // TODO: Add insert logic here
 

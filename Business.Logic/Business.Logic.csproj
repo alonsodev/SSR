@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,8 +45,12 @@
     <Compile Include="CommissionBL.cs" />
     <Compile Include="InterestAreaBL.cs" />
     <Compile Include="InvestigationGroupBL.cs" />
+    <Compile Include="ConceptBL.cs" />
+    <Compile Include="BadLanguageBL.cs" />
+    <Compile Include="TagBL.cs" />
     <Compile Include="ProgramBL.cs" />
     <Compile Include="InstitutionBL.cs" />
+    <Compile Include="DraftLawBL.cs" />
     <Compile Include="RoleBL.cs" />
     <Compile Include="PermissionBL.cs" />
     <Compile Include="SelectorBL.cs" />
@@ -61,6 +66,9 @@
       <Project>{14eaab97-11af-4764-b577-cd11c6e17c35}</Project>
       <Name>Infrastructure.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

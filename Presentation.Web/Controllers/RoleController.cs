@@ -2,6 +2,7 @@
 
 using Business.Logic;
 using Domain.Entities;
+using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,21 @@ namespace Presentation.Web.Controllers
 {
     public class RoleController : Controller
     {
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_roles })]
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
         public ActionResult Crear()
         {
 
 
             return View();
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role, AuthorizeUserAttribute.Permission.form_edit_role })]
         [HttpPost]
         public JsonResult Verificar(int id_role, string name)
         {
@@ -46,7 +48,7 @@ namespace Presentation.Web.Controllers
             });
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -69,7 +71,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.role_permissions })]
         public ActionResult Permisos(string id)
         {
             RoleBL oBL = new RoleBL();
@@ -80,11 +82,12 @@ namespace Presentation.Web.Controllers
             ViewBag.NameRole = pRoleViewModel.role;
             ViewBag.role_id = pRoleViewModel.role_id;
 
-            var all=oPermissionBL.ObtenerListaPermisos();
+            var all = oPermissionBL.ObtenerListaPermisos();
 
             List<CheckboxViewModel> permisos = new List<CheckboxViewModel>();
             var permission_enabled = oPermissionBL.ObtenerListaPermisos(pIntID);
-            foreach (var permiso in all) {
+            foreach (var permiso in all)
+            {
                 CheckboxViewModel oCheckboxViewModel = new CheckboxViewModel();
                 oCheckboxViewModel.Name = permiso.title;
                 oCheckboxViewModel.Value = permiso.id_permission.ToString();
@@ -100,6 +103,7 @@ namespace Presentation.Web.Controllers
 
             return View(pRoleViewModel);
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.role_permissions })]
         [HttpPost]
         public JsonResult Permisos(int role_id, string ids)
         {
@@ -117,7 +121,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
         public ActionResult Editar(string id)
         {
             RoleBL oBL = new RoleBL();
@@ -127,7 +131,7 @@ namespace Presentation.Web.Controllers
 
             return View(pRoleViewModel);
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -144,6 +148,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_role })]
         [HttpPost]
         public JsonResult Eliminar(int id)
         {
@@ -156,12 +161,12 @@ namespace Presentation.Web.Controllers
             {
                 // this is what datatables wants sending back
                 status = "1",
-               
+
             });
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_roles })]
         public JsonResult ObtenerLista(RoleFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {
             RoleBL oRoleBL = new RoleBL();

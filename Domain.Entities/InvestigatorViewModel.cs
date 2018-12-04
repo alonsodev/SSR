@@ -88,6 +88,27 @@ namespace Domain.Entities
 
 
         public string contact_name { get; set; }
+        [Display(Name = "Nivel Académico")]
+        [Required(ErrorMessage = "Nivel Académico es obligatorio.")]
+        public Nullable<int> academic_level_id { get; set; }
+
+        [Display(Name = "Comisión")]
+        [Required(ErrorMessage = "Comisión es obligatorio.")]
+        public List<int> commissions { get; set; }
+
+        [Display(Name = "Pais de residencia")]
+        [Required(ErrorMessage = "Pais de residencia es obligatorio.")]
+        public Nullable<int> address_country_id { get; set; }
+
+        [Display(Name = "Departamento de residencia")]
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Departamento de residencia es obligatorio.")]
+        public Nullable<int> department_id { get; set; }
+
+        [Display(Name = "Municipalidad de residencia")]
+        
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Municipalidad de residencia es obligatorio.")]
+        public Nullable<int> address_municipality_id { get; set; }
+
         [Display(Name = "Lugar de residencia")]
         [Required(ErrorMessage = "Lugar de residencia es obligatorio.")]
         public string address { get; set; }
@@ -119,13 +140,17 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Grupo de investigación a la que pertenece es obligatorio.")]
         public Nullable<int> investigation_group_id { get; set; }
 
+      
+
         [Display(Name = "Código del grupo")]
-        
+        public string code_investigation_group { get; set; }
+
+        [Display(Name = "Programa")]
         public Nullable<int> program_id { get; set; }
 
         [Display(Name = "Áreas de interés")]
         [Required(ErrorMessage = "Áreas de interés es obligatorio.")]
-        public int[] interest_areas { get; set; }
+        public List<int> interest_areas { get; set; }
 
     }
 }

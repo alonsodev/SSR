@@ -1,5 +1,6 @@
 ﻿using Business.Logic;
 using Domain.Entities;
+using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,21 @@ namespace Presentation.Web.Controllers
 {
     public class PermissionController : Controller
     {
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_roles })]
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
         public ActionResult Crear()
         {
 
 
             return View();
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -47,7 +49,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
         public ActionResult Editar(string id)
         {
             PermissionBL oBL = new PermissionBL();
@@ -57,7 +59,7 @@ namespace Presentation.Web.Controllers
 
             return View(pPermissionViewModel);
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -74,6 +76,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_role })]
         [HttpPost]
         public JsonResult Eliminar(int id)
         {
@@ -90,7 +93,7 @@ namespace Presentation.Web.Controllers
             });
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role,AuthorizeUserAttribute.Permission.form_edit_role })]
         [HttpPost]
         public JsonResult Verificar(int id_permission, string name)
         {
@@ -98,9 +101,9 @@ namespace Presentation.Web.Controllers
             PermissionBL oPermissionBL = new PermissionBL();
 
 
-           
 
-            var resultado =oPermissionBL.VerificarDuplicado(id_permission, name);
+
+            var resultado = oPermissionBL.VerificarDuplicado(id_permission, name);
 
             return Json(new
             {
@@ -111,7 +114,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-        
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_roles })]
 
         public JsonResult ObtenerListaPermisos(PermissionFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {

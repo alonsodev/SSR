@@ -26,7 +26,39 @@ namespace Business.Logic
             return oRepositorio.VerificarDuplicado(id,name);
         }
 
-       
+        public Dictionary<string, int> ObtenerDiccionarioPorNombre(List<string> interest_areas, int user_id)
+        {
+            var olista = oRepositorio.ObtenerTodos();
+
+
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            foreach (var item in olista)
+            {
+                dictionary.Add(item.name, item.interest_area_id);
+            }
+            foreach (var interest_area in interest_areas)
+            {
+               
+                if (!String.IsNullOrEmpty(interest_area) && !dictionary.ContainsKey(interest_area))
+                {
+                    interest_areas ointerest_areas = new interest_areas
+                    {
+                        interest_area_id = 0,
+                        name = interest_area,
+
+                        date_created = DateTime.Now,
+                        user_id_created = user_id
+
+                    };
+                    ointerest_areas = oRepositorio.Add(ointerest_areas);
+                    oUnitOfWork.SaveChanges();
+                    dictionary.Add(ointerest_areas.name, ointerest_areas.interest_area_id);
+
+                }
+            }
+            return dictionary;
+        }
         public InterestAreaViewModel Obtener(int pIntID)
         {
 
@@ -45,7 +77,7 @@ namespace Business.Logic
         
             interest_areas ointerest_areas =oRepositorio.FindById(pInterestAreaViewModel.interest_area_id);
             ointerest_areas.name = pInterestAreaViewModel.name;
-            ointerest_areas.investigation_group_id = pInterestAreaViewModel.investigation_group_id;
+            
             ointerest_areas.user_id_modified = pInterestAreaViewModel.user_id_modified;
 
             ointerest_areas.date_modified = DateTime.Now;
@@ -71,7 +103,7 @@ namespace Business.Logic
             {
                 interest_area_id = 0,
                 name= pInterestAreaViewModel.name,
-                investigation_group_id = pInterestAreaViewModel.investigation_group_id,
+                
                 date_created=DateTime.Now,
                 user_id_created= pInterestAreaViewModel.user_id_created
 

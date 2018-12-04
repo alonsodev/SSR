@@ -1,0 +1,375 @@
+﻿
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "DraftLaw");
+    ViewBag.HeaderTitle = "Proyectos de Ley";
+    ViewBag.Title = "Lista de proyectos de ley";
+
+    ViewBag.active = "draft_laws";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nro. Proyecto</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Origen</th>
+                            <th>Fecha de Presentación</th>
+                            <th>Comisión</th>
+                            <th>Estado</th>
+                            <th>Tema</th>
+                            <th>Resumen</th>
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nro. Proyecto</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Origen</th>
+                            <th>Fecha de Presentación</th>
+                            <th>Comisión</th>
+                            <th>Estado</th>
+                            <th>Tema</th>
+                            <th>Resumen</th>
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+<!-- Classic Modal -->
+<div class="modal fade" id="summary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up">Resumen</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <p>
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="display:none">
+
+    <input type="file" id="NewFileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="checkfile(this,'N');" />
+    
+</div>
+@section Scripts {
+
+    <script type="text/javascript">
+        var datatable;
+        function UploadFileAjax(tipo) {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#NewFileUpload").get(0);
+               
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object
+                fileData.append('username', 'Manas');
+
+                $.ajax({
+                    url: '/DraftLaw/UploadFiles',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        if (result.successfully == 1) {
+                            datatable.ajax.reload();
+                            
+                            swal({
+                                title: 'Información!',
+                                text: 'Se realizó la importación con exito.',
+                                type: 'success',
+                                confirmButtonClass: "btn btn-success",
+                                buttonsStyling: false
+                            });
+                        }
+                        else {
+                            if (result.successfully == -1) {
+                                alert(result.message);
+                            }
+                            else {
+                                var mensaje = obtenerErrores(result.errores); 
+                                swal({
+                                    title: 'Error!',
+                                    html: 'Ocurrio un error en la importación, por favor corrija los errores mostrados e intente de nuevamente.< br />' + mensaje,
+                                    type: 'error',
+                                    confirmButtonClass: "btn btn-success",
+                                    buttonsStyling: false
+                                });
+                              
+                            }
+                        }
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData no es soportado.");
+            }
+        }
+        function obtenerErrores(errores) {
+            var mensaje = "";
+            for (i = 0; i < errores.length; i++) {
+                mensaje = mensaje + '<li>Fila número ' + errores[i].nroFila;
+                var lista = errores[i].errores;
+                mensaje = mensaje + '<ul>';
+                for (j = 0; j < lista.length; j++) {
+                    mensaje = mensaje + '<li>' + lista[j] + '</li>';
+                }
+                mensaje = mensaje + '</ul></li>';
+            }
+            return '<ul>' + mensaje + '</ul>';
+        }
+        function checkfile(sender, tipo) {
+            var validExts = new Array(".xlsx",".xml");
+            var fileExt = sender.value;
+            fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+            if (validExts.indexOf(fileExt) < 0) {
+                
+                
+                swal({
+                    title: 'Error!',
+                    text: "Archivo seleccionado invalido, los tipos de archivos permitidos son:" +validExts.toString() + "",
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+
+                sender.value = '';
+                return false;
+            }
+            else {
+                UploadFileAjax(tipo);
+                sender.value = '';
+                return true
+            };
+        }
+
+        $(function () {
+            UiFormulario.init();
+        })
+
+        var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+                        responsive: true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            url: "@Url.Action("ObtenerLista", "DraftLaw")",
+                            type: 'POST'
+                        },
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [
+
+                            {
+                                extend: 'csvHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                text: '<i class="fa fa-plus"></i> Agregar',
+                                className: "btn btn-primary pull-right",
+                                action: function (e, dt, node, config) {
+                                    window.location = "@Url.Action("Crear", "DraftLaw")";
+                                },
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button');
+                                    setTimeout(function () {
+                                        $(node).parent().parent().append($(node));
+                                    }, 100);
+                                },
+                            },
+                             {
+                                text: '<i class="fa fa-plus"></i> Importar',
+                                className: "btn btn-primary pull-right",
+                                action: function (e, dt, node, config) {
+                                    //window.location = "@Url.Action("Crear", "DraftLaw")";
+                                    $('#NewFileUpload').show();
+                                    $('#NewFileUpload').focus();
+                                    $('#NewFileUpload').click();
+                                },
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button');
+                                    setTimeout(function () {
+                                        $(node).parent().parent().append($(node));
+                                    }, 100);
+                                },
+                            }
+                        ],
+                        "columns": [
+                            { "data": "draft_law_number" },
+                            { "data": "title" },
+                            { "data": "author" },
+                            { "data": "origin" },
+                            { "data": "date_presentation" },
+                            { "data": "commission" },
+                            { "data": "status" },
+                            { "data": "interest_area" },
+                            { "data": "draft_law_id" },
+                            { "data": "summary" },
+                        ],
+                        columnDefs: [
+                            { 'className': 'text-center', 'targets': [8,9] },
+                            {
+                                render: function (data, type, row) {
+
+                                    if (row.date_presentation == null) { return "" };
+                                    var actionsHtml = moment(row.date_presentation).format("DD/MM/YYYY");
+                                    return actionsHtml;
+                                },
+                                targets: 4
+                            },
+                            {
+                                render: function (data, type, row) {
+                                    return '<p style="display:none" id="summary-' + row.draft_law_id + '">' + row.summary + '</p>'
+                                        + '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.draft_law_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>';
+
+                                },
+                                targets: 8,
+                                orderable: false
+                            },
+                            {
+                                render: function (data, type, row) {
+                                    return '<a href="/DraftLaw/Editar/' + row.draft_law_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
+                                        + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.draft_law_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
+                                },
+                                targets: 9,
+                                orderable: false
+                            }
+                        ],
+
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+                    datatable.on('click', '.summary', function (event) {
+                        debugger;
+                        var $tr = $(this).closest('tr');
+                        var row_id = $(this).attr('row-id');
+
+                        var summary = $('#summary-' + row_id).html();
+                        $('#modal-body-summary').html(summary);
+                        $("#summary_modal").modal('show');
+                    });
+                    datatable.on('click', '.delete', function (event) {
+                        debugger;
+                        var $tr = $(this).closest('tr');
+
+
+                        var row_id = $(this).attr('row-id');
+
+
+                        swal({
+                            title: '¿Estás Seguro?',
+                            text: "No se podrá revertir el cambio!",
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonClass: 'btn btn-success',
+                            cancelButtonClass: 'btn btn-danger',
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonText: 'Si, Eliminar Registro!',
+                            buttonsStyling: false
+                        }).then(function () {
+
+                            $.ajax(
+                                {
+                                    url: "@Url.Action("Eliminar", "DraftLaw")",
+                                    type: "POST",
+                                    data: { id: row_id }
+                                })
+                                .done(function (data) {
+                                    datatable.ajax.reload();
+                                    swal({
+                                        title: 'Eliminado!',
+                                        text: 'El registro ha sido eliminado.',
+                                        type: 'success',
+                                        confirmButtonClass: "btn btn-success",
+                                        buttonsStyling: false
+                                    });
+
+
+                                })
+                                .fail(function (data) {
+                                    console.log("error");
+                                })
+                                .always(function (data) {
+                                    console.log("complete");
+                                });
+
+                        }).catch(swal.noop);
+
+                    });
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+    </script>
+}
+
+

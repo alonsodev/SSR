@@ -17,7 +17,9 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public investigators()
         {
+            this.commissions = new HashSet<commissions>();
             this.interest_areas = new HashSet<interest_areas>();
+            this.concepts = new HashSet<concepts>();
         }
     
         public int investigator_id { get; set; }
@@ -32,12 +34,19 @@ namespace Infrastructure.Data
         public Nullable<int> institution_id { get; set; }
         public Nullable<int> investigation_group_id { get; set; }
         public Nullable<int> program_id { get; set; }
+        public Nullable<int> academic_level_id { get; set; }
     
+        public virtual academic_levels academic_levels { get; set; }
         public virtual genders genders { get; set; }
         public virtual institutions institutions { get; set; }
         public virtual investigation_groups investigation_groups { get; set; }
         public virtual programs programs { get; set; }
+        public virtual users users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<commissions> commissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<interest_areas> interest_areas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concepts> concepts { get; set; }
     }
 }

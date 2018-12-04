@@ -14,6 +14,46 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
+        public List<SelectOptionItem> CommissionsSelector()
+        {
+
+
+            var lista = this.Context.Set<commissions>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.commission_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> TagsSelector()
+        {
+            var lista = this.Context.Set<tags>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.tag_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> AcademicLevelsSelector()
+        {
+
+
+            var lista = this.Context.Set<academic_levels>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.academic_level_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
 
         public List<SelectOptionItem> InvestigationGroupsSelector(int institution_id)
         {
@@ -24,11 +64,12 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.investigation_group_id.ToString(),
                 Text = a.name,
+                AdditionalField= a.code
             });
 
             return consulta.ToList();
         }
-        public List<interest_areas> InterestAreasByfilters(int[] InterestAreas)
+        public List<interest_areas> InterestAreasByfilters(List<int> InterestAreas)
         {
 
 
@@ -38,12 +79,49 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
-        public List<SelectOptionItem> InterestAreasSelector(int investigation_group_id)
+        public List<commissions> CommissionsByfilters(List<int> Commissions)
+        {
+
+
+            var lista = this.Context.Set<commissions>();
+            var consulta = lista.Where(a => Commissions.Contains(a.commission_id));
+
+            return consulta.ToList();
+        }
+        public List<SelectOptionItem> DepartmentsSelector()
+        {
+
+
+            var lista = this.Context.Set<departments>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.department_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> MunicipalitiesSelector(int department_id)
+        {
+
+
+            var lista = this.Context.Set<municipalities>();
+            var consulta = lista.Where(a=> a.department_id== department_id).Select(a => new SelectOptionItem
+            {
+                Value = a.municipality_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> InterestAreasSelector()
         {
 
 
             var lista = this.Context.Set<interest_areas>();
-            var consulta = lista.Where(a => a.investigation_group_id == investigation_group_id).Select(a => new SelectOptionItem
+            var consulta = lista.Select(a => new SelectOptionItem
             {
                 Value = a.interest_area_id.ToString(),
                 Text = a.name,
@@ -106,10 +184,10 @@ namespace Infrastructure.Data.Repositories
                        pass = a.user_pass,
                        user_email= a.user_email,
                        status_id = a.user_status_id,
-
+                       investigator_id= a.investigators.Select(i=> i.investigator_id).Take(1).FirstOrDefault(),
                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList()
                    }
-               ).Take(1).SingleOrDefault();
+               ).Take(1).FirstOrDefault();
 
                 if (result.pass != contrasena)
                     tipo_error = -3;

@@ -28,11 +28,20 @@ namespace Business.Logic
         {
             return oRepositorio.VerificarDuplicado(user_id, email);
         }
+
+
         public UserViewModel ObtenerUser(int pIntID)
         {
 
             return oRepositorio.ObtenerUser(pIntID);
         }
+
+        public InvestigatorViewModel ObtenerInvestigator(int pIntID)
+        {
+
+            return oRepositorioInvestigator.Obtener(pIntID);
+        }
+
 
         public GridModel<UserViewModel> ObtenerLista(UserFiltersViewModel filters)
         {
@@ -131,9 +140,12 @@ namespace Business.Logic
                 //  contract_name = pInvestigatorViewModel.contract_name,
                 phone = pInvestigatorViewModel.phone,
                 address = pInvestigatorViewModel.address,
+                address_municipality_id= pInvestigatorViewModel.address_municipality_id,
 
+                address_country_id = pInvestigatorViewModel.address_country_id,
                 date_created = DateTime.Now,
-                user_id_created = pInvestigatorViewModel.user_id_created
+                user_id_created = pInvestigatorViewModel.user_id_created,
+                
 
             };
             ousers = oRepositorio.Add(ousers);
@@ -153,11 +165,12 @@ namespace Business.Logic
 
                 institution_id = pInvestigatorViewModel.institution_id,
                 investigation_group_id = pInvestigatorViewModel.investigation_group_id,
-                program_id = pInvestigatorViewModel.program_id
-
-
+                program_id = pInvestigatorViewModel.program_id,
+                academic_level_id = pInvestigatorViewModel.academic_level_id
             };
             oinvestigators.interest_areas = oRepositorio.InterestAreasByfilters(pInvestigatorViewModel.interest_areas);
+
+            oinvestigators.commissions = oRepositorio.CommissionsByfilters(pInvestigatorViewModel.commissions);
 
             oinvestigators = oRepositorioInvestigator.Add(oinvestigators);
 

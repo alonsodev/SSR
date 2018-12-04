@@ -200,11 +200,42 @@
                                                         </div>
 
                                                     </div>
+                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_country_id, htmlAttributes: new { @class = "" })</label>
 
-                                                   
+                                                    <div class="col-sm-4">
+
+                                                        <div class="form-group">
+                                                            @Html.DropDownList("address_country_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.address_country_id, "", new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+
                                                 </div>
 
+                                                <div class="row address_department">
+                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.department_id, htmlAttributes: new { @class = "" })</label>
 
+                                                    <div class="col-sm-4">
+
+                                                        <div class="form-group">
+                                                            @Html.DropDownList("department_id", (IEnumerable<SelectListItem>)ViewBag.departments, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.department_id, "", new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_municipality_id, htmlAttributes: new { @class = "" })</label>
+
+                                                    <div class="col-sm-4">
+
+                                                        <div class="form-group">
+                                                            @Html.DropDownList("address_municipality_id", (IEnumerable<SelectListItem>)ViewBag.municipalities, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.address_municipality_id, "", new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
                                                 <div class="form-group has-label">
 
                                                     @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
@@ -214,7 +245,20 @@
                                                 </div>
 
 
+                                                <div class="row">
+                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.academic_level_id, htmlAttributes: new { @class = "" })</label>
 
+                                                    <div class="col-sm-4">
+
+                                                        <div class="form-group">
+                                                            @Html.DropDownList("academic_level_id", (IEnumerable<SelectListItem>)ViewBag.academic_levels, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.academic_level_id, "", new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                    
+
+                                                </div>
 
 
                                             </div><!-- end content-->
@@ -254,7 +298,7 @@
                                                 <div class="row">
                                                     <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.investigation_group_id, htmlAttributes: new { @class = "" })</label>
 
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
 
                                                         <div class="form-group">
                                                             @Html.DropDownList("investigation_group_id", (IEnumerable<SelectListItem>)ViewBag.investigation_groups, new { @class = "form-control" })
@@ -263,18 +307,26 @@
 
                                                     </div>
 
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.program_id, htmlAttributes: new { @class = "" })</label>
+                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.code_investigation_group, htmlAttributes: new { @class = "" })</label>
 
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-2">
 
                                                         <div class="form-group">
-                                                            @Html.DropDownList("program_id", (IEnumerable<SelectListItem>)ViewBag.programs, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.program_id, "", new { @class = "text-danger" })
+                                                            @Html.EditorFor(model => model.code_investigation_group, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                                            @Html.ValidationMessageFor(model => model.code_investigation_group, "", new { @class = "text-danger" })
                                                         </div>
 
                                                     </div>
                                                 </div>
+                                                <div class="form-group has-label">
 
+                                                    @Html.LabelFor(model => model.commissions, htmlAttributes: new { @class = "" })
+
+                                                    @Html.DropDownList("commissions", (IEnumerable<SelectListItem>)ViewBag.commissions, new { multiple = "multiple", @class = "form-control" })
+
+                                                    @Html.ValidationMessageFor(model => model.commissions, "", new { @class = "text-danger" })
+
+                                                </div>
                                                 <div class="form-group has-label">
 
                                                     @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
@@ -286,7 +338,14 @@
                                                 </div>
 
 
+                                                <div class="form-group has-label">
 
+                                                    @Html.LabelFor(model => model.program_id, htmlAttributes: new { @class = "" })
+
+                                                    @Html.DropDownList("program_id", (IEnumerable<SelectListItem>)ViewBag.programs, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.program_id, "", new { @class = "text-danger" })
+
+                                                </div>
 
 
 
@@ -364,7 +423,7 @@
             <div class="card-footer text-right">
 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
-                
+
             </div>
         }
     </div>
@@ -373,10 +432,12 @@
 
 </div>
 
-    @section Scripts {
+@section Scripts {
 
-        <script type="text/javascript">
+    <script type="text/javascript">
+        var list_IG = {};
         $(function () {
+            $(".address_department").hide();
             $("#user_role_id").select2({ theme: "bootstrap" });
             $("#user_status_id").select2({ theme: "bootstrap" });
             $("#nationality_id").select2({ theme: "bootstrap" });
@@ -419,6 +480,13 @@
             $("#investigation_group_id").select2({ theme: "bootstrap" });
             $("#program_id").select2({ theme: "bootstrap" });
             $("#interest_areas").select2({ theme: "bootstrap" });
+
+            $("#academic_level_id").select2({ theme: "bootstrap" });
+            $("#commissions").select2({ theme: "bootstrap" });
+
+            $("#address_country_id").select2({ theme: "bootstrap" });
+            $("#department_id").select2({ theme: "bootstrap" });
+            $("#address_municipality_id").select2({ theme: "bootstrap" });
             $('.datepicker').datetimepicker({
                 locale: 'es',
                 format: 'DD/MM/YYYY',
@@ -434,14 +502,31 @@
                     close: 'fa fa-remove'
                 }
             });
-        });
+        }); 
+        $("#address_country_id").on('select2:select', function (e) {
+            debugger;
+            if ($("#address_country_id").val() == "45") {
+                $(".address_department").show();
+            }
 
+            else {
+                $(".address_department").hide();
+                $("#department_id").each(function () { //added a each loop here
+                    $(this).select2('val', '')
+                });
+                $("#address_municipality_id").each(function () { //added a each loop here
+                    $(this).select2('val', '')
+                });
+                $('#department_id').val('');
+                $('#address_municipality_id').val('');
+            }
+        });
         $('#institution_id').on('select2:select', function (e) {
             // Do something
 
             console.log($("#institution_id").val());
             $('#investigation_group_id').empty();
-            $('#interest_areas').empty();
+           // $('#interest_areas').empty();
             $.ajax({
                 type: 'POST',
                 url: '/Account/ObtenerGrupoInvestigacion',
@@ -451,9 +536,16 @@
             }).then(function (data) {
                 // create the option and append to Select2
                 var i;
+                list_IG = {};
+                $("#code_investigation_group").val('');
                 for (i = 0; i < data.length; i++) {
+                    list_IG[data[i].Value] = data[i];
                     var option = new Option(data[i].Text, data[i].Value, false, false);
                     $("#investigation_group_id").append(option).trigger('change');
+
+                    if (i == 0) {
+                        $("#code_investigation_group").val(data[i].AdditionalField);
+                    }
                 }
 
                 $("#investigation_group_id option:selected").prop("selected", false);
@@ -468,29 +560,32 @@
 
 
         });
-
         $('#investigation_group_id').on('select2:select', function (e) {
+            var investigation_group_id= $("#investigation_group_id").val();
+            $("#code_investigation_group").val(list_IG[investigation_group_id].AdditionalField);
+        });
+        $('#department_id').on('select2:select', function (e) {
             // Do something
 
-            console.log($("#investigation_group_id").val());
-            $('#interest_areas').empty();
+            console.log($("#department_id").val());
+            $('#address_municipality_id').empty();
             $.ajax({
                 type: 'POST',
-                url: '/Account/ObtenerAreasInteres',
+                url: '/Account/ObtenerMunicipalities',
                 data: {
-                    investigation_group_id: $("#investigation_group_id").val()
+                    department_id: $("#department_id").val()
                 }
             }).then(function (data) {
                 // create the option and append to Select2
                 var i;
                 for (i = 0; i < data.length; i++) {
                     var option = new Option(data[i].Text, data[i].Value, false, false);
-                    $("#interest_areas").append(option).trigger('change');
+                    $("#address_municipality_id").append(option).trigger('change');
                 }
 
 
                 // manually trigger the `select2:select` event
-                $("#interest_areas").trigger({
+                $("#address_municipality_id").trigger({
                     type: 'select2:select',
                     params: {
                         data: data
@@ -513,7 +608,7 @@
             var form = this;
             $('.aceptar-error').html('');
             var checked = $('#chkPoliticasUso').prop('checked')
-            
+
             if (!checked) {
                 $('.aceptar-error').html('Debe aceptar las políticas de uso.');
                 return false;
@@ -563,5 +658,5 @@
             return false;
         });
 
-        </script>
-    }
+    </script>
+}

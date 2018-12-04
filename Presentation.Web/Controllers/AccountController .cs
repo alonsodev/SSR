@@ -100,6 +100,11 @@ namespace Presentation.Web.Controllers
 
             List<SelectOptionItem> oGenders = oSelectorBL.GendersSelector();
             List<SelectOptionItem> oPrograms = oSelectorBL.ProgramsSelector();
+            List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
+            List<SelectOptionItem> oDepartments = oSelectorBL.DepartmentsSelector();
+
+            List<SelectOptionItem> oAcademicLevels = oSelectorBL.AcademicLevelsSelector();
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
 
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
@@ -109,26 +114,41 @@ namespace Presentation.Web.Controllers
             List<SelectListItem> genders = Helper.ConstruirDropDownList<SelectOptionItem>(oGenders, "Value", "Text", "", true, "", "");
 
             List<SelectListItem> programs = Helper.ConstruirDropDownList<SelectOptionItem>(oPrograms, "Value", "Text", "", true, "", "");
+            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", true, "", "");
+            List<SelectListItem> departments = Helper.ConstruirDropDownList<SelectOptionItem>(oDepartments, "Value", "Text", "", true, "", "");
+            List<SelectListItem> academic_levels = Helper.ConstruirDropDownList<SelectOptionItem>(oAcademicLevels, "Value", "Text", "", true, "", "");
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
 
             List<SelectListItem> oListaVacia = Helper.ConstruirDropDownList<SelectOptionItem>(new List<SelectOptionItem>(), "Value", "Text", "", true, "", "");
 
+
+            
+
+
             ViewBag.institutions = oListaVacia;
             ViewBag.investigation_groups = oListaVacia;
-            ViewBag.interest_areas = oListaVacia;
+            ViewBag.interest_areas = interest_areas;
             ViewBag.programs = programs;
+            ViewBag.departments = departments;
+            ViewBag.municipalities = oListaVacia;
 
             ViewBag.estatus = estatus;
             ViewBag.roles = roles;
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
             ViewBag.genders = genders;
+            ViewBag.academic_levels = academic_levels;
+            ViewBag.commissions = commissions;
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Crear([Bind(Include = "investigator_id,user_id,first_name,second_name,last_name,second_last_name,gender_id,mobile_phone,birthdate_text,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_pass2,institution_id,investigation_group_id,program_id,interest_areas")] InvestigatorViewModel pViewModel)
+        public ActionResult Crear([Bind(Include = "investigator_id,user_id,first_name,second_name,last_name,second_last_name,gender_id,mobile_phone," +
+            "birthdate_text,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_pass2,institution_id," +
+            "investigation_group_id,program_id,interest_areas,address_country_id,department_id,address_municipality_id,academic_level_id,commissions")] InvestigatorViewModel pViewModel)
         {
             // TODO: Add insert logic here
 
@@ -203,6 +223,23 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
+        
+
+        [HttpPost]
+        public JsonResult ObtenerMunicipalities(/*string q, int page*/)
+        {
+
+            SelectorBL oBL = new SelectorBL();
+            string term_search = Request.Form["q"];
+            string str_department_id = Request.Form["department_id"];
+            int department_id = 0;
+            int.TryParse(str_department_id, out department_id);
+            // var resultado = oUserBL.VerificarDuplicado(user_id, email);
+
+            var results = oBL.MunicipalitiesSelector(department_id);
+            return Json(results);
+
+        }
 
         [HttpPost]
         public JsonResult ObtenerInstituciones(/*string q, int page*/)
@@ -235,21 +272,7 @@ namespace Presentation.Web.Controllers
             return Json(results);
 
         }
-        [HttpPost]
-        public JsonResult ObtenerAreasInteres(/*string q, int page*/)
-        {
-
-            SelectorBL oBL = new SelectorBL();
-            string term_search = Request.Form["q"];
-            string str_investigation_group_id = Request.Form["investigation_group_id"];
-            int investigation_group_id = 0;
-            int.TryParse(str_investigation_group_id, out investigation_group_id);
-            // var resultado = oUserBL.VerificarDuplicado(user_id, email);
-
-            var results = oBL.InterestAreasSelector(investigation_group_id);
-            return Json(results);
-
-        }
+       
         [HttpPost]
         public JsonResult Verificar(int user_id, string email)
         {

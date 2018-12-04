@@ -27,6 +27,13 @@ namespace Infrastructure.Data
 
         private CommissionRepository _commissionRepository;
 
+        private DraftLawRepository _draftLawRepository;
+        private ConceptRepository _conceptRepository;
+
+        private BadLanguageRepository _badLanguageRepository;
+
+        private TagRepository _tagRepository;
+
         #endregion
 
         #region Constructors
@@ -37,6 +44,27 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public TagRepository TagRepository
+        {
+            get { return _tagRepository ?? (_tagRepository = new TagRepository(_context)); }
+
+        }
+        public BadLanguageRepository BadLanguageRepository
+        {
+            get { return _badLanguageRepository ?? (_badLanguageRepository = new BadLanguageRepository(_context)); }
+
+        }
+        public ConceptRepository ConceptRepository
+        {
+            get { return _conceptRepository ?? (_conceptRepository = new ConceptRepository(_context)); }
+
+        }
+
+        public DraftLawRepository DraftLawRepository
+        {
+            get { return _draftLawRepository ?? (_draftLawRepository = new DraftLawRepository(_context)); }
+
+        }
 
         public CommissionRepository CommissionRepository
         {
@@ -136,7 +164,10 @@ namespace Infrastructure.Data
             this._investigationGroupRepository = null;
 
             this._commissionRepository = null;
-
+            this._draftLawRepository = null;
+            this._conceptRepository = null;
+            this._badLanguageRepository = null;
+            this._tagRepository = null;
             _context.Dispose();
         }
         #endregion

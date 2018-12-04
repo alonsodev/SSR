@@ -1,0 +1,145 @@
+﻿@model Domain.Entities.ConceptViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "concept");
+    ViewBag.HeaderTitle = "Concepto Técnico";
+    ViewBag.Title = "Ver Concepto técnico";
+
+    ViewBag.active = "concepts";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Editar", "Concept", FormMethod.Post, new { id = "form-registro", title = "Editar Concepto" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.concept_id)
+                @Html.HiddenFor(model => model.draft_law_id)
+                @Html.HiddenFor(model => model.investigator_id)
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
+
+                    @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor" })
+                    @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+
+
+
+
+
+            </div><!-- end content-->
+                <div class="card-footer text-right">
+
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    <script type="text/javascript" src="/Scripts/summernote-es-ES.js"></script>
+    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            // Initialize Editor
+            $('.textarea-editor').summernote({
+
+                lang: 'es-ES',
+                height: 400, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+            //setTimeout(function () { $('div .note-editable').focus(); }, 5000);
+
+        });
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/Concept";
+        });
+
+        $('#form-registro').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+
+            if ($("#form-registro").valid()) {
+
+
+                form.submit();
+
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

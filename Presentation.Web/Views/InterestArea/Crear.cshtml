@@ -23,20 +23,7 @@
 
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.institution_id, htmlAttributes: new { @class = "" })
-
-                    @Html.DropDownList("institution_id", (IEnumerable<SelectListItem>)ViewBag.institutions, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.institution_id, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.investigation_group_id, htmlAttributes: new { @class = "" })
-
-                    @Html.DropDownList("investigation_group_id", (IEnumerable<SelectListItem>)ViewBag.investigation_groups, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.investigation_group_id, "", new { @class = "text-danger" })
-                </div>
+               
 
                 <div class="form-group has-label">
 
@@ -70,73 +57,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#institution_id").select2({
-                theme: "bootstrap",
-                language: "es",
-                ajax: {
-                    url: '/Account/ObtenerInstituciones',
-                    type: "POST",
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                            q: params.term,
-                            page: params.page || 1
-                        };
-                    },
-                    processResults: function (data, params) {
-                        // parse the results into the format expected by Select2
-                        // since we are using custom formatting functions we do not need to
-                        // alter the remote JSON data, except to indicate that infinite
-                        // scrolling can be used
-                        params.page = params.page || 1;
-
-                        return {
-                            results: data.items,
-                            pagination: {
-                                more: (params.page * 10) < data.total_count
-                            }
-                        };
-                    },
-                    cache: true
-                },
-                escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-                minimumInputLength: 0,
-
-            });
-            $("#investigation_group_id").select2({ theme: "bootstrap" });
-            $('#institution_id').on('select2:select', function (e) {
-                // Do something
-
-                console.log($("#institution_id").val());
-                $('#investigation_group_id').empty();
-                
-                $.ajax({
-                    type: 'POST',
-                    url: '/Account/ObtenerGrupoInvestigacion',
-                    data: {
-                        institution_id: $("#institution_id").val()
-                    }
-                }).then(function (data) {
-                    // create the option and append to Select2
-                    var i;
-                    for (i = 0; i < data.length; i++) {
-                        var option = new Option(data[i].Text, data[i].Value, false, false);
-                        $("#investigation_group_id").append(option).trigger('change');
-                    }
-
-                    $("#investigation_group_id option:selected").prop("selected", false);
-                    // manually trigger the `select2:select` event
-                    $("#investigation_group_id").trigger({
-                        type: 'select2:select',
-                        params: {
-                            data: data
-                        }
-                    });
-                });
-
-
-            });
+           
 
         });
         $("#btnCancelar").click(function () {

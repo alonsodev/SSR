@@ -12,7 +12,7 @@ namespace Presentation.Web.Controllers
 {
     public class UserController : Controller
     {
-        [AuthorizeUser(Permissions  = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.module_access_users })]
+        [AuthorizeUser(Permissions  = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_users })]
         
         // GET: User
         public ActionResult Index()
@@ -148,7 +148,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.module_access_users })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_users })]
         public JsonResult ObtenerLista(UserFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {
             UserBL oUserBL = new UserBL();

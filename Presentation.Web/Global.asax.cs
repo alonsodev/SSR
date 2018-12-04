@@ -20,10 +20,12 @@ namespace Presentation.Web
 
 
             ModelValidatorProviders.Providers.Remove(
-      ModelValidatorProviders.Providers
-          .FirstOrDefault(x => x is DataAnnotationsModelValidatorProvider));
-            ModelValidatorProviders.Providers.Add(
-                new ExpressiveAnnotationsModelValidatorProvider());
+                  ModelValidatorProviders.Providers
+                      .FirstOrDefault(x => x is DataAnnotationsModelValidatorProvider));
+                        ModelValidatorProviders.Providers.Add(
+                            new ExpressiveAnnotationsModelValidatorProvider());
+
+            ModelMetadataProviders.Current = new DataAnnotationsModelMetadataProvider();
         }
     }
 }
