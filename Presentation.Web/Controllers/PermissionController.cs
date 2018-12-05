@@ -19,14 +19,14 @@ namespace Presentation.Web.Controllers
             return View();
         }
 
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role })]
         public ActionResult Crear()
         {
 
 
             return View();
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -49,7 +49,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_role })]
         public ActionResult Editar(string id)
         {
             PermissionBL oBL = new PermissionBL();
@@ -59,7 +59,7 @@ namespace Presentation.Web.Controllers
 
             return View(pPermissionViewModel);
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -93,7 +93,7 @@ namespace Presentation.Web.Controllers
             });
 
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role,AuthorizeUserAttribute.Permission.form_edit_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role,AuthorizeUserAttribute.Permission.edit_role })]
         [HttpPost]
         public JsonResult Verificar(int id_permission, string name)
         {

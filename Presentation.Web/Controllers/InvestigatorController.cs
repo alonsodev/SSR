@@ -19,7 +19,7 @@ namespace Presentation.Web.Controllers
     {
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         // GET: User
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_draft_laws })]
 
         public ActionResult MisProyectosLey()
         {
@@ -27,9 +27,9 @@ namespace Presentation.Web.Controllers
         }
 
 
-       
 
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_draft_laws })]
 
         public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {

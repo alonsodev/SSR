@@ -14,14 +14,12 @@ namespace Presentation.Web.Controllers
 {
     public class BadLanguageController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
-        // GET: User
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_bad_languages })]
         public ActionResult Index()
         {
             return View();
         }
-
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_bad_languages })]
         public ActionResult Crear()
         {
 
@@ -30,6 +28,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_bad_languages , AuthorizeUserAttribute.Permission.edit_bad_languages })]
         public JsonResult Verificar(int id_bad_language, string name)
         {
 
@@ -47,7 +46,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_bad_languages })]
         public ActionResult Crear([Bind(Include = "bad_language_id,name")] BadLanguageViewModel pBadLanguageViewModel)
         {
             // TODO: Add insert logic here
@@ -65,9 +64,9 @@ namespace Presentation.Web.Controllers
 
         }
 
-       
 
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_bad_languages })]
         public ActionResult Editar(string id)
         {
             BadLanguageBL oBL = new BadLanguageBL();
@@ -80,7 +79,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_bad_languages })]
         public ActionResult Editar([Bind(Include = "bad_language_id,name")] BadLanguageViewModel pBadLanguageViewModel)
         {
             // TODO: Add insert logic here
@@ -95,6 +94,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_bad_languages })]
         public JsonResult Eliminar(int id)
         {
 
@@ -111,7 +111,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_bad_languages })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             BadLanguageBL oBadLanguageBL = new BadLanguageBL();

@@ -15,14 +15,19 @@ namespace Presentation.Web.Controllers
 {
     public class ConceptController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_concepts })]
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited})]
+        public ActionResult Emitidos()
+        {
+            return View();
+        }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_concept })]
         public ActionResult Crear(string id)
         {
             int pIntID = 0;
@@ -57,7 +62,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_concept })]
         public ActionResult Crear([Bind(Include = "concept_id,summary,concept,investigator_id,draft_law_id,tags,bibliography")] ConceptViewModel pConceptViewModel)
         {
             // TODO: Add insert logic here
@@ -104,7 +109,7 @@ namespace Presentation.Web.Controllers
 
             return lista;
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
         public ActionResult Editar(string id)
         {
             ConceptBL oBL = new ConceptBL();
@@ -120,7 +125,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
         public ActionResult Editar([Bind(Include = "concept_id,summary,concept,investigator_id,draft_law_id")] ConceptViewModel pConceptViewModel)
         {
             // TODO: Add insert logic here
@@ -136,8 +141,9 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-       
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_concepts })]
+        // GET: User
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
@@ -156,7 +162,27 @@ namespace Presentation.Web.Controllers
 
 
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited })]
+        // GET: User
 
+        public JsonResult ObtenerEmitidos(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+           
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerEmitidos(ofilters);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = ofilters.draw,
+                recordsTotal = grid.total,
+                recordsFiltered = grid.recordsFiltered,
+                data = grid.rows
+            });
+
+
+        }
 
     }
 }

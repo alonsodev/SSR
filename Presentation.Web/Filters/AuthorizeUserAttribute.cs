@@ -16,41 +16,41 @@ namespace Presentation.Web.Filters
         {
             module_access_users = 14,
             list_users = 21,
-            form_new_user = 15,
-            form_edit_user = 16,
+            new_user = 15,
+            edit_user = 16,
             delete_user = 17,
             form_change_pass = 19,
             form_change_own_pass = 25,
             module_access_roles = 22,
             list_roles = 27,
-            form_new_role = 26,
-            form_edit_role = 28,
+            new_role = 26,
+            edit_role = 28,
             delete_role = 29,
             role_permissions = 30,
             module_access_permissions = 23,
             list_permissions = 32,
-            form_new_permissions = 31,
-            form_edit_permission = 33,
+            new_permissions = 31,
+            edit_permission = 33,
             delete_permission = 34,
             module_draft_law = 36,
             list_draft_law = 38,
-            form_draft_law = 39,
-            form_edit_draft_law = 40,
+            new_draft_law = 39,
+            edit_draft_law = 40,
             delete_draft_law = 41,
             module_institution = 42,
             list_institution = 43,
-            form_institution = 44,
-            form_edit_institution = 45,
+            new_institution = 44,
+            edit_institution = 45,
             delete_institution = 46,
             module_investigation_groups = 47,
             list_investigation_groups = 48,
-            form_investigation_groups = 49,
-            form_edit_investigation_groups = 50,
+            new_investigation_groups = 49,
+            edit_investigation_groups = 50,
             delete_investigation_groups = 51,
             module_interest_areas = 52,
             list_interest_areas = 53,
-            form_interest_areas = 54,
-            form_edit_interest_areas = 55,
+            new_interest_areas = 54,
+            edit_interest_areas = 55,
             delete_interest_areas = 56,
             module_programs = 57,
             list_programs = 58,
@@ -59,8 +59,8 @@ namespace Presentation.Web.Filters
             delete_programs = 61,
             module_commissions = 62,
             list_commissions = 63,
-            form_commissions = 64,
-            form_edit_commissions = 65,
+            new_commissions = 64,
+            edit_commissions = 65,
             delete_commissions = 66,
             form_edit_config = 35,
             my_draft_laws = 67,
@@ -68,7 +68,14 @@ namespace Presentation.Web.Filters
             my_certificates = 69,
             my_backgrounds = 70,
 
-
+            concepts_emited = 71,
+            new_concept = 72,
+            edit_concept = 73,
+            module_bad_languages = 74,
+            list_bad_languages = 75,
+            new_bad_languages = 76,
+            edit_bad_languages = 76,
+            delete_bad_languages = 78
 
 
         }
@@ -91,7 +98,7 @@ namespace Presentation.Web.Filters
                 {
                     CurrentUserViewModel usuario = (CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
 
-                    if (usuario.permissions.Contains((int)permission) )
+                    if (usuario.permissions.Contains((int)permission))
                         return true;
                 }
             }
@@ -156,12 +163,12 @@ namespace Presentation.Web.Filters
                 return true;
             foreach (Permission item in Permissions)
             {
-                if (usuario.permissions.Contains( (int)item) )
+                if (usuario.permissions.Contains((int)item))
                 {
                     return true;
                 }
             }
-           
+
 
             motivoNoAutorizado = eMotivoNoAutorizado.PerfilNoAutorizado;
 

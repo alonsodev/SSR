@@ -87,6 +87,10 @@ namespace Business.Logic
             oUnitOfWork.SaveChanges();
         }
 
-
+        public GridModel<ConceptViewModel> ObtenerEmitidos(DataTableAjaxPostModel ofilters)
+        {
+            
+            return oRepositorio.ObtenerEmitidos(ofilters);
+        }
     }
 }

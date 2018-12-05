@@ -15,14 +15,14 @@ namespace Presentation.Web.Controllers
 {
     public class InterestAreaController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_interest_areas })]
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_interest_areas })]
         public ActionResult Crear()
         {
 
@@ -31,6 +31,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_interest_areas , AuthorizeUserAttribute.Permission.edit_interest_areas })]
         public JsonResult Verificar(int id_interest_area, string name)
         {
 
@@ -48,7 +49,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_interest_areas })]
         public ActionResult Crear([Bind(Include = "interest_area_id,name")] InterestAreaViewModel pInterestAreaViewModel)
         {
             // TODO: Add insert logic here
@@ -66,9 +67,9 @@ namespace Presentation.Web.Controllers
 
         }
 
-       
 
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_interest_areas })]
         public ActionResult Editar(string id)
         {
             InterestAreaBL oBL = new InterestAreaBL();
@@ -83,7 +84,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_interest_areas })]
         public ActionResult Editar([Bind(Include = "interest_area_id,name")] InterestAreaViewModel pInterestAreaViewModel)
         {
             // TODO: Add insert logic here
@@ -98,6 +99,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_interest_areas })]
         public JsonResult Eliminar(int id)
         {
 
@@ -114,7 +116,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_interest_areas })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             InterestAreaBL oInterestAreaBL = new InterestAreaBL();

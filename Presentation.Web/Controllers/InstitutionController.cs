@@ -14,14 +14,15 @@ namespace Presentation.Web.Controllers
 {
     public class InstitutionController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_institution })]
+        
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_institution })]
         public ActionResult Crear()
         {
 
@@ -30,6 +31,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_institution , AuthorizeUserAttribute.Permission.edit_institution })]
         public JsonResult Verificar(int id_institution, string name)
         {
 
@@ -47,7 +49,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_institution })]
         public ActionResult Crear([Bind(Include = "institution_id,name")] InstitutionViewModel pInstitutionViewModel)
         {
             // TODO: Add insert logic here
@@ -65,8 +67,8 @@ namespace Presentation.Web.Controllers
 
         }
 
-       
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_institution })]
 
         public ActionResult Editar(string id)
         {
@@ -80,7 +82,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_institution })]
         public ActionResult Editar([Bind(Include = "institution_id,name")] InstitutionViewModel pInstitutionViewModel)
         {
             // TODO: Add insert logic here
@@ -95,6 +97,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_institution })]
         public JsonResult Eliminar(int id)
         {
 
@@ -110,7 +113,7 @@ namespace Presentation.Web.Controllers
             });
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_institution})]
 
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {

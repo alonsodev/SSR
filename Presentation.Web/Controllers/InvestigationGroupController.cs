@@ -15,14 +15,13 @@ namespace Presentation.Web.Controllers
 {
     public class InvestigationGroupController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
-        // GET: User
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_investigation_groups })]
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups })]
         public ActionResult Crear()
         {
 
@@ -33,6 +32,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups, AuthorizeUserAttribute.Permission.edit_investigation_groups })]
         public JsonResult Verificar(int id_investigation_group, string name)
         {
 
@@ -50,7 +50,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups })]
         public ActionResult Crear([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
         {
             // TODO: Add insert logic here
@@ -68,8 +68,8 @@ namespace Presentation.Web.Controllers
 
         }
 
-       
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_investigation_groups })]
 
         public ActionResult Editar(string id)
         {
@@ -91,7 +91,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_investigation_groups })]
         public ActionResult Editar([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
         {
             // TODO: Add insert logic here
@@ -106,6 +106,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_investigation_groups })]
         public JsonResult Eliminar(int id)
         {
 
@@ -122,7 +123,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_investigation_groups })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();

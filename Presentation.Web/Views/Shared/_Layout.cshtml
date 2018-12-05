@@ -141,15 +141,15 @@
 
                         <!-- <li class=" @ViewBag.dashboard">
 
-                                <a href="dashboard.html">
+            <a href="dashboard.html">
 
-                                    <i class="now-ui-icons design_app"></i>
+                <i class="now-ui-icons design_app"></i>
 
-                                    <p>Dashboard</p>
-                                </a>
+                <p>Dashboard</p>
+            </a>
 
-                            </li>
-                         -->
+        </li>
+     -->
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
                         {
@@ -267,7 +267,7 @@
                                                 <span class="sidebar-normal"> Palabras No Adecuadas </span>
                                             </a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
 
@@ -309,6 +309,20 @@
                                     <i class="now-ui-icons education_paper"></i>
 
                                     <p>Mis Certificados</p>
+                                </a>
+
+                            </li>
+                        }
+
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
+                        {
+                            <li class="@(ViewBag.active == "concepts_emited" ? "active" : "")">
+
+                                <a href="/Concept/Emitidos">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Conceptos Técnicos<br/>Emitidos</p>
                                 </a>
 
                             </li>

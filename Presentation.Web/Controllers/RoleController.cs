@@ -21,14 +21,14 @@ namespace Presentation.Web.Controllers
             return View();
         }
 
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role })]
         public ActionResult Crear()
         {
 
 
             return View();
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role, AuthorizeUserAttribute.Permission.form_edit_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role, AuthorizeUserAttribute.Permission.edit_role })]
         [HttpPost]
         public JsonResult Verificar(int id_role, string name)
         {
@@ -48,7 +48,7 @@ namespace Presentation.Web.Controllers
             });
 
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_new_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -121,7 +121,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_role })]
         public ActionResult Editar(string id)
         {
             RoleBL oBL = new RoleBL();
@@ -131,7 +131,7 @@ namespace Presentation.Web.Controllers
 
             return View(pRoleViewModel);
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.form_edit_role })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 

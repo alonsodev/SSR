@@ -19,14 +19,14 @@ namespace Presentation.Web.Controllers
     {
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         // GET: User
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_draft_law })]
 
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law })]
         public ActionResult Crear()
         {
             SelectorBL oSelectorBL = new SelectorBL();
@@ -41,7 +41,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law })]
         public ActionResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
         {
             // TODO: Add insert logic here
@@ -62,7 +62,7 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_draft_law })]
         public ActionResult Editar(string id)
         {
             DraftLawBL oBL = new DraftLawBL();
@@ -83,7 +83,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_draft_law })]
         public ActionResult Editar([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
         {
             // TODO: Add insert logic here
@@ -98,6 +98,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_draft_law })]
         public JsonResult Eliminar(int id)
         {
 
@@ -115,6 +116,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law, AuthorizeUserAttribute.Permission.edit_draft_law })]
         public JsonResult Verificar(int draft_law_id, int draft_law_number)
         {
 
@@ -134,7 +136,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_draft_law })]
 
         public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters)//DataTableAjaxPostModel model
         {
@@ -155,6 +157,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_draft_law })]
         public ActionResult UploadFiles()
         {
             
@@ -219,35 +222,7 @@ namespace Presentation.Web.Controllers
                 return Json("No files selected.");
             }
         }
-        /*
-        private bool VerificarConsumosAgua(List<DraftLawViewModel> lista, out List<ImportError> oErrores)
-        {
-            oErrores = new List<ImportError>();
-            ConsumoAguaBL oConsumoAguaBL = new ConsumoAguaBL();
-            int i = 1;
-            foreach (DraftLawViewModel obj in lista)
-            {
-                i++;
-                string mensaje = oConsumoAguaBL.VerificarConsumosAgua(obj.ConsumoAguaID, obj.Suministro, obj.Medidor, obj.FechaAnterior.Value, obj.FechaActual.Value);
-                List<string> errores = new List<string>();
-                if (String.IsNullOrEmpty(mensaje))
-                    continue;
-                else
-                {
-                    errores.Add(mensaje);
-                    oErrores.Add(new ImportError
-                    {
-                        nroFila = i,
-                        errores = errores
-
-                    });
-                    break;
-                }
-
-            }
-            return oErrores.Count == 0;
-
-        }*/
+       
 
         private List<DraftLawViewModel> ConvertirDatatable(DataTable dt, out List<ImportError> oErrores)
         {
