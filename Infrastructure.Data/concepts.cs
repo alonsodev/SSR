@@ -17,7 +17,7 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public concepts()
         {
-            this.tags = new HashSet<tags>();
+            this.concepts_tags = new HashSet<concepts_tags>();
         }
     
         public int concept_id { get; set; }
@@ -34,6 +34,6 @@ namespace Infrastructure.Data
         public virtual draft_laws draft_laws { get; set; }
         public virtual investigators investigators { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tags> tags { get; set; }
+        public virtual ICollection<concepts_tags> concepts_tags { get; set; }
     }
 }

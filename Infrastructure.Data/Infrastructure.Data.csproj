@@ -74,6 +74,9 @@
     <Compile Include="concepts.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="concepts_tags.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="departments.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,7 @@
     <Compile Include="Repositories\CommissionRepository.cs" />
     <Compile Include="Repositories\ConceptRepository.cs" />
     <Compile Include="Repositories\BadLanguageRepository.cs" />
+    <Compile Include="Repositories\ProgramRepository - Copia.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\ProgramRepository.cs" />
     <Compile Include="Repositories\InstitutionRepository.cs" />

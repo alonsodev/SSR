@@ -12,22 +12,16 @@ namespace Infrastructure.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class tags
+    public partial class concepts_tags
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tags()
-        {
-            this.concepts_tags = new HashSet<concepts_tags>();
-        }
-    
         public int tag_id { get; set; }
-        public string name { get; set; }
+        public int concept_id { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concepts_tags> concepts_tags { get; set; }
+        public virtual concepts concepts { get; set; }
+        public virtual tags tags { get; set; }
     }
 }

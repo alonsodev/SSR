@@ -56,6 +56,10 @@
           </Key>
           <Property Name="tag_id" Type="int" Nullable="false" />
           <Property Name="concept_id" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -839,6 +843,7 @@
           </AssociationSet>
           <EntitySet Name="bad_languages" EntityType="SSRModel.bad_languages" />
           <EntitySet Name="concepts" EntityType="SSRModel.concepts" />
+          <EntitySet Name="concepts_tags" EntityType="SSRModel.concepts_tags" />
           <EntitySet Name="tags" EntityType="SSRModel.tags" />
           <AssociationSet Name="FK_concepts_draft_laws" Association="SSRModel.FK_concepts_draft_laws">
             <End Role="draft_laws" EntitySet="draft_laws" />
@@ -848,9 +853,13 @@
             <End Role="investigators" EntitySet="investigators" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
-          <AssociationSet Name="concepts_tags" Association="SSRModel.concepts_tags">
+          <AssociationSet Name="FK_concepts_tags_concepts" Association="SSRModel.FK_concepts_tags_concepts">
             <End Role="concepts" EntitySet="concepts" />
+            <End Role="concepts_tags" EntitySet="concepts_tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_tags_tags" Association="SSRModel.FK_concepts_tags_tags">
             <End Role="tags" EntitySet="tags" />
+            <End Role="concepts_tags" EntitySet="concepts_tags" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="academic_levels">
@@ -1372,7 +1381,21 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
-          <NavigationProperty Name="tags" Relationship="SSRModel.concepts_tags" FromRole="concepts" ToRole="tags" />
+          <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
+        </EntityType>
+        <EntityType Name="concepts_tags">
+          <Key>
+            <PropertyRef Name="tag_id" />
+            <PropertyRef Name="concept_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" />
+          <Property Name="concept_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts_tags" ToRole="concepts" />
+          <NavigationProperty Name="tags" Relationship="SSRModel.FK_concepts_tags_tags" FromRole="concepts_tags" ToRole="tags" />
         </EntityType>
         <EntityType Name="tags">
           <Key>
@@ -1384,7 +1407,7 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.concepts_tags" FromRole="tags" ToRole="concepts" />
+          <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_tags" FromRole="tags" ToRole="concepts_tags" />
         </EntityType>
         <Association Name="FK_concepts_draft_laws">
           <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="0..1" />
@@ -1410,9 +1433,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="concepts_tags">
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <End Type="SSRModel.tags" Role="tags" Multiplicity="*" />
+        <Association Name="FK_concepts_tags_concepts">
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
+          <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts">
+              <PropertyRef Name="concept_id" />
+            </Principal>
+            <Dependent Role="concepts_tags">
+              <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_tags_tags">
+          <End Type="SSRModel.tags" Role="tags" Multiplicity="1" />
+          <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tags">
+              <PropertyRef Name="tag_id" />
+            </Principal>
+            <Dependent Role="concepts_tags">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1707,6 +1750,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="concepts_tags">
+            <EntityTypeMapping TypeName="SSRModel.concepts_tags">
+              <MappingFragment StoreEntitySet="concepts_tags">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tags">
             <EntityTypeMapping TypeName="SSRModel.tags">
               <MappingFragment StoreEntitySet="tags">
@@ -1719,15 +1774,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="concepts_tags" TypeName="SSRModel.concepts_tags" StoreEntitySet="concepts_tags">
-            <EndProperty Name="tags">
-              <ScalarProperty Name="tag_id" ColumnName="tag_id" />
-            </EndProperty>
-            <EndProperty Name="concepts">
-              <ScalarProperty Name="concept_id" ColumnName="concept_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

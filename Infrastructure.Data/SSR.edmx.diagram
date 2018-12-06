@@ -45,10 +45,12 @@
         <AssociationConnector Association="SSRModel.FK_draft_laws_interest_areas" />
         <EntityTypeShape EntityType="SSRModel.bad_languages" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="SSRModel.concepts" Width="1.5" PointX="10.5" PointY="14.25" />
-        <EntityTypeShape EntityType="SSRModel.tags" Width="1.5" PointX="12.75" PointY="14.875" />
+        <EntityTypeShape EntityType="SSRModel.concepts_tags" Width="1.5" PointX="12.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SSRModel.tags" Width="1.5" PointX="10.5" PointY="10.875" />
         <AssociationConnector Association="SSRModel.FK_concepts_draft_laws" />
         <AssociationConnector Association="SSRModel.FK_concepts_investigators" />
-        <AssociationConnector Association="SSRModel.concepts_tags" />
+        <AssociationConnector Association="SSRModel.FK_concepts_tags_concepts" />
+        <AssociationConnector Association="SSRModel.FK_concepts_tags_tags" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

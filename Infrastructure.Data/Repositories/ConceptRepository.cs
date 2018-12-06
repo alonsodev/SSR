@@ -25,12 +25,14 @@ namespace Infrastructure.Data.Repositories
 
                 concept_id = a.concept_id,
                 concept = a.concept,
-                summary = a.summary,                
+                summary = a.summary,
                 investigator_id = a.investigator_id,
                 commission_id = a.draft_laws.commission_id,
                 draft_law_number = a.draft_laws.draft_law_number,
                 title = a.draft_laws.title,
-                draft_law_id = a.draft_laws.draft_law_id
+                draft_law_id = a.draft_laws.draft_law_id,
+                tags = a.concepts_tags.Select(t => t.tag_id.ToString()).Distinct().ToList(),
+                bibliography=a.bibliography
             });
 
             return query.Take(1).FirstOrDefault();

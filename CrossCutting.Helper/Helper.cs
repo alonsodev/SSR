@@ -43,6 +43,7 @@ namespace CrossCutting.Helper
             return oLista;
         }
 
+       
         public static string Encripta(string Par_Word)
         {
             int Par_ID = 1;

@@ -26,6 +26,7 @@
                 @Html.HiddenFor(model => model.concept_id)
                 @Html.HiddenFor(model => model.draft_law_id)
                 @Html.HiddenFor(model => model.investigator_id)
+                @Html.HiddenFor(model => model.bad_languages)
                 <div class="row">
                     <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
@@ -64,6 +65,16 @@
                     @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
                     <span class="text-danger field-validation-error name-error"></span>
                 </div>
+                <div class="form-group has-label">
+
+
+                    @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
+                    
+                    @Html.ListBoxFor(model => model.tags, Model.tagsMultiSelectList, new { size = 8, @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
+
+                </div>
 
 
                 <div class="form-group has-label">
@@ -77,6 +88,13 @@
 
 
 
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
+
+                </div>
 
 
             </div><!-- end content-->
@@ -103,7 +121,64 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <script type="text/javascript">
 
+        function ObtenerNumeroPalabras(text) {
+            text = text.replace(/\r?\n/g, " ");
+            text = text.replace(/[ ]+/g, " ");
+            text = text.replace(/^ /, "");
+            text = text.replace(/ $/, "");
 
+            var res = text.split(" ");
+            return res.length;
+        }
+        function ConvertirHtmlToText(html) {
+            var temp = document.createElement("div");
+            temp.innerHTML = html;
+            return temp.textContent || temp.innerText || "";
+        }
+        var nro_palabras_resumen = 0;
+        ea.addMethod('ValidarResumen', function () {
+
+            nro_palabras_resumen = ObtenerNumeroPalabras($('#summary').val());
+            setTimeout(function () {
+                var message_error = 'El Resumen tiene ' + nro_palabras_resumen + ' palabras, este campo debe contener máximo 200 palabras.'
+                $('#summary').attr("data-val-assertthat", message_error);
+                $('#summary-error').html(message_error);
+            }, 50);
+            return !(nro_palabras_resumen > 200);
+
+        });
+        var nro_palabras = 0;
+        ea.addMethod('ValidarConcepto', function () {
+
+            var concept = ConvertirHtmlToText($('#concept').val());
+            nro_palabras = ObtenerNumeroPalabras(concept);
+
+            setTimeout(function () {
+                var message_error = 'El Concepto tiene ' + nro_palabras + ' palabras, este campo debe contener máximo 3000 palabras.'
+                $('#concept').attr("data-val-assertthat", message_error);
+                $('#concept-error').html(message_error);
+            }, 50);
+            return !(nro_palabras > 3000);
+
+
+        });
+        function ValidarPalabrasNoAdecuadas(text) {
+            var bad_languages = $('#bad_languages').val();
+            var bad_languages_list = bad_languages.split(",");
+
+            text = text.toLowerCase();
+            var message = "";
+            for (i = 0; i < bad_languages_list.length; i++) {
+                var bad_language = bad_languages_list[i].toLowerCase();
+                if (text.includes(bad_language)) {
+                    //list.push(bad_language);
+                    message += "<li>" + bad_language + "</li>";
+                }
+            }
+            if (message != "")
+                message = "<ul>" + message + "</ul>";
+            return message;
+        }
         $(document).ready(function () {
             // Initialize Editor
             $('.textarea-editor').summernote({
@@ -114,8 +189,14 @@
                 maxHeight: null, // set maximum height of editor
                 focus: false // set focus to editable area after initializing summernote
             });
+            $('.textarea-editor').on('summernote.change', function (we, contents, $editable) {
+                $("#concept").valid();
+            });
             //setTimeout(function () { $('div .note-editable').focus(); }, 5000);
-
+            $("#tags").select2({
+                tags: true,
+                tokenSeparators: [',']
+            });
         });
 
         $("#btnCancelar").click(function () {
@@ -124,11 +205,38 @@
 
         $('#form-registro').on('submit', function (e) { //use on if jQuery 1.7+
             //prevent form from submitting
-            debugger;
+
             e.preventDefault();
             var form = this;
 
             if ($("#form-registro").valid()) {
+
+                var message = ValidarPalabrasNoAdecuadas($('#summary').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Resumen contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+                message = ValidarPalabrasNoAdecuadas($('#concept').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
 
 
                 form.submit();

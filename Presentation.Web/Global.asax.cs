@@ -11,10 +11,12 @@ namespace Presentation.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters, logger);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 

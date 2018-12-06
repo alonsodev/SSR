@@ -112,21 +112,26 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
         public ActionResult Editar(string id)
         {
+            BadLanguageBL oBadLanguageBL = new BadLanguageBL();
             ConceptBL oBL = new ConceptBL();
             int pIntID = 0;
             int.TryParse(id, out pIntID);
             ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
             SelectorBL oSelectorBL = new SelectorBL();
             List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
             List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
-            ViewBag.commissions = commissions;
+            ViewBag.commissions = commissions;           
+
+            pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
+         
             return View(pConceptViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
-        public ActionResult Editar([Bind(Include = "concept_id,summary,concept,investigator_id,draft_law_id")] ConceptViewModel pConceptViewModel)
+        public ActionResult Editar([Bind(Include = "concept_id,summary,concept,investigator_id,draft_law_id,tags,bibliography")] ConceptViewModel pConceptViewModel)
         {
             // TODO: Add insert logic here
 
@@ -136,7 +141,8 @@ namespace Presentation.Web.Controllers
             }
             ConceptBL oConceptBL = new ConceptBL();
             pConceptViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
-
+            
+            pConceptViewModel.tag_ids = ObtenerTagIds(pConceptViewModel.tags);
             oConceptBL.Modificar(pConceptViewModel);
             return RedirectToAction("Index");
 

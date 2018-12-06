@@ -66,7 +66,7 @@ namespace Domain.Entities
         [Display(Name = "Palabras Claves")]
         [Required(ErrorMessage = "Las Palabras Claves son obligatorio.")]        
         public List<string> tags { get; set; }
-
+        public MultiSelectList tagsMultiSelectList { get; set; }
         public List<int> tag_ids { get; set; }
         
         [Display(Name = "Bibliografía")]              

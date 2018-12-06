@@ -45,6 +45,7 @@ namespace Infrastructure.Data
         public virtual DbSet<draft_laws> draft_laws { get; set; }
         public virtual DbSet<bad_languages> bad_languages { get; set; }
         public virtual DbSet<concepts> concepts { get; set; }
+        public virtual DbSet<concepts_tags> concepts_tags { get; set; }
         public virtual DbSet<tags> tags { get; set; }
     }
 }

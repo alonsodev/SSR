@@ -33,7 +33,8 @@ namespace Infrastructure.Data
         private BadLanguageRepository _badLanguageRepository;
 
         private TagRepository _tagRepository;
-
+        private ConceptTagRepository _conceptTagRepository;
+        
         #endregion
 
         #region Constructors
@@ -44,6 +45,11 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public ConceptTagRepository ConceptTagRepository
+        {
+            get { return _conceptTagRepository ?? (_conceptTagRepository = new ConceptTagRepository(_context)); }
+
+        }
         public TagRepository TagRepository
         {
             get { return _tagRepository ?? (_tagRepository = new TagRepository(_context)); }
