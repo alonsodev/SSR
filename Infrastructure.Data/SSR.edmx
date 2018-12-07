@@ -51,7 +51,7 @@
           <Property Name="concept_status_id" Type="int" Nullable="false" />
           <Property Name="reason_reject_id" Type="int" />
           <Property Name="reason_reject_description" Type="varchar" MaxLength="500" />
-          <Property Name="qualification" Type="smallint" />
+          <Property Name="qualification" Type="float" />
         </EntityType>
         <EntityType Name="concepts_status">
           <Key>
@@ -71,6 +71,7 @@
           <Property Name="date_created" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
           <Property Name="reason_reject_id" Type="int" />
+          <Property Name="qualification" Type="int" />
         </EntityType>
         <EntityType Name="concepts_tags">
           <Key>
@@ -1012,6 +1013,15 @@
           </AssociationSet>
           <EntitySet Name="concepts_status" EntityType="SSRModel.concepts_status" />
           <EntitySet Name="reason_rejects" EntityType="SSRModel.reason_rejects" />
+          <EntitySet Name="debate_speakers" EntityType="SSRModel.debate_speakers" />
+          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="SSRModel.FK_debate_speakers_draft_laws">
+            <End Role="draft_laws" EntitySet="draft_laws" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
           <EntitySet Name="concepts_status_logs" EntityType="SSRModel.concepts_status_logs" />
           <AssociationSet Name="FK_concepts_status_logs_concepts_status" Association="SSRModel.FK_concepts_status_logs_concepts_status">
             <End Role="concepts_status" EntitySet="concepts_status" />
@@ -1045,15 +1055,6 @@
           <AssociationSet Name="FK_concepts_tags_concepts" Association="SSRModel.FK_concepts_tags_concepts">
             <End Role="concepts" EntitySet="concepts" />
             <End Role="concepts_tags" EntitySet="concepts_tags" />
-          </AssociationSet>
-          <EntitySet Name="debate_speakers" EntityType="SSRModel.debate_speakers" />
-          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="SSRModel.FK_debate_speakers_draft_laws">
-            <End Role="draft_laws" EntitySet="draft_laws" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="academic_levels">
@@ -1523,8 +1524,8 @@
           <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="commissions" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="draft_laws" ToRole="commissions" />
           <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="draft_laws" ToRole="interest_areas" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
           <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="draft_laws" ToRole="debate_speakers" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
         </EntityType>
         <Association Name="FK_draft_laws_commissions">
           <End Type="SSRModel.commissions" Role="commissions" Multiplicity="0..1" />
@@ -1621,6 +1622,44 @@
           <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="reason_rejects" ToRole="concepts_status_logs" />
           <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="reason_rejects" ToRole="concepts" />
         </EntityType>
+        <EntityType Name="debate_speakers">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="draft_law_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="draft_law_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="debate_speakers" ToRole="draft_laws" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_debate_speakers_users" FromRole="debate_speakers" ToRole="users" />
+        </EntityType>
+        <Association Name="FK_debate_speakers_draft_laws">
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws">
+              <PropertyRef Name="draft_law_id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="draft_law_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_debate_speakers_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="concepts_status_logs">
           <Key>
             <PropertyRef Name="concept_status_log_id" />
@@ -1632,6 +1671,7 @@
           <Property Name="date_created" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="reason_reject_id" Type="Int32" />
+          <Property Name="qualification" Type="Int32" />
           <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status_logs" ToRole="concepts_status" />
           <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="concepts_status_logs" ToRole="reason_rejects" />
           <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts_status_logs" ToRole="concepts" />
@@ -1677,7 +1717,7 @@
           <Property Name="concept_status_id" Type="Int32" Nullable="false" />
           <Property Name="reason_reject_id" Type="Int32" />
           <Property Name="reason_reject_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="qualification" Type="Int16" />
+          <Property Name="qualification" Type="Double" />
           <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
@@ -1754,44 +1794,6 @@
             </Principal>
             <Dependent Role="concepts_tags">
               <PropertyRef Name="concept_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="debate_speakers">
-          <Key>
-            <PropertyRef Name="user_id" />
-            <PropertyRef Name="draft_law_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="draft_law_id" Type="Int32" Nullable="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="debate_speakers" ToRole="draft_laws" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_debate_speakers_users" FromRole="debate_speakers" ToRole="users" />
-        </EntityType>
-        <Association Name="FK_debate_speakers_draft_laws">
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws">
-              <PropertyRef Name="draft_law_id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="draft_law_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_debate_speakers_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2116,9 +2118,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="debate_speakers">
+            <EntityTypeMapping TypeName="SSRModel.debate_speakers">
+              <MappingFragment StoreEntitySet="debate_speakers">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="concepts_status_logs">
             <EntityTypeMapping TypeName="SSRModel.concepts_status_logs">
               <MappingFragment StoreEntitySet="concepts_status_logs">
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
                 <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
                 <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
@@ -2146,18 +2161,6 @@
                 <ScalarProperty Name="summary" ColumnName="summary" />
                 <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
                 <ScalarProperty Name="concept_id" ColumnName="concept_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="debate_speakers">
-            <EntityTypeMapping TypeName="SSRModel.debate_speakers">
-              <MappingFragment StoreEntitySet="debate_speakers">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

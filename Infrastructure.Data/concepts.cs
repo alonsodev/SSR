@@ -34,7 +34,7 @@ namespace Infrastructure.Data
         public int concept_status_id { get; set; }
         public Nullable<int> reason_reject_id { get; set; }
         public string reason_reject_description { get; set; }
-        public Nullable<short> qualification { get; set; }
+        public Nullable<double> qualification { get; set; }
     
         public virtual concepts_status concepts_status { get; set; }
         public virtual draft_laws draft_laws { get; set; }

@@ -210,6 +210,7 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\custom.css" />
+    <Content Include="Assets\css\fontawesome-stars.css" />
     <Content Include="Assets\css\now-ui-dashboard.min69ea.css" />
     <Content Include="Assets\css\responsive.dataTables.min.css" />
     <Content Include="Assets\css\select2.min.css" />
@@ -290,6 +291,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.barrating.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -338,6 +340,8 @@
     <Content Include="Views\Concept\Index.cshtml" />
     <Content Include="Views\Concept\Emitidos.cshtml" />
     <Content Include="Views\Concept\Ver.cshtml" />
+    <Content Include="Views\Concept\PorCalificar.cshtml" />
+    <Content Include="Views\Concept\Calificar.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />

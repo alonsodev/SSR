@@ -76,9 +76,10 @@ namespace Presentation.Web.Filters
             new_bad_languages = 76,
             edit_bad_languages = 76,
             delete_bad_languages = 78,
-            view_concept=79,
-            view_draft_law=80
-
+            view_concept = 79,
+            view_draft_law = 80,
+            concepts_to_qualify = 81,
+            qualify_concepts = 82
 
         }
         public Permission[] Permissions { get; set; }

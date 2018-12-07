@@ -90,8 +90,9 @@ namespace Domain.Entities
 
 
         public int reject { get; set; }
-
-        public Nullable<short> qualification { get; set; }
+        [Display(Name = "Calificación")]
+        [Required(ErrorMessage = "La Calificación es obligatoria.")]
+        public Nullable<double> qualification { get; set; }
 
     }
 }

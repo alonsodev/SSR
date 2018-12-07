@@ -21,6 +21,7 @@ namespace Infrastructure.Data
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> reason_reject_id { get; set; }
+        public Nullable<int> qualification { get; set; }
     
         public virtual concepts_status concepts_status { get; set; }
         public virtual reason_rejects reason_rejects { get; set; }

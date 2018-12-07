@@ -14,9 +14,12 @@ namespace Infrastructure.Data
     
     public partial class debate_speakers
     {
-        public int debate_speaker_id { get; set; }
-        public Nullable<int> draft_law_id { get; set; }
-        public Nullable<int> user_id { get; set; }
+        public int user_id { get; set; }
+        public int draft_law_id { get; set; }
+        public Nullable<System.DateTime> date_created { get; set; }
+        public Nullable<System.DateTime> date_modified { get; set; }
+        public Nullable<int> user_id_created { get; set; }
+        public Nullable<int> user_id_modified { get; set; }
     
         public virtual draft_laws draft_laws { get; set; }
         public virtual users users { get; set; }

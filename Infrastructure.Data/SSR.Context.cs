@@ -48,8 +48,8 @@ namespace Infrastructure.Data
         public virtual DbSet<tags> tags { get; set; }
         public virtual DbSet<concepts_status> concepts_status { get; set; }
         public virtual DbSet<reason_rejects> reason_rejects { get; set; }
+        public virtual DbSet<debate_speakers> debate_speakers { get; set; }
         public virtual DbSet<concepts_status_logs> concepts_status_logs { get; set; }
         public virtual DbSet<concepts> concepts { get; set; }
-        public virtual DbSet<debate_speakers> debate_speakers { get; set; }
     }
 }

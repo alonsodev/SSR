@@ -27,6 +27,12 @@ namespace Presentation.Web.Controllers
             return View();
         }
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
+        public ActionResult PorCalificar()
+        {
+            return View();
+        }
+
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_concept })]
         public ActionResult Crear(string id)
         {
@@ -101,9 +107,10 @@ namespace Presentation.Web.Controllers
             });
 
         }
+
         [HttpPost]
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
-        public JsonResult Rechazar(int concept_id,int reason_reject_id, string reason_reject_description)
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        public JsonResult Rechazar(int concept_id, int reason_reject_id, string reason_reject_description)
         {
 
             ConceptBL oConceptBL = new ConceptBL();
@@ -114,6 +121,28 @@ namespace Presentation.Web.Controllers
             oConceptStatusLogViewModel.description = reason_reject_description;
             oConceptStatusLogViewModel.reason_reject_id = reason_reject_id;
             oConceptBL.ActualizarStatus(oConceptStatusLogViewModel);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
+
+        }
+        [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
+        public JsonResult Calificar(int concept_id,int qualification)
+        {
+
+            ConceptBL oConceptBL = new ConceptBL();
+            ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
+            oConceptStatusLogViewModel.concept_id = concept_id;
+          
+            oConceptStatusLogViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            oConceptStatusLogViewModel.qualification = qualification;
+            
+            oConceptBL.Calificar(oConceptStatusLogViewModel);
 
             return Json(new
             {
@@ -200,6 +229,50 @@ namespace Presentation.Web.Controllers
             return View(pConceptViewModel);
         }
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.qualify_concepts })]
+        public ActionResult Calificar(string id)
+        {
+            BadLanguageBL oBadLanguageBL = new BadLanguageBL();
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
+            pConceptViewModel.reject = 0;
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
+            ViewBag.commissions = commissions;
+
+            pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
+
+
+
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
+            List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
+            ViewBag.reason_rejects = reason_rejects;
+
+            List<SelectOptionItem> oQualifications = new List<SelectOptionItem>();
+            oQualifications.Add(new SelectOptionItem("1", "1"));
+            oQualifications.Add(new SelectOptionItem("2", "2"));
+            oQualifications.Add(new SelectOptionItem("3", "3"));
+            oQualifications.Add(new SelectOptionItem("4", "4"));
+            oQualifications.Add(new SelectOptionItem("5", "5"));
+
+            List <SelectListItem> qualification = Helper.ConstruirDropDownList<SelectOptionItem>(oQualifications, "Value", "Text", "", true, "", "");
+            ViewBag.qualification = qualification;
+
+
+            ConceptBL oConceptBL = new ConceptBL();
+            ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
+            oConceptStatusLogViewModel.concept_id = pConceptViewModel.concept_id;
+            oConceptStatusLogViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
+
+            oConceptBL.Leido(oConceptStatusLogViewModel);
+            return View(pConceptViewModel);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
@@ -261,6 +334,26 @@ namespace Presentation.Web.Controllers
 
 
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
+        // GET: User
 
+        public JsonResult ObtenerPorCalificar(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerPorCalificar(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = ofilters.draw,
+                recordsTotal = grid.total,
+                recordsFiltered = grid.recordsFiltered,
+                data = grid.rows
+            });
+
+
+        }
     }
 }

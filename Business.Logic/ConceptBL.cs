@@ -51,8 +51,80 @@ namespace Business.Logic
                 scope.Complete();
             }
         }
+        public void Calificar(ConceptStatusLogViewModel oConceptStatusLogViewModel)
+        {
+            using (var scope = new TransactionScope())
+            {
+               
+
+                concepts_status_logs oconcepts_status_logs = new concepts_status_logs();
+                oconcepts_status_logs.concept_status_log_id = 0;
+                oconcepts_status_logs.concept_id = oConceptStatusLogViewModel.concept_id;             
+                oconcepts_status_logs.concept_status_id = 5;
+                oconcepts_status_logs.date_created = DateTime.Now;
+                oconcepts_status_logs.user_id_created = oConceptStatusLogViewModel.user_id_created;
+                oconcepts_status_logs.qualification = oConceptStatusLogViewModel.qualification;
+
+                oRepositorioConceptStatusLog.Add(oconcepts_status_logs);
+                oUnitOfWork.SaveChanges();
+                List<ConceptStatusLogViewModel> calificaciones = oRepositorioConceptStatusLog.ObtenerCalificaciones(oConceptStatusLogViewModel.concept_id);
+                int NumeroPonentes = oRepositorio.NumeroPonentes(oConceptStatusLogViewModel.concept_id);
+                int NumeroCalificaciones = calificaciones!=null? calificaciones.Count():0;
+                int concept_status_id = 5;
+                if (NumeroPonentes == NumeroCalificaciones) {
+                    concept_status_id = 6;
+                }
+
+                
+
+                concepts oconcepts = oRepositorio.FindById(oConceptStatusLogViewModel.concept_id);
+                oconcepts.concept_status_id = concept_status_id;
+                if (NumeroCalificaciones > 0) {
+                    double qualification = calificaciones.Select(a => a.qualification).ToList().Average();
+                    oconcepts.qualification = Math.Round(qualification,2);
+                }
+                
+                oRepositorio.Update(oconcepts);
+
+                oUnitOfWork.SaveChanges();
+                scope.Complete();
+            }
+        }
+        public void Leido(ConceptStatusLogViewModel oConceptStatusLogViewModel)
+        {
+            if (oRepositorioConceptStatusLog.VerificarLeido(oConceptStatusLogViewModel.concept_id, oConceptStatusLogViewModel.user_id_created.Value)) {
+                return;
+            }
+            using (var scope = new TransactionScope())
+            {
 
 
+
+                concepts_status_logs oconcepts_status_logs = new concepts_status_logs();
+                oconcepts_status_logs.concept_status_log_id = 0;
+                oconcepts_status_logs.concept_id = oConceptStatusLogViewModel.concept_id;
+                oconcepts_status_logs.concept_status_id = 4;
+                oconcepts_status_logs.date_created = DateTime.Now;
+                oconcepts_status_logs.user_id_created = oConceptStatusLogViewModel.user_id_created;
+
+                oRepositorioConceptStatusLog.Add(oconcepts_status_logs);
+
+               
+                int NumeroCalificaciones = oRepositorio.NumeroCalificaciones(oConceptStatusLogViewModel.concept_id);
+                int concept_status_id = 4;
+                if ( NumeroCalificaciones==0)
+                {
+                    concepts oconcepts = oRepositorio.FindById(oConceptStatusLogViewModel.concept_id);
+                    oconcepts.concept_status_id = concept_status_id;
+                    oRepositorio.Update(oconcepts);
+                }
+
+                
+
+                oUnitOfWork.SaveChanges();
+                scope.Complete();
+            }
+        }
         public ConceptViewModel Obtener(int pIntID)
         {
 
@@ -157,6 +229,11 @@ namespace Business.Logic
         {
 
             return oRepositorio.ObtenerEmitidos(ofilters);
+        }
+
+        public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel ofilters,int user_id)
+        {
+            return oRepositorio.ObtenerPorCalificar(ofilters, user_id);
         }
     }
 }

@@ -75,3 +75,44 @@ div.dataTables_wrapper div.dataTables_info {
 .select2-container {
     width: 100% !important;
 }
+
+
+.box {
+    width: 100%;
+    float: left;
+    margin: 1em 0;
+}
+
+.box-blue .box-header {
+    background-color: #4278f5;
+    color: white;
+}
+
+.box .box-header {
+    text-align: center;
+    font-weight: 400;
+    padding: .5em 0;
+}
+
+.box-blue .box-body {
+    background-color: white;
+    border: 2px solid #8bacf9;
+    border-top: 0;
+}
+
+.box .box-body {
+    padding-top: 2em;
+    height: 85px;
+    position: relative;
+}
+
+.box-example-movie .br-wrapper {
+    width: 350px;
+    position: absolute;
+    margin: 0px 0 0 -125px;
+    left: 50%;
+}
+
+.br-theme-bars-movie .br-widget .br-current-rating {
+    width: 315px !important;
+}

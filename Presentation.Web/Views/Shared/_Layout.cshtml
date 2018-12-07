@@ -141,15 +141,15 @@
 
                         <!-- <li class=" @ViewBag.dashboard">
 
-                               <a href="dashboard.html">
+           <a href="dashboard.html">
 
-                                   <i class="now-ui-icons design_app"></i>
+               <i class="now-ui-icons design_app"></i>
 
-                                   <p>Dashboard</p>
-                               </a>
+               <p>Dashboard</p>
+           </a>
 
-                           </li>
-                        -->
+       </li>
+    -->
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
                         {
@@ -216,7 +216,7 @@
                             </li>
 
                         }
-                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law, AuthorizeUserAttribute.Permission.module_institution, 
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law, AuthorizeUserAttribute.Permission.module_institution,
                             AuthorizeUserAttribute.Permission.module_interest_areas, AuthorizeUserAttribute.Permission.module_programs,
                             AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttribute.Permission.module_commissions,
                             AuthorizeUserAttribute.Permission.module_bad_languages))
@@ -350,7 +350,21 @@
 
                                     <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Conceptos Técnicos<br />Emitidos</p>
+                                    <p>Conceptos Emitidos</p>
+                                </a>
+
+                            </li>
+                        }
+
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_to_qualify))
+                        {
+                            <li class="@(ViewBag.active == "concepts_to_qualify" ? "active" : "")">
+
+                                <a href="/Concept/PorCalificar">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Conceptos Por Calificar</p>
                                 </a>
 
                             </li>
