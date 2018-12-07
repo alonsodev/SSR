@@ -80,34 +80,48 @@ namespace Presentation.Web.Controllers
 
         }
 
-        private List<int> ObtenerTagIds(List<string> tags)
+        [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        public JsonResult Aprobar(int concept_id)
         {
-            TagBL oTagBL = new TagBL();
-            List<int> lista = new List<int>();
-            foreach (var id in tags) {
-               
-                int pIntID = 0;
-                if (int.TryParse(id, out pIntID))
-                    lista.Add(pIntID);
-                else {
-                    TagViewModel oTagViewModel= oTagBL.ObtenerPorNombre(id.Trim());
-                    if (oTagViewModel !=null && oTagViewModel.tag_id != 0)
-                    {
-                        lista.Add(oTagViewModel.tag_id);
-                    }
-                    else {
-                        oTagViewModel = new TagViewModel();
-                        oTagViewModel.tag_id = 0;
-                        oTagViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
-                        oTagViewModel.name = id.Trim();
-                        pIntID= oTagBL.Agregar(oTagViewModel);
-                        lista.Add(pIntID);
-                    }
-                }
 
-            }
+            ConceptBL oConceptBL = new ConceptBL();
 
-            return lista;
+            ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
+            oConceptStatusLogViewModel.concept_id = concept_id;
+            oConceptStatusLogViewModel.concept_status_id = 2;
+            oConceptStatusLogViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            oConceptBL.ActualizarStatus(oConceptStatusLogViewModel);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
+
+        }
+        [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
+        public JsonResult Rechazar(int concept_id,int reason_reject_id, string reason_reject_description)
+        {
+
+            ConceptBL oConceptBL = new ConceptBL();
+            ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
+            oConceptStatusLogViewModel.concept_id = concept_id;
+            oConceptStatusLogViewModel.concept_status_id = 3;
+            oConceptStatusLogViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            oConceptStatusLogViewModel.description = reason_reject_description;
+            oConceptStatusLogViewModel.reason_reject_id = reason_reject_id;
+            oConceptBL.ActualizarStatus(oConceptStatusLogViewModel);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
+
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
         public ActionResult Editar(string id)
@@ -125,6 +139,64 @@ namespace Presentation.Web.Controllers
 
             pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
          
+            return View(pConceptViewModel);
+        }
+
+        private List<int> ObtenerTagIds(List<string> tags)
+        {
+            TagBL oTagBL = new TagBL();
+            List<int> lista = new List<int>();
+            foreach (var id in tags)
+            {
+
+                int pIntID = 0;
+                if (int.TryParse(id, out pIntID))
+                    lista.Add(pIntID);
+                else
+                {
+                    TagViewModel oTagViewModel = oTagBL.ObtenerPorNombre(id.Trim());
+                    if (oTagViewModel != null && oTagViewModel.tag_id != 0)
+                    {
+                        lista.Add(oTagViewModel.tag_id);
+                    }
+                    else
+                    {
+                        oTagViewModel = new TagViewModel();
+                        oTagViewModel.tag_id = 0;
+                        oTagViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+                        oTagViewModel.name = id.Trim();
+                        pIntID = oTagBL.Agregar(oTagViewModel);
+                        lista.Add(pIntID);
+                    }
+                }
+
+            }
+
+            return lista;
+        }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.view_concept })]
+        public ActionResult Ver(string id)
+        {
+            BadLanguageBL oBadLanguageBL = new BadLanguageBL();
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
+            pConceptViewModel.reject = 0;
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
+            ViewBag.commissions = commissions;
+
+            pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
+
+
+            
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
+            List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
+            ViewBag.reason_rejects = reason_rejects;
+
             return View(pConceptViewModel);
         }
 

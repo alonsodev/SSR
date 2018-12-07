@@ -18,6 +18,7 @@ namespace Infrastructure.Data
         public users()
         {
             this.investigators = new HashSet<investigators>();
+            this.debate_speakers = new HashSet<debate_speakers>();
         }
     
         public int id { get; set; }
@@ -49,5 +50,7 @@ namespace Infrastructure.Data
         public virtual nationalities nationalities1 { get; set; }
         public virtual roles roles { get; set; }
         public virtual user_status user_status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<debate_speakers> debate_speakers { get; set; }
     }
 }

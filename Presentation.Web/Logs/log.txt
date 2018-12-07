@@ -664,3 +664,764 @@ DEBUG 2018-12-06 11:42:14,088 77745ms MvcApplication         OnActionExecuting  
 DEBUG 2018-12-06 11:42:14,101 77758ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 13
 DEBUG 2018-12-06 11:42:24,545 88201ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
 DEBUG 2018-12-06 11:42:24,560 88216ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 15
+DEBUG 2018-12-06 12:37:54,571  1380ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:37:54,601  1410ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 30
+DEBUG 2018-12-06 12:38:03,527 10335ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:38:03,923 10731ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 396
+DEBUG 2018-12-06 12:38:03,936 10744ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 12:38:03,937 10745ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 12:38:05,765 12573ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 12:38:05,765 12573ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 12:38:06,457 13265ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 12:38:06,490 13298ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 32
+DEBUG 2018-12-06 12:38:06,952 13760ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 12:38:06,960 13768ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 8
+DEBUG 2018-12-06 12:38:07,973 14781ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 12:38:07,974 14782ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 12:38:26,475 33283ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:38:26,475 33283ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 12:38:37,819 44628ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:38:37,833 44642ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 13
+DEBUG 2018-12-06 12:38:37,850 44659ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 12:38:37,851 44660ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 12:38:47,456 54265ms MvcApplication         OnActionExecuting  - Executing controller Permission, action Index
+DEBUG 2018-12-06 12:38:47,456 54265ms MvcApplication         OnActionExecuted   - Finished executing controller Permission, action Index - time spent 0
+DEBUG 2018-12-06 12:38:48,299 55107ms MvcApplication         OnActionExecuting  - Executing controller Permission, action ObtenerListaPermisos
+DEBUG 2018-12-06 12:38:48,318 55126ms MvcApplication         OnActionExecuted   - Finished executing controller Permission, action ObtenerListaPermisos - time spent 19
+DEBUG 2018-12-06 12:38:48,814 55622ms MvcApplication         OnActionExecuting  - Executing controller Permission, action ObtenerListaPermisos
+DEBUG 2018-12-06 12:38:48,827 55635ms MvcApplication         OnActionExecuted   - Finished executing controller Permission, action ObtenerListaPermisos - time spent 13
+DEBUG 2018-12-06 12:40:21,734 148542ms MvcApplication         OnActionExecuting  - Executing controller Role, action Index
+DEBUG 2018-12-06 12:40:21,734 148542ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action Index - time spent 0
+DEBUG 2018-12-06 12:40:22,667 149475ms MvcApplication         OnActionExecuting  - Executing controller Role, action ObtenerLista
+DEBUG 2018-12-06 12:40:22,688 149496ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action ObtenerLista - time spent 20
+DEBUG 2018-12-06 12:40:23,185 149993ms MvcApplication         OnActionExecuting  - Executing controller Role, action ObtenerLista
+DEBUG 2018-12-06 12:40:23,207 150015ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action ObtenerLista - time spent 22
+DEBUG 2018-12-06 12:40:24,865 151674ms MvcApplication         OnActionExecuting  - Executing controller Role, action Permisos
+DEBUG 2018-12-06 12:40:24,900 151708ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action Permisos - time spent 35
+DEBUG 2018-12-06 12:40:36,256 163064ms MvcApplication         OnActionExecuting  - Executing controller Role, action Permisos
+DEBUG 2018-12-06 12:40:36,345 163153ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action Permisos - time spent 88
+DEBUG 2018-12-06 12:40:36,405 163213ms MvcApplication         OnActionExecuting  - Executing controller Role, action Index
+DEBUG 2018-12-06 12:40:36,406 163214ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action Index - time spent 0
+DEBUG 2018-12-06 12:40:36,887 163695ms MvcApplication         OnActionExecuting  - Executing controller Role, action ObtenerLista
+DEBUG 2018-12-06 12:40:36,892 163700ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action ObtenerLista - time spent 4
+DEBUG 2018-12-06 12:40:36,900 163708ms MvcApplication         OnActionExecuting  - Executing controller Role, action ObtenerLista
+DEBUG 2018-12-06 12:40:36,906 163714ms MvcApplication         OnActionExecuted   - Finished executing controller Role, action ObtenerLista - time spent 5
+DEBUG 2018-12-06 12:40:39,373 166182ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 12:40:39,374 166183ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 12:40:39,387 166196ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:40:39,388 166197ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 12:40:40,586 167394ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:40:40,599 167407ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 12
+DEBUG 2018-12-06 12:40:40,612 167420ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 12:40:40,612 167420ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 12:40:41,994 168802ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 12:40:41,994 168802ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 12:40:42,367 169175ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 12:40:42,382 169190ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 14
+DEBUG 2018-12-06 12:40:42,873 169681ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 12:40:42,880 169688ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 12:40:43,842 170650ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 12:40:43,843 170651ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 12:45:15,422  1375ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:45:15,450  1402ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 28
+DEBUG 2018-12-06 12:45:18,242  4194ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 12:45:18,588  4540ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 346
+DEBUG 2018-12-06 12:45:18,601  4553ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 12:45:18,602  4555ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 12:45:25,578 11531ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 12:45:25,578 11531ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 12:45:26,272 12225ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 12:45:26,315 12268ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 42
+DEBUG 2018-12-06 12:45:26,765 12718ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 12:45:26,774 12727ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 8
+DEBUG 2018-12-06 12:45:28,753 14706ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 12:45:28,807 14760ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 54
+DEBUG 2018-12-06 12:45:33,318 19270ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 12:45:33,329 19281ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 11
+DEBUG 2018-12-06 13:15:18,459 1804411ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 13:15:18,460 1804412ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 14:00:58,117 4544070ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:00:58,135 4544088ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 17
+DEBUG 2018-12-06 14:00:58,149 4544102ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:00:58,149 4544102ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:00:59,779 4545731ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 14:00:59,779 4545731ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 14:01:00,226 4546178ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:01:00,240 4546192ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 14
+DEBUG 2018-12-06 14:01:00,735 4546687ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:01:00,742 4546694ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 14:01:01,788 4547741ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:01:01,808 4547761ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 20
+DEBUG 2018-12-06 14:01:11,325 4557277ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:01:11,341 4557293ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 15
+DEBUG 2018-12-06 14:03:50,107 4716059ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:03:50,124 4716076ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 16
+DEBUG 2018-12-06 14:04:06,517 4732469ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:04:06,527 4732479ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 9
+DEBUG 2018-12-06 14:04:12,397 4738350ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:04:16,651 4742604ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 4253
+DEBUG 2018-12-06 14:04:27,599 4753551ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:04:30,842 4756795ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 3242
+DEBUG 2018-12-06 14:04:35,540 4761493ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:04:35,553 4761506ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 13
+DEBUG 2018-12-06 14:05:43,539 4829491ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:05:43,557 4829509ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 18
+DEBUG 2018-12-06 14:13:29,000  1053ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:13:29,000  1053ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:13:29,052  1105ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 53
+DEBUG 2018-12-06 14:13:29,052  1105ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 53
+DEBUG 2018-12-06 14:13:32,017  4071ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:13:33,032  5086ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 1015
+DEBUG 2018-12-06 14:13:33,050  5104ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:13:33,051  5105ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:13:37,549  9602ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:13:37,556  9609ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 6
+DEBUG 2018-12-06 14:13:37,568  9621ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:13:37,568  9621ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:13:39,412 11465ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 14:13:39,413 11466ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 14:13:39,874 11927ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:13:39,905 11958ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 31
+DEBUG 2018-12-06 14:13:40,366 12419ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:13:40,374 12427ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 14:13:41,369 13422ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:13:41,421 13474ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 52
+DEBUG 2018-12-06 14:13:45,054 17107ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:13:45,064 17117ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 10
+DEBUG 2018-12-06 14:14:18,858 50911ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:14:18,875 50928ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 16
+DEBUG 2018-12-06 14:14:22,290 54343ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:14:22,306 54359ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 15
+DEBUG 2018-12-06 14:14:36,222 68275ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:14:39,177 71230ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 2954
+DEBUG 2018-12-06 14:14:59,261 91314ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:14:59,274 91327ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 12
+DEBUG 2018-12-06 14:16:27,954 180007ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 14:16:27,955 180008ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 14:16:30,063 182116ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 14:16:30,064 182117ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 14:16:30,519 182572ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:16:30,533 182586ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 14
+DEBUG 2018-12-06 14:16:31,027 183081ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:16:31,037 183091ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 9
+DEBUG 2018-12-06 14:16:36,916 188969ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 14:16:36,917 188970ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 14:16:36,930 188983ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:16:36,931 188984ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 14:16:38,748 190801ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:16:38,762 190815ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 13
+DEBUG 2018-12-06 14:16:38,776 190829ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:16:38,776 190829ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:16:40,481 192534ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 14:16:40,481 192534ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 14:16:40,835 192888ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:16:40,853 192906ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 18
+DEBUG 2018-12-06 14:16:41,338 193392ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:16:41,352 193406ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 13
+DEBUG 2018-12-06 14:16:42,532 194585ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 14:16:42,532 194585ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 14:16:42,543 194596ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:16:42,543 194596ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 14:16:47,002 199055ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:16:47,008 199061ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 5
+DEBUG 2018-12-06 14:16:47,022 199075ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:16:47,023 199076ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:16:48,500 200553ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MisProyectosLey
+DEBUG 2018-12-06 14:16:48,501 200554ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MisProyectosLey - time spent 0
+DEBUG 2018-12-06 14:16:49,069 201122ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 14:16:49,150 201203ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 80
+DEBUG 2018-12-06 14:16:49,578 201631ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 14:16:49,625 201678ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 45
+DEBUG 2018-12-06 14:16:50,369 202422ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 14:16:50,398 202451ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 29
+DEBUG 2018-12-06 14:17:40,993 253046ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 14:17:41,007 253060ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 13
+DEBUG 2018-12-06 14:22:15,888 527941ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 14:22:15,903 527956ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 14
+DEBUG 2018-12-06 14:22:43,055 555108ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 14:22:43,066 555119ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 10
+DEBUG 2018-12-06 14:22:50,067 562121ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 14:22:50,068 562122ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 14:22:50,530 562584ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 14:22:50,557 562611ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 27
+DEBUG 2018-12-06 14:22:51,037 563090ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 14:22:51,046 563099ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 8
+DEBUG 2018-12-06 14:22:53,283 565337ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 14:22:53,283 565337ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 14:22:53,295 565349ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:22:53,296 565350ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 14:22:58,885 570938ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:22:58,898 570951ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 12
+DEBUG 2018-12-06 14:22:58,915 570968ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:22:58,916 570969ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:23:00,425 572478ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 14:23:00,426 572479ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 14:23:00,831 572884ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:23:00,846 572899ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 14
+DEBUG 2018-12-06 14:23:01,342 573395ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:23:01,399 573452ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 56
+DEBUG 2018-12-06 14:23:02,816 574869ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:23:02,837 574890ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 21
+DEBUG 2018-12-06 14:23:09,511 581565ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:23:09,530 581584ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 19
+DEBUG 2018-12-06 14:46:44,108 1996161ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:46:44,109 1996163ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 14:46:45,214 1997267ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 14:46:45,235 1997288ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 20
+DEBUG 2018-12-06 14:46:45,262 1997315ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 14:46:45,262 1997315ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 14:46:46,811 1998864ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 14:46:46,812 1998865ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 14:46:51,453 2003506ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:46:51,474 2003527ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 21
+DEBUG 2018-12-06 14:46:51,963 2004016ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 14:46:51,970 2004023ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 14:46:53,517 2005570ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:46:53,543 2005596ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 26
+DEBUG 2018-12-06 14:47:00,480 2012534ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:47:00,498 2012552ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 17
+DEBUG 2018-12-06 14:47:34,846 2046899ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:47:34,866 2046919ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 20
+DEBUG 2018-12-06 14:48:30,717 2102770ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 14:48:30,740 2102793ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 22
+DEBUG 2018-12-06 15:01:58,228 2910281ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 15:01:58,251 2910304ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 22
+DEBUG 2018-12-06 16:56:26,580  1501ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 16:56:26,611  1531ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 32
+DEBUG 2018-12-06 16:56:30,358  5278ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-06 16:56:30,795  5715ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 436
+DEBUG 2018-12-06 16:56:42,036 16957ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 16:56:42,038 16959ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 1
+DEBUG 2018-12-06 16:56:42,055 16976ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 16:56:42,056 16977ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 17:06:34,265 609186ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 17:06:34,325 609246ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 59
+DEBUG 2018-12-06 17:06:34,339 609260ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 17:06:34,340 609261ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 17:06:36,264 611184ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:06:36,265 611185ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:06:36,953 611873ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:06:37,002 611922ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 48
+DEBUG 2018-12-06 17:06:37,452 612373ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:06:37,498 612419ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 46
+DEBUG 2018-12-06 17:06:38,505 613426ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:06:38,543 613464ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 38
+DEBUG 2018-12-06 17:06:46,218 621138ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:06:46,234 621154ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 16
+DEBUG 2018-12-06 17:06:49,390 624310ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 17:06:49,475 624396ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 85
+DEBUG 2018-12-06 17:07:27,766 662686ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:07:27,781 662701ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 15
+DEBUG 2018-12-06 17:07:31,422 666343ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 17:07:31,437 666358ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 14
+DEBUG 2018-12-06 17:07:33,071 667991ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 17:07:33,072 667992ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 17:17:55,404 1290324ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:17:55,404 1290324ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:17:56,049 1290969ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:17:56,070 1290990ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 20
+DEBUG 2018-12-06 17:17:56,556 1291476ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:17:56,562 1291482ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 17:25:48,985 1763905ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:25:49,006 1763926ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 21
+DEBUG 2018-12-06 17:25:51,470 1766390ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 17:25:51,485 1766405ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 14
+DEBUG 2018-12-06 17:26:00,137 1775057ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 17:26:00,137 1775057ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 17:26:12,436 1787356ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:26:12,452 1787372ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 15
+DEBUG 2018-12-06 17:26:12,952 1787873ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:26:12,963 1787884ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 10
+DEBUG 2018-12-06 17:27:47,189 1882110ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:27:47,189 1882110ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:27:50,992 1885913ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:27:51,013 1885934ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 21
+DEBUG 2018-12-06 17:27:51,498 1886419ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:27:51,504 1886425ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 17:27:52,657 1887578ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:27:52,673 1887594ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 16
+DEBUG 2018-12-06 17:27:59,750 1894670ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 17:27:59,765 1894685ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 15
+DEBUG 2018-12-06 17:28:00,794 1895714ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:28:00,794 1895714ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:28:01,133 1896053ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:28:01,145 1896065ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 12
+DEBUG 2018-12-06 17:28:01,647 1896567ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:28:01,662 1896582ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 15
+DEBUG 2018-12-06 17:28:08,123 1903044ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:28:08,138 1903059ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 14
+DEBUG 2018-12-06 17:28:11,017 1905937ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 17:28:11,018 1905939ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 17:28:13,170 1908090ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:28:13,170 1908090ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:28:13,516 1908436ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:28:13,524 1908444ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 17:28:14,020 1908940ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:28:14,026 1908946ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 17:53:57,484  1295ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 17:53:57,513  1324ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 29
+DEBUG 2018-12-06 17:53:59,163  2974ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 17:53:59,163  2974ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 17:54:02,731  6542ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 17:54:03,078  6889ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 346
+DEBUG 2018-12-06 17:54:03,093  6904ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 17:54:03,094  6905ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 17:54:06,890 10700ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:54:06,891 10701ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:54:07,564 11375ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:54:07,597 11408ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 32
+DEBUG 2018-12-06 17:54:08,053 11864ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:54:08,061 11872ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 17:54:09,672 13483ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:54:09,724 13534ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 51
+DEBUG 2018-12-06 17:54:31,341 35151ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 17:54:31,430 35240ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 89
+DEBUG 2018-12-06 17:54:33,439 37249ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:54:33,440 37250ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:54:33,804 37614ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:54:33,813 37623ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 8
+DEBUG 2018-12-06 17:54:34,321 38131ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:54:34,333 38143ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 11
+DEBUG 2018-12-06 17:55:10,574 74384ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:55:10,605 74415ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 31
+DEBUG 2018-12-06 17:56:06,521 130331ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 17:56:06,538 130348ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 16
+DEBUG 2018-12-06 17:56:12,531 136341ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 17:56:12,553 136363ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 22
+DEBUG 2018-12-06 17:56:14,150 137960ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 17:56:14,150 137960ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 17:56:14,563 138373ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:56:14,582 138392ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 19
+DEBUG 2018-12-06 17:56:15,073 138884ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 17:56:15,095 138906ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 21
+DEBUG 2018-12-06 18:27:47,089  1460ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 18:27:47,127  1499ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 38
+DEBUG 2018-12-06 18:27:51,579  5951ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 18:27:51,939  6311ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 360
+DEBUG 2018-12-06 18:27:51,957  6329ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 18:27:51,957  6329ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 18:27:53,447  7819ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 18:27:53,447  7819ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 18:27:54,137  8509ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:27:54,170  8542ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 32
+DEBUG 2018-12-06 18:27:54,628  9000ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:27:54,636  9008ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 18:27:56,173 10545ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:27:56,229 10601ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 56
+DEBUG 2018-12-06 18:27:58,721 13093ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 18:29:50,326 124698ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 111604
+DEBUG 2018-12-06 18:29:54,521 128893ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 18:31:42,107  1411ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 18:31:42,142  1445ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 35
+DEBUG 2018-12-06 18:32:10,075 29378ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 18:32:10,407 29710ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 331
+DEBUG 2018-12-06 18:32:10,423 29726ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 18:32:10,424 29727ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 18:32:13,816 33120ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 18:32:13,817 33121ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 18:32:14,516 33820ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:32:14,552 33856ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 36
+DEBUG 2018-12-06 18:32:15,008 34311ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:32:15,016 34319ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 18:32:15,979 35282ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:32:16,036 35339ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 56
+DEBUG 2018-12-06 18:32:17,905 37208ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 18:32:26,251 45555ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 8346
+DEBUG 2018-12-06 18:32:28,405 47708ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 18:32:28,406 47709ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 18:32:28,793 48096ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:32:28,810 48113ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 16
+DEBUG 2018-12-06 18:32:29,299 48602ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:32:29,309 48612ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 9
+DEBUG 2018-12-06 18:32:33,157 52460ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:32:33,180 52483ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 22
+DEBUG 2018-12-06 18:32:43,344 62647ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 18:32:47,334 66638ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 3990
+DEBUG 2018-12-06 18:32:49,580 68884ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 18:32:49,580 68884ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 18:32:49,991 69295ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:32:50,009 69313ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 18
+DEBUG 2018-12-06 18:32:50,499 69802ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:32:50,508 69811ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 9
+DEBUG 2018-12-06 18:32:57,072 76375ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:32:57,099 76402ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 26
+DEBUG 2018-12-06 18:32:59,449 78753ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 18:33:02,168 81471ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 2718
+DEBUG 2018-12-06 18:33:04,258 83561ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 18:33:04,259 83562ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 18:33:04,620 83923ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:33:04,630 83933ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 9
+DEBUG 2018-12-06 18:33:05,126 84429ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:33:05,132 84435ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 18:34:38,665 177968ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:34:38,691 177994ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 25
+DEBUG 2018-12-06 18:34:40,684 179987ms MvcApplication         OnActionExecuting  - Executing controller Error, action NoAutorizado
+DEBUG 2018-12-06 18:34:40,685 179988ms MvcApplication         OnActionExecuted   - Finished executing controller Error, action NoAutorizado - time spent 0
+DEBUG 2018-12-06 18:38:45,787 425090ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:38:45,809 425112ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 21
+DEBUG 2018-12-06 18:40:59,475 558778ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:40:59,493 558796ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 18
+DEBUG 2018-12-06 18:43:59,306 738609ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:43:59,328 738631ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 22
+DEBUG 2018-12-06 18:44:01,142 740446ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:44:01,162 740466ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 19
+DEBUG 2018-12-06 18:44:26,990 766293ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 18:44:32,576 771879ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 5586
+DEBUG 2018-12-06 18:44:34,466 773769ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 18:44:34,466 773769ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 18:44:34,886 774189ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:44:34,900 774203ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 14
+DEBUG 2018-12-06 18:44:35,394 774697ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 18:44:35,401 774704ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 7
+DEBUG 2018-12-06 18:47:37,896 957199ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 18:47:37,918 957221ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 22
+DEBUG 2018-12-06 19:00:48,786  1473ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:00:48,817  1504ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 31
+DEBUG 2018-12-06 19:01:17,124 29810ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:01:17,458 30144ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 334
+DEBUG 2018-12-06 19:01:17,472 30158ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 19:01:17,473 30159ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 19:01:19,387 32073ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 19:01:19,388 32074ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 19:01:20,074 32760ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:01:20,110 32796ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 35
+DEBUG 2018-12-06 19:01:20,564 33250ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:01:20,575 33261ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 11
+DEBUG 2018-12-06 19:01:21,623 34310ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 19:01:21,682 34369ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 58
+DEBUG 2018-12-06 19:02:57,514 130201ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 19:02:57,536 130223ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 22
+DEBUG 2018-12-06 19:13:25,825 758511ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 19:13:25,855 758541ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 29
+DEBUG 2018-12-06 19:13:35,227 767914ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 19:13:35,228 767915ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 0
+DEBUG 2018-12-06 19:16:20,948 933634ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 19:16:20,949 933635ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 0
+DEBUG 2018-12-06 19:17:18,062 990749ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 19:17:18,063 990750ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 0
+DEBUG 2018-12-06 19:41:22,603  1367ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:41:22,635  1398ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 32
+DEBUG 2018-12-06 19:41:26,161  4925ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:41:26,532  5296ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 370
+DEBUG 2018-12-06 19:41:26,547  5310ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 19:41:26,547  5310ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 19:41:28,724  7488ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 19:41:28,724  7488ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 19:41:29,460  8224ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:41:29,496  8260ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 36
+DEBUG 2018-12-06 19:41:29,953  8717ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:41:29,959  8722ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 19:41:31,191  9955ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 19:41:31,252 10016ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 60
+DEBUG 2018-12-06 19:41:45,396 24159ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Rechazar
+DEBUG 2018-12-06 19:41:45,489 24252ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Rechazar - time spent 93
+DEBUG 2018-12-06 19:41:46,880 25643ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 19:41:46,881 25644ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 19:41:47,307 26070ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:41:47,320 26083ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 13
+DEBUG 2018-12-06 19:41:47,812 26575ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:41:47,818 26581ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 5
+DEBUG 2018-12-06 19:41:52,982 31746ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 19:41:52,983 31747ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 19:41:52,995 31759ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:41:52,995 31759ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 19:41:57,250 36013ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:41:57,261 36024ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 11
+DEBUG 2018-12-06 19:41:57,274 36037ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 19:41:57,274 36037ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 19:41:58,671 37435ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MisProyectosLey
+DEBUG 2018-12-06 19:41:58,672 37436ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MisProyectosLey - time spent 0
+DEBUG 2018-12-06 19:41:59,234 37998ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 19:41:59,312 38076ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 78
+DEBUG 2018-12-06 19:41:59,746 38510ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 19:41:59,761 38525ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 14
+DEBUG 2018-12-06 19:42:01,759 40522ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 19:42:01,785 40548ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 26
+DEBUG 2018-12-06 19:42:13,749 52513ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 19:42:23,538 62301ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 9788
+DEBUG 2018-12-06 19:44:12,634  1396ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:44:12,674  1435ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 40
+DEBUG 2018-12-06 19:44:15,693  4454ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:44:16,051  4812ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 358
+DEBUG 2018-12-06 19:44:16,066  4828ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 19:44:16,067  4828ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 19:44:17,862  6623ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MisProyectosLey
+DEBUG 2018-12-06 19:44:17,862  6623ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MisProyectosLey - time spent 0
+DEBUG 2018-12-06 19:44:18,539  7300ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 19:44:18,639  7400ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 99
+DEBUG 2018-12-06 19:44:19,018  7779ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 19:44:19,031  7792ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 12
+DEBUG 2018-12-06 19:44:19,892  8653ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 19:44:19,935  8696ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 43
+DEBUG 2018-12-06 19:44:31,091 19852ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 19:44:31,168 19929ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 77
+DEBUG 2018-12-06 19:44:31,182 19943ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 19:44:31,182 19943ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 19:44:31,626 20387ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:44:31,657 20418ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 31
+DEBUG 2018-12-06 19:44:32,140 20901ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:44:32,149 20910ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 8
+DEBUG 2018-12-06 19:44:41,366 30128ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 19:44:41,367 30129ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 19:44:41,381 30143ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:44:41,381 30143ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 19:44:51,844 40606ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:44:51,851 40613ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 7
+DEBUG 2018-12-06 19:44:51,864 40626ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 19:44:51,865 40627ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 19:44:53,324 42086ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 19:44:53,324 42086ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 19:44:53,727 42489ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:44:53,757 42519ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 29
+DEBUG 2018-12-06 19:44:54,254 43016ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:44:54,273 43035ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 18
+DEBUG 2018-12-06 19:44:55,539 44301ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Ver
+DEBUG 2018-12-06 19:44:55,584 44346ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Ver - time spent 44
+DEBUG 2018-12-06 19:44:57,421 46183ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Aprobar
+DEBUG 2018-12-06 19:44:57,485 46247ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Aprobar - time spent 64
+DEBUG 2018-12-06 19:44:58,549 47311ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 19:44:58,549 47311ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 19:44:58,927 47689ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:44:58,944 47706ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 17
+DEBUG 2018-12-06 19:44:59,439 48201ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 19:44:59,460 48222ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 21
+DEBUG 2018-12-06 19:46:58,362 167124ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 19:46:58,362 167124ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 19:46:58,376 167138ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:46:58,376 167138ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 19:47:04,551 173313ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 19:47:04,561 173323ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 10
+DEBUG 2018-12-06 19:47:04,577 173339ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 19:47:04,577 173339ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 19:47:06,647 175409ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MisProyectosLey
+DEBUG 2018-12-06 19:47:06,647 175409ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MisProyectosLey - time spent 0
+DEBUG 2018-12-06 19:47:07,071 175833ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 19:47:07,112 175874ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 40
+DEBUG 2018-12-06 19:47:07,580 176342ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 19:47:07,604 176366ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 24
+DEBUG 2018-12-06 19:47:08,872 177633ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 19:47:08,873 177634ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 19:47:09,238 177999ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:47:09,256 178017ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 17
+DEBUG 2018-12-06 19:47:09,743 178504ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:47:09,763 178524ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 19
+DEBUG 2018-12-06 19:49:42,616 331378ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
+DEBUG 2018-12-06 19:49:42,640 331402ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 23
+DEBUG 2018-12-06 19:49:53,397 342159ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
+DEBUG 2018-12-06 19:49:59,605 348367ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 6207
+DEBUG 2018-12-06 19:49:59,618 348379ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 19:49:59,618 348379ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 19:50:00,060 348822ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:50:00,088 348850ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 27
+DEBUG 2018-12-06 19:50:00,573 349335ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:50:00,582 349344ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 9
+DEBUG 2018-12-06 19:53:04,302 533063ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 19:53:04,303 533064ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 19:53:05,260 534022ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:53:05,287 534049ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 26
+DEBUG 2018-12-06 19:53:05,776 534538ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:53:05,797 534559ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 21
+DEBUG 2018-12-06 19:54:51,226 639988ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 19:54:51,226 639988ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 19:54:52,276 641037ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:54:52,294 641055ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 17
+DEBUG 2018-12-06 19:54:52,782 641543ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 19:54:52,793 641554ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 10
+DEBUG 2018-12-06 20:00:49,909  1367ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:00:49,941  1399ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 32
+DEBUG 2018-12-06 20:00:54,141  5599ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:00:54,511  5969ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 369
+DEBUG 2018-12-06 20:00:54,525  5983ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 20:00:54,525  5983ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 20:00:59,236 10693ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:00:59,237 10694ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:00:59,971 11428ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:01:00,025 11482ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 54
+DEBUG 2018-12-06 20:01:00,467 11924ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:01:00,476 11933ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 8
+DEBUG 2018-12-06 20:02:05,879 77336ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:02:05,879 77336ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:02:06,677 78134ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:02:06,697 78154ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 19
+DEBUG 2018-12-06 20:02:07,184 78641ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:02:07,193 78650ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 8
+DEBUG 2018-12-06 20:05:58,744 310201ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:05:58,744 310201ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:05:59,701 311159ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:05:59,718 311176ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 17
+DEBUG 2018-12-06 20:06:00,217 311675ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:06:00,227 311685ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 9
+DEBUG 2018-12-06 20:06:52,010 363467ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:06:52,011 363468ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:06:53,125 364582ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:06:53,133 364590ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 8
+DEBUG 2018-12-06 20:06:53,633 365090ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:06:53,646 365103ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 12
+DEBUG 2018-12-06 20:09:29,017 520475ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:09:29,017 520475ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:09:29,944 521401ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:09:29,961 521418ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 16
+DEBUG 2018-12-06 20:09:30,450 521907ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:09:30,460 521917ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 9
+DEBUG 2018-12-06 20:11:19,771 631228ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:11:19,772 631229ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:11:20,697 632154ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:11:20,717 632174ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 19
+DEBUG 2018-12-06 20:11:21,213 632670ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:11:21,254 632711ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 41
+DEBUG 2018-12-06 20:11:59,727 671184ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
+DEBUG 2018-12-06 20:11:59,778 671235ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 50
+DEBUG 2018-12-06 20:12:27,066 698523ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:12:27,089 698546ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 22
+DEBUG 2018-12-06 20:12:27,574 699031ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:12:27,582 699039ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 7
+DEBUG 2018-12-06 20:12:28,664 700121ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:12:28,664 700121ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:12:29,329 700786ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:12:29,354 700811ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 25
+DEBUG 2018-12-06 20:12:29,832 701289ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:12:29,841 701298ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 8
+DEBUG 2018-12-06 20:12:30,770 702227ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
+DEBUG 2018-12-06 20:12:30,788 702245ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 17
+DEBUG 2018-12-06 20:12:34,422 705879ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:12:34,423 705880ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:12:34,778 706235ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:12:34,791 706248ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 12
+DEBUG 2018-12-06 20:12:35,283 706740ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:12:35,290 706747ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 7
+DEBUG 2018-12-06 20:13:22,231 753688ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
+DEBUG 2018-12-06 20:13:22,245 753702ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 14
+DEBUG 2018-12-06 20:14:49,688  1636ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:14:49,718  1666ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 31
+DEBUG 2018-12-06 20:14:53,155  5103ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:14:53,512  5460ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 356
+DEBUG 2018-12-06 20:14:53,526  5474ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 20:14:53,527  5475ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 20:14:55,138  7085ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MisProyectosLey
+DEBUG 2018-12-06 20:14:55,139  7086ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MisProyectosLey - time spent 0
+DEBUG 2018-12-06 20:14:55,785  7732ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 20:14:55,881  7828ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 95
+DEBUG 2018-12-06 20:14:56,277  8224ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 20:14:56,302  8249ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 24
+DEBUG 2018-12-06 20:15:00,623 12571ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:15:00,624 12572ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:15:01,285 13233ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:15:01,348 13296ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 63
+DEBUG 2018-12-06 20:15:01,786 13734ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:15:01,793 13741ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 6
+DEBUG 2018-12-06 20:15:14,057 26005ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Editar
+DEBUG 2018-12-06 20:15:14,116 26064ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Editar - time spent 58
+DEBUG 2018-12-06 20:15:19,775 31723ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:15:19,776 31724ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:15:20,145 32093ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:15:20,158 32106ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 12
+DEBUG 2018-12-06 20:15:20,651 32598ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:15:20,658 32605ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 6
+DEBUG 2018-12-06 20:15:52,610 64558ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:15:52,625 64573ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 15
+DEBUG 2018-12-06 20:15:53,117 65065ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:15:53,123 65071ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 6
+DEBUG 2018-12-06 20:19:02,574  1377ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:19:02,607  1410ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 33
+DEBUG 2018-12-06 20:19:12,294 11098ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:19:12,642 11446ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 348
+DEBUG 2018-12-06 20:19:12,656 11460ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 20:19:12,656 11460ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 20:19:14,573 13377ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 20:19:14,574 13378ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 20:19:15,298 14102ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 20:19:15,329 14133ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 30
+DEBUG 2018-12-06 20:19:15,790 14594ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 20:19:15,795 14599ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 5
+DEBUG 2018-12-06 20:19:22,630 21434ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 20:19:22,631 21435ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 20:19:22,645 21449ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:19:22,645 21449ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 20:19:27,008 25812ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:19:27,020 25824ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 11
+DEBUG 2018-12-06 20:19:27,030 25834ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 20:19:27,031 25835ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 20:19:28,593 27397ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MisProyectosLey
+DEBUG 2018-12-06 20:19:28,594 27398ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MisProyectosLey - time spent 0
+DEBUG 2018-12-06 20:19:29,212 28016ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 20:19:29,287 28091ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 74
+DEBUG 2018-12-06 20:19:29,729 28533ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerLista
+DEBUG 2018-12-06 20:19:29,765 28569ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerLista - time spent 36
+DEBUG 2018-12-06 20:19:32,457 31261ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 20:19:32,499 31303ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 41
+DEBUG 2018-12-06 20:19:45,940 44744ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Crear
+DEBUG 2018-12-06 20:19:45,989 44793ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Crear - time spent 48
+DEBUG 2018-12-06 20:19:46,006 44810ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Index
+DEBUG 2018-12-06 20:19:46,007 44811ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Index - time spent 0
+DEBUG 2018-12-06 20:19:46,538 45342ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:19:46,564 45368ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 26
+DEBUG 2018-12-06 20:19:47,047 45851ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:19:47,054 45858ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 7
+DEBUG 2018-12-06 20:19:53,968 52772ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerLista
+DEBUG 2018-12-06 20:19:53,984 52788ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerLista - time spent 15
+DEBUG 2018-12-06 20:20:10,398 69202ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-06 20:20:10,398 69202ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-06 20:20:10,412 69216ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:20:10,413 69217ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-06 20:20:20,993 79796ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:20:21,003 79806ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 10
+DEBUG 2018-12-06 20:20:21,018 79821ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 20:20:21,018 79821ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 20:20:22,471 81275ms MvcApplication         OnActionExecuting  - Executing controller Concept, action Emitidos
+DEBUG 2018-12-06 20:20:22,471 81275ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action Emitidos - time spent 0
+DEBUG 2018-12-06 20:20:22,852 81656ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 20:20:22,878 81682ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 26
+DEBUG 2018-12-06 20:20:23,358 82162ms MvcApplication         OnActionExecuting  - Executing controller Concept, action ObtenerEmitidos
+DEBUG 2018-12-06 20:20:23,365 82169ms MvcApplication         OnActionExecuted   - Finished executing controller Concept, action ObtenerEmitidos - time spent 6
+DEBUG 2018-12-06 20:42:59,868  1426ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:42:59,900  1458ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 31
+DEBUG 2018-12-06 20:43:06,451  8009ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-06 20:43:06,807  8365ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 355
+DEBUG 2018-12-06 20:43:06,820  8378ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-06 20:43:06,821  8379ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-06 20:43:12,298 13856ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-06 20:43:12,299 13857ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 0
+DEBUG 2018-12-06 20:43:12,989 14547ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:13,018 14576ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 29
+DEBUG 2018-12-06 20:43:13,483 15041ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:13,490 15048ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 7
+DEBUG 2018-12-06 20:43:15,856 17414ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-06 20:43:15,906 17464ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 50
+DEBUG 2018-12-06 20:43:17,362 18920ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-06 20:43:17,362 18920ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 0
+DEBUG 2018-12-06 20:43:17,752 19310ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:17,759 19317ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 7
+DEBUG 2018-12-06 20:43:18,260 19818ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:18,270 19828ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 9
+DEBUG 2018-12-06 20:43:19,658 21216ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-06 20:43:19,678 21236ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 19
+DEBUG 2018-12-06 20:43:46,446 48004ms MvcApplication         OnActionExecuting  - Executing controller User, action Verificar
+DEBUG 2018-12-06 20:43:46,455 48013ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Verificar - time spent 8
+DEBUG 2018-12-06 20:43:46,488 48046ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-06 20:43:46,559 48117ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 71
+DEBUG 2018-12-06 20:43:46,573 48131ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-06 20:43:46,573 48131ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 0
+DEBUG 2018-12-06 20:43:46,996 48554ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:47,009 48567ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 12
+DEBUG 2018-12-06 20:43:47,506 49064ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:47,517 49075ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 11
+DEBUG 2018-12-06 20:43:55,859 57417ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:43:55,871 57429ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 12
+DEBUG 2018-12-06 20:44:00,137 61695ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-06 20:44:00,153 61711ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 15
+DEBUG 2018-12-06 20:44:16,697 78255ms MvcApplication         OnActionExecuting  - Executing controller User, action Verificar
+DEBUG 2018-12-06 20:44:16,701 78259ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Verificar - time spent 3
+DEBUG 2018-12-06 20:44:16,740 78298ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-06 20:44:16,753 78311ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 13
+DEBUG 2018-12-06 20:44:16,766 78324ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-06 20:44:16,766 78324ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 0
+DEBUG 2018-12-06 20:44:17,206 78764ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:44:17,215 78773ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 9
+DEBUG 2018-12-06 20:44:17,714 79272ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:44:17,719 79277ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 5
+DEBUG 2018-12-06 20:44:22,068 83626ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:44:22,098 83656ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 29
+DEBUG 2018-12-06 20:44:22,502 84060ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:44:22,527 84085ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 24
+DEBUG 2018-12-06 20:44:22,967 84526ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-06 20:44:22,990 84549ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 22

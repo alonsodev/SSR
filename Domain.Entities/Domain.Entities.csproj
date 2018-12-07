@@ -82,6 +82,7 @@
     <Compile Include="InterestAreaViewModel.cs" />
     <Compile Include="InvestigationGroupViewModel.cs" />
     <Compile Include="BadLanguageViewModel.cs" />
+    <Compile Include="ConceptStatusLogViewModel.cs" />
     <Compile Include="TagViewModel.cs" />
     <Compile Include="ProgramViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />

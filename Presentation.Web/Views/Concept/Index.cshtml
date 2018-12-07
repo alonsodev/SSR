@@ -23,10 +23,10 @@
                             <th>Nro. Proyecto</th>
                             <th>Título</th>
                             <th>Autor</th>
-                            <th>Fecha de Presentación</th>
                             <th>Comisión</th>
-                            <th>Estado</th>
                             <th>Tema</th>
+                            <th>Fecha de Emisión</th>
+                            <th>Estado</th>
                             <th>Resumen</th>
                             <th>Calificacion</th>
                             <th class="disabled-sorting text-right">Acciones</th>
@@ -37,10 +37,10 @@
                             <th>Nro. Proyecto</th>
                             <th>Título</th>
                             <th>Autor</th>
-                            <th>Fecha de Presentación</th>
                             <th>Comisión</th>
-                            <th>Estado</th>
                             <th>Tema</th>
+                            <th>Fecha de Emisión</th>
+                            <th>Estado</th>
                             <th>Resumen</th>
                             <th>Calificacion</th>
                             <th class="disabled-sorting text-right">Acciones</th>
@@ -54,7 +54,7 @@
 </div> <!-- end row -->
 <!-- Classic Modal -->
 <div class="modal fade" id="summary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -132,16 +132,19 @@
                                 }
                             }
                         ],
+
+                       
+
                         "columns": [
                             { "data": "draft_law_number" },
                             { "data": "title" },
-                            { "data": "author" },                            
-                            { "data": "date_presentation" },
+                            { "data": "author" },    
                             { "data": "commission" },
-                            { "data": "status" },
                             { "data": "interest_area" },
-                            { "data": "summary_draft_law" },
-                            { "data": "concept_id" },
+                            { "data": "date_presentation" },                           
+                            { "data": "status" },                           
+                            { "data": "summary" },
+                            { "data": "qualification" },
                             { "data": "concept_id" },
                         ],
                         columnDefs: [
@@ -153,12 +156,13 @@
                                     var actionsHtml = moment(row.date_presentation).format("DD/MM/YYYY");
                                     return actionsHtml;
                                 },
-                                targets: 3
+                                targets: 5
                             },
                             {
                                 render: function (data, type, row) {
+                                    debugger;
                                     return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.concept_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'
-                                        + '<p style="display:none" id="summary-' + row.concept_id + '">' + row.summary_draft_law + '</p>';
+                                        + '<div style="display:none" id="summary-' + row.concept_id + '">' + row.summary + '</div>';
 
                                 },
                                 targets: 7,
@@ -166,7 +170,7 @@
                             },
                             {
                                 render: function (data, type, row) {
-                                    return '<a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning summary" data-toggle="tooltip" title="Presentar Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
+                                    return '<a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Presentar Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
                                         
                                 },
                                 targets: 9,

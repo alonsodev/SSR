@@ -12,16 +12,13 @@ namespace Infrastructure.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class concepts_tags
+    public partial class debate_speakers
     {
-        public int tag_id { get; set; }
-        public int concept_id { get; set; }
-        public Nullable<System.DateTime> date_created { get; set; }
-        public Nullable<System.DateTime> date_modified { get; set; }
-        public Nullable<int> user_id_created { get; set; }
-        public Nullable<int> user_id_modified { get; set; }
+        public int debate_speaker_id { get; set; }
+        public Nullable<int> draft_law_id { get; set; }
+        public Nullable<int> user_id { get; set; }
     
-        public virtual tags tags { get; set; }
-        public virtual concepts concepts { get; set; }
+        public virtual draft_laws draft_laws { get; set; }
+        public virtual users users { get; set; }
     }
 }

@@ -55,3 +55,23 @@ div.dataTables_wrapper div.dataTables_info {
     white-space: normal !important;
 }
 
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+.select2-container--default.select2-container--disabled .select2-selection--multiple {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+.select2-container--default.select2-container--disabled .select2-selection--single {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+.note-editor.note-frame .note-editing-area .note-editable[contenteditable="false"] {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+
+.select2-container {
+    width: 100% !important;
+}

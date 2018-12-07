@@ -28,6 +28,18 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+        public List<SelectOptionItem> ReasonRejectsSelector()
+        {
+            var lista = this.Context.Set<reason_rejects>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.reason_reject_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> TagsSelector()
         {
             var lista = this.Context.Set<tags>();

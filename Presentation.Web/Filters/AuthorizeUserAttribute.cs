@@ -75,7 +75,9 @@ namespace Presentation.Web.Filters
             list_bad_languages = 75,
             new_bad_languages = 76,
             edit_bad_languages = 76,
-            delete_bad_languages = 78
+            delete_bad_languages = 78,
+            view_concept=79,
+            view_draft_law=80
 
 
         }

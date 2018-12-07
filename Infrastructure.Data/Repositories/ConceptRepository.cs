@@ -80,7 +80,7 @@ namespace Infrastructure.Data.Repositories
             var query = queryFilters.Select(a => new ConceptViewModel
             {
                 concept_id = a.concept_id,
-                concept = a.concept,
+              //  concept = a.concept,
                 summary = a.summary,
                 draft_law_id = a.draft_laws.draft_law_id,
                 draft_law_number = a.draft_laws.draft_law_number,
@@ -88,14 +88,15 @@ namespace Infrastructure.Data.Repositories
                 author = a.draft_laws.author,
 
                 date_presentation = a.draft_laws.date_presentation,
-
+                date_created=a.date_created,
                 commission = a.draft_laws.commissions.name,
-                status = a.draft_laws.status,
+                status = a.concepts_status.name,
 
 
                 interest_area = a.draft_laws.interest_areas.name,
 
-                summary_draft_law = a.draft_laws.summary,
+                //summary_draft_law = a.draft_laws.summary,
+                qualification=a.qualification
             });
 
             if (String.IsNullOrEmpty(sortBy)) sortBy = "concept_id";
@@ -132,7 +133,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<ConceptViewModel> resultado = new GridModel<ConceptViewModel>();
             IQueryable<concepts> queryFilters = Set;
 
-           // queryFilters = queryFilters.Where(a => a.investigator_id == investigator_id); status 
+           queryFilters = queryFilters.Where(a => a.concept_status_id == 1);  
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -153,7 +154,7 @@ namespace Infrastructure.Data.Repositories
             var query = queryFilters.Select(a => new ConceptViewModel
             {
                 concept_id = a.concept_id,
-                concept = a.concept,
+                //  concept = a.concept,
                 summary = a.summary,
                 draft_law_id = a.draft_laws.draft_law_id,
                 draft_law_number = a.draft_laws.draft_law_number,
@@ -161,14 +162,15 @@ namespace Infrastructure.Data.Repositories
                 author = a.draft_laws.author,
 
                 date_presentation = a.draft_laws.date_presentation,
-
+                date_created = a.date_created,
                 commission = a.draft_laws.commissions.name,
-                status = a.draft_laws.status,
+                status = a.concepts_status.name,
 
 
                 interest_area = a.draft_laws.interest_areas.name,
 
-                summary_draft_law = a.draft_laws.summary,
+                //summary_draft_law = a.draft_laws.summary,
+                qualification = a.qualification
             });
 
             if (String.IsNullOrEmpty(sortBy)) sortBy = "concept_id";

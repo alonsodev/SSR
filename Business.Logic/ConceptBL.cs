@@ -16,6 +16,7 @@ namespace Business.Logic
         private static ConceptRepository oRepositorio;
         private static TagRepository oRepositorioTag;
         private static ConceptTagRepository oRepositorioConceptTag;
+        private static ConceptStatusLogRepository oRepositorioConceptStatusLog;
 
         private static UnitOfWork oUnitOfWork;
 
@@ -25,9 +26,31 @@ namespace Business.Logic
             oRepositorio = oUnitOfWork.ConceptRepository;
             oRepositorioTag = oUnitOfWork.TagRepository;
             oRepositorioConceptTag = oUnitOfWork.ConceptTagRepository;
+            oRepositorioConceptStatusLog = oUnitOfWork.ConceptStatusLogRepository;
         }
 
+        public void ActualizarStatus(ConceptStatusLogViewModel oConceptStatusLogViewModel)
+        {
+            using (var scope = new TransactionScope())
+            {
+                concepts oconcepts = oRepositorio.FindById(oConceptStatusLogViewModel.concept_id);
+                oconcepts.concept_status_id = oConceptStatusLogViewModel.concept_status_id;
+                oRepositorio.Update(oconcepts);
 
+                concepts_status_logs oconcepts_status_logs = new concepts_status_logs();
+                oconcepts_status_logs.concept_status_log_id = 0;
+                oconcepts_status_logs.concept_id = oConceptStatusLogViewModel.concept_id;
+                oconcepts_status_logs.reason_reject_id = oConceptStatusLogViewModel.reason_reject_id == 0 ? null : oConceptStatusLogViewModel.reason_reject_id;
+                oconcepts_status_logs.concept_status_id = oConceptStatusLogViewModel.concept_status_id;
+                oconcepts_status_logs.date_created = DateTime.Now;
+                oconcepts_status_logs.user_id_created = oConceptStatusLogViewModel.user_id_created;
+                oconcepts_status_logs.description = oConceptStatusLogViewModel.description;
+                oRepositorioConceptStatusLog.Add(oconcepts_status_logs);
+
+                oUnitOfWork.SaveChanges();
+                scope.Complete();
+            }
+        }
 
 
         public ConceptViewModel Obtener(int pIntID)
@@ -105,8 +128,8 @@ namespace Business.Logic
                     bibliography = pConceptViewModel.bibliography,
 
                     date_created = DateTime.Now,
-                    user_id_created = pConceptViewModel.user_id_created
-
+                    user_id_created = pConceptViewModel.user_id_created,
+                    concept_status_id = 1
                 };
 
                 //oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);

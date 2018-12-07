@@ -20,6 +20,14 @@ namespace Domain.Entities
             return true;
         }
 
+        public bool ValidarRazonRechazo()
+        {
+            return true;
+        }
+        public bool ValidarRazonRechazoDescripcion()
+        {
+            return true;
+        }
         public string bad_languages { get; set; }
 
         public int concept_id { get; set; }
@@ -71,6 +79,19 @@ namespace Domain.Entities
         
         [Display(Name = "Bibliografía")]              
         public string bibliography { get; set; }
+        [Display(Name = "Motivo de Rechazo")]
+        [RequiredIf("reject == 1", ErrorMessage = "El Motivo de Rechazo es obligatorio.")]
+        //[AssertThat("ValidarRazonRechazo()", ErrorMessage = "El Motivo de Rechazo es obligatorio.")]
+        public string reason_reject_id { get; set; }
+        [Display(Name = "Comentario")]
+        [RequiredIf("reject == 1", ErrorMessage = "La descripción es obligatoria.")]
+       // [AssertThat("ValidarRazonRechazoDescripcion()", ErrorMessage = "La descripción es obligatoria.")]
+        public string reason_reject_description { get; set; }
+
+
+        public int reject { get; set; }
+
+        public Nullable<short> qualification { get; set; }
 
     }
 }

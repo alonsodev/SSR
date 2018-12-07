@@ -337,6 +337,7 @@
     <Content Include="Views\Concept\Editar.cshtml" />
     <Content Include="Views\Concept\Index.cshtml" />
     <Content Include="Views\Concept\Emitidos.cshtml" />
+    <Content Include="Views\Concept\Ver.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
