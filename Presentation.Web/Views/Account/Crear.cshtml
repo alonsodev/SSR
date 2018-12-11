@@ -11,22 +11,58 @@
     Layout = "~/Views/Shared/_PublicLayout.cshtml";
 }
 <div class="col-md-12 mr-auto">
-    <div class="card">
-        @using (Html.BeginForm("Crear", "Account", FormMethod.Post, new { id = "form-investigator", title = "Crear Investigador" }))
-        {
-            <div class="card-body">
-                <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
-                    <div class="card card-plain">
-                        <div class="card-header" role="tab" id="headingOne">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Políticas de Uso
 
-                                <i class="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
+        <!--      Wizard container        -->
+        <div class="wizard-container">
+            <div class="card card-wizard" data-color="primary" id="wizardProfile">
+                @using (Html.BeginForm("Crear", "Account", FormMethod.Post, new { id = "form-investigator", title = "Crear Investigador" }))
+                {
+
+                    <div class="card-header text-center" data-background-color="orange">
+                        <h3 class="card-title">
+                            Registrar Investigador
+                        </h3>
+
+                        <h3 class="description">
+                            Por favor ingrese los datos solicitados
+                        </h3>
+                        <div class="wizard-navigation">
+                            <ul class="nav nav-pills tab-investigator">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#politicas" data-toggle="tab" role="tab" aria-controls="politicas" aria-selected="true">
+                                        <i class="now-ui-icons users_circle-08"></i>
+                                        Políticas de Uso
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#account" data-toggle="tab" data-toggle="tab" role="tab" aria-controls="account" aria-selected="false">
+                                        <i class="now-ui-icons ui-1_settings-gear-63"></i>
+                                        Datos básicos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#address4" data-toggle="tab" data-toggle="tab" role="tab" aria-controls="address4" aria-selected="false">
+                                        <i class="now-ui-icons ui-1_email-85"></i>
+                                        Información de caracterización
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#address2" data-toggle="tab" data-toggle="tab" role="tab" aria-controls="address2" aria-selected="false">
+                                        <i class="now-ui-icons ui-1_email-85"></i>
+                                        Crear cuenta
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="card-body">
+                    </div>
+
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane show active" id="politicas">
+                                <h5 class="info-text"> Políticas de Uso</h5>
                                 <p>
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
                                     El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
                                     y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
                                 </p>
@@ -40,392 +76,329 @@
                                 </div>
                                 <span class="text-danger field-validation-error aceptar-error"></span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card card-plain">
-                        <div class="card-header" role="tab" id="headingTwo">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Registro
-
-                                <i class="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="card-body">
+                            <div class="tab-pane fade" id="account">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <h3> Datos Básicos</h3>
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.document_type_id, htmlAttributes: new { @class = "" })</label>
 
-                                            <div class="card-body">
+                                    <div class="col-sm-4">
 
+                                        <div class="form-group">
+                                            @Html.DropDownList("document_type_id", (IEnumerable<SelectListItem>)ViewBag.documentTypes, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.document_type_id, "", new { @class = "text-danger" })
+                                        </div>
 
-                                                @Html.AntiForgeryToken()
-                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.document_type_id, htmlAttributes: new { @class = "" })</label>
+                                    </div>
 
-                                                    <div class="col-sm-4">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.doc_nro, htmlAttributes: new { @class = "" })</label>
 
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("document_type_id", (IEnumerable<SelectListItem>)ViewBag.documentTypes, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.document_type_id, "", new { @class = "text-danger" })
-                                                        </div>
+                                    <div class="col-sm-4">
 
-                                                    </div>
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.doc_nro, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.doc_nro, "", new { @class = "text-danger" })
+                                        </div>
 
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.doc_nro, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.doc_nro, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.doc_nro, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_name, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.second_name, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.second_name, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_last_name, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.second_last_name, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.second_last_name, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.gender_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-
-                                                            @Html.DropDownList("gender_id", (IEnumerable<SelectListItem>)ViewBag.genders, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.gender_id, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.mobile_phone, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.mobile_phone, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.birthdate_text, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.birthdate_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                                            @Html.ValidationMessageFor(model => model.birthdate_text, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.nationality_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("nationality_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.nationality_id, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_country_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("address_country_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.address_country_id, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row address_department">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.department_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("department_id", (IEnumerable<SelectListItem>)ViewBag.departments, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.department_id, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_municipality_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("address_municipality_id", (IEnumerable<SelectListItem>)ViewBag.municipalities, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.address_municipality_id, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                                <div class="form-group has-label">
-
-                                                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
-                                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
-
-                                                </div>
-
-
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.academic_level_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-4">
-
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("academic_level_id", (IEnumerable<SelectListItem>)ViewBag.academic_levels, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.academic_level_id, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-                                                    
-
-                                                </div>
-
-
-                                            </div><!-- end content-->
-
-
-                                        </div><!--  end card  -->
-                                    </div> <!-- end col-md-12 -->
-                                </div> <!-- end row -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-plain">
-                        <div class="card-header" role="tab" id="headingThree">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Información de Caracterización
-
-                                <i class="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                            <div class="card-body">
+                                    </div>
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "" })</label>
 
+                                    <div class="col-sm-4">
 
-                                            <div class="card-body">
-
-                                                <div class="form-group has-label">
-
-                                                    @Html.LabelFor(model => model.institution_id, htmlAttributes: new { @class = "" })
-
-                                                    @Html.DropDownList("institution_id", (IEnumerable<SelectListItem>)ViewBag.institutions, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.institution_id, "", new { @class = "text-danger" })
-
-                                                </div>
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.investigation_group_id, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-6">
-
-                                                        <div class="form-group">
-                                                            @Html.DropDownList("investigation_group_id", (IEnumerable<SelectListItem>)ViewBag.investigation_groups, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.investigation_group_id, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-
-                                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.code_investigation_group, htmlAttributes: new { @class = "" })</label>
-
-                                                    <div class="col-sm-2">
-
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(model => model.code_investigation_group, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                                                            @Html.ValidationMessageFor(model => model.code_investigation_group, "", new { @class = "text-danger" })
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="form-group has-label">
-
-                                                    @Html.LabelFor(model => model.commissions, htmlAttributes: new { @class = "" })
-
-                                                    @Html.DropDownList("commissions", (IEnumerable<SelectListItem>)ViewBag.commissions, new { multiple = "multiple", @class = "form-control" })
-
-                                                    @Html.ValidationMessageFor(model => model.commissions, "", new { @class = "text-danger" })
-
-                                                </div>
-                                                <div class="form-group has-label">
-
-                                                    @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
-
-                                                    @Html.DropDownList("interest_areas", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { multiple = "multiple", @class = "form-control" })
-
-                                                    @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
-
-                                                </div>
-
-
-                                                <div class="form-group has-label">
-
-                                                    @Html.LabelFor(model => model.program_id, htmlAttributes: new { @class = "" })
-
-                                                    @Html.DropDownList("program_id", (IEnumerable<SelectListItem>)ViewBag.programs, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.program_id, "", new { @class = "text-danger" })
-
-                                                </div>
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
 
 
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_name, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.second_name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.second_name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
 
 
-                                            </div><!-- end content-->
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_last_name, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.second_last_name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.second_last_name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.gender_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+
+                                            @Html.DropDownList("gender_id", (IEnumerable<SelectListItem>)ViewBag.genders, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.gender_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
 
-                                        </div><!--  end card  -->
-                                    </div> <!-- end col-md-12 -->
-                                </div> <!-- end row -->
+
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.mobile_phone, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.mobile_phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.birthdate_text, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.birthdate_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                            @Html.ValidationMessageFor(model => model.birthdate_text, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.nationality_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.DropDownList("nationality_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.nationality_id, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_country_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.DropDownList("address_country_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.address_country_id, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row address_department">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.department_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.DropDownList("department_id", (IEnumerable<SelectListItem>)ViewBag.departments, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.department_id, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_municipality_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.DropDownList("address_municipality_id", (IEnumerable<SelectListItem>)ViewBag.municipalities, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.address_municipality_id, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group has-label">
+
+                                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.academic_level_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            @Html.DropDownList("academic_level_id", (IEnumerable<SelectListItem>)ViewBag.academic_levels, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.academic_level_id, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            <div class="tab-pane fade" id="address4">
+                                <div class="form-group has-label">
 
-                    <div class="card card-plain">
-                        <div class="card-header" role="tab" id="headingFour">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Crear Cuenta
+                                    @Html.LabelFor(model => model.institution_id, htmlAttributes: new { @class = "" })
 
-                                <i class="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                        </div>
-                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
-                            <div class="card-body">
+                                    @Html.DropDownList("institution_id", (IEnumerable<SelectListItem>)ViewBag.institutions, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.institution_id, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.investigation_group_id, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-6">
+
+                                        <div class="form-group">
+                                            @Html.DropDownList("investigation_group_id", (IEnumerable<SelectListItem>)ViewBag.investigation_groups, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.investigation_group_id, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+
+                                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.code_investigation_group, htmlAttributes: new { @class = "" })</label>
+
+                                    <div class="col-sm-2">
+
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.code_investigation_group, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                            @Html.ValidationMessageFor(model => model.code_investigation_group, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group has-label">
+
+                                    @Html.LabelFor(model => model.commissions, htmlAttributes: new { @class = "" })
+
+                                    @Html.DropDownList("commissions", (IEnumerable<SelectListItem>)ViewBag.commissions, new { multiple = "multiple", @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.commissions, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-label">
+
+                                    @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
+
+                                    @Html.DropDownList("interest_areas", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { multiple = "multiple", @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-label">
+
+                                    @Html.LabelFor(model => model.program_id, htmlAttributes: new { @class = "" })
+
+                                    @Html.DropDownList("program_id", (IEnumerable<SelectListItem>)ViewBag.programs, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.program_id, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="address2">
+
                                 <div class="row">
                                     <div class="col-md-4 offset-md-4">
-                                        <div class="card">
 
 
-                                            <div class="card-body">
+                                        <div class="form-group has-label">
 
-                                                <div class="form-group has-label">
+                                            @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "" })
+                                            @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+                                            <span class="text-danger field-validation-error email-error"></span>
+                                        </div>
 
-                                                    @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "" })
-                                                    @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
-                                                    <span class="text-danger field-validation-error email-error"></span>
-                                                </div>
+                                        <div class="form-group has-label">
 
-                                                <div class="form-group has-label">
+                                            @Html.LabelFor(model => model.user_pass, htmlAttributes: new { @class = "" })
+                                            @Html.PasswordFor(model => model.user_pass, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.user_pass, "", new { @class = "text-danger" })
 
-                                                    @Html.LabelFor(model => model.user_pass, htmlAttributes: new { @class = "" })
-                                                    @Html.PasswordFor(model => model.user_pass, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.user_pass, "", new { @class = "text-danger" })
-
-                                                </div>
+                                        </div>
 
 
 
-                                                <div class="form-group has-label">
+                                        <div class="form-group has-label">
 
-                                                    @Html.LabelFor(model => model.user_pass2, htmlAttributes: new { @class = "" })
-                                                    @Html.PasswordFor(model => model.user_pass2, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.user_pass2, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.user_pass2, htmlAttributes: new { @class = "" })
+                                            @Html.PasswordFor(model => model.user_pass2, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.user_pass2, "", new { @class = "text-danger" })
 
-                                                </div>
+                                        </div>
 
 
 
 
-                                            </div><!-- end content-->
 
-
-                                        </div><!--  end card  -->
                                     </div> <!-- end col-md-12 -->
                                 </div> <!-- end row -->
+
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="card-footer">
+                        <div class="pull-right">
+                            <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Siguiente' />
+                            <input type='submit' class='btn btn-finish btn-fill btn-rose btn-wd' name='finish' value='Registrarse' />
+                        </div>
+
+                        <div class="pull-left">
+                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Anterior' />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                }
             </div>
+        </div>
+        <!-- wizard container -->
+   
+    <div class="card">
 
-            <div class="card-footer text-right">
+        <div class="card-body">
 
-                <button type="submit" class="btn btn-primary">Registrarse</button>
 
-            </div>
-        }
+        </div>
+
+        <div class="card-footer text-right">
+
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+
+        </div>
+
     </div>
 
 
@@ -435,8 +408,52 @@
 @section Scripts {
 
     <script type="text/javascript">
+        var current_tab;
+        function ValidarTabActivo(index) {
+            $("#form-investigator").valid();
+            if (index >= 0) {
+                $('.aceptar-error').html('');
+                var checked = $('#chkPoliticasUso').prop('checked');
+
+                if (!checked) {
+                    $('.aceptar-error').html('Debe aceptar las políticas de uso.');
+                    return false;
+                }
+            }
+            if (index >= 1) {
+               // debugger;
+                var valid = $('#document_type_id').valid() & $('#doc_nro').valid() & $('#first_name').valid()
+                    & $('#second_name').valid() & $('#last_name').valid() & $('#second_last_name').valid() & $('#gender_id').valid()
+                    & $('#phone').valid() & $('#mobile_phone').valid() & $('#birthdate_text').valid() & $('#nationality_id').valid()
+                    & $('#address_country_id').valid() & $('#address').valid() & $('#academic_level_id').valid();
+                if (!valid)
+                    return valid;
+            }
+            if (index >= 2) {
+                debugger;
+                var valid = $('#institution_id').valid() & $('#investigation_group_id').valid()
+                    & $('#commissions').valid() & $('#interest_areas').valid() & $('#program_id').valid();
+                if (!valid)
+                return valid;
+            }
+
+            if (index >= 3) {
+                debugger;
+                var valid = $('#user_email').valid() & $('#user_pass').valid() & $('#user_pass2').valid();
+                if (!valid)
+                return valid;
+            }
+
+            return true;
+        }
         var list_IG = {};
         $(function () {
+            demo.initNowUiWizard();
+            setTimeout(function () {
+                $('.card.card-wizard').addClass('active');
+            }, 600);
+
+
             $(".address_department").hide();
             $("#user_role_id").select2({ theme: "bootstrap" });
             $("#user_status_id").select2({ theme: "bootstrap" });
@@ -502,7 +519,7 @@
                     close: 'fa fa-remove'
                 }
             });
-        }); 
+        });
         $("#address_country_id").on('select2:select', function (e) {
             debugger;
             if ($("#address_country_id").val() == "45") {

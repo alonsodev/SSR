@@ -35,6 +35,8 @@ namespace Infrastructure.Data
         private TagRepository _tagRepository;
         private ConceptTagRepository _conceptTagRepository;
         private ConceptStatusLogRepository _conceptStatusLogRepository;
+
+        private DebateSpeakerRepository _debateSpeakerRepository;
         
         #endregion
 
@@ -47,6 +49,11 @@ namespace Infrastructure.Data
 
         #region IUnitOfWork Members
 
+        public DebateSpeakerRepository DebateSpeakerRepository
+        {
+            get { return _debateSpeakerRepository ?? (_debateSpeakerRepository = new DebateSpeakerRepository(_context)); }
+
+        }
         public ConceptStatusLogRepository ConceptStatusLogRepository
         {
             get { return _conceptStatusLogRepository ?? (_conceptStatusLogRepository = new ConceptStatusLogRepository(_context)); }
@@ -182,6 +189,7 @@ namespace Infrastructure.Data
             this._badLanguageRepository = null;
             this._tagRepository = null;
             this._conceptStatusLogRepository = null;
+            this._debateSpeakerRepository = null;
             _context.Dispose();
         }
         #endregion

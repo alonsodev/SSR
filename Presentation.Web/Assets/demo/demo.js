@@ -1012,7 +1012,7 @@ demo = {
 
     initNowUiWizard: function(){
         // Code for the Validator
-        var $validator = $('.card-wizard form').validate({
+      /*  var $validator = $('.card-wizard form').validate({
     		  rules: {
     		    firstname: {
     		      required: true,
@@ -1024,7 +1024,7 @@ demo = {
     		    },
     		    email: {
     		      required: true,
-    		      minlength: 3,
+    		      minlength: 3
     		    }
             },
             highlight: function(element) {
@@ -1033,23 +1033,35 @@ demo = {
             success: function(element) {
                 $(element).closest('.input-group').removeClass('has-danger').addClass('has-success');
             }
-    	});
-
+    	});*/
+      
         // Wizard Initialization
         $('.card-wizard').bootstrapWizard({
             'tabClass': 'nav nav-pills',
             'nextSelector': '.btn-next',
             'previousSelector': '.btn-previous',
 
-            onNext: function(tab, navigation, index) {
-            	var $valid = $('.card-wizard form').valid();
+            onNext: function (tab, navigation, index) {
+                debugger;
+                console.log(tab, index);
+               
+            	/*var $valid = $('.card-wizard form').valid();
             	if(!$valid) {
             		$validator.focusInvalid();
             		return false;
-            	}
+                }*/
+
+                var $valid = ValidarTabActivo(index);
+                if (!$valid) {
+                   // $validator.focusInvalid();
+                    return false;
+                }
+                
             },
 
-            onInit : function(tab, navigation, index){
+            onInit: function (tab, navigation, index) {
+               // debugger;
+                console.log(tab, index);
                 //check number of tabs and fill the entire row
                 var $total = navigation.find('li').length;
                 var $wizard = navigation.closest('.card-wizard');
@@ -1066,17 +1078,30 @@ demo = {
                 $('.moving-tab').css('transition','transform 0s');
            },
 
-            onTabClick : function(tab, navigation, index){
-                var $valid = $('.card-wizard form').valid();
-
-                if(!$valid){
-                    return false;
-                } else{
-                    return true;
-                }
+            onTabClick: function (tab, navigation, index, $clickedTab) {
+                return false;
+              
             },
+/*
+            onTabChange: function (tab, navigation, index) {
+                debugger;
+               // return false
+                if (current_tab < index) {
+                    var $valid = ValidarTabActivo(current_tab);
+                    if (!$valid) {
+                        // $validator.focusInvalid();
+                        $('.tab-investigator a')[current_tab].click();
+                        index = current_tab;
+                        //return false;
+                    }
+                }
+            },*/
 
-            onTabShow: function(tab, navigation, index) {
+            onTabShow: function (tab, navigation, index) {
+               // debugger;
+               // return false;
+              
+
                 var $total = navigation.find('li').length;
                 var $current = index+1;
 

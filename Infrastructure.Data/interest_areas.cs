@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public interest_areas()
         {
-            this.investigators = new HashSet<investigators>();
             this.draft_laws = new HashSet<draft_laws>();
+            this.investigators = new HashSet<investigators>();
         }
     
         public int interest_area_id { get; set; }
@@ -29,8 +29,8 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_modified { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<draft_laws> draft_laws { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
     }
 }

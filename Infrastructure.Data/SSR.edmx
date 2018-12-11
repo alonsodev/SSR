@@ -11,6 +11,10 @@
           </Key>
           <Property Name="academic_level_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
         </EntityType>
         <EntityType Name="bad_languages">
           <Key>
@@ -140,6 +144,28 @@
           <Property Name="user_id_modified" Type="int" />
           <Property Name="dev_name" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="education_levels">
+          <Key>
+            <PropertyRef Name="education_level_id" />
+          </Key>
+          <Property Name="education_level_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="educational_institutions">
+          <Key>
+            <PropertyRef Name="educational_institution_id" />
+          </Key>
+          <Property Name="educational_institution_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
         <EntityType Name="genders">
           <Key>
             <PropertyRef Name="gender_id" />
@@ -197,8 +223,10 @@
           <Property Name="birthdate" Type="datetime" />
           <Property Name="institution_id" Type="int" />
           <Property Name="investigation_group_id" Type="int" />
+          <Property Name="educational_institution_id" Type="int" />
           <Property Name="program_id" Type="int" />
-          <Property Name="academic_level_id" Type="int" />
+          <Property Name="education_level_id" Type="int" />
+          <Property Name="CVLAC" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="investigators_commissions">
           <Key>
@@ -215,6 +243,17 @@
           </Key>
           <Property Name="investigator_id" Type="int" Nullable="false" />
           <Property Name="interest_area_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="knowledge_areas">
+          <Key>
+            <PropertyRef Name="knowledge_area_id" />
+          </Key>
+          <Property Name="knowledge_area_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
         </EntityType>
         <EntityType Name="municipalities">
           <Key>
@@ -253,7 +292,7 @@
           <Key>
             <PropertyRef Name="program_id" />
           </Key>
-          <Property Name="program_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="program_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" MaxLength="200" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
@@ -295,6 +334,22 @@
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
           <Property Name="dev_name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="snies">
+          <Key>
+            <PropertyRef Name="snie_id" />
+          </Key>
+          <Property Name="snie_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="educational_institution_id" Type="int" />
+          <Property Name="knowledge_area_id" Type="int" />
+          <Property Name="program_id" Type="int" />
+          <Property Name="academic_level_id" Type="int" />
+          <Property Name="education_level_id" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
         </EntityType>
         <EntityType Name="tags">
           <Key>
@@ -511,18 +566,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_investigators_academic_levels">
-          <End Role="academic_levels" Type="Self.academic_levels" Multiplicity="0..1" />
-          <End Role="investigators" Type="Self.investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="academic_levels">
-              <PropertyRef Name="academic_level_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="academic_level_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_investigators_commissions_commissions">
           <End Role="commissions" Type="Self.commissions" Multiplicity="1" />
           <End Role="investigators_commissions" Type="Self.investigators_commissions" Multiplicity="*" />
@@ -544,6 +587,30 @@
             </Principal>
             <Dependent Role="investigators_commissions">
               <PropertyRef Name="investigator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_education_levels">
+          <End Role="education_levels" Type="Self.education_levels" Multiplicity="0..1" />
+          <End Role="investigators" Type="Self.investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education_levels">
+              <PropertyRef Name="education_level_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="education_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_educational_institutions">
+          <End Role="educational_institutions" Type="Self.educational_institutions" Multiplicity="0..1" />
+          <End Role="investigators" Type="Self.investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="educational_institutions">
+              <PropertyRef Name="educational_institution_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="educational_institution_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -667,6 +734,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_snies_academic_levels">
+          <End Role="academic_levels" Type="Self.academic_levels" Multiplicity="0..1" />
+          <End Role="snies" Type="Self.snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academic_levels">
+              <PropertyRef Name="academic_level_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="academic_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_education_levels">
+          <End Role="education_levels" Type="Self.education_levels" Multiplicity="0..1" />
+          <End Role="snies" Type="Self.snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education_levels">
+              <PropertyRef Name="education_level_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="education_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_educational_institutions">
+          <End Role="educational_institutions" Type="Self.educational_institutions" Multiplicity="0..1" />
+          <End Role="snies" Type="Self.snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="educational_institutions">
+              <PropertyRef Name="educational_institution_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="educational_institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_knowledge_areas">
+          <End Role="knowledge_areas" Type="Self.knowledge_areas" Multiplicity="0..1" />
+          <End Role="snies" Type="Self.snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="knowledge_areas">
+              <PropertyRef Name="knowledge_area_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="knowledge_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_programs">
+          <End Role="programs" Type="Self.programs" Multiplicity="0..1" />
+          <End Role="snies" Type="Self.snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programs">
+              <PropertyRef Name="program_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_users_address_countries">
           <End Role="nationalities" Type="Self.nationalities" Multiplicity="0..1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
@@ -751,6 +878,8 @@
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="document_types" EntityType="Self.document_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="draft_laws" EntityType="Self.draft_laws" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="education_levels" EntityType="Self.education_levels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="educational_institutions" EntityType="Self.educational_institutions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="genders" EntityType="Self.genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="institutions" EntityType="Self.institutions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="interest_areas" EntityType="Self.interest_areas" Schema="dbo" store:Type="Tables" />
@@ -758,6 +887,7 @@
           <EntitySet Name="investigators" EntityType="Self.investigators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="investigators_commissions" EntityType="Self.investigators_commissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="investigators_interest_areas" EntityType="Self.investigators_interest_areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="knowledge_areas" EntityType="Self.knowledge_areas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="municipalities" EntityType="Self.municipalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nationalities" EntityType="Self.nationalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permissions" EntityType="Self.permissions" Schema="dbo" store:Type="Tables" />
@@ -765,6 +895,7 @@
           <EntitySet Name="reason_rejects" EntityType="Self.reason_rejects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role_permissions" EntityType="Self.role_permissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="snies" EntityType="Self.snies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tags" EntityType="Self.tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_status" EntityType="Self.user_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -824,10 +955,6 @@
             <End Role="institutions" EntitySet="institutions" />
             <End Role="investigation_groups" EntitySet="investigation_groups" />
           </AssociationSet>
-          <AssociationSet Name="FK_investigators_academic_levels" Association="Self.FK_investigators_academic_levels">
-            <End Role="academic_levels" EntitySet="academic_levels" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_investigators_commissions_commissions" Association="Self.FK_investigators_commissions_commissions">
             <End Role="commissions" EntitySet="commissions" />
             <End Role="investigators_commissions" EntitySet="investigators_commissions" />
@@ -835,6 +962,14 @@
           <AssociationSet Name="FK_investigators_commissions_investigators" Association="Self.FK_investigators_commissions_investigators">
             <End Role="investigators" EntitySet="investigators" />
             <End Role="investigators_commissions" EntitySet="investigators_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_education_levels" Association="Self.FK_investigators_education_levels">
+            <End Role="education_levels" EntitySet="education_levels" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_educational_institutions" Association="Self.FK_investigators_educational_institutions">
+            <End Role="educational_institutions" EntitySet="educational_institutions" />
+            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
           <AssociationSet Name="FK_investigators_genders" Association="Self.FK_investigators_genders">
             <End Role="genders" EntitySet="genders" />
@@ -876,6 +1011,26 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="role_permissions" EntitySet="role_permissions" />
           </AssociationSet>
+          <AssociationSet Name="FK_snies_academic_levels" Association="Self.FK_snies_academic_levels">
+            <End Role="academic_levels" EntitySet="academic_levels" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_education_levels" Association="Self.FK_snies_education_levels">
+            <End Role="education_levels" EntitySet="education_levels" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_educational_institutions" Association="Self.FK_snies_educational_institutions">
+            <End Role="educational_institutions" EntitySet="educational_institutions" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_knowledge_areas" Association="Self.FK_snies_knowledge_areas">
+            <End Role="knowledge_areas" EntitySet="knowledge_areas" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_programs" Association="Self.FK_snies_programs">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
           <AssociationSet Name="FK_users_address_countries" Association="Self.FK_users_address_countries">
             <End Role="nationalities" EntitySet="nationalities" />
             <End Role="users" EntitySet="users" />
@@ -906,7 +1061,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="SSRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SSREntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="academic_levels" EntityType="SSRModel.academic_levels" />
           <EntitySet Name="commissions" EntityType="SSRModel.commissions" />
           <EntitySet Name="departments" EntityType="SSRModel.departments" />
           <EntitySet Name="document_types" EntityType="SSRModel.document_types" />
@@ -914,7 +1068,6 @@
           <EntitySet Name="institutions" EntityType="SSRModel.institutions" />
           <EntitySet Name="interest_areas" EntityType="SSRModel.interest_areas" />
           <EntitySet Name="investigation_groups" EntityType="SSRModel.investigation_groups" />
-          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
           <EntitySet Name="municipalities" EntityType="SSRModel.municipalities" />
           <EntitySet Name="nationalities" EntityType="SSRModel.nationalities" />
           <EntitySet Name="permissions" EntityType="SSRModel.permissions" />
@@ -923,10 +1076,6 @@
           <EntitySet Name="roles" EntityType="SSRModel.roles" />
           <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
           <EntitySet Name="users" EntityType="SSRModel.users" />
-          <AssociationSet Name="FK_investigators_academic_levels" Association="SSRModel.FK_investigators_academic_levels">
-            <End Role="academic_levels" EntitySet="academic_levels" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_municipalities_departments" Association="SSRModel.FK_municipalities_departments">
             <End Role="departments" EntitySet="departments" />
             <End Role="municipalities" EntitySet="municipalities" />
@@ -935,29 +1084,9 @@
             <End Role="document_types" EntitySet="document_types" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-          <AssociationSet Name="FK_investigators_genders" Association="SSRModel.FK_investigators_genders">
-            <End Role="genders" EntitySet="genders" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_investigation_groups_institutions" Association="SSRModel.FK_investigation_groups_institutions">
             <End Role="institutions" EntitySet="institutions" />
             <End Role="investigation_groups" EntitySet="investigation_groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_institutions" Association="SSRModel.FK_investigators_institutions">
-            <End Role="institutions" EntitySet="institutions" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_investigation_groups" Association="SSRModel.FK_investigators_investigation_groups">
-            <End Role="investigation_groups" EntitySet="investigation_groups" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_programs" Association="SSRModel.FK_investigators_programs">
-            <End Role="programs" EntitySet="programs" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
           <AssociationSet Name="FK_users_municipalities" Association="SSRModel.FK_users_municipalities">
             <End Role="municipalities" EntitySet="municipalities" />
@@ -986,14 +1115,6 @@
           <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="investigators_commissions" Association="SSRModel.investigators_commissions">
-            <End Role="commissions" EntitySet="commissions" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="investigators_interest_areas" Association="SSRModel.investigators_interest_areas">
-            <End Role="interest_areas" EntitySet="interest_areas" />
-            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
           <EntitySet Name="draft_laws" EntityType="SSRModel.draft_laws" />
           <AssociationSet Name="FK_draft_laws_commissions" Association="SSRModel.FK_draft_laws_commissions">
@@ -1040,10 +1161,6 @@
             <End Role="draft_laws" EntitySet="draft_laws" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
-          <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
-            <End Role="investigators" EntitySet="investigators" />
-            <End Role="concepts" EntitySet="concepts" />
-          </AssociationSet>
           <AssociationSet Name="FK_concepts_reason_rejects" Association="SSRModel.FK_concepts_reason_rejects">
             <End Role="reason_rejects" EntitySet="reason_rejects" />
             <End Role="concepts" EntitySet="concepts" />
@@ -1056,15 +1173,68 @@
             <End Role="concepts" EntitySet="concepts" />
             <End Role="concepts_tags" EntitySet="concepts_tags" />
           </AssociationSet>
+          <EntitySet Name="education_levels" EntityType="SSRModel.education_levels" />
+          <EntitySet Name="educational_institutions" EntityType="SSRModel.educational_institutions" />
+          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
+          <EntitySet Name="knowledge_areas" EntityType="SSRModel.knowledge_areas" />
+          <EntitySet Name="snies" EntityType="SSRModel.snies" />
+          <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
+            <End Role="investigators" EntitySet="investigators" />
+            <End Role="concepts" EntitySet="concepts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_education_levels" Association="SSRModel.FK_investigators_education_levels">
+            <End Role="education_levels" EntitySet="education_levels" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_education_levels" Association="SSRModel.FK_snies_education_levels">
+            <End Role="education_levels" EntitySet="education_levels" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_educational_institutions" Association="SSRModel.FK_investigators_educational_institutions">
+            <End Role="educational_institutions" EntitySet="educational_institutions" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_educational_institutions" Association="SSRModel.FK_snies_educational_institutions">
+            <End Role="educational_institutions" EntitySet="educational_institutions" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_genders" Association="SSRModel.FK_investigators_genders">
+            <End Role="genders" EntitySet="genders" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_institutions" Association="SSRModel.FK_investigators_institutions">
+            <End Role="institutions" EntitySet="institutions" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_investigation_groups" Association="SSRModel.FK_investigators_investigation_groups">
+            <End Role="investigation_groups" EntitySet="investigation_groups" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_programs" Association="SSRModel.FK_investigators_programs">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_knowledge_areas" Association="SSRModel.FK_snies_knowledge_areas">
+            <End Role="knowledge_areas" EntitySet="knowledge_areas" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_programs" Association="SSRModel.FK_snies_programs">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="investigators_commissions" Association="SSRModel.investigators_commissions">
+            <End Role="commissions" EntitySet="commissions" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="investigators_interest_areas" Association="SSRModel.investigators_interest_areas">
+            <End Role="interest_areas" EntitySet="interest_areas" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="academic_levels">
-          <Key>
-            <PropertyRef Name="academic_level_id" />
-          </Key>
-          <Property Name="academic_level_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_academic_levels" FromRole="academic_levels" ToRole="investigators" />
-        </EntityType>
         <EntityType Name="commissions">
           <Key>
             <PropertyRef Name="commission_id" />
@@ -1075,8 +1245,8 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_commissions" FromRole="commissions" ToRole="investigators" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="commissions" ToRole="draft_laws" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_commissions" FromRole="commissions" ToRole="investigators" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -1129,8 +1299,8 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_interest_areas" FromRole="interest_areas" ToRole="investigators" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="interest_areas" ToRole="draft_laws" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_interest_areas" FromRole="interest_areas" ToRole="investigators" />
         </EntityType>
         <EntityType Name="investigation_groups">
           <Key>
@@ -1146,33 +1316,6 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigation_groups_institutions" FromRole="investigation_groups" ToRole="institutions" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigation_groups" ToRole="investigators" />
-        </EntityType>
-        <EntityType Name="investigators">
-          <Key>
-            <PropertyRef Name="investigator_id" />
-          </Key>
-          <Property Name="investigator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" />
-          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="second_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="second_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="gender_id" Type="Int32" />
-          <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="birthdate" Type="DateTime" Precision="3" />
-          <Property Name="institution_id" Type="Int32" />
-          <Property Name="investigation_group_id" Type="Int32" />
-          <Property Name="program_id" Type="Int32" />
-          <Property Name="academic_level_id" Type="Int32" />
-          <NavigationProperty Name="academic_levels" Relationship="SSRModel.FK_investigators_academic_levels" FromRole="investigators" ToRole="academic_levels" />
-          <NavigationProperty Name="genders" Relationship="SSRModel.FK_investigators_genders" FromRole="investigators" ToRole="genders" />
-          <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigators_institutions" FromRole="investigators" ToRole="institutions" />
-          <NavigationProperty Name="investigation_groups" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigators" ToRole="investigation_groups" />
-          <NavigationProperty Name="programs" Relationship="SSRModel.FK_investigators_programs" FromRole="investigators" ToRole="programs" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_investigators_users" FromRole="investigators" ToRole="users" />
-          <NavigationProperty Name="commissions" Relationship="SSRModel.investigators_commissions" FromRole="investigators" ToRole="commissions" />
-          <NavigationProperty Name="interest_areas" Relationship="SSRModel.investigators_interest_areas" FromRole="investigators" ToRole="interest_areas" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_investigators" FromRole="investigators" ToRole="concepts" />
         </EntityType>
         <EntityType Name="municipalities">
           <Key>
@@ -1223,6 +1366,7 @@
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_programs" FromRole="programs" ToRole="investigators" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_programs" FromRole="programs" ToRole="snies" />
         </EntityType>
         <EntityType Name="role_permissions">
           <Key>
@@ -1290,26 +1434,14 @@
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
           <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
           <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
           <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
           <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
           <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
         </EntityType>
-        <Association Name="FK_investigators_academic_levels">
-          <End Type="SSRModel.academic_levels" Role="academic_levels" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="academic_levels">
-              <PropertyRef Name="academic_level_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="academic_level_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_municipalities_departments">
           <End Type="SSRModel.departments" Role="departments" Multiplicity="1" />
           <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="*" />
@@ -1334,18 +1466,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_investigators_genders">
-          <End Type="SSRModel.genders" Role="genders" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="genders">
-              <PropertyRef Name="gender_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="gender_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_investigation_groups_institutions">
           <End Type="SSRModel.institutions" Role="institutions" Multiplicity="1" />
           <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="*" />
@@ -1355,54 +1475,6 @@
             </Principal>
             <Dependent Role="investigation_groups">
               <PropertyRef Name="institution_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_institutions">
-          <End Type="SSRModel.institutions" Role="institutions" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="institutions">
-              <PropertyRef Name="institution_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="institution_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_investigation_groups">
-          <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="investigation_groups">
-              <PropertyRef Name="investigation_group_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="investigation_group_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_programs">
-          <End Type="SSRModel.programs" Role="programs" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="programs">
-              <PropertyRef Name="program_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="program_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1489,14 +1561,6 @@
               <PropertyRef Name="user_status_id" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="investigators_commissions">
-          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="*" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-        </Association>
-        <Association Name="investigators_interest_areas">
-          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="*" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
         </Association>
         <EntityType Name="draft_laws">
           <Key>
@@ -1720,10 +1784,10 @@
           <Property Name="qualification" Type="Double" />
           <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
           <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="concepts" ToRole="reason_rejects" />
           <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
           <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
         </EntityType>
         <Association Name="FK_concepts_concepts_status">
           <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
@@ -1746,18 +1810,6 @@
             </Principal>
             <Dependent Role="concepts">
               <PropertyRef Name="draft_law_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_investigators">
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="investigators">
-              <PropertyRef Name="investigator_id" />
-            </Principal>
-            <Dependent Role="concepts">
-              <PropertyRef Name="investigator_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1797,20 +1849,252 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="education_levels">
+          <Key>
+            <PropertyRef Name="education_level_id" />
+          </Key>
+          <Property Name="education_level_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_education_levels" FromRole="education_levels" ToRole="investigators" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_education_levels" FromRole="education_levels" ToRole="snies" />
+        </EntityType>
+        <EntityType Name="educational_institutions">
+          <Key>
+            <PropertyRef Name="educational_institution_id" />
+          </Key>
+          <Property Name="educational_institution_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="educational_institutions" ToRole="investigators" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_educational_institutions" FromRole="educational_institutions" ToRole="snies" />
+        </EntityType>
+        <EntityType Name="investigators">
+          <Key>
+            <PropertyRef Name="investigator_id" />
+          </Key>
+          <Property Name="investigator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="second_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="second_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gender_id" Type="Int32" />
+          <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="3" />
+          <Property Name="institution_id" Type="Int32" />
+          <Property Name="investigation_group_id" Type="Int32" />
+          <Property Name="educational_institution_id" Type="Int32" />
+          <Property Name="program_id" Type="Int32" />
+          <Property Name="education_level_id" Type="Int32" />
+          <Property Name="CVLAC" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_investigators" FromRole="investigators" ToRole="concepts" />
+          <NavigationProperty Name="education_levels" Relationship="SSRModel.FK_investigators_education_levels" FromRole="investigators" ToRole="education_levels" />
+          <NavigationProperty Name="educational_institutions" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="investigators" ToRole="educational_institutions" />
+          <NavigationProperty Name="genders" Relationship="SSRModel.FK_investigators_genders" FromRole="investigators" ToRole="genders" />
+          <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigators_institutions" FromRole="investigators" ToRole="institutions" />
+          <NavigationProperty Name="investigation_groups" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigators" ToRole="investigation_groups" />
+          <NavigationProperty Name="programs" Relationship="SSRModel.FK_investigators_programs" FromRole="investigators" ToRole="programs" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_investigators_users" FromRole="investigators" ToRole="users" />
+          <NavigationProperty Name="commissions" Relationship="SSRModel.investigators_commissions" FromRole="investigators" ToRole="commissions" />
+          <NavigationProperty Name="interest_areas" Relationship="SSRModel.investigators_interest_areas" FromRole="investigators" ToRole="interest_areas" />
+        </EntityType>
+        <EntityType Name="knowledge_areas">
+          <Key>
+            <PropertyRef Name="knowledge_area_id" />
+          </Key>
+          <Property Name="knowledge_area_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_knowledge_areas" FromRole="knowledge_areas" ToRole="snies" />
+        </EntityType>
+        <EntityType Name="snies">
+          <Key>
+            <PropertyRef Name="snie_id" />
+          </Key>
+          <Property Name="snie_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="educational_institution_id" Type="Int32" />
+          <Property Name="knowledge_area_id" Type="Int32" />
+          <Property Name="program_id" Type="Int32" />
+          <Property Name="academic_level_id" Type="Int32" />
+          <Property Name="education_level_id" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="education_levels" Relationship="SSRModel.FK_snies_education_levels" FromRole="snies" ToRole="education_levels" />
+          <NavigationProperty Name="educational_institutions" Relationship="SSRModel.FK_snies_educational_institutions" FromRole="snies" ToRole="educational_institutions" />
+          <NavigationProperty Name="knowledge_areas" Relationship="SSRModel.FK_snies_knowledge_areas" FromRole="snies" ToRole="knowledge_areas" />
+          <NavigationProperty Name="programs" Relationship="SSRModel.FK_snies_programs" FromRole="snies" ToRole="programs" />
+        </EntityType>
+        <Association Name="FK_concepts_investigators">
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="investigators">
+              <PropertyRef Name="investigator_id" />
+            </Principal>
+            <Dependent Role="concepts">
+              <PropertyRef Name="investigator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_education_levels">
+          <End Type="SSRModel.education_levels" Role="education_levels" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education_levels">
+              <PropertyRef Name="education_level_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="education_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_education_levels">
+          <End Type="SSRModel.education_levels" Role="education_levels" Multiplicity="0..1" />
+          <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education_levels">
+              <PropertyRef Name="education_level_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="education_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_educational_institutions">
+          <End Type="SSRModel.educational_institutions" Role="educational_institutions" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="educational_institutions">
+              <PropertyRef Name="educational_institution_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="educational_institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_educational_institutions">
+          <End Type="SSRModel.educational_institutions" Role="educational_institutions" Multiplicity="0..1" />
+          <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="educational_institutions">
+              <PropertyRef Name="educational_institution_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="educational_institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_genders">
+          <End Type="SSRModel.genders" Role="genders" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_institutions">
+          <End Type="SSRModel.institutions" Role="institutions" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="institutions">
+              <PropertyRef Name="institution_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_investigation_groups">
+          <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="investigation_groups">
+              <PropertyRef Name="investigation_group_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="investigation_group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_programs">
+          <End Type="SSRModel.programs" Role="programs" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programs">
+              <PropertyRef Name="program_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_knowledge_areas">
+          <End Type="SSRModel.knowledge_areas" Role="knowledge_areas" Multiplicity="0..1" />
+          <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="knowledge_areas">
+              <PropertyRef Name="knowledge_area_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="knowledge_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snies_programs">
+          <End Type="SSRModel.programs" Role="programs" Multiplicity="0..1" />
+          <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programs">
+              <PropertyRef Name="program_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="investigators_commissions">
+          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="*" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+        </Association>
+        <Association Name="investigators_interest_areas">
+          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="*" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SSRModelStoreContainer" CdmEntityContainer="SSREntities">
-          <EntitySetMapping Name="academic_levels">
-            <EntityTypeMapping TypeName="SSRModel.academic_levels">
-              <MappingFragment StoreEntitySet="academic_levels">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="academic_level_id" ColumnName="academic_level_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="commissions">
             <EntityTypeMapping TypeName="SSRModel.commissions">
               <MappingFragment StoreEntitySet="commissions">
@@ -1886,25 +2170,6 @@
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="institution_id" ColumnName="institution_id" />
                 <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="investigators">
-            <EntityTypeMapping TypeName="SSRModel.investigators">
-              <MappingFragment StoreEntitySet="investigators">
-                <ScalarProperty Name="academic_level_id" ColumnName="academic_level_id" />
-                <ScalarProperty Name="program_id" ColumnName="program_id" />
-                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
-                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
-                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
-                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="second_name" ColumnName="second_name" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2020,22 +2285,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="investigators_commissions" TypeName="SSRModel.investigators_commissions" StoreEntitySet="investigators_commissions">
-            <EndProperty Name="investigators">
-              <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-            </EndProperty>
-            <EndProperty Name="commissions">
-              <ScalarProperty Name="commission_id" ColumnName="commission_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="investigators_interest_areas" TypeName="SSRModel.investigators_interest_areas" StoreEntitySet="investigators_interest_areas">
-            <EndProperty Name="investigators">
-              <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-            </EndProperty>
-            <EndProperty Name="interest_areas">
-              <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="draft_laws">
             <EntityTypeMapping TypeName="SSRModel.draft_laws">
               <MappingFragment StoreEntitySet="draft_laws">
@@ -2164,6 +2413,96 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="education_levels">
+            <EntityTypeMapping TypeName="SSRModel.education_levels">
+              <MappingFragment StoreEntitySet="education_levels">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="educational_institutions">
+            <EntityTypeMapping TypeName="SSRModel.educational_institutions">
+              <MappingFragment StoreEntitySet="educational_institutions">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigators">
+            <EntityTypeMapping TypeName="SSRModel.investigators">
+              <MappingFragment StoreEntitySet="investigators">
+                <ScalarProperty Name="CVLAC" ColumnName="CVLAC" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
+                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
+                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="knowledge_areas">
+            <EntityTypeMapping TypeName="SSRModel.knowledge_areas">
+              <MappingFragment StoreEntitySet="knowledge_areas">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="knowledge_area_id" ColumnName="knowledge_area_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="snies">
+            <EntityTypeMapping TypeName="SSRModel.snies">
+              <MappingFragment StoreEntitySet="snies">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+                <ScalarProperty Name="academic_level_id" ColumnName="academic_level_id" />
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+                <ScalarProperty Name="knowledge_area_id" ColumnName="knowledge_area_id" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
+                <ScalarProperty Name="snie_id" ColumnName="snie_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="investigators_commissions" TypeName="SSRModel.investigators_commissions" StoreEntitySet="investigators_commissions">
+            <EndProperty Name="investigators">
+              <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+            </EndProperty>
+            <EndProperty Name="commissions">
+              <ScalarProperty Name="commission_id" ColumnName="commission_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="investigators_interest_areas" TypeName="SSRModel.investigators_interest_areas" StoreEntitySet="investigators_interest_areas">
+            <EndProperty Name="investigators">
+              <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+            </EndProperty>
+            <EndProperty Name="interest_areas">
+              <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

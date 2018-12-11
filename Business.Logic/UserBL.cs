@@ -80,7 +80,7 @@ namespace Business.Logic
             return oRepositorio.ValidarUsuario(usuario, contrasena, ref tipo_error);
         }
 
-        
+
 
         public void Eliminar(int id)
         {
@@ -140,12 +140,12 @@ namespace Business.Logic
                 //  contract_name = pInvestigatorViewModel.contract_name,
                 phone = pInvestigatorViewModel.phone,
                 address = pInvestigatorViewModel.address,
-                address_municipality_id= pInvestigatorViewModel.address_municipality_id,
+                address_municipality_id = pInvestigatorViewModel.address_municipality_id,
 
                 address_country_id = pInvestigatorViewModel.address_country_id,
                 date_created = DateTime.Now,
                 user_id_created = pInvestigatorViewModel.user_id_created,
-                
+
 
             };
             ousers = oRepositorio.Add(ousers);
@@ -180,6 +180,12 @@ namespace Business.Logic
         public Select2Model ObtenerInstituciones(string term_search, int page)
         {
             return oRepositorio.ObtenerInstituciones(term_search, page);
+        }
+
+        public int? ObtenerPonente(string author_aux)
+        {
+            return oRepositorio.ObtenerPonente(author_aux);
+
         }
     }
 }

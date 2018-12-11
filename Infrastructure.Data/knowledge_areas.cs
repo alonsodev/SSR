@@ -12,16 +12,15 @@ namespace Infrastructure.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class commissions
+    public partial class knowledge_areas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public commissions()
+        public knowledge_areas()
         {
-            this.draft_laws = new HashSet<draft_laws>();
-            this.investigators = new HashSet<investigators>();
+            this.snies = new HashSet<snies>();
         }
     
-        public int commission_id { get; set; }
+        public int knowledge_area_id { get; set; }
         public string name { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
@@ -29,8 +28,6 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_modified { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<draft_laws> draft_laws { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
+        public virtual ICollection<snies> snies { get; set; }
     }
 }

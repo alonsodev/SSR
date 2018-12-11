@@ -73,7 +73,7 @@ namespace Domain.Entities
         //[Required(ErrorMessage = "El Título es obligatorio.")]
         public string link { get; set; }
 
-
+        public List<int> debate_speakers { get; set; }
 
 
     }

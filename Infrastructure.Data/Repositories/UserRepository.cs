@@ -234,6 +234,12 @@ namespace Infrastructure.Data.Repositories
 
             return consulta.ToList();
         }
+
+        public int? ObtenerPonente(string author_aux)
+        {
+            return Set.Where(a => a.user_name.ToLower() == author_aux.ToLower()).Select(a => a.id).Take(1).FirstOrDefault();
+        }
+
         public List<SelectOptionItem> RolesSelector()
         {
             var lista = this.Context.Set<roles>();

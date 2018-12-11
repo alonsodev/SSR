@@ -67,7 +67,6 @@ namespace Presentation.Web.Filters
             my_concepts = 68,
             my_certificates = 69,
             my_backgrounds = 70,
-
             concepts_emited = 71,
             new_concept = 72,
             edit_concept = 73,

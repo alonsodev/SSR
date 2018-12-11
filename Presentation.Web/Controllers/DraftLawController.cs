@@ -160,7 +160,7 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_draft_law })]
         public ActionResult UploadFiles()
         {
-            
+
             List<ImportError> oErrores = null;
             // Checking no of files injected in Request object  
             if (Request.Files.Count > 0)
@@ -184,18 +184,20 @@ namespace Presentation.Web.Controllers
                         List<DraftLawViewModel> lista = ConvertirDatatable(dt, out oErrores);
                         if (oErrores.Count == 0)
                         {
+                            if (VerificarPonentes(lista, out oErrores))
+                            {
 
-                            DraftLawBL oDraftLawBL = new DraftLawBL();
-                            CommissionBL oCommissionBL = new CommissionBL();
-                            InterestAreaBL oInterestAreaBL = new InterestAreaBL();
+                                DraftLawBL oDraftLawBL = new DraftLawBL();
+                                CommissionBL oCommissionBL = new CommissionBL();
+                                InterestAreaBL oInterestAreaBL = new InterestAreaBL();
 
-                            Dictionary<string, int> commisions = oCommissionBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.commission).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
-                            Dictionary<string, int> interest_areas = oInterestAreaBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.interest_area).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                                Dictionary<string, int> commisions = oCommissionBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.commission).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                                Dictionary<string, int> interest_areas = oInterestAreaBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.interest_area).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
-                            oDraftLawBL.Import(lista, commisions, interest_areas, AuthorizeUserAttribute.UsuarioLogeado().user_id);
-                             
+                                oDraftLawBL.Import(lista, commisions, interest_areas, AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
-                            
+                            }
+
                         }
 
                     }
@@ -222,7 +224,85 @@ namespace Presentation.Web.Controllers
                 return Json("No files selected.");
             }
         }
-       
+        private bool VerificarPonentes(List<DraftLawViewModel> lista, out List<ImportError> oErrores)
+        {
+            List<string> IgnorarPonentes = new List<string>();
+            IgnorarPonentes.Add("Ministro de Justicia y del Derecho");
+            IgnorarPonentes.Add("Ministro de Hacienda y Crédito Público");
+
+            List<string> ExcluirTitulos = new List<string>();
+            ExcluirTitulos.Add("HR");
+            ExcluirTitulos.Add("HS");
+            ExcluirTitulos.Add("H.R.");
+            ExcluirTitulos.Add("H.S.");
+            ExcluirTitulos.Add("Dr.");
+
+
+            oErrores = new List<ImportError>();
+            UserBL oUserBL = new UserBL();
+            int i = 1;
+            foreach (DraftLawViewModel obj in lista)
+            {
+                List<string> errores = new List<string>();
+                string mensaje = "";
+                i++;
+                var authors = obj.author.Split(',');
+                List<int> debate_speakers = new List<int>();
+                foreach (string author in authors)
+                {
+                    var author_aux = author.Trim();
+                    if (IgnorarPonentes.Contains(author_aux))
+                        continue;
+                    else
+                    {
+                        author_aux = RemoverTitulos(author_aux, ExcluirTitulos);
+                        int? user_id = oUserBL.ObtenerPonente(author_aux);
+
+                        if (!user_id.HasValue || user_id == 0)
+                        {
+                            mensaje = "El autor '" + author_aux + "' no esta registrado como usuario del sistema.";
+                            errores.Add(mensaje);
+                        }
+
+                        else {
+                            debate_speakers.Add(user_id.Value);
+                        }
+                    }
+
+
+                }
+                obj.debate_speakers = debate_speakers;
+
+                if (errores.Count() == 0)
+                    continue;
+                else
+                {
+
+                    oErrores.Add(new ImportError
+                    {
+                        nroFila = i,
+                        errores = errores
+
+                    });
+                    break;
+                }
+
+            }
+            return oErrores.Count == 0;
+
+        }
+
+        private string RemoverTitulos(string author_aux, List<string> excluirTitulos)
+        {
+            foreach (string title in excluirTitulos)
+            {
+                author_aux = Helper.ReplaceFirstOccurrence(author_aux, title, "");
+
+
+            }
+            return author_aux.Trim();
+            //throw new NotImplementedException();
+        }
 
         private List<DraftLawViewModel> ConvertirDatatable(DataTable dt, out List<ImportError> oErrores)
         {
@@ -245,7 +325,7 @@ namespace Presentation.Web.Controllers
             {
                 DraftLawViewModel obj = new DraftLawViewModel();
                 List<string> errores = new List<string>();
-                
+
                 obj.draft_law_number = Util.ValidarInt(row, "myid", errores, true);
 
                 obj.title = Util.ValidarString(row, "Titulo", errores, true);
@@ -255,11 +335,11 @@ namespace Presentation.Web.Controllers
 
 
                 obj.date_presentation = Util.ValidarDateTime(row, "F-Presentado", errores, true);
-               
+
 
                 obj.commission = Util.ValidarString(row, "Comision", errores, true);
 
-               
+
 
                 obj.debate_speaker = Util.ValidarString(row, "pon_1_debate", errores, false);
                 obj.debate_speaker2 = Util.ValidarString(row, "pon_2_debate", errores, false);
@@ -287,7 +367,7 @@ namespace Presentation.Web.Controllers
             }
             return lista;
         }
-       
+
         private void ValidarCabecera(DataTable dt, out List<string> oErrores)
         {
             string formatError = "El archivo Excel no tiene la columna {0}";
@@ -313,7 +393,7 @@ namespace Presentation.Web.Controllers
                 oErrores.Add(String.Format(formatError, "Estado"));
             if (!dt.Columns.Contains("Comentario_Estado"))
                 oErrores.Add(String.Format(formatError, "Comentario_Estado"));
-         
+
 
             if (!dt.Columns.Contains("Iniciativa"))
                 oErrores.Add(String.Format(formatError, "Iniciativa"));

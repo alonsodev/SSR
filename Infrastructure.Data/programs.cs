@@ -18,6 +18,7 @@ namespace Infrastructure.Data
         public programs()
         {
             this.investigators = new HashSet<investigators>();
+            this.snies = new HashSet<snies>();
         }
     
         public int program_id { get; set; }
@@ -29,5 +30,7 @@ namespace Infrastructure.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<investigators> investigators { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<snies> snies { get; set; }
     }
 }

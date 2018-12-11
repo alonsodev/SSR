@@ -342,6 +342,8 @@
     <Content Include="Views\Concept\Ver.cshtml" />
     <Content Include="Views\Concept\PorCalificar.cshtml" />
     <Content Include="Views\Concept\Calificar.cshtml" />
+    <Content Include="Views\Account\Crear - Copia.cshtml" />
+    <Content Include="Views\Account\Crear - Copia %282%29.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />

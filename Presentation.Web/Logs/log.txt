@@ -2344,3 +2344,346 @@ DEBUG 2018-12-07 18:14:53,345 117036ms MvcApplication         OnActionExecuting 
 DEBUG 2018-12-07 18:14:53,350 117041ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerGrupoInvestigacion - time spent 5
 DEBUG 2018-12-07 18:14:57,615 121306ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
 DEBUG 2018-12-07 18:14:57,625 121316ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 9
+DEBUG 2018-12-07 21:49:24,648  1318ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-07 21:49:24,678  1348ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 30
+DEBUG 2018-12-07 21:49:28,785  5455ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-07 21:49:29,140  5809ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 354
+DEBUG 2018-12-07 21:49:29,151  5821ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-07 21:49:29,152  5821ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-07 21:49:32,046  8716ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-07 21:49:32,046  8716ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-07 21:49:32,761  9431ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-07 21:49:32,797  9467ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 36
+DEBUG 2018-12-07 21:49:33,254  9924ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-07 21:49:33,260  9929ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 6
+DEBUG 2018-12-07 21:49:44,596 21265ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-07 21:49:44,976 21645ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 379
+DEBUG 2018-12-07 21:51:10,850 107520ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-07 21:51:10,873 107543ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 22
+DEBUG 2018-12-07 21:51:36,665 133334ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-07 21:51:36,666 133335ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 1
+DEBUG 2018-12-07 21:51:37,574 134243ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:37,597 134266ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 23
+DEBUG 2018-12-07 21:51:38,081 134750ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:38,086 134755ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 5
+DEBUG 2018-12-07 21:51:45,233 141902ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:45,259 141928ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 25
+DEBUG 2018-12-07 21:51:45,867 142536ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:45,888 142557ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 20
+DEBUG 2018-12-07 21:51:46,565 143235ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:46,579 143249ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 13
+DEBUG 2018-12-07 21:51:47,053 143722ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:47,068 143737ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 15
+DEBUG 2018-12-07 21:51:47,492 144161ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:47,513 144182ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 20
+DEBUG 2018-12-07 21:51:50,377 147046ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-07 21:51:50,419 147088ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 41
+DEBUG 2018-12-07 21:51:56,922 153592ms MvcApplication         OnActionExecuting  - Executing controller User, action Verificar
+DEBUG 2018-12-07 21:51:56,929 153599ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Verificar - time spent 6
+DEBUG 2018-12-07 21:51:56,967 153637ms MvcApplication         OnActionExecuting  - Executing controller User, action Editar
+DEBUG 2018-12-07 21:51:57,035 153705ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Editar - time spent 67
+DEBUG 2018-12-07 21:51:57,046 153716ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-07 21:51:57,046 153716ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 0
+DEBUG 2018-12-07 21:51:57,409 154079ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:57,417 154087ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 7
+DEBUG 2018-12-07 21:51:57,917 154586ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-07 21:51:57,923 154592ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 6
+DEBUG 2018-12-07 21:54:51,925  1370ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-07 21:54:51,954  1399ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 29
+DEBUG 2018-12-07 21:55:15,651 25095ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-07 21:55:15,969 25413ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 318
+DEBUG 2018-12-07 21:55:15,981 25425ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-07 21:55:15,982 25426ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-07 21:55:19,075 28520ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-07 21:55:19,075 28520ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-07 21:55:19,738 29183ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-07 21:55:19,773 29218ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 35
+DEBUG 2018-12-07 21:55:20,248 29692ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-07 21:55:20,261 29705ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 13
+DEBUG 2018-12-07 21:55:24,548 33993ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-07 21:55:24,918 34363ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 370
+DEBUG 2018-12-07 21:56:36,609  1317ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-07 21:56:36,639  1348ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 30
+DEBUG 2018-12-07 21:56:40,233  4942ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-07 21:56:40,588  5296ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 355
+DEBUG 2018-12-07 21:56:40,602  5310ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-07 21:56:40,603  5312ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-07 21:56:43,152  7861ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-07 21:56:43,153  7862ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-07 21:56:43,829  8538ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-07 21:56:43,857  8566ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 28
+DEBUG 2018-12-07 21:56:44,319  9027ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-07 21:56:44,325  9033ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 6
+DEBUG 2018-12-07 21:56:49,080 13789ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-07 21:56:49,624 14332ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 544
+DEBUG 2018-12-07 21:56:59,132 23841ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-07 21:56:59,443 24152ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 310
+DEBUG 2018-12-07 21:57:49,965 74673ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-07 21:57:50,032 74740ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 67
+DEBUG 2018-12-10 10:15:29,565 217134273ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 10:15:29,565 217134273ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-10 10:15:31,077 217135786ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 10:15:31,088 217135797ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 11
+DEBUG 2018-12-10 10:15:31,103 217135812ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-10 10:15:31,104 217135813ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-10 10:15:33,728 217138436ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-10 10:15:33,728 217138436ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-10 10:15:34,115 217138823ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:15:34,126 217138834ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 10
+DEBUG 2018-12-10 10:15:34,623 217139331ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:15:34,630 217139338ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 6
+DEBUG 2018-12-10 10:15:46,894 217151603ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:15:47,025 217151734ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 131
+DEBUG 2018-12-10 10:15:47,045 217151754ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:15:47,051 217151760ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 6
+DEBUG 2018-12-10 10:16:22,748 217187457ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:17:49,905 217274613ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 87156
+DEBUG 2018-12-10 10:17:49,924 217274632ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:17:49,933 217274641ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 9
+DEBUG 2018-12-10 10:17:56,256 217280965ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:18:02,465 217287174ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 6209
+DEBUG 2018-12-10 10:19:23,791 217368500ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:19:26,481 217371190ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 2690
+DEBUG 2018-12-10 10:19:45,284 217389993ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-10 10:19:45,284 217389993ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-10 10:19:49,543 217394252ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:19:49,551 217394260ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 8
+DEBUG 2018-12-10 10:19:50,056 217394765ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:19:50,063 217394772ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 6
+DEBUG 2018-12-10 10:19:53,328 217398037ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:19:58,144 217402853ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 4815
+DEBUG 2018-12-10 10:21:46,220 217510929ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-10 10:21:46,220 217510929ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-10 10:21:47,245 217511954ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:21:47,254 217511963ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 9
+DEBUG 2018-12-10 10:21:47,758 217512467ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:21:47,778 217512487ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 19
+DEBUG 2018-12-10 10:21:55,285 217519994ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:21:58,401 217523110ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 3115
+DEBUG 2018-12-10 10:43:20,802  1527ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 10:43:20,838  1562ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 35
+DEBUG 2018-12-10 10:43:24,661  5386ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 10:43:25,130  5854ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 468
+DEBUG 2018-12-10 10:43:25,142  5866ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-10 10:43:25,143  5868ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-10 10:43:27,916  8640ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-10 10:43:27,917  8642ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-10 10:43:28,587  9312ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:43:28,616  9340ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 28
+DEBUG 2018-12-10 10:43:29,085  9809ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:43:29,092  9816ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 6
+DEBUG 2018-12-10 10:43:33,192 13917ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 10:43:33,861 14586ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 668
+DEBUG 2018-12-10 10:43:33,874 14599ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 10:43:33,880 14605ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 5
+DEBUG 2018-12-10 11:04:32,034 1272758ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-10 11:04:32,035 1272759ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-10 11:04:32,049 1272773ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 11:04:32,049 1272773ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-10 11:04:34,149 1274874ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 11:04:34,237 1274962ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 87
+DEBUG 2018-12-10 12:08:54,160  1345ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 12:08:54,186  1371ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 26
+DEBUG 2018-12-10 12:09:08,261 15446ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 12:09:08,603 15788ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 341
+DEBUG 2018-12-10 12:09:08,616 15801ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-10 12:09:08,617 15802ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-10 12:09:12,662 19847ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action Index
+DEBUG 2018-12-10 12:09:12,662 19847ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action Index - time spent 0
+DEBUG 2018-12-10 12:09:13,449 20634ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 12:09:13,476 20661ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 27
+DEBUG 2018-12-10 12:09:13,946 21131ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 12:09:13,954 21139ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 8
+DEBUG 2018-12-10 12:09:18,860 26045ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 12:09:19,257 26442ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 397
+DEBUG 2018-12-10 12:09:49,391 56576ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 12:10:54,491  1330ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 12:10:54,518  1356ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 27
+DEBUG 2018-12-10 12:10:57,031  3870ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-10 12:10:57,353  4192ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 322
+DEBUG 2018-12-10 12:10:57,380  4218ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-10 12:10:57,380  4218ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-10 12:11:03,351 10190ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action UploadFiles
+DEBUG 2018-12-10 12:11:11,380 18219ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action UploadFiles - time spent 8028
+DEBUG 2018-12-10 12:11:11,412 18251ms MvcApplication         OnActionExecuting  - Executing controller DraftLaw, action ObtenerLista
+DEBUG 2018-12-10 12:11:11,437 18276ms MvcApplication         OnActionExecuted   - Finished executing controller DraftLaw, action ObtenerLista - time spent 25
+DEBUG 2018-12-10 14:12:17,341  1357ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:12:17,788  1805ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 447
+DEBUG 2018-12-10 14:17:11,987 296004ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:17:12,027 296044ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 14:17:38,328 322345ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:17:38,367 322384ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 38
+DEBUG 2018-12-10 14:18:15,200 359216ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:18:15,241 359257ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 41
+DEBUG 2018-12-10 14:19:09,935 413952ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:19:09,971 413988ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 35
+DEBUG 2018-12-10 14:21:33,420 557437ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:21:33,459 557476ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 14:26:50,627 874644ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:26:50,670 874687ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 43
+DEBUG 2018-12-10 14:28:14,288 958304ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:28:14,327 958344ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 14:30:07,776 1071793ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:30:07,817 1071834ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 41
+DEBUG 2018-12-10 14:31:04,679 1128695ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:31:04,719 1128735ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 14:32:09,410 1193427ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:32:09,449 1193466ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 38
+DEBUG 2018-12-10 14:34:07,289 1311305ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:34:07,336 1311352ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 47
+DEBUG 2018-12-10 14:36:53,831 1477847ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:36:53,891 1477907ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 59
+DEBUG 2018-12-10 14:39:53,067 1657083ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:39:53,114 1657130ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 46
+DEBUG 2018-12-10 14:40:06,566 1670582ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:40:06,611 1670627ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 14:40:12,624 1676640ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:40:12,663 1676679ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 38
+DEBUG 2018-12-10 14:42:07,910 1791927ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:42:07,955 1791972ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 14:42:52,594 1836610ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:42:52,635 1836651ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 41
+DEBUG 2018-12-10 14:44:10,123   908ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:44:12,512  3297ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 2389
+DEBUG 2018-12-10 14:45:16,139 66925ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:45:16,186 66972ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 47
+DEBUG 2018-12-10 14:47:18,859 189645ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 14:47:18,910 189696ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 50
+DEBUG 2018-12-10 14:48:02,954 233740ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
+DEBUG 2018-12-10 14:48:03,087 233873ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 132
+DEBUG 2018-12-10 14:48:03,755 234541ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerGrupoInvestigacion
+DEBUG 2018-12-10 14:48:03,815 234601ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerGrupoInvestigacion - time spent 60
+DEBUG 2018-12-10 14:59:15,624 906410ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
+DEBUG 2018-12-10 14:59:15,647 906433ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 22
+DEBUG 2018-12-10 14:59:16,690 907476ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerGrupoInvestigacion
+DEBUG 2018-12-10 14:59:16,698 907484ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerGrupoInvestigacion - time spent 8
+DEBUG 2018-12-10 15:01:48,889 1059675ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:01:48,941 1059727ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 51
+DEBUG 2018-12-10 15:02:16,513 1087299ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:02:16,552 1087338ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 38
+DEBUG 2018-12-10 15:03:12,610 1143396ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:03:12,654 1143440ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 15:03:19,730 1150516ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:03:19,770 1150556ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 15:03:22,546 1153332ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:03:22,586 1153372ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 15:04:24,660 1215446ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:04:24,707 1215493ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 47
+DEBUG 2018-12-10 15:05:19,692 1270478ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:05:19,737 1270523ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 15:05:28,286 1279072ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:05:28,329 1279115ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 42
+DEBUG 2018-12-10 15:07:37,589 1408375ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:07:37,632 1408418ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 43
+DEBUG 2018-12-10 15:09:45,681 1536467ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:09:45,726 1536512ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 15:10:02,292 1553078ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:10:02,327 1553113ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 35
+DEBUG 2018-12-10 15:10:27,962 1578748ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:10:27,998 1578784ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 36
+DEBUG 2018-12-10 15:10:51,209 1601995ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:10:51,253 1602039ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 15:11:14,039 1624825ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:11:14,074 1624860ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 35
+DEBUG 2018-12-10 15:11:22,712 1633498ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:11:22,748 1633534ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 36
+DEBUG 2018-12-10 15:13:54,636 1785422ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:13:54,680 1785466ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 15:14:21,880 1812666ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:14:21,917 1812703ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 36
+DEBUG 2018-12-10 15:17:55,846 2026632ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:17:55,891 2026677ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 15:18:57,904 2088690ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:18:57,946 2088732ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 41
+DEBUG 2018-12-10 15:19:38,587 2129373ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:19:38,631 2129417ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 43
+DEBUG 2018-12-10 15:21:07,688 2218474ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:21:07,741 2218527ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 52
+DEBUG 2018-12-10 15:24:48,815 2439601ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:24:48,860 2439646ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 15:29:38,712 2729498ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:29:38,762 2729548ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 50
+DEBUG 2018-12-10 15:29:43,280 2734066ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:29:43,324 2734110ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 15:31:42,654 2853440ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:31:42,707 2853493ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 52
+DEBUG 2018-12-10 15:32:12,313 2883099ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:32:12,362 2883148ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 48
+DEBUG 2018-12-10 15:32:32,656 2903441ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:32:32,701 2903486ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 15:33:17,388 2948174ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:33:17,429 2948215ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 40
+DEBUG 2018-12-10 15:39:51,531 3342317ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:39:51,581 3342367ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 50
+DEBUG 2018-12-10 15:53:24,569 4155355ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:53:24,627 4155413ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 58
+DEBUG 2018-12-10 15:56:33,940 4344726ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 15:56:33,987 4344773ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 47
+DEBUG 2018-12-10 16:07:13,248 4984034ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:07:13,298 4984084ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 49
+DEBUG 2018-12-10 16:08:15,520 5046306ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:08:15,566 5046352ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 16:08:34,820 5065605ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:08:34,864 5065649ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 43
+DEBUG 2018-12-10 16:11:04,659 5215445ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:11:04,705 5215491ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 46
+DEBUG 2018-12-10 16:11:35,934 5246720ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:11:35,972 5246758ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 37
+DEBUG 2018-12-10 16:12:24,260 5295046ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:12:24,302 5295088ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 42
+DEBUG 2018-12-10 16:13:09,525 5340311ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:13:09,568 5340354ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 42
+DEBUG 2018-12-10 16:20:13,049 5763835ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:20:13,094 5763879ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 16:20:34,891 5785677ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:20:34,926 5785712ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 34
+DEBUG 2018-12-10 16:27:41,464 6212250ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:27:41,510 6212296ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 16:30:22,814 6373600ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:30:22,859 6373645ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 45
+DEBUG 2018-12-10 16:31:56,737 6467523ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:31:56,780 6467566ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 42
+DEBUG 2018-12-10 16:32:09,448 6480234ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:32:09,488 6480274ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 39
+DEBUG 2018-12-10 16:33:25,339 6556125ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:33:25,379 6556165ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 40
+DEBUG 2018-12-10 16:34:23,367 6614153ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:34:23,410 6614196ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 42
+DEBUG 2018-12-10 16:42:50,917 7121703ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:42:50,973 7121759ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 55
+DEBUG 2018-12-10 16:43:01,432 7132218ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:43:01,469 7132255ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 36
+DEBUG 2018-12-10 16:49:39,972   690ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:49:40,824  1541ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 852
+DEBUG 2018-12-10 16:50:54,264 74982ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:50:54,308 75026ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 43
+DEBUG 2018-12-10 16:51:39,170 119887ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:51:39,215 119932ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 44
+DEBUG 2018-12-10 16:53:28,079 228796ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:53:28,122 228839ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 43
+DEBUG 2018-12-10 16:54:40,110 300827ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
+DEBUG 2018-12-10 16:54:40,157 300874ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 47
+DEBUG 2018-12-10 16:54:40,863 301580ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerGrupoInvestigacion
+DEBUG 2018-12-10 16:54:40,875 301592ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerGrupoInvestigacion - time spent 11
+DEBUG 2018-12-10 16:55:03,834 324551ms MvcApplication         OnActionExecuting  - Executing controller User, action Verificar
+DEBUG 2018-12-10 16:55:03,845 324562ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Verificar - time spent 10
+DEBUG 2018-12-10 16:55:03,917 324634ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:55:14,862 335580ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 10945
+DEBUG 2018-12-10 16:55:28,920 349637ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
+DEBUG 2018-12-10 16:55:28,938 349655ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 18
+DEBUG 2018-12-10 16:55:29,749 350466ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerGrupoInvestigacion
+DEBUG 2018-12-10 16:55:29,758 350475ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerGrupoInvestigacion - time spent 8
+DEBUG 2018-12-10 16:55:41,337 362054ms MvcApplication         OnActionExecuting  - Executing controller User, action Verificar
+DEBUG 2018-12-10 16:55:41,342 362059ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Verificar - time spent 4
+DEBUG 2018-12-10 16:55:41,385 362102ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:56:00,092 380809ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 18706
+DEBUG 2018-12-10 16:56:18,174 398891ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
+DEBUG 2018-12-10 16:56:18,197 398914ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 23
+DEBUG 2018-12-10 16:56:18,871 399588ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerGrupoInvestigacion
+DEBUG 2018-12-10 16:56:18,877 399594ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerGrupoInvestigacion - time spent 5
+DEBUG 2018-12-10 16:56:27,841 408558ms MvcApplication         OnActionExecuting  - Executing controller User, action Verificar
+DEBUG 2018-12-10 16:56:27,847 408564ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Verificar - time spent 6
+DEBUG 2018-12-10 16:56:27,888 408605ms MvcApplication         OnActionExecuting  - Executing controller Account, action Crear
+DEBUG 2018-12-10 16:56:29,814 410531ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Crear - time spent 1925
+DEBUG 2018-12-10 16:56:29,831 410548ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-10 16:56:29,832 410549ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0

@@ -25,7 +25,6 @@ namespace Infrastructure.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<academic_levels> academic_levels { get; set; }
         public virtual DbSet<commissions> commissions { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<document_types> document_types { get; set; }
@@ -33,7 +32,6 @@ namespace Infrastructure.Data
         public virtual DbSet<institutions> institutions { get; set; }
         public virtual DbSet<interest_areas> interest_areas { get; set; }
         public virtual DbSet<investigation_groups> investigation_groups { get; set; }
-        public virtual DbSet<investigators> investigators { get; set; }
         public virtual DbSet<municipalities> municipalities { get; set; }
         public virtual DbSet<nationalities> nationalities { get; set; }
         public virtual DbSet<permissions> permissions { get; set; }
@@ -51,5 +49,10 @@ namespace Infrastructure.Data
         public virtual DbSet<debate_speakers> debate_speakers { get; set; }
         public virtual DbSet<concepts_status_logs> concepts_status_logs { get; set; }
         public virtual DbSet<concepts> concepts { get; set; }
+        public virtual DbSet<education_levels> education_levels { get; set; }
+        public virtual DbSet<educational_institutions> educational_institutions { get; set; }
+        public virtual DbSet<investigators> investigators { get; set; }
+        public virtual DbSet<knowledge_areas> knowledge_areas { get; set; }
+        public virtual DbSet<snies> snies { get; set; }
     }
 }

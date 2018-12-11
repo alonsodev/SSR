@@ -12,25 +12,23 @@ namespace Infrastructure.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class commissions
+    public partial class snies
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public commissions()
-        {
-            this.draft_laws = new HashSet<draft_laws>();
-            this.investigators = new HashSet<investigators>();
-        }
-    
-        public int commission_id { get; set; }
+        public int snie_id { get; set; }
+        public Nullable<int> educational_institution_id { get; set; }
+        public Nullable<int> knowledge_area_id { get; set; }
+        public Nullable<int> program_id { get; set; }
+        public Nullable<int> academic_level_id { get; set; }
+        public Nullable<int> education_level_id { get; set; }
         public string name { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<draft_laws> draft_laws { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
+        public virtual education_levels education_levels { get; set; }
+        public virtual educational_institutions educational_institutions { get; set; }
+        public virtual knowledge_areas knowledge_areas { get; set; }
+        public virtual programs programs { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public users()
         {
-            this.investigators = new HashSet<investigators>();
             this.debate_speakers = new HashSet<debate_speakers>();
+            this.investigators = new HashSet<investigators>();
         }
     
         public int id { get; set; }
@@ -43,8 +43,6 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_modified { get; set; }
     
         public virtual document_types document_types { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
         public virtual municipalities municipalities { get; set; }
         public virtual nationalities nationalities { get; set; }
         public virtual nationalities nationalities1 { get; set; }
@@ -52,5 +50,7 @@ namespace Infrastructure.Data
         public virtual user_status user_status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<debate_speakers> debate_speakers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
     }
 }
