@@ -4,73 +4,75 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fcaac3907f4d46f28eda10283ee7a4fe" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="SSRModel.commissions" Width="1.5" PointX="6" PointY="29.5" />
-        <EntityTypeShape EntityType="SSRModel.departments" Width="1.5" PointX="1.5" PointY="17.625" />
-        <EntityTypeShape EntityType="SSRModel.document_types" Width="1.5" PointX="0.75" PointY="11.375" />
-        <EntityTypeShape EntityType="SSRModel.genders" Width="1.5" PointX="6" PointY="21.125" />
-        <EntityTypeShape EntityType="SSRModel.institutions" Width="1.5" PointX="6" PointY="11.5" />
-        <EntityTypeShape EntityType="SSRModel.interest_areas" Width="1.5" PointX="6" PointY="14.875" />
-        <EntityTypeShape EntityType="SSRModel.investigation_groups" Width="1.5" PointX="6" PointY="23.375" />
-        <EntityTypeShape EntityType="SSRModel.municipalities" Width="1.5" PointX="0.75" PointY="14.5" />
-        <EntityTypeShape EntityType="SSRModel.nationalities" Width="1.5" PointX="0.75" PointY="20.125" />
-        <EntityTypeShape EntityType="SSRModel.permissions" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SSRModel.programs" Width="1.5" PointX="6" PointY="18" />
-        <EntityTypeShape EntityType="SSRModel.role_permissions" Width="1.5" PointX="6" PointY="6.875" />
-        <EntityTypeShape EntityType="SSRModel.roles" Width="1.5" PointX="0.75" PointY="6.875" />
-        <EntityTypeShape EntityType="SSRModel.user_status" Width="1.5" PointX="0.75" PointY="23.5" />
-        <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="5.125" />
-        <AssociationConnector Association="SSRModel.FK_municipalities_departments" />
-        <AssociationConnector Association="SSRModel.FK_users_document_types" />
-        <AssociationConnector Association="SSRModel.FK_investigation_groups_institutions" />
-        <AssociationConnector Association="SSRModel.FK_users_municipalities" />
-        <AssociationConnector Association="SSRModel.FK_users_address_countries" />
-        <AssociationConnector Association="SSRModel.FK_users_nationalities" />
-        <AssociationConnector Association="SSRModel.FK_role_permissions_permissions" />
-        <AssociationConnector Association="SSRModel.FK_role_permissions_roles" />
-        <AssociationConnector Association="SSRModel.FK_users_roles" />
-        <AssociationConnector Association="SSRModel.FK_users_user_status" />
-        <EntityTypeShape EntityType="SSRModel.draft_laws" Width="1.5" PointX="8.25" PointY="20.875" />
+      <Diagram DiagramId="fcaac3907f4d46f28eda10283ee7a4fe" Name="Diagram1" ZoomLevel="25">
+        <EntityTypeShape EntityType="SSRModel.academic_levels" Width="1.5" PointX="6" PointY="35.875" />
+        <EntityTypeShape EntityType="SSRModel.bad_languages" Width="1.5" PointX="10.75" PointY="7.25" />
+        <EntityTypeShape EntityType="SSRModel.commissions" Width="1.5" PointX="6" PointY="25" />
+        <EntityTypeShape EntityType="SSRModel.concepts" Width="1.5" PointX="10.5" PointY="1.25" />
+        <EntityTypeShape EntityType="SSRModel.concepts_status" Width="1.5" PointX="8.25" PointY="11.25" />
+        <EntityTypeShape EntityType="SSRModel.concepts_status_logs" Width="1.5" PointX="12.75" PointY="2.125" />
+        <EntityTypeShape EntityType="SSRModel.concepts_tags" Width="1.5" PointX="15.75" PointY="2.375" />
+        <EntityTypeShape EntityType="SSRModel.debate_speakers" Width="1.5" PointX="8.25" PointY="7.375" />
+        <EntityTypeShape EntityType="SSRModel.departments" Width="1.5" PointX="1.5" PointY="14.25" />
+        <EntityTypeShape EntityType="SSRModel.document_types" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="SSRModel.draft_laws" Width="1.5" PointX="8.25" PointY="17" />
+        <EntityTypeShape EntityType="SSRModel.education_levels" Width="1.5" PointX="6" PointY="21.625" />
+        <EntityTypeShape EntityType="SSRModel.educational_institutions" Width="1.5" PointX="6" PointY="18.375" />
+        <EntityTypeShape EntityType="SSRModel.genders" Width="1.5" PointX="6" PointY="4" />
+        <EntityTypeShape EntityType="SSRModel.institutions" Width="1.5" PointX="6" PointY="15" />
+        <EntityTypeShape EntityType="SSRModel.interest_areas" Width="1.5" PointX="6" PointY="31.625" />
+        <EntityTypeShape EntityType="SSRModel.investigation_groups" Width="1.5" PointX="6" PointY="11.375" />
+        <EntityTypeShape EntityType="SSRModel.investigators" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="SSRModel.knowledge_areas" Width="1.5" PointX="6" PointY="39" />
+        <EntityTypeShape EntityType="SSRModel.municipalities" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="SSRModel.nationalities" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="SSRModel.permissions" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="SSRModel.programs" Width="1.5" PointX="6" PointY="28.25" />
+        <EntityTypeShape EntityType="SSRModel.reason_rejects" Width="1.5" PointX="8.25" PointY="13.75" />
+        <EntityTypeShape EntityType="SSRModel.role_permissions" Width="1.5" PointX="6" PointY="7.25" />
+        <EntityTypeShape EntityType="SSRModel.roles" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="SSRModel.snies" Width="1.5" PointX="8.25" PointY="23.5" />
+        <EntityTypeShape EntityType="SSRModel.tags" Width="1.5" PointX="13.5" PointY="7.5" />
+        <EntityTypeShape EntityType="SSRModel.user_status" Width="1.5" PointX="0.75" PointY="20" />
+        <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="SSRModel.FK_snies_academic_levels" />
         <AssociationConnector Association="SSRModel.FK_draft_laws_commissions" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_interest_areas" />
-        <EntityTypeShape EntityType="SSRModel.bad_languages" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SSRModel.concepts_tags" Width="1.5" PointX="12.75" PointY="14.75" />
-        <EntityTypeShape EntityType="SSRModel.tags" Width="1.5" PointX="10.5" PointY="10.875" />
-        <AssociationConnector Association="SSRModel.FK_concepts_tags_tags" />
-        <EntityTypeShape EntityType="SSRModel.concepts_status" Width="1.5" PointX="8.25" PointY="15.125" />
-        <EntityTypeShape EntityType="SSRModel.reason_rejects" Width="1.5" PointX="8.5" PointY="12.25" />
-        <EntityTypeShape EntityType="SSRModel.debate_speakers" Width="1.5" PointX="13.5" PointY="18.5" />
-        <AssociationConnector Association="SSRModel.FK_debate_speakers_draft_laws" />
-        <AssociationConnector Association="SSRModel.FK_debate_speakers_users" />
-        <EntityTypeShape EntityType="SSRModel.concepts_status_logs" Width="1.5" PointX="15" PointY="14.25" />
-        <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts_status" />
-        <AssociationConnector Association="SSRModel.FK_concepts_status_logs_reason_rejects" />
-        <EntityTypeShape EntityType="SSRModel.concepts" Width="1.5" PointX="10.75" PointY="18.75" />
         <AssociationConnector Association="SSRModel.FK_concepts_concepts_status" />
         <AssociationConnector Association="SSRModel.FK_concepts_draft_laws" />
+        <AssociationConnector Association="SSRModel.FK_concepts_investigators" />
         <AssociationConnector Association="SSRModel.FK_concepts_reason_rejects" />
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts" />
         <AssociationConnector Association="SSRModel.FK_concepts_tags_concepts" />
-        <EntityTypeShape EntityType="SSRModel.education_levels" Width="1.5" PointX="11" PointY="24.625" />
-        <EntityTypeShape EntityType="SSRModel.educational_institutions" Width="1.5" PointX="11" PointY="28" />
-        <EntityTypeShape EntityType="SSRModel.investigators" Width="1.5" PointX="13.25" PointY="22.625" />
-        <EntityTypeShape EntityType="SSRModel.knowledge_areas" Width="1.5" PointX="14" PointY="30.125" />
-        <EntityTypeShape EntityType="SSRModel.snies" Width="1.5" PointX="16.25" PointY="22.25" />
-        <AssociationConnector Association="SSRModel.FK_concepts_investigators" />
+        <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts_status" />
+        <AssociationConnector Association="SSRModel.FK_concepts_status_logs_reason_rejects" />
+        <AssociationConnector Association="SSRModel.FK_concepts_tags_tags" />
+        <AssociationConnector Association="SSRModel.FK_debate_speakers_draft_laws" />
+        <AssociationConnector Association="SSRModel.FK_debate_speakers_users" />
+        <AssociationConnector Association="SSRModel.FK_municipalities_departments" />
+        <AssociationConnector Association="SSRModel.FK_users_document_types" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_interest_areas" />
         <AssociationConnector Association="SSRModel.FK_investigators_education_levels" />
         <AssociationConnector Association="SSRModel.FK_snies_education_levels" />
         <AssociationConnector Association="SSRModel.FK_investigators_educational_institutions" />
         <AssociationConnector Association="SSRModel.FK_snies_educational_institutions" />
         <AssociationConnector Association="SSRModel.FK_investigators_genders" />
+        <AssociationConnector Association="SSRModel.FK_investigation_groups_institutions" />
         <AssociationConnector Association="SSRModel.FK_investigators_institutions" />
         <AssociationConnector Association="SSRModel.FK_investigators_investigation_groups" />
         <AssociationConnector Association="SSRModel.FK_investigators_programs" />
         <AssociationConnector Association="SSRModel.FK_investigators_users" />
         <AssociationConnector Association="SSRModel.FK_snies_knowledge_areas" />
+        <AssociationConnector Association="SSRModel.FK_users_municipalities" />
+        <AssociationConnector Association="SSRModel.FK_users_address_countries" />
+        <AssociationConnector Association="SSRModel.FK_users_nationalities" />
+        <AssociationConnector Association="SSRModel.FK_role_permissions_permissions" />
         <AssociationConnector Association="SSRModel.FK_snies_programs" />
+        <AssociationConnector Association="SSRModel.FK_role_permissions_roles" />
+        <AssociationConnector Association="SSRModel.FK_users_roles" />
+        <AssociationConnector Association="SSRModel.FK_users_user_status" />
         <AssociationConnector Association="SSRModel.investigators_commissions" />
         <AssociationConnector Association="SSRModel.investigators_interest_areas" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

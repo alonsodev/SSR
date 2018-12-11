@@ -9,13 +9,27 @@ namespace Business.Logic
 {
     public class SelectorBL
     {
-        private static UserRepository  oRepositorio;
+        private static UserRepository oRepositorio;
         private static UnitOfWork oUnitOfWork;
 
         public SelectorBL()
         {
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.UserRepository;
+        }
+
+
+        public List<SelectOptionItem> GrantedTitlesSelector(int educational_institution_id, int education_level_id)
+        {
+            return oRepositorio.GrantedTitlesSelector(educational_institution_id, education_level_id);
+        }
+        public List<SelectOptionItem> KnowledgeAreasSelector(int? educational_institution_id = null)
+        {
+            return oRepositorio.KnowledgeAreasSelector(educational_institution_id);
+        }
+        public List<SelectOptionItem> EducationalInstitutionsSelector()
+        {
+            return oRepositorio.EducationalInstitutionsSelector();
         }
         public List<SelectOptionItem> ReasonRejectsSelector()
         {
@@ -37,7 +51,7 @@ namespace Business.Logic
         {
             return oRepositorio.CommissionsSelector();
         }
-        
+
         public List<SelectOptionItem> MunicipalitiesSelector(int department_id)
         {
             return oRepositorio.MunicipalitiesSelector(department_id);
@@ -46,7 +60,7 @@ namespace Business.Logic
         {
             return oRepositorio.InterestAreasSelector();
         }
-        
+
         public List<SelectOptionItem> InvestigationGroupsSelector(int institution_id)
         {
             return oRepositorio.InvestigationGroupsSelector(institution_id);
@@ -55,7 +69,7 @@ namespace Business.Logic
         {
             return oRepositorio.ProgramsSelector();
         }
-        
+
         public List<SelectOptionItem> GendersSelector()
         {
             return oRepositorio.GendersSelector();

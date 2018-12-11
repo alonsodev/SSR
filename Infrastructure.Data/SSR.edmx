@@ -292,7 +292,7 @@
           <Key>
             <PropertyRef Name="program_id" />
           </Key>
-          <Property Name="program_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="program_id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="200" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
@@ -1061,104 +1061,54 @@
     <edmx:ConceptualModels>
       <Schema Namespace="SSRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SSREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="academic_levels" EntityType="SSRModel.academic_levels" />
+          <EntitySet Name="bad_languages" EntityType="SSRModel.bad_languages" />
           <EntitySet Name="commissions" EntityType="SSRModel.commissions" />
+          <EntitySet Name="concepts" EntityType="SSRModel.concepts" />
+          <EntitySet Name="concepts_status" EntityType="SSRModel.concepts_status" />
+          <EntitySet Name="concepts_status_logs" EntityType="SSRModel.concepts_status_logs" />
+          <EntitySet Name="concepts_tags" EntityType="SSRModel.concepts_tags" />
+          <EntitySet Name="debate_speakers" EntityType="SSRModel.debate_speakers" />
           <EntitySet Name="departments" EntityType="SSRModel.departments" />
           <EntitySet Name="document_types" EntityType="SSRModel.document_types" />
+          <EntitySet Name="draft_laws" EntityType="SSRModel.draft_laws" />
+          <EntitySet Name="education_levels" EntityType="SSRModel.education_levels" />
+          <EntitySet Name="educational_institutions" EntityType="SSRModel.educational_institutions" />
           <EntitySet Name="genders" EntityType="SSRModel.genders" />
           <EntitySet Name="institutions" EntityType="SSRModel.institutions" />
           <EntitySet Name="interest_areas" EntityType="SSRModel.interest_areas" />
           <EntitySet Name="investigation_groups" EntityType="SSRModel.investigation_groups" />
+          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
+          <EntitySet Name="knowledge_areas" EntityType="SSRModel.knowledge_areas" />
           <EntitySet Name="municipalities" EntityType="SSRModel.municipalities" />
           <EntitySet Name="nationalities" EntityType="SSRModel.nationalities" />
           <EntitySet Name="permissions" EntityType="SSRModel.permissions" />
           <EntitySet Name="programs" EntityType="SSRModel.programs" />
+          <EntitySet Name="reason_rejects" EntityType="SSRModel.reason_rejects" />
           <EntitySet Name="role_permissions" EntityType="SSRModel.role_permissions" />
           <EntitySet Name="roles" EntityType="SSRModel.roles" />
+          <EntitySet Name="snies" EntityType="SSRModel.snies" />
+          <EntitySet Name="tags" EntityType="SSRModel.tags" />
           <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
           <EntitySet Name="users" EntityType="SSRModel.users" />
-          <AssociationSet Name="FK_municipalities_departments" Association="SSRModel.FK_municipalities_departments">
-            <End Role="departments" EntitySet="departments" />
-            <End Role="municipalities" EntitySet="municipalities" />
+          <AssociationSet Name="FK_snies_academic_levels" Association="SSRModel.FK_snies_academic_levels">
+            <End Role="academic_levels" EntitySet="academic_levels" />
+            <End Role="snies" EntitySet="snies" />
           </AssociationSet>
-          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
-            <End Role="document_types" EntitySet="document_types" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigation_groups_institutions" Association="SSRModel.FK_investigation_groups_institutions">
-            <End Role="institutions" EntitySet="institutions" />
-            <End Role="investigation_groups" EntitySet="investigation_groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_municipalities" Association="SSRModel.FK_users_municipalities">
-            <End Role="municipalities" EntitySet="municipalities" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_address_countries" Association="SSRModel.FK_users_address_countries">
-            <End Role="nationalities" EntitySet="nationalities" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_nationalities" Association="SSRModel.FK_users_nationalities">
-            <End Role="nationalities" EntitySet="nationalities" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
-            <End Role="permissions" EntitySet="permissions" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
-            <End Role="user_status" EntitySet="user_status" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <EntitySet Name="draft_laws" EntityType="SSRModel.draft_laws" />
           <AssociationSet Name="FK_draft_laws_commissions" Association="SSRModel.FK_draft_laws_commissions">
             <End Role="commissions" EntitySet="commissions" />
             <End Role="draft_laws" EntitySet="draft_laws" />
           </AssociationSet>
-          <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
-            <End Role="interest_areas" EntitySet="interest_areas" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
-          </AssociationSet>
-          <EntitySet Name="bad_languages" EntityType="SSRModel.bad_languages" />
-          <EntitySet Name="concepts_tags" EntityType="SSRModel.concepts_tags" />
-          <EntitySet Name="tags" EntityType="SSRModel.tags" />
-          <AssociationSet Name="FK_concepts_tags_tags" Association="SSRModel.FK_concepts_tags_tags">
-            <End Role="tags" EntitySet="tags" />
-            <End Role="concepts_tags" EntitySet="concepts_tags" />
-          </AssociationSet>
-          <EntitySet Name="concepts_status" EntityType="SSRModel.concepts_status" />
-          <EntitySet Name="reason_rejects" EntityType="SSRModel.reason_rejects" />
-          <EntitySet Name="debate_speakers" EntityType="SSRModel.debate_speakers" />
-          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="SSRModel.FK_debate_speakers_draft_laws">
-            <End Role="draft_laws" EntitySet="draft_laws" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
-          </AssociationSet>
-          <EntitySet Name="concepts_status_logs" EntityType="SSRModel.concepts_status_logs" />
-          <AssociationSet Name="FK_concepts_status_logs_concepts_status" Association="SSRModel.FK_concepts_status_logs_concepts_status">
-            <End Role="concepts_status" EntitySet="concepts_status" />
-            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_concepts_status_logs_reason_rejects" Association="SSRModel.FK_concepts_status_logs_reason_rejects">
-            <End Role="reason_rejects" EntitySet="reason_rejects" />
-            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
-          </AssociationSet>
-          <EntitySet Name="concepts" EntityType="SSRModel.concepts" />
           <AssociationSet Name="FK_concepts_concepts_status" Association="SSRModel.FK_concepts_concepts_status">
             <End Role="concepts_status" EntitySet="concepts_status" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
           <AssociationSet Name="FK_concepts_draft_laws" Association="SSRModel.FK_concepts_draft_laws">
             <End Role="draft_laws" EntitySet="draft_laws" />
+            <End Role="concepts" EntitySet="concepts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
+            <End Role="investigators" EntitySet="investigators" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
           <AssociationSet Name="FK_concepts_reason_rejects" Association="SSRModel.FK_concepts_reason_rejects">
@@ -1173,14 +1123,37 @@
             <End Role="concepts" EntitySet="concepts" />
             <End Role="concepts_tags" EntitySet="concepts_tags" />
           </AssociationSet>
-          <EntitySet Name="education_levels" EntityType="SSRModel.education_levels" />
-          <EntitySet Name="educational_institutions" EntityType="SSRModel.educational_institutions" />
-          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
-          <EntitySet Name="knowledge_areas" EntityType="SSRModel.knowledge_areas" />
-          <EntitySet Name="snies" EntityType="SSRModel.snies" />
-          <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
-            <End Role="investigators" EntitySet="investigators" />
-            <End Role="concepts" EntitySet="concepts" />
+          <AssociationSet Name="FK_concepts_status_logs_concepts_status" Association="SSRModel.FK_concepts_status_logs_concepts_status">
+            <End Role="concepts_status" EntitySet="concepts_status" />
+            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_status_logs_reason_rejects" Association="SSRModel.FK_concepts_status_logs_reason_rejects">
+            <End Role="reason_rejects" EntitySet="reason_rejects" />
+            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_tags_tags" Association="SSRModel.FK_concepts_tags_tags">
+            <End Role="tags" EntitySet="tags" />
+            <End Role="concepts_tags" EntitySet="concepts_tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="SSRModel.FK_debate_speakers_draft_laws">
+            <End Role="draft_laws" EntitySet="draft_laws" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_municipalities_departments" Association="SSRModel.FK_municipalities_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="municipalities" EntitySet="municipalities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
+            <End Role="document_types" EntitySet="document_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
+            <End Role="interest_areas" EntitySet="interest_areas" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
           </AssociationSet>
           <AssociationSet Name="FK_investigators_education_levels" Association="SSRModel.FK_investigators_education_levels">
             <End Role="education_levels" EntitySet="education_levels" />
@@ -1202,6 +1175,10 @@
             <End Role="genders" EntitySet="genders" />
             <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
+          <AssociationSet Name="FK_investigation_groups_institutions" Association="SSRModel.FK_investigation_groups_institutions">
+            <End Role="institutions" EntitySet="institutions" />
+            <End Role="investigation_groups" EntitySet="investigation_groups" />
+          </AssociationSet>
           <AssociationSet Name="FK_investigators_institutions" Association="SSRModel.FK_investigators_institutions">
             <End Role="institutions" EntitySet="institutions" />
             <End Role="investigators" EntitySet="investigators" />
@@ -1222,9 +1199,37 @@
             <End Role="knowledge_areas" EntitySet="knowledge_areas" />
             <End Role="snies" EntitySet="snies" />
           </AssociationSet>
+          <AssociationSet Name="FK_users_municipalities" Association="SSRModel.FK_users_municipalities">
+            <End Role="municipalities" EntitySet="municipalities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_address_countries" Association="SSRModel.FK_users_address_countries">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_nationalities" Association="SSRModel.FK_users_nationalities">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
           <AssociationSet Name="FK_snies_programs" Association="SSRModel.FK_snies_programs">
             <End Role="programs" EntitySet="programs" />
             <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
+            <End Role="user_status" EntitySet="user_status" />
+            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="investigators_commissions" Association="SSRModel.investigators_commissions">
             <End Role="commissions" EntitySet="commissions" />
@@ -1234,7 +1239,30 @@
             <End Role="interest_areas" EntitySet="interest_areas" />
             <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
+        <EntityType Name="academic_levels">
+          <Key>
+            <PropertyRef Name="academic_level_id" />
+          </Key>
+          <Property Name="academic_level_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_academic_levels" FromRole="academic_levels" ToRole="snies" />
+        </EntityType>
+        <EntityType Name="bad_languages">
+          <Key>
+            <PropertyRef Name="bad_language_id" />
+          </Key>
+          <Property Name="bad_language_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
         <EntityType Name="commissions">
           <Key>
             <PropertyRef Name="commission_id" />
@@ -1247,6 +1275,84 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="commissions" ToRole="draft_laws" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_commissions" FromRole="commissions" ToRole="investigators" />
+        </EntityType>
+        <EntityType Name="concepts">
+          <Key>
+            <PropertyRef Name="concept_id" />
+          </Key>
+          <Property Name="concept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="draft_law_id" Type="Int32" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="concept" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="investigator_id" Type="Int32" />
+          <Property Name="bibliography" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="concept_status_id" Type="Int32" Nullable="false" />
+          <Property Name="reason_reject_id" Type="Int32" />
+          <Property Name="reason_reject_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="qualification" Type="Double" />
+          <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
+          <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="concepts" ToRole="reason_rejects" />
+          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
+          <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
+        </EntityType>
+        <EntityType Name="concepts_status">
+          <Key>
+            <PropertyRef Name="concept_status_id" />
+          </Key>
+          <Property Name="concept_status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts_status" ToRole="concepts" />
+          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status" ToRole="concepts_status_logs" />
+        </EntityType>
+        <EntityType Name="concepts_status_logs">
+          <Key>
+            <PropertyRef Name="concept_status_log_id" />
+          </Key>
+          <Property Name="concept_status_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="concept_id" Type="Int32" Nullable="false" />
+          <Property Name="concept_status_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="reason_reject_id" Type="Int32" />
+          <Property Name="qualification" Type="Int32" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts_status_logs" ToRole="concepts" />
+          <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status_logs" ToRole="concepts_status" />
+          <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="concepts_status_logs" ToRole="reason_rejects" />
+        </EntityType>
+        <EntityType Name="concepts_tags">
+          <Key>
+            <PropertyRef Name="tag_id" />
+            <PropertyRef Name="concept_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" />
+          <Property Name="concept_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts_tags" ToRole="concepts" />
+          <NavigationProperty Name="tags" Relationship="SSRModel.FK_concepts_tags_tags" FromRole="concepts_tags" ToRole="tags" />
+        </EntityType>
+        <EntityType Name="debate_speakers">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="draft_law_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="draft_law_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="debate_speakers" ToRole="draft_laws" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_debate_speakers_users" FromRole="debate_speakers" ToRole="users" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -1267,6 +1373,61 @@
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_users_document_types" FromRole="document_types" ToRole="users" />
+        </EntityType>
+        <EntityType Name="draft_laws">
+          <Key>
+            <PropertyRef Name="draft_law_id" />
+          </Key>
+          <Property Name="draft_law_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="draft_law_number" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="origin" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="date_presentation" Type="DateTime" Precision="3" />
+          <Property Name="commission_id" Type="Int32" />
+          <Property Name="debate_speaker" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="debate_speaker2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="status_comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="interest_area_id" Type="Int32" />
+          <Property Name="initiative" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="commissions" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="draft_laws" ToRole="commissions" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
+          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="draft_laws" ToRole="debate_speakers" />
+          <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="draft_laws" ToRole="interest_areas" />
+        </EntityType>
+        <EntityType Name="education_levels">
+          <Key>
+            <PropertyRef Name="education_level_id" />
+          </Key>
+          <Property Name="education_level_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_education_levels" FromRole="education_levels" ToRole="investigators" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_education_levels" FromRole="education_levels" ToRole="snies" />
+        </EntityType>
+        <EntityType Name="educational_institutions">
+          <Key>
+            <PropertyRef Name="educational_institution_id" />
+          </Key>
+          <Property Name="educational_institution_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="educational_institutions" ToRole="investigators" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_educational_institutions" FromRole="educational_institutions" ToRole="snies" />
         </EntityType>
         <EntityType Name="genders">
           <Key>
@@ -1317,564 +1478,6 @@
           <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigation_groups_institutions" FromRole="investigation_groups" ToRole="institutions" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigation_groups" ToRole="investigators" />
         </EntityType>
-        <EntityType Name="municipalities">
-          <Key>
-            <PropertyRef Name="municipality_id" />
-          </Key>
-          <Property Name="municipality_id" Type="Int32" Nullable="false" />
-          <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="departments" Relationship="SSRModel.FK_municipalities_departments" FromRole="municipalities" ToRole="departments" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_municipalities" FromRole="municipalities" ToRole="users" />
-        </EntityType>
-        <EntityType Name="nationalities">
-          <Key>
-            <PropertyRef Name="nationality_id" />
-          </Key>
-          <Property Name="nationality_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_address_countries" FromRole="nationalities" ToRole="users" />
-          <NavigationProperty Name="users1" Relationship="SSRModel.FK_users_nationalities" FromRole="nationalities" ToRole="users" />
-        </EntityType>
-        <EntityType Name="permissions">
-          <Key>
-            <PropertyRef Name="id_permission" />
-          </Key>
-          <Property Name="id_permission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sequence" Type="Int32" />
-          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="is_only_for_super_admin" Type="Int32" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="permissions" ToRole="role_permissions" />
-        </EntityType>
-        <EntityType Name="programs">
-          <Key>
-            <PropertyRef Name="program_id" />
-          </Key>
-          <Property Name="program_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_programs" FromRole="programs" ToRole="investigators" />
-          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_programs" FromRole="programs" ToRole="snies" />
-        </EntityType>
-        <EntityType Name="role_permissions">
-          <Key>
-            <PropertyRef Name="id_role" />
-            <PropertyRef Name="id_permission" />
-          </Key>
-          <Property Name="id_role" Type="Int32" Nullable="false" />
-          <Property Name="id_permission" Type="Int32" Nullable="false" />
-          <Property Name="status" Type="Byte" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="role_permissions" ToRole="permissions" />
-          <NavigationProperty Name="roles" Relationship="SSRModel.FK_role_permissions_roles" FromRole="role_permissions" ToRole="roles" />
-        </EntityType>
-        <EntityType Name="roles">
-          <Key>
-            <PropertyRef Name="role_id" />
-          </Key>
-          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_roles" FromRole="roles" ToRole="role_permissions" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_roles" FromRole="roles" ToRole="users" />
-        </EntityType>
-        <EntityType Name="user_status">
-          <Key>
-            <PropertyRef Name="user_status_id" />
-          </Key>
-          <Property Name="user_status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_user_status" FromRole="user_status" ToRole="users" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="document_type_id" Type="Int32" />
-          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="nationality_id" Type="Int32" />
-          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="address_country_id" Type="Int32" />
-          <Property Name="address_municipality_id" Type="Int32" />
-          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_role_id" Type="Int32" />
-          <Property Name="user_status_id" Type="Int32" />
-          <Property Name="is_super_admin" Type="Byte" />
-          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
-          <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
-          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
-          <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
-          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
-          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
-        </EntityType>
-        <Association Name="FK_municipalities_departments">
-          <End Type="SSRModel.departments" Role="departments" Multiplicity="1" />
-          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="departments">
-              <PropertyRef Name="department_id" />
-            </Principal>
-            <Dependent Role="municipalities">
-              <PropertyRef Name="department_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_document_types">
-          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="document_types">
-              <PropertyRef Name="document_type_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="document_type_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigation_groups_institutions">
-          <End Type="SSRModel.institutions" Role="institutions" Multiplicity="1" />
-          <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="institutions">
-              <PropertyRef Name="institution_id" />
-            </Principal>
-            <Dependent Role="investigation_groups">
-              <PropertyRef Name="institution_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_municipalities">
-          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="municipalities">
-              <PropertyRef Name="municipality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="address_municipality_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_address_countries">
-          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nationalities">
-              <PropertyRef Name="nationality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="address_country_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_nationalities">
-          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nationalities">
-              <PropertyRef Name="nationality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="nationality_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_role_permissions_permissions">
-          <End Type="SSRModel.permissions" Role="permissions" Multiplicity="1" />
-          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="permissions">
-              <PropertyRef Name="id_permission" />
-            </Principal>
-            <Dependent Role="role_permissions">
-              <PropertyRef Name="id_permission" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_role_permissions_roles">
-          <End Type="SSRModel.roles" Role="roles" Multiplicity="1" />
-          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="roles">
-              <PropertyRef Name="role_id" />
-            </Principal>
-            <Dependent Role="role_permissions">
-              <PropertyRef Name="id_role" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_roles">
-          <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="roles">
-              <PropertyRef Name="role_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="user_role_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_user_status">
-          <End Type="SSRModel.user_status" Role="user_status" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user_status">
-              <PropertyRef Name="user_status_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="user_status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="draft_laws">
-          <Key>
-            <PropertyRef Name="draft_law_id" />
-          </Key>
-          <Property Name="draft_law_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="draft_law_number" Type="Int32" Nullable="false" />
-          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="author" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="origin" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="date_presentation" Type="DateTime" Precision="3" />
-          <Property Name="commission_id" Type="Int32" />
-          <Property Name="debate_speaker" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="debate_speaker2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="status_comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="interest_area_id" Type="Int32" />
-          <Property Name="initiative" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="commissions" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="draft_laws" ToRole="commissions" />
-          <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="draft_laws" ToRole="interest_areas" />
-          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="draft_laws" ToRole="debate_speakers" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
-        </EntityType>
-        <Association Name="FK_draft_laws_commissions">
-          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="commissions">
-              <PropertyRef Name="commission_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="commission_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_draft_laws_interest_areas">
-          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="interest_areas">
-              <PropertyRef Name="interest_area_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="interest_area_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="bad_languages">
-          <Key>
-            <PropertyRef Name="bad_language_id" />
-          </Key>
-          <Property Name="bad_language_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-        </EntityType>
-        <EntityType Name="concepts_tags">
-          <Key>
-            <PropertyRef Name="tag_id" />
-            <PropertyRef Name="concept_id" />
-          </Key>
-          <Property Name="tag_id" Type="Int32" Nullable="false" />
-          <Property Name="concept_id" Type="Int32" Nullable="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="tags" Relationship="SSRModel.FK_concepts_tags_tags" FromRole="concepts_tags" ToRole="tags" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts_tags" ToRole="concepts" />
-        </EntityType>
-        <EntityType Name="tags">
-          <Key>
-            <PropertyRef Name="tag_id" />
-          </Key>
-          <Property Name="tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_tags" FromRole="tags" ToRole="concepts_tags" />
-        </EntityType>
-        <Association Name="FK_concepts_tags_tags">
-          <End Type="SSRModel.tags" Role="tags" Multiplicity="1" />
-          <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tags">
-              <PropertyRef Name="tag_id" />
-            </Principal>
-            <Dependent Role="concepts_tags">
-              <PropertyRef Name="tag_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="concepts_status">
-          <Key>
-            <PropertyRef Name="concept_status_id" />
-          </Key>
-          <Property Name="concept_status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status" ToRole="concepts_status_logs" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts_status" ToRole="concepts" />
-        </EntityType>
-        <EntityType Name="reason_rejects">
-          <Key>
-            <PropertyRef Name="reason_reject_id" />
-          </Key>
-          <Property Name="reason_reject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="reason_rejects" ToRole="concepts_status_logs" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="reason_rejects" ToRole="concepts" />
-        </EntityType>
-        <EntityType Name="debate_speakers">
-          <Key>
-            <PropertyRef Name="user_id" />
-            <PropertyRef Name="draft_law_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="draft_law_id" Type="Int32" Nullable="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="debate_speakers" ToRole="draft_laws" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_debate_speakers_users" FromRole="debate_speakers" ToRole="users" />
-        </EntityType>
-        <Association Name="FK_debate_speakers_draft_laws">
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws">
-              <PropertyRef Name="draft_law_id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="draft_law_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_debate_speakers_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="concepts_status_logs">
-          <Key>
-            <PropertyRef Name="concept_status_log_id" />
-          </Key>
-          <Property Name="concept_status_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="concept_id" Type="Int32" Nullable="false" />
-          <Property Name="concept_status_id" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="reason_reject_id" Type="Int32" />
-          <Property Name="qualification" Type="Int32" />
-          <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status_logs" ToRole="concepts_status" />
-          <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="concepts_status_logs" ToRole="reason_rejects" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts_status_logs" ToRole="concepts" />
-        </EntityType>
-        <Association Name="FK_concepts_status_logs_concepts_status">
-          <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
-          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="concepts_status">
-              <PropertyRef Name="concept_status_id" />
-            </Principal>
-            <Dependent Role="concepts_status_logs">
-              <PropertyRef Name="concept_status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_status_logs_reason_rejects">
-          <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="reason_rejects">
-              <PropertyRef Name="reason_reject_id" />
-            </Principal>
-            <Dependent Role="concepts_status_logs">
-              <PropertyRef Name="reason_reject_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="concepts">
-          <Key>
-            <PropertyRef Name="concept_id" />
-          </Key>
-          <Property Name="concept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="draft_law_id" Type="Int32" />
-          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="concept" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="investigator_id" Type="Int32" />
-          <Property Name="bibliography" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <Property Name="concept_status_id" Type="Int32" Nullable="false" />
-          <Property Name="reason_reject_id" Type="Int32" />
-          <Property Name="reason_reject_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="qualification" Type="Double" />
-          <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
-          <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="concepts" ToRole="reason_rejects" />
-          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
-          <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
-        </EntityType>
-        <Association Name="FK_concepts_concepts_status">
-          <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="concepts_status">
-              <PropertyRef Name="concept_status_id" />
-            </Principal>
-            <Dependent Role="concepts">
-              <PropertyRef Name="concept_status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_draft_laws">
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws">
-              <PropertyRef Name="draft_law_id" />
-            </Principal>
-            <Dependent Role="concepts">
-              <PropertyRef Name="draft_law_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_reason_rejects">
-          <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="reason_rejects">
-              <PropertyRef Name="reason_reject_id" />
-            </Principal>
-            <Dependent Role="concepts">
-              <PropertyRef Name="reason_reject_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_status_logs_concepts">
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
-          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="concepts">
-              <PropertyRef Name="concept_id" />
-            </Principal>
-            <Dependent Role="concepts_status_logs">
-              <PropertyRef Name="concept_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_tags_concepts">
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
-          <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="concepts">
-              <PropertyRef Name="concept_id" />
-            </Principal>
-            <Dependent Role="concepts_tags">
-              <PropertyRef Name="concept_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="education_levels">
-          <Key>
-            <PropertyRef Name="education_level_id" />
-          </Key>
-          <Property Name="education_level_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_education_levels" FromRole="education_levels" ToRole="investigators" />
-          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_education_levels" FromRole="education_levels" ToRole="snies" />
-        </EntityType>
-        <EntityType Name="educational_institutions">
-          <Key>
-            <PropertyRef Name="educational_institution_id" />
-          </Key>
-          <Property Name="educational_institution_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="educational_institutions" ToRole="investigators" />
-          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_educational_institutions" FromRole="educational_institutions" ToRole="snies" />
-        </EntityType>
         <EntityType Name="investigators">
           <Key>
             <PropertyRef Name="investigator_id" />
@@ -1917,6 +1520,99 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_knowledge_areas" FromRole="knowledge_areas" ToRole="snies" />
         </EntityType>
+        <EntityType Name="municipalities">
+          <Key>
+            <PropertyRef Name="municipality_id" />
+          </Key>
+          <Property Name="municipality_id" Type="Int32" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="departments" Relationship="SSRModel.FK_municipalities_departments" FromRole="municipalities" ToRole="departments" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_municipalities" FromRole="municipalities" ToRole="users" />
+        </EntityType>
+        <EntityType Name="nationalities">
+          <Key>
+            <PropertyRef Name="nationality_id" />
+          </Key>
+          <Property Name="nationality_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_address_countries" FromRole="nationalities" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="SSRModel.FK_users_nationalities" FromRole="nationalities" ToRole="users" />
+        </EntityType>
+        <EntityType Name="permissions">
+          <Key>
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_permission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sequence" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_only_for_super_admin" Type="Int32" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="permissions" ToRole="role_permissions" />
+        </EntityType>
+        <EntityType Name="programs">
+          <Key>
+            <PropertyRef Name="program_id" />
+          </Key>
+          <Property Name="program_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_programs" FromRole="programs" ToRole="investigators" />
+          <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_programs" FromRole="programs" ToRole="snies" />
+        </EntityType>
+        <EntityType Name="reason_rejects">
+          <Key>
+            <PropertyRef Name="reason_reject_id" />
+          </Key>
+          <Property Name="reason_reject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="reason_rejects" ToRole="concepts" />
+          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="reason_rejects" ToRole="concepts_status_logs" />
+        </EntityType>
+        <EntityType Name="role_permissions">
+          <Key>
+            <PropertyRef Name="id_role" />
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="id_permission" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Byte" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="role_permissions" ToRole="permissions" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_role_permissions_roles" FromRole="role_permissions" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_roles" FromRole="roles" ToRole="role_permissions" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_roles" FromRole="roles" ToRole="users" />
+        </EntityType>
         <EntityType Name="snies">
           <Key>
             <PropertyRef Name="snie_id" />
@@ -1932,11 +1628,117 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="academic_levels" Relationship="SSRModel.FK_snies_academic_levels" FromRole="snies" ToRole="academic_levels" />
           <NavigationProperty Name="education_levels" Relationship="SSRModel.FK_snies_education_levels" FromRole="snies" ToRole="education_levels" />
           <NavigationProperty Name="educational_institutions" Relationship="SSRModel.FK_snies_educational_institutions" FromRole="snies" ToRole="educational_institutions" />
           <NavigationProperty Name="knowledge_areas" Relationship="SSRModel.FK_snies_knowledge_areas" FromRole="snies" ToRole="knowledge_areas" />
           <NavigationProperty Name="programs" Relationship="SSRModel.FK_snies_programs" FromRole="snies" ToRole="programs" />
         </EntityType>
+        <EntityType Name="tags">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_tags" FromRole="tags" ToRole="concepts_tags" />
+        </EntityType>
+        <EntityType Name="user_status">
+          <Key>
+            <PropertyRef Name="user_status_id" />
+          </Key>
+          <Property Name="user_status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_user_status" FromRole="user_status" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="document_type_id" Type="Int32" />
+          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nationality_id" Type="Int32" />
+          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address_country_id" Type="Int32" />
+          <Property Name="address_municipality_id" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_role_id" Type="Int32" />
+          <Property Name="user_status_id" Type="Int32" />
+          <Property Name="is_super_admin" Type="Byte" />
+          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
+          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
+          <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
+          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
+        </EntityType>
+        <Association Name="FK_snies_academic_levels">
+          <End Type="SSRModel.academic_levels" Role="academic_levels" Multiplicity="0..1" />
+          <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academic_levels">
+              <PropertyRef Name="academic_level_id" />
+            </Principal>
+            <Dependent Role="snies">
+              <PropertyRef Name="academic_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_draft_laws_commissions">
+          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="commissions">
+              <PropertyRef Name="commission_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="commission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_concepts_status">
+          <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts_status">
+              <PropertyRef Name="concept_status_id" />
+            </Principal>
+            <Dependent Role="concepts">
+              <PropertyRef Name="concept_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_draft_laws">
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws">
+              <PropertyRef Name="draft_law_id" />
+            </Principal>
+            <Dependent Role="concepts">
+              <PropertyRef Name="draft_law_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_concepts_investigators">
           <End Type="SSRModel.investigators" Role="investigators" Multiplicity="0..1" />
           <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
@@ -1946,6 +1748,138 @@
             </Principal>
             <Dependent Role="concepts">
               <PropertyRef Name="investigator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_reason_rejects">
+          <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reason_rejects">
+              <PropertyRef Name="reason_reject_id" />
+            </Principal>
+            <Dependent Role="concepts">
+              <PropertyRef Name="reason_reject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_status_logs_concepts">
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
+          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts">
+              <PropertyRef Name="concept_id" />
+            </Principal>
+            <Dependent Role="concepts_status_logs">
+              <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_tags_concepts">
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
+          <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts">
+              <PropertyRef Name="concept_id" />
+            </Principal>
+            <Dependent Role="concepts_tags">
+              <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_status_logs_concepts_status">
+          <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
+          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts_status">
+              <PropertyRef Name="concept_status_id" />
+            </Principal>
+            <Dependent Role="concepts_status_logs">
+              <PropertyRef Name="concept_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_status_logs_reason_rejects">
+          <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reason_rejects">
+              <PropertyRef Name="reason_reject_id" />
+            </Principal>
+            <Dependent Role="concepts_status_logs">
+              <PropertyRef Name="reason_reject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_tags_tags">
+          <End Type="SSRModel.tags" Role="tags" Multiplicity="1" />
+          <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tags">
+              <PropertyRef Name="tag_id" />
+            </Principal>
+            <Dependent Role="concepts_tags">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_debate_speakers_draft_laws">
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws">
+              <PropertyRef Name="draft_law_id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="draft_law_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_debate_speakers_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_municipalities_departments">
+          <End Type="SSRModel.departments" Role="departments" Multiplicity="1" />
+          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="department_id" />
+            </Principal>
+            <Dependent Role="municipalities">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_document_types">
+          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document_types">
+              <PropertyRef Name="document_type_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="document_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_draft_laws_interest_areas">
+          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="interest_area_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2009,6 +1943,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_investigation_groups_institutions">
+          <End Type="SSRModel.institutions" Role="institutions" Multiplicity="1" />
+          <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="institutions">
+              <PropertyRef Name="institution_id" />
+            </Principal>
+            <Dependent Role="investigation_groups">
+              <PropertyRef Name="institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_investigators_institutions">
           <End Type="SSRModel.institutions" Role="institutions" Multiplicity="0..1" />
           <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
@@ -2069,6 +2015,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_users_municipalities">
+          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipalities">
+              <PropertyRef Name="municipality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="address_municipality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_address_countries">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="address_country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_nationalities">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="nationality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_permissions_permissions">
+          <End Type="SSRModel.permissions" Role="permissions" Multiplicity="1" />
+          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permissions">
+              <PropertyRef Name="id_permission" />
+            </Principal>
+            <Dependent Role="role_permissions">
+              <PropertyRef Name="id_permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_snies_programs">
           <End Type="SSRModel.programs" Role="programs" Multiplicity="0..1" />
           <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
@@ -2078,6 +2072,42 @@
             </Principal>
             <Dependent Role="snies">
               <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_permissions_roles">
+          <End Type="SSRModel.roles" Role="roles" Multiplicity="1" />
+          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="role_permissions">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_roles">
+          <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="user_role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_status">
+          <End Type="SSRModel.user_status" Role="user_status" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_status">
+              <PropertyRef Name="user_status_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="user_status_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2095,6 +2125,30 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SSRModelStoreContainer" CdmEntityContainer="SSREntities">
+          <EntitySetMapping Name="academic_levels">
+            <EntityTypeMapping TypeName="SSRModel.academic_levels">
+              <MappingFragment StoreEntitySet="academic_levels">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="academic_level_id" ColumnName="academic_level_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bad_languages">
+            <EntityTypeMapping TypeName="SSRModel.bad_languages">
+              <MappingFragment StoreEntitySet="bad_languages">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bad_language_id" ColumnName="bad_language_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="commissions">
             <EntityTypeMapping TypeName="SSRModel.commissions">
               <MappingFragment StoreEntitySet="commissions">
@@ -2104,6 +2158,72 @@
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="commission_id" ColumnName="commission_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="concepts">
+            <EntityTypeMapping TypeName="SSRModel.concepts">
+              <MappingFragment StoreEntitySet="concepts">
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="reason_reject_description" ColumnName="reason_reject_description" />
+                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
+                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="bibliography" ColumnName="bibliography" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+                <ScalarProperty Name="concept" ColumnName="concept" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
+                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="concepts_status">
+            <EntityTypeMapping TypeName="SSRModel.concepts_status">
+              <MappingFragment StoreEntitySet="concepts_status">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="concepts_status_logs">
+            <EntityTypeMapping TypeName="SSRModel.concepts_status_logs">
+              <MappingFragment StoreEntitySet="concepts_status_logs">
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
+                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+                <ScalarProperty Name="concept_status_log_id" ColumnName="concept_status_log_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="concepts_tags">
+            <EntityTypeMapping TypeName="SSRModel.concepts_tags">
+              <MappingFragment StoreEntitySet="concepts_tags">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="debate_speakers">
+            <EntityTypeMapping TypeName="SSRModel.debate_speakers">
+              <MappingFragment StoreEntitySet="debate_speakers">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2124,6 +2244,56 @@
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="document_type_id" ColumnName="document_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="draft_laws">
+            <EntityTypeMapping TypeName="SSRModel.draft_laws">
+              <MappingFragment StoreEntitySet="draft_laws">
+                <ScalarProperty Name="dev_name" ColumnName="dev_name" />
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="initiative" ColumnName="initiative" />
+                <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
+                <ScalarProperty Name="status_comment" ColumnName="status_comment" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="debate_speaker2" ColumnName="debate_speaker2" />
+                <ScalarProperty Name="debate_speaker" ColumnName="debate_speaker" />
+                <ScalarProperty Name="commission_id" ColumnName="commission_id" />
+                <ScalarProperty Name="date_presentation" ColumnName="date_presentation" />
+                <ScalarProperty Name="origin" ColumnName="origin" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="draft_law_number" ColumnName="draft_law_number" />
+                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="education_levels">
+            <EntityTypeMapping TypeName="SSRModel.education_levels">
+              <MappingFragment StoreEntitySet="education_levels">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="educational_institutions">
+            <EntityTypeMapping TypeName="SSRModel.educational_institutions">
+              <MappingFragment StoreEntitySet="educational_institutions">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2170,6 +2340,39 @@
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="institution_id" ColumnName="institution_id" />
                 <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigators">
+            <EntityTypeMapping TypeName="SSRModel.investigators">
+              <MappingFragment StoreEntitySet="investigators">
+                <ScalarProperty Name="CVLAC" ColumnName="CVLAC" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
+                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
+                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="knowledge_areas">
+            <EntityTypeMapping TypeName="SSRModel.knowledge_areas">
+              <MappingFragment StoreEntitySet="knowledge_areas">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="knowledge_area_id" ColumnName="knowledge_area_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2221,6 +2424,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="reason_rejects">
+            <EntityTypeMapping TypeName="SSRModel.reason_rejects">
+              <MappingFragment StoreEntitySet="reason_rejects">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="role_permissions">
             <EntityTypeMapping TypeName="SSRModel.role_permissions">
               <MappingFragment StoreEntitySet="role_permissions">
@@ -2244,6 +2459,35 @@
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="snies">
+            <EntityTypeMapping TypeName="SSRModel.snies">
+              <MappingFragment StoreEntitySet="snies">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+                <ScalarProperty Name="academic_level_id" ColumnName="academic_level_id" />
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+                <ScalarProperty Name="knowledge_area_id" ColumnName="knowledge_area_id" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
+                <ScalarProperty Name="snie_id" ColumnName="snie_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tags">
+            <EntityTypeMapping TypeName="SSRModel.tags">
+              <MappingFragment StoreEntitySet="tags">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2285,208 +2529,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="draft_laws">
-            <EntityTypeMapping TypeName="SSRModel.draft_laws">
-              <MappingFragment StoreEntitySet="draft_laws">
-                <ScalarProperty Name="dev_name" ColumnName="dev_name" />
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="summary" ColumnName="summary" />
-                <ScalarProperty Name="initiative" ColumnName="initiative" />
-                <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
-                <ScalarProperty Name="status_comment" ColumnName="status_comment" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="debate_speaker2" ColumnName="debate_speaker2" />
-                <ScalarProperty Name="debate_speaker" ColumnName="debate_speaker" />
-                <ScalarProperty Name="commission_id" ColumnName="commission_id" />
-                <ScalarProperty Name="date_presentation" ColumnName="date_presentation" />
-                <ScalarProperty Name="origin" ColumnName="origin" />
-                <ScalarProperty Name="author" ColumnName="author" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="draft_law_number" ColumnName="draft_law_number" />
-                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="bad_languages">
-            <EntityTypeMapping TypeName="SSRModel.bad_languages">
-              <MappingFragment StoreEntitySet="bad_languages">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="bad_language_id" ColumnName="bad_language_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="concepts_tags">
-            <EntityTypeMapping TypeName="SSRModel.concepts_tags">
-              <MappingFragment StoreEntitySet="concepts_tags">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
-                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tags">
-            <EntityTypeMapping TypeName="SSRModel.tags">
-              <MappingFragment StoreEntitySet="tags">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="concepts_status">
-            <EntityTypeMapping TypeName="SSRModel.concepts_status">
-              <MappingFragment StoreEntitySet="concepts_status">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="reason_rejects">
-            <EntityTypeMapping TypeName="SSRModel.reason_rejects">
-              <MappingFragment StoreEntitySet="reason_rejects">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="debate_speakers">
-            <EntityTypeMapping TypeName="SSRModel.debate_speakers">
-              <MappingFragment StoreEntitySet="debate_speakers">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="concepts_status_logs">
-            <EntityTypeMapping TypeName="SSRModel.concepts_status_logs">
-              <MappingFragment StoreEntitySet="concepts_status_logs">
-                <ScalarProperty Name="qualification" ColumnName="qualification" />
-                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
-                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
-                <ScalarProperty Name="concept_status_log_id" ColumnName="concept_status_log_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="concepts">
-            <EntityTypeMapping TypeName="SSRModel.concepts">
-              <MappingFragment StoreEntitySet="concepts">
-                <ScalarProperty Name="qualification" ColumnName="qualification" />
-                <ScalarProperty Name="reason_reject_description" ColumnName="reason_reject_description" />
-                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
-                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="bibliography" ColumnName="bibliography" />
-                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-                <ScalarProperty Name="concept" ColumnName="concept" />
-                <ScalarProperty Name="summary" ColumnName="summary" />
-                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
-                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="education_levels">
-            <EntityTypeMapping TypeName="SSRModel.education_levels">
-              <MappingFragment StoreEntitySet="education_levels">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="educational_institutions">
-            <EntityTypeMapping TypeName="SSRModel.educational_institutions">
-              <MappingFragment StoreEntitySet="educational_institutions">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="investigators">
-            <EntityTypeMapping TypeName="SSRModel.investigators">
-              <MappingFragment StoreEntitySet="investigators">
-                <ScalarProperty Name="CVLAC" ColumnName="CVLAC" />
-                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
-                <ScalarProperty Name="program_id" ColumnName="program_id" />
-                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
-                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
-                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
-                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
-                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="second_name" ColumnName="second_name" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="knowledge_areas">
-            <EntityTypeMapping TypeName="SSRModel.knowledge_areas">
-              <MappingFragment StoreEntitySet="knowledge_areas">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="knowledge_area_id" ColumnName="knowledge_area_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="snies">
-            <EntityTypeMapping TypeName="SSRModel.snies">
-              <MappingFragment StoreEntitySet="snies">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
-                <ScalarProperty Name="academic_level_id" ColumnName="academic_level_id" />
-                <ScalarProperty Name="program_id" ColumnName="program_id" />
-                <ScalarProperty Name="knowledge_area_id" ColumnName="knowledge_area_id" />
-                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
-                <ScalarProperty Name="snie_id" ColumnName="snie_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="investigators_commissions" TypeName="SSRModel.investigators_commissions" StoreEntitySet="investigators_commissions">
             <EndProperty Name="investigators">
               <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
@@ -2503,7 +2545,7 @@
               <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
             </EndProperty>
           </AssociationSetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

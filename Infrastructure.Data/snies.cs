@@ -26,6 +26,7 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
+        public virtual academic_levels academic_levels { get; set; }
         public virtual education_levels education_levels { get; set; }
         public virtual educational_institutions educational_institutions { get; set; }
         public virtual knowledge_areas knowledge_areas { get; set; }

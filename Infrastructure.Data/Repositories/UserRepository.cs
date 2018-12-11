@@ -28,6 +28,31 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+        public List<SelectOptionItem> KnowledgeAreasSelector(int? educational_institution_id=null)
+        {
+            var lista = this.Context.Set<knowledge_areas>();
+            var query = lista.Where(a => (educational_institution_id.HasValue && a.snies.Select(s => s.educational_institution_id.Value).Contains(educational_institution_id.Value)));
+            var query_select = query.Select(a => new SelectOptionItem
+            {
+                Value = a.knowledge_area_id.ToString(),
+                Text = a.name,
+            });
+
+            return query_select.ToList();
+        }
+
+        public List<SelectOptionItem> EducationalInstitutionsSelector()
+        {
+            var lista = this.Context.Set<educational_institutions>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.educational_institution_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> ReasonRejectsSelector()
         {
             var lista = this.Context.Set<reason_rejects>();
@@ -153,7 +178,40 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+        public List<SelectOptionItem> ProgramsSelector(int educational_institution_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a=>a.educational_institution_id==educational_institution_id).Select(a => new SelectOptionItem
+            {
+                Value = a.program_id.ToString(),
+                Text = a.programs.name,
+            });
 
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a => a.educational_institution_id == educational_institution_id).Select(a => new SelectOptionItem
+            {
+                Value = a.education_level_id.ToString(),
+                Text = a.education_levels.name,
+            });
+
+            return consulta.ToList();
+        }
+        public List<SelectOptionItem> GrantedTitlesSelector(int educational_institution_id, int education_level_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a => a.educational_institution_id == educational_institution_id && a.education_level_id== education_level_id).Select(a => new SelectOptionItem
+            {
+                Value = a.snie_id.ToString(),
+                Text = a.name,
+            });
+
+            return consulta.ToList();
+        }
         public List<SelectOptionItem> GendersSelector()
         {
             var lista = this.Context.Set<genders>();

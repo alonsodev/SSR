@@ -12,16 +12,22 @@ namespace Infrastructure.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class concepts_tags
+    public partial class academic_levels
     {
-        public int tag_id { get; set; }
-        public int concept_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public academic_levels()
+        {
+            this.snies = new HashSet<snies>();
+        }
+    
+        public int academic_level_id { get; set; }
+        public string name { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        public virtual concepts concepts { get; set; }
-        public virtual tags tags { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<snies> snies { get; set; }
     }
 }
