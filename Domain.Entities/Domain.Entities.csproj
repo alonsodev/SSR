@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RankingViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="CheckboxViewModel.cs" />
     <Compile Include="Class1.cs" />

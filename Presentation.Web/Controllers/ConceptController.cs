@@ -32,6 +32,11 @@ namespace Presentation.Web.Controllers
         {
             return View();
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_certificates })]
+        public ActionResult Certificados()
+        {
+            return View();
+        }
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_concept })]
         public ActionResult Crear(string id)
@@ -290,6 +295,28 @@ namespace Presentation.Web.Controllers
             pConceptViewModel.tag_ids = ObtenerTagIds(pConceptViewModel.tags);
             oConceptBL.Modificar(pConceptViewModel);
             return RedirectToAction("Index");
+
+        }
+
+
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_concepts })]
+        // GET: User
+        public JsonResult ObtenerCertificados(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+            int investigator_id = AuthorizeUserAttribute.UsuarioLogeado().investigator_id;
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerCertificados(ofilters, investigator_id);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = ofilters.draw,
+                recordsTotal = grid.total,
+                recordsFiltered = grid.recordsFiltered,
+                data = grid.rows
+            });
+
 
         }
 

@@ -166,7 +166,9 @@ namespace Business.Logic
                 institution_id = pInvestigatorViewModel.institution_id,
                 investigation_group_id = pInvestigatorViewModel.investigation_group_id,
                 program_id = pInvestigatorViewModel.program_id,
-                academic_level_id = pInvestigatorViewModel.academic_level_id
+                educational_institution_id = pInvestigatorViewModel.educational_institution_id,
+                education_level_id = pInvestigatorViewModel.education_level_id,
+                CVLAC = pInvestigatorViewModel.CVLAC,
             };
             oinvestigators.interest_areas = oRepositorio.InterestAreasByfilters(pInvestigatorViewModel.interest_areas);
 

@@ -332,7 +332,7 @@
                         {
                             <li class="@(ViewBag.active == "my_certificates" ? "active" : "")">
 
-                                <a href="/Investigator/MisCertificados">
+                                <a href="/Concept/Certificados">
 
                                     <i class="now-ui-icons education_paper"></i>
 
@@ -341,6 +341,7 @@
 
                             </li>
                         }
+
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
                         {
@@ -369,7 +370,19 @@
 
                             </li>
                         }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.ranking_investigator))
+                        {
+                            <li class="@(ViewBag.active == "ranking_investigator" ? "active" : "")">
 
+                                <a href="/Investigator/Mejores">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Ranking</p>
+                                </a>
+
+                            </li>
+                        }
                     </ul>
                 }
             </div>

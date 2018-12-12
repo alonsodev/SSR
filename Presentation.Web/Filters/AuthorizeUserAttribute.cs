@@ -78,7 +78,8 @@ namespace Presentation.Web.Filters
             view_concept = 79,
             view_draft_law = 80,
             concepts_to_qualify = 81,
-            qualify_concepts = 82
+            qualify_concepts = 82,
+            ranking_investigator=83
 
         }
         public Permission[] Permissions { get; set; }

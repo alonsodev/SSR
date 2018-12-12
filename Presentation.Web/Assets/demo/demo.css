@@ -116,3 +116,7 @@ div.dataTables_wrapper div.dataTables_info {
 .br-theme-bars-movie .br-widget .br-current-rating {
     width: 315px !important;
 }
+
+.form-check-inline label {
+    font-size: xx-small;
+}

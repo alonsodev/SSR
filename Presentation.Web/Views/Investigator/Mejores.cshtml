@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.HeaderTitleLink = Url.Action("Ranking", "Investigator");
+    ViewBag.HeaderTitle = "Ranking";
+    ViewBag.Title = "Ranking ";
+
+    ViewBag.active = "ranking_investigator";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">                 
+                           
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label">Áreas de Interés</label>
+
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            @Html.DropDownList("interest_area_id", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 text-right">  <button type="button" id="btnBuscar" class="btn btn-fill btn-primary">Buscar</button></div>
+                               
+                                
+                            </form>
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="disabled-sorting"></th>
+                            <th class="disabled-sorting">Posición #</th>
+                            <th class="disabled-sorting">Nombre del investigador</th>
+                            <th class="disabled-sorting">Institución a la que pertenece</th>
+                            <th class="disabled-sorting">Puntos</th>
+                            <th class="disabled-sorting">Nivel alcanzado</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+
+                            <th class="disabled-sorting"></th>
+                            <th class="disabled-sorting">Posición #</th>
+                            <th class="disabled-sorting">Nombre del investigador</th>
+                            <th class="disabled-sorting">Institución a la que pertenece</th>
+                            <th class="disabled-sorting">Puntos</th>
+                            <th class="disabled-sorting">Nivel alcanzado</th>
+
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var datatable;
+
+
+        $(function () {
+            UiFormulario.init();
+            $("#interest_area_id").select2({ theme: "bootstrap" });
+            $('#btnBuscar').click(function () {
+               
+                datatable.ajax.reload();
+            });
+        })
+
+        var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+                        searching: false,
+                        responsive: true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            url: "@Url.Action("ObtenerRanking", "Investigator")",
+                            type: 'POST',
+                            data: function (d) {
+
+                                // d.column_names = 'NumeroConstancia,RazonSocialComprador,RucComprador,FechaHoraPago,Moneda,TotalMontoDetraccion,Estado';
+                                d.interest_area_id = $('#interest_area_id').val();
+                            }
+                        },
+                      
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [
+
+                            {
+                                extend: 'csvHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            }
+                        ],
+
+
+
+                        "columns": [
+                            { "data": "position" },
+                            { "data": "position" },
+                            { "data": "investigator" },
+                            { "data": "institution" },
+                            { "data": "point" },
+                            { "data": "level" },
+
+                        ],
+                        columnDefs: [
+                            { 'className': 'text-center', 'targets': [1,2,3,4,5] },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '';
+                                },
+                                targets: 5
+                            },
+
+                        ],
+
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+
+
+                    /* Add placeholder attribute to the search input */
+                   //$('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+    </script>
+}
+
+

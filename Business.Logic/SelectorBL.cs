@@ -17,16 +17,22 @@ namespace Business.Logic
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
             oRepositorio = oUnitOfWork.UserRepository;
         }
+        public List<SelectOptionItem> ProgramsSelector(int educational_institution_id)
+        {
+            return oRepositorio.ProgramsSelector(educational_institution_id);
+        }
+
+        public List<SelectOptionItem> ProgramsSelector()
+        {
+            return oRepositorio.ProgramsSelector();
+        }
 
 
-        public List<SelectOptionItem> GrantedTitlesSelector(int educational_institution_id, int education_level_id)
+        public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
         {
-            return oRepositorio.GrantedTitlesSelector(educational_institution_id, education_level_id);
+            return oRepositorio.EducationLevelsSelector(educational_institution_id, program_id);
         }
-        public List<SelectOptionItem> KnowledgeAreasSelector(int? educational_institution_id = null)
-        {
-            return oRepositorio.KnowledgeAreasSelector(educational_institution_id);
-        }
+
         public List<SelectOptionItem> EducationalInstitutionsSelector()
         {
             return oRepositorio.EducationalInstitutionsSelector();
@@ -65,10 +71,7 @@ namespace Business.Logic
         {
             return oRepositorio.InvestigationGroupsSelector(institution_id);
         }
-        public List<SelectOptionItem> ProgramsSelector()
-        {
-            return oRepositorio.ProgramsSelector();
-        }
+        
 
         public List<SelectOptionItem> GendersSelector()
         {

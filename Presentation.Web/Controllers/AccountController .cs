@@ -105,6 +105,7 @@ namespace Presentation.Web.Controllers
 
             List<SelectOptionItem> oAcademicLevels = oSelectorBL.AcademicLevelsSelector();
             List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectOptionItem> oEducationalInstitutions = oSelectorBL.EducationalInstitutionsSelector();
 
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
@@ -114,21 +115,26 @@ namespace Presentation.Web.Controllers
             List<SelectListItem> genders = Helper.ConstruirDropDownList<SelectOptionItem>(oGenders, "Value", "Text", "", true, "", "");
 
             List<SelectListItem> programs = Helper.ConstruirDropDownList<SelectOptionItem>(oPrograms, "Value", "Text", "", true, "", "");
-            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", true, "", "");
+            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", false, "", "");
             List<SelectListItem> departments = Helper.ConstruirDropDownList<SelectOptionItem>(oDepartments, "Value", "Text", "", true, "", "");
             List<SelectListItem> academic_levels = Helper.ConstruirDropDownList<SelectOptionItem>(oAcademicLevels, "Value", "Text", "", true, "", "");
             List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
+            List<SelectListItem> educational_institutions = Helper.ConstruirDropDownList<SelectOptionItem>(oEducationalInstitutions, "Value", "Text", "", true, "", "");
 
             List<SelectListItem> oListaVacia = Helper.ConstruirDropDownList<SelectOptionItem>(new List<SelectOptionItem>(), "Value", "Text", "", true, "", "");
 
 
-            
+
+
+            ViewBag.programs = oListaVacia;
+            ViewBag.education_levels = oListaVacia;
+            ViewBag.educational_institutions = educational_institutions;
 
 
             ViewBag.institutions = oListaVacia;
             ViewBag.investigation_groups = oListaVacia;
             ViewBag.interest_areas = interest_areas;
-            ViewBag.programs = programs;
+          //  ViewBag.programs = programs;
             ViewBag.departments = departments;
             ViewBag.municipalities = oListaVacia;
 
@@ -148,7 +154,7 @@ namespace Presentation.Web.Controllers
 
         public ActionResult Crear([Bind(Include = "investigator_id,user_id,first_name,second_name,last_name,second_last_name,gender_id,mobile_phone," +
             "birthdate_text,user_email,user_pass,document_type_id,doc_nro,nationality_id,contract_name,phone,address,user_pass2,institution_id," +
-            "investigation_group_id,program_id,interest_areas,address_country_id,department_id,address_municipality_id,academic_level_id,commissions")] InvestigatorViewModel pViewModel)
+            "investigation_group_id,program_id,interest_areas,address_country_id,department_id,address_municipality_id,commissions,educational_institution_id,education_level_id,CVLAC")] InvestigatorViewModel pViewModel)
         {
             // TODO: Add insert logic here
 
@@ -272,7 +278,48 @@ namespace Presentation.Web.Controllers
             return Json(results);
 
         }
-       
+
+        [HttpPost]
+        public JsonResult ObtenerPrograma(/*string q, int page*/)
+        {
+
+            SelectorBL oBL = new SelectorBL();
+            string term_search = Request.Form["q"];
+            string str_educational_institution_id = Request.Form["educational_institution_id"];
+            int educational_institution_id = 0;
+            int.TryParse(str_educational_institution_id, out educational_institution_id);
+            // var resultado = oUserBL.VerificarDuplicado(user_id, email);
+
+            var results = oBL.ProgramsSelector(educational_institution_id);
+            return Json(results);
+
+        }
+
+        [HttpPost]
+        public JsonResult ObtenerNivelFormacion(/*string q, int page*/)
+        {
+
+            SelectorBL oBL = new SelectorBL();
+            string term_search = Request.Form["q"];
+            string str_educational_institution_id = Request.Form["educational_institution_id"];
+            int educational_institution_id = 0;
+            int.TryParse(str_educational_institution_id, out educational_institution_id);
+
+            string str_program_id = Request.Form["program_id"];
+            int program_id = 0;
+            int.TryParse(str_program_id, out program_id);
+
+           
+
+            // var resultado = oUserBL.VerificarDuplicado(user_id, email);
+
+            var results = oBL.EducationLevelsSelector(educational_institution_id, program_id);
+            return Json(results);
+
+        }
+        
+
+
         [HttpPost]
         public JsonResult Verificar(int user_id, string email)
         {

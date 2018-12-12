@@ -235,5 +235,19 @@ namespace Business.Logic
         {
             return oRepositorio.ObtenerPorCalificar(ofilters, user_id);
         }
+
+        public GridModel<ConceptViewModel> ObtenerCertificados(DataTableAjaxPostModel ofilters, int investigator_id)
+        {
+            return oRepositorio.ObtenerCertificados(ofilters, investigator_id);
+        }
+        public GridModel<RankingViewModel> ObtenerRanking(DataTableAjaxPostModel filters, int interest_area_id)
+        {
+            GridModel<RankingViewModel> lista = oRepositorio.ObtenerRanking(filters, interest_area_id);
+            int i = filters.start+1;
+            foreach (var row in lista.rows) {
+                row.position = i++;
+            }
+            return lista;
+        }
     }
 }

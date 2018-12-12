@@ -398,6 +398,14 @@
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Ranking">
+          <Property Name="contact_name" Type="varchar" MaxLength="200" />
+          <Property Name="educational_institution" Type="varchar" MaxLength="200" />
+          <Property Name="points" Type="float" />
+          <Property Name="interest_area_id" Type="int" />
+        </EntityType>-->
         <Association Name="FK_concepts_concepts_status">
           <End Role="concepts_status" Type="Self.concepts_status" Multiplicity="1" />
           <End Role="concepts" Type="Self.concepts" Multiplicity="*" />

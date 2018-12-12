@@ -145,12 +145,27 @@ namespace Domain.Entities
         [Display(Name = "Código del grupo")]
         public string code_investigation_group { get; set; }
 
-        [Display(Name = "Programa")]
-        public Nullable<int> program_id { get; set; }
+       
 
         [Display(Name = "Áreas de interés")]
         [Required(ErrorMessage = "Áreas de interés es obligatorio.")]
         public List<int> interest_areas { get; set; }
 
+        [Display(Name = "Institución educativa")]
+        [Required(ErrorMessage = "Institución educativa es obligatorio.")]
+        public Nullable<int> educational_institution_id { get; set; }
+
+        [Display(Name = "Nombre de programa")]
+        [Required(ErrorMessage = "Nombre de programa es obligatoria.")]
+        public Nullable<int> program_id { get; set; } 
+
+        [Display(Name = "Nivel de formación")]
+        [Required(ErrorMessage = "Nivel de formación es obligatorio.")]
+        public Nullable<int> education_level_id { get; set; }
+
+
+        [Display(Name = "CVLAC")]
+        public string CVLAC { get; set; }
+        
     }
 }

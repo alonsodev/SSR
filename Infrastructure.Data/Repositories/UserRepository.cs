@@ -23,7 +23,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.commission_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -36,9 +36,21 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.knowledge_area_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return query_select.ToList();
+        }
+
+        public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a => a.educational_institution_id == educational_institution_id&& a.program_id == program_id).Select(a => new SelectOptionItem
+            {
+                Value = a.education_level_id.ToString(),
+                Text = a.education_levels.name,
+            }).OrderBy(a=> a.Text);
+
+            return consulta.ToList();
         }
 
         public List<SelectOptionItem> EducationalInstitutionsSelector()
@@ -48,7 +60,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.educational_institution_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -60,7 +72,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.reason_reject_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -72,7 +84,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.tag_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -86,7 +98,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.academic_level_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -102,7 +114,7 @@ namespace Infrastructure.Data.Repositories
                 Value = a.investigation_group_id.ToString(),
                 Text = a.name,
                 AdditionalField= a.code
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -134,7 +146,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.department_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -148,7 +160,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.municipality_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -162,7 +174,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.interest_area_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -173,7 +185,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.program_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -185,7 +197,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.program_id.ToString(),
                 Text = a.programs.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -197,7 +209,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.education_level_id.ToString(),
                 Text = a.education_levels.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -208,7 +220,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.snie_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -219,7 +231,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.gender_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -233,8 +245,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.document_type_id.ToString(),
                 Text = a.name,
-            });
-
+            }).OrderBy(a => a.Text);
             return consulta.ToList();
         }
 
@@ -288,7 +299,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.nationality_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -305,7 +316,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.role_id.ToString(),
                 Text = a.role,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -316,7 +327,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.user_status_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
