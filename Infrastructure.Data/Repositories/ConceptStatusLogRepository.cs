@@ -36,5 +36,17 @@ namespace Infrastructure.Data.Repositories
 
             return count>0;
         }
+
+        public RejectConceptViewModel ObtenerRechazo(int concept_id)
+        {
+            return Set.Where(a=> a.concept_id==concept_id && a.concept_status_id==3).OrderByDescending(a=> a.concept_status_log_id).Select(
+                 a => new RejectConceptViewModel
+                 {
+                     reason_reject_id=a.reason_reject_id,
+                     reason_reject_description=a.description,
+                     reason_reject=a.reason_rejects.name,
+                 }
+                ).Take(1).FirstOrDefault();
+        }
     }
 }

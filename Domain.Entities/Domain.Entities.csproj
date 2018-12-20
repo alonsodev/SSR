@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -71,10 +72,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicLevelViewModel.cs" />
+    <Compile Include="CambiarPasswordViewModel.cs" />
+    <Compile Include="MeritRangeViewModel.cs" />
+    <Compile Include="ConfigurationViewModel.cs" />
+    <Compile Include="Notifications\NotificacionConfig.cs" />
+    <Compile Include="Notifications\NotificationGeneralAccountViewModel.cs" />
+    <Compile Include="RejectConceptViewModel.cs" />
+    <Compile Include="SnieViewModel.cs" />
+    <Compile Include="EducationLevelViewModel.cs" />
+    <Compile Include="KnowledgeAreaViewModel.cs" />
+    <Compile Include="EducationalInstitutionViewModel.cs" />
     <Compile Include="RankingViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="CheckboxViewModel.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="MyHistoryViewModel.cs" />
     <Compile Include="ConceptViewModel.cs" />
     <Compile Include="CurrentUserViewModel.cs" />
     <Compile Include="DataTableViewModel.cs" />

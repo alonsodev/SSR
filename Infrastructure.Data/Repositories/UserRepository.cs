@@ -28,11 +28,11 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
-        public List<SelectOptionItem> KnowledgeAreasSelector(int? educational_institution_id=null)
+        public List<SelectOptionItem> KnowledgeAreasSelector()
         {
             var lista = this.Context.Set<knowledge_areas>();
-            var query = lista.Where(a => (educational_institution_id.HasValue && a.snies.Select(s => s.educational_institution_id.Value).Contains(educational_institution_id.Value)));
-            var query_select = query.Select(a => new SelectOptionItem
+           
+            var query_select = lista.Select(a => new SelectOptionItem
             {
                 Value = a.knowledge_area_id.ToString(),
                 Text = a.name,
@@ -41,6 +41,19 @@ namespace Infrastructure.Data.Repositories
             return query_select.ToList();
         }
 
+        public List<SelectOptionItem> EducationLevelsSelector()
+        {
+            var lista = this.Context.Set<education_levels>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.education_level_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+       
         public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
         {
             var lista = this.Context.Set<snies>();
@@ -52,6 +65,8 @@ namespace Infrastructure.Data.Repositories
 
             return consulta.ToList();
         }
+
+        
 
         public List<SelectOptionItem> EducationalInstitutionsSelector()
         {
@@ -118,6 +133,8 @@ namespace Infrastructure.Data.Repositories
 
             return consulta.ToList();
         }
+
+       
         public List<interest_areas> InterestAreasByfilters(List<int> InterestAreas)
         {
 
@@ -261,7 +278,7 @@ namespace Infrastructure.Data.Repositories
                    new CurrentUserViewModel
                    {
                        user_id = a.id,
-                       name= a.user_name,
+                       name= a.contact_name, // contact_name
                        pass = a.user_pass,
                        user_email= a.user_email,
                        status_id = a.user_status_id,
@@ -340,7 +357,93 @@ namespace Infrastructure.Data.Repositories
 
             return count == 0;
         }
+        public UserViewModel GetByUserCodeActivate(string user_code)
+        {
+            var query = Set.Where(a => a.user_code_activate == user_code).Select(a => new UserViewModel
+            {
 
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+
+        public UserViewModel GetByUserCodeRecover(string user_code)
+        {
+            var query = Set.Where(a => a.user_code_recover == user_code).Select(a => new UserViewModel
+            {
+
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+
+        public  UserViewModel ObtenerUser(string user_email)
+        {
+            var query = Set.Where(a => a.user_email == user_email).Select(a => new UserViewModel
+            {
+
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+        
         public UserViewModel ObtenerUser(int id)
         {
             var query = Set.Where(a => a.id == id).Select(a => new UserViewModel

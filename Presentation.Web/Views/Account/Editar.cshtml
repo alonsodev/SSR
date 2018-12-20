@@ -1,0 +1,624 @@
+﻿@model Domain.Entities.InvestigatorViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("Edit", "Account");
+    ViewBag.HeaderTitle = "Mi Cuenta";
+    ViewBag.Title = "Editar Cuenta";
+}
+<div class="col-md-12 mr-auto">
+    <div class="card">
+        @using (Html.BeginForm("Editar", "Account", FormMethod.Post, new { id = "form-investigator", title = "Editar" }))
+        {
+            <div class="card-body">
+
+                <h3> Datos Básicos</h3>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.HiddenFor(model => model.user_id)
+                @Html.HiddenFor(model => model.investigator_id)
+
+
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.document_type_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("document_type_id", (IEnumerable<SelectListItem>)ViewBag.documentTypes, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.document_type_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.doc_nro, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.doc_nro, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.doc_nro, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_name, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.second_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.second_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.second_last_name, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.second_last_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.second_last_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.gender_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+
+                            @Html.DropDownList("gender_id", (IEnumerable<SelectListItem>)ViewBag.genders, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.gender_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.mobile_phone, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.mobile_phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.birthdate_text, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.birthdate_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            @Html.ValidationMessageFor(model => model.birthdate_text, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.nationality_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("nationality_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.nationality_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_country_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("address_country_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.address_country_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row address_department">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.department_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("department_id", (IEnumerable<SelectListItem>)ViewBag.departments, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.department_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_municipality_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("address_municipality_id", (IEnumerable<SelectListItem>)ViewBag.municipalities, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.address_municipality_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.educational_institution_id, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("educational_institution_id", (IEnumerable<SelectListItem>)ViewBag.educational_institutions, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.educational_institution_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.program_id, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("program_id", (IEnumerable<SelectListItem>)ViewBag.programs, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.educational_institution_id, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.education_level_id, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("education_level_id", (IEnumerable<SelectListItem>)ViewBag.education_levels, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.education_level_id, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.CVLAC, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.CVLAC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CVLAC, "", new { @class = "text-danger" })
+                </div>
+
+
+
+
+
+                <br />
+                <h3>Información de Caracterización</h3>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.institution_id, htmlAttributes: new { @class = "" })
+
+                    @Html.DropDownList("institution_id", (IEnumerable<SelectListItem>)ViewBag.institutions, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.institution_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.investigation_group_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            @Html.DropDownList("investigation_group_id", (IEnumerable<SelectListItem>)ViewBag.investigation_groups, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.investigation_group_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.code_investigation_group, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-2">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.code_investigation_group, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.code_investigation_group, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.commissions, htmlAttributes: new { @class = "" })
+
+
+                    @Html.ListBoxFor(model => model.commissions, Model.commissionsMultiSelectList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.commissions, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
+
+                    <div style="width: 100%; height: 350px; overflow-y: scroll;overflow-x:hidden">
+                        <div class="row">
+                            @foreach (var g in ViewBag.interest_areas)
+                            {
+                                <div class="col-sm-3">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="checkbox"
+                                                   name="interest_areas" value="@g.Value" id="@g.Value" @(g.Selected ? "checked" : "") />
+                                            <span class="form-check-sign"></span>
+                                            <label for="@g.Value">@g.Text</label>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+                    @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
+
+                </div>
+
+
+
+            </div>
+
+            <div class="card-footer text-right">
+
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+
+            </div>
+        }
+    </div>
+
+
+
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var current_tab;
+        function ValidarTabActivo(index) {
+
+            if (index >= 0) {
+                $('.aceptar-error').html('');
+                var checked = $('#chkPoliticasUso').prop('checked');
+
+                if (!checked) {
+                    $('.aceptar-error').html('Debe aceptar las políticas de uso.');
+                    return false;
+                }
+            }
+            if (index >= 1) {
+               // debugger;
+                var valid = $('#document_type_id').valid() & $('#doc_nro').valid() & $('#first_name').valid()
+                    & $('#second_name').valid() & $('#last_name').valid() & $('#second_last_name').valid() & $('#gender_id').valid()
+                    & $('#phone').valid() & $('#mobile_phone').valid() & $('#birthdate_text').valid() & $('#nationality_id').valid()
+                    & $('#address_country_id').valid() & $('#address').valid() & $('#educational_institution_id').valid()
+                    & $('#program_id').valid() & $('#education_level_id').valid() & $('#CVLAC').valid();
+                if (!valid)
+                    return valid;
+            }
+            if (index >= 2) {
+                debugger;
+                var valid = $('#institution_id').valid() & $('#investigation_group_id').valid()
+                    & $('#commissions').valid() ;
+                if (!valid)
+                return valid;
+            }
+
+            if (index >= 3) {
+                debugger;
+                var valid = $('#user_email').valid() & $('#user_pass').valid() & $('#user_pass2').valid();
+                if (!valid)
+                return valid;
+            }
+
+            return true;
+        }
+        var list_IG = {};
+        $(function () {
+            demo.initNowUiWizard();
+            debugger;
+            if ($("#address_country_id").val() == "45") {
+                $(".address_department").show();
+            }
+          
+
+            $("#educational_institution_id").select2({ theme: "bootstrap" });
+            $('#educational_institution_id').on('select2:select', function (e) {
+                // Do something
+
+                console.log($("#educational_institution_id").val());
+                $('#program_id').empty();
+                $('#education_level_id').empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '/Account/ObtenerPrograma',
+                    data: {
+                        educational_institution_id: $("#educational_institution_id").val()
+                    }
+                }).then(function (data) {
+                    // create the option and append to Select2
+                    var i;
+
+
+                    for (i = 0; i < data.length; i++) {
+
+                        var option = new Option(data[i].Text, data[i].Value, false, false);
+                        $("#program_id").append(option).trigger('change');
+
+
+                    }
+
+                    $("#program_id option:selected").prop("selected", false);
+                    // manually trigger the `select2:select` event
+                    $("#program_id").trigger({
+                        type: 'select2:select',
+                        params: {
+                            data: data
+                        }
+                    });
+                });
+
+
+            });
+
+            $("#program_id").select2({ theme: "bootstrap" });
+
+            $('#program_id').on('select2:select', function (e) {
+                // Do something
+
+                console.log($("#education_level_id").val());
+                $('#education_level_id').empty();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Account/ObtenerNivelFormacion',
+                    data: {
+                        educational_institution_id: $("#educational_institution_id").val(),
+                        program_id: $("#program_id").val()
+                    }
+                }).then(function (data) {
+                    // create the option and append to Select2
+                    var i;
+
+
+                    for (i = 0; i < data.length; i++) {
+
+                        var option = new Option(data[i].Text, data[i].Value, false, false);
+                        $("#education_level_id").append(option).trigger('change');
+
+
+                    }
+
+                    $("#education_level_id option:selected").prop("selected", false);
+                    // manually trigger the `select2:select` event
+                    $("#education_level_id").trigger({
+                        type: 'select2:select',
+                        params: {
+                            data: data
+                        }
+                    });
+                });
+
+
+            });
+
+            $("#education_level_id").select2({ theme: "bootstrap" });
+
+            $("#user_role_id").select2({ theme: "bootstrap" });
+            $("#user_status_id").select2({ theme: "bootstrap" });
+            $("#nationality_id").select2({ theme: "bootstrap" });
+            $("#document_type_id").select2({ theme: "bootstrap" });
+            $("#gender_id").select2({ theme: "bootstrap" });
+            $("#institution_id").select2({
+                theme: "bootstrap",
+                language: "es",
+                ajax: {
+                    url: '/Account/ObtenerInstituciones',
+                    type: "POST",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 10) < data.total_count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+                minimumInputLength: 0,
+
+            });
+            $("#investigation_group_id").select2({ theme: "bootstrap" });
+
+            $("#interest_areas").select2({ theme: "bootstrap" });
+
+            $("#academic_level_id").select2({ theme: "bootstrap" });
+            $("#commissions").select2({ theme: "bootstrap" });
+
+            $("#address_country_id").select2({ theme: "bootstrap" });
+            $("#department_id").select2({ theme: "bootstrap" });
+            $("#address_municipality_id").select2({ theme: "bootstrap" });
+            $('.datepicker').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY',
+                icons: {
+                    time: "now-ui-icons tech_watch-time",
+                    date: "now-ui-icons ui-1_calendar-60",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'now-ui-icons arrows-1_minimal-left',
+                    next: 'now-ui-icons arrows-1_minimal-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        });
+        $("#address_country_id").on('select2:select', function (e) {
+            debugger;
+            if ($("#address_country_id").val() == "45") {
+                $(".address_department").show();
+            }
+
+            else {
+                $(".address_department").hide();
+                $("#department_id").each(function () { //added a each loop here
+                    $(this).select2('val', '')
+                });
+                $("#address_municipality_id").each(function () { //added a each loop here
+                    $(this).select2('val', '')
+                });
+                $('#department_id').val('');
+                $('#address_municipality_id').val('');
+            }
+        });
+        $('#institution_id').on('select2:select', function (e) {
+            // Do something
+
+            console.log($("#institution_id").val());
+            $('#investigation_group_id').empty();
+           // $('#interest_areas').empty();
+            $.ajax({
+                type: 'POST',
+                url: '/Account/ObtenerGrupoInvestigacion',
+                data: {
+                    institution_id: $("#institution_id").val()
+                }
+            }).then(function (data) {
+                // create the option and append to Select2
+                var i;
+                list_IG = {};
+                $("#code_investigation_group").val('');
+                for (i = 0; i < data.length; i++) {
+                    list_IG[data[i].Value] = data[i];
+                    var option = new Option(data[i].Text, data[i].Value, false, false);
+                    $("#investigation_group_id").append(option).trigger('change');
+
+                    if (i == 0) {
+                        $("#code_investigation_group").val(data[i].AdditionalField);
+                    }
+                }
+
+                $("#investigation_group_id option:selected").prop("selected", false);
+                // manually trigger the `select2:select` event
+                $("#investigation_group_id").trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            });
+
+
+        });
+        $('#investigation_group_id').on('select2:select', function (e) {
+            var investigation_group_id= $("#investigation_group_id").val();
+            $("#code_investigation_group").val(list_IG[investigation_group_id].AdditionalField);
+        });
+        $('#department_id').on('select2:select', function (e) {
+            // Do something
+
+            console.log($("#department_id").val());
+            $('#address_municipality_id').empty();
+            $.ajax({
+                type: 'POST',
+                url: '/Account/ObtenerMunicipalities',
+                data: {
+                    department_id: $("#department_id").val()
+                }
+            }).then(function (data) {
+                // create the option and append to Select2
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    var option = new Option(data[i].Text, data[i].Value, false, false);
+                    $("#address_municipality_id").append(option).trigger('change');
+                }
+
+
+                // manually trigger the `select2:select` event
+                $("#address_municipality_id").trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            });
+
+
+        });
+
+
+      
+        $('.email-error').html('');
+        $('#form-investigator').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            if ($("#form-investigator").valid()) {
+                    form.submit();          
+            }
+
+            return false;
+        });
+
+    </script>
+}

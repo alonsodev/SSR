@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Domain.Entities
 {
@@ -95,7 +96,7 @@ namespace Domain.Entities
         [Display(Name = "Comisión")]
         [Required(ErrorMessage = "Comisión es obligatorio.")]
         public List<int> commissions { get; set; }
-
+        public MultiSelectList commissionsMultiSelectList { get; set; }
         [Display(Name = "Pais de residencia")]
         [Required(ErrorMessage = "Pais de residencia es obligatorio.")]
         public Nullable<int> address_country_id { get; set; }
@@ -123,6 +124,8 @@ namespace Domain.Entities
 
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "La Contraseña es obligatoria.")]
+        //[StringLength(20, MinimumLength =8, ErrorMessage = "La contraseña debe tener como mínimo 8 caracteres y como máximo 20 caracteres")]
+        [RegularExpression("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$", ErrorMessage = "La contraseña debe tener al menos 8 caracteres, no más de 20, y debe incluir al menos una letra mayúscula, una letra minúscula y un dígito numérico.")]
         [DataType(DataType.Password)]
         public string user_pass { get; set; }
 
@@ -135,7 +138,7 @@ namespace Domain.Entities
         [Display(Name = "Nombre de institución")]
         [Required(ErrorMessage = "Nombre de institución es obligatorio.")]
         public Nullable<int> institution_id { get; set; }
-
+        public string institution { get; set; }
         [Display(Name = "Grupo de investigación a la que pertenece")]
         [Required(ErrorMessage = "Grupo de investigación a la que pertenece es obligatorio.")]
         public Nullable<int> investigation_group_id { get; set; }
@@ -166,6 +169,7 @@ namespace Domain.Entities
 
         [Display(Name = "CVLAC")]
         public string CVLAC { get; set; }
-        
+        public string user_code_activate { get; set; }
+        public string user_code_recover { get; set; }
     }
 }

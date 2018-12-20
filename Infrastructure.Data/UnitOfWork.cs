@@ -37,7 +37,23 @@ namespace Infrastructure.Data
         private ConceptStatusLogRepository _conceptStatusLogRepository;
 
         private DebateSpeakerRepository _debateSpeakerRepository;
-        
+
+        private EducationalInstitutionRepository _educationalInstitutionRepository;
+        private KnowledgeAreaRepository _knowledgeAreaRepository;
+        private AcademicLevelRepository _academicLevelRepository;
+
+        private EducationLevelRepository _educationLevelRepository;
+
+        private SnieRepository _snieRepository;
+
+        private MeritRangeRepository _meritRangeRepository;
+
+        private InvestigatorInterestAreaRepository _investigatorInterestAreaRepository;
+        private InvestigatorCommissionRepository _investigatorCommissionRepository;
+
+        private ConfigurationRepository _configurationRepository;
+
+
         #endregion
 
         #region Constructors
@@ -49,6 +65,51 @@ namespace Infrastructure.Data
 
         #region IUnitOfWork Members
 
+        public ConfigurationRepository ConfigurationRepository
+        {
+            get { return _configurationRepository ?? (_configurationRepository = new ConfigurationRepository(_context)); }
+
+        }
+        public InvestigatorInterestAreaRepository InvestigatorInterestAreaRepository
+        {
+            get { return _investigatorInterestAreaRepository ?? (_investigatorInterestAreaRepository = new InvestigatorInterestAreaRepository(_context)); }
+
+        }
+        public InvestigatorCommissionRepository InvestigatorCommissionRepository
+        {
+            get { return _investigatorCommissionRepository ?? (_investigatorCommissionRepository = new InvestigatorCommissionRepository(_context)); }
+
+        }
+        public MeritRangeRepository MeritRangeRepository
+        {
+            get { return _meritRangeRepository ?? (_meritRangeRepository = new MeritRangeRepository(_context)); }
+
+        }
+        public SnieRepository SnieRepository
+        {
+            get { return _snieRepository ?? (_snieRepository = new SnieRepository(_context)); }
+
+        }
+        public EducationLevelRepository EducationLevelRepository
+        {
+            get { return _educationLevelRepository ?? (_educationLevelRepository = new EducationLevelRepository(_context)); }
+
+        }
+        public AcademicLevelRepository AcademicLevelRepository
+        {
+            get { return _academicLevelRepository ?? (_academicLevelRepository = new AcademicLevelRepository(_context)); }
+
+        }
+        public KnowledgeAreaRepository KnowledgeAreaRepository
+        {
+            get { return _knowledgeAreaRepository ?? (_knowledgeAreaRepository = new KnowledgeAreaRepository(_context)); }
+
+        }
+        public EducationalInstitutionRepository EducationalInstitutionRepository
+        {
+            get { return _educationalInstitutionRepository ?? (_educationalInstitutionRepository = new EducationalInstitutionRepository(_context)); }
+
+        }
         public DebateSpeakerRepository DebateSpeakerRepository
         {
             get { return _debateSpeakerRepository ?? (_debateSpeakerRepository = new DebateSpeakerRepository(_context)); }
@@ -190,6 +251,15 @@ namespace Infrastructure.Data
             this._tagRepository = null;
             this._conceptStatusLogRepository = null;
             this._debateSpeakerRepository = null;
+            this._educationalInstitutionRepository = null;
+            this._knowledgeAreaRepository = null;
+            this._academicLevelRepository = null;
+            this._educationLevelRepository = null;
+            this._snieRepository = null;
+            this._meritRangeRepository = null;
+            this._investigatorCommissionRepository = null;
+            this._investigatorInterestAreaRepository = null;
+            this._configurationRepository = null;
             _context.Dispose();
         }
         #endregion

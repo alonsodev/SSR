@@ -40,8 +40,8 @@ namespace Presentation.Web.Controllers
             }
             pPermissionViewModel.id_permission = 0;
 
-            pPermissionViewModel.user_id_created = 0;
-
+            pPermissionViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             PermissionBL oBL = new PermissionBL();
 
             oBL.Agregar(pPermissionViewModel);
@@ -72,6 +72,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             PermissionBL oPermissionBL = new PermissionBL();
+            pPermissionViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oPermissionBL.Modificar(pPermissionViewModel);
             return RedirectToAction("Index");
 

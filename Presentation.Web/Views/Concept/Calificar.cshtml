@@ -114,11 +114,12 @@
 
 
             </div><!-- end content-->
-                <div class="card-footer text-right">
-                    <button id="btnGuardar" type="button" class="btn btn-primary">Guardar</button>
+            <div class="card-footer text-right">
 
-                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                </div>
+
+                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                <button id="btnGuardar" type="button" class="btn btn-primary">Calificar</button>
+            </div>
             }
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -135,7 +136,7 @@
     <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Assets/css/bars-movie.css">   
+    <link rel="stylesheet" href="/Assets/css/fontawesome-stars.css">   
     <script src="/Scripts/jquery.barrating.min.js"></script>
     <script type="text/javascript">
 
@@ -143,7 +144,7 @@
 
         $(document).ready(function () {
             $('#qualification').barrating({
-                theme: 'bars-movie'
+                theme: 'fontawesome-stars'
             });
             // Initialize Editor
             $('.textarea-editor').summernote({

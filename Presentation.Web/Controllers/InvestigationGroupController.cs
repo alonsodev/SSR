@@ -60,8 +60,8 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pInvestigationGroupViewModel.investigation_group_id = 0;
-            pInvestigationGroupViewModel.user_id_created = 0;
-
+            pInvestigationGroupViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             InvestigationGroupBL oBL = new InvestigationGroupBL();
             oBL.Agregar(pInvestigationGroupViewModel);
             return RedirectToAction("Index");
@@ -101,6 +101,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();
+            pInvestigationGroupViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oInvestigationGroupBL.Modificar(pInvestigationGroupViewModel);
             return RedirectToAction("Index");
 

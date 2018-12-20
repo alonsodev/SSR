@@ -18,7 +18,7 @@ namespace Infrastructure.Data
         public commissions()
         {
             this.draft_laws = new HashSet<draft_laws>();
-            this.investigators = new HashSet<investigators>();
+            this.investigators_commissions = new HashSet<investigators_commissions>();
         }
     
         public int commission_id { get; set; }
@@ -31,6 +31,6 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<draft_laws> draft_laws { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
+        public virtual ICollection<investigators_commissions> investigators_commissions { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Presentation.Web.Filters;
+﻿using Business.Logic;
+using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
         public ActionResult Index()
         {
-           
+            /*SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
+            oSendEmailNotificationBL.EnviarNotificacionActivarCuenta();*/
             return View();
         }
 

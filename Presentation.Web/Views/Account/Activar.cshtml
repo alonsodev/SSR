@@ -1,0 +1,44 @@
+﻿@model Domain.Entities.LoginViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("Activar", "Account");
+    ViewBag.HeaderTitle = "Activar Cuenta";
+    ViewBag.Title = "Activar Cuenta";
+
+    ViewBag.active = "";
+
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+<div class="col-md-6 offset-md-3">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+
+
+                <div class="card-body">
+                    <h3>@ViewBag.Title</h3>
+                    @if (ViewBag.message_error != null && ViewBag.message_error != "")
+                    {
+                        <div>
+                            @Html.Raw(ViewBag.message_error)
+                        </div>
+                    }
+                    else
+                    {
+                        <div>Se ha activado su cuenta con éxito. Hacer click<a href="/Account/Login"> aquí </a> para acceder al sistema.</div>
+                    }
+
+                </div><!--  end card  -->
+
+            </div> <!-- end col-md-12 -->
+        </div> <!-- end row -->
+    </div>
+</div>
+
+
+@section Scripts {
+
+}

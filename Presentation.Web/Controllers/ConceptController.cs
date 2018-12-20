@@ -19,6 +19,10 @@ namespace Presentation.Web.Controllers
         // GET: User
         public ActionResult Index()
         {
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
+            List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
+            ViewBag.reason_rejects = reason_rejects;
             return View();
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited})]
@@ -26,7 +30,11 @@ namespace Presentation.Web.Controllers
         {
             return View();
         }
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_received })]
+        public ActionResult Recibidos()
+        {
+            return View();
+        }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
         public ActionResult PorCalificar()
         {
@@ -88,6 +96,26 @@ namespace Presentation.Web.Controllers
             ConceptBL oBL = new ConceptBL();
             oBL.Agregar(pConceptViewModel);
             return RedirectToAction("Index");
+
+        }
+        
+        [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        public JsonResult ObtenerRechazo(int concept_id)
+        {
+
+            ConceptBL oConceptBL = new ConceptBL();
+
+
+            RejectConceptViewModel oRejectConceptViewModel= oConceptBL.ObtenerRechazo(concept_id);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                reject = oRejectConceptViewModel,
+                status = "1",
+
+            });
 
         }
 
@@ -234,6 +262,32 @@ namespace Presentation.Web.Controllers
             return View(pConceptViewModel);
         }
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.view_concept })] // falta corregir
+        public ActionResult Evaluar(string id)
+        {
+            BadLanguageBL oBadLanguageBL = new BadLanguageBL();
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
+            pConceptViewModel.reject = 0;
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
+            ViewBag.commissions = commissions;
+
+            pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
+
+
+
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
+            List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
+            ViewBag.reason_rejects = reason_rejects;
+
+            return View(pConceptViewModel);
+        }
+
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.qualify_concepts })]
         public ActionResult Calificar(string id)
         {
@@ -264,8 +318,8 @@ namespace Presentation.Web.Controllers
             oQualifications.Add(new SelectOptionItem("4", "4"));
             oQualifications.Add(new SelectOptionItem("5", "5"));
 
-            List <SelectListItem> qualification = Helper.ConstruirDropDownList<SelectOptionItem>(oQualifications, "Value", "Text", "", true, "", "");
-            ViewBag.qualification = qualification;
+            List <SelectListItem> qualifications = Helper.ConstruirDropDownList<SelectOptionItem>(oQualifications, "Value", "Text", "", true, "", "");
+            ViewBag.qualifications = qualifications;
 
 
             ConceptBL oConceptBL = new ConceptBL();
@@ -293,6 +347,7 @@ namespace Presentation.Web.Controllers
             pConceptViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             
             pConceptViewModel.tag_ids = ObtenerTagIds(pConceptViewModel.tags);
+            pConceptViewModel.concept_status_id = 1;
             oConceptBL.Modificar(pConceptViewModel);
             return RedirectToAction("Index");
 
@@ -370,6 +425,28 @@ namespace Presentation.Web.Controllers
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
 
             GridModel<ConceptViewModel> grid = oConceptBL.ObtenerPorCalificar(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = ofilters.draw,
+                recordsTotal = grid.total,
+                recordsFiltered = grid.recordsFiltered,
+                data = grid.rows
+            });
+
+
+        }
+
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_received })]
+        // GET: User
+
+        public JsonResult ObtenerRecibidos(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerRecibidos(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
             return Json(new
             {

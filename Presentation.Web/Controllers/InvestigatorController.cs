@@ -12,6 +12,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+
 
 namespace Presentation.Web.Controllers
 {
@@ -29,13 +31,30 @@ namespace Presentation.Web.Controllers
         public ActionResult Mejores()
         {
             SelectorBL oSelectorBL = new SelectorBL();
+            MeritRangeBL oMeritRangeBL = new MeritRangeBL();
+
+            List<MeritRangeViewModel> oMeritRange= oMeritRangeBL.ObtenerTodos();
             List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
             List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", false, "", "");
             ViewBag.interest_areas = interest_areas;
+            ViewBag.merit_ranges_json = JsonConvert.SerializeObject(oMeritRange);
+            ViewBag.merit_ranges = oMeritRange;
             return View();
         }
+        public ActionResult MiHistorial()
+        {
+            SelectorBL oSelectorBL = new SelectorBL();
+            MeritRangeBL oMeritRangeBL = new MeritRangeBL();
 
-
+            List<MeritRangeViewModel> oMeritRange = oMeritRangeBL.ObtenerTodos();
+            ViewBag.merit_ranges_json = JsonConvert.SerializeObject(oMeritRange);
+            ViewBag.merit_ranges = oMeritRange;
+            ConceptBL oConceptBL = new ConceptBL();
+            MyHistoryViewModel oMyHistoryViewModel = oConceptBL.ObtenerMiHistorial(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
+            ViewBag.my_points = oMyHistoryViewModel.my_points;
+            return View(oMyHistoryViewModel);
+        }
+            
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_draft_laws })]
 

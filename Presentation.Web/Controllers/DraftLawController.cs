@@ -53,8 +53,8 @@ namespace Presentation.Web.Controllers
             pDraftLawViewModel.date_presentation = DateTime.ParseExact(pDraftLawViewModel.date_presentation_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             pDraftLawViewModel.draft_law_id = 0;
 
-            pDraftLawViewModel.user_id_created = 0;
-
+            pDraftLawViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             DraftLawBL oBL = new DraftLawBL();
 
             oBL.Agregar(pDraftLawViewModel);
@@ -93,6 +93,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             DraftLawBL oDraftLawBL = new DraftLawBL();
+            pDraftLawViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oDraftLawBL.Modificar(pDraftLawViewModel);
             return RedirectToAction("Index");
 
@@ -226,16 +227,18 @@ namespace Presentation.Web.Controllers
         }
         private bool VerificarPonentes(List<DraftLawViewModel> lista, out List<ImportError> oErrores)
         {
-            List<string> IgnorarPonentes = new List<string>();
-            IgnorarPonentes.Add("Ministro de Justicia y del Derecho");
-            IgnorarPonentes.Add("Ministro de Hacienda y Crédito Público");
+            ConfigurationBL oConfigurationBL = new ConfigurationBL();
+            ConfigurationViewModel oConfigurationViewModel= oConfigurationBL.Obtener();
+            List<string> IgnorarPonentes = oConfigurationViewModel.exclude_speakers.Split(',').ToList();
+            //IgnorarPonentes.Add("Ministro de Justicia y del Derecho");
+            //IgnorarPonentes.Add("Ministro de Hacienda y Crédito Público");
 
-            List<string> ExcluirTitulos = new List<string>();
-            ExcluirTitulos.Add("HR");
+            List<string> ExcluirTitulos = oConfigurationViewModel.remove_titles_speaker.Split(',').ToList();
+           /* ExcluirTitulos.Add("HR");
             ExcluirTitulos.Add("HS");
             ExcluirTitulos.Add("H.R.");
             ExcluirTitulos.Add("H.S.");
-            ExcluirTitulos.Add("Dr.");
+            ExcluirTitulos.Add("Dr.");*/
 
 
             oErrores = new List<ImportError>();

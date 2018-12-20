@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MailGenerator, Version=1.0.3012.30740, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libreries\MailGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftBrilliance.Format, Version=1.1.4.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libreries\SoftBrilliance.Format.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftBrilliance.Xml.Xsl, Version=1.1.4.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libreries\SoftBrilliance.Xml.Xsl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -43,10 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommissionBL.cs" />
+    <Compile Include="AcademicLevelBL.cs" />
+    <Compile Include="MeritRangeBL.cs" />
+    <Compile Include="ConfigurationBL.cs" />
+    <Compile Include="SendEmailNotificationBL.cs" />
+    <Compile Include="SnieBL.cs" />
+    <Compile Include="EducationLevelBL.cs" />
+    <Compile Include="KnowledgeAreaBL.cs" />
     <Compile Include="InterestAreaBL.cs" />
     <Compile Include="InvestigationGroupBL.cs" />
     <Compile Include="ConceptBL.cs" />
     <Compile Include="BadLanguageBL.cs" />
+    <Compile Include="EducationalInstitutionBL.cs" />
     <Compile Include="TagBL.cs" />
     <Compile Include="ProgramBL.cs" />
     <Compile Include="InstitutionBL.cs" />
@@ -58,6 +78,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CrossCutting.Helper\CrossCutting.Helper.csproj">
+      <Project>{3ecde0a3-b8ca-46b7-ae2e-1a52502f057f}</Project>
+      <Name>CrossCutting.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
       <Project>{56e37732-a6c5-4e0c-8ec7-72e399f92814}</Project>
       <Name>Domain.Entities</Name>
@@ -69,6 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libreries\MailGenerator.dll" />
+    <Content Include="libreries\SoftBrilliance.Format.dll" />
+    <Content Include="libreries\SoftBrilliance.Xml.Xsl.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

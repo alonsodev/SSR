@@ -57,7 +57,8 @@ namespace Presentation.Web.Controllers
             }
             pUserViewModel.id = 0;
 
-            pUserViewModel.user_id_created = 0;
+            pUserViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             pUserViewModel.user_pass = Helper.Encripta("1234Abcd");
             UserBL oBL = new UserBL();
 
@@ -108,6 +109,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             UserBL oUserBL = new UserBL();
+            pUserViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oUserBL.Modificar(pUserViewModel);
             return RedirectToAction("Index");
 

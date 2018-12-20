@@ -58,8 +58,8 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pProgramViewModel.program_id = 0;
-            pProgramViewModel.user_id_created = 0;
-
+            pProgramViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             ProgramBL oBL = new ProgramBL();
             oBL.Agregar(pProgramViewModel);
             return RedirectToAction("Index");
@@ -91,6 +91,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             ProgramBL oProgramBL = new ProgramBL();
+            pProgramViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oProgramBL.Modificar(pProgramViewModel);
             return RedirectToAction("Index");
 

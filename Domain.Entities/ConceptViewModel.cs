@@ -11,6 +11,11 @@ namespace Domain.Entities
 {
     public class ConceptViewModel : BaseViewModel
     {
+        
+            public bool ValidarTags()
+        {
+            return true;
+        }
         public bool ValidarResumen()
         {
             return true;
@@ -64,15 +69,16 @@ namespace Domain.Entities
         [AssertThat("ValidarResumen()", ErrorMessage = "El Resumen debe contener máximo 200 palabras.")]
         public string summary { get; set; }
 
-        [Display(Name = "Concepto")]
-        [Required(ErrorMessage = "El Concepto es obligatorio."), AllowHtml]
+        [Display(Name = "Concepto"), AllowHtml]
+       // [Required(ErrorMessage = "El Concepto es obligatorio.")]
         [AssertThat("ValidarConcepto()", ErrorMessage = "El Concepto debe contener máximo 3000 palabras.")]
         public string concept { get; set; }
       
         public Nullable<int> investigator_id { get; set; }
 
         [Display(Name = "Palabras Claves")]
-        [Required(ErrorMessage = "Las Palabras Claves son obligatorio.")]        
+        
+            //[AssertThat("ValidarTags()", ErrorMessage = "Las Palabras Claves son obligatorios.")]
         public List<string> tags { get; set; }
         public MultiSelectList tagsMultiSelectList { get; set; }
         public List<int> tag_ids { get; set; }
@@ -94,5 +100,8 @@ namespace Domain.Entities
         [Required(ErrorMessage = "La Calificación es obligatoria.")]
         public Nullable<double> qualification { get; set; }
 
+        public string investigator { get; set; }
+        public string institution { get; set; }
+        public int concept_status_id { get; set; }
     }
 }

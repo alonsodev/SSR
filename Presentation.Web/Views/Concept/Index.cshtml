@@ -1,4 +1,4 @@
-﻿
+﻿@model Domain.Entities.RejectConceptViewModel
 @{
     ViewBag.HeaderTitleLink = Url.Action("MisProyectosLey", "Investigator");
     ViewBag.HeaderTitle = "Mis Conceptos";
@@ -24,7 +24,7 @@
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Comisión</th>
-                            <th>Tema</th>
+                            <th>Área de Interés</th>
                             <th>Fecha de Emisión</th>
                             <th>Estado</th>
                             <th>Resumen</th>
@@ -38,7 +38,7 @@
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Comisión</th>
-                            <th>Tema</th>
+                            <th>Área de Interés</th>
                             <th>Fecha de Emisión</th>
                             <th>Estado</th>
                             <th>Resumen</th>
@@ -74,16 +74,78 @@
 <div style="display:none">
 
     <input type="file" id="NewFileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="checkfile(this,'N');" />
-    
+
 </div>
+
+<!-- Classic Modal -->
+<div class="modal fade" id="reject_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up"> Concepto Rechazado</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <div class="form-group has-label">
+
+                    <b>@Html.LabelFor(model => model.reason_reject_id, htmlAttributes: new { @class = "" })</b>
+                    
+                    <div id="reason_reject"></div>
+                    @Html.ValidationMessageFor(model => model.reason_reject_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    <b>@Html.LabelFor(model => model.reason_reject_description, htmlAttributes: new { @class = "" })</b>
+                    <div id="reason_reject_description" style="width: 100%; height: auto; overflow-y: hidden;overflow-x:hidden">
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.reason_reject_description, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
 @section Scripts {
 
     <script type="text/javascript">
         var datatable;
-       
+        function MostrarRechazo(concept_id) {
+
+             $.ajax(
+                    {
+                        url: "@Url.Action("ObtenerRechazo", "Concept")",
+                        type: "POST",
+                        data: { concept_id: concept_id }
+                    })
+                    .done(function (data) {
+                        //alert(1);
+                        console.log(data);
+                        $('#reason_reject').html(data.reject.reason_reject);
+                        $('#reason_reject_description').html(data.reject.reason_reject_description);
+                        $("#reject_modal").modal('show');
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+        }
 
         $(function () {
             UiFormulario.init();
+            $("#reason_reject_id").select2();
         })
 
         var UiFormulario = function () {
@@ -133,16 +195,16 @@
                             }
                         ],
 
-                       
+
 
                         "columns": [
                             { "data": "draft_law_number" },
                             { "data": "title" },
-                            { "data": "author" },    
+                            { "data": "author" },
                             { "data": "commission" },
                             { "data": "interest_area" },
-                            { "data": "date_presentation" },                           
-                            { "data": "status" },                           
+                            { "data": "date_presentation" },
+                            { "data": "status" },
                             { "data": "summary" },
                             { "data": "qualification" },
                             { "data": "concept_id" },
@@ -160,6 +222,16 @@
                             },
                             {
                                 render: function (data, type, row) {
+
+                                    var actionsHtml = row.status;
+                                    if (row.status == 'Rechazado')
+                                        actionsHtml = '<a href="javascript:void(0);" onclick="MostrarRechazo(' + row.concept_id +')">' + row.status+'</a>';
+                                    return actionsHtml;
+                                },
+                                targets: 6
+                            },
+                            {
+                                render: function (data, type, row) {
                                     debugger;
                                     return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.concept_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'
                                         + '<div style="display:none" id="summary-' + row.concept_id + '">' + row.summary + '</div>';
@@ -170,8 +242,11 @@
                             },
                             {
                                 render: function (data, type, row) {
-                                    return '<a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Presentar Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
-                                        
+                                    var html = '<a href="/Concept/Ver/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Ver Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
+                                    if (row.status =='Rechazado')
+                                        html += ' <a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar Concepto Técnico"><i class="now-ui-icons shopping_tag-content"></i></a>';
+
+                                    return html;
                                 },
                                 targets: 9,
                                 orderable: false
@@ -191,7 +266,7 @@
                         $('#modal-body-summary').html(summary);
                         $("#summary_modal").modal('show');
                     });
-                   
+
                     /* Add placeholder attribute to the search input */
                     $('.dataTables_filter input').attr('placeholder', 'Buscar');
                 }

@@ -186,6 +186,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ConceptController.cs" />
+    <Compile Include="Controllers\AcademicLevelController.cs" />
+    <Compile Include="Controllers\MeritRangeController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\SnieController.cs" />
+    <Compile Include="Controllers\EducationLevelController.cs" />
+    <Compile Include="Controllers\KnowledgeAreaController.cs" />
     <Compile Include="Controllers\InvestigatorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -194,6 +200,7 @@
     <Compile Include="Controllers\InvestigationGroupController.cs" />
     <Compile Include="Controllers\DraftLawController.cs" />
     <Compile Include="Controllers\BadLanguageController.cs" />
+    <Compile Include="Controllers\EducationalInstitutionController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -211,6 +218,7 @@
     <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\bars-movie.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\custom.css" />
     <Content Include="Assets\css\fontawesome-stars.css" />
@@ -242,6 +250,11 @@
     <Content Include="Assets\img\now-logo.png" />
     <Content Include="Assets\img\placeholder.jpg" />
     <Content Include="Assets\img\prada.jpg" />
+    <Content Include="Assets\img\merit_ranges\esmeralda.jpg" />
+    <Content Include="Assets\img\merit_ranges\GEMA_de_topacio_flamingo_.png" />
+    <Content Include="Assets\img\merit_ranges\kisscc0-gemstone-computer-icons-yellow-diamond.png" />
+    <Content Include="Assets\img\merit_ranges\kisspng-sapphire-gemstone-cobalt-blue-cardinal-gem-sapphire-gem-png.jpg" />
+    <Content Include="Assets\img\merit_ranges\ruby-icon.png" />
     <Content Include="Assets\img\RO.png" />
     <Content Include="Assets\img\saint-laurent.jpg" />
     <Content Include="Assets\img\US.png" />
@@ -296,6 +309,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.barrating.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -303,6 +318,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\summernote-es-ES.js" />
+    <Content Include="Template\RecuperarCuentaMailTemplateHtml.xslt" />
+    <Content Include="Template\ActivarCuentaMailTemplateHtml.xslt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -345,10 +363,30 @@
     <Content Include="Views\Concept\Ver.cshtml" />
     <Content Include="Views\Concept\PorCalificar.cshtml" />
     <Content Include="Views\Concept\Calificar.cshtml" />
-    <Content Include="Views\Account\Crear - Copia.cshtml" />
+    <Content Include="Views\Account\CambiarMiPassword.cshtml" />
     <Content Include="Views\Account\Crear - Copia %282%29.cshtml" />
     <Content Include="Views\Concept\Certificados.cshtml" />
     <Content Include="Views\Investigator\Mejores.cshtml" />
+    <Content Include="Views\Concept\Recibidos.cshtml" />
+    <Content Include="Views\KnowledgeArea\Crear.cshtml" />
+    <Content Include="Views\KnowledgeArea\Editar.cshtml" />
+    <Content Include="Views\KnowledgeArea\Index.cshtml" />
+    <Content Include="Views\AcademicLevel\Crear.cshtml" />
+    <Content Include="Views\AcademicLevel\Editar.cshtml" />
+    <Content Include="Views\AcademicLevel\Index.cshtml" />
+    <Content Include="Views\EducationLevel\Crear.cshtml" />
+    <Content Include="Views\EducationLevel\Editar.cshtml" />
+    <Content Include="Views\EducationLevel\Index.cshtml" />
+    <Content Include="Views\Snie\Crear.cshtml" />
+    <Content Include="Views\Snie\Editar.cshtml" />
+    <Content Include="Views\Snie\Index.cshtml" />
+    <Content Include="Uploads\0dc559af-2b49-4365-8af2-9fdbfbbb0755.xlsx" />
+    <Content Include="Views\Concept\Evaluar.cshtml" />
+    <Content Include="Views\Account\Editar.cshtml" />
+    <Content Include="Views\Investigator\MiHistorial.cshtml" />
+    <Content Include="Views\Account\Recuperar.cshtml" />
+    <Content Include="Views\Account\CambiarPassword.cshtml" />
+    <Content Include="Views\Account\Activar.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
@@ -367,12 +405,18 @@
     <Content Include="Views\BadLanguage\Crear.cshtml" />
     <Content Include="Views\BadLanguage\Editar.cshtml" />
     <Content Include="Views\BadLanguage\Index.cshtml" />
+    <Content Include="Views\EducationalInstitution\Crear.cshtml" />
+    <Content Include="Views\EducationalInstitution\Editar.cshtml" />
+    <Content Include="Views\EducationalInstitution\Index.cshtml" />
+    <Content Include="Views\MeritRange\Crear.cshtml" />
+    <Content Include="Views\MeritRange\Editar.cshtml" />
+    <Content Include="Views\MeritRange\Index.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Logs\" />
     <Folder Include="Models\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

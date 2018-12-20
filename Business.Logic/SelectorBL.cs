@@ -2,6 +2,7 @@
 using Infrastructure.Data;
 
 using Infrastructure.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -28,15 +29,24 @@ namespace Business.Logic
         }
 
 
+        public List<SelectOptionItem> EducationLevelsSelector()
+        {
+            return oRepositorio.EducationLevelsSelector();
+        }
         public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
         {
             return oRepositorio.EducationLevelsSelector(educational_institution_id, program_id);
         }
-
         public List<SelectOptionItem> EducationalInstitutionsSelector()
         {
             return oRepositorio.EducationalInstitutionsSelector();
         }
+
+        public List<SelectOptionItem> KnowledgeAreasSelector()
+        {
+            return oRepositorio.KnowledgeAreasSelector();
+        }
+
         public List<SelectOptionItem> ReasonRejectsSelector()
         {
             return oRepositorio.ReasonRejectsSelector();

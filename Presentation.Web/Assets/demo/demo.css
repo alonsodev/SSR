@@ -102,12 +102,12 @@ div.dataTables_wrapper div.dataTables_info {
 
 .box .box-body {
     padding-top: 2em;
-    height: 85px;
+    height: 120px;
     position: relative;
 }
 
 .box-example-movie .br-wrapper {
-    width: 350px;
+  /*  width: 350px;*/
     position: absolute;
     margin: 0px 0 0 -125px;
     left: 50%;

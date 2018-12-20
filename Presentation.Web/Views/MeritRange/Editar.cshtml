@@ -1,0 +1,147 @@
+﻿@model Domain.Entities.MeritRangeViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "MeritRange");
+    ViewBag.HeaderTitle = "Rangos de mérito";
+    ViewBag.Title = "Editar Rango de mérito";
+
+    ViewBag.active = "merit_ranges";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Editar", "MeritRange", FormMethod.Post, new { id = "form-edit", title = "Editar MeritRange" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.merit_range_id)
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.lower_limit, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.lower_limit, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.lower_limit, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.upper_limit, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.upper_limit, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.upper_limit, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.url_image, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.url_image, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.url_image, "", new { @class = "text-danger" })
+
+                </div>
+
+
+
+
+
+
+            </div><!-- end content-->
+            <div class="card-footer text-right">
+
+                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/MeritRange";
+        });
+
+        $('#form-edit').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            $('.name-error').html('');
+            if ($("#form-edit").valid()) {
+
+
+                 var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "MeritRange")",
+                        type: "POST",
+                     data: { id_merit_range: $('#merit_range_id').val(), name: $('#name').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.name-error').html('<span id="name-error" class="">Ya existe un rango de mérito con el mismo nombre.</span>');
+                    return false;
+                }
+
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

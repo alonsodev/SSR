@@ -115,15 +115,16 @@
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
                                     <li>
-                                        <a href="#">
-                                            <span class="sidebar-mini-icon">MP</span>
-                                            <span class="sidebar-normal">My Profile</span>
+                                        <a href="/Account/Editar/@AuthorizeUserAttribute.UsuarioLogeado().investigator_id">
+                                            <span class="sidebar-mini-icon">MC</span>
+                                            <span class="sidebar-normal">Mi Cuenta</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <span class="sidebar-mini-icon">EP</span>
-                                            <span class="sidebar-normal">Edit Profile</span>
+
+                                        <a href="/Account/CambiarMiPassword">
+                                            <span class="sidebar-mini-icon">CC</span>
+                                            <span class="sidebar-normal">Cambiar Contraseña</span>
                                         </a>
                                     </li>
                                     <li>
@@ -141,15 +142,15 @@
 
                         <!-- <li class=" @ViewBag.dashboard">
 
-           <a href="dashboard.html">
+                               <a href="dashboard.html">
 
-               <i class="now-ui-icons design_app"></i>
+                                   <i class="now-ui-icons design_app"></i>
 
-               <p>Dashboard</p>
-           </a>
+                                   <p>Dashboard</p>
+                               </a>
 
-       </li>
-    -->
+                           </li>
+                        -->
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
                         {
@@ -219,9 +220,12 @@
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law, AuthorizeUserAttribute.Permission.module_institution,
                             AuthorizeUserAttribute.Permission.module_interest_areas, AuthorizeUserAttribute.Permission.module_programs,
                             AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttribute.Permission.module_commissions,
-                            AuthorizeUserAttribute.Permission.module_bad_languages))
+                            AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.Permission.module_education_levels,
+                            AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
+                            AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
+                             AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config))
                         {
-                            <li class="@(ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
+                            <li class="@(ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges"||ViewBag.active == "snies" ||ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas"||ViewBag.active == "educational_institutions"||ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
 
                                 <a data-toggle="collapse" href="#management">
                                     <i class="now-ui-icons loader_gear"></i>
@@ -230,7 +234,7 @@
                                     </p>
                                 </a>
 
-                                <div class="@("collapse " + (ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
+                                <div class="@("collapse " + (ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges"||ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels"||ViewBag.active == "knowledge_areas"||ViewBag.active == "educational_institutions"||ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
 
                                     <ul class="nav">
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
@@ -269,15 +273,7 @@
                                                 </a>
                                             </li>
                                         }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_programs))
-                                        {
-                                            <li class="@(ViewBag.active == "programs" ? "active" : "")">
-                                                <a href="/Program">
-                                                    <span class="sidebar-mini-icon">P</span>
-                                                    <span class="sidebar-normal"> Programas </span>
-                                                </a>
-                                            </li>
-                                        }
+
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_commissions))
                                         {
                                             <li class="@(ViewBag.active == "commissions" ? "active" : "")">
@@ -287,12 +283,87 @@
                                                 </a>
                                             </li>
                                         }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_educational_institutions))
+                                        {
+                                            <li class="@(ViewBag.active == "educational_institutions" ? "active" : "")">
+                                                <a href="/EducationalInstitution">
+                                                    <span class="sidebar-mini-icon">IE</span>
+                                                    <span class="sidebar-normal"> Instituciones Educativas </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_knowledge_areas))
+                                        {
+                                            <li class="@(ViewBag.active == "knowledge_areas" ? "active" : "")">
+                                                <a href="/KnowledgeArea">
+                                                    <span class="sidebar-mini-icon">AC</span>
+                                                    <span class="sidebar-normal"> Áreas de conocimiento </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_programs))
+                                        {
+                                            <li class="@(ViewBag.active == "programs" ? "active" : "")">
+                                                <a href="/Program">
+                                                    <span class="sidebar-mini-icon">P</span>
+                                                    <span class="sidebar-normal"> Programas </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_academic_levels))
+                                        {
+                                            <li class="@(ViewBag.active == "academic_levels" ? "active" : "")">
+                                                <a href="/AcademicLevel">
+                                                    <span class="sidebar-mini-icon">NA</span>
+                                                    <span class="sidebar-normal"> Niveles académicos </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_education_levels))
+                                        {
+                                            <li class="@(ViewBag.active == "education_levels" ? "active" : "")">
+                                                <a href="/EducationLevel">
+                                                    <span class="sidebar-mini-icon">NF</span>
+                                                    <span class="sidebar-normal"> Niveles de formación </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_snies))
+                                        {
+                                            <li class="@(ViewBag.active == "snies" ? "active" : "")">
+                                                <a href="/Snie">
+                                                    <span class="sidebar-mini-icon">S</span>
+                                                    <span class="sidebar-normal"> Snies </span>
+                                                </a>
+                                            </li>
+                                        }
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_bad_languages))
                                         {
                                             <li class="@(ViewBag.active == "bad_languages" ? "active" : "")">
                                                 <a href="/BadLanguage">
                                                     <span class="sidebar-mini-icon">PNA</span>
-                                                    <span class="sidebar-normal"> Palabras No Adecuadas </span>
+                                                    <span class="sidebar-normal"> Palabras no adecuadas </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_merit_ranges))
+                                        {
+                                            <li class="@(ViewBag.active == "merit_ranges" ? "active" : "")">
+                                                <a href="/MeritRange">
+                                                    <span class="sidebar-mini-icon">RM</span>
+                                                    <span class="sidebar-normal"> Rango de Méritos </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.edit_config))
+                                        {
+                                            <li class="@(ViewBag.active == "edit_config" ? "active" : "")">
+                                                <a href="/Configuration">
+                                                    <span class="sidebar-mini-icon">C</span>
+                                                    <span class="sidebar-normal"> Configuraciones </span>
                                                 </a>
                                             </li>
                                         }
@@ -341,6 +412,19 @@
 
                             </li>
                         }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_backgrounds))
+                        {
+                            <li class="@(ViewBag.active == "my_backgrounds" ? "active" : "")">
+
+                                <a href="/Investigator/MiHistorial">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Mi Historial</p>
+                                </a>
+
+                            </li>
+                        }
 
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
@@ -366,6 +450,19 @@
                                     <i class="now-ui-icons education_paper"></i>
 
                                     <p>Conceptos Por Calificar</p>
+                                </a>
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_received))
+                        {
+                            <li class="@(ViewBag.active == "concepts_received" ? "active" : "")">
+
+                                <a href="/Concept/Recibidos">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Conceptos Recibidos</p>
                                 </a>
 
                             </li>
@@ -412,7 +509,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
-                        <form>
+                        <form style="display:none;">
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <div class="input-group-append">
@@ -422,7 +519,7 @@
                                 </div>
                             </div>
                         </form>
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav" style="display:none;">
                             <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
                                     <i class="now-ui-icons media-2_sound-wave"></i>
@@ -476,28 +573,10 @@
             <footer class="footer">
 
                 <div class="container-fluid">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="https://www.creative-tim.com/">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://presentation.creative-tim.com/">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://blog.creative-tim.com/">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+
                     <div class="copyright" id="copyright">
                         &copy;
-                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Designed by <a href="https://www.invisionapp.com/" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a>.
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Desiñado por Raycom Soluciones SAS.
                     </div>
                 </div>
 
@@ -508,7 +587,7 @@
 
     </div>
 
-    <div class="fixed-plugin">
+    <!--<div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>
@@ -563,16 +642,7 @@
                 </li>
             </ul>
         </div>
-    </div>
-
-
-
-
-
-
-
-
-
+    </div>-->
     <!--   Core JS Files   -->
     <script src="@Url.Content("/assets/js/core/jquery.min.js")"></script>
     <script src="@Url.Content("/assets/js/core/popper.min.js")"></script>
@@ -589,6 +659,8 @@
     <!-- Forms Validations Plugin -->
     <script src="@Url.Content("/assets/js/plugins/jquery.validate.min.js")"></script>
     <script src="@Url.Content("/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    
     <script src="@Url.Content("/Scripts/expressive.annotations.validate.min.js")"></script>
     <script src="@Url.Content("/Scripts/jquery.blockUI.js")"></script>
     <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->

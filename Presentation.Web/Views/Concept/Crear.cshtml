@@ -65,11 +65,12 @@
                     <span class="text-danger field-validation-error name-error"></span>
                 </div>
                 <div class="form-group has-label">
-                   
+
 
                     @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
                     @Html.DropDownList("tags", (IEnumerable<SelectListItem>)ViewBag.tags, new { multiple = "multiple", @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error tags-error"></span>
 
                 </div>
 
@@ -79,7 +80,7 @@
 
                     @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor" })
                     @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
+                    <span class="text-danger field-validation-error concept-error"></span>
                 </div>
 
 
@@ -93,11 +94,12 @@
 
 
             </div><!-- end content-->
-                <div class="card-footer text-right">
+            <div class="card-footer text-right">
 
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                </div>
+
+                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
             }
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -156,6 +158,23 @@
 
 
         });
+       
+        function ValidarTags() {
+            $('.tags-error').html('');
+            var tags = $('#tags').val();
+            if (tags && tags.length > 0)
+                return true;
+            $('.tags-error').html('Las Palabras Claves son obligatorios.');
+            return false;
+        }
+        function ValidarConcept() {
+            $('.concept-error').html('');
+            var concept = ConvertirHtmlToText($('#concept').val());
+            if (concept && concept.trim()!='')
+                return true;
+            $('.concept-error').html('El Concepto es obligatorio.');
+            return false;
+        }
         function ValidarPalabrasNoAdecuadas(text) {
             var bad_languages = $('#bad_languages').val();
             var bad_languages_list = bad_languages.split(",");
@@ -205,7 +224,7 @@
             e.preventDefault();
             var form = this;
             
-            if ($("#form-registrar").valid()) {
+            if (ValidarConcept() &&ValidarTags() && $("#form-registrar").valid()) {
                 
                 var message = ValidarPalabrasNoAdecuadas($('#summary').val());
 
@@ -220,12 +239,12 @@
 
                     return false;
                 }
-                message = ValidarPalabrasNoAdecuadas($('#concept').val());
+                message = ValidarPalabrasNoAdecuadas($('#bibliography').val());
                 
                 if (message != "") {
                     swal({
                         title: 'Error!',
-                        html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        html: '<div style="text-align:left;">La bibliografia contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
                         type: 'error',
                         confirmButtonClass: "btn btn-success",
                         buttonsStyling: false
@@ -234,7 +253,33 @@
                     return false;
                 }
                 
-               
+                message = ValidarPalabrasNoAdecuadas($('#concept').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+                debugger;
+                message = ValidarPalabrasNoAdecuadas($('#tags').val().join(' '));
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
                form.submit();
 
 

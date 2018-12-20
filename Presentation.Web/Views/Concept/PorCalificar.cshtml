@@ -21,28 +21,26 @@
                     <thead>
                         <tr>
                             <th>Nro. Proyecto</th>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>Comisión</th>
-                            <th>Tema</th>
-                            <th>Fecha de Emisión</th>
-                            <th>Estado</th>
-                            <th>Resumen</th>
-                            <th>Calificacion</th>
+                            <th>Título del proyecto de ley</th>
+                            <th>Fecha de elab.</th>
+                            <th>Nombre Investigador</th>
+                            <th>Nombre Institución</th>
+                            <th>Comisión</th>                            
+                            <th>Área de interés</th>
+                            <th>Calificación</th>
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Nro. Proyecto</th>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>Comisión</th>
-                            <th>Tema</th>
-                            <th>Fecha de Emisión</th>
-                            <th>Estado</th>
-                            <th>Resumen</th>
-                            <th>Calificacion</th>
+                            <th>Título del proyecto de ley</th>
+                            <th>Fecha de elab.</th>
+                            <th>Nombre Investigador</th>
+                            <th>Nombre Institución</th>
+                            <th>Comisión</th>                            
+                            <th>Área de interés</th>
+                            <th>Calificación</th>
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </tfoot>
@@ -135,17 +133,17 @@
                         "columns": [
                             { "data": "draft_law_number" },
                             { "data": "title" },
-                            { "data": "author" },
-                            { "data": "commission" },
-                            { "data": "interest_area" },
                             { "data": "date_presentation" },
-                            { "data": "status" },
-                            { "data": "summary" },
+                            { "data": "investigator" },
+                            { "data": "institution" },
+                            { "data": "commission" },
+                            
+                            { "data": "interest_area" },
                             { "data": "qualification" },
                             { "data": "concept_id" },
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [7,9] },
+                            { 'className': 'text-center', 'targets': [7,8] },
                             {
                                 render: function (data, type, row) {
 
@@ -153,23 +151,15 @@
                                     var actionsHtml = moment(row.date_presentation).format("DD/MM/YYYY");
                                     return actionsHtml;
                                 },
-                                targets: 5
+                                targets: 2
                             },
+                          
                             {
                                 render: function (data, type, row) {
-                                    return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.concept_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'
-                                        + '<p style="display:none" id="summary-' + row.concept_id + '">' + row.summary + '</p>';
-
-                                },
-                                targets: 7,
-                                orderable: false
-                            },
-                            {
-                                render: function (data, type, row) {
-                                    return '<a href="/Concept/Calificar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Ver Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
+                                    return '<a href="/Concept/Calificar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Calificar Concepto Técnico"><i class="now-ui-icons design-2_ruler-pencil"></i></a>';
                                         
                                 },
-                                targets: 9,
+                                targets: 8,
                                 orderable: false
                             }
                         ],

@@ -1,0 +1,188 @@
+﻿
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "EducationLevel");
+    ViewBag.HeaderTitle = "Niveles de Formación";
+    ViewBag.Title = "Lista de Niveles de Formación";
+
+    ViewBag.active = "education_levels";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+
+
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var datatable;
+        $(function () {
+            UiFormulario.init();
+        })
+
+        var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+                        responsive: true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            url: "@Url.Action("ObtenerLista", "EducationLevel")",
+                            type: 'POST'
+                        },
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [
+
+                            {
+                                extend: 'csvHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                text: '<i class="fa fa-plus"></i> Agregar',
+                                className: "btn btn-primary pull-right",
+                                action: function (e, dt, node, config) {
+                                    window.location = "@Url.Action("Crear", "EducationLevel")";
+                                },
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button');
+                                    setTimeout(function () {
+                                        $(node).parent().parent().append($(node));
+                                    }, 100);
+                                },
+                            }
+                        ],
+                        "columns": [
+
+                            { "data": "name" },
+                            { "data": "education_level_id" }
+                        ],
+                        columnDefs: [
+                            { 'className': 'text-center', 'targets': [1] },
+                            {
+                                render: function (data, type, row) {
+                                    return '<a href="/EducationLevel/Editar/' + row.education_level_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
+                                        + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.education_level_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
+                                },
+                                targets: 1,
+                                orderable: false
+                            }
+                        ],
+
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+
+                    datatable.on('click', '.delete', function (event) {
+                        debugger;
+                        var $tr = $(this).closest('tr');
+
+
+                        var row_id = $(this).attr('row-id');
+
+
+                        swal({
+                            title: '¿Estás Seguro?',
+                            text: "No se podrá revertir el cambio!",
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonClass: 'btn btn-success',
+                            cancelButtonClass: 'btn btn-danger',
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonText: 'Si, Eliminar Registro!',
+                            buttonsStyling: false
+                        }).then(function () {
+
+                            $.ajax(
+                                {
+                                    url: "@Url.Action("Eliminar", "EducationLevel")",
+                                    type: "POST",
+                                    data: { id: row_id }
+                                })
+                                .done(function (data) {
+                                    datatable.ajax.reload();
+                                    swal({
+                                        title: 'Eliminado!',
+                                        text: 'El registro ha sido eliminado.',
+                                        type: 'success',
+                                        confirmButtonClass: "btn btn-success",
+                                        buttonsStyling: false
+                                    });
+
+
+                                })
+                                .fail(function (data) {
+                                    console.log("error");
+                                })
+                                .always(function (data) {
+                                    console.log("complete");
+                                });
+
+                        }).catch(swal.noop);
+
+                    });
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+    </script>
+}

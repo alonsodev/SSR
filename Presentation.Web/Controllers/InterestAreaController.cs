@@ -59,8 +59,8 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pInterestAreaViewModel.interest_area_id = 0;
-            pInterestAreaViewModel.user_id_created = 0;
-
+            pInterestAreaViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             InterestAreaBL oBL = new InterestAreaBL();
             oBL.Agregar(pInterestAreaViewModel);
             return RedirectToAction("Index");
@@ -94,6 +94,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             InterestAreaBL oInterestAreaBL = new InterestAreaBL();
+            pInterestAreaViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oInterestAreaBL.Modificar(pInterestAreaViewModel);
             return RedirectToAction("Index");
 

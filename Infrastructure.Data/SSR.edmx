@@ -71,7 +71,7 @@
           <Property Name="concept_status_log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="concept_id" Type="int" Nullable="false" />
           <Property Name="concept_status_id" Type="int" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="500" />
+          <Property Name="description" Type="text" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
           <Property Name="reason_reject_id" Type="int" />
@@ -84,6 +84,19 @@
           </Key>
           <Property Name="tag_id" Type="int" Nullable="false" />
           <Property Name="concept_id" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="configurations">
+          <Key>
+            <PropertyRef Name="configuration_id" />
+          </Key>
+          <Property Name="configuration_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="terms_conditions" Type="text" />
+          <Property Name="exclude_speakers" Type="text" />
+          <Property Name="remove_titles_speaker" Type="text" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
@@ -235,6 +248,10 @@
           </Key>
           <Property Name="investigator_id" Type="int" Nullable="false" />
           <Property Name="commission_id" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
         </EntityType>
         <EntityType Name="investigators_interest_areas">
           <Key>
@@ -243,6 +260,10 @@
           </Key>
           <Property Name="investigator_id" Type="int" Nullable="false" />
           <Property Name="interest_area_id" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
         </EntityType>
         <EntityType Name="knowledge_areas">
           <Key>
@@ -250,6 +271,20 @@
           </Key>
           <Property Name="knowledge_area_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="merit_ranges">
+          <Key>
+            <PropertyRef Name="merit_range_id" />
+          </Key>
+          <Property Name="merit_range_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="1000" />
+          <Property Name="lower_limit" Type="int" />
+          <Property Name="upper_limit" Type="int" />
+          <Property Name="url_image" Type="varchar" MaxLength="500" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
@@ -292,8 +327,8 @@
           <Key>
             <PropertyRef Name="program_id" />
           </Key>
-          <Property Name="program_id" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="program_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="1000" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
@@ -345,7 +380,7 @@
           <Property Name="program_id" Type="int" />
           <Property Name="academic_level_id" Type="int" />
           <Property Name="education_level_id" Type="int" />
-          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="name" Type="varchar" MaxLength="500" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
@@ -397,15 +432,9 @@
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
+          <Property Name="user_code_activate" Type="varchar" MaxLength="50" />
+          <Property Name="user_code_recover" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Ranking">
-          <Property Name="contact_name" Type="varchar" MaxLength="200" />
-          <Property Name="educational_institution" Type="varchar" MaxLength="200" />
-          <Property Name="points" Type="float" />
-          <Property Name="interest_area_id" Type="int" />
-        </EntityType>-->
         <Association Name="FK_concepts_concepts_status">
           <End Role="concepts_status" Type="Self.concepts_status" Multiplicity="1" />
           <End Role="concepts" Type="Self.concepts" Multiplicity="*" />
@@ -882,6 +911,7 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <EntitySet Name="concepts_status" EntityType="Self.concepts_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="concepts_status_logs" EntityType="Self.concepts_status_logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="concepts_tags" EntityType="Self.concepts_tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="configurations" EntityType="Self.configurations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="debate_speakers" EntityType="Self.debate_speakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="document_types" EntityType="Self.document_types" Schema="dbo" store:Type="Tables" />
@@ -896,6 +926,7 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <EntitySet Name="investigators_commissions" EntityType="Self.investigators_commissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="investigators_interest_areas" EntityType="Self.investigators_interest_areas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="knowledge_areas" EntityType="Self.knowledge_areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="merit_ranges" EntityType="Self.merit_ranges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="municipalities" EntityType="Self.municipalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nationalities" EntityType="Self.nationalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permissions" EntityType="Self.permissions" Schema="dbo" store:Type="Tables" />
@@ -1074,7 +1105,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <EntitySet Name="commissions" EntityType="SSRModel.commissions" />
           <EntitySet Name="concepts" EntityType="SSRModel.concepts" />
           <EntitySet Name="concepts_status" EntityType="SSRModel.concepts_status" />
-          <EntitySet Name="concepts_status_logs" EntityType="SSRModel.concepts_status_logs" />
           <EntitySet Name="concepts_tags" EntityType="SSRModel.concepts_tags" />
           <EntitySet Name="debate_speakers" EntityType="SSRModel.debate_speakers" />
           <EntitySet Name="departments" EntityType="SSRModel.departments" />
@@ -1086,7 +1116,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <EntitySet Name="institutions" EntityType="SSRModel.institutions" />
           <EntitySet Name="interest_areas" EntityType="SSRModel.interest_areas" />
           <EntitySet Name="investigation_groups" EntityType="SSRModel.investigation_groups" />
-          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
           <EntitySet Name="knowledge_areas" EntityType="SSRModel.knowledge_areas" />
           <EntitySet Name="municipalities" EntityType="SSRModel.municipalities" />
           <EntitySet Name="nationalities" EntityType="SSRModel.nationalities" />
@@ -1098,7 +1127,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <EntitySet Name="snies" EntityType="SSRModel.snies" />
           <EntitySet Name="tags" EntityType="SSRModel.tags" />
           <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
-          <EntitySet Name="users" EntityType="SSRModel.users" />
           <AssociationSet Name="FK_snies_academic_levels" Association="SSRModel.FK_snies_academic_levels">
             <End Role="academic_levels" EntitySet="academic_levels" />
             <End Role="snies" EntitySet="snies" />
@@ -1115,29 +1143,13 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             <End Role="draft_laws" EntitySet="draft_laws" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
-          <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
-            <End Role="investigators" EntitySet="investigators" />
-            <End Role="concepts" EntitySet="concepts" />
-          </AssociationSet>
           <AssociationSet Name="FK_concepts_reason_rejects" Association="SSRModel.FK_concepts_reason_rejects">
             <End Role="reason_rejects" EntitySet="reason_rejects" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
-          <AssociationSet Name="FK_concepts_status_logs_concepts" Association="SSRModel.FK_concepts_status_logs_concepts">
-            <End Role="concepts" EntitySet="concepts" />
-            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
-          </AssociationSet>
           <AssociationSet Name="FK_concepts_tags_concepts" Association="SSRModel.FK_concepts_tags_concepts">
             <End Role="concepts" EntitySet="concepts" />
             <End Role="concepts_tags" EntitySet="concepts_tags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_concepts_status_logs_concepts_status" Association="SSRModel.FK_concepts_status_logs_concepts_status">
-            <End Role="concepts_status" EntitySet="concepts_status" />
-            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_concepts_status_logs_reason_rejects" Association="SSRModel.FK_concepts_status_logs_reason_rejects">
-            <End Role="reason_rejects" EntitySet="reason_rejects" />
-            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
           </AssociationSet>
           <AssociationSet Name="FK_concepts_tags_tags" Association="SSRModel.FK_concepts_tags_tags">
             <End Role="tags" EntitySet="tags" />
@@ -1147,77 +1159,29 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             <End Role="draft_laws" EntitySet="draft_laws" />
             <End Role="debate_speakers" EntitySet="debate_speakers" />
           </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
-          </AssociationSet>
           <AssociationSet Name="FK_municipalities_departments" Association="SSRModel.FK_municipalities_departments">
             <End Role="departments" EntitySet="departments" />
             <End Role="municipalities" EntitySet="municipalities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
-            <End Role="document_types" EntitySet="document_types" />
-            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
             <End Role="interest_areas" EntitySet="interest_areas" />
             <End Role="draft_laws" EntitySet="draft_laws" />
           </AssociationSet>
-          <AssociationSet Name="FK_investigators_education_levels" Association="SSRModel.FK_investigators_education_levels">
-            <End Role="education_levels" EntitySet="education_levels" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_snies_education_levels" Association="SSRModel.FK_snies_education_levels">
             <End Role="education_levels" EntitySet="education_levels" />
             <End Role="snies" EntitySet="snies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_educational_institutions" Association="SSRModel.FK_investigators_educational_institutions">
-            <End Role="educational_institutions" EntitySet="educational_institutions" />
-            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
           <AssociationSet Name="FK_snies_educational_institutions" Association="SSRModel.FK_snies_educational_institutions">
             <End Role="educational_institutions" EntitySet="educational_institutions" />
             <End Role="snies" EntitySet="snies" />
           </AssociationSet>
-          <AssociationSet Name="FK_investigators_genders" Association="SSRModel.FK_investigators_genders">
-            <End Role="genders" EntitySet="genders" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_investigation_groups_institutions" Association="SSRModel.FK_investigation_groups_institutions">
             <End Role="institutions" EntitySet="institutions" />
             <End Role="investigation_groups" EntitySet="investigation_groups" />
           </AssociationSet>
-          <AssociationSet Name="FK_investigators_institutions" Association="SSRModel.FK_investigators_institutions">
-            <End Role="institutions" EntitySet="institutions" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_investigation_groups" Association="SSRModel.FK_investigators_investigation_groups">
-            <End Role="investigation_groups" EntitySet="investigation_groups" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_programs" Association="SSRModel.FK_investigators_programs">
-            <End Role="programs" EntitySet="programs" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_snies_knowledge_areas" Association="SSRModel.FK_snies_knowledge_areas">
             <End Role="knowledge_areas" EntitySet="knowledge_areas" />
             <End Role="snies" EntitySet="snies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_municipalities" Association="SSRModel.FK_users_municipalities">
-            <End Role="municipalities" EntitySet="municipalities" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_address_countries" Association="SSRModel.FK_users_address_countries">
-            <End Role="nationalities" EntitySet="nationalities" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_nationalities" Association="SSRModel.FK_users_nationalities">
-            <End Role="nationalities" EntitySet="nationalities" />
-            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
             <End Role="permissions" EntitySet="permissions" />
@@ -1231,6 +1195,93 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             <End Role="roles" EntitySet="roles" />
             <End Role="role_permissions" EntitySet="role_permissions" />
           </AssociationSet>
+          <EntitySet Name="concepts_status_logs" EntityType="SSRModel.concepts_status_logs" />
+          <AssociationSet Name="FK_concepts_status_logs_concepts" Association="SSRModel.FK_concepts_status_logs_concepts">
+            <End Role="concepts" EntitySet="concepts" />
+            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_status_logs_concepts_status" Association="SSRModel.FK_concepts_status_logs_concepts_status">
+            <End Role="concepts_status" EntitySet="concepts_status" />
+            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_status_logs_reason_rejects" Association="SSRModel.FK_concepts_status_logs_reason_rejects">
+            <End Role="reason_rejects" EntitySet="reason_rejects" />
+            <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
+          </AssociationSet>
+          <EntitySet Name="merit_ranges" EntityType="SSRModel.merit_ranges" />
+          <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
+          <EntitySet Name="investigators_commissions" EntityType="SSRModel.investigators_commissions" />
+          <EntitySet Name="investigators_interest_areas" EntityType="SSRModel.investigators_interest_areas" />
+          <AssociationSet Name="FK_investigators_commissions_commissions" Association="SSRModel.FK_investigators_commissions_commissions">
+            <End Role="commissions" EntitySet="commissions" />
+            <End Role="investigators_commissions" EntitySet="investigators_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
+            <End Role="investigators" EntitySet="investigators" />
+            <End Role="concepts" EntitySet="concepts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_education_levels" Association="SSRModel.FK_investigators_education_levels">
+            <End Role="education_levels" EntitySet="education_levels" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_educational_institutions" Association="SSRModel.FK_investigators_educational_institutions">
+            <End Role="educational_institutions" EntitySet="educational_institutions" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_genders" Association="SSRModel.FK_investigators_genders">
+            <End Role="genders" EntitySet="genders" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_institutions" Association="SSRModel.FK_investigators_institutions">
+            <End Role="institutions" EntitySet="institutions" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_interest_areas_interest_areas" Association="SSRModel.FK_investigators_interest_areas_interest_areas">
+            <End Role="interest_areas" EntitySet="interest_areas" />
+            <End Role="investigators_interest_areas" EntitySet="investigators_interest_areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_investigation_groups" Association="SSRModel.FK_investigators_investigation_groups">
+            <End Role="investigation_groups" EntitySet="investigation_groups" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_commissions_investigators" Association="SSRModel.FK_investigators_commissions_investigators">
+            <End Role="investigators" EntitySet="investigators" />
+            <End Role="investigators_commissions" EntitySet="investigators_commissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_interest_areas_investigators" Association="SSRModel.FK_investigators_interest_areas_investigators">
+            <End Role="investigators" EntitySet="investigators" />
+            <End Role="investigators_interest_areas" EntitySet="investigators_interest_areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_programs" Association="SSRModel.FK_investigators_programs">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <EntitySet Name="configurations" EntityType="SSRModel.configurations" />
+          <EntitySet Name="users" EntityType="SSRModel.users" />
+          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
+            <End Role="document_types" EntitySet="document_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="investigators" EntitySet="investigators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_municipalities" Association="SSRModel.FK_users_municipalities">
+            <End Role="municipalities" EntitySet="municipalities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_address_countries" Association="SSRModel.FK_users_address_countries">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_nationalities" Association="SSRModel.FK_users_nationalities">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
           <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
@@ -1238,14 +1289,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="investigators_commissions" Association="SSRModel.investigators_commissions">
-            <End Role="commissions" EntitySet="commissions" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
-          <AssociationSet Name="investigators_interest_areas" Association="SSRModel.investigators_interest_areas">
-            <End Role="interest_areas" EntitySet="interest_areas" />
-            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="academic_levels">
@@ -1282,7 +1325,7 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="commissions" ToRole="draft_laws" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_commissions" FromRole="commissions" ToRole="investigators" />
+          <NavigationProperty Name="investigators_commissions" Relationship="SSRModel.FK_investigators_commissions_commissions" FromRole="commissions" ToRole="investigators_commissions" />
         </EntityType>
         <EntityType Name="concepts">
           <Key>
@@ -1304,10 +1347,10 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="qualification" Type="Double" />
           <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
           <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="concepts" ToRole="reason_rejects" />
-          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
           <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
+          <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
         </EntityType>
         <EntityType Name="concepts_status">
           <Key>
@@ -1317,22 +1360,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts_status" ToRole="concepts" />
           <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status" ToRole="concepts_status_logs" />
-        </EntityType>
-        <EntityType Name="concepts_status_logs">
-          <Key>
-            <PropertyRef Name="concept_status_log_id" />
-          </Key>
-          <Property Name="concept_status_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="concept_id" Type="Int32" Nullable="false" />
-          <Property Name="concept_status_id" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="reason_reject_id" Type="Int32" />
-          <Property Name="qualification" Type="Int32" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts_status_logs" ToRole="concepts" />
-          <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status_logs" ToRole="concepts_status" />
-          <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="concepts_status_logs" ToRole="reason_rejects" />
         </EntityType>
         <EntityType Name="concepts_tags">
           <Key>
@@ -1421,8 +1448,8 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_education_levels" FromRole="education_levels" ToRole="investigators" />
           <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_education_levels" FromRole="education_levels" ToRole="snies" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_education_levels" FromRole="education_levels" ToRole="investigators" />
         </EntityType>
         <EntityType Name="educational_institutions">
           <Key>
@@ -1434,8 +1461,8 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="educational_institutions" ToRole="investigators" />
           <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_educational_institutions" FromRole="educational_institutions" ToRole="snies" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="educational_institutions" ToRole="investigators" />
         </EntityType>
         <EntityType Name="genders">
           <Key>
@@ -1469,7 +1496,7 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="interest_areas" ToRole="draft_laws" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.investigators_interest_areas" FromRole="interest_areas" ToRole="investigators" />
+          <NavigationProperty Name="investigators_interest_areas" Relationship="SSRModel.FK_investigators_interest_areas_interest_areas" FromRole="interest_areas" ToRole="investigators_interest_areas" />
         </EntityType>
         <EntityType Name="investigation_groups">
           <Key>
@@ -1485,36 +1512,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigation_groups_institutions" FromRole="investigation_groups" ToRole="institutions" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigation_groups" ToRole="investigators" />
-        </EntityType>
-        <EntityType Name="investigators">
-          <Key>
-            <PropertyRef Name="investigator_id" />
-          </Key>
-          <Property Name="investigator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" />
-          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="second_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="second_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="gender_id" Type="Int32" />
-          <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="birthdate" Type="DateTime" Precision="3" />
-          <Property Name="institution_id" Type="Int32" />
-          <Property Name="investigation_group_id" Type="Int32" />
-          <Property Name="educational_institution_id" Type="Int32" />
-          <Property Name="program_id" Type="Int32" />
-          <Property Name="education_level_id" Type="Int32" />
-          <Property Name="CVLAC" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_investigators" FromRole="investigators" ToRole="concepts" />
-          <NavigationProperty Name="education_levels" Relationship="SSRModel.FK_investigators_education_levels" FromRole="investigators" ToRole="education_levels" />
-          <NavigationProperty Name="educational_institutions" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="investigators" ToRole="educational_institutions" />
-          <NavigationProperty Name="genders" Relationship="SSRModel.FK_investigators_genders" FromRole="investigators" ToRole="genders" />
-          <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigators_institutions" FromRole="investigators" ToRole="institutions" />
-          <NavigationProperty Name="investigation_groups" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigators" ToRole="investigation_groups" />
-          <NavigationProperty Name="programs" Relationship="SSRModel.FK_investigators_programs" FromRole="investigators" ToRole="programs" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_investigators_users" FromRole="investigators" ToRole="users" />
-          <NavigationProperty Name="commissions" Relationship="SSRModel.investigators_commissions" FromRole="investigators" ToRole="commissions" />
-          <NavigationProperty Name="interest_areas" Relationship="SSRModel.investigators_interest_areas" FromRole="investigators" ToRole="interest_areas" />
         </EntityType>
         <EntityType Name="knowledge_areas">
           <Key>
@@ -1571,13 +1568,13 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             <PropertyRef Name="program_id" />
           </Key>
           <Property Name="program_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="date_created" Type="DateTime" Precision="3" />
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_programs" FromRole="programs" ToRole="investigators" />
           <NavigationProperty Name="snies" Relationship="SSRModel.FK_snies_programs" FromRole="programs" ToRole="snies" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_programs" FromRole="programs" ToRole="investigators" />
         </EntityType>
         <EntityType Name="reason_rejects">
           <Key>
@@ -1631,7 +1628,7 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="program_id" Type="Int32" />
           <Property Name="academic_level_id" Type="Int32" />
           <Property Name="education_level_id" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="date_created" Type="DateTime" Precision="3" />
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
@@ -1665,39 +1662,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_users_user_status" FromRole="user_status" ToRole="users" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="document_type_id" Type="Int32" />
-          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="nationality_id" Type="Int32" />
-          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="address_country_id" Type="Int32" />
-          <Property Name="address_municipality_id" Type="Int32" />
-          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_role_id" Type="Int32" />
-          <Property Name="user_status_id" Type="Int32" />
-          <Property Name="is_super_admin" Type="Byte" />
-          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
-          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
-          <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
-          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
-          <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
-          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
         </EntityType>
         <Association Name="FK_snies_academic_levels">
           <End Type="SSRModel.academic_levels" Role="academic_levels" Multiplicity="0..1" />
@@ -1747,18 +1711,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_concepts_investigators">
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="investigators">
-              <PropertyRef Name="investigator_id" />
-            </Principal>
-            <Dependent Role="concepts">
-              <PropertyRef Name="investigator_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_concepts_reason_rejects">
           <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
           <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
@@ -1771,18 +1723,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_concepts_status_logs_concepts">
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
-          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="concepts">
-              <PropertyRef Name="concept_id" />
-            </Principal>
-            <Dependent Role="concepts_status_logs">
-              <PropertyRef Name="concept_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_concepts_tags_concepts">
           <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
           <End Type="SSRModel.concepts_tags" Role="concepts_tags" Multiplicity="*" />
@@ -1792,30 +1732,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Principal>
             <Dependent Role="concepts_tags">
               <PropertyRef Name="concept_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_status_logs_concepts_status">
-          <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
-          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="concepts_status">
-              <PropertyRef Name="concept_status_id" />
-            </Principal>
-            <Dependent Role="concepts_status_logs">
-              <PropertyRef Name="concept_status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_status_logs_reason_rejects">
-          <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="reason_rejects">
-              <PropertyRef Name="reason_reject_id" />
-            </Principal>
-            <Dependent Role="concepts_status_logs">
-              <PropertyRef Name="reason_reject_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1843,18 +1759,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_debate_speakers_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_municipalities_departments">
           <End Type="SSRModel.departments" Role="departments" Multiplicity="1" />
           <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="*" />
@@ -1864,18 +1768,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Principal>
             <Dependent Role="municipalities">
               <PropertyRef Name="department_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_document_types">
-          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="document_types">
-              <PropertyRef Name="document_type_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="document_type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1891,18 +1783,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_investigators_education_levels">
-          <End Type="SSRModel.education_levels" Role="education_levels" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="education_levels">
-              <PropertyRef Name="education_level_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="education_level_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_snies_education_levels">
           <End Type="SSRModel.education_levels" Role="education_levels" Multiplicity="0..1" />
           <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
@@ -1912,18 +1792,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Principal>
             <Dependent Role="snies">
               <PropertyRef Name="education_level_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_educational_institutions">
-          <End Type="SSRModel.educational_institutions" Role="educational_institutions" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="educational_institutions">
-              <PropertyRef Name="educational_institution_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="educational_institution_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1939,18 +1807,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_investigators_genders">
-          <End Type="SSRModel.genders" Role="genders" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="genders">
-              <PropertyRef Name="gender_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="gender_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_investigation_groups_institutions">
           <End Type="SSRModel.institutions" Role="institutions" Multiplicity="1" />
           <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="*" />
@@ -1963,54 +1819,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_investigators_institutions">
-          <End Type="SSRModel.institutions" Role="institutions" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="institutions">
-              <PropertyRef Name="institution_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="institution_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_investigation_groups">
-          <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="investigation_groups">
-              <PropertyRef Name="investigation_group_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="investigation_group_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_programs">
-          <End Type="SSRModel.programs" Role="programs" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="programs">
-              <PropertyRef Name="program_id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="program_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_investigators_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_snies_knowledge_areas">
           <End Type="SSRModel.knowledge_areas" Role="knowledge_areas" Multiplicity="0..1" />
           <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
@@ -2020,42 +1828,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Principal>
             <Dependent Role="snies">
               <PropertyRef Name="knowledge_area_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_municipalities">
-          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="municipalities">
-              <PropertyRef Name="municipality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="address_municipality_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_address_countries">
-          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nationalities">
-              <PropertyRef Name="nationality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="address_country_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_nationalities">
-          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nationalities">
-              <PropertyRef Name="nationality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="nationality_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2095,6 +1867,382 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="concepts_status_logs">
+          <Key>
+            <PropertyRef Name="concept_status_log_id" />
+          </Key>
+          <Property Name="concept_status_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="concept_id" Type="Int32" Nullable="false" />
+          <Property Name="concept_status_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="reason_reject_id" Type="Int32" />
+          <Property Name="qualification" Type="Int32" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts_status_logs" ToRole="concepts" />
+          <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_status_logs_concepts_status" FromRole="concepts_status_logs" ToRole="concepts_status" />
+          <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_status_logs_reason_rejects" FromRole="concepts_status_logs" ToRole="reason_rejects" />
+        </EntityType>
+        <Association Name="FK_concepts_status_logs_concepts">
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
+          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts">
+              <PropertyRef Name="concept_id" />
+            </Principal>
+            <Dependent Role="concepts_status_logs">
+              <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_status_logs_concepts_status">
+          <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
+          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts_status">
+              <PropertyRef Name="concept_status_id" />
+            </Principal>
+            <Dependent Role="concepts_status_logs">
+              <PropertyRef Name="concept_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_status_logs_reason_rejects">
+          <End Type="SSRModel.reason_rejects" Role="reason_rejects" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts_status_logs" Role="concepts_status_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reason_rejects">
+              <PropertyRef Name="reason_reject_id" />
+            </Principal>
+            <Dependent Role="concepts_status_logs">
+              <PropertyRef Name="reason_reject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="merit_ranges">
+          <Key>
+            <PropertyRef Name="merit_range_id" />
+          </Key>
+          <Property Name="merit_range_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="lower_limit" Type="Int32" />
+          <Property Name="upper_limit" Type="Int32" />
+          <Property Name="url_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
+        <EntityType Name="investigators">
+          <Key>
+            <PropertyRef Name="investigator_id" />
+          </Key>
+          <Property Name="investigator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="second_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="second_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gender_id" Type="Int32" />
+          <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="3" />
+          <Property Name="institution_id" Type="Int32" />
+          <Property Name="investigation_group_id" Type="Int32" />
+          <Property Name="educational_institution_id" Type="Int32" />
+          <Property Name="program_id" Type="Int32" />
+          <Property Name="education_level_id" Type="Int32" />
+          <Property Name="CVLAC" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_investigators" FromRole="investigators" ToRole="concepts" />
+          <NavigationProperty Name="education_levels" Relationship="SSRModel.FK_investigators_education_levels" FromRole="investigators" ToRole="education_levels" />
+          <NavigationProperty Name="educational_institutions" Relationship="SSRModel.FK_investigators_educational_institutions" FromRole="investigators" ToRole="educational_institutions" />
+          <NavigationProperty Name="genders" Relationship="SSRModel.FK_investigators_genders" FromRole="investigators" ToRole="genders" />
+          <NavigationProperty Name="institutions" Relationship="SSRModel.FK_investigators_institutions" FromRole="investigators" ToRole="institutions" />
+          <NavigationProperty Name="investigation_groups" Relationship="SSRModel.FK_investigators_investigation_groups" FromRole="investigators" ToRole="investigation_groups" />
+          <NavigationProperty Name="investigators_commissions" Relationship="SSRModel.FK_investigators_commissions_investigators" FromRole="investigators" ToRole="investigators_commissions" />
+          <NavigationProperty Name="investigators_interest_areas" Relationship="SSRModel.FK_investigators_interest_areas_investigators" FromRole="investigators" ToRole="investigators_interest_areas" />
+          <NavigationProperty Name="programs" Relationship="SSRModel.FK_investigators_programs" FromRole="investigators" ToRole="programs" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_investigators_users" FromRole="investigators" ToRole="users" />
+        </EntityType>
+        <EntityType Name="investigators_commissions">
+          <Key>
+            <PropertyRef Name="investigator_id" />
+            <PropertyRef Name="commission_id" />
+          </Key>
+          <Property Name="investigator_id" Type="Int32" Nullable="false" />
+          <Property Name="commission_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="commissions" Relationship="SSRModel.FK_investigators_commissions_commissions" FromRole="investigators_commissions" ToRole="commissions" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_commissions_investigators" FromRole="investigators_commissions" ToRole="investigators" />
+        </EntityType>
+        <EntityType Name="investigators_interest_areas">
+          <Key>
+            <PropertyRef Name="investigator_id" />
+            <PropertyRef Name="interest_area_id" />
+          </Key>
+          <Property Name="investigator_id" Type="Int32" Nullable="false" />
+          <Property Name="interest_area_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_investigators_interest_areas_interest_areas" FromRole="investigators_interest_areas" ToRole="interest_areas" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_interest_areas_investigators" FromRole="investigators_interest_areas" ToRole="investigators" />
+        </EntityType>
+        <Association Name="FK_investigators_commissions_commissions">
+          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="1" />
+          <End Type="SSRModel.investigators_commissions" Role="investigators_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="commissions">
+              <PropertyRef Name="commission_id" />
+            </Principal>
+            <Dependent Role="investigators_commissions">
+              <PropertyRef Name="commission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_investigators">
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="investigators">
+              <PropertyRef Name="investigator_id" />
+            </Principal>
+            <Dependent Role="concepts">
+              <PropertyRef Name="investigator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_education_levels">
+          <End Type="SSRModel.education_levels" Role="education_levels" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education_levels">
+              <PropertyRef Name="education_level_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="education_level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_educational_institutions">
+          <End Type="SSRModel.educational_institutions" Role="educational_institutions" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="educational_institutions">
+              <PropertyRef Name="educational_institution_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="educational_institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_genders">
+          <End Type="SSRModel.genders" Role="genders" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_institutions">
+          <End Type="SSRModel.institutions" Role="institutions" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="institutions">
+              <PropertyRef Name="institution_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="institution_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_interest_areas_interest_areas">
+          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="1" />
+          <End Type="SSRModel.investigators_interest_areas" Role="investigators_interest_areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Principal>
+            <Dependent Role="investigators_interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_investigation_groups">
+          <End Type="SSRModel.investigation_groups" Role="investigation_groups" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="investigation_groups">
+              <PropertyRef Name="investigation_group_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="investigation_group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_commissions_investigators">
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="1" />
+          <End Type="SSRModel.investigators_commissions" Role="investigators_commissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="investigators">
+              <PropertyRef Name="investigator_id" />
+            </Principal>
+            <Dependent Role="investigators_commissions">
+              <PropertyRef Name="investigator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_interest_areas_investigators">
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="1" />
+          <End Type="SSRModel.investigators_interest_areas" Role="investigators_interest_areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="investigators">
+              <PropertyRef Name="investigator_id" />
+            </Principal>
+            <Dependent Role="investigators_interest_areas">
+              <PropertyRef Name="investigator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_programs">
+          <End Type="SSRModel.programs" Role="programs" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programs">
+              <PropertyRef Name="program_id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="configurations">
+          <Key>
+            <PropertyRef Name="configuration_id" />
+          </Key>
+          <Property Name="configuration_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="terms_conditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="exclude_speakers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="remove_titles_speaker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="document_type_id" Type="Int32" />
+          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nationality_id" Type="Int32" />
+          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address_country_id" Type="Int32" />
+          <Property Name="address_municipality_id" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_role_id" Type="Int32" />
+          <Property Name="user_status_id" Type="Int32" />
+          <Property Name="is_super_admin" Type="Byte" />
+          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="user_code_activate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_code_recover" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
+          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
+          <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
+          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
+        </EntityType>
+        <Association Name="FK_debate_speakers_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_document_types">
+          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document_types">
+              <PropertyRef Name="document_type_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="document_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_municipalities">
+          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipalities">
+              <PropertyRef Name="municipality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="address_municipality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_address_countries">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="address_country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_nationalities">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="nationality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_users_roles">
           <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
           <End Type="SSRModel.users" Role="users" Multiplicity="*" />
@@ -2118,14 +2266,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
               <PropertyRef Name="user_status_id" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="investigators_commissions">
-          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="*" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-        </Association>
-        <Association Name="investigators_interest_areas">
-          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="*" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2194,20 +2334,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
               <MappingFragment StoreEntitySet="concepts_status">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="concepts_status_logs">
-            <EntityTypeMapping TypeName="SSRModel.concepts_status_logs">
-              <MappingFragment StoreEntitySet="concepts_status_logs">
-                <ScalarProperty Name="qualification" ColumnName="qualification" />
-                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
-                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
-                <ScalarProperty Name="concept_status_log_id" ColumnName="concept_status_log_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2351,27 +2477,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="investigators">
-            <EntityTypeMapping TypeName="SSRModel.investigators">
-              <MappingFragment StoreEntitySet="investigators">
-                <ScalarProperty Name="CVLAC" ColumnName="CVLAC" />
-                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
-                <ScalarProperty Name="program_id" ColumnName="program_id" />
-                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
-                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
-                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
-                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
-                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="second_name" ColumnName="second_name" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="knowledge_areas">
             <EntityTypeMapping TypeName="SSRModel.knowledge_areas">
               <MappingFragment StoreEntitySet="knowledge_areas">
@@ -2511,9 +2616,99 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="concepts_status_logs">
+            <EntityTypeMapping TypeName="SSRModel.concepts_status_logs">
+              <MappingFragment StoreEntitySet="concepts_status_logs">
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="reason_reject_id" ColumnName="reason_reject_id" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="concept_status_id" ColumnName="concept_status_id" />
+                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+                <ScalarProperty Name="concept_status_log_id" ColumnName="concept_status_log_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="merit_ranges">
+            <EntityTypeMapping TypeName="SSRModel.merit_ranges">
+              <MappingFragment StoreEntitySet="merit_ranges">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="url_image" ColumnName="url_image" />
+                <ScalarProperty Name="upper_limit" ColumnName="upper_limit" />
+                <ScalarProperty Name="lower_limit" ColumnName="lower_limit" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="merit_range_id" ColumnName="merit_range_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigators">
+            <EntityTypeMapping TypeName="SSRModel.investigators">
+              <MappingFragment StoreEntitySet="investigators">
+                <ScalarProperty Name="CVLAC" ColumnName="CVLAC" />
+                <ScalarProperty Name="education_level_id" ColumnName="education_level_id" />
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+                <ScalarProperty Name="educational_institution_id" ColumnName="educational_institution_id" />
+                <ScalarProperty Name="investigation_group_id" ColumnName="investigation_group_id" />
+                <ScalarProperty Name="institution_id" ColumnName="institution_id" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="second_last_name" ColumnName="second_last_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigators_commissions">
+            <EntityTypeMapping TypeName="SSRModel.investigators_commissions">
+              <MappingFragment StoreEntitySet="investigators_commissions">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="commission_id" ColumnName="commission_id" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigators_interest_areas">
+            <EntityTypeMapping TypeName="SSRModel.investigators_interest_areas">
+              <MappingFragment StoreEntitySet="investigators_interest_areas">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
+                <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configurations">
+            <EntityTypeMapping TypeName="SSRModel.configurations">
+              <MappingFragment StoreEntitySet="configurations">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="remove_titles_speaker" ColumnName="remove_titles_speaker" />
+                <ScalarProperty Name="exclude_speakers" ColumnName="exclude_speakers" />
+                <ScalarProperty Name="terms_conditions" ColumnName="terms_conditions" />
+                <ScalarProperty Name="configuration_id" ColumnName="configuration_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="SSRModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_code_recover" ColumnName="user_code_recover" />
+                <ScalarProperty Name="user_code_activate" ColumnName="user_code_activate" />
                 <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
                 <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
                 <ScalarProperty Name="date_modified" ColumnName="date_modified" />
@@ -2537,22 +2732,6 @@ advertencia 6013: La tabla o vista 'SSR.dbo.Ranking' no tiene definida una clave
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="investigators_commissions" TypeName="SSRModel.investigators_commissions" StoreEntitySet="investigators_commissions">
-            <EndProperty Name="investigators">
-              <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-            </EndProperty>
-            <EndProperty Name="commissions">
-              <ScalarProperty Name="commission_id" ColumnName="commission_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="investigators_interest_areas" TypeName="SSRModel.investigators_interest_areas" StoreEntitySet="investigators_interest_areas">
-            <EndProperty Name="investigators">
-              <ScalarProperty Name="investigator_id" ColumnName="investigator_id" />
-            </EndProperty>
-            <EndProperty Name="interest_areas">
-              <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

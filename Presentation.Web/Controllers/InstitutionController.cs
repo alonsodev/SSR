@@ -59,8 +59,8 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pInstitutionViewModel.institution_id = 0;
-            pInstitutionViewModel.user_id_created = 0;
-
+            pInstitutionViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             InstitutionBL oBL = new InstitutionBL();
             oBL.Agregar(pInstitutionViewModel);
             return RedirectToAction("Index");
@@ -92,6 +92,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             InstitutionBL oInstitutionBL = new InstitutionBL();
+            pInstitutionViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oInstitutionBL.Modificar(pInstitutionViewModel);
             return RedirectToAction("Index");
 

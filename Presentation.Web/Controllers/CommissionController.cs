@@ -58,8 +58,8 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pCommissionViewModel.commission_id = 0;
-            pCommissionViewModel.user_id_created = 0;
-
+            pCommissionViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             CommissionBL oBL = new CommissionBL();
             oBL.Agregar(pCommissionViewModel);
             return RedirectToAction("Index");
@@ -91,6 +91,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             CommissionBL oCommissionBL = new CommissionBL();
+            pCommissionViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oCommissionBL.Modificar(pCommissionViewModel);
             return RedirectToAction("Index");
 

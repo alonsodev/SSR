@@ -56,8 +56,8 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pBadLanguageViewModel.bad_language_id = 0;
-            pBadLanguageViewModel.user_id_created = 0;
-
+            pBadLanguageViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             BadLanguageBL oBL = new BadLanguageBL();
             oBL.Agregar(pBadLanguageViewModel);
             return RedirectToAction("Index");
@@ -89,6 +89,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             BadLanguageBL oBadLanguageBL = new BadLanguageBL();
+            pBadLanguageViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oBadLanguageBL.Modificar(pBadLanguageViewModel);
             return RedirectToAction("Index");
 

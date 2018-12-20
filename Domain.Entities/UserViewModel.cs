@@ -73,6 +73,7 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Estatus del Usuario es obligatorio.")]
         public Nullable<int> user_status_id { get; set; }
         public string user_status { get; set; }
-
+        public string user_code_activate { get; set; }
+        public string user_code_recover { get; set; }
     }
 }

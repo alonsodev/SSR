@@ -14,63 +14,81 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
             <div class="card-body">
-                <div class="toolbar">                 
-                           
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label">Áreas de Interés</label>
+                <div class="toolbar">
 
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            @Html.DropDownList("interest_area_id", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { @class = "form-control" })
+                    <div class="row">
+                        <label class="col-md-2 col-form-label">Áreas de Interés</label>
+
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.DropDownList("interest_area_id", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-right">  <button type="button" id="btnBuscar" class="btn btn-fill btn-primary">Buscar</button></div>
+
+
+
+                    </div>
+                    <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="disabled-sorting"></th>
+                                <th class="disabled-sorting">Posición #</th>
+                                <th class="disabled-sorting">Nombre del investigador</th>
+                                <th class="disabled-sorting">Institución a la que pertenece</th>
+                                <th class="disabled-sorting">Puntos</th>
+                                <th class="disabled-sorting">Nivel alcanzado</th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+
+                                <th class="disabled-sorting"></th>
+                                <th class="disabled-sorting">Posición #</th>
+                                <th class="disabled-sorting">Nombre del investigador</th>
+                                <th class="disabled-sorting">Institución a la que pertenece</th>
+                                <th class="disabled-sorting">Puntos</th>
+                                <th class="disabled-sorting">Nivel alcanzado</th>
+
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="row">
+                                @foreach (var merit_range in ViewBag.merit_ranges)
+                                {
+                                    <div class="col">
+                                        <div><img src="@merit_range.url_image" title=" @merit_range.name" width="40"></div>
+                                        <div>
+                                            @merit_range.name
+                                        </div>
+                                        <div>
+                                            @merit_range.lower_limit  - @merit_range.upper_limit
                                         </div>
                                     </div>
-                                    <div class="col-md-2 text-right">  <button type="button" id="btnBuscar" class="btn btn-fill btn-primary">Buscar</button></div>
-                               
-                                
-                            </form>
-                </div>
-                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th class="disabled-sorting"></th>
-                            <th class="disabled-sorting">Posición #</th>
-                            <th class="disabled-sorting">Nombre del investigador</th>
-                            <th class="disabled-sorting">Institución a la que pertenece</th>
-                            <th class="disabled-sorting">Puntos</th>
-                            <th class="disabled-sorting">Nivel alcanzado</th>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end content-->
+            </div><!--  end card  -->
+        </div> <!-- end col-md-12 -->
+    </div> <!-- end row -->
 
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
+    @section Scripts {
 
-                            <th class="disabled-sorting"></th>
-                            <th class="disabled-sorting">Posición #</th>
-                            <th class="disabled-sorting">Nombre del investigador</th>
-                            <th class="disabled-sorting">Institución a la que pertenece</th>
-                            <th class="disabled-sorting">Puntos</th>
-                            <th class="disabled-sorting">Nivel alcanzado</th>
-
-                        </tr>
-                    </tfoot>
-
-                </table>
-            </div><!-- end content-->
-        </div><!--  end card  -->
-    </div> <!-- end col-md-12 -->
-</div> <!-- end row -->
-
-@section Scripts {
-
-    <script type="text/javascript">
+        <script type="text/javascript">
         var datatable;
-
+        var merit_ranges =@Html.Raw(ViewBag.merit_ranges_json);
 
         $(function () {
             UiFormulario.init();
             $("#interest_area_id").select2({ theme: "bootstrap" });
             $('#btnBuscar').click(function () {
-               
+
                 datatable.ajax.reload();
             });
         })
@@ -99,7 +117,7 @@
                                 d.interest_area_id = $('#interest_area_id').val();
                             }
                         },
-                      
+
                         language: {
                             "url": "/Assets/media/language/spanish.json"
                         },
@@ -144,9 +162,10 @@
                             { 'className': 'text-center', 'targets': [1,2,3,4,5] },
                             {
                                 render: function (data, type, row) {
+                                    var merit_range = merit_ranges.find(a => a.lower_limit <= row.point && a.upper_limit >= row.point);
 
 
-                                    return '';
+                                    return '<img src = "' + merit_range.url_image + '" title="' + merit_range.name+'" width = "40">';
                                 },
                                 targets: 5
                             },
@@ -164,7 +183,7 @@
                 }
             };
         }();
-    </script>
-}
+        </script>
+    }
 
 

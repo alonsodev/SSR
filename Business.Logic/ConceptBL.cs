@@ -51,6 +51,12 @@ namespace Business.Logic
                 scope.Complete();
             }
         }
+
+        public MyHistoryViewModel ObtenerMiHistorial(int investigator_id)
+        {
+           return  oRepositorio.ObtenerMiHistorial(investigator_id);
+        }
+
         public void Calificar(ConceptStatusLogViewModel oConceptStatusLogViewModel)
         {
             using (var scope = new TransactionScope())
@@ -90,6 +96,12 @@ namespace Business.Logic
                 scope.Complete();
             }
         }
+
+        public RejectConceptViewModel ObtenerRechazo(int concept_id)
+        {
+            return oRepositorioConceptStatusLog.ObtenerRechazo(concept_id);
+        }
+
         public void Leido(ConceptStatusLogViewModel oConceptStatusLogViewModel)
         {
             if (oRepositorioConceptStatusLog.VerificarLeido(oConceptStatusLogViewModel.concept_id, oConceptStatusLogViewModel.user_id_created.Value)) {
@@ -148,13 +160,13 @@ namespace Business.Logic
 
 
                 oconcepts.user_id_modified = pConceptViewModel.user_id_modified;
-
+                oconcepts.concept_status_id = pConceptViewModel.concept_status_id;
                 // oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);
                 oconcepts.date_modified = DateTime.Now;
                 oRepositorio.Update(oconcepts);
 
                 //oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);
-                oconcepts = oRepositorio.Add(oconcepts);
+               // oconcepts = oRepositorio.Add(oconcepts);
 
                 oRepositorioConceptTag.DeleleMultiple(oconcepts.concept_id);
                 foreach (int tag_id in pConceptViewModel.tag_ids)
@@ -248,6 +260,11 @@ namespace Business.Logic
                 row.position = i++;
             }
             return lista;
+        }
+
+        public GridModel<ConceptViewModel> ObtenerRecibidos(DataTableAjaxPostModel ofilters, int user_id)
+        {
+            return oRepositorio.ObtenerRecibidos(ofilters, user_id);
         }
     }
 }

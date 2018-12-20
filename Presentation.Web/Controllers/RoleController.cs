@@ -62,8 +62,8 @@ namespace Presentation.Web.Controllers
             }
             pRoleViewModel.role_id = 0;
 
-            pRoleViewModel.user_id_created = 0;
-
+            pRoleViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             RoleBL oBL = new RoleBL();
 
             oBL.Agregar(pRoleViewModel);
@@ -144,6 +144,7 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             RoleBL oRoleBL = new RoleBL();
+            pRoleViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oRoleBL.Modificar(pRoleViewModel);
             return RedirectToAction("Index");
 
