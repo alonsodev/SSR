@@ -18,9 +18,7 @@ namespace Domain.Entities
 
         [Display(Name = "Nombre o Institución")]
         [Required(ErrorMessage = "Nombre o Institución es obligatorio.")]        
-        public string user_name { get; set; }
-
-       
+        public string user_name { get; set; }   
 
 
         

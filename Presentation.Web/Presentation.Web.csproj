@@ -221,6 +221,7 @@
     <Content Include="Assets\css\bars-movie.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\custom.css" />
+    <Content Include="Assets\css\fileinput.min.css" />
     <Content Include="Assets\css\fontawesome-stars.css" />
     <Content Include="Assets\css\now-ui-dashboard.min69ea.css" />
     <Content Include="Assets\css\responsive.dataTables.min.css" />
@@ -275,6 +276,7 @@
     <Content Include="Assets\js\plugins\datatable\jszip.min.js" />
     <Content Include="Assets\js\plugins\datatable\pdfmake.min.js" />
     <Content Include="Assets\js\plugins\datatable\vfs_fonts.js" />
+    <Content Include="Assets\js\plugins\fileinput.min.js" />
     <Content Include="Assets\js\plugins\fullcalendar.min.js" />
     <Content Include="Assets\js\plugins\jasny-bootstrap.min.js" />
     <Content Include="Assets\js\plugins\jquery-jvectormap.js" />
@@ -284,8 +286,14 @@
     <Content Include="Assets\js\plugins\moment.min.js" />
     <Content Include="Assets\js\plugins\nouislider.min.js" />
     <Content Include="Assets\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Assets\js\plugins\piexif.min.js" />
+    <Content Include="Assets\js\plugins\popper.min.js" />
+    <Content Include="Assets\js\plugins\purify.min.js" />
     <Content Include="Assets\js\plugins\select2.min.js" />
+    <Content Include="Assets\js\plugins\sortable.min.js" />
     <Content Include="Assets\js\plugins\sweetalert2.min.js" />
+    <Content Include="Assets\js\plugins\themes\fileinput\fa\theme.js" />
+    <Content Include="Assets\js\plugins\themes\fileinput\locales\es.js" />
     <Content Include="Assets\use.fontawesome.com\releases\v5.0.6\css\all.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
