@@ -120,3 +120,11 @@ div.dataTables_wrapper div.dataTables_info {
 .form-check-inline label {
     font-size: xx-small;
 }
+.krajee-default.file-preview-frame .kv-file-content {
+    width: 213px;
+    height: 140px !important;
+}
+.krajee-default.file-preview-frame .file-thumbnail-footer {
+   
+    display: none;
+}

@@ -17,17 +17,21 @@ namespace Domain.Entities
         public string name { get; set; }
         [Display(Name = "Límite inferior")]
         [Required(ErrorMessage = "El Límite inferior es obligatorio.")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Por favor ingrese un número válido")]
         public Nullable<int> lower_limit { get; set; }
         [Display(Name = "Límite superior")]
         [Required(ErrorMessage = "El Límite superior es obligatorio.")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Por favor ingrese un número válido")]
         public Nullable<int> upper_limit { get; set; }
         [Display(Name = "Imagen")]
-        [Required(ErrorMessage = "La Imagen es obligatorio.")]
+        
         public string url_image { get; set; }
 
 
+        [Display(Name = "Descripción")]
+        [Required(ErrorMessage = "La Descripción es obligatoria.")]
+        public string description { get; set; }
 
-
-
+        
     }
 }

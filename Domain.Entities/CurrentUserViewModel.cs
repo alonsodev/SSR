@@ -12,6 +12,9 @@ namespace Domain.Entities
         public string user_email { get; set; }
         public string name { get; set; }
         public string pass { get; set; }
+        public string avatar { get; set; }
+
+        
         public int? status_id { get; set; }
 
         public int investigator_id { get; set; }

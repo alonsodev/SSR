@@ -101,7 +101,14 @@
 
                     <div class="user">
                         <div class="photo">
-                            <img src="/assets/img/james.jpg" />
+                            @if (AuthorizeUserAttribute.UsuarioLogeado().avatar != null && AuthorizeUserAttribute.UsuarioLogeado().name != "")
+                            {
+                                <img src="@AuthorizeUserAttribute.UsuarioLogeado().avatar" />
+                            }
+                            else
+                            {
+                                <img src="/Avatars/default_avatar_male.jpg" />
+                            }
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">

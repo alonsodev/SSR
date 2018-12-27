@@ -36,7 +36,8 @@ namespace Infrastructure.Data.Repositories
                 
                 lower_limit = a.lower_limit,
                 upper_limit = a.upper_limit,
-                url_image = a.url_image
+                url_image = a.url_image,
+                description= a.description,
             });
 
             return query.Take(1).FirstOrDefault();
@@ -51,7 +52,8 @@ namespace Infrastructure.Data.Repositories
                 name = a.name,
                 lower_limit = a.lower_limit,
                 upper_limit = a.upper_limit,
-                url_image = a.url_image
+                url_image = a.url_image,
+                description = a.description,
             }).OrderBy(a=>a.lower_limit).ToList();
         }
 

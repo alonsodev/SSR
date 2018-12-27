@@ -27,7 +27,7 @@
                 <div class="form-group has-label">
 
                     @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
                     @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
 
                 </div>
@@ -49,7 +49,7 @@
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
                             @Html.ValidationMessageFor(model => model.author, "", new { @class = "text-danger" })
                         </div>
 
@@ -61,7 +61,7 @@
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            @Html.EditorFor(model => model.origin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.origin, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
                             @Html.ValidationMessageFor(model => model.origin, "", new { @class = "text-danger" })
                         </div>
 
@@ -86,7 +86,7 @@
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            @Html.EditorFor(model => model.debate_speaker, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.debate_speaker, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
                             @Html.ValidationMessageFor(model => model.debate_speaker, "", new { @class = "text-danger" })
                         </div>
 
@@ -97,7 +97,7 @@
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            @Html.EditorFor(model => model.debate_speaker2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.debate_speaker2, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
                             @Html.ValidationMessageFor(model => model.debate_speaker2, "", new { @class = "text-danger" })
                         </div>
 
@@ -120,7 +120,7 @@
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
                             @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                         </div>
 
@@ -129,7 +129,7 @@
                 <div class="form-group has-label">
 
                     @Html.LabelFor(model => model.status_comment, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.status_comment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.status_comment, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
                     @Html.ValidationMessageFor(model => model.status_comment, "", new { @class = "text-danger" })
 
                 </div>
@@ -151,7 +151,7 @@
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            @Html.EditorFor(model => model.initiative, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.initiative, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
                             @Html.ValidationMessageFor(model => model.initiative, "", new { @class = "text-danger" })
                         </div>
 
@@ -162,7 +162,7 @@
                 <div class="form-group has-label">
 
                     @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
                     @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
 
                 </div>

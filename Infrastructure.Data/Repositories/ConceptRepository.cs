@@ -131,15 +131,15 @@ namespace Infrastructure.Data.Repositories
         public MyHistoryViewModel ObtenerMiHistorial(int investigator_id)
         {
             GridModel<RankingViewModel> resultado = new GridModel<RankingViewModel>();
-            IQueryable<concepts> queryFilters = Set;     
+            IQueryable<concepts> queryFilters = Set;
 
-            var oMyHistoryViewModel = queryFilters.Where(a=>(a.concept_status_id==5 || a.concept_status_id == 6) && a.investigator_id== investigator_id).GroupBy(l => new { investigator_id = l.investigator_id }).Select(a => new MyHistoryViewModel
-            {              
-                qualified_concepts=a.Count(),
+            var oMyHistoryViewModel = queryFilters.Where(a => (a.concept_status_id == 5 || a.concept_status_id == 6) && a.investigator_id == investigator_id).GroupBy(l => new { investigator_id = l.investigator_id }).Select(a => new MyHistoryViewModel
+            {
+                qualified_concepts = a.Count(),
                 my_points = a.Sum(c => c.qualification)
             }).Take(1).FirstOrDefault();
 
-          
+
             return oMyHistoryViewModel;
         }
 
@@ -314,7 +314,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<ConceptViewModel> resultado = new GridModel<ConceptViewModel>();
             IQueryable<concepts> queryFilters = Set;
 
-            queryFilters = queryFilters.Where(a => a.concepts_status_logs.Where(b=> (b.concept_status_id==5 || b.concept_status_id == 6) && b.user_id_created==user_id).Count()>0);//falta mejorar
+            queryFilters = queryFilters.Where(a => a.concepts_status_logs.Where(b => (b.concept_status_id == 5 || b.concept_status_id == 6) && b.user_id_created == user_id).Count() > 0);//falta mejorar
 
             queryFilters = queryFilters.Where(a => a.draft_laws.debate_speakers.Select(d => d.user_id).Contains(user_id));
 
@@ -354,7 +354,7 @@ namespace Infrastructure.Data.Repositories
                 interest_area = a.draft_laws.interest_areas.name,
 
                 //summary_draft_law = a.draft_laws.summary,
-                qualification = a.concepts_status_logs.Where(b => (b.concept_status_id == 5 || b.concept_status_id == 6) && b.user_id_created == user_id).Select(c=>c.qualification).Take(1).FirstOrDefault()
+                qualification = a.concepts_status_logs.Where(b => (b.concept_status_id == 5 || b.concept_status_id == 6) && b.user_id_created == user_id).Select(c => c.qualification).Take(1).FirstOrDefault()
             });
 
             if (String.IsNullOrEmpty(sortBy)) sortBy = "concept_id";
@@ -449,29 +449,29 @@ namespace Infrastructure.Data.Repositories
 
         public GridModel<RankingViewModel> ObtenerRanking(DataTableAjaxPostModel filters, int interest_area_id)
         {
-            
+
 
             GridModel<RankingViewModel> resultado = new GridModel<RankingViewModel>();
             IQueryable<concepts> queryFilters = Set;
 
-           queryFilters = queryFilters.Where(a => a.draft_laws.interest_area_id == interest_area_id);
-
-                 
+            queryFilters = queryFilters.Where(a => a.draft_laws.interest_area_id == interest_area_id);
 
 
-            var query = queryFilters.GroupBy(l => new {  contact_name= l.investigators.users.contact_name, institution=l.investigators.institutions.name }).Select(a => new RankingViewModel
+
+
+            var query = queryFilters.GroupBy(l => new { contact_name = l.investigators.users.contact_name, institution = l.investigators.institutions.name, avatar = l.investigators.users.avatar }).Select(a => new RankingViewModel
             {
-                position=0,
+                position = 0,
                 investigator = a.Key.contact_name,
-                institution = a.Key.institution,               
-                
-                point = a.Sum(c=>c.qualification)
+                institution = a.Key.institution,
+                avatar= a.Key.avatar,
+                point = a.Sum(c => c.qualification)
             });
 
             int count_records = query.Count();
             int count_records_filtered = count_records;
 
-            resultado.rows = query.OrderByDescending(a=> a.point).Skip(filters.start).Take(filters.length).ToList();
+            resultado.rows = query.OrderByDescending(a => a.point).Skip(filters.start).Take(filters.length).ToList();
             resultado.total = count_records;
             resultado.recordsFiltered = count_records_filtered;
             return resultado;

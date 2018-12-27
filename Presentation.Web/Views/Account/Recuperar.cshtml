@@ -32,7 +32,7 @@
                         <div class="form-group has-label">
 
                             <label class="" for="user_email">Ingresa tu correo electrónico para enviarte información sobre como recuperar tu cuenta.</label>
-                            @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control", maxlength = "150" } })
                             @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
                         </div>
 

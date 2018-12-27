@@ -53,7 +53,6 @@
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts" />
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts_status" />
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_reason_rejects" />
-        <EntityTypeShape EntityType="SSRModel.merit_ranges" Width="1.5" PointX="10.375" PointY="10.75" />
         <EntityTypeShape EntityType="SSRModel.investigators" Width="1.5" PointX="15.375" PointY="15" />
         <EntityTypeShape EntityType="SSRModel.investigators_commissions" Width="1.5" PointX="17.625" PointY="20.25" />
         <EntityTypeShape EntityType="SSRModel.investigators_interest_areas" Width="1.5" PointX="17.625" PointY="23.5" />
@@ -69,7 +68,7 @@
         <AssociationConnector Association="SSRModel.FK_investigators_interest_areas_investigators" />
         <AssociationConnector Association="SSRModel.FK_investigators_programs" />
         <EntityTypeShape EntityType="SSRModel.configurations" Width="1.5" PointX="12.375" PointY="10.75" />
-        <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="6.125" />
         <AssociationConnector Association="SSRModel.FK_debate_speakers_users" />
         <AssociationConnector Association="SSRModel.FK_users_document_types" />
         <AssociationConnector Association="SSRModel.FK_investigators_users" />
@@ -78,7 +77,8 @@
         <AssociationConnector Association="SSRModel.FK_users_nationalities" />
         <AssociationConnector Association="SSRModel.FK_users_roles" />
         <AssociationConnector Association="SSRModel.FK_users_user_status" />
-      </Diagram>
+        <EntityTypeShape EntityType="SSRModel.merit_ranges" Width="1.5" PointX="10.375" PointY="14.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

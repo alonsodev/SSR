@@ -145,6 +145,8 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+       
+
         public List<commissions> CommissionsByfilters(List<int> Commissions)
         {
 
@@ -265,6 +267,23 @@ namespace Infrastructure.Data.Repositories
             }).OrderBy(a => a.Text);
             return consulta.ToList();
         }
+        public CurrentUserViewModel GetCurrentUser(int user_id)
+        {
+           return  Set.Where(a => a.id == user_id).Select(a =>
+                    new CurrentUserViewModel
+                    {
+                        user_id = a.id,
+                        name = a.contact_name, // contact_name
+                       pass = a.user_pass,
+                        user_email = a.user_email,
+                        status_id = a.user_status_id,
+                        investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
+                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
+                        avatar = a.avatar
+
+                    }
+                ).Take(1).FirstOrDefault();
+        }
 
         public CurrentUserViewModel ValidarUsuario(string usuario, string contrasena, ref int tipo_error)
         {
@@ -278,12 +297,14 @@ namespace Infrastructure.Data.Repositories
                    new CurrentUserViewModel
                    {
                        user_id = a.id,
-                       name= a.contact_name, // contact_name
+                       name = a.contact_name, // contact_name
                        pass = a.user_pass,
-                       user_email= a.user_email,
+                       user_email = a.user_email,
                        status_id = a.user_status_id,
-                       investigator_id= a.investigators.Select(i=> i.investigator_id).Take(1).FirstOrDefault(),
-                       permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList()
+                       investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
+                       permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
+                       avatar = a.avatar
+                   
                    }
                ).Take(1).FirstOrDefault();
 

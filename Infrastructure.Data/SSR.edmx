@@ -281,7 +281,8 @@
             <PropertyRef Name="merit_range_id" />
           </Key>
           <Property Name="merit_range_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="1000" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
           <Property Name="lower_limit" Type="int" />
           <Property Name="upper_limit" Type="int" />
           <Property Name="url_image" Type="varchar" MaxLength="500" />
@@ -434,6 +435,7 @@
           <Property Name="user_id_modified" Type="int" />
           <Property Name="user_code_activate" Type="varchar" MaxLength="50" />
           <Property Name="user_code_recover" Type="varchar" MaxLength="50" />
+          <Property Name="avatar" Type="varchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_concepts_concepts_status">
           <End Role="concepts_status" Type="Self.concepts_status" Multiplicity="1" />
@@ -1208,7 +1210,6 @@
             <End Role="reason_rejects" EntitySet="reason_rejects" />
             <End Role="concepts_status_logs" EntitySet="concepts_status_logs" />
           </AssociationSet>
-          <EntitySet Name="merit_ranges" EntityType="SSRModel.merit_ranges" />
           <EntitySet Name="investigators" EntityType="SSRModel.investigators" />
           <EntitySet Name="investigators_commissions" EntityType="SSRModel.investigators_commissions" />
           <EntitySet Name="investigators_interest_areas" EntityType="SSRModel.investigators_interest_areas" />
@@ -1290,7 +1291,8 @@
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="merit_ranges" EntityType="SSRModel.merit_ranges" />
+          </EntityContainer>
         <EntityType Name="academic_levels">
           <Key>
             <PropertyRef Name="academic_level_id" />
@@ -1919,20 +1921,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="merit_ranges">
-          <Key>
-            <PropertyRef Name="merit_range_id" />
-          </Key>
-          <Property Name="merit_range_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="lower_limit" Type="Int32" />
-          <Property Name="upper_limit" Type="Int32" />
-          <Property Name="url_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-        </EntityType>
         <EntityType Name="investigators">
           <Key>
             <PropertyRef Name="investigator_id" />
@@ -2162,6 +2150,7 @@
           <Property Name="user_id_modified" Type="Int32" />
           <Property Name="user_code_activate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="user_code_recover" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
           <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
@@ -2267,6 +2256,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="merit_ranges">
+          <Key>
+            <PropertyRef Name="merit_range_id" />
+          </Key>
+          <Property Name="merit_range_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lower_limit" Type="Int32" />
+          <Property Name="upper_limit" Type="Int32" />
+          <Property Name="url_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2630,21 +2634,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="merit_ranges">
-            <EntityTypeMapping TypeName="SSRModel.merit_ranges">
-              <MappingFragment StoreEntitySet="merit_ranges">
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="url_image" ColumnName="url_image" />
-                <ScalarProperty Name="upper_limit" ColumnName="upper_limit" />
-                <ScalarProperty Name="lower_limit" ColumnName="lower_limit" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="merit_range_id" ColumnName="merit_range_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="investigators">
             <EntityTypeMapping TypeName="SSRModel.investigators">
               <MappingFragment StoreEntitySet="investigators">
@@ -2707,6 +2696,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="SSRModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
                 <ScalarProperty Name="user_code_recover" ColumnName="user_code_recover" />
                 <ScalarProperty Name="user_code_activate" ColumnName="user_code_activate" />
                 <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
@@ -2729,6 +2719,22 @@
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="merit_ranges">
+            <EntityTypeMapping TypeName="SSRModel.merit_ranges">
+              <MappingFragment StoreEntitySet="merit_ranges">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="url_image" ColumnName="url_image" />
+                <ScalarProperty Name="upper_limit" ColumnName="upper_limit" />
+                <ScalarProperty Name="lower_limit" ColumnName="lower_limit" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="merit_range_id" ColumnName="merit_range_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,11 +21,13 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El Nombre es obligatorio.")]
         public string name { get; set; }
 
-      
-
-     
+        [Display(Name = "Código")]
+        [Required(ErrorMessage = "El Código es obligatorio.")]
+        public string code { get; set; }
         
 
-       
+
+
+
     }
 }

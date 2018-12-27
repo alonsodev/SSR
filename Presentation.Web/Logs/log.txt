@@ -7646,3 +7646,859 @@ DEBUG 2018-12-21 10:49:50,121 2348589ms MvcApplication         OnActionExecuting
 DEBUG 2018-12-21 10:49:50,140 2348608ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Crear - time spent 19
 DEBUG 2018-12-21 10:52:53,300 2531768ms MvcApplication         OnActionExecuting  - Executing controller User, action Crear
 DEBUG 2018-12-21 10:52:53,316 2531784ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Crear - time spent 15
+DEBUG 2018-12-21 11:11:51,962  1398ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 11:11:51,995  1431ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 33
+DEBUG 2018-12-21 11:11:56,085  5521ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 11:11:56,462  5898ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 377
+DEBUG 2018-12-21 11:11:56,476  5912ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 11:11:56,477  5914ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 11:12:02,513 11949ms MvcApplication         OnActionExecuting  - Executing controller User, action Index
+DEBUG 2018-12-21 11:12:02,514 11950ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Index - time spent 0
+DEBUG 2018-12-21 11:12:03,736 13172ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-21 11:12:03,770 13206ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 34
+DEBUG 2018-12-21 11:12:04,227 13663ms MvcApplication         OnActionExecuting  - Executing controller User, action ObtenerLista
+DEBUG 2018-12-21 11:12:04,233 13669ms MvcApplication         OnActionExecuted   - Finished executing controller User, action ObtenerLista - time spent 5
+DEBUG 2018-12-21 11:12:04,945 14381ms MvcApplication         OnActionExecuting  - Executing controller User, action Crear
+DEBUG 2018-12-21 11:12:05,139 14575ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Crear - time spent 193
+DEBUG 2018-12-21 11:14:13,513 142950ms MvcApplication         OnActionExecuting  - Executing controller User, action Crear
+DEBUG 2018-12-21 11:14:13,528 142965ms MvcApplication         OnActionExecuted   - Finished executing controller User, action Crear - time spent 15
+DEBUG 2018-12-21 11:31:00,472 1149909ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-21 11:31:00,473 1149910ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-21 11:31:00,488 1149925ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 11:31:00,489 1149926ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-21 11:31:09,774 1159211ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 11:31:09,788 1159225ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 14
+DEBUG 2018-12-21 11:31:09,800 1159237ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 11:31:09,800 1159237ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 11:31:13,807 1163243ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:31:14,473 1163909ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 665
+DEBUG 2018-12-21 11:31:49,205 1198642ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:31:49,274 1198711ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 68
+DEBUG 2018-12-21 11:36:50,344 1499781ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:36:50,410 1499847ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 65
+DEBUG 2018-12-21 11:38:55,770 1625207ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:38:55,847 1625284ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 77
+DEBUG 2018-12-21 11:39:54,584 1684021ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:39:54,653 1684090ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 69
+DEBUG 2018-12-21 11:40:38,936 1728373ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:40:39,005 1728441ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 68
+DEBUG 2018-12-21 11:52:24,111 2433547ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:52:24,185 2433621ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 74
+DEBUG 2018-12-21 11:54:21,337 2550774ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:54:21,414 2550851ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 77
+DEBUG 2018-12-21 11:58:00,139 2769576ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 11:58:00,218 2769655ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 79
+DEBUG 2018-12-21 12:58:27,303 6396740ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 12:58:27,385 6396822ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 82
+DEBUG 2018-12-21 12:59:26,226 6455663ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 12:59:26,269 6455706ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 43
+DEBUG 2018-12-21 12:59:40,820 6470256ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 12:59:40,862 6470299ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 41
+DEBUG 2018-12-21 12:59:59,359 6488796ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 12:59:59,402 6488839ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 43
+DEBUG 2018-12-21 13:00:42,537 6531974ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:00:42,588 6532025ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 50
+DEBUG 2018-12-21 13:05:19,315 6808752ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:05:19,366 6808803ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 51
+DEBUG 2018-12-21 13:13:59,954 7329390ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:14:00,010 7329446ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 55
+DEBUG 2018-12-21 13:22:23,622 7833059ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:22:23,674 7833111ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 52
+DEBUG 2018-12-21 13:24:54,629 7984066ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:24:54,673 7984110ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 44
+DEBUG 2018-12-21 13:25:01,812 7991249ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:25:01,852 7991289ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 39
+DEBUG 2018-12-21 13:26:50,790 8100227ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:26:50,840 8100277ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 50
+DEBUG 2018-12-21 13:29:24,402   888ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:29:27,763  4250ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 3361
+DEBUG 2018-12-21 13:29:54,545 31032ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:29:54,588 31075ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 42
+DEBUG 2018-12-21 13:45:10,902  1409ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 13:45:10,932  1439ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 30
+DEBUG 2018-12-21 13:45:21,397 11905ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 13:45:21,746 12254ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 349
+DEBUG 2018-12-21 13:45:21,760 12268ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 13:45:21,761 12269ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 13:45:25,577 16085ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:45:26,207 16715ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 630
+DEBUG 2018-12-21 13:45:40,825 31333ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:49:58,654 289161ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 257828
+DEBUG 2018-12-21 13:49:58,705 289212ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:49:58,776 289283ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 71
+DEBUG 2018-12-21 13:55:10,245 600753ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:55:54,850 645358ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 44605
+DEBUG 2018-12-21 13:55:54,888 645396ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 13:55:54,944 645452ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 55
+DEBUG 2018-12-21 13:57:03,601 714108ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:30:42,992  1432ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:30:43,429  1868ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 438
+DEBUG 2018-12-21 14:30:46,017  4457ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 14:30:46,020  4459ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 3
+DEBUG 2018-12-21 14:30:49,915  8355ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 14:30:49,959  8398ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 44
+DEBUG 2018-12-21 14:30:49,974  8414ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 14:30:49,974  8414ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 14:30:53,175 11615ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:30:53,801 12241ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 625
+DEBUG 2018-12-21 14:31:24,745 43185ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:31:24,796 43236ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 50
+DEBUG 2018-12-21 14:32:07,511 85951ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:32:07,565 86005ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 53
+DEBUG 2018-12-21 14:32:41,682 120122ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:32:41,742 120182ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 59
+DEBUG 2018-12-21 14:33:07,083 145523ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:33:12,768 151208ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 5684
+DEBUG 2018-12-21 14:33:12,780 151220ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:33:12,816 151256ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 35
+DEBUG 2018-12-21 14:33:17,584 156023ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:33:17,623 156063ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 39
+DEBUG 2018-12-21 14:40:01,438  1448ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 14:40:01,465  1475ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 28
+DEBUG 2018-12-21 14:40:04,640  4650ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 14:40:04,983  4993ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 342
+DEBUG 2018-12-21 14:40:04,994  5004ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 14:40:04,995  5005ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 14:40:08,095  8105ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:40:08,774  8784ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 678
+DEBUG 2018-12-21 14:40:18,288 18298ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:40:18,333 18343ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 44
+DEBUG 2018-12-21 14:41:32,274 92283ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:41:32,327 92336ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 53
+DEBUG 2018-12-21 14:41:38,742 98752ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:41:47,484 107494ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 8741
+DEBUG 2018-12-21 14:41:47,497 107507ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:41:47,533 107543ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 35
+DEBUG 2018-12-21 14:41:50,735 110744ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:41:50,776 110785ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 41
+DEBUG 2018-12-21 14:41:58,552 118562ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:42:14,498 134507ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 15946
+DEBUG 2018-12-21 14:42:14,510 134519ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:42:14,559 134568ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 48
+DEBUG 2018-12-21 14:42:19,863 139872ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:42:19,905 139914ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 42
+DEBUG 2018-12-21 14:42:26,629 146638ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:42:26,688 146697ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 59
+DEBUG 2018-12-21 14:42:26,699 146708ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:42:26,741 146750ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 42
+DEBUG 2018-12-21 14:54:01,526  1443ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 14:54:01,554  1471ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 28
+DEBUG 2018-12-21 14:54:05,111  5029ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 14:54:05,450  5368ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 339
+DEBUG 2018-12-21 14:54:05,463  5381ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 14:54:05,464  5382ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 14:54:10,628 10545ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:54:11,291 11208ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 663
+DEBUG 2018-12-21 14:54:18,217 18134ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:54:18,611 18528ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 393
+DEBUG 2018-12-21 14:54:18,621 18538ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:54:18,659 18576ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 38
+DEBUG 2018-12-21 14:54:21,162 21079ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:54:21,219 21136ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 56
+DEBUG 2018-12-21 14:54:21,232 21149ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:54:21,276 21193ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 44
+DEBUG 2018-12-21 14:54:32,071 31989ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 14:54:32,113 32031ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 41
+DEBUG 2018-12-21 16:12:55,658  1352ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:12:56,173  1867ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 515
+DEBUG 2018-12-21 16:12:59,128  4823ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:12:59,128  4823ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:12:59,164  4858ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 35
+DEBUG 2018-12-21 16:12:59,245  4939ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 117
+DEBUG 2018-12-21 16:13:06,490 12185ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 16:13:06,490 12185ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-21 16:13:13,026 18721ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 16:13:13,063 18758ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 36
+DEBUG 2018-12-21 16:13:13,076 18771ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 16:13:13,077 18772ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 16:13:15,825 21520ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:13:15,832 21527ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 6
+DEBUG 2018-12-21 16:13:16,189 21884ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:13:16,200 21895ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 10
+DEBUG 2018-12-21 16:13:16,701 22395ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:13:16,725 22419ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 23
+DEBUG 2018-12-21 16:13:24,635 30330ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:13:24,644 30339ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:13:42,311 48006ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:13:42,318 48013ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 7
+DEBUG 2018-12-21 16:13:43,510 49205ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:13:43,518 49213ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:13:44,024 49718ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:13:44,042 49736ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 17
+DEBUG 2018-12-21 16:13:51,332 57027ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:13:51,341 57036ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:14:20,709 86403ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:14:20,717 86411ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 8
+DEBUG 2018-12-21 16:14:21,879 87574ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:14:21,888 87583ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 9
+DEBUG 2018-12-21 16:14:22,389 88084ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:14:22,402 88097ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 12
+DEBUG 2018-12-21 16:14:29,398 95093ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:14:29,406 95101ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 7
+DEBUG 2018-12-21 16:17:19,155  1340ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:17:19,211  1396ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 16:17:19,217  1402ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 5
+DEBUG 2018-12-21 16:17:19,705  1890ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 550
+DEBUG 2018-12-21 16:17:25,741  7926ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-21 16:17:25,798  7983ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 57
+DEBUG 2018-12-21 16:17:25,812  7997ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-21 16:17:25,812  7997ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-21 16:17:34,523 16709ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:17:34,560 16746ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 36
+DEBUG 2018-12-21 16:17:35,124 17310ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:17:35,169 17355ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 45
+DEBUG 2018-12-21 16:17:35,615 17801ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:17:35,622 17808ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 7
+DEBUG 2018-12-21 16:17:40,905 23091ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:17:40,914 23100ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 9
+DEBUG 2018-12-21 16:19:38,010 140196ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:19:38,017 140203ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 7
+DEBUG 2018-12-21 16:19:39,206 141392ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:19:39,215 141401ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:19:39,714 141900ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:19:39,722 141908ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 7
+DEBUG 2018-12-21 16:19:44,829 147015ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:19:44,838 147024ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 9
+DEBUG 2018-12-21 16:20:01,393 163578ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:01,401 163586ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:20:06,025 168211ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:06,033 168219ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:20:06,934 169120ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:06,940 169126ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 6
+DEBUG 2018-12-21 16:20:08,194 170380ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:08,203 170389ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:20:38,538 200724ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:20:38,548 200734ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 10
+DEBUG 2018-12-21 16:20:39,781 201967ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:39,790 201976ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:20:40,298 202484ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:40,306 202492ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:20:50,344 212530ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:20:50,353 212539ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 9
+DEBUG 2018-12-21 16:21:25,785 247971ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-21 16:21:25,792 247978ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 7
+DEBUG 2018-12-21 16:21:27,017 249203ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:21:27,025 249211ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 8
+DEBUG 2018-12-21 16:21:27,528 249714ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:21:27,553 249739ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 24
+DEBUG 2018-12-21 16:21:31,912 254097ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:21:31,921 254106ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 9
+DEBUG 2018-12-21 16:25:26,253 488439ms MvcApplication         OnActionExecuting  - Executing controller Account, action Editar
+DEBUG 2018-12-21 16:25:26,320 488506ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Editar - time spent 67
+DEBUG 2018-12-21 16:25:31,686 493872ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:25:31,698 493884ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 11
+DEBUG 2018-12-21 16:25:32,197 494383ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-21 16:25:32,208 494394ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 11
+DEBUG 2018-12-26 13:50:23,503  2921ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-26 13:50:23,582  2999ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 13:50:23,586  3003ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 3
+DEBUG 2018-12-26 13:50:24,353  3771ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 850
+DEBUG 2018-12-26 13:50:37,615 17032ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 13:50:37,683 17100ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 67
+DEBUG 2018-12-26 13:50:37,698 17115ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 13:50:37,698 17115ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 13:50:45,738 25155ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-26 13:50:45,739 25156ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-26 13:50:45,751 25168ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 13:50:45,751 25168ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-26 13:50:53,608 33025ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 13:50:53,620 33037ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 11
+DEBUG 2018-12-26 13:50:53,634 33051ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 13:50:53,634 33051ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 13:51:03,091 42508ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 13:51:03,091 42508ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 13:51:03,944 43362ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 13:51:03,959 43377ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 15
+DEBUG 2018-12-26 13:51:04,447 43864ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 13:51:04,464 43881ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 16
+DEBUG 2018-12-26 13:51:06,099 45516ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 13:51:06,106 45523ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 6
+DEBUG 2018-12-26 13:59:45,272 564689ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 13:59:45,281 564698ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 8
+DEBUG 2018-12-26 14:00:21,730 601147ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:00:21,735 601152ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:01:35,176 674594ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:01:35,181 674599ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 5
+DEBUG 2018-12-26 14:01:44,328 683745ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:01:44,329 683746ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:01:44,874 684292ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:01:44,884 684302ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 14:01:45,388 684805ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:01:45,406 684823ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 18
+DEBUG 2018-12-26 14:01:46,888 686306ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:01:46,893 686311ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:01:51,996 691413ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:01:51,997 691414ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:01:52,314 691731ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:01:52,322 691739ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 8
+DEBUG 2018-12-26 14:01:52,821 692239ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:01:52,836 692254ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 14
+DEBUG 2018-12-26 14:01:55,436 694853ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:01:55,441 694858ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:02:01,003 700421ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:02:01,004 700422ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:02:01,328 700746ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:02:01,338 700756ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 14:02:01,838 701255ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:02:01,862 701279ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 23
+DEBUG 2018-12-26 14:02:03,854 703271ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:02:03,858 703275ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:02:05,867 705285ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:02:05,867 705285ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:02:06,169 705587ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:02:06,180 705598ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 14:02:06,693 706110ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:02:06,718 706135ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 25
+DEBUG 2018-12-26 14:06:02,617 942034ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:06:02,618 942035ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:07:39,392 1038809ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:07:39,392 1038809ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:09:24,858 1144275ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:09:24,859 1144276ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:09:25,418 1144835ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:09:25,429 1144846ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 11
+DEBUG 2018-12-26 14:09:25,932 1145349ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:09:25,949 1145366ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 17
+DEBUG 2018-12-26 14:09:26,795 1146212ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:09:26,800 1146217ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:10:01,344 1180762ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:10:01,349 1180767ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:11:32,476 1271894ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:11:32,480 1271898ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:13:36,387 1395804ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:13:36,393 1395810ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 5
+DEBUG 2018-12-26 14:14:35,203 1454620ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:14:35,208 1454625ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:16:14,074 1553492ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:16:14,079 1553497ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:17:07,708 1607126ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:17:07,712 1607130ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:17:28,324 1627742ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:17:28,329 1627747ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:17:38,854 1638272ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:17:38,867 1638285ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 13
+DEBUG 2018-12-26 14:18:34,849 1694266ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:18:34,849 1694266ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:18:35,426 1694844ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:18:35,436 1694853ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 9
+DEBUG 2018-12-26 14:18:35,936 1695353ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:18:35,940 1695357ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 4
+DEBUG 2018-12-26 14:18:37,035 1696452ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:18:37,035 1696452ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:23:54,620  1391ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:23:54,650  1421ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 30
+DEBUG 2018-12-26 14:23:58,766  5537ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:23:59,131  5902ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 364
+DEBUG 2018-12-26 14:23:59,144  5916ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:23:59,146  5918ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 1
+DEBUG 2018-12-26 14:24:06,402 13174ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:24:06,403 13174ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:24:07,267 14038ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:24:07,292 14064ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 25
+DEBUG 2018-12-26 14:24:07,761 14532ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:24:07,768 14539ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:24:08,798 15569ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:24:08,805 15576ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7
+DEBUG 2018-12-26 14:24:11,443 18214ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:24:11,451 18223ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 8
+DEBUG 2018-12-26 14:24:11,477 18248ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:24:22,597 29368ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 11119
+DEBUG 2018-12-26 14:24:22,607 29378ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:24:22,608 29379ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:24:22,984 29755ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:24:22,999 29770ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 14
+DEBUG 2018-12-26 14:24:23,492 30263ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:24:23,502 30273ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 9
+DEBUG 2018-12-26 14:24:25,234 32005ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:24:25,238 32009ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:34:16,057  1434ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:34:16,097  1475ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 40
+DEBUG 2018-12-26 14:34:28,711 14089ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:34:29,083 14461ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 371
+DEBUG 2018-12-26 14:34:29,099 14477ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:34:29,100 14478ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 14:34:35,603 20981ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:34:35,603 20981ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:34:36,524 21902ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:34:36,560 21938ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 35
+DEBUG 2018-12-26 14:34:37,016 22394ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:34:37,023 22401ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:34:39,233 24611ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:34:39,233 24611ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:35:00,413 45790ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:35:00,421 45798ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 8
+DEBUG 2018-12-26 14:35:00,448 45825ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:35:00,476 45853ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 27
+DEBUG 2018-12-26 14:35:00,489 45866ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:35:00,489 45866ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:35:00,911 46288ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:00,922 46299ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 14:35:01,426 46803ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:01,433 46810ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:35:04,081 49458ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:35:04,088 49465ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7
+DEBUG 2018-12-26 14:35:21,744 67121ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:35:21,744 67121ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:35:22,137 67514ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:22,146 67523ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 8
+DEBUG 2018-12-26 14:35:22,645 68022ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:22,653 68030ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:35:23,783 69160ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:35:23,783 69160ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:35:34,860 80237ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:35:34,865 80242ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 5
+DEBUG 2018-12-26 14:35:34,891 80268ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:35:40,301 85678ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 5409
+DEBUG 2018-12-26 14:35:40,314 85691ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:35:40,315 85692ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:35:40,731 86108ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:40,739 86116ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:35:41,244 86621ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:41,250 86627ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 14:35:46,229 91607ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Eliminar
+DEBUG 2018-12-26 14:35:46,235 91613ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Eliminar - time spent 6
+DEBUG 2018-12-26 14:35:46,252 91630ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:46,259 91637ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:35:50,219 95597ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Eliminar
+DEBUG 2018-12-26 14:35:50,225 95603ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Eliminar - time spent 5
+DEBUG 2018-12-26 14:35:50,242 95620ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:35:50,247 95625ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 14:35:53,429 98806ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:35:53,430 98807ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:36:08,266 113644ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:36:08,272 113650ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 5
+DEBUG 2018-12-26 14:36:08,300 113678ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:37:43,205 208582ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 94904
+DEBUG 2018-12-26 14:37:43,685 209062ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:37:43,685 209062ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:37:44,830 210207ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:37:44,841 210218ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 11
+DEBUG 2018-12-26 14:37:45,337 210714ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:37:45,344 210721ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:37:47,600 212977ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Eliminar
+DEBUG 2018-12-26 14:37:47,605 212982ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Eliminar - time spent 5
+DEBUG 2018-12-26 14:37:47,623 213000ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:37:47,631 213008ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 8
+DEBUG 2018-12-26 14:37:50,053 215430ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:37:50,053 215430ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:37:58,730 224107ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:37:58,736 224113ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 5
+DEBUG 2018-12-26 14:37:58,763 224140ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:38:03,675 229052ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 4912
+DEBUG 2018-12-26 14:39:40,516  1460ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:39:40,544  1489ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 28
+DEBUG 2018-12-26 14:39:43,753  4698ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:39:44,124  5069ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 370
+DEBUG 2018-12-26 14:39:44,139  5084ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:39:44,139  5084ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 14:39:53,750 14694ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:39:53,751 14695ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:39:54,645 15589ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:39:54,679 15623ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 34
+DEBUG 2018-12-26 14:39:55,134 16078ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:39:55,140 16084ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:39:56,536 17480ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:39:56,536 17480ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:40:07,226 28170ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:40:07,234 28178ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 8
+DEBUG 2018-12-26 14:40:07,262 28206ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:40:12,579 33523ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 5316
+DEBUG 2018-12-26 14:40:12,594 33538ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:40:12,595 33539ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:40:12,987 33931ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:40:12,994 33938ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:40:13,494 34439ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:40:13,501 34446ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:40:19,143 40088ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:40:19,152 40097ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 8
+DEBUG 2018-12-26 14:40:27,970 48915ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:40:27,974 48919ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 4
+DEBUG 2018-12-26 14:40:28,006 48951ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:40:32,692 53637ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4685
+DEBUG 2018-12-26 14:41:03,931  1512ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:41:03,965  1546ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 35
+DEBUG 2018-12-26 14:41:07,953  5535ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:41:08,078  5660ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:41:08,320  5902ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 242
+DEBUG 2018-12-26 14:41:08,320  5902ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 366
+DEBUG 2018-12-26 14:41:08,335  5917ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:41:08,336  5918ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 14:41:11,001  8583ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:41:11,006  8588ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 4
+DEBUG 2018-12-26 14:41:11,016  8598ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:41:11,016  8598ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 14:41:15,017 12599ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:41:15,017 12599ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:41:15,877 13459ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:15,902 13484ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 24
+DEBUG 2018-12-26 14:41:16,374 13956ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:16,380 13962ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:41:17,070 14652ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:41:17,071 14653ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:41:20,253 17835ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:41:20,253 17835ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:41:20,606 18188ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:20,613 18195ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:41:21,118 18700ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:21,125 18707ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:41:22,745 20327ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:41:22,753 20335ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7
+DEBUG 2018-12-26 14:41:29,850 27432ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:41:29,858 27440ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 8
+DEBUG 2018-12-26 14:41:29,892 27474ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:41:29,940 27522ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 48
+DEBUG 2018-12-26 14:41:29,960 27542ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:41:29,960 27542ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:41:30,313 27895ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:30,323 27905ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 14:41:30,818 28400ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:30,823 28405ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 4
+DEBUG 2018-12-26 14:41:35,501 33082ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Eliminar
+DEBUG 2018-12-26 14:41:35,513 33094ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Eliminar - time spent 12
+DEBUG 2018-12-26 14:41:35,533 33114ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:41:35,539 33120ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 14:41:39,073 36654ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:41:39,073 36654ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:49:27,054 504636ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:49:27,055 504637ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 14:49:42,251 519833ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:49:42,260 519842ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 8
+DEBUG 2018-12-26 14:49:42,288 519870ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 14:49:42,302 519884ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 13
+DEBUG 2018-12-26 14:49:42,314 519896ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:49:42,315 519897ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:49:42,910 520492ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:49:42,917 520499ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:49:43,417 520999ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:49:43,422 521004ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 14:49:46,718 524300ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Eliminar
+DEBUG 2018-12-26 14:49:46,725 524307ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Eliminar - time spent 7
+DEBUG 2018-12-26 14:49:46,742 524324ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:49:46,750 524332ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:56:15,877  1530ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:56:15,906  1558ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 28
+DEBUG 2018-12-26 14:56:27,115 12767ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:56:27,478 13130ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 363
+DEBUG 2018-12-26 14:56:27,490 13142ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:56:27,491 13143ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 14:56:33,651 19303ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:56:33,651 19303ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:56:34,538 20190ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:56:34,565 20217ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 27
+DEBUG 2018-12-26 14:56:35,033 20685ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:56:35,040 20692ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 14:56:43,898 29550ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:56:43,904 29557ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7
+DEBUG 2018-12-26 14:57:01,233 46885ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:57:01,242 46894ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 8
+DEBUG 2018-12-26 14:57:01,272 46924ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:57:01,316 46968ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 44
+DEBUG 2018-12-26 14:57:01,330 46982ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:57:01,330 46982ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:57:01,680 47332ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:57:01,689 47341ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 9
+DEBUG 2018-12-26 14:57:02,186 47839ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:57:02,197 47850ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 14:57:04,714 50366ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:57:04,719 50371ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:57:28,296 73948ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:57:28,302 73954ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 5
+DEBUG 2018-12-26 14:57:28,330 73982ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:58:31,895  1668ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:58:31,927  1700ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 33
+DEBUG 2018-12-26 14:58:35,436  5209ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 14:58:35,788  5561ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 352
+DEBUG 2018-12-26 14:58:35,801  5574ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 14:58:35,801  5574ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 14:58:42,794 12568ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:58:42,795 12569ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:58:43,677 13451ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:58:43,699 13473ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 22
+DEBUG 2018-12-26 14:58:44,171 13945ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:58:44,176 13950ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 14:58:45,832 15606ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:58:45,843 15617ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 10
+DEBUG 2018-12-26 14:58:49,037 18810ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:58:49,044 18817ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 7
+DEBUG 2018-12-26 14:58:49,078 18851ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:58:53,785 23558ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4706
+DEBUG 2018-12-26 14:58:53,799 23572ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:58:53,800 23573ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:58:54,149 23922ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:58:54,156 23929ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 7
+DEBUG 2018-12-26 14:58:54,655 24428ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:58:54,660 24433ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 4
+DEBUG 2018-12-26 14:59:03,473 33247ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:59:03,477 33251ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 3
+DEBUG 2018-12-26 14:59:27,364 57137ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:59:27,369 57142ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 4
+DEBUG 2018-12-26 14:59:27,397 57170ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:59:35,203 64977ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7806
+DEBUG 2018-12-26 14:59:35,216 64990ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:59:35,216 64990ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:59:35,694 65468ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:59:35,699 65473ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 4
+DEBUG 2018-12-26 14:59:35,731 65505ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:59:35,739 65513ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7
+DEBUG 2018-12-26 14:59:35,750 65524ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:59:35,750 65524ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:59:36,129 65903ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:59:36,137 65911ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 8
+DEBUG 2018-12-26 14:59:36,640 66414ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:59:36,662 66436ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 22
+DEBUG 2018-12-26 14:59:41,087 70861ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:59:41,091 70865ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 4
+DEBUG 2018-12-26 14:59:52,643 82417ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 14:59:52,646 82420ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 3
+DEBUG 2018-12-26 14:59:52,675 82449ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:59:52,684 82458ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 9
+DEBUG 2018-12-26 14:59:52,700 82474ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 14:59:52,700 82474ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 14:59:53,083 82857ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:59:53,091 82865ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 8
+DEBUG 2018-12-26 14:59:53,589 83363ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 14:59:53,595 83369ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 14:59:54,908 84682ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 14:59:54,912 84686ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 3
+DEBUG 2018-12-26 15:00:04,864 94638ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Verificar
+DEBUG 2018-12-26 15:00:04,868 94642ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Verificar - time spent 4
+DEBUG 2018-12-26 15:00:04,896 94670ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Editar
+DEBUG 2018-12-26 15:00:04,903 94677ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Editar - time spent 7
+DEBUG 2018-12-26 15:00:04,915 94689ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:00:04,916 94690ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:00:05,329 95103ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:00:05,339 95113ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 9
+DEBUG 2018-12-26 15:00:05,837 95610ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:00:05,847 95620ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 9
+DEBUG 2018-12-26 15:01:52,436  1487ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-26 15:01:53,005  2056ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 569
+DEBUG 2018-12-26 15:01:55,472  4523ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:01:55,472  4523ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:01:55,501  4553ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 28
+DEBUG 2018-12-26 15:01:55,581  4632ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 109
+DEBUG 2018-12-26 15:02:02,479 11530ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-26 15:02:02,488 11539ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 8
+DEBUG 2018-12-26 15:02:03,718 12769ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:02:03,721 12772ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:02:03,732 12783ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 14
+DEBUG 2018-12-26 15:02:03,744 12796ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 23
+DEBUG 2018-12-26 15:02:46,019 55071ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:02:46,020 55072ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-26 15:02:56,616 65668ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:02:56,669 65721ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 52
+DEBUG 2018-12-26 15:02:56,681 65733ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:02:56,682 65734ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:02:59,427 68478ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MiHistorial
+DEBUG 2018-12-26 15:02:59,571 68622ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MiHistorial - time spent 144
+DEBUG 2018-12-26 15:03:29,538 98590ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MiHistorial
+DEBUG 2018-12-26 15:03:29,548 98600ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MiHistorial - time spent 9
+DEBUG 2018-12-26 15:03:51,469 120520ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action MiHistorial
+DEBUG 2018-12-26 15:03:51,479 120530ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action MiHistorial - time spent 10
+DEBUG 2018-12-26 15:04:18,167 147219ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-26 15:04:18,168 147220ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-26 15:04:18,184 147236ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:04:18,185 147237ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-26 15:04:28,228 157279ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:04:28,244 157295ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 15
+DEBUG 2018-12-26 15:04:28,258 157309ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:04:28,259 157310ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:04:30,452 159504ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action Mejores
+DEBUG 2018-12-26 15:04:30,463 159515ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action Mejores - time spent 10
+DEBUG 2018-12-26 15:04:31,677 160728ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:04:31,698 160749ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 20
+DEBUG 2018-12-26 15:04:32,191 161243ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:04:32,206 161258ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 14
+DEBUG 2018-12-26 15:04:37,897 166949ms MvcApplication         OnActionExecuting  - Executing controller Investigator, action ObtenerRanking
+DEBUG 2018-12-26 15:04:37,906 166957ms MvcApplication         OnActionExecuted   - Finished executing controller Investigator, action ObtenerRanking - time spent 9
+DEBUG 2018-12-26 15:06:34,040 283092ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-26 15:06:34,041 283093ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-26 15:06:34,057 283109ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:06:34,057 283109ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-26 15:06:37,752 286804ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:06:37,764 286815ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 11
+DEBUG 2018-12-26 15:06:37,778 286829ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:06:37,778 286829ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:06:43,732 292784ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:06:43,732 292784ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:06:44,598 293650ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:06:44,616 293668ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 17
+DEBUG 2018-12-26 15:06:45,109 294161ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:06:45,126 294178ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 16
+DEBUG 2018-12-26 15:06:47,121 296173ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:06:47,122 296174ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:07:58,382 367434ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:07:58,382 367434ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:21:17,171  1431ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:21:17,198  1458ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 27
+DEBUG 2018-12-26 15:21:22,396  6656ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:21:22,745  7005ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 348
+DEBUG 2018-12-26 15:21:22,757  7017ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:21:22,758  7018ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:21:30,408 14668ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:21:30,409 14669ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:21:31,275 15535ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:21:31,296 15556ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 20
+DEBUG 2018-12-26 15:21:31,771 16031ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:21:31,778 16038ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 15:21:33,125 17385ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:21:33,125 17385ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:21:59,792 44052ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:21:59,793 44053ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:24:29,839  1552ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:24:29,868  1582ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 30
+DEBUG 2018-12-26 15:24:59,189 30902ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:24:59,541 31254ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 352
+DEBUG 2018-12-26 15:24:59,555 31268ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:24:59,555 31268ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:25:06,429 38143ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:25:06,429 38143ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:25:07,248 38962ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:25:07,275 38989ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 26
+DEBUG 2018-12-26 15:25:07,744 39458ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:25:07,761 39475ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 16
+DEBUG 2018-12-26 15:25:09,550 41263ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:25:09,551 41264ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:30:29,500  1394ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:30:29,527  1420ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 27
+DEBUG 2018-12-26 15:30:32,645  4538ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:30:33,011  4905ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 366
+DEBUG 2018-12-26 15:30:33,025  4919ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:30:33,026  4920ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:30:40,942 12835ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:30:40,943 12836ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:30:41,777 13671ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:30:41,800 13694ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 23
+DEBUG 2018-12-26 15:30:42,268 14162ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:30:42,274 14167ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 15:30:43,075 14968ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:30:43,076 14970ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:36:58,200  1381ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:36:58,228  1410ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 27
+DEBUG 2018-12-26 15:37:02,301  5483ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:37:02,663  5845ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 361
+DEBUG 2018-12-26 15:37:02,679  5860ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:37:02,680  5861ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:39:24,010  1410ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:39:24,039  1439ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 29
+DEBUG 2018-12-26 15:39:27,347  4747ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:39:27,690  5090ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 343
+DEBUG 2018-12-26 15:39:27,703  5103ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:39:27,703  5103ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:39:32,996 10396ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:39:32,997 10397ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:39:33,813 11213ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:39:33,839 11239ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 25
+DEBUG 2018-12-26 15:39:34,305 11705ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:39:34,311 11711ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 15:39:36,557 13957ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:39:36,558 13958ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:47:13,606  1347ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:47:13,633  1375ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 28
+DEBUG 2018-12-26 15:47:19,427  7169ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:47:19,770  7512ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 343
+DEBUG 2018-12-26 15:47:19,782  7524ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 15:47:19,783  7525ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 15:47:24,997 12739ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:47:24,998 12740ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:47:25,838 13580ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:47:25,864 13606ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 25
+DEBUG 2018-12-26 15:47:26,330 14072ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:47:26,336 14078ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 5
+DEBUG 2018-12-26 15:47:28,262 16004ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Crear
+DEBUG 2018-12-26 15:47:28,262 16004ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Crear - time spent 0
+DEBUG 2018-12-26 15:47:54,897 42639ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action Index
+DEBUG 2018-12-26 15:47:54,897 42639ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action Index - time spent 0
+DEBUG 2018-12-26 15:47:55,331 43073ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:47:55,340 43082ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 8
+DEBUG 2018-12-26 15:47:55,855 43597ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:47:55,877 43619ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 22
+DEBUG 2018-12-26 15:51:43,728 271470ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:51:43,738 271480ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 10
+DEBUG 2018-12-26 15:51:44,235 271977ms MvcApplication         OnActionExecuting  - Executing controller MeritRange, action ObtenerLista
+DEBUG 2018-12-26 15:51:44,244 271986ms MvcApplication         OnActionExecuted   - Finished executing controller MeritRange, action ObtenerLista - time spent 9
+DEBUG 2018-12-26 15:51:51,440 279182ms MvcApplication         OnActionExecuting  - Executing controller Account, action CerrarSesion
+DEBUG 2018-12-26 15:51:51,441 279183ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action CerrarSesion - time spent 0
+DEBUG 2018-12-26 15:51:51,457 279199ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 15:51:51,457 279199ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 0
+DEBUG 2018-12-26 18:41:12,964 10440706ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 18:41:12,981 10440723ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 16
+DEBUG 2018-12-26 18:41:12,996 10440738ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 18:41:12,997 10440739ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 18:41:25,907 10453649ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action Index
+DEBUG 2018-12-26 18:41:25,907 10453649ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action Index - time spent 0
+DEBUG 2018-12-26 18:41:30,499 10458241ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action ObtenerLista
+DEBUG 2018-12-26 18:41:30,517 10458259ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action ObtenerLista - time spent 18
+DEBUG 2018-12-26 18:41:31,006 10458748ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action ObtenerLista
+DEBUG 2018-12-26 18:41:31,012 10458754ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action ObtenerLista - time spent 6
+DEBUG 2018-12-26 18:41:31,598 10459340ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action Crear
+DEBUG 2018-12-26 18:41:31,599 10459341ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action Crear - time spent 0
+DEBUG 2018-12-26 18:42:13,998 10501740ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action Verificar
+DEBUG 2018-12-26 18:42:14,006 10501748ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action Verificar - time spent 8
+DEBUG 2018-12-26 18:42:14,027 10501769ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action Crear
+DEBUG 2018-12-26 18:42:14,100 10501842ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action Crear - time spent 72
+DEBUG 2018-12-26 18:42:35,049 10522791ms MvcApplication         OnActionExecuting  - Executing controller BadLanguage, action Crear
+DEBUG 2018-12-26 18:42:35,050 10522792ms MvcApplication         OnActionExecuted   - Finished executing controller BadLanguage, action Crear - time spent 0
+DEBUG 2018-12-26 19:16:49,093  1460ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 19:16:49,132  1499ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 39
+DEBUG 2018-12-26 19:17:06,725 19092ms MvcApplication         OnActionExecuting  - Executing controller Account, action Login
+DEBUG 2018-12-26 19:17:07,076 19443ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action Login - time spent 351
+DEBUG 2018-12-26 19:17:07,092 19459ms MvcApplication         OnActionExecuting  - Executing controller Home, action Index
+DEBUG 2018-12-26 19:17:07,093 19460ms MvcApplication         OnActionExecuted   - Finished executing controller Home, action Index - time spent 0
+DEBUG 2018-12-26 19:17:15,687 28055ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Index
+DEBUG 2018-12-26 19:17:15,688 28056ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Index - time spent 0
+DEBUG 2018-12-26 19:17:16,532 28900ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:16,576 28944ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 43
+DEBUG 2018-12-26 19:17:17,026 29394ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:17,051 29419ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 24
+DEBUG 2018-12-26 19:17:19,602 31969ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Crear
+DEBUG 2018-12-26 19:17:19,647 32014ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Crear - time spent 45
+DEBUG 2018-12-26 19:17:21,479 33847ms MvcApplication         OnActionExecuting  - Executing controller Account, action ObtenerInstituciones
+DEBUG 2018-12-26 19:17:21,501 33869ms MvcApplication         OnActionExecuted   - Finished executing controller Account, action ObtenerInstituciones - time spent 21
+DEBUG 2018-12-26 19:17:35,888 48256ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Verificar
+DEBUG 2018-12-26 19:17:35,923 48291ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Verificar - time spent 35
+DEBUG 2018-12-26 19:17:35,948 48316ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Crear
+DEBUG 2018-12-26 19:17:35,975 48343ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Crear - time spent 26
+DEBUG 2018-12-26 19:17:35,989 48357ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Index
+DEBUG 2018-12-26 19:17:35,989 48357ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Index - time spent 0
+DEBUG 2018-12-26 19:17:36,356 48724ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:36,398 48766ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 41
+DEBUG 2018-12-26 19:17:36,891 49259ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:36,966 49334ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 75
+DEBUG 2018-12-26 19:17:39,786 52154ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:39,847 52215ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 61
+DEBUG 2018-12-26 19:17:40,548 52915ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:40,591 52958ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 42
+DEBUG 2018-12-26 19:17:41,649 54017ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:41,707 54075ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 58
+DEBUG 2018-12-26 19:17:42,041 54408ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:42,091 54458ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 49
+DEBUG 2018-12-26 19:17:44,029 56397ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:44,085 56453ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 56
+DEBUG 2018-12-26 19:17:46,619 58987ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Editar
+DEBUG 2018-12-26 19:17:46,669 59037ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Editar - time spent 49
+DEBUG 2018-12-26 19:17:51,377 63745ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Verificar
+DEBUG 2018-12-26 19:17:51,387 63755ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Verificar - time spent 9
+DEBUG 2018-12-26 19:17:51,413 63781ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Editar
+DEBUG 2018-12-26 19:17:51,452 63820ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Editar - time spent 39
+DEBUG 2018-12-26 19:17:51,467 63835ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Index
+DEBUG 2018-12-26 19:17:51,468 63836ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Index - time spent 0
+DEBUG 2018-12-26 19:17:51,849 64217ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:51,878 64246ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 29
+DEBUG 2018-12-26 19:17:52,356 64724ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:52,375 64743ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 19
+DEBUG 2018-12-26 19:17:55,127 67494ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:55,198 67565ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 71
+DEBUG 2018-12-26 19:17:55,583 67950ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:55,630 67997ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 47
+DEBUG 2018-12-26 19:17:55,984 68352ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:56,036 68404ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 52
+DEBUG 2018-12-26 19:17:58,898 71266ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Eliminar
+DEBUG 2018-12-26 19:17:58,905 71273ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Eliminar - time spent 7
+DEBUG 2018-12-26 19:17:58,920 71288ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:17:58,972 71340ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 52
+DEBUG 2018-12-26 19:19:05,772 138140ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action Index
+DEBUG 2018-12-26 19:19:05,772 138140ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action Index - time spent 0
+DEBUG 2018-12-26 19:19:06,909 139277ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:19:06,943 139311ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 33
+DEBUG 2018-12-26 19:19:07,415 139783ms MvcApplication         OnActionExecuting  - Executing controller InvestigationGroup, action ObtenerLista
+DEBUG 2018-12-26 19:19:07,435 139803ms MvcApplication         OnActionExecuted   - Finished executing controller InvestigationGroup, action ObtenerLista - time spent 19

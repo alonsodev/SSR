@@ -16,6 +16,7 @@ namespace Infrastructure.Data
     {
         public int merit_range_id { get; set; }
         public string name { get; set; }
+        public string description { get; set; }
         public Nullable<int> lower_limit { get; set; }
         public Nullable<int> upper_limit { get; set; }
         public string url_image { get; set; }

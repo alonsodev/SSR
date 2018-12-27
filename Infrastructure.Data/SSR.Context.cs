@@ -53,11 +53,11 @@ namespace Infrastructure.Data
         public virtual DbSet<tags> tags { get; set; }
         public virtual DbSet<user_status> user_status { get; set; }
         public virtual DbSet<concepts_status_logs> concepts_status_logs { get; set; }
-        public virtual DbSet<merit_ranges> merit_ranges { get; set; }
         public virtual DbSet<investigators> investigators { get; set; }
         public virtual DbSet<investigators_commissions> investigators_commissions { get; set; }
         public virtual DbSet<investigators_interest_areas> investigators_interest_areas { get; set; }
         public virtual DbSet<configurations> configurations { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<merit_ranges> merit_ranges { get; set; }
     }
 }

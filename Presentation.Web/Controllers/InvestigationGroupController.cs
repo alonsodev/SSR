@@ -51,7 +51,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups })]
-        public ActionResult Crear([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
+        public ActionResult Crear([Bind(Include = "investigation_group_id,institution_id,name,code")] InvestigationGroupViewModel pInvestigationGroupViewModel)
         {
             // TODO: Add insert logic here
 
@@ -92,7 +92,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_investigation_groups })]
-        public ActionResult Editar([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
+        public ActionResult Editar([Bind(Include = "investigation_group_id,institution_id,name,code")] InvestigationGroupViewModel pInvestigationGroupViewModel)
         {
             // TODO: Add insert logic here
 

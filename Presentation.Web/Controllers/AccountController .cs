@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,14 +32,15 @@ namespace Presentation.Web.Controllers
                 ViewBag.message_error = "No hay una cuenta asociada al código de activación de contraseña o dicho código ha expirado.";
 
             }
-            else {
-               
-               
-                    oUserBL.ActivarCuenta(oUserViewModel.id);
-               
+            else
+            {
+
+
+                oUserBL.ActivarCuenta(oUserViewModel.id);
+
             }
-           
-           
+
+
             return View();
         }
 
@@ -464,7 +466,28 @@ namespace Presentation.Web.Controllers
             pViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             pViewModel.user_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
             pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.last_name;
+            pViewModel.birthdate = DateTime.ParseExact(pViewModel.birthdate_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            pViewModel.avatar = null;
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = Guid.NewGuid().ToString() + "." + extension;
+                    
+
+                    pViewModel.avatar = "/Avatars/" + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Avatars/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+
             oUserBL.ModificarInvestigator(pViewModel);
+
+            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = oUserBL.GetCurrentUser(pViewModel.user_id.Value);
+
             return Redirect("/Account/Editar/" + pViewModel.investigator_id);
 
         }

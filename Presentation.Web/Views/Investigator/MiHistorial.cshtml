@@ -50,17 +50,18 @@
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-6 offset-md-3">
                         <div class="row">
                             @foreach (var merit_range in ViewBag.merit_ranges)
                             {
-                                <div class="col">
-                                    <div><img src="@merit_range.url_image" title=" @merit_range.name" width="40"></div>
+                                <div class="col text-center">
+                                    <div><img src="@merit_range.url_image" title=" @merit_range.name" height="40"></div>
                                     <div>
                                         @merit_range.name
                                     </div>
                                     <div>
-                                        @merit_range.lower_limit  - @merit_range.upper_limit
+
+                                        @merit_range.description
                                     </div>
                                 </div>
                             }

@@ -55,6 +55,8 @@ namespace Business.Logic
             omerit_ranges.upper_limit = pMeritRangeViewModel.upper_limit;
             omerit_ranges.lower_limit = pMeritRangeViewModel.lower_limit;
             omerit_ranges.url_image = pMeritRangeViewModel.url_image;
+            omerit_ranges.description = pMeritRangeViewModel.description;
+            
             omerit_ranges.date_modified = DateTime.Now;
             oRepositorio.Update(omerit_ranges);
             oUnitOfWork.SaveChanges();
@@ -82,8 +84,8 @@ namespace Business.Logic
                 lower_limit = pMeritRangeViewModel.lower_limit,
                 url_image = pMeritRangeViewModel.url_image,
                 date_created =DateTime.Now,
-                user_id_created= pMeritRangeViewModel.user_id_created
-
+                user_id_created= pMeritRangeViewModel.user_id_created,
+                description=pMeritRangeViewModel.description
             };
             oRepositorio.Add(omerit_ranges);
             oUnitOfWork.SaveChanges();

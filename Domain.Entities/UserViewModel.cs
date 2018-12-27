@@ -73,5 +73,6 @@ namespace Domain.Entities
         public string user_status { get; set; }
         public string user_code_activate { get; set; }
         public string user_code_recover { get; set; }
+        public string avatar { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Entities
     public class RankingViewModel
     {
 
-        public string url_image { get; set; }
+        public string avatar { get; set; }
         public int? position { get; set; }
         public string investigator { get; set; }
         public string institution { get; set; }

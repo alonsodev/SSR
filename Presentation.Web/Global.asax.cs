@@ -1,7 +1,9 @@
 ﻿using ExpressiveAnnotations.MvcUnobtrusive.Providers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -28,6 +30,13 @@ namespace Presentation.Web
                             new ExpressiveAnnotationsModelValidatorProvider());
 
             ModelMetadataProviders.Current = new DataAnnotationsModelMetadataProvider();
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            CultureInfo culture = new CultureInfo("es-ES");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
     }
 }

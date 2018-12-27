@@ -63,6 +63,7 @@ namespace Infrastructure.Data.Repositories
                 contact_name = a.users.contact_name,
                 
                 address = a.users.address,
+                avatar=a.users.avatar
               
             });
 

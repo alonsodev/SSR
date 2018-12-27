@@ -121,7 +121,9 @@ namespace Business.Logic
         {
             return oRepositorio.ValidarUsuario(usuario, contrasena, ref tipo_error);
         }
-
+        public CurrentUserViewModel GetCurrentUser(int user_id) {
+            return oRepositorio.GetCurrentUser(user_id);
+        }
 
 
         public void Eliminar(int id)
@@ -299,11 +301,11 @@ namespace Business.Logic
 
 
                 ousers.user_name = pInvestigatorViewModel.user_name;
-                ousers.user_email = pInvestigatorViewModel.user_email;
-                ousers.user_pass = pInvestigatorViewModel.user_pass;
+               // ousers.user_email = pInvestigatorViewModel.user_email;
+               // ousers.user_pass = pInvestigatorViewModel.user_pass;
                 ousers.contact_name = pInvestigatorViewModel.contact_name;
                 ousers.document_type_id = pInvestigatorViewModel.document_type_id;
-
+                
                 ousers.doc_nro = pInvestigatorViewModel.doc_nro;
                 ousers.nationality_id = pInvestigatorViewModel.nationality_id;
                 //  contract_name = pInvestigatorViewModel.contract_name,
@@ -315,6 +317,10 @@ namespace Business.Logic
 
                 ousers.user_id_modified = pInvestigatorViewModel.user_id_modified;
                 ousers.date_modified = DateTime.Now;
+
+                if (pInvestigatorViewModel.avatar != null) {
+                    ousers.avatar = pInvestigatorViewModel.avatar;
+                }
                 oRepositorio.Update(ousers);
 
 

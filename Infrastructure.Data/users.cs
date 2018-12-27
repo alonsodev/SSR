@@ -43,6 +43,7 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_modified { get; set; }
         public string user_code_activate { get; set; }
         public string user_code_recover { get; set; }
+        public string avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<debate_speakers> debate_speakers { get; set; }

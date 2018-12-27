@@ -5,6 +5,7 @@ using Domain.Entities;
 using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -49,7 +50,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_merit_ranges })]
-        public ActionResult Crear([Bind(Include = "merit_range_id,name,lower_limit,upper_limit,url_image")] MeritRangeViewModel pMeritRangeViewModel)
+        public ActionResult Crear([Bind(Include = "merit_range_id,name,lower_limit,upper_limit,url_image,description")] MeritRangeViewModel pMeritRangeViewModel)
         {
             // TODO: Add insert logic here
 
@@ -61,6 +62,21 @@ namespace Presentation.Web.Controllers
             pMeritRangeViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             
             MeritRangeBL oBL = new MeritRangeBL();
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = pMeritRangeViewModel.name.Trim().Replace(" ","_").ToLower() + "." + extension;
+
+
+                    pMeritRangeViewModel.url_image = "/Assets/img/merit_ranges/" + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Assets/img/merit_ranges/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
             oBL.Agregar(pMeritRangeViewModel);
             return RedirectToAction("Index");
 
@@ -82,7 +98,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_merit_ranges })]
-        public ActionResult Editar([Bind(Include = "merit_range_id,name,lower_limit,upper_limit,url_image")] MeritRangeViewModel pMeritRangeViewModel)
+        public ActionResult Editar([Bind(Include = "merit_range_id,name,lower_limit,upper_limit,url_image,description")] MeritRangeViewModel pMeritRangeViewModel)
         {
             // TODO: Add insert logic here
 
@@ -92,6 +108,23 @@ namespace Presentation.Web.Controllers
             }
             MeritRangeBL oMeritRangeBL = new MeritRangeBL();
             pMeritRangeViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+
+           // pMeritRangeViewModel.url_image = null;
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = pMeritRangeViewModel.name.Trim().Replace(" ", "_").ToLower() + "." + extension;
+
+
+                    pMeritRangeViewModel.url_image = "/Assets/img/merit_ranges/" + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Assets/img/merit_ranges/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
             oMeritRangeBL.Modificar(pMeritRangeViewModel);
             return RedirectToAction("Index");
 

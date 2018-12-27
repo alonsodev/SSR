@@ -56,17 +56,18 @@
 
                     </table>
                     <div class="row">
-                        <div class="col-md-8 offset-md-2">
+                        <div class="col-md-6 offset-md-3">
                             <div class="row">
                                 @foreach (var merit_range in ViewBag.merit_ranges)
                                 {
-                                    <div class="col">
-                                        <div><img src="@merit_range.url_image" title=" @merit_range.name" width="40"></div>
+                                    <div class="col text-center">
+                                        <div><img src="@merit_range.url_image" title=" @merit_range.name" height="40"></div>
                                         <div>
                                             @merit_range.name
                                         </div>
                                         <div>
-                                            @merit_range.lower_limit  - @merit_range.upper_limit
+
+                                            @merit_range.description
                                         </div>
                                     </div>
                                 }
@@ -150,7 +151,7 @@
 
 
                         "columns": [
-                            { "data": "position" },
+                            { "data": "avatar" },
                             { "data": "position" },
                             { "data": "investigator" },
                             { "data": "institution" },
@@ -159,7 +160,17 @@
 
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [1,2,3,4,5] },
+                            { 'className': 'text-center', 'targets': [0,1, 2, 3, 4, 5] },
+                            {
+                                render: function (data, type, row) {
+                                    if (row.avatar && row.avatar != '')
+                                        return '<img src = "' + row.avatar + '" width = "60">';
+                                    else
+                                        return '<img src = "/Avatars/default_avatar_male.jpg" width = "60">';
+                                },
+                                targets: 0,
+                                width: "10%",
+                            },
                             {
                                 render: function (data, type, row) {
                                     var merit_range = merit_ranges.find(a => a.lower_limit <= row.point && a.upper_limit >= row.point);
