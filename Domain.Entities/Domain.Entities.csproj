@@ -74,10 +74,12 @@
   <ItemGroup>
     <Compile Include="AcademicLevelViewModel.cs" />
     <Compile Include="CambiarPasswordViewModel.cs" />
+    <Compile Include="ConceptHtmlViewModel.cs" />
     <Compile Include="MeritRangeViewModel.cs" />
     <Compile Include="ConfigurationViewModel.cs" />
     <Compile Include="Notifications\NotificacionConfig.cs" />
     <Compile Include="Notifications\NotificationGeneralAccountViewModel.cs" />
+    <Compile Include="NotificationViewModel.cs" />
     <Compile Include="RejectConceptViewModel.cs" />
     <Compile Include="SnieViewModel.cs" />
     <Compile Include="EducationLevelViewModel.cs" />

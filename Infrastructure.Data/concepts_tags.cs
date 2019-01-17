@@ -21,7 +21,7 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        public virtual concepts concepts { get; set; }
         public virtual tags tags { get; set; }
+        public virtual concepts concepts { get; set; }
     }
 }

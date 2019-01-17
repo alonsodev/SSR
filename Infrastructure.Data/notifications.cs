@@ -12,19 +12,18 @@ namespace Infrastructure.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class concepts_status_logs
+    public partial class notifications
     {
-        public int concept_status_log_id { get; set; }
-        public int concept_id { get; set; }
-        public int concept_status_id { get; set; }
-        public string description { get; set; }
+        public int notification_id { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public string url { get; set; }
+        public string message { get; set; }
+        public Nullable<bool> notified { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
+        public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
-        public Nullable<int> reason_reject_id { get; set; }
-        public Nullable<int> qualification { get; set; }
+        public Nullable<int> user_id_modified { get; set; }
     
-        public virtual concepts_status concepts_status { get; set; }
-        public virtual reason_rejects reason_rejects { get; set; }
-        public virtual concepts concepts { get; set; }
+        public virtual users users { get; set; }
     }
 }

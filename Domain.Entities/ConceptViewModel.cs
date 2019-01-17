@@ -103,5 +103,7 @@ namespace Domain.Entities
         public string investigator { get; set; }
         public string institution { get; set; }
         public int concept_status_id { get; set; }
+
+        public string pdf_path { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public reason_rejects()
         {
-            this.concepts = new HashSet<concepts>();
             this.concepts_status_logs = new HashSet<concepts_status_logs>();
+            this.concepts = new HashSet<concepts>();
         }
     
         public int reason_reject_id { get; set; }
@@ -29,8 +29,8 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_modified { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concepts> concepts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concepts_status_logs> concepts_status_logs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concepts> concepts { get; set; }
     }
 }

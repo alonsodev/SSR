@@ -31,7 +31,6 @@ namespace Infrastructure.Data.Repositories
             int count = Set.Where(a => a.concept_id == concept_id).Select(a => a.concepts_status_logs.Where(c => c.concept_status_id == 5).Count()).Take(1).FirstOrDefault();
             return count;
         }
-
         public ConceptViewModel Obtener(int concept_id)
         {
             var query = Set.Where(a => a.concept_id == concept_id).Select(a => new ConceptViewModel
@@ -46,8 +45,15 @@ namespace Infrastructure.Data.Repositories
                 title = a.draft_laws.title,
                 draft_law_id = a.draft_laws.draft_law_id,
                 tags = a.concepts_tags.Select(t => t.tag_id.ToString()).Distinct().ToList(),
-                bibliography = a.bibliography
+                bibliography = a.bibliography,
+                pdf_path = a.pdf_path
             });
+
+            return query.Take(1).FirstOrDefault();
+        }
+        public string ObtenerPdfpath(int concept_id)
+        {
+            var query = Set.Where(a => a.concept_id == concept_id).Select(a => a.pdf_path);
 
             return query.Take(1).FirstOrDefault();
         }

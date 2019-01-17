@@ -35,14 +35,14 @@ namespace Business.Logic
             {
                 id = id,
                 user_status_id = 1,
-                user_code_activate=null
+                user_code_activate = null
 
             };
             oRepositorio.Update(ousers,
                                     a => a.id,
                                     a => a.user_status_id,
                                     a => a.user_code_activate
-                                    
+
                                 );
             oUnitOfWork.SaveChanges();
         }
@@ -62,7 +62,7 @@ namespace Business.Logic
             users ousers = oRepositorio.FindById(pCambiarPasswordViewModel.userd_id);
             ousers.user_pass = pCambiarPasswordViewModel.new_pass;
             ousers.user_code_recover = null;
-           // ousers.user_status_id = 1;
+            // ousers.user_status_id = 1;
             ousers.date_modified = DateTime.Now;
             oRepositorio.Update(ousers);
             oUnitOfWork.SaveChanges();
@@ -89,7 +89,32 @@ namespace Business.Logic
         {
             return oRepositorio.ObtenerLista(filters);
         }
+        public void ModificarMicuenta(UserViewModel pUserViewModel)
+        {
 
+
+
+            users ousers = oRepositorio.FindById(pUserViewModel.id);
+            ousers.user_name = pUserViewModel.user_name;
+            //ousers.user_email = pUserViewModel.user_email;
+            // ousers.user_role_id = pUserViewModel.user_role_id;
+            //ousers.user_status_id = pUserViewModel.user_status_id;
+
+            ousers.document_type_id = pUserViewModel.document_type_id;
+
+            ousers.doc_nro = pUserViewModel.doc_nro;
+            ousers.nationality_id = pUserViewModel.nationality_id;
+            ousers.contact_name = pUserViewModel.contact_name;
+            ousers.phone = pUserViewModel.phone;
+            ousers.address = pUserViewModel.address;
+            if (pUserViewModel.avatar != null)
+                ousers.avatar = pUserViewModel.avatar;
+
+            ousers.user_id_modified = pUserViewModel.user_id_modified;
+            ousers.date_modified = DateTime.Now;
+            oRepositorio.Update(ousers);
+            oUnitOfWork.SaveChanges();
+        }
         public void Modificar(UserViewModel pUserViewModel)
         {
 
@@ -121,7 +146,8 @@ namespace Business.Logic
         {
             return oRepositorio.ValidarUsuario(usuario, contrasena, ref tipo_error);
         }
-        public CurrentUserViewModel GetCurrentUser(int user_id) {
+        public CurrentUserViewModel GetCurrentUser(int user_id)
+        {
             return oRepositorio.GetCurrentUser(user_id);
         }
 
@@ -218,7 +244,7 @@ namespace Business.Logic
                 address_country_id = pInvestigatorViewModel.address_country_id,
                 date_created = DateTime.Now,
                 user_id_created = pInvestigatorViewModel.user_id_created,
-                user_code_activate= pInvestigatorViewModel.user_code_activate,
+                user_code_activate = pInvestigatorViewModel.user_code_activate,
                 user_code_recover = pInvestigatorViewModel.user_code_recover,
 
             };
@@ -301,11 +327,11 @@ namespace Business.Logic
 
 
                 ousers.user_name = pInvestigatorViewModel.user_name;
-               // ousers.user_email = pInvestigatorViewModel.user_email;
-               // ousers.user_pass = pInvestigatorViewModel.user_pass;
+                // ousers.user_email = pInvestigatorViewModel.user_email;
+                // ousers.user_pass = pInvestigatorViewModel.user_pass;
                 ousers.contact_name = pInvestigatorViewModel.contact_name;
                 ousers.document_type_id = pInvestigatorViewModel.document_type_id;
-                
+
                 ousers.doc_nro = pInvestigatorViewModel.doc_nro;
                 ousers.nationality_id = pInvestigatorViewModel.nationality_id;
                 //  contract_name = pInvestigatorViewModel.contract_name,
@@ -318,7 +344,8 @@ namespace Business.Logic
                 ousers.user_id_modified = pInvestigatorViewModel.user_id_modified;
                 ousers.date_modified = DateTime.Now;
 
-                if (pInvestigatorViewModel.avatar != null) {
+                if (pInvestigatorViewModel.avatar != null)
+                {
                     ousers.avatar = pInvestigatorViewModel.avatar;
                 }
                 oRepositorio.Update(ousers);
@@ -387,7 +414,7 @@ namespace Business.Logic
 
         }
 
-       
+
         public InvestigatorViewModel ObtenerInvestigator(int pIntID)
         {
 

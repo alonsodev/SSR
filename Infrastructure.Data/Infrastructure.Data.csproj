@@ -137,6 +137,9 @@
     <Compile Include="nationalities.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="notifications.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="permissions.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
@@ -154,6 +157,7 @@
     <Compile Include="Repositories\InvestigatorInterestAreaRepository.cs" />
     <Compile Include="Repositories\MeritRangeRepository.cs" />
     <Compile Include="Repositories\InvestigatorCommissionRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\SnieRepository.cs" />
     <Compile Include="Repositories\EducationLevelRepository.cs" />
     <Compile Include="Repositories\KnowledgeAreaRepository.cs" />

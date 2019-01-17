@@ -303,7 +303,8 @@ namespace Infrastructure.Data.Repositories
                        status_id = a.user_status_id,
                        investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
-                       avatar = a.avatar
+                       avatar = a.avatar,
+                       role_id=a.user_role_id,
                    
                    }
                ).Take(1).FirstOrDefault();
@@ -489,6 +490,7 @@ namespace Infrastructure.Data.Repositories
                 contact_name = a.contact_name,
                 phone = a.phone,
                 address = a.address,
+                avatar=a.avatar
             });
 
             return query.Take(1).FirstOrDefault();

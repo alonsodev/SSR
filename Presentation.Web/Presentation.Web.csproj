@@ -327,6 +327,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\summernote-es-ES.js" />
+    <Content Include="Template\ConceptTemplateHtml.xslt" />
     <Content Include="Template\RecuperarCuentaMailTemplateHtml.xslt" />
     <Content Include="Template\ActivarCuentaMailTemplateHtml.xslt" />
     <Content Include="Web.config" />
@@ -395,6 +396,7 @@
     <Content Include="Views\Account\Recuperar.cshtml" />
     <Content Include="Views\Account\CambiarPassword.cshtml" />
     <Content Include="Views\Account\Activar.cshtml" />
+    <Content Include="Views\Account\Editar2.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
@@ -420,11 +422,13 @@
     <Content Include="Views\MeritRange\Editar.cshtml" />
     <Content Include="Views\MeritRange\Index.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Views\User\MiCuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Logs\" />
     <Folder Include="Models\" />
+    <Folder Include="PDF\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

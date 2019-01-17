@@ -508,7 +508,23 @@ namespace Presentation.Web.Controllers
             return Json(results);
 
         }
+        [HttpPost]
+        
+        public JsonResult ActualizarNotificacion(int notification_id)
+        {
 
+            NotificationBL oNotificationBL = new NotificationBL();
+
+            oNotificationBL.ActualizarLeido(notification_id);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
+
+        }
         [HttpPost]
         public JsonResult ObtenerInstituciones(/*string q, int page*/)
         {

@@ -28,7 +28,6 @@ namespace Infrastructure.Data
         public virtual DbSet<academic_levels> academic_levels { get; set; }
         public virtual DbSet<bad_languages> bad_languages { get; set; }
         public virtual DbSet<commissions> commissions { get; set; }
-        public virtual DbSet<concepts> concepts { get; set; }
         public virtual DbSet<concepts_status> concepts_status { get; set; }
         public virtual DbSet<concepts_tags> concepts_tags { get; set; }
         public virtual DbSet<debate_speakers> debate_speakers { get; set; }
@@ -59,5 +58,7 @@ namespace Infrastructure.Data
         public virtual DbSet<configurations> configurations { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<merit_ranges> merit_ranges { get; set; }
+        public virtual DbSet<notifications> notifications { get; set; }
+        public virtual DbSet<concepts> concepts { get; set; }
     }
 }

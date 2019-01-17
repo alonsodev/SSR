@@ -4,6 +4,7 @@ using Domain.Entities;
 using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -67,6 +68,73 @@ namespace Presentation.Web.Controllers
             return RedirectToAction("Index");
 
         }
+        
+        public ActionResult MiCuenta()
+        {
+            UserBL oBL = new UserBL();
+            var user_id = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            UserViewModel pUserViewModel = oBL.ObtenerUser(user_id);
+            SelectorBL oSelectorBL = new SelectorBL();
+
+            List<SelectOptionItem> oEstatus = oSelectorBL.EstatusUserSelector();
+            List<SelectOptionItem> oRoles = oSelectorBL.RolesSelector();
+
+            List<SelectOptionItem> oNationalities = oSelectorBL.NationalitiesSelector();
+            List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
+
+
+            List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
+            List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
+
+            List<SelectListItem> nationalities = Helper.ConstruirDropDownList<SelectOptionItem>(oNationalities, "Value", "Text", "", true, "", "");
+            List<SelectListItem> documentTypes = Helper.ConstruirDropDownList<SelectOptionItem>(oDocumentTypes, "Value", "Text", "", true, "", "");
+
+            ViewBag.estatus = estatus;
+            ViewBag.roles = roles;
+            ViewBag.nationalities = nationalities;
+            ViewBag.documentTypes = documentTypes;
+
+            return View(pUserViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        
+        public ActionResult MiCuenta([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        {
+            // TODO: Add insert logic here
+
+            if (pUserViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            pUserViewModel.id = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            UserBL oUserBL = new UserBL();
+            pUserViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            pUserViewModel.avatar = null;
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = Guid.NewGuid().ToString() + "." + extension;
+
+
+                    pUserViewModel.avatar = "/Avatars/" + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Avatars/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+            oUserBL.ModificarMicuenta(pUserViewModel);
+            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = oUserBL.GetCurrentUser(pUserViewModel.id);
+
+            return Redirect("/User/MiCuenta/");
+            
+
+        }
+
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_user })]
         public ActionResult Editar(string id)
         {

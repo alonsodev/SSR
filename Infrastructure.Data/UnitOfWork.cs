@@ -53,7 +53,9 @@ namespace Infrastructure.Data
 
         private ConfigurationRepository _configurationRepository;
 
+        private NotificationRepository _notificationRepository;
 
+        
         #endregion
 
         #region Constructors
@@ -64,7 +66,11 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public NotificationRepository NotificationRepository
+        {
+            get { return _notificationRepository ?? (_notificationRepository = new NotificationRepository(_context)); }
 
+        }
         public ConfigurationRepository ConfigurationRepository
         {
             get { return _configurationRepository ?? (_configurationRepository = new ConfigurationRepository(_context)); }
@@ -260,6 +266,7 @@ namespace Infrastructure.Data
             this._investigatorCommissionRepository = null;
             this._investigatorInterestAreaRepository = null;
             this._configurationRepository = null;
+            this._notificationRepository = null;
             _context.Dispose();
         }
         #endregion

@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public concepts()
         {
-            this.concepts_tags = new HashSet<concepts_tags>();
             this.concepts_status_logs = new HashSet<concepts_status_logs>();
+            this.concepts_tags = new HashSet<concepts_tags>();
         }
     
         public int concept_id { get; set; }
@@ -35,14 +35,15 @@ namespace Infrastructure.Data
         public Nullable<int> reason_reject_id { get; set; }
         public string reason_reject_description { get; set; }
         public Nullable<double> qualification { get; set; }
+        public string pdf_path { get; set; }
     
         public virtual concepts_status concepts_status { get; set; }
         public virtual draft_laws draft_laws { get; set; }
+        public virtual investigators investigators { get; set; }
         public virtual reason_rejects reason_rejects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concepts_tags> concepts_tags { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concepts_status_logs> concepts_status_logs { get; set; }
-        public virtual investigators investigators { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concepts_tags> concepts_tags { get; set; }
     }
 }

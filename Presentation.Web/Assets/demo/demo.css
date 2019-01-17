@@ -128,3 +128,10 @@ div.dataTables_wrapper div.dataTables_info {
    
     display: none;
 }
+
+.badge-notify {
+    background: red;
+    position: relative;
+    top: -20px;
+    left: -10px;
+}

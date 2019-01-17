@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public draft_laws()
         {
-            this.concepts = new HashSet<concepts>();
             this.debate_speakers = new HashSet<debate_speakers>();
+            this.concepts = new HashSet<concepts>();
         }
     
         public int draft_law_id { get; set; }
@@ -44,9 +44,9 @@ namespace Infrastructure.Data
     
         public virtual commissions commissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concepts> concepts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<debate_speakers> debate_speakers { get; set; }
         public virtual interest_areas interest_areas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concepts> concepts { get; set; }
     }
 }

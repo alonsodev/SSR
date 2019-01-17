@@ -4,10 +4,12 @@ using Infrastructure.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using TestXSLTMail;
 
 namespace Business.Logic
 {
@@ -27,6 +29,20 @@ namespace Business.Logic
             oRepositorioTag = oUnitOfWork.TagRepository;
             oRepositorioConceptTag = oUnitOfWork.ConceptTagRepository;
             oRepositorioConceptStatusLog = oUnitOfWork.ConceptStatusLogRepository;
+        }
+        public static string ObtenerHtmlConcept(ConceptHtmlViewModel oConcept, string xslPath)
+        {
+            StringBuilder msgBody = new StringBuilder();
+            if (File.Exists(xslPath))
+            {
+                MailGenerator mailGenerator = new MailGenerator(xslPath);
+                //string serialize = ConvertObjectToXMLString(oAsignacionLancha);
+
+                string message = mailGenerator.Generate(oConcept, typeof(ConceptHtmlViewModel));
+                msgBody.Append(message);
+                return msgBody.ToString();
+            }
+            return string.Empty;
         }
 
         public void ActualizarStatus(ConceptStatusLogViewModel oConceptStatusLogViewModel)
@@ -142,6 +158,11 @@ namespace Business.Logic
 
             return oRepositorio.Obtener(pIntID);
         }
+        public string ObtenerPdfpath(int pIntID)
+        {
+
+            return oRepositorio.ObtenerPdfpath(pIntID);
+        }
 
         public GridModel<ConceptViewModel> ObtenerLista(DataTableAjaxPostModel filters, int investigator_id)
         {
@@ -158,7 +179,7 @@ namespace Business.Logic
                 oconcepts.concept = pConceptViewModel.concept;
                 oconcepts.summary = pConceptViewModel.summary;
 
-
+                oconcepts.pdf_path = pConceptViewModel.pdf_path;
                 oconcepts.user_id_modified = pConceptViewModel.user_id_modified;
                 oconcepts.concept_status_id = pConceptViewModel.concept_status_id;
                 // oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);
@@ -213,7 +234,8 @@ namespace Business.Logic
 
                     date_created = DateTime.Now,
                     user_id_created = pConceptViewModel.user_id_created,
-                    concept_status_id = 1
+                    concept_status_id = 1,
+                    pdf_path=pConceptViewModel.pdf_path
                 };
 
                 //oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);
@@ -234,6 +256,7 @@ namespace Business.Logic
 
                 oUnitOfWork.SaveChanges();
                 scope.Complete();
+                pConceptViewModel.concept_id = oconcepts.concept_id;
             }
         }
 

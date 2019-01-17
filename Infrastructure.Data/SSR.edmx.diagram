@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="SSRModel.academic_levels" Width="1.5" PointX="6" PointY="35.875" />
         <EntityTypeShape EntityType="SSRModel.bad_languages" Width="1.5" PointX="10.75" PointY="7.25" />
         <EntityTypeShape EntityType="SSRModel.commissions" Width="1.5" PointX="6" PointY="25" />
-        <EntityTypeShape EntityType="SSRModel.concepts" Width="1.5" PointX="10.5" PointY="1.25" />
         <EntityTypeShape EntityType="SSRModel.concepts_status" Width="1.5" PointX="8.25" PointY="11.25" />
         <EntityTypeShape EntityType="SSRModel.concepts_tags" Width="1.5" PointX="15.75" PointY="2.375" />
         <EntityTypeShape EntityType="SSRModel.debate_speakers" Width="1.5" PointX="8.25" PointY="7.375" />
@@ -34,10 +33,6 @@
         <EntityTypeShape EntityType="SSRModel.user_status" Width="1.5" PointX="0.75" PointY="20" />
         <AssociationConnector Association="SSRModel.FK_snies_academic_levels" />
         <AssociationConnector Association="SSRModel.FK_draft_laws_commissions" />
-        <AssociationConnector Association="SSRModel.FK_concepts_concepts_status" />
-        <AssociationConnector Association="SSRModel.FK_concepts_draft_laws" />
-        <AssociationConnector Association="SSRModel.FK_concepts_reason_rejects" />
-        <AssociationConnector Association="SSRModel.FK_concepts_tags_concepts" />
         <AssociationConnector Association="SSRModel.FK_concepts_tags_tags" />
         <AssociationConnector Association="SSRModel.FK_debate_speakers_draft_laws" />
         <AssociationConnector Association="SSRModel.FK_municipalities_departments" />
@@ -50,14 +45,12 @@
         <AssociationConnector Association="SSRModel.FK_snies_programs" />
         <AssociationConnector Association="SSRModel.FK_role_permissions_roles" />
         <EntityTypeShape EntityType="SSRModel.concepts_status_logs" Width="1.5" PointX="15.75" PointY="8.25" />
-        <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts" />
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts_status" />
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_reason_rejects" />
         <EntityTypeShape EntityType="SSRModel.investigators" Width="1.5" PointX="15.375" PointY="15" />
         <EntityTypeShape EntityType="SSRModel.investigators_commissions" Width="1.5" PointX="17.625" PointY="20.25" />
         <EntityTypeShape EntityType="SSRModel.investigators_interest_areas" Width="1.5" PointX="17.625" PointY="23.5" />
         <AssociationConnector Association="SSRModel.FK_investigators_commissions_commissions" />
-        <AssociationConnector Association="SSRModel.FK_concepts_investigators" />
         <AssociationConnector Association="SSRModel.FK_investigators_education_levels" />
         <AssociationConnector Association="SSRModel.FK_investigators_educational_institutions" />
         <AssociationConnector Association="SSRModel.FK_investigators_genders" />
@@ -78,6 +71,15 @@
         <AssociationConnector Association="SSRModel.FK_users_roles" />
         <AssociationConnector Association="SSRModel.FK_users_user_status" />
         <EntityTypeShape EntityType="SSRModel.merit_ranges" Width="1.5" PointX="10.375" PointY="14.75" />
+        <EntityTypeShape EntityType="SSRModel.notifications" Width="1.5" PointX="5.25" PointY="42.25" />
+        <AssociationConnector Association="SSRModel.FK_notifications_users" />
+        <EntityTypeShape EntityType="SSRModel.concepts" Width="1.5" PointX="17.625" PointY="14.375" />
+        <AssociationConnector Association="SSRModel.FK_concepts_concepts_status" />
+        <AssociationConnector Association="SSRModel.FK_concepts_draft_laws" />
+        <AssociationConnector Association="SSRModel.FK_concepts_investigators" />
+        <AssociationConnector Association="SSRModel.FK_concepts_reason_rejects" />
+        <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts" />
+        <AssociationConnector Association="SSRModel.FK_concepts_tags_concepts" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

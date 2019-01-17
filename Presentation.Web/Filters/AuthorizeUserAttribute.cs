@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Business.Logic;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -123,6 +124,13 @@ namespace Presentation.Web.Filters
         public static bool UsuarioEstaLogeado()
         {
             return HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]] != null;
+        }
+        public static List<NotificationViewModel> Notificaciones()
+        {
+            CurrentUserViewModel user=(CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
+            NotificationBL oNotificationBL = new NotificationBL();
+
+            return oNotificationBL.ObtenerPorUsuario(user.user_id);
         }
         public static bool VerificarPerfil(params Permission[] permissions)
         {
