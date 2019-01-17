@@ -14,6 +14,110 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
+        public List<SelectOptionItem> CommissionsSelector()
+        {
+
+
+            var lista = this.Context.Set<commissions>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.commission_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> KnowledgeAreasSelector()
+        {
+            var lista = this.Context.Set<knowledge_areas>();
+           
+            var query_select = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.knowledge_area_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return query_select.ToList();
+        }
+
+        public List<SelectOptionItem> EducationLevelsSelector()
+        {
+            var lista = this.Context.Set<education_levels>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.education_level_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+       
+        public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a => a.educational_institution_id == educational_institution_id&& a.program_id == program_id).Select(a => new SelectOptionItem
+            {
+                Value = a.education_level_id.ToString(),
+                Text = a.education_levels.name,
+            }).OrderBy(a=> a.Text);
+
+            return consulta.ToList();
+        }
+
+        
+
+        public List<SelectOptionItem> EducationalInstitutionsSelector()
+        {
+            var lista = this.Context.Set<educational_institutions>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.educational_institution_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> ReasonRejectsSelector()
+        {
+            var lista = this.Context.Set<reason_rejects>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.reason_reject_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> TagsSelector()
+        {
+            var lista = this.Context.Set<tags>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.tag_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> AcademicLevelsSelector()
+        {
+
+
+            var lista = this.Context.Set<academic_levels>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.academic_level_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
 
         public List<SelectOptionItem> InvestigationGroupsSelector(int institution_id)
         {
@@ -24,11 +128,14 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.investigation_group_id.ToString(),
                 Text = a.name,
-            });
+                AdditionalField= a.code
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
-        public List<interest_areas> InterestAreasByfilters(int[] InterestAreas)
+
+       
+        public List<interest_areas> InterestAreasByfilters(List<int> InterestAreas)
         {
 
 
@@ -38,16 +145,55 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
-        public List<SelectOptionItem> InterestAreasSelector(int investigation_group_id)
+       
+
+        public List<commissions> CommissionsByfilters(List<int> Commissions)
+        {
+
+
+            var lista = this.Context.Set<commissions>();
+            var consulta = lista.Where(a => Commissions.Contains(a.commission_id));
+
+            return consulta.ToList();
+        }
+        public List<SelectOptionItem> DepartmentsSelector()
+        {
+
+
+            var lista = this.Context.Set<departments>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.department_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> MunicipalitiesSelector(int department_id)
+        {
+
+
+            var lista = this.Context.Set<municipalities>();
+            var consulta = lista.Where(a=> a.department_id== department_id).Select(a => new SelectOptionItem
+            {
+                Value = a.municipality_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> InterestAreasSelector()
         {
 
 
             var lista = this.Context.Set<interest_areas>();
-            var consulta = lista.Where(a => a.investigation_group_id == investigation_group_id).Select(a => new SelectOptionItem
+            var consulta = lista.Select(a => new SelectOptionItem
             {
                 Value = a.interest_area_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -58,12 +204,45 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.program_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
 
+        public List<SelectOptionItem> ProgramsSelector(int educational_institution_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a=>a.educational_institution_id==educational_institution_id).Select(a => new SelectOptionItem
+            {
+                Value = a.program_id.ToString(),
+                Text = a.programs.name,
+            }).OrderBy(a => a.Text);
 
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a => a.educational_institution_id == educational_institution_id).Select(a => new SelectOptionItem
+            {
+                Value = a.education_level_id.ToString(),
+                Text = a.education_levels.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+        public List<SelectOptionItem> GrantedTitlesSelector(int educational_institution_id, int education_level_id)
+        {
+            var lista = this.Context.Set<snies>();
+            var consulta = lista.Where(a => a.educational_institution_id == educational_institution_id && a.education_level_id== education_level_id).Select(a => new SelectOptionItem
+            {
+                Value = a.snie_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
         public List<SelectOptionItem> GendersSelector()
         {
             var lista = this.Context.Set<genders>();
@@ -71,7 +250,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.gender_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -85,9 +264,25 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.document_type_id.ToString(),
                 Text = a.name,
-            });
-
+            }).OrderBy(a => a.Text);
             return consulta.ToList();
+        }
+        public CurrentUserViewModel GetCurrentUser(int user_id)
+        {
+           return  Set.Where(a => a.id == user_id).Select(a =>
+                    new CurrentUserViewModel
+                    {
+                        user_id = a.id,
+                        name = a.contact_name, // contact_name
+                       pass = a.user_pass,
+                        user_email = a.user_email,
+                        status_id = a.user_status_id,
+                        investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
+                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
+                        avatar = a.avatar
+
+                    }
+                ).Take(1).FirstOrDefault();
         }
 
         public CurrentUserViewModel ValidarUsuario(string usuario, string contrasena, ref int tipo_error)
@@ -102,14 +297,16 @@ namespace Infrastructure.Data.Repositories
                    new CurrentUserViewModel
                    {
                        user_id = a.id,
-                       name= a.user_name,
+                       name = a.contact_name, // contact_name
                        pass = a.user_pass,
-                       user_email= a.user_email,
+                       user_email = a.user_email,
                        status_id = a.user_status_id,
-
-                       permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList()
+                       investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
+                       permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
+                       avatar = a.avatar
+                   
                    }
-               ).Take(1).SingleOrDefault();
+               ).Take(1).FirstOrDefault();
 
                 if (result.pass != contrasena)
                     tipo_error = -3;
@@ -140,10 +337,16 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.nationality_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
+
+        public int? ObtenerPonente(string author_aux)
+        {
+            return Set.Where(a => a.user_name.ToLower() == author_aux.ToLower()).Select(a => a.id).Take(1).FirstOrDefault();
+        }
+
         public List<SelectOptionItem> RolesSelector()
         {
             var lista = this.Context.Set<roles>();
@@ -151,7 +354,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.role_id.ToString(),
                 Text = a.role,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -162,7 +365,7 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.user_status_id.ToString(),
                 Text = a.name,
-            });
+            }).OrderBy(a => a.Text);
 
             return consulta.ToList();
         }
@@ -175,7 +378,93 @@ namespace Infrastructure.Data.Repositories
 
             return count == 0;
         }
+        public UserViewModel GetByUserCodeActivate(string user_code)
+        {
+            var query = Set.Where(a => a.user_code_activate == user_code).Select(a => new UserViewModel
+            {
 
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+
+        public UserViewModel GetByUserCodeRecover(string user_code)
+        {
+            var query = Set.Where(a => a.user_code_recover == user_code).Select(a => new UserViewModel
+            {
+
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+
+        public  UserViewModel ObtenerUser(string user_email)
+        {
+            var query = Set.Where(a => a.user_email == user_email).Select(a => new UserViewModel
+            {
+
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+        
         public UserViewModel ObtenerUser(int id)
         {
             var query = Set.Where(a => a.id == id).Select(a => new UserViewModel

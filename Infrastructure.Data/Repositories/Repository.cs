@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,7 +44,15 @@ namespace Infrastructure.Data.Repositories
         {
             return Set.Add(entity);
         }
+        public void Update(TEntity obj, params Expression<Func<TEntity, object>>[] propertiesToUpdate)
+        {
+            _context.Set<TEntity>().Attach(obj);
 
+            foreach (var p in propertiesToUpdate)
+            {
+                _context.Entry(obj).Property(p).IsModified = true;
+            }
+        }
         public void Update(TEntity entity)
         {
 

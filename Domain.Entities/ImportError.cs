@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Class1
+    public class ImportError
     {
+        public int nroFila { get; set; }
+        public List<string> errores { get; set; }
     }
 }

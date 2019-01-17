@@ -31,7 +31,9 @@ namespace Infrastructure.Data.Repositories
 
                 investigation_group_id = a.investigation_group_id,
                 institution_id=a.institution_id,
-                name = a.name
+                institution= a.institutions.name,
+                name = a.name,
+                code =a.code
             });
 
             return query.Take(1).FirstOrDefault();
@@ -81,7 +83,8 @@ namespace Infrastructure.Data.Repositories
                 investigation_group_id = a.investigation_group_id,
                 institution_id = a.institution_id,
                 institution= a.institutions.name,
-                name = a.name
+                name = a.name,
+                code =a.code
             });
 
             if (String.IsNullOrEmpty(sortBy)) sortBy = "investigation_group_id";

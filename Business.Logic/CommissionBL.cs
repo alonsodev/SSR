@@ -32,6 +32,39 @@ namespace Business.Logic
 
             return oRepositorio.Obtener(pIntID);
         }
+      
+
+
+        public Dictionary<string,int> ObtenerDiccionarioPorNombre(List<string> commisions,int user_id)
+        {
+            var olista= oRepositorio.ObtenerTodos();
+
+            
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            foreach (var item in olista) {
+                dictionary.Add(item.name, item.commission_id);
+            }
+            foreach (var commision in commisions)
+            {
+                if (!String.IsNullOrEmpty(commision) && !dictionary.ContainsKey(commision)){
+                    commissions ocommissions = new commissions
+                    {
+                        commission_id = 0,
+                        name = commision,
+                        date_created = DateTime.Now,
+                        user_id_created = user_id
+
+                    };
+                    ocommissions = oRepositorio.Add(ocommissions);
+                    oUnitOfWork.SaveChanges();
+                    dictionary.Add(ocommissions.name, ocommissions.commission_id);
+
+                }
+            }
+            return dictionary;
+        }
+
 
         public GridModel<CommissionViewModel> ObtenerLista(DataTableAjaxPostModel filters)
         {

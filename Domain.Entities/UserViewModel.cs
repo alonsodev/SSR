@@ -18,9 +18,7 @@ namespace Domain.Entities
 
         [Display(Name = "Nombre o Institución")]
         [Required(ErrorMessage = "Nombre o Institución es obligatorio.")]        
-        public string user_name { get; set; }
-
-       
+        public string user_name { get; set; }   
 
 
         
@@ -73,6 +71,8 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Estatus del Usuario es obligatorio.")]
         public Nullable<int> user_status_id { get; set; }
         public string user_status { get; set; }
-
+        public string user_code_activate { get; set; }
+        public string user_code_recover { get; set; }
+        public string avatar { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Infrastructure.Data.Repositories
 {
     public class ProgramRepository : Repository<programs>
     {
+
         internal ProgramRepository(ApplicationDbContext context)
             : base(context)
         {

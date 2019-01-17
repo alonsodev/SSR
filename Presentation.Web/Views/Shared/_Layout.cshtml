@@ -83,7 +83,7 @@
                     AR
                 </a>
                 <a href="/" class="simple-text logo-normal">
-                   ARCA
+                    ARCA
                 </a>
 
                 <div class="navbar-minimize">
@@ -94,269 +94,404 @@
                 </div>
 
             </div>
+
             <div class="sidebar-wrapper">
+                @if (Session[ConfigurationManager.AppSettings["session.usuario.actual"]] != null)
+                {
 
-                <div class="user">
-                    <div class="photo">
-                        <img src="/assets/img/james.jpg" />
-                    </div>
-                    <div class="info">
-                        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                            <span>
-                               
-                                @AuthorizeUserAttribute.UsuarioLogeado().name
-                                <b class="caret"></b>
-                            </span>
-                        </a>
-                        <div class="clearfix"></div>
-                        <div class="collapse" id="collapseExample">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#">
-                                        <span class="sidebar-mini-icon">MP</span>
-                                        <span class="sidebar-normal">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="sidebar-mini-icon">EP</span>
-                                        <span class="sidebar-normal">Edit Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/Account/CerrarSesion">
-                                        <span class="sidebar-mini-icon">CS</span>
-                                        <span class="sidebar-normal">Cerrar Sesión</span>
-                                    </a>
-                                </li>
-                            </ul>
+                    <div class="user">
+                        <div class="photo">
+                            @if (AuthorizeUserAttribute.UsuarioLogeado().avatar != null && AuthorizeUserAttribute.UsuarioLogeado().name != "")
+                            {
+                                <img src="@AuthorizeUserAttribute.UsuarioLogeado().avatar" />
+                            }
+                            else
+                            {
+                                <img src="/Avatars/default_avatar_male.jpg" />
+                            }
+                        </div>
+                        <div class="info">
+                            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                                <span>
+
+                                    @AuthorizeUserAttribute.UsuarioLogeado().name
+                                    <b class="caret"></b>
+                                </span>
+                            </a>
+                            <div class="clearfix"></div>
+                            <div class="collapse" id="collapseExample">
+                                <ul class="nav">
+                                    <li>
+                                        <a href="/Account/Editar/@AuthorizeUserAttribute.UsuarioLogeado().investigator_id">
+                                            <span class="sidebar-mini-icon">MC</span>
+                                            <span class="sidebar-normal">Mi Cuenta</span>
+                                        </a>
+                                    </li>
+                                    <li>
+
+                                        <a href="/Account/CambiarMiPassword">
+                                            <span class="sidebar-mini-icon">CC</span>
+                                            <span class="sidebar-normal">Cambiar Contraseña</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Account/CerrarSesion">
+                                            <span class="sidebar-mini-icon">CS</span>
+                                            <span class="sidebar-normal">Cerrar Sesión</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <ul class="nav">
+                    <ul class="nav">
 
-                    <li class=" @ViewBag.dashboard">
+                        <!-- <li class=" @ViewBag.dashboard">
 
-                        <a href="dashboard.html">
+                               <a href="dashboard.html">
 
-                            <i class="now-ui-icons design_app"></i>
+                                   <i class="now-ui-icons design_app"></i>
 
-                            <p>Dashboard</p>
-                        </a>
+                                   <p>Dashboard</p>
+                               </a>
 
-                    </li>
+                           </li>
+                        -->
 
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
+                        {
+                            <li class="@(ViewBag.active == "users" || ViewBag.active == "permissions" || ViewBag.active == "roles" ? "active" : "")">
 
+                                <a data-toggle="collapse" href="#security">
 
-                    <li class="@(ViewBag.active=="users" || ViewBag.active=="permissions" || ViewBag.active=="roles" ?"active":"")">
+                                    <i class="now-ui-icons users_circle-08"></i>
 
-                        <a data-toggle="collapse" href="#security">
+                                    <p>
+                                        Seguridad <b class="caret"></b>
+                                    </p>
+                                </a>
 
-                            <i class="now-ui-icons users_circle-08"></i>
+                                <div class="@("collapse " + (ViewBag.active == "users" || ViewBag.active == "permissions" || ViewBag.active == "roles" ? "show" : ""))" id="security">
 
-                            <p>
-                                Seguridad <b class="caret"></b>
-                            </p>
-                        </a>
-
-                        <div class="@("collapse " + (ViewBag.active=="users" || ViewBag.active=="permissions" || ViewBag.active=="roles" ? "show" : ""))" id="security">
-
-                            <ul class="nav">
-
-                                <li class="@(ViewBag.active=="users"?"active":"")">
-                                    <a href="/User">
-                                        <span class="sidebar-mini-icon">U</span>
-                                        <span class="sidebar-normal"> Usuarios </span>
-
-                                    </a>
-
-
-
-                                </li>
-
-                                <li class="@(ViewBag.active=="roles"?"active":"")">
-                                    <a href="/Role">
-
-
-
-                                        <span class="sidebar-mini-icon">R</span>
-                                        <span class="sidebar-normal"> Roles </span>
-                                    </a>
-
-
-                                </li>
-
-                                <li class="@(ViewBag.active=="permissions"?"active":"")">
-                                    <a href="/Permission">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Permisos </span>
-
-                                    </a>
-
-
-
-                                </li>
-
-
-
-                            </ul>
-                        </div>
-
-
-                    </li>
-
-
-                    <li class="@(ViewBag.active=="institutions" || ViewBag.active=="interest_areas" || ViewBag.active=="programs" || ViewBag.active=="investigation_groups" ||  ViewBag.active=="commissions" ?"active":"")">
-
-                        <a data-toggle="collapse" href="#management">
-
-                            <i class="now-ui-icons loader_gear"></i>
-
-                            <p>
-                                Mantenimientos <b class="caret"></b>
-                            </p>
-                        </a>
-
-                        <div class="@("collapse " + (ViewBag.active=="institutions" || ViewBag.active=="interest_areas" || ViewBag.active=="programs"|| ViewBag.active=="investigation_groups"||  ViewBag.active=="commissions"  ? "show" : ""))" id="management">
-
-                            <ul class="nav">
-
-                                <li class="@(ViewBag.active=="institutions"?"active":"")">
-                                    <a href="/Institution">
-                                        <span class="sidebar-mini-icon">I</span>
-                                        <span class="sidebar-normal"> Instituciones </span>
-
-                                    </a>
-
-
-
-                                </li>
-
-                                <li class="@(ViewBag.active=="investigation_groups"?"active":"")">
-                                    <a href="/InvestigationGroup">
-
-
-
-                                        <span class="sidebar-mini-icon">GI</span>
-                                        <span class="sidebar-normal"> Grupos de Investigación </span>
-                                    </a>
-
-
-                                </li>
-
-                                <li class="@(ViewBag.active=="programs"?"active":"")">
-                                    <a href="/Program">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Programas </span>
-
-                                    </a>
-
-
-
-                                </li>
-
-                                <li class="@(ViewBag.active=="interest_areas"?"active":"")">
-                                    <a href="/InterestArea">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Áreas de Interés </span>
-
-                                    </a>
-
-
-
-                                </li>
-
-                                <li class="@(ViewBag.active=="commissions"?"active":"")">
-                                    <a href="/Commission">
-                                        <span class="sidebar-mini-icon">C</span>
-                                        <span class="sidebar-normal"> Comisiones </span>
-
-                                    </a>
-
-
-
-                                </li>
-
-                            </ul>
-                        </div>
-
-
-                    </li>
-
-                    <li>
-
-                        <a data-toggle="collapse" href="#pagesExamples">
-
-                            <i class="now-ui-icons design_image"></i>
-
-                            <p>
-                                Pages <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse " id="pagesExamples">
-                            <ul class="nav">
-
-                                <li>
-                                    <a href="pages/pricing.html">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Pricing </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/rtl.html">
-                                        <span class="sidebar-mini-icon">RS</span>
-                                        <span class="sidebar-normal"> RTL Support </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/timeline.html">
-                                        <span class="sidebar-mini-icon">T</span>
-                                        <span class="sidebar-normal"> Timeline </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/login.html">
-                                        <span class="sidebar-mini-icon">L</span>
-                                        <span class="sidebar-normal"> Login </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/register.html">
-                                        <span class="sidebar-mini-icon">R</span>
-                                        <span class="sidebar-normal"> Register </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/lock.html">
-                                        <span class="sidebar-mini-icon">LS</span>
-                                        <span class="sidebar-normal"> Lock Screen </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/user.html">
-                                        <span class="sidebar-mini-icon">UP</span>
-                                        <span class="sidebar-normal"> User Profile </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </li>
-
-
-
-
-
-                </ul>
+                                    <ul class="nav">
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users))
+                                        {
+                                            <li class="@(ViewBag.active == "users" ? "active" : "")">
+                                                <a href="/User">
+                                                    <span class="sidebar-mini-icon">U</span>
+                                                    <span class="sidebar-normal"> Usuarios </span>
+
+                                                </a>
+
+
+
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_roles))
+                                        {
+                                            <li class="@(ViewBag.active == "roles" ? "active" : "")">
+                                                <a href="/Role">
+
+
+
+                                                    <span class="sidebar-mini-icon">R</span>
+                                                    <span class="sidebar-normal"> Roles </span>
+                                                </a>
+
+
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_permissions))
+                                        {
+                                            <li class="@(ViewBag.active == "permissions" ? "active" : "")">
+                                                <a href="/Permission">
+                                                    <span class="sidebar-mini-icon">P</span>
+                                                    <span class="sidebar-normal"> Permisos </span>
+
+                                                </a>
+
+
+
+                                            </li>
+                                        }
+
+
+                                    </ul>
+                                </div>
+
+
+                            </li>
+
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law, AuthorizeUserAttribute.Permission.module_institution,
+                            AuthorizeUserAttribute.Permission.module_interest_areas, AuthorizeUserAttribute.Permission.module_programs,
+                            AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttribute.Permission.module_commissions,
+                            AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.Permission.module_education_levels,
+                            AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
+                            AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
+                             AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config))
+                        {
+                            <li class="@(ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges"||ViewBag.active == "snies" ||ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas"||ViewBag.active == "educational_institutions"||ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
+
+                                <a data-toggle="collapse" href="#management">
+                                    <i class="now-ui-icons loader_gear"></i>
+                                    <p>
+                                        Mantenimientos <b class="caret"></b>
+                                    </p>
+                                </a>
+
+                                <div class="@("collapse " + (ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges"||ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels"||ViewBag.active == "knowledge_areas"||ViewBag.active == "educational_institutions"||ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
+
+                                    <ul class="nav">
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
+                                        {
+                                            <li class="@(ViewBag.active == "draft_laws" ? "active" : "")">
+                                                <a href="/DraftLaw">
+                                                    <span class="sidebar-mini-icon">PL</span>
+                                                    <span class="sidebar-normal"> Proyectos de Ley </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_institution))
+                                        {
+                                            <li class="@(ViewBag.active == "institutions" ? "active" : "")">
+                                                <a href="/Institution">
+                                                    <span class="sidebar-mini-icon">I</span>
+                                                    <span class="sidebar-normal"> Instituciones </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_investigation_groups))
+                                        {
+                                            <li class="@(ViewBag.active == "investigation_groups" ? "active" : "")">
+                                                <a href="/InvestigationGroup">
+                                                    <span class="sidebar-mini-icon">GI</span>
+                                                    <span class="sidebar-normal"> Grupos de Investigación </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_interest_areas))
+                                        {
+                                            <li class="@(ViewBag.active == "interest_areas" ? "active" : "")">
+                                                <a href="/InterestArea">
+                                                    <span class="sidebar-mini-icon">AI</span>
+                                                    <span class="sidebar-normal"> Áreas de Interés </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_commissions))
+                                        {
+                                            <li class="@(ViewBag.active == "commissions" ? "active" : "")">
+                                                <a href="/Commission">
+                                                    <span class="sidebar-mini-icon">C</span>
+                                                    <span class="sidebar-normal"> Comisiones </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_educational_institutions))
+                                        {
+                                            <li class="@(ViewBag.active == "educational_institutions" ? "active" : "")">
+                                                <a href="/EducationalInstitution">
+                                                    <span class="sidebar-mini-icon">IE</span>
+                                                    <span class="sidebar-normal"> Instituciones Educativas </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_knowledge_areas))
+                                        {
+                                            <li class="@(ViewBag.active == "knowledge_areas" ? "active" : "")">
+                                                <a href="/KnowledgeArea">
+                                                    <span class="sidebar-mini-icon">AC</span>
+                                                    <span class="sidebar-normal"> Áreas de conocimiento </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_programs))
+                                        {
+                                            <li class="@(ViewBag.active == "programs" ? "active" : "")">
+                                                <a href="/Program">
+                                                    <span class="sidebar-mini-icon">P</span>
+                                                    <span class="sidebar-normal"> Programas </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_academic_levels))
+                                        {
+                                            <li class="@(ViewBag.active == "academic_levels" ? "active" : "")">
+                                                <a href="/AcademicLevel">
+                                                    <span class="sidebar-mini-icon">NA</span>
+                                                    <span class="sidebar-normal"> Niveles académicos </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_education_levels))
+                                        {
+                                            <li class="@(ViewBag.active == "education_levels" ? "active" : "")">
+                                                <a href="/EducationLevel">
+                                                    <span class="sidebar-mini-icon">NF</span>
+                                                    <span class="sidebar-normal"> Niveles de formación </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_snies))
+                                        {
+                                            <li class="@(ViewBag.active == "snies" ? "active" : "")">
+                                                <a href="/Snie">
+                                                    <span class="sidebar-mini-icon">S</span>
+                                                    <span class="sidebar-normal"> Snies </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_bad_languages))
+                                        {
+                                            <li class="@(ViewBag.active == "bad_languages" ? "active" : "")">
+                                                <a href="/BadLanguage">
+                                                    <span class="sidebar-mini-icon">PNA</span>
+                                                    <span class="sidebar-normal"> Palabras no adecuadas </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_merit_ranges))
+                                        {
+                                            <li class="@(ViewBag.active == "merit_ranges" ? "active" : "")">
+                                                <a href="/MeritRange">
+                                                    <span class="sidebar-mini-icon">RM</span>
+                                                    <span class="sidebar-normal"> Rango de Méritos </span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.edit_config))
+                                        {
+                                            <li class="@(ViewBag.active == "edit_config" ? "active" : "")">
+                                                <a href="/Configuration">
+                                                    <span class="sidebar-mini-icon">C</span>
+                                                    <span class="sidebar-normal"> Configuraciones </span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_draft_laws))
+                        {
+                            <li class="@(ViewBag.active == "my_draft_laws" ? "active" : "")">
+
+                                <a href="/Investigator/MisProyectosLey">
+
+                                    <i class="now-ui-icons files_single-copy-04"></i>
+
+                                    <p>Mis Proyectos de Ley</p>
+                                </a>
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_concepts))
+                        {
+                            <li class="@(ViewBag.active == "my_concepts" ? "active" : "")">
+
+                                <a href="/Concept">
+
+                                    <i class="now-ui-icons files_paper"></i>
+
+                                    <p>Mis Conceptos</p>
+                                </a>
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_certificates))
+                        {
+                            <li class="@(ViewBag.active == "my_certificates" ? "active" : "")">
+
+                                <a href="/Concept/Certificados">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Mis Certificados</p>
+                                </a>
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_backgrounds))
+                        {
+                            <li class="@(ViewBag.active == "my_backgrounds" ? "active" : "")">
+
+                                <a href="/Investigator/MiHistorial">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Mi Historial</p>
+                                </a>
+
+                            </li>
+                        }
+
+
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
+                        {
+                            <li class="@(ViewBag.active == "concepts_emited" ? "active" : "")">
+
+                                <a href="/Concept/Emitidos">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Conceptos Emitidos</p>
+                                </a>
+
+                            </li>
+                        }
+
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_to_qualify))
+                        {
+                            <li class="@(ViewBag.active == "concepts_to_qualify" ? "active" : "")">
+
+                                <a href="/Concept/PorCalificar">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Conceptos Por Calificar</p>
+                                </a>
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_received))
+                        {
+                            <li class="@(ViewBag.active == "concepts_received" ? "active" : "")">
+
+                                <a href="/Concept/Recibidos">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Conceptos Recibidos</p>
+                                </a>
+
+                            </li>
+                        }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.ranking_investigator))
+                        {
+                            <li class="@(ViewBag.active == "ranking_investigator" ? "active" : "")">
+
+                                <a href="/Investigator/Mejores">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Ranking</p>
+                                </a>
+
+                            </li>
+                        }
+                    </ul>
+                }
             </div>
+
+
         </div>
 
         <div class="main-panel">
@@ -381,7 +516,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
-                        <form>
+                        <form style="display:none;">
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <div class="input-group-append">
@@ -391,7 +526,7 @@
                                 </div>
                             </div>
                         </form>
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav" style="display:none;">
                             <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
                                     <i class="now-ui-icons media-2_sound-wave"></i>
@@ -445,28 +580,10 @@
             <footer class="footer">
 
                 <div class="container-fluid">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="https://www.creative-tim.com/">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://presentation.creative-tim.com/">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://blog.creative-tim.com/">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+
                     <div class="copyright" id="copyright">
                         &copy;
-                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Designed by <a href="https://www.invisionapp.com/" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a>.
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Desiñado por Raycom Soluciones SAS.
                     </div>
                 </div>
 
@@ -477,7 +594,7 @@
 
     </div>
 
-    <div class="fixed-plugin">
+    <!--<div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>
@@ -532,16 +649,7 @@
                 </li>
             </ul>
         </div>
-    </div>
-
-
-
-
-
-
-
-
-
+    </div>-->
     <!--   Core JS Files   -->
     <script src="@Url.Content("/assets/js/core/jquery.min.js")"></script>
     <script src="@Url.Content("/assets/js/core/popper.min.js")"></script>
@@ -558,7 +666,10 @@
     <!-- Forms Validations Plugin -->
     <script src="@Url.Content("/assets/js/plugins/jquery.validate.min.js")"></script>
     <script src="@Url.Content("/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    
     <script src="@Url.Content("/Scripts/expressive.annotations.validate.min.js")"></script>
+    <script src="@Url.Content("/Scripts/jquery.blockUI.js")"></script>
     <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="@Url.Content("/assets/js/plugins/jquery.bootstrap-wizard.js")"></script>
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -599,6 +710,9 @@
     <!-- Sharrre libray -->
     <script src="@Url.Content("/assets/demo/jquery.sharrre.js")"></script>
     <script>
+        $.validator.setDefaults({
+            ignore: null
+        });
         $(document).ready(function () {
 
 
@@ -856,7 +970,23 @@
 
     @RenderSection("scripts", required: false)
 
+    <script type="text/javascript">
 
+        $.blockUI.defaults.message = '<h1>Por favor espere...</h1>';
+        $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+        $(document).bind("ajaxError", function (evt, jqXHR, settings, err, arguments) {
+
+            if (jqXHR.status == 200) {
+                location.reload();
+                return;
+            }
+
+            alert('Ha ocurrido un error, por favor intente de nuevo más tarde o comuníquese con el administrador del sistema.');
+
+
+        });
+    </script>
 
 
 

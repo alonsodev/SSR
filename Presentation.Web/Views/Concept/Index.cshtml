@@ -1,0 +1,278 @@
+﻿@model Domain.Entities.RejectConceptViewModel
+@{
+    ViewBag.HeaderTitleLink = Url.Action("MisProyectosLey", "Investigator");
+    ViewBag.HeaderTitle = "Mis Conceptos";
+    ViewBag.Title = "Mis Conceptos";
+
+    ViewBag.active = "my_concepts";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nro. Proyecto</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Comisión</th>
+                            <th>Área de Interés</th>
+                            <th>Fecha de Emisión</th>
+                            <th>Estado</th>
+                            <th>Resumen</th>
+                            <th>Calificacion</th>
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nro. Proyecto</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Comisión</th>
+                            <th>Área de Interés</th>
+                            <th>Fecha de Emisión</th>
+                            <th>Estado</th>
+                            <th>Resumen</th>
+                            <th>Calificacion</th>
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+<!-- Classic Modal -->
+<div class="modal fade" id="summary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up">Resumen</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <p>
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="display:none">
+
+    <input type="file" id="NewFileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="checkfile(this,'N');" />
+
+</div>
+
+<!-- Classic Modal -->
+<div class="modal fade" id="reject_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up"> Concepto Rechazado</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <div class="form-group has-label">
+
+                    <b>@Html.LabelFor(model => model.reason_reject_id, htmlAttributes: new { @class = "" })</b>
+                    
+                    <div id="reason_reject"></div>
+                    @Html.ValidationMessageFor(model => model.reason_reject_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    <b>@Html.LabelFor(model => model.reason_reject_description, htmlAttributes: new { @class = "" })</b>
+                    <div id="reason_reject_description" style="width: 100%; height: auto; overflow-y: hidden;overflow-x:hidden">
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.reason_reject_description, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var datatable;
+        function MostrarRechazo(concept_id) {
+
+             $.ajax(
+                    {
+                        url: "@Url.Action("ObtenerRechazo", "Concept")",
+                        type: "POST",
+                        data: { concept_id: concept_id }
+                    })
+                    .done(function (data) {
+                        //alert(1);
+                        console.log(data);
+                        $('#reason_reject').html(data.reject.reason_reject);
+                        $('#reason_reject_description').html(data.reject.reason_reject_description);
+                        $("#reject_modal").modal('show');
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+        }
+
+        $(function () {
+            UiFormulario.init();
+            $("#reason_reject_id").select2();
+        })
+
+        var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+                        responsive: true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            url: "@Url.Action("ObtenerLista", "Concept")",
+                            type: 'POST'
+                        },
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [
+
+                            {
+                                extend: 'csvHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            }
+                        ],
+
+
+
+                        "columns": [
+                            { "data": "draft_law_number" },
+                            { "data": "title" },
+                            { "data": "author" },
+                            { "data": "commission" },
+                            { "data": "interest_area" },
+                            { "data": "date_presentation" },
+                            { "data": "status" },
+                            { "data": "summary" },
+                            { "data": "qualification" },
+                            { "data": "concept_id" },
+                        ],
+                        columnDefs: [
+                            { 'className': 'text-center', 'targets': [7,9] },
+                            {
+                                render: function (data, type, row) {
+
+                                    if (row.date_presentation == null) { return "" };
+                                    var actionsHtml = moment(row.date_presentation).format("DD/MM/YYYY");
+                                    return actionsHtml;
+                                },
+                                targets: 5
+                            },
+                            {
+                                render: function (data, type, row) {
+
+                                    var actionsHtml = row.status;
+                                    if (row.status == 'Rechazado')
+                                        actionsHtml = '<a href="javascript:void(0);" onclick="MostrarRechazo(' + row.concept_id +')">' + row.status+'</a>';
+                                    return actionsHtml;
+                                },
+                                targets: 6
+                            },
+                            {
+                                render: function (data, type, row) {
+                                    debugger;
+                                    return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.concept_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'
+                                        + '<div style="display:none" id="summary-' + row.concept_id + '">' + row.summary + '</div>';
+
+                                },
+                                targets: 7,
+                                orderable: false
+                            },
+                            {
+                                render: function (data, type, row) {
+                                    var html = '<a href="/Concept/Ver/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Ver Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
+                                    if (row.status =='Rechazado')
+                                        html += ' <a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar Concepto Técnico"><i class="now-ui-icons shopping_tag-content"></i></a>';
+
+                                    return html;
+                                },
+                                targets: 9,
+                                orderable: false
+                            }
+                        ],
+
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+                    datatable.on('click', '.summary', function (event) {
+                        debugger;
+                        var $tr = $(this).closest('tr');
+                        var row_id = $(this).attr('row-id');
+
+                        var summary = $('#summary-' + row_id).html();
+                        $('#modal-body-summary').html(summary);
+                        $("#summary_modal").modal('show');
+                    });
+
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+    </script>
+}
+
+

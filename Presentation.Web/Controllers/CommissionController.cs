@@ -14,14 +14,14 @@ namespace Presentation.Web.Controllers
 {
     public class CommissionController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_commissions })]
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_commissions })]
         public ActionResult Crear()
         {
 
@@ -30,6 +30,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_commissions, AuthorizeUserAttribute.Permission.new_commissions })]
         public JsonResult Verificar(int id_commission, string name)
         {
 
@@ -47,7 +48,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_commissions })]
         public ActionResult Crear([Bind(Include = "commission_id,name")] CommissionViewModel pCommissionViewModel)
         {
             // TODO: Add insert logic here
@@ -57,17 +58,17 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pCommissionViewModel.commission_id = 0;
-            pCommissionViewModel.user_id_created = 0;
-
+            pCommissionViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             CommissionBL oBL = new CommissionBL();
             oBL.Agregar(pCommissionViewModel);
             return RedirectToAction("Index");
 
         }
 
-       
 
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_commissions })]
         public ActionResult Editar(string id)
         {
             CommissionBL oBL = new CommissionBL();
@@ -80,7 +81,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_commissions })]
         public ActionResult Editar([Bind(Include = "commission_id,name")] CommissionViewModel pCommissionViewModel)
         {
             // TODO: Add insert logic here
@@ -90,11 +91,13 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             CommissionBL oCommissionBL = new CommissionBL();
+            pCommissionViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oCommissionBL.Modificar(pCommissionViewModel);
             return RedirectToAction("Index");
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_commissions })]
         public JsonResult Eliminar(int id)
         {
 
@@ -111,7 +114,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_commissions })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             CommissionBL oCommissionBL = new CommissionBL();

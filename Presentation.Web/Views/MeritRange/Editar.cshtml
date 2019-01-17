@@ -1,0 +1,220 @@
+﻿@model Domain.Entities.MeritRangeViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "MeritRange");
+    ViewBag.HeaderTitle = "Rangos de mérito";
+    ViewBag.Title = "Editar Rango de mérito";
+
+    ViewBag.active = "merit_ranges";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4> 
+            </div>
+            @using (Html.BeginForm("Editar", "MeritRange", FormMethod.Post, new { id = "form-edit", title = "Examinar", enctype = "multipart/form-data" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.merit_range_id)
+                @Html.HiddenFor(model => model.url_image)
+                <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.lower_limit, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.lower_limit, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.lower_limit, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.upper_limit, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.upper_limit, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.upper_limit, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="" for="avatar_image">Imagen</label>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="kv-avatar" id="avatar_image">
+                            <div class="file-loading">
+                                <input id="url_image-2" name="url_image-2" type="file">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div><!-- end content-->
+                <div class="card-footer text-right">
+
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+    <script src="/assets/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+        This must be loaded before fileinput.min.js -->
+    <script src="/assets/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for
+        HTML files. This must be loaded before fileinput.min.js -->
+    <script src="/assets/js/plugins/purify.min.js" type="text/javascript"></script>
+    <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js
+       3.3.x versions without popper.min.js. -->
+    <script src="/assets/js/plugins/popper.min.js"></script>
+
+    <!-- the main fileinput plugin file -->
+    <script src="/assets/js/plugins/fileinput.min.js"></script>
+
+    <script src="~/Assets/js/plugins/themes/fileinput/fa/theme.js"></script>
+    <script src="~/Assets/js/plugins/themes/fileinput/locales/es.js"></script>
+    <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+    <script>
+        debugger;
+        var url_image = $("#url_image").val();
+        var defaultPreviewContent = '';
+        if (!url_image || url_image == '') {
+            url_image = '/Avatars/default_avatar_male.jpg';
+           // defaultPreviewContent = '<img src="' + url_image + '" alt="Piedra preciosa">';
+        }
+        else {
+            defaultPreviewContent = '<img width="200px" src="' + url_image + '" alt="Piedra preciosa">';
+        }
+        $("#url_image-2").fileinput({
+            language: 'es',
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showCaption: false,
+            showBrowse: true,
+            browseOnZoneClick: true,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="now-ui-icons arrows-1_share-66"></i>',
+            removeIcon: '<i class="now-ui-icons ui-1_simple-remove"></i>',
+            uploadIcon: '<i class="now-ui-icons glyphicon-upload"></i>',
+            zoomIcon: '<i class="now-ui-icons ui-1_zoom-bold"></i>',
+            previewZoomButtonIcons: {
+                prev: '<i class="glyphicon glyphicon-triangle-left"></i>',
+                next: '<i class="glyphicon glyphicon-triangle-right"></i>',
+                toggleheader: '<i class="glyphicon glyphicon-resize-vertical"></i>',
+                fullscreen: '<i class="glyphicon glyphicon-fullscreen"></i>',
+                borderless: '<i class="glyphicon glyphicon-resize-full"></i>',
+                close: '<i class="now-ui-icons ui-1_simple-remove"></i>'
+            },
+
+            elErrorContainer: '#kv-avatar-errors-2',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: defaultPreviewContent,
+            layoutTemplates: { main2: '{preview} {remove} {browse}' },
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    </script>
+    <script type="text/javascript">
+
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/MeritRange";
+        });
+
+        $('#form-edit').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            $('.name-error').html('');
+            if ($("#form-edit").valid()) {
+
+
+                 var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "MeritRange")",
+                        type: "POST",
+                     data: { id_merit_range: $('#merit_range_id').val(), name: $('#name').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.name-error').html('<span id="name-error" class="">Ya existe un rango de mérito con el mismo nombre.</span>');
+                    return false;
+                }
+
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

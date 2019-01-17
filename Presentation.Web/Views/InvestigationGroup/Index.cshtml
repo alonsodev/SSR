@@ -21,6 +21,7 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
+                            <th>Código</th>
                             <th>Institución</th>
 
                             <th class="disabled-sorting text-right">Acciones</th>
@@ -29,6 +30,7 @@
                     <tfoot>
                         <tr>
                             <th>Nombre</th>
+                            <th>Código</th>
                             <th>Institución</th>
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
@@ -95,7 +97,7 @@
                                 }
                             },
                             {
-                                text: '<i class="fa fa-plus"></i> Agregar Grupo de Investigación',
+                                text: '<i class="fa fa-plus"></i> Agregar',
                                 className: "btn btn-primary pull-right",
                                 action: function (e, dt, node, config) {
                                     window.location = "@Url.Action("Crear", "InvestigationGroup")";
@@ -111,17 +113,18 @@
                         "columns": [
                             
                             { "data": "name" },
+                            { "data": "code" },
                             { "data": "institution" },
                             { "data": "investigation_group_id" }
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [2] },
+                            { 'className': 'text-center', 'targets': [3] },
                             {
                                 render: function (data, type, row) {
                                     return '<a href="/InvestigationGroup/Editar/' + row.investigation_group_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
                                         + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.investigation_group_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
                                 },
-                                targets: 2,
+                                targets: 3,
                                 orderable: false
                             }
                         ],

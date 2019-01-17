@@ -14,6 +14,13 @@ namespace Infrastructure.Data
     
     public partial class users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public users()
+        {
+            this.debate_speakers = new HashSet<debate_speakers>();
+            this.investigators = new HashSet<investigators>();
+        }
+    
         public int id { get; set; }
         public string user_name { get; set; }
         public string user_email { get; set; }
@@ -23,6 +30,8 @@ namespace Infrastructure.Data
         public Nullable<int> nationality_id { get; set; }
         public string contact_name { get; set; }
         public string phone { get; set; }
+        public Nullable<int> address_country_id { get; set; }
+        public Nullable<int> address_municipality_id { get; set; }
         public string address { get; set; }
         public Nullable<int> user_role_id { get; set; }
         public Nullable<int> user_status_id { get; set; }
@@ -32,9 +41,18 @@ namespace Infrastructure.Data
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
+        public string user_code_activate { get; set; }
+        public string user_code_recover { get; set; }
+        public string avatar { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<debate_speakers> debate_speakers { get; set; }
         public virtual document_types document_types { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
+        public virtual municipalities municipalities { get; set; }
         public virtual nationalities nationalities { get; set; }
+        public virtual nationalities nationalities1 { get; set; }
         public virtual roles roles { get; set; }
         public virtual user_status user_status { get; set; }
     }

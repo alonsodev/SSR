@@ -12,6 +12,15 @@ namespace CrossCutting.Helper
 {
     public class Helper
     {
+        public static string ReplaceFirstOccurrence(string Source, string Find, string Replace)
+        {
+            int Place = Source.IndexOf(Find);
+            if (Place < 0) {
+                return Source;
+            }
+            string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
+            return result;
+        }
         public static List<SelectListItem> ConstruirDropDownList<T1>(List<T1> pLista, string pStrCampoValor, string pStrCampoDescripcion, string pStrSeleccionarValor, Boolean pBlnInsertarOpcBlanco = false, string pStrValorOpcBlanco = "", string pStrTextoOpcBlanco = "")
         {
             List<SelectListItem> oLista = new List<SelectListItem>();
@@ -43,6 +52,7 @@ namespace CrossCutting.Helper
             return oLista;
         }
 
+       
         public static string Encripta(string Par_Word)
         {
             int Par_ID = 1;

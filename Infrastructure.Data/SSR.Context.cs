@@ -25,19 +25,39 @@ namespace Infrastructure.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<permissions> permissions { get; set; }
-        public virtual DbSet<role_permissions> role_permissions { get; set; }
-        public virtual DbSet<roles> roles { get; set; }
-        public virtual DbSet<user_status> user_status { get; set; }
+        public virtual DbSet<academic_levels> academic_levels { get; set; }
+        public virtual DbSet<bad_languages> bad_languages { get; set; }
+        public virtual DbSet<commissions> commissions { get; set; }
+        public virtual DbSet<concepts> concepts { get; set; }
+        public virtual DbSet<concepts_status> concepts_status { get; set; }
+        public virtual DbSet<concepts_tags> concepts_tags { get; set; }
+        public virtual DbSet<debate_speakers> debate_speakers { get; set; }
+        public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<document_types> document_types { get; set; }
-        public virtual DbSet<nationalities> nationalities { get; set; }
+        public virtual DbSet<draft_laws> draft_laws { get; set; }
+        public virtual DbSet<education_levels> education_levels { get; set; }
+        public virtual DbSet<educational_institutions> educational_institutions { get; set; }
         public virtual DbSet<genders> genders { get; set; }
         public virtual DbSet<institutions> institutions { get; set; }
         public virtual DbSet<interest_areas> interest_areas { get; set; }
         public virtual DbSet<investigation_groups> investigation_groups { get; set; }
-        public virtual DbSet<investigators> investigators { get; set; }
+        public virtual DbSet<knowledge_areas> knowledge_areas { get; set; }
+        public virtual DbSet<municipalities> municipalities { get; set; }
+        public virtual DbSet<nationalities> nationalities { get; set; }
+        public virtual DbSet<permissions> permissions { get; set; }
         public virtual DbSet<programs> programs { get; set; }
+        public virtual DbSet<reason_rejects> reason_rejects { get; set; }
+        public virtual DbSet<role_permissions> role_permissions { get; set; }
+        public virtual DbSet<roles> roles { get; set; }
+        public virtual DbSet<snies> snies { get; set; }
+        public virtual DbSet<tags> tags { get; set; }
+        public virtual DbSet<user_status> user_status { get; set; }
+        public virtual DbSet<concepts_status_logs> concepts_status_logs { get; set; }
+        public virtual DbSet<investigators> investigators { get; set; }
+        public virtual DbSet<investigators_commissions> investigators_commissions { get; set; }
+        public virtual DbSet<investigators_interest_areas> investigators_interest_areas { get; set; }
+        public virtual DbSet<configurations> configurations { get; set; }
         public virtual DbSet<users> users { get; set; }
-        public virtual DbSet<commissions> commissions { get; set; }
+        public virtual DbSet<merit_ranges> merit_ranges { get; set; }
     }
 }

@@ -55,3 +55,76 @@ div.dataTables_wrapper div.dataTables_info {
     white-space: normal !important;
 }
 
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+.select2-container--default.select2-container--disabled .select2-selection--multiple {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+.select2-container--default.select2-container--disabled .select2-selection--single {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+.note-editor.note-frame .note-editing-area .note-editable[contenteditable="false"] {
+    background-color: #FFFFFF !important;
+    cursor: not-allowed !important;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+
+.box {
+    width: 100%;
+    float: left;
+    margin: 1em 0;
+}
+
+.box-blue .box-header {
+    background-color: #4278f5;
+    color: white;
+}
+
+.box .box-header {
+    text-align: center;
+    font-weight: 400;
+    padding: .5em 0;
+}
+
+.box-blue .box-body {
+    background-color: white;
+    border: 2px solid #8bacf9;
+    border-top: 0;
+}
+
+.box .box-body {
+    padding-top: 2em;
+    height: 120px;
+    position: relative;
+}
+
+.box-example-movie .br-wrapper {
+  /*  width: 350px;*/
+    position: absolute;
+    margin: 0px 0 0 -125px;
+    left: 50%;
+}
+
+.br-theme-bars-movie .br-widget .br-current-rating {
+    width: 315px !important;
+}
+
+.form-check-inline label {
+    font-size: xx-small;
+}
+.krajee-default.file-preview-frame .kv-file-content {
+    width: 213px;
+    height: 140px !important;
+}
+.krajee-default.file-preview-frame .file-thumbnail-footer {
+   
+    display: none;
+}

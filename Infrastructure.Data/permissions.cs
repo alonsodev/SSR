@@ -21,6 +21,7 @@ namespace Infrastructure.Data
         }
     
         public int id_permission { get; set; }
+        public Nullable<int> sequence { get; set; }
         public string title { get; set; }
         public string name { get; set; }
         public Nullable<int> is_only_for_super_admin { get; set; }

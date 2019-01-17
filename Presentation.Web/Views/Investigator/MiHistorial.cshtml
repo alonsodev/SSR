@@ -1,0 +1,94 @@
+﻿@model Domain.Entities.MyHistoryViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("MiHistorial", "Investigator");
+    ViewBag.HeaderTitle = "Mi Historial";
+    ViewBag.Title = "Mi Historial";
+
+    ViewBag.active = "my_backgrounds";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.qualified_concepts, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+
+                            @Html.EditorFor(model => model.qualified_concepts, new { htmlAttributes = new { @class = "form-control" , @disabled= "disabled" } })
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.my_points, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.my_points, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4" id="image_points">
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="row">
+                            @foreach (var merit_range in ViewBag.merit_ranges)
+                            {
+                                <div class="col text-center">
+                                    <div><img src="@merit_range.url_image" title=" @merit_range.name" height="40"></div>
+                                    <div>
+                                        @merit_range.name
+                                    </div>
+                                    <div>
+
+                                        @merit_range.description
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+            </div><!-- end content-->
+
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        var merit_ranges =@Html.Raw(ViewBag.merit_ranges_json);
+        var my_points =@ViewBag.my_points;
+    $(function () {
+        var merit_range = merit_ranges.find(a => a.lower_limit <= my_points && a.upper_limit >= my_points);
+        $('#image_points').html('<img src = "' + merit_range.url_image + '" title="' + merit_range.name + '" width = "40">');
+    });
+
+    </script>
+}

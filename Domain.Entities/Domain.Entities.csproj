@@ -36,12 +36,34 @@
     <Reference Include="ExpressiveAnnotations.MvcUnobtrusive, Version=2.5.4.0, Culture=neutral, PublicKeyToken=d3e372f3c1e83cec, processorArchitecture=MSIL">
       <HintPath>..\packages\ExpressiveAnnotations.2.9.6\lib\net45\ExpressiveAnnotations.MvcUnobtrusive.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,16 +72,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicLevelViewModel.cs" />
+    <Compile Include="CambiarPasswordViewModel.cs" />
+    <Compile Include="MeritRangeViewModel.cs" />
+    <Compile Include="ConfigurationViewModel.cs" />
+    <Compile Include="Notifications\NotificacionConfig.cs" />
+    <Compile Include="Notifications\NotificationGeneralAccountViewModel.cs" />
+    <Compile Include="RejectConceptViewModel.cs" />
+    <Compile Include="SnieViewModel.cs" />
+    <Compile Include="EducationLevelViewModel.cs" />
+    <Compile Include="KnowledgeAreaViewModel.cs" />
+    <Compile Include="EducationalInstitutionViewModel.cs" />
+    <Compile Include="RankingViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="CheckboxViewModel.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="MyHistoryViewModel.cs" />
+    <Compile Include="ConceptViewModel.cs" />
     <Compile Include="CurrentUserViewModel.cs" />
     <Compile Include="DataTableViewModel.cs" />
     <Compile Include="CommissionViewModel.cs" />
+    <Compile Include="ImportError.cs" />
+    <Compile Include="InterestAreaViewModel.cs" />
     <Compile Include="InvestigationGroupViewModel.cs" />
+    <Compile Include="BadLanguageViewModel.cs" />
+    <Compile Include="ConceptStatusLogViewModel.cs" />
+    <Compile Include="TagViewModel.cs" />
     <Compile Include="ProgramViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="InstitutionViewModel.cs" />
+    <Compile Include="DraftLawViewModel.cs" />
+    <Compile Include="DraftLawFiltersViewModel.cs" />
     <Compile Include="Select2Model.cs" />
     <Compile Include="SelectOptionItem.cs" />
     <Compile Include="UserFiltersViewModel.cs" />
@@ -87,6 +129,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

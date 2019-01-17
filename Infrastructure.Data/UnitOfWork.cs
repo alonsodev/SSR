@@ -27,6 +27,33 @@ namespace Infrastructure.Data
 
         private CommissionRepository _commissionRepository;
 
+        private DraftLawRepository _draftLawRepository;
+        private ConceptRepository _conceptRepository;
+
+        private BadLanguageRepository _badLanguageRepository;
+
+        private TagRepository _tagRepository;
+        private ConceptTagRepository _conceptTagRepository;
+        private ConceptStatusLogRepository _conceptStatusLogRepository;
+
+        private DebateSpeakerRepository _debateSpeakerRepository;
+
+        private EducationalInstitutionRepository _educationalInstitutionRepository;
+        private KnowledgeAreaRepository _knowledgeAreaRepository;
+        private AcademicLevelRepository _academicLevelRepository;
+
+        private EducationLevelRepository _educationLevelRepository;
+
+        private SnieRepository _snieRepository;
+
+        private MeritRangeRepository _meritRangeRepository;
+
+        private InvestigatorInterestAreaRepository _investigatorInterestAreaRepository;
+        private InvestigatorCommissionRepository _investigatorCommissionRepository;
+
+        private ConfigurationRepository _configurationRepository;
+
+
         #endregion
 
         #region Constructors
@@ -37,6 +64,88 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+
+        public ConfigurationRepository ConfigurationRepository
+        {
+            get { return _configurationRepository ?? (_configurationRepository = new ConfigurationRepository(_context)); }
+
+        }
+        public InvestigatorInterestAreaRepository InvestigatorInterestAreaRepository
+        {
+            get { return _investigatorInterestAreaRepository ?? (_investigatorInterestAreaRepository = new InvestigatorInterestAreaRepository(_context)); }
+
+        }
+        public InvestigatorCommissionRepository InvestigatorCommissionRepository
+        {
+            get { return _investigatorCommissionRepository ?? (_investigatorCommissionRepository = new InvestigatorCommissionRepository(_context)); }
+
+        }
+        public MeritRangeRepository MeritRangeRepository
+        {
+            get { return _meritRangeRepository ?? (_meritRangeRepository = new MeritRangeRepository(_context)); }
+
+        }
+        public SnieRepository SnieRepository
+        {
+            get { return _snieRepository ?? (_snieRepository = new SnieRepository(_context)); }
+
+        }
+        public EducationLevelRepository EducationLevelRepository
+        {
+            get { return _educationLevelRepository ?? (_educationLevelRepository = new EducationLevelRepository(_context)); }
+
+        }
+        public AcademicLevelRepository AcademicLevelRepository
+        {
+            get { return _academicLevelRepository ?? (_academicLevelRepository = new AcademicLevelRepository(_context)); }
+
+        }
+        public KnowledgeAreaRepository KnowledgeAreaRepository
+        {
+            get { return _knowledgeAreaRepository ?? (_knowledgeAreaRepository = new KnowledgeAreaRepository(_context)); }
+
+        }
+        public EducationalInstitutionRepository EducationalInstitutionRepository
+        {
+            get { return _educationalInstitutionRepository ?? (_educationalInstitutionRepository = new EducationalInstitutionRepository(_context)); }
+
+        }
+        public DebateSpeakerRepository DebateSpeakerRepository
+        {
+            get { return _debateSpeakerRepository ?? (_debateSpeakerRepository = new DebateSpeakerRepository(_context)); }
+
+        }
+        public ConceptStatusLogRepository ConceptStatusLogRepository
+        {
+            get { return _conceptStatusLogRepository ?? (_conceptStatusLogRepository = new ConceptStatusLogRepository(_context)); }
+
+        }
+        public ConceptTagRepository ConceptTagRepository
+        {
+            get { return _conceptTagRepository ?? (_conceptTagRepository = new ConceptTagRepository(_context)); }
+
+        }
+        public TagRepository TagRepository
+        {
+            get { return _tagRepository ?? (_tagRepository = new TagRepository(_context)); }
+
+        }
+        public BadLanguageRepository BadLanguageRepository
+        {
+            get { return _badLanguageRepository ?? (_badLanguageRepository = new BadLanguageRepository(_context)); }
+
+        }
+        public ConceptRepository ConceptRepository
+        {
+            get { return _conceptRepository ?? (_conceptRepository = new ConceptRepository(_context)); }
+
+        }
+
+        public DraftLawRepository DraftLawRepository
+        {
+            get { return _draftLawRepository ?? (_draftLawRepository = new DraftLawRepository(_context)); }
+
+        }
 
         public CommissionRepository CommissionRepository
         {
@@ -136,7 +245,21 @@ namespace Infrastructure.Data
             this._investigationGroupRepository = null;
 
             this._commissionRepository = null;
-
+            this._draftLawRepository = null;
+            this._conceptRepository = null;
+            this._badLanguageRepository = null;
+            this._tagRepository = null;
+            this._conceptStatusLogRepository = null;
+            this._debateSpeakerRepository = null;
+            this._educationalInstitutionRepository = null;
+            this._knowledgeAreaRepository = null;
+            this._academicLevelRepository = null;
+            this._educationLevelRepository = null;
+            this._snieRepository = null;
+            this._meritRangeRepository = null;
+            this._investigatorCommissionRepository = null;
+            this._investigatorInterestAreaRepository = null;
+            this._configurationRepository = null;
             _context.Dispose();
         }
         #endregion

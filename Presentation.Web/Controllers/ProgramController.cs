@@ -14,14 +14,14 @@ namespace Presentation.Web.Controllers
 {
     public class ProgramController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_programs })]
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_programs })]
         public ActionResult Crear()
         {
 
@@ -30,6 +30,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_programs, AuthorizeUserAttribute.Permission.edit_programs })]
         public JsonResult Verificar(int id_program, string name)
         {
 
@@ -47,7 +48,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_programs })]
         public ActionResult Crear([Bind(Include = "program_id,name")] ProgramViewModel pProgramViewModel)
         {
             // TODO: Add insert logic here
@@ -57,17 +58,17 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pProgramViewModel.program_id = 0;
-            pProgramViewModel.user_id_created = 0;
-
+            pProgramViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             ProgramBL oBL = new ProgramBL();
             oBL.Agregar(pProgramViewModel);
             return RedirectToAction("Index");
 
         }
 
-       
 
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_programs })]
         public ActionResult Editar(string id)
         {
             ProgramBL oBL = new ProgramBL();
@@ -80,7 +81,7 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_programs })]
         public ActionResult Editar([Bind(Include = "program_id,name")] ProgramViewModel pProgramViewModel)
         {
             // TODO: Add insert logic here
@@ -90,11 +91,13 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             ProgramBL oProgramBL = new ProgramBL();
+            pProgramViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oProgramBL.Modificar(pProgramViewModel);
             return RedirectToAction("Index");
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_programs })]
         public JsonResult Eliminar(int id)
         {
 
@@ -111,7 +114,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_programs })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             ProgramBL oProgramBL = new ProgramBL();

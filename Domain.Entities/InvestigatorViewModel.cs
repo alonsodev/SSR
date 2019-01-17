@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Domain.Entities
 {
@@ -88,6 +89,27 @@ namespace Domain.Entities
 
 
         public string contact_name { get; set; }
+        [Display(Name = "Nivel Académico")]
+        [Required(ErrorMessage = "Nivel Académico es obligatorio.")]
+        public Nullable<int> academic_level_id { get; set; }
+
+        [Display(Name = "Comisión")]
+        [Required(ErrorMessage = "Comisión es obligatorio.")]
+        public List<int> commissions { get; set; }
+        public MultiSelectList commissionsMultiSelectList { get; set; }
+        [Display(Name = "Pais de residencia")]
+        [Required(ErrorMessage = "Pais de residencia es obligatorio.")]
+        public Nullable<int> address_country_id { get; set; }
+
+        [Display(Name = "Departamento de residencia")]
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Departamento de residencia es obligatorio.")]
+        public Nullable<int> department_id { get; set; }
+
+        [Display(Name = "Municipalidad de residencia")]
+        
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Municipalidad de residencia es obligatorio.")]
+        public Nullable<int> address_municipality_id { get; set; }
+
         [Display(Name = "Lugar de residencia")]
         [Required(ErrorMessage = "Lugar de residencia es obligatorio.")]
         public string address { get; set; }
@@ -102,6 +124,8 @@ namespace Domain.Entities
 
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "La Contraseña es obligatoria.")]
+        //[StringLength(20, MinimumLength =8, ErrorMessage = "La contraseña debe tener como mínimo 8 caracteres y como máximo 20 caracteres")]
+        [RegularExpression("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$", ErrorMessage = "La contraseña debe tener al menos 8 caracteres, no más de 20, y debe incluir al menos una letra mayúscula, una letra minúscula y un dígito numérico.")]
         [DataType(DataType.Password)]
         public string user_pass { get; set; }
 
@@ -114,18 +138,39 @@ namespace Domain.Entities
         [Display(Name = "Nombre de institución")]
         [Required(ErrorMessage = "Nombre de institución es obligatorio.")]
         public Nullable<int> institution_id { get; set; }
-
+        public string institution { get; set; }
         [Display(Name = "Grupo de investigación a la que pertenece")]
         [Required(ErrorMessage = "Grupo de investigación a la que pertenece es obligatorio.")]
         public Nullable<int> investigation_group_id { get; set; }
 
+      
+
         [Display(Name = "Código del grupo")]
-        
-        public Nullable<int> program_id { get; set; }
+        public string code_investigation_group { get; set; }
+
+       
 
         [Display(Name = "Áreas de interés")]
         [Required(ErrorMessage = "Áreas de interés es obligatorio.")]
-        public int[] interest_areas { get; set; }
+        public List<int> interest_areas { get; set; }
 
+        [Display(Name = "Institución educativa")]
+        [Required(ErrorMessage = "Institución educativa es obligatorio.")]
+        public Nullable<int> educational_institution_id { get; set; }
+
+        [Display(Name = "Nombre de programa")]
+        [Required(ErrorMessage = "Nombre de programa es obligatoria.")]
+        public Nullable<int> program_id { get; set; } 
+
+        [Display(Name = "Nivel de formación")]
+        [Required(ErrorMessage = "Nivel de formación es obligatorio.")]
+        public Nullable<int> education_level_id { get; set; }
+
+
+        [Display(Name = "CVLAC")]
+        public string CVLAC { get; set; }
+        public string user_code_activate { get; set; }
+        public string user_code_recover { get; set; }
+        public string avatar { get; set; }
     }
 }

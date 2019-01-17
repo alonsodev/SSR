@@ -15,11 +15,103 @@ namespace Presentation.Web.Filters
         public enum Permission
         {
             module_access_users = 14,
-            form_new_user = 15,
-            form_edit_user = 16,
+            list_users = 21,
+            new_user = 15,
+            edit_user = 16,
             delete_user = 17,
-           
+            change_pass = 19,
+            change_own_pass = 25,
+            module_access_roles = 22,
+            list_roles = 27,
+            new_role = 26,
+            edit_role = 28,
+            delete_role = 29,
+            role_permissions = 30,
+            module_access_permissions = 23,
+            list_permissions = 32,
+            new_permissions = 31,
+            edit_permission = 33,
+            delete_permission = 34,
+            module_draft_law = 36,
+            list_draft_law = 38,
+            new_draft_law = 39,
+            edit_draft_law = 40,
+            delete_draft_law = 41,
+            module_institution = 42,
+            list_institution = 43,
+            new_institution = 44,
+            edit_institution = 45,
+            delete_institution = 46,
+            module_investigation_groups = 47,
+            list_investigation_groups = 48,
+            new_investigation_groups = 49,
+            edit_investigation_groups = 50,
+            delete_investigation_groups = 51,
+            module_interest_areas = 52,
+            list_interest_areas = 53,
+            new_interest_areas = 54,
+            edit_interest_areas = 55,
+            delete_interest_areas = 56,
+            module_programs = 57,
+            list_programs = 58,
+            new_programs = 59,
+            edit_programs = 60,
+            delete_programs = 61,
+            module_commissions = 62,
+            list_commissions = 63,
+            new_commissions = 64,
+            edit_commissions = 65,
+            delete_commissions = 66,
+            edit_config = 35,
+            my_draft_laws = 67,
+            my_concepts = 68,
+            my_certificates = 69,
+            my_backgrounds = 70,
+            concepts_emited = 71,
+            new_concept = 72,
+            edit_concept = 73,
+            module_bad_languages = 74,
+            list_bad_languages = 75,
+            new_bad_languages = 76,
+            edit_bad_languages = 76,
+            delete_bad_languages = 78,
+            view_concept = 79,
+            view_draft_law = 80,
+            concepts_to_qualify = 81,
+            qualify_concepts = 82,
+            ranking_investigator = 83,
+            concepts_received = 84,
+            module_educational_institutions = 85,
+            list_educational_institutions = 86,
+            new_educational_institutions = 87,
+            edit_educational_institutions = 88,
+            delete_educational_institutions = 89,
 
+            module_knowledge_areas = 90,
+            list_knowledge_areas = 91,
+            new_knowledge_areas = 92,
+            edit_knowledge_areas = 93,
+            delete_knowledge_areas = 94,
+            module_academic_levels = 95,
+            list_academic_levels = 96,
+            new_academic_levels = 97,
+            edit_academic_levels = 98,
+            delete_academic_levels = 99,
+            module_education_levels = 100,
+            list_education_levels = 101,
+            new_education_levels = 102,
+            edit_education_levels = 103,
+            delete_education_levels = 104,
+            module_snies = 105,
+            list_snies = 106,
+            new_snies = 107,
+            edit_snies = 108,
+            delete_snies = 109,
+            module_merit_ranges = 110,
+            list_merit_ranges = 111,
+            new_merit_ranges = 112,
+            edit_merit_ranges = 113,
+            delete_merit_ranges = 114,
         }
         public Permission[] Permissions { get; set; }
 
@@ -40,7 +132,7 @@ namespace Presentation.Web.Filters
                 {
                     CurrentUserViewModel usuario = (CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
 
-                    if (usuario.permissions.Contains((int)permission) )
+                    if (usuario.permissions.Contains((int)permission))
                         return true;
                 }
             }
@@ -105,12 +197,12 @@ namespace Presentation.Web.Filters
                 return true;
             foreach (Permission item in Permissions)
             {
-                if (usuario.permissions.Contains( (int)item) )
+                if (usuario.permissions.Contains((int)item))
                 {
                     return true;
                 }
             }
-           
+
 
             motivoNoAutorizado = eMotivoNoAutorizado.PerfilNoAutorizado;
 

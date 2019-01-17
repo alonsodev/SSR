@@ -78,7 +78,8 @@
                         <span class="navbar-toggler-bar bar3"></span>
                     </button>
                 </div>
-                <a class="navbar-brand" href="#pablo">Registrar Investigador</a>
+
+                <a class="navbar-brand" href="@ViewBag.HeaderTitleLink">@ViewBag.HeaderTitle</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -89,20 +90,20 @@
 
 
                 <ul class="navbar-nav">
-                   
-                    <li class="nav-item  active ">
+
+                    <li class="nav-item  @(ViewBag.active == "create_investigator" ? "active" : "")">
                         <a href="/Account/Crear" class="nav-link">
                             <i class="now-ui-icons tech_mobile"></i>
                             Registrar
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item  @(ViewBag.active == "login" ? "active" : "")">
                         <a href="/Account/Login" class="nav-link">
                             <i class="now-ui-icons users_circle-08"></i>
                             Iniciar Sesión
                         </a>
                     </li>
-                    
+
                 </ul>
 
 
@@ -127,13 +128,10 @@
                 <div class="container">
                     <div class="row">
 
-                       
-
-
-                            @RenderBody()
 
 
 
+                        @RenderBody()
 
 
 
@@ -148,7 +146,10 @@
 
 
 
-                       
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -176,7 +177,7 @@
                     </nav>
                     <div class="copyright" id="copyright">
                         &copy;
-                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Designed by <a href="https://www.invisionapp.com/" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a>.
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Desiñado por Raycom Soluciones SAS.
                     </div>
                 </div>
 
@@ -185,72 +186,65 @@
         </div>
 
     </div>
+    <!--
+        <div class="fixed-plugin">
+            <div class="dropdown show-dropdown">
+                <a href="#" data-toggle="dropdown">
+                    <i class="fa fa-cog fa-2x"> </i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header-title"> Sidebar Background</li>
+                    <li class="adjustments-line">
+                        <a href="javascript:void(0)" class="switch-trigger background-color">
+                            <div class="badge-colors text-center">
+                                <span class="badge filter badge-yellow" data-color="yellow"></span>
+                                <span class="badge filter badge-blue" data-color="blue"></span>
+                                <span class="badge filter badge-green" data-color="green"></span>
+                                <span class="badge filter badge-orange active" data-color="orange"></span>
+                                <span class="badge filter badge-red" data-color="red"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
 
-    <div class="fixed-plugin">
-        <div class="dropdown show-dropdown">
-            <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"> </i>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="header-title"> Sidebar Background</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
-                        <div class="badge-colors text-center">
-                            <span class="badge filter badge-yellow" data-color="yellow"></span>
-                            <span class="badge filter badge-blue" data-color="blue"></span>
-                            <span class="badge filter badge-green" data-color="green"></span>
-                            <span class="badge filter badge-orange active" data-color="orange"></span>
-                            <span class="badge filter badge-red" data-color="red"></span>
+                    <li class="header-title">
+                        Sidebar Mini
+                    </li>
+                    <li class="adjustments-line">
+                        <div class="togglebutton switch-sidebar-mini">
+                            <span class="label-switch">OFF</span>
+                            <input type="checkbox" name="checkbox" checked class="bootstrap-switch"
+                                   data-on-label=""
+                                   data-off-label="" />
+                            <span class="label-switch label-right">ON</span>
                         </div>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
-
-                <li class="header-title">
-                    Sidebar Mini
-                </li>
-                <li class="adjustments-line">
-                    <div class="togglebutton switch-sidebar-mini">
-                        <span class="label-switch">OFF</span>
-                        <input type="checkbox" name="checkbox" checked class="bootstrap-switch"
-                               data-on-label=""
-                               data-off-label="" />
-                        <span class="label-switch label-right">ON</span>
-                    </div>
-                </li>
-                <li class="button-container">
-                    <a href="https://www.creative-tim.com/product/now-ui-dashboard-pro" target="_blank" class="btn btn-primary btn-block btn-round">Buy Now</a>
-                    <a href="https://demos.creative-tim.com/now-ui-dashboard-pro/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
-                        <i class="now-ui-icons files_single-copy-04"></i>
-                        Documentation
-                    </a>
-                    <a href="https://www.creative-tim.com/product/now-ui-dashboard" target="_blank" class="btn btn-info btn-block btn-round">
-                        <i class="now-ui-icons files_single-copy-04"></i>
-                        Get Free Demo!
-                    </a>
-                </li>
+                    </li>
+                    <li class="button-container">
+                        <a href="https://www.creative-tim.com/product/now-ui-dashboard-pro" target="_blank" class="btn btn-primary btn-block btn-round">Buy Now</a>
+                        <a href="https://demos.creative-tim.com/now-ui-dashboard-pro/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
+                            <i class="now-ui-icons files_single-copy-04"></i>
+                            Documentation
+                        </a>
+                        <a href="https://www.creative-tim.com/product/now-ui-dashboard" target="_blank" class="btn btn-info btn-block btn-round">
+                            <i class="now-ui-icons files_single-copy-04"></i>
+                            Get Free Demo!
+                        </a>
+                    </li>
 
 
-                <li class="header-title">Thank you for 95 shares!</li>
-                <li class="button-container text-center">
-                    <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-                    <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-                    <br>
-                    <br>
-                    <a class="github-button" href="https://github.com/creativetimofficial/ct-now-ui-dashboard-pro" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-                </li>
-            </ul>
+                    <li class="header-title">Thank you for 95 shares!</li>
+                    <li class="button-container text-center">
+                        <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
+                        <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
+                        <br>
+                        <br>
+                        <a class="github-button" href="https://github.com/creativetimofficial/ct-now-ui-dashboard-pro" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-
-
-
-
-
-
-
-
+    -->
     <!--   Core JS Files   -->
     <script src="@Url.Content("/assets/js/core/jquery.min.js")"></script>
     <script src="@Url.Content("/assets/js/core/popper.min.js")"></script>
@@ -269,7 +263,9 @@
     <!-- Forms Validations Plugin -->
     <script src="@Url.Content("/assets/js/plugins/jquery.validate.min.js")"></script>
     <script src="@Url.Content("/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
     <script src="@Url.Content("/Scripts/expressive.annotations.validate.min.js")"></script>
+    <script src="@Url.Content("/Scripts/jquery.blockUI.js")"></script>
     <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="@Url.Content("/assets/js/plugins/jquery.bootstrap-wizard.js")"></script>
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -559,6 +555,23 @@
     @RenderSection("scripts", required: false)
 
 
+    <script type="text/javascript">
+
+        $.blockUI.defaults.message = '<h1>Por favor espere...</h1>';
+        $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+        $(document).bind("ajaxError", function (evt, jqXHR, settings, err, arguments) {
+
+            if (jqXHR.status == 200) {
+                location.reload();
+                return;
+            }
+
+            alert('Ha ocurrido un error, por favor intente de nuevo más tarde o comuníquese con el administrador del sistema.');
+
+
+        });
+    </script>
 
 
 

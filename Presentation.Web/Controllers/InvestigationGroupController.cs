@@ -1,6 +1,7 @@
 ﻿
 
 using Business.Logic;
+using CrossCutting.Helper;
 using Domain.Entities;
 using Presentation.Web.Filters;
 using System;
@@ -14,22 +15,24 @@ namespace Presentation.Web.Controllers
 {
     public class InvestigationGroupController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
-        // GET: User
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_investigation_groups })]
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups })]
         public ActionResult Crear()
         {
 
+            List<SelectListItem> oListaVacia = Helper.ConstruirDropDownList<SelectOptionItem>(new List<SelectOptionItem>(), "Value", "Text", "", true, "", "");
 
+            ViewBag.institutions = oListaVacia;
             return View();
         }
 
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups, AuthorizeUserAttribute.Permission.edit_investigation_groups })]
         public JsonResult Verificar(int id_investigation_group, string name)
         {
 
@@ -47,8 +50,8 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public ActionResult Crear([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_investigation_groups })]
+        public ActionResult Crear([Bind(Include = "investigation_group_id,institution_id,name,code")] InvestigationGroupViewModel pInvestigationGroupViewModel)
         {
             // TODO: Add insert logic here
 
@@ -57,16 +60,16 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             pInvestigationGroupViewModel.investigation_group_id = 0;
-            pInvestigationGroupViewModel.user_id_created = 0;
-
+            pInvestigationGroupViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            
             InvestigationGroupBL oBL = new InvestigationGroupBL();
             oBL.Agregar(pInvestigationGroupViewModel);
             return RedirectToAction("Index");
 
         }
 
-       
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_investigation_groups })]
 
         public ActionResult Editar(string id)
         {
@@ -75,13 +78,21 @@ namespace Presentation.Web.Controllers
             int.TryParse(id, out pIntID);
             InvestigationGroupViewModel pInvestigationGroupViewModel = oBL.Obtener(pIntID);
 
+            SelectOptionItem oSelectOptionItem = new SelectOptionItem();
+            oSelectOptionItem.Text = pInvestigationGroupViewModel.institution;
+            oSelectOptionItem.Value = pInvestigationGroupViewModel.institution_id.ToString();
+            var oLista = new List<SelectOptionItem>();
+            oLista.Add(oSelectOptionItem);
+            List<SelectListItem> institutions = Helper.ConstruirDropDownList<SelectOptionItem>(oLista, "Value", "Text", "", true, "", "");
+
+            ViewBag.institutions = institutions;
             return View(pInvestigationGroupViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public ActionResult Editar([Bind(Include = "investigation_group_id,institution_id,name")] InvestigationGroupViewModel pInvestigationGroupViewModel)
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_investigation_groups })]
+        public ActionResult Editar([Bind(Include = "investigation_group_id,institution_id,name,code")] InvestigationGroupViewModel pInvestigationGroupViewModel)
         {
             // TODO: Add insert logic here
 
@@ -90,11 +101,13 @@ namespace Presentation.Web.Controllers
                 return HttpNotFound();
             }
             InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();
+            pInvestigationGroupViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oInvestigationGroupBL.Modificar(pInvestigationGroupViewModel);
             return RedirectToAction("Index");
 
         }
         [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.delete_investigation_groups })]
         public JsonResult Eliminar(int id)
         {
 
@@ -111,7 +124,7 @@ namespace Presentation.Web.Controllers
 
         }
 
-
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_investigation_groups })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             InvestigationGroupBL oInvestigationGroupBL = new InvestigationGroupBL();

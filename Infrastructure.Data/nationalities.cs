@@ -18,6 +18,7 @@ namespace Infrastructure.Data
         public nationalities()
         {
             this.users = new HashSet<users>();
+            this.users1 = new HashSet<users>();
         }
     
         public int nationality_id { get; set; }
@@ -29,5 +30,7 @@ namespace Infrastructure.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<users> users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<users> users1 { get; set; }
     }
 }
