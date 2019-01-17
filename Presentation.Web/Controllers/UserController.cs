@@ -61,6 +61,7 @@ namespace Presentation.Web.Controllers
             pUserViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             
             pUserViewModel.user_pass = Helper.Encripta("1234Abcd");
+
             UserBL oBL = new UserBL();
 
             oBL.Agregar(pUserViewModel);
