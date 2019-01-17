@@ -1042,7 +1042,7 @@ demo = {
             'previousSelector': '.btn-previous',
 
             onNext: function (tab, navigation, index) {
-                debugger;
+                //debugger;
                 console.log(tab, index);
                
             	/*var $valid = $('.card-wizard form').valid();

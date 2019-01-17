@@ -420,7 +420,7 @@
 @section Scripts {
     <script>
         function Showmessage(data) {
-            debugger;
+            //debugger;
             console.log(data);
             if (data.status == 1) {
                 swal({
@@ -474,7 +474,7 @@
                     return valid;
             }
             if (index >= 2) {
-                debugger;
+                //debugger;
                 var valid = $('#institution_id').valid() & $('#investigation_group_id').valid()
                     & $('#commissions').valid() ;
                 if (!valid)
@@ -482,7 +482,7 @@
             }
 
             if (index >= 3) {
-                debugger;
+                //debugger;
                 var valid = $('#user_email').valid() & $('#user_pass').valid() & $('#user_pass2').valid();
                 if (!valid)
                 return valid;
@@ -647,7 +647,7 @@
             });
         });
         $("#address_country_id").on('select2:select', function (e) {
-            debugger;
+            //debugger;
             if ($("#address_country_id").val() == "45") {
                 $(".address_department").show();
             }
@@ -746,7 +746,7 @@
         $('.email-error').html('');
         $("#btnRegistrarse").click(function () {
             //prevent form from submitting
-            debugger;
+            //debugger;
            
            
             $('.aceptar-error').html('');

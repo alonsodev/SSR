@@ -163,7 +163,7 @@
         
         var rechazo = false;
         ea.addMethod('ValidarRazonRechazo', function () {
-            debugger;
+            //debugger;
             if (rechazo === false)
                 return true;
             if (rechazo && $('#reason_reject_id').val() != null && $('#reason_reject_id').val() != "")
@@ -175,7 +175,7 @@
 
         });
         ea.addMethod('ValidarRazonRechazoDescripcion', function () {
-            debugger;
+            //debugger;
             if (rechazo === false)
                 return true;
             if (rechazo && $('#reason_reject_description').val() != null && $('#reason_reject_description').val() != "")
@@ -254,7 +254,7 @@
         });
 
         $("#btnEnviarRechazo").click(function () {
-            debugger;
+            //debugger;
             if (!$("#form-registro").valid()) {
                 return false;
             }
