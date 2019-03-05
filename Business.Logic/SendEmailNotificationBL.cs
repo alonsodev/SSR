@@ -12,6 +12,28 @@ namespace Business.Logic
 {
     public class SendEmailNotificationBL
     {
+        public void EnviarNotificacionConcepto(NotificationConceptViewModel oNotification , string key) //"notificacion.recuperar.cuenta"
+        {
+            NotificacionConfig oNotificacionConfig = new NotificacionConfig(key);
+
+            string mensaje = ObtenerMensajeConcepto(oNotification, oNotificacionConfig.xslPath);
+
+            EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null);
+        }
+        private static string ObtenerMensajeConcepto(NotificationConceptViewModel oNotification, string xslPath)
+        {
+            StringBuilder msgBody = new StringBuilder();
+            if (File.Exists(xslPath))
+            {
+                MailGenerator mailGenerator = new MailGenerator(xslPath);
+                //string serialize = ConvertObjectToXMLString(oAsignacionLancha);
+
+                string message = mailGenerator.Generate(oNotification, typeof(NotificationConceptViewModel));
+                msgBody.Append(message);
+                return msgBody.ToString();
+            }
+            return string.Empty;
+        }
         public void EnviarNotificacionRecuperarCuenta(NotificationGeneralAccountViewModel oNotification)
         {
             NotificacionConfig oNotificacionConfig = new NotificacionConfig("notificacion.recuperar.cuenta");

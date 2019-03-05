@@ -414,6 +414,15 @@ namespace Business.Logic
 
         }
 
+        public List<UserViewModel> ObtenerPorConcepto(int concept_id)
+        {
+            return oRepositorio.ObtenerPorConcepto(concept_id);
+        }
+
+        public List<UserViewModel> ObtenerPorPerfil(int perfil)
+        {
+            return oRepositorio.ObtenerPorPerfil(perfil);
+        }
 
         public InvestigatorViewModel ObtenerInvestigator(int pIntID)
         {

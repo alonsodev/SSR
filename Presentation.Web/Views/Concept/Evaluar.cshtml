@@ -53,6 +53,35 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Classic Modal -->
+                <div class="modal fade" id="aprobar_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-center">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                </button>
+                                <h4 class="title title-up">Aprobar Concepto</h4>
+                            </div>
+                            <div id="modal-body-summary" class="modal-body">
+                                
+                                <div class="form-group has-label">
+
+                                    @Html.LabelFor(model => model.speakers, htmlAttributes: new { @class = "" })
+                                    @Html.ListBoxFor(model => model.speakers, Model.speakersMultiSelectList, new { size = 8, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.speakers, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button id="btnEnviar" type="button" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
 
 
@@ -61,81 +90,14 @@
                     @Html.HiddenFor(model => model.concept_id)
                     @Html.HiddenFor(model => model.draft_law_id)
                     @Html.HiddenFor(model => model.investigator_id)
+                    @Html.HiddenFor(model => model.concept_status_id)
                     @Html.HiddenFor(model => model.reject)
                     @Html.HiddenFor(model => model.bad_languages)
-            <div class="row">
-                <div  class="col-sm-12">
-
-                    <embed onload="javascript: alert(1);" src="/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#toolbar=1&navpanes=1&scrollbar=1&view=fitH" type="application/pdf" width="100%" height="600px" />
-                </div>
-            </div>
                     <div class="row">
-                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
+                        <div class="col-sm-12">
 
-                        <div class="col-sm-4">
-
-                            <div class="form-group">
-                                @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                                @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
-
-                            </div>
-
+                            <embed onload="javascript: alert(1);" src="/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#toolbar=1&navpanes=1&scrollbar=1&zoom=100" type="application/pdf" width="100%" height="600px" />
                         </div>
-
-                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
-
-                        <div class="col-sm-4">
-
-                            <div class="form-group">
-                                @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
-                                @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="form-group has-label">
-
-                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                        @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
-                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                        <span class="text-danger field-validation-error name-error"></span>
-                    </div>
-                    <div class="form-group has-label">
-
-                        @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
-                        @Html.TextAreaFor(model => model.summary, new { @class = "form-control", @disabled = "disabled" })
-                        @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-                        <span class="text-danger field-validation-error name-error"></span>
-                    </div>
-                    <div class="form-group has-label">
-
-
-                        @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
-
-                        @Html.ListBoxFor(model => model.tags, Model.tagsMultiSelectList, new { size = 8, @class = "form-control", @disabled = "disabled" })
-
-                        @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
-
-                    </div>
-
-
-                    <div class="form-group has-label">
-
-                        @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
-
-                        @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor", @disabled = "disabled" })
-                        @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
-                        <span class="text-danger field-validation-error name-error"></span>
-                    </div>
-
-
-
-                    <div class="form-group has-label">
-
-                        @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
-                        @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control", @disabled = "disabled" })
-                        @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
-
                     </div>
 
 
@@ -154,12 +116,7 @@
 
 @section Scripts {
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
-    <script type="text/javascript" src="/Scripts/summernote-es-ES.js"></script>
-    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
     <script type="text/javascript">
         
         var rechazo = false;
@@ -185,27 +142,34 @@
             return false;
 
         });
+        function RedirectConceptEmitidos() {
+            window.location.href = "/Concept/Emitidos";
+        }
         $(document).ready(function () {
-            // Initialize Editor
-            $('.textarea-editor').summernote({
-                toolbar: [],
-                lang: 'es-ES',
-                height: 400, // set editor height
-                minHeight: null, // set minimum height of editor
-                maxHeight: null, // set maximum height of editor
-                focus: false // set focus to editable area after initializing summernote
-            });
-            $('.textarea-editor').summernote('disable');
-            //setTimeout(function () { $('div .note-editable').focus(); }, 5000);
-            $("#tags").select2({
-                tags: true,
+
+            var concept_status_id = $('#concept_status_id').val();
+            if (concept_status_id != 1) {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Concepto Evaluado!',
+                    text: 'El concepto ya ha sido evaluado anteriormente.',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectConceptEmitidos
+                }).then(function () {
+                    RedirectConceptEmitidos();
+                }).catch(swal.noop);
+            }
+            $("#speakers").select2({
+                //tags: true,
                 tokenSeparators: [',']
             });
-            $("#commission_id").select2();
+            
             $("#reason_reject_id").select2();
             $(window).resize(function () {
                 $('#reason_reject_id').css('width', "100%");
-                $('#commission_id').css('width', "100%");
+                
             });
 
         });
@@ -214,37 +178,61 @@
             window.location.href = "/Concept/Emitidos";
         });
 
-        $("#btnAprobar").click(function () {
-          
+        $("#btnEnviar").click(function () {
+            debugger;
+            var speakers = $("#speakers").val();
 
+            if (speakers.length && speakers.length > 0) {
                 $.ajax(
                     {
                         url: "@Url.Action("Aprobar", "Concept")",
                         type: "POST",
-                         data: { concept_id: $("#concept_id").val() }
+                        data: { concept_id: $("#concept_id").val(), speakers: speakers.join(",") }
                     })
-                .done(function (data) {
+                    .done(function (data) {
 
-                    swal({
-                        title: 'Aprobado!',
-                        text: 'El concepto ha sido aprobado para su próxima calificación.',
-                        type: 'success',
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    }).then(function () {
-                        window.location.href = "/Concept/Emitidos";
+                        swal({
+                            title: 'Aprobado!',
+                            text: 'El concepto ha sido aprobado para su próxima calificación.',
+                            type: 'success',
+                            confirmButtonClass: "btn btn-success",
+                            buttonsStyling: false
+                        }).then(function () {
+                            window.location.href = "/Concept/Emitidos";
 
 
                         }).catch(swal.noop);;
 
 
-                })
-                .fail(function (data) {
-                    console.log("error");
-                })
-                .always(function (data) {
-                    console.log("complete");
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+            }
+            else {
+                swal({
+                    title: 'Error!',
+                    html: '<div style="text-align:left;">Destinatarios es obligatorio, debe ingresar al menos un destinario.</div>',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
                 });
+
+                return false;
+            }
+            
+            return false;
+        });
+        
+        $("#btnAprobar").click(function () {
+            $("#aprobar_modal").modal('show');
+            
+               
             
         });
 

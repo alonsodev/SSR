@@ -59,6 +59,7 @@
     <Compile Include="MeritRangeBL.cs" />
     <Compile Include="ConfigurationBL.cs" />
     <Compile Include="NotificationBL.cs" />
+    <Compile Include="ConsultationBL.cs" />
     <Compile Include="SendEmailNotificationBL.cs" />
     <Compile Include="SnieBL.cs" />
     <Compile Include="EducationLevelBL.cs" />

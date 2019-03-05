@@ -38,6 +38,18 @@
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
         </EntityType>
+        <EntityType Name="concept_debate_speakers">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="concept_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="concept_id" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
         <EntityType Name="concepts">
           <Key>
             <PropertyRef Name="concept_id" />
@@ -57,12 +69,14 @@
           <Property Name="reason_reject_description" Type="varchar" MaxLength="500" />
           <Property Name="qualification" Type="float" />
           <Property Name="pdf_path" Type="varchar" MaxLength="200" />
+          <Property Name="certification_path" Type="varchar" MaxLength="200" />
+          <Property Name="hash" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="concepts_status">
           <Key>
             <PropertyRef Name="concept_status_id" />
           </Key>
-          <Property Name="concept_status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="concept_status_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="concepts_status_logs">
@@ -98,6 +112,31 @@
           <Property Name="terms_conditions" Type="text" />
           <Property Name="exclude_speakers" Type="text" />
           <Property Name="remove_titles_speaker" Type="text" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="consultations">
+          <Key>
+            <PropertyRef Name="consultation_id" />
+          </Key>
+          <Property Name="consultation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="message" Type="text" Nullable="false" />
+          <Property Name="attended" Type="bit" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_modified" Type="datetime" />
+          <Property Name="user_id_created" Type="int" />
+          <Property Name="user_id_modified" Type="int" />
+        </EntityType>
+        <EntityType Name="consultations_interest_areas">
+          <Key>
+            <PropertyRef Name="consultation_id" />
+            <PropertyRef Name="interest_area_id" />
+          </Key>
+          <Property Name="consultation_id" Type="int" Nullable="false" />
+          <Property Name="interest_area_id" Type="int" Nullable="false" />
           <Property Name="date_created" Type="datetime" />
           <Property Name="date_modified" Type="datetime" />
           <Property Name="user_id_created" Type="int" />
@@ -452,6 +491,18 @@
           <Property Name="user_code_recover" Type="varchar" MaxLength="50" />
           <Property Name="avatar" Type="varchar" MaxLength="500" />
         </EntityType>
+        <Association Name="FK_concept_debate_speakers_concepts">
+          <End Role="concepts" Type="Self.concepts" Multiplicity="1" />
+          <End Role="concept_debate_speakers" Type="Self.concept_debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts">
+              <PropertyRef Name="concept_id" />
+            </Principal>
+            <Dependent Role="concept_debate_speakers">
+              <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_concepts_concepts_status">
           <End Role="concepts_status" Type="Self.concepts_status" Multiplicity="1" />
           <End Role="concepts" Type="Self.concepts" Multiplicity="*" />
@@ -560,26 +611,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_debate_speakers_draft_laws">
-          <End Role="draft_laws" Type="Self.draft_laws" Multiplicity="1" />
-          <End Role="debate_speakers" Type="Self.debate_speakers" Multiplicity="*" />
+        <Association Name="FK_consultations_interest_areas_consultations">
+          <End Role="consultations" Type="Self.consultations" Multiplicity="1" />
+          <End Role="consultations_interest_areas" Type="Self.consultations_interest_areas" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="draft_laws">
-              <PropertyRef Name="draft_law_id" />
+            <Principal Role="consultations">
+              <PropertyRef Name="consultation_id" />
             </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="draft_law_id" />
+            <Dependent Role="consultations_interest_areas">
+              <PropertyRef Name="consultation_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_debate_speakers_users">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="debate_speakers" Type="Self.debate_speakers" Multiplicity="*" />
+        <Association Name="FK_consultations_interest_areas_interest_areas">
+          <End Role="interest_areas" Type="Self.interest_areas" Multiplicity="1" />
+          <End Role="consultations_interest_areas" Type="Self.consultations_interest_areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Principal>
+            <Dependent Role="consultations_interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_consultations_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="consultations" Type="Self.consultations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="debate_speakers">
+            <Dependent Role="consultations">
+              <PropertyRef Name="user_id_created" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_debate_speakers_selected_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="concept_debate_speakers" Type="Self.concept_debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="concept_debate_speakers">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -936,11 +1011,14 @@
           <EntitySet Name="academic_levels" EntityType="Self.academic_levels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bad_languages" EntityType="Self.bad_languages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="commissions" EntityType="Self.commissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="concept_debate_speakers" EntityType="Self.concept_debate_speakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="concepts" EntityType="Self.concepts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="concepts_status" EntityType="Self.concepts_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="concepts_status_logs" EntityType="Self.concepts_status_logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="concepts_tags" EntityType="Self.concepts_tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="configurations" EntityType="Self.configurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="consultations" EntityType="Self.consultations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="consultations_interest_areas" EntityType="Self.consultations_interest_areas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="debate_speakers" EntityType="Self.debate_speakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="document_types" EntityType="Self.document_types" Schema="dbo" store:Type="Tables" />
@@ -968,6 +1046,10 @@
           <EntitySet Name="tags" EntityType="Self.tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_status" EntityType="Self.user_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_concept_debate_speakers_concepts" Association="Self.FK_concept_debate_speakers_concepts">
+            <End Role="concepts" EntitySet="concepts" />
+            <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
+          </AssociationSet>
           <AssociationSet Name="FK_concepts_concepts_status" Association="Self.FK_concepts_concepts_status">
             <End Role="concepts_status" EntitySet="concepts_status" />
             <End Role="concepts" EntitySet="concepts" />
@@ -1004,13 +1086,21 @@
             <End Role="tags" EntitySet="tags" />
             <End Role="concepts_tags" EntitySet="concepts_tags" />
           </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="Self.FK_debate_speakers_draft_laws">
-            <End Role="draft_laws" EntitySet="draft_laws" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          <AssociationSet Name="FK_consultations_interest_areas_consultations" Association="Self.FK_consultations_interest_areas_consultations">
+            <End Role="consultations" EntitySet="consultations" />
+            <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
           </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_users" Association="Self.FK_debate_speakers_users">
+          <AssociationSet Name="FK_consultations_interest_areas_interest_areas" Association="Self.FK_consultations_interest_areas_interest_areas">
+            <End Role="interest_areas" EntitySet="interest_areas" />
+            <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_consultations_users" Association="Self.FK_consultations_users">
             <End Role="users" EntitySet="users" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
+            <End Role="consultations" EntitySet="consultations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_debate_speakers_selected_users" Association="Self.FK_debate_speakers_selected_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
           </AssociationSet>
           <AssociationSet Name="FK_draft_laws_commissions" Association="Self.FK_draft_laws_commissions">
             <End Role="commissions" EntitySet="commissions" />
@@ -1304,7 +1394,16 @@
             <End Role="users" EntitySet="users" />
             <End Role="notifications" EntitySet="notifications" />
           </AssociationSet>
+          <EntitySet Name="concept_debate_speakers" EntityType="SSRModel.concept_debate_speakers" />
+          <AssociationSet Name="FK_debate_speakers_selected_users" Association="SSRModel.FK_debate_speakers_selected_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
+          </AssociationSet>
           <EntitySet Name="concepts" EntityType="SSRModel.concepts" />
+          <AssociationSet Name="FK_concept_debate_speakers_concepts" Association="SSRModel.FK_concept_debate_speakers_concepts">
+            <End Role="concepts" EntitySet="concepts" />
+            <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
+          </AssociationSet>
           <AssociationSet Name="FK_concepts_concepts_status" Association="SSRModel.FK_concepts_concepts_status">
             <End Role="concepts_status" EntitySet="concepts_status" />
             <End Role="concepts" EntitySet="concepts" />
@@ -1328,6 +1427,20 @@
           <AssociationSet Name="FK_concepts_tags_concepts" Association="SSRModel.FK_concepts_tags_concepts">
             <End Role="concepts" EntitySet="concepts" />
             <End Role="concepts_tags" EntitySet="concepts_tags" />
+          </AssociationSet>
+          <EntitySet Name="consultations_interest_areas" EntityType="SSRModel.consultations_interest_areas" />
+          <AssociationSet Name="FK_consultations_interest_areas_interest_areas" Association="SSRModel.FK_consultations_interest_areas_interest_areas">
+            <End Role="interest_areas" EntitySet="interest_areas" />
+            <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
+          </AssociationSet>
+          <EntitySet Name="consultations" EntityType="SSRModel.consultations" />
+          <AssociationSet Name="FK_consultations_interest_areas_consultations" Association="SSRModel.FK_consultations_interest_areas_consultations">
+            <End Role="consultations" EntitySet="consultations" />
+            <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_consultations_users" Association="SSRModel.FK_consultations_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="consultations" EntitySet="consultations" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="academic_levels">
@@ -1511,6 +1624,7 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="interest_areas" ToRole="draft_laws" />
           <NavigationProperty Name="investigators_interest_areas" Relationship="SSRModel.FK_investigators_interest_areas_interest_areas" FromRole="interest_areas" ToRole="investigators_interest_areas" />
+          <NavigationProperty Name="consultations_interest_areas" Relationship="SSRModel.FK_consultations_interest_areas_interest_areas" FromRole="interest_areas" ToRole="consultations_interest_areas" />
         </EntityType>
         <EntityType Name="investigation_groups">
           <Key>
@@ -2100,6 +2214,8 @@
           <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
           <NavigationProperty Name="notifications" Relationship="SSRModel.FK_notifications_users" FromRole="users" ToRole="notifications" />
+          <NavigationProperty Name="concept_debate_speakers" Relationship="SSRModel.FK_debate_speakers_selected_users" FromRole="users" ToRole="concept_debate_speakers" />
+          <NavigationProperty Name="consultations" Relationship="SSRModel.FK_consultations_users" FromRole="users" ToRole="consultations" />
         </EntityType>
         <Association Name="FK_debate_speakers_users">
           <End Type="SSRModel.users" Role="users" Multiplicity="1" />
@@ -2239,6 +2355,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="concept_debate_speakers">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="concept_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="concept_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_debate_speakers_selected_users" FromRole="concept_debate_speakers" ToRole="users" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concept_debate_speakers_concepts" FromRole="concept_debate_speakers" ToRole="concepts" />
+        </EntityType>
+        <Association Name="FK_debate_speakers_selected_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.concept_debate_speakers" Role="concept_debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="concept_debate_speakers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="concepts">
           <Key>
             <PropertyRef Name="concept_id" />
@@ -2258,6 +2400,9 @@
           <Property Name="reason_reject_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="qualification" Type="Double" />
           <Property Name="pdf_path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="certification_path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="hash" Type="Guid" />
+          <NavigationProperty Name="concept_debate_speakers" Relationship="SSRModel.FK_concept_debate_speakers_concepts" FromRole="concepts" ToRole="concept_debate_speakers" />
           <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
@@ -2265,6 +2410,18 @@
           <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
           <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
         </EntityType>
+        <Association Name="FK_concept_debate_speakers_concepts">
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="1" />
+          <End Type="SSRModel.concept_debate_speakers" Role="concept_debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepts">
+              <PropertyRef Name="concept_id" />
+            </Principal>
+            <Dependent Role="concept_debate_speakers">
+              <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_concepts_concepts_status">
           <End Type="SSRModel.concepts_status" Role="concepts_status" Multiplicity="1" />
           <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
@@ -2334,6 +2491,71 @@
             </Principal>
             <Dependent Role="concepts_tags">
               <PropertyRef Name="concept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="consultations_interest_areas">
+          <Key>
+            <PropertyRef Name="consultation_id" />
+            <PropertyRef Name="interest_area_id" />
+          </Key>
+          <Property Name="consultation_id" Type="Int32" Nullable="false" />
+          <Property Name="interest_area_id" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_consultations_interest_areas_interest_areas" FromRole="consultations_interest_areas" ToRole="interest_areas" />
+          <NavigationProperty Name="consultations" Relationship="SSRModel.FK_consultations_interest_areas_consultations" FromRole="consultations_interest_areas" ToRole="consultations" />
+        </EntityType>
+        <Association Name="FK_consultations_interest_areas_interest_areas">
+          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="1" />
+          <End Type="SSRModel.consultations_interest_areas" Role="consultations_interest_areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Principal>
+            <Dependent Role="consultations_interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="consultations">
+          <Key>
+            <PropertyRef Name="consultation_id" />
+          </Key>
+          <Property Name="consultation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="attended" Type="Boolean" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <NavigationProperty Name="consultations_interest_areas" Relationship="SSRModel.FK_consultations_interest_areas_consultations" FromRole="consultations" ToRole="consultations_interest_areas" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_consultations_users" FromRole="consultations" ToRole="users" />
+        </EntityType>
+        <Association Name="FK_consultations_interest_areas_consultations">
+          <End Type="SSRModel.consultations" Role="consultations" Multiplicity="1" />
+          <End Type="SSRModel.consultations_interest_areas" Role="consultations_interest_areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consultations">
+              <PropertyRef Name="consultation_id" />
+            </Principal>
+            <Dependent Role="consultations_interest_areas">
+              <PropertyRef Name="consultation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_consultations_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.consultations" Role="consultations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="consultations">
+              <PropertyRef Name="user_id_created" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2799,9 +3021,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="concept_debate_speakers">
+            <EntityTypeMapping TypeName="SSRModel.concept_debate_speakers">
+              <MappingFragment StoreEntitySet="concept_debate_speakers">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="concepts">
             <EntityTypeMapping TypeName="SSRModel.concepts">
               <MappingFragment StoreEntitySet="concepts">
+                <ScalarProperty Name="hash" ColumnName="hash" />
+                <ScalarProperty Name="certification_path" ColumnName="certification_path" />
                 <ScalarProperty Name="pdf_path" ColumnName="pdf_path" />
                 <ScalarProperty Name="qualification" ColumnName="qualification" />
                 <ScalarProperty Name="reason_reject_description" ColumnName="reason_reject_description" />
@@ -2817,6 +3053,32 @@
                 <ScalarProperty Name="summary" ColumnName="summary" />
                 <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
                 <ScalarProperty Name="concept_id" ColumnName="concept_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="consultations_interest_areas">
+            <EntityTypeMapping TypeName="SSRModel.consultations_interest_areas">
+              <MappingFragment StoreEntitySet="consultations_interest_areas">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
+                <ScalarProperty Name="consultation_id" ColumnName="consultation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="consultations">
+            <EntityTypeMapping TypeName="SSRModel.consultations">
+              <MappingFragment StoreEntitySet="consultations">
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="attended" ColumnName="attended" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="consultation_id" ColumnName="consultation_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

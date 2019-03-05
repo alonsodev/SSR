@@ -1,0 +1,198 @@
+﻿@model Domain.Entities.ConsultationViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "consultation");
+    ViewBag.HeaderTitle = "Consultas";
+    ViewBag.Title = "Ver Consulta";
+
+    ViewBag.active = "consultations";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+
+            <div class="card-body">
+
+                @Html.HiddenFor(model => model.consultation_id)
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
+
+
+                    @Html.ListBoxFor(model => model.interest_areas, Model.interest_areasMultiSelectList, new { size = 8, @class = "form-control", @disabled = "disabled" })
+
+
+                    @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error interest_areas-error"></span>
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.message, new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+
+                </div>
+
+
+
+
+
+            </div><!-- end content-->
+
+            <div class="card-body">
+                <div class="toolbar">
+                    <b>Datos de investigadores  realacionados  a las áreas de interés</b><br />
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Investigador</th>
+                            <th>Correo Electrónico</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Investigador</th>
+                            <th>Correo Electrónico</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+            <div class="card-footer text-right">
+
+                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                <!-- <button type="submit" class="btn btn-primary">Crear</button>-->
+            </div>
+
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function ValidarInterestAreas() {
+            $('.interest_areas-error').html('');
+            var tags = $('#interest_areas').val();
+            if (tags && tags.length > 0)
+                return true;
+            $('.interest_areas-error').html('Las Áreas de interés son obligatorios.');
+            return false;
+        }
+
+
+
+
+
+         var datatable;
+        $(function () {
+            UiFormulario.init();
+            $("#interest_areas").select2({
+
+                tokenSeparators: [',']
+            });
+
+            $("#btnCancelar").click(function () {
+                window.location.href = "/Consultation/Enviadas";
+            });
+        })
+         var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+                        responsive: true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ajax": {
+                             url: "@Url.Action("ObtenerInvestigadores", "consultation")",
+                            type: 'POST',
+                            data: function (d) {
+                                var consultation_id = $('#consultation_id').val();
+                                d.consultation_id = consultation_id;
+                                // d.custom = $('#myInput').val();
+                                // etc
+                            }
+                        },
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [
+
+                            {
+                                extend: 'csvHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            }
+                        ],
+
+
+
+                        "columns": [
+
+                            { "data": "contact_name" },
+                            { "data": "user_email" }
+                        ],
+                        columnDefs: [
+                            { 'className': 'text-center', 'targets': [1] },
+                        ],
+
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+                  
+
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+       
+
+
+
+    </script>
+}

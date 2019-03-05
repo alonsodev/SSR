@@ -104,6 +104,18 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+        public List<SelectOptionItem> DebateSpeakersSelector()
+        {
+            var lista = this.Context.Set<users>();
+            var consulta = lista.Where(a=> a.user_role_id==9).Select(a => new SelectOptionItem
+            {
+                Value = a.id.ToString(),
+                Text = a.contact_name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> AcademicLevelsSelector()
         {
 
@@ -494,6 +506,42 @@ namespace Infrastructure.Data.Repositories
             });
 
             return query.Take(1).FirstOrDefault();
+        }
+
+        public List<UserViewModel> ObtenerPorConcepto(int concept_id)
+        {
+            IQueryable<users> queryFilters = Set;
+            var query = queryFilters.Where(a => a.concept_debate_speakers.Where( b=> b.concept_id==concept_id).Count()>0).Select(a => new UserViewModel
+            {
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role = a.roles.role,
+                document_type = a.document_types.name,
+                doc_nro = a.doc_nro,
+                user_status = a.user_status.name,
+
+            });
+            return query.ToList();
+        }
+
+        public List<UserViewModel> ObtenerPorPerfil(int user_role_id)
+        {
+            IQueryable<users> queryFilters = Set;
+            var query = queryFilters.Where(a=> a.user_role_id== user_role_id).Select(a => new UserViewModel
+            {
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role = a.roles.role,
+                document_type = a.document_types.name,
+                doc_nro = a.doc_nro,
+                user_status = a.user_status.name,
+
+            });
+            return query.ToList();
         }
 
         public GridModel<UserViewModel> ObtenerLista(UserFiltersViewModel filters)

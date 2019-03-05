@@ -5,7 +5,7 @@
 @{
     ViewBag.HeaderTitleLink = Url.Action("index", "concept");
     ViewBag.HeaderTitle = "Concepto Técnico";
-    ViewBag.Title = "Ver Concepto técnico";
+    ViewBag.Title = "Editar Concepto técnico";
 
     ViewBag.active = "concepts";
 
@@ -27,6 +27,7 @@
                 @Html.HiddenFor(model => model.draft_law_id)
                 @Html.HiddenFor(model => model.investigator_id)
                 @Html.HiddenFor(model => model.bad_languages)
+                @Html.HiddenFor(model => model.concept_status_id)
                 <div class="row">
                     <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
@@ -69,7 +70,7 @@
 
 
                     @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
-                    
+
                     @Html.ListBoxFor(model => model.tags, Model.tagsMultiSelectList, new { size = 8, @class = "form-control" })
 
                     @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
@@ -98,18 +99,51 @@
 
 
             </div><!-- end content-->
-            <div class="card-footer text-right">
+                <div class="card-footer text-right">
 
 
-                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-            </div>
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
             }
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
 </div> <!-- end row -->
+<!-- Classic Modal -->
+<div class="modal fade" id="reject_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up"> Concepto Rechazado</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <div class="form-group has-label">
 
+                    <b>@Html.LabelFor(model => model.reason_reject_id, htmlAttributes: new { @class = "" })</b>
+
+                    <div id="reason_reject"></div>
+                    @Html.ValidationMessageFor(model => model.reason_reject_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
+                    <b>@Html.LabelFor(model => model.reason_reject_description, htmlAttributes: new { @class = "" })</b>
+                    <div id="reason_reject_description" style="width: 100%; height: auto; overflow-y: hidden;overflow-x:hidden">
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.reason_reject_description, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 @section Scripts {
@@ -121,6 +155,30 @@
     <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <script type="text/javascript">
+         function MostrarRechazo(concept_id) {
+
+             $.ajax(
+                    {
+                        url: "@Url.Action("ObtenerRechazo", "Concept")",
+                        type: "POST",
+                        data: { concept_id: concept_id }
+                    })
+                    .done(function (data) {
+                        //alert(1);
+                        console.log(data);
+                        $('#reason_reject').html(data.reject.reason_reject);
+                        $('#reason_reject_description').html(data.reject.reason_reject_description);
+                        $("#reject_modal").modal('show');
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+        }
 
         function ObtenerNumeroPalabras(text) {
             text = text.replace(/\r?\n/g, " ");
@@ -180,6 +238,10 @@
                 message = "<ul>" + message + "</ul>";
             return message;
         }
+
+        function RedirectMisConceptos() {
+            window.location.href = "/Concept";
+        }
         $(document).ready(function () {
             // Initialize Editor
             $('.textarea-editor').summernote({
@@ -198,6 +260,27 @@
                 tags: true,
                 tokenSeparators: [',']
             });
+            debugger;
+            var concept_status_id = $('#concept_status_id').val();
+            if (concept_status_id == 3) {
+                var concept_id = $('#concept_id').val();
+                MostrarRechazo(concept_id)
+                return;
+            }
+            if (concept_status_id != 1) {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Concepto No Editable !',
+                    text: 'El concepto solo puede ser editado cuando esta en estado rechazado.',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectMisConceptos
+                }).then(function () {
+                    RedirectMisConceptos();
+                }).catch(swal.noop);
+            }
+            $("#reason_reject_id").select2();
         });
 
         $("#btnCancelar").click(function () {

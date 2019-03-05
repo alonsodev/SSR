@@ -55,6 +55,12 @@ namespace Business.Logic
         {
             return oRepositorio.TagsSelector();
         }
+        public List<SelectOptionItem> DebateSpeakersSelector()
+        {
+            return oRepositorio.DebateSpeakersSelector();
+        }
+
+        
         public List<SelectOptionItem> DepartmentsSelector()
         {
             return oRepositorio.DepartmentsSelector();

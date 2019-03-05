@@ -20,6 +20,8 @@ namespace Infrastructure.Data
             this.debate_speakers = new HashSet<debate_speakers>();
             this.investigators = new HashSet<investigators>();
             this.notifications = new HashSet<notifications>();
+            this.concept_debate_speakers = new HashSet<concept_debate_speakers>();
+            this.consultations = new HashSet<consultations>();
         }
     
         public int id { get; set; }
@@ -58,5 +60,9 @@ namespace Infrastructure.Data
         public virtual user_status user_status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<notifications> notifications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concept_debate_speakers> concept_debate_speakers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<consultations> consultations { get; set; }
     }
 }

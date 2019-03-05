@@ -40,7 +40,7 @@ namespace Domain.Entities
         public string document_type { get; set; }
         [Display(Name = "Número de Documento")]
         [Required(ErrorMessage = "Número de Documento es obligatorio.")]
-
+        [RegularExpression(@"^[0-9]{8,20}", ErrorMessage = "Número de Documento solo permite números mayores a 8 dígitos")]
         public string doc_nro { get; set; }
 
         [Display(Name = "Primer Nombre")]
@@ -67,9 +67,11 @@ namespace Domain.Entities
 
         [Display(Name = "Telefóno de contacto")]
         [Required(ErrorMessage = "Telefóno de contacto es obligatorio.")]
+        [RegularExpression(@"^[0-9]{7,20}", ErrorMessage = "Telefóno de contacto solo permite números mayores a 7 dígitos")]
         public string phone { get; set; }
         [Display(Name = "Telefóno Celular")]
         [Required(ErrorMessage = "Telefóno Celular es obligatorio.")]
+        [RegularExpression(@"^[0-9]{10,20}", ErrorMessage = "Telefóno Celular solo permite números mayores a 10 dígitos")]
         public string mobile_phone { get; set; }
 
 
@@ -167,7 +169,10 @@ namespace Domain.Entities
         public Nullable<int> education_level_id { get; set; }
 
 
-        [Display(Name = "CVLAC")]
+        [Display(Name = "URL CVLAC")]
+        [Required(ErrorMessage = "URL CVLAC es obligatorio.")]
+        
+        [Url(ErrorMessage = "URL CVLAC no cumple con el formato URL.")]
         public string CVLAC { get; set; }
         public string user_code_activate { get; set; }
         public string user_code_recover { get; set; }

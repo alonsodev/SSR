@@ -19,6 +19,7 @@ namespace Business.Logic
         private static TagRepository oRepositorioTag;
         private static ConceptTagRepository oRepositorioConceptTag;
         private static ConceptStatusLogRepository oRepositorioConceptStatusLog;
+        private static ConceptDebateSpeakerRepository oRepositorioConceptDebateSpeaker;
 
         private static UnitOfWork oUnitOfWork;
 
@@ -29,8 +30,15 @@ namespace Business.Logic
             oRepositorioTag = oUnitOfWork.TagRepository;
             oRepositorioConceptTag = oUnitOfWork.ConceptTagRepository;
             oRepositorioConceptStatusLog = oUnitOfWork.ConceptStatusLogRepository;
+
+            oRepositorioConceptDebateSpeaker = oUnitOfWork.ConceptDebateSpeakerRepository;
         }
-        public static string ObtenerHtmlConcept(ConceptHtmlViewModel oConcept, string xslPath)
+
+        public bool ExisteConcepto(int draft_law_id, int investigator_id)
+        {
+            return oRepositorio.ExisteConcepto(draft_law_id, investigator_id);
+        }
+            public static string ObtenerHtmlConcept(ConceptHtmlViewModel oConcept, string xslPath)
         {
             StringBuilder msgBody = new StringBuilder();
             if (File.Exists(xslPath))
@@ -39,6 +47,20 @@ namespace Business.Logic
                 //string serialize = ConvertObjectToXMLString(oAsignacionLancha);
 
                 string message = mailGenerator.Generate(oConcept, typeof(ConceptHtmlViewModel));
+                msgBody.Append(message);
+                return msgBody.ToString();
+            }
+            return string.Empty;
+        }
+        public static string ObtenerHtmlCertification(CertificationHtmlViewModel oCertification, string xslPath)
+        {
+            StringBuilder msgBody = new StringBuilder();
+            if (File.Exists(xslPath))
+            {
+                MailGenerator mailGenerator = new MailGenerator(xslPath);
+                //string serialize = ConvertObjectToXMLString(oAsignacionLancha);
+
+                string message = mailGenerator.Generate(oCertification, typeof(CertificationHtmlViewModel));
                 msgBody.Append(message);
                 return msgBody.ToString();
             }
@@ -63,11 +85,27 @@ namespace Business.Logic
                 oconcepts_status_logs.description = oConceptStatusLogViewModel.description;
                 oRepositorioConceptStatusLog.Add(oconcepts_status_logs);
 
+
+                if (oConceptStatusLogViewModel.speakers != null && oConceptStatusLogViewModel.speakers.Count > 0)
+                {
+
+                    foreach (int user_id in oConceptStatusLogViewModel.speakers)
+                    {
+                        concept_debate_speakers oconcept_debate_speakers = new concept_debate_speakers();
+                        oconcept_debate_speakers.concept_id = oConceptStatusLogViewModel.concept_id;
+                        oconcept_debate_speakers.user_id = user_id;
+                        oconcept_debate_speakers.date_created = DateTime.Now;
+                        oconcept_debate_speakers.user_id_created = oConceptStatusLogViewModel.user_id_created;
+                        oRepositorioConceptDebateSpeaker.Add(oconcept_debate_speakers);
+
+
+                    }
+                }
                 oUnitOfWork.SaveChanges();
                 scope.Complete();
             }
         }
-
+       
         public MyHistoryViewModel ObtenerMiHistorial(int investigator_id)
         {
            return  oRepositorio.ObtenerMiHistorial(investigator_id);
@@ -101,6 +139,7 @@ namespace Business.Logic
 
                 concepts oconcepts = oRepositorio.FindById(oConceptStatusLogViewModel.concept_id);
                 oconcepts.concept_status_id = concept_status_id;
+                oconcepts.certification_path = oConceptStatusLogViewModel.certification_path;
                 if (NumeroCalificaciones > 0) {
                     double qualification = calificaciones.Select(a => a.qualification).ToList().Average();
                     oconcepts.qualification = Math.Round(qualification,2);
@@ -116,6 +155,15 @@ namespace Business.Logic
         public RejectConceptViewModel ObtenerRechazo(int concept_id)
         {
             return oRepositorioConceptStatusLog.ObtenerRechazo(concept_id);
+        }
+        public Boolean VerificarCalificado(int concept_id, int user_id)
+        {
+            return oRepositorioConceptStatusLog.VerificarCalificado(concept_id,user_id);
+        }
+
+        public Boolean VerificarCalificado(int concept_id)
+        {
+            return oRepositorioConceptStatusLog.VerificarCalificado(concept_id);
         }
 
         public void Leido(ConceptStatusLogViewModel oConceptStatusLogViewModel)
@@ -153,6 +201,11 @@ namespace Business.Logic
                 scope.Complete();
             }
         }
+        public CertificationHtmlViewModel ObtenerHtmlCertification(int concept_id)
+        {
+
+            return oRepositorio.ObtenerHtmlCertification(concept_id);
+        }
         public ConceptViewModel Obtener(int pIntID)
         {
 
@@ -163,7 +216,11 @@ namespace Business.Logic
 
             return oRepositorio.ObtenerPdfpath(pIntID);
         }
+        public string ObtenerCertificadoPdfpath(int pIntID)
+        {
 
+            return oRepositorio.ObtenerCertificadoPdfpath(pIntID);
+        }
         public GridModel<ConceptViewModel> ObtenerLista(DataTableAjaxPostModel filters, int investigator_id)
         {
             return oRepositorio.ObtenerLista(filters, investigator_id);
@@ -235,7 +292,9 @@ namespace Business.Logic
                     date_created = DateTime.Now,
                     user_id_created = pConceptViewModel.user_id_created,
                     concept_status_id = 1,
-                    pdf_path=pConceptViewModel.pdf_path
+                    pdf_path = pConceptViewModel.pdf_path,
+                    hash = Guid.NewGuid()
+
                 };
 
                 //oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);
@@ -259,7 +318,9 @@ namespace Business.Logic
                 pConceptViewModel.concept_id = oconcepts.concept_id;
             }
         }
-
+        public ConceptHtmlViewModel ObtenerHtmlConcept(int concept_id) {
+            return oRepositorio.ObtenerHtmlConcept(concept_id);
+        }
         public GridModel<ConceptViewModel> ObtenerEmitidos(DataTableAjaxPostModel ofilters)
         {
 
@@ -288,6 +349,11 @@ namespace Business.Logic
         public GridModel<ConceptViewModel> ObtenerRecibidos(DataTableAjaxPostModel ofilters, int user_id)
         {
             return oRepositorio.ObtenerRecibidos(ofilters, user_id);
+        }
+
+        public VerifyCertificationViewModel ObtenerVerificacionCertificado(Guid hash)
+        {
+            return oRepositorio.ObtenerVerificacionCertificado(hash);
         }
     }
 }

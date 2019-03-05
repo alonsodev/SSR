@@ -35,7 +35,7 @@ namespace Presentation.Web.Controllers
 
             List<MeritRangeViewModel> oMeritRange= oMeritRangeBL.ObtenerTodos();
             List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
-            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", false, "", "");
+            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "0", true, "0", "TODOS");
             ViewBag.interest_areas = interest_areas;
             ViewBag.merit_ranges_json = JsonConvert.SerializeObject(oMeritRange);
             ViewBag.merit_ranges = oMeritRange;

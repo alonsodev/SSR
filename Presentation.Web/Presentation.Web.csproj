@@ -70,6 +70,15 @@
     <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
       <HintPath>..\packages\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
     </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.5.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.5.16\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -186,6 +195,8 @@
     <Compile Include="Controllers\AcademicLevelController.cs" />
     <Compile Include="Controllers\MeritRangeController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\ConsultationController.cs" />
     <Compile Include="Controllers\SnieController.cs" />
     <Compile Include="Controllers\EducationLevelController.cs" />
     <Compile Include="Controllers\KnowledgeAreaController.cs" />
@@ -244,15 +255,18 @@
     <Content Include="Assets\img\GB.png" />
     <Content Include="Assets\img\image_placeholder.jpg" />
     <Content Include="Assets\img\james.jpg" />
-    <Content Include="Assets\img\mike.jpg" />
-    <Content Include="Assets\img\now-logo.png" />
-    <Content Include="Assets\img\placeholder.jpg" />
-    <Content Include="Assets\img\prada.jpg" />
+    <Content Include="Assets\img\merit_ranges\ddddd..jpg" />
+    <Content Include="Assets\img\merit_ranges\dddddddddddd..jpg" />
+    <Content Include="Assets\img\merit_ranges\dddddddddddd..png" />
     <Content Include="Assets\img\merit_ranges\esmeralda.jpg" />
     <Content Include="Assets\img\merit_ranges\GEMA_de_topacio_flamingo_.png" />
     <Content Include="Assets\img\merit_ranges\kisscc0-gemstone-computer-icons-yellow-diamond.png" />
     <Content Include="Assets\img\merit_ranges\kisspng-sapphire-gemstone-cobalt-blue-cardinal-gem-sapphire-gem-png.jpg" />
     <Content Include="Assets\img\merit_ranges\ruby-icon.png" />
+    <Content Include="Assets\img\mike.jpg" />
+    <Content Include="Assets\img\now-logo.png" />
+    <Content Include="Assets\img\placeholder.jpg" />
+    <Content Include="Assets\img\prada.jpg" />
     <Content Include="Assets\img\RO.png" />
     <Content Include="Assets\img\saint-laurent.jpg" />
     <Content Include="Assets\img\US.png" />
@@ -291,10 +305,16 @@
     <Content Include="Assets\js\plugins\sweetalert2.min.js" />
     <Content Include="Assets\js\plugins\themes\fileinput\fa\theme.js" />
     <Content Include="Assets\js\plugins\themes\fileinput\locales\es.js" />
+    <Content Include="Assets\media\language\spanish.json" />
     <Content Include="Assets\use.fontawesome.com\releases\v5.0.6\css\all.css" />
     <Content Include="Avatars\12614_4721624952870_918492468_n.jpg" />
     <Content Include="Avatars\13034911jpg.jpg" />
+    <Content Include="Avatars\4579b2a7-03a6-4bde-9a6c-988e1f444db8..jpg" />
+    <Content Include="Avatars\982e4272-9c45-42be-b3f4-44f18dbc72fb..jpg" />
+    <Content Include="Avatars\c8264c35-3af9-4a25-9ff4-72aa26d86644..jpg" />
+    <Content Include="Avatars\de45bc84-dadf-4cd9-9bc1-a0e1c8adec17..jpg" />
     <Content Include="Avatars\default_avatar_male.jpg" />
+    <Content Include="Avatars\ff14ffde-8348-4e9f-a8b9-19164be2044a..jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="dashboard.html" />
@@ -307,7 +327,130 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\media\language\spanish.json" />
+    <Content Include="PDF\001ce71b-ba12-456f-9ad9-3f2b2aebc5db.pdf" />
+    <Content Include="PDF\04973059-6083-457f-89b4-1c81bb2be564.pdf" />
+    <Content Include="PDF\05e3c374-73c7-4135-9a0b-c0afcc6cd75d.pdf" />
+    <Content Include="PDF\05e7a964-442f-4c0f-a700-78348db815a3.pdf" />
+    <Content Include="PDF\0993ad27-dd2f-4f81-9aec-74b9caeecd9b.pdf" />
+    <Content Include="PDF\0a5a5e8a-c047-4ff1-b704-e8aa262dcbf9.pdf" />
+    <Content Include="PDF\100074d4-5615-4b69-9220-f34dd6cf2904.pdf" />
+    <Content Include="PDF\11f70d86-790c-4dde-9701-8ec4f6917bd6.pdf" />
+    <Content Include="PDF\12119f32-ec24-4b7e-8eb0-e74c2dc2b446.pdf" />
+    <Content Include="PDF\171a431e-f7f2-4acf-afc4-c5b6510a597c.pdf" />
+    <Content Include="PDF\1735a64e-9737-4f3d-aa31-20883c41dfa8.pdf" />
+    <Content Include="PDF\18c0349c-0fd2-4b70-98e9-3200546ee00b.pdf" />
+    <Content Include="PDF\1ba1723c-6bb3-4479-b4f6-5072048be997.pdf" />
+    <Content Include="PDF\1d97db21-9681-42a6-a32e-2638eada83d0.pdf" />
+    <Content Include="PDF\1e162c9f-251a-4a48-9447-21063015b1db.pdf" />
+    <Content Include="PDF\1f6e2d36-9528-4ac0-9751-f28a4fde9c13.pdf" />
+    <Content Include="PDF\1f952b68-9f97-4bd7-a15c-aed7d001a90d.pdf" />
+    <Content Include="PDF\1fbf6639-fe41-47b2-a090-4c320ac23d6d.pdf" />
+    <Content Include="PDF\2134562c-e655-4fca-a3b7-2741795fde1b.pdf" />
+    <Content Include="PDF\219e7564-bd38-4da4-a3e4-e86a7885fce5.pdf" />
+    <Content Include="PDF\23b471ff-36de-4af4-b791-32a30df40fae.pdf" />
+    <Content Include="PDF\25303026-c2e9-46e2-8d60-636e6480122c.pdf" />
+    <Content Include="PDF\26770204-ae41-4fe4-9884-1b576a628922.pdf" />
+    <Content Include="PDF\29fc7e64-8823-43c0-a994-ff4cac95a9a6.pdf" />
+    <Content Include="PDF\2b72e929-1510-4fe6-86d5-4dc1da8dd980.pdf" />
+    <Content Include="PDF\2d29a2de-c6fe-41a6-91e2-c1c21ced737c.pdf" />
+    <Content Include="PDF\2e644653-2050-424f-9a1a-b3dfc12fb29e.pdf" />
+    <Content Include="PDF\2fbdef3e-85c8-4a1d-a277-5fd8b240ee4f.pdf" />
+    <Content Include="PDF\325907e1-545d-4ca3-844f-e3a5c2a4a5ad.pdf" />
+    <Content Include="PDF\34f15571-6dfd-466a-9399-66d0a64e1352.pdf" />
+    <Content Include="PDF\38483c86-d65e-4b22-8bd6-40b34ee98623.pdf" />
+    <Content Include="PDF\38a17421-4753-40fa-b3a1-795046c012b7.pdf" />
+    <Content Include="PDF\39d70122-35c0-4c4e-8fe5-a3d4dce65110.pdf" />
+    <Content Include="PDF\3a7fddf1-dc41-4b1f-a93b-f8d9e8b9ccd5.pdf" />
+    <Content Include="PDF\409de2ab-12a4-4c45-8f30-37e64a73e7fa.pdf" />
+    <Content Include="PDF\41d914e3-535c-4600-90ed-29efc31aecad.pdf" />
+    <Content Include="PDF\41da05cd-318f-4648-bc12-0e09907689dd.pdf" />
+    <Content Include="PDF\41f1bb23-3690-4bee-bca6-720044007350.pdf" />
+    <Content Include="PDF\42453b33-d787-4120-8534-bba18c26becd.pdf" />
+    <Content Include="PDF\439e0ca7-7ed2-42ef-bada-27ae93cf2d37.pdf" />
+    <Content Include="PDF\4493d55a-7112-4dea-b5cd-c66949aa685f.pdf" />
+    <Content Include="PDF\45dc60e1-0351-489c-90b4-f488931133da.pdf" />
+    <Content Include="PDF\480dca11-2b9c-4fd3-9843-015743cb0a89.pdf" />
+    <Content Include="PDF\4e681943-30d7-453b-b628-84fea480eb77.pdf" />
+    <Content Include="PDF\4fb00859-5f75-4093-833d-644b33117e9d.pdf" />
+    <Content Include="PDF\53f087fc-142d-40e9-bdea-e16507ccf483.pdf" />
+    <Content Include="PDF\53f29517-183d-49ca-8824-c16dc9db85e4.pdf" />
+    <Content Include="PDF\54904b55-9284-4d41-8d2b-ed5f0b64e2be.pdf" />
+    <Content Include="PDF\57029f4f-73bc-44be-bae1-0927a9d18fca.pdf" />
+    <Content Include="PDF\571c2f24-3e6f-4b67-8aed-db0bbc6ad2f9.pdf" />
+    <Content Include="PDF\58295ddf-3e2a-4a9b-b418-37b93ada2af7.pdf" />
+    <Content Include="PDF\5c8f7fdb-e153-44d7-8a3d-1cbcf2f5ea24.pdf" />
+    <Content Include="PDF\61dcc74d-ab89-45ff-8f08-d4f90424d9ca.pdf" />
+    <Content Include="PDF\692ba6f1-9ec5-4c01-872d-23bb0dd39156.pdf" />
+    <Content Include="PDF\69925205-a745-4cde-a831-b111d3d1c749.pdf" />
+    <Content Include="PDF\726906e9-9e59-4ee9-9738-4492769b3929.pdf" />
+    <Content Include="PDF\7e410266-5452-45a7-9e89-84699e20ad3b.pdf" />
+    <Content Include="PDF\8042dfb8-1772-4d80-8de1-f4997f1fedd0.pdf" />
+    <Content Include="PDF\86f83848-1cbe-4009-b51c-71cd536a00bb.pdf" />
+    <Content Include="PDF\879ef6c1-6d57-4583-ac3a-019bf27bf8f7.pdf" />
+    <Content Include="PDF\8b38711e-b3c0-4e6f-b559-66f1f2c2539d.pdf" />
+    <Content Include="PDF\8c348e5b-d9ea-49c5-9ccf-5e41bb723fc0.pdf" />
+    <Content Include="PDF\8c63c825-4e6c-4ea2-8495-545937485c23.pdf" />
+    <Content Include="PDF\8ed8f375-8e05-4cfa-8281-4363a97e65cb.pdf" />
+    <Content Include="PDF\8f42f520-6a35-486f-be3f-f48aa0dc429f.pdf" />
+    <Content Include="PDF\901cd1e1-1ce2-4e38-97b9-0dcfe3cbd3df.pdf" />
+    <Content Include="PDF\939feb1e-2b5d-400d-a890-6c97439bc470.pdf" />
+    <Content Include="PDF\9428a2e0-64f8-42fb-b466-908e2b7ff06b.pdf" />
+    <Content Include="PDF\9442a6e9-5eec-4317-a57e-f929c7eb9e4f.pdf" />
+    <Content Include="PDF\94bf1052-0a53-4f03-8839-76dbdab6513f.pdf" />
+    <Content Include="PDF\97aea972-05ba-4005-bca1-11c67924a063.pdf" />
+    <Content Include="PDF\98157581-088b-4b4c-b7e3-009de3d2625a.pdf" />
+    <Content Include="PDF\993bc792-418d-44cf-8eab-0fcc0cd01317.pdf" />
+    <Content Include="PDF\99a238de-b5f4-478c-ac90-6ae67a909d5f.pdf" />
+    <Content Include="PDF\9c6965e7-b2f5-4165-81e8-fcf6bdcd0bca.pdf" />
+    <Content Include="PDF\a0a6f473-c38a-4634-aba1-a2aeb8fa5426.pdf" />
+    <Content Include="PDF\a290e645-80ed-4415-95b5-e17bdf8d3f9b.pdf" />
+    <Content Include="PDF\a3cde8dc-ca85-4d76-b47f-d77d9496ae2c.pdf" />
+    <Content Include="PDF\a44ae69d-902b-48d8-b159-4f44e84b2859.pdf" />
+    <Content Include="PDF\a4d29b51-e356-4ad8-9c0e-5f8e05da8f2b.pdf" />
+    <Content Include="PDF\abd18f8a-6bf0-4540-aa39-a3352a4589bd.pdf" />
+    <Content Include="PDF\acdd5ae8-0cc9-4bb8-a936-6b5757baeda5.pdf" />
+    <Content Include="PDF\adec3142-6596-4131-a951-119b423ce45e.pdf" />
+    <Content Include="PDF\b01379aa-880c-495f-b1d2-eb64677cfff6.pdf" />
+    <Content Include="PDF\b6ff7577-b04d-4a30-a741-cbc76187297c.pdf" />
+    <Content Include="PDF\b7268efd-3345-44cb-bedd-3c6454f2aeaf.pdf" />
+    <Content Include="PDF\b79e1347-8154-40ce-b488-61554d3679e7.pdf" />
+    <Content Include="PDF\b824c447-e395-43a5-a7a0-7d2919da10d0.pdf" />
+    <Content Include="PDF\b8a47f7f-e64f-41d3-b3ca-4b29e05d9a2b.pdf" />
+    <Content Include="PDF\bbc97900-143b-4610-89c8-a1200a13ddbf.pdf" />
+    <Content Include="PDF\bd6c923e-8ecf-43f2-a182-7a7f8e575670.pdf" />
+    <Content Include="PDF\be2fc379-7cda-4660-bd94-47e01e1e30b5.pdf" />
+    <Content Include="PDF\be609a22-49f8-4107-ae3d-7a757e57f177.pdf" />
+    <Content Include="PDF\c09e6e4a-75da-4482-a484-beecf863d7b0.pdf" />
+    <Content Include="PDF\c18f7c84-73f0-468a-b935-5356d170b633.pdf" />
+    <Content Include="PDF\c4a55840-cc47-4a17-bade-e975b75edf1d.pdf" />
+    <Content Include="PDF\c8dbb40e-738d-47be-a56e-f691ea3d422f.pdf" />
+    <Content Include="PDF\cbdd5e03-6c24-4b8d-8024-82d4132a34a6.pdf" />
+    <Content Include="PDF\ce1ebbcc-f146-4a43-bce3-92b8b929eb44.pdf" />
+    <Content Include="PDF\ce3b75d1-2adf-4d40-a2c4-e062cdc88252.pdf" />
+    <Content Include="PDF\ced8f082-3152-4377-b0b9-d86e92637578.pdf" />
+    <Content Include="PDF\cf4bd245-f762-4f69-bb9f-1062dce1d827.pdf" />
+    <Content Include="PDF\cfc13802-b66e-436f-963e-870f489c5c9f.pdf" />
+    <Content Include="PDF\d81db63c-901c-457a-bc18-d3949ed0b2e6.pdf" />
+    <Content Include="PDF\d9fe8bb0-4ab8-4575-a7b6-f13e10130243.pdf" />
+    <Content Include="PDF\dd209a63-6a93-47d1-afdf-425097343254.pdf" />
+    <Content Include="PDF\df7a71e5-26f1-4989-9ca9-5da7b22e7aef.pdf" />
+    <Content Include="PDF\dfaba2d2-19ac-409b-ad70-309cdd5656e2.pdf" />
+    <Content Include="PDF\dfb4d037-5461-45f3-bb71-b383e3781e00.pdf" />
+    <Content Include="PDF\e0e9b944-e33c-44a0-8429-2a79e50d859a.pdf" />
+    <Content Include="PDF\e12106b2-d269-4643-8af4-9e3302140845.pdf" />
+    <Content Include="PDF\e1c45723-e537-4377-80d7-5e3b116a80b0.pdf" />
+    <Content Include="PDF\e2394117-f3c2-4348-be60-f744cad613b5.pdf" />
+    <Content Include="PDF\e36316ae-bc17-47b9-84b6-b496bd0310a7.pdf" />
+    <Content Include="PDF\e6ed99a1-7003-4e0e-a942-0a02d219231d.pdf" />
+    <Content Include="PDF\ea6308c4-0659-43d1-bec9-cb128656ca0f.pdf" />
+    <Content Include="PDF\ee04312c-450b-48bb-8232-bdd833611d77.pdf" />
+    <Content Include="PDF\eedf508f-d261-44ff-b98f-d087f012d74b.pdf" />
+    <Content Include="PDF\f430ccf5-a82b-4236-b8d5-9ff785457366.pdf" />
+    <Content Include="PDF\fb4412fe-95e5-4d3a-bf41-42371f672cff.pdf" />
+    <Content Include="PDF\fcd4f831-ead3-4d89-a8bc-188fc0112855.pdf" />
+    <Content Include="PDF\fef3eea3-4e04-4e5e-ba08-bfca54b8a545.pdf" />
+    <Content Include="PDF\ffd20853-c6ec-4d64-b259-c0d2e5bf9929.pdf" />
+    <Content Include="Assets\SourceSansPro-Regular.ttf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\expressive.annotations.validate.js" />
@@ -327,6 +470,85 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\summernote-es-ES.js" />
+    <Content Include="Template\ConceptoCalificadoMailTemplateHtml.xslt" />
+    <Content Include="Template\ConceptoPorCalificarMailTemplateHtml.xslt" />
+    <Content Include="Template\ConceptoAprobadoMailTemplateHtml.xslt" />
+    <Content Include="Template\ConceptoRechazadoMailTemplateHtml.xslt" />
+    <Content Include="Template\Concept\01.png" />
+    <Content Include="Template\Concept\02.png" />
+    <Content Include="Template\Concept\03.png" />
+    <Content Include="Template\Concept\arcalogo.jpg" />
+    <Content Include="Template\Concept\body.html" />
+    <Content Include="Template\Concept\certificado.html" />
+    <Content Include="Template\Concept\concept.html" />
+    <Content Include="Template\Concept\footer.html" />
+    <Content Include="Template\Concept\header.html" />
+    <Content Include="Template\Concept\LOGO CAEL.fw.png" />
+    <Content Include="Template\Concept\logo.png" />
+    <Content Include="Template\Concept\logoc.png" />
+    <Content Include="Template\Concept\LogoSecretariaWeb.png" />
+    <Content Include="Template\Concept\LogoSecretariaWebCongreso.png" />
+    <Content Include="Template\Concept\QRCode\0.png" />
+    <Content Include="Template\Concept\QRCode\1066.png" />
+    <Content Include="Template\Concept\QRCode\1067.png" />
+    <Content Include="Template\Concept\QRCode\1068.png" />
+    <Content Include="Template\Concept\QRCode\1074.png" />
+    <Content Include="Template\Concept\QRCode\1075.png" />
+    <Content Include="Template\Concept\QRCode\1076.png" />
+    <Content Include="Template\Concept\QRCode\1077.png" />
+    <Content Include="Template\Concept\QRCode\1078.png" />
+    <Content Include="Template\Concept\QRCode\1079.png" />
+    <Content Include="Template\Concept\QRCode\1080.png" />
+    <Content Include="Template\Concept\QRCode\1081.png" />
+    <Content Include="Template\Concept\QRCode\1082.png" />
+    <Content Include="Template\Concept\QRCode\1083.png" />
+    <Content Include="Template\Concept\QRCode\1084.png" />
+    <Content Include="Template\Concept\QRCode\1089.png" />
+    <Content Include="Template\Concept\QRCode\10890.png" />
+    <Content Include="Template\Concept\QRCode\10896.png" />
+    <Content Include="Template\Concept\QRCode\1090.png" />
+    <Content Include="Template\Concept\QRCode\1091.png" />
+    <Content Include="Template\Concept\QRCode\1092.png" />
+    <Content Include="Template\Concept\QRCode\1093.png" />
+    <Content Include="Template\Concept\QRCode\1094.png" />
+    <Content Include="Template\Concept\QRCode\1095.png" />
+    <Content Include="Template\Concept\QRCode\1096.png" />
+    <Content Include="Template\Concept\QRCode\1097.png" />
+    <Content Include="Template\Concept\QRCode\1098.png" />
+    <Content Include="Template\Concept\QRCode\1099.png" />
+    <Content Include="Template\Concept\QRCode\1100.png" />
+    <Content Include="Template\Concept\QRCode\1101.png" />
+    <Content Include="Template\Concept\QRCode\1102.png" />
+    <Content Include="Template\Concept\QRCode\1103.png" />
+    <Content Include="Template\Concept\QRCode\1104.png" />
+    <Content Include="Template\Concept\QRCode\1105.png" />
+    <Content Include="Template\Concept\QRCode\1106.png" />
+    <Content Include="Template\Concept\QRCode\1107.png" />
+    <Content Include="Template\Concept\QRCode\1108.png" />
+    <Content Include="Template\Concept\QRCode\1109.png" />
+    <Content Include="Template\Concept\QRCode\1110.png" />
+    <Content Include="Template\Concept\QRCode\1111.png" />
+    <Content Include="Template\Concept\QRCode\1112.png" />
+    <Content Include="Template\Concept\QRCode\1113.png" />
+    <Content Include="Template\Concept\QRCode\1114.png" />
+    <Content Include="Template\Concept\QRCode\1115.png" />
+    <Content Include="Template\Concept\QRCode\1116.png" />
+    <Content Include="Template\Concept\QRCode\1117.png" />
+    <Content Include="Template\Concept\QRCode\1118.png" />
+    <Content Include="Template\Concept\QRCode\1119.png" />
+    <Content Include="Template\Concept\QRCode\1120.png" />
+    <Content Include="Template\Concept\QRCode\1121.png" />
+    <Content Include="Template\Concept\QRCode\1122.png" />
+    <Content Include="Template\Concept\QRCode\1123.png" />
+    <Content Include="Template\Concept\QRCode\1124.png" />
+    <Content Include="Template\Concept\QRCode\1125.png" />
+    <Content Include="Template\Concept\QRCode\1126.png" />
+    <Content Include="Template\Concept\style-ce.css" />
+    <Content Include="Template\RevisionConceptoMailTemplateHtml.xslt" />
+    <Content Include="Template\NewDraftLawMailTemplateHtml.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Template\CertificationTemplateHtml.xslt" />
     <Content Include="Template\ConceptTemplateHtml.xslt" />
     <Content Include="Template\RecuperarCuentaMailTemplateHtml.xslt" />
     <Content Include="Template\ActivarCuentaMailTemplateHtml.xslt" />
@@ -397,6 +619,11 @@
     <Content Include="Views\Account\CambiarPassword.cshtml" />
     <Content Include="Views\Account\Activar.cshtml" />
     <Content Include="Views\Account\Editar2.cshtml" />
+    <Content Include="Views\Concept\Certificado.cshtml" />
+    <Content Include="Views\Concept\VerificarCertificacion.cshtml" />
+    <Content Include="Views\Consultation\Enviadas.cshtml" />
+    <Content Include="Views\Consultation\Ver.cshtml" />
+    <Content Include="Template\Concept\SourceSansPro-Regular.ttf" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />
@@ -423,12 +650,14 @@
     <Content Include="Views\MeritRange\Index.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Views\User\MiCuenta.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Consultation\Crear.cshtml" />
+    <Content Include="Views\Consultation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Logs\" />
     <Folder Include="Models\" />
-    <Folder Include="PDF\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

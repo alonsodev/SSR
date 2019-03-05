@@ -17,9 +17,10 @@ namespace Domain.Entities
         public int concept_status_id { get; set; }
         public string description { get; set; }
         public int qualification { get; set; }
-        
 
+        public string certification_path { get; set; }
 
+        public List<int> speakers { get; set; }
 
 
 

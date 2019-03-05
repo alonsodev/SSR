@@ -113,6 +113,11 @@ namespace Presentation.Web.Filters
             new_merit_ranges = 112,
             edit_merit_ranges = 113,
             delete_merit_ranges = 114,
+            list_consultation_realized = 115,
+            list_consultation_send = 116,
+            new_consultation = 117,
+            view_consultation = 118,
+            attend_consultation = 119
         }
         public Permission[] Permissions { get; set; }
 
@@ -127,10 +132,17 @@ namespace Presentation.Web.Filters
         }
         public static List<NotificationViewModel> Notificaciones()
         {
-            CurrentUserViewModel user=(CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
+            CurrentUserViewModel user = (CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
             NotificationBL oNotificationBL = new NotificationBL();
 
             return oNotificationBL.ObtenerPorUsuario(user.user_id);
+        }
+        public static int ObtenerNroNoNotificados()
+        {
+            CurrentUserViewModel user = (CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
+            NotificationBL oNotificationBL = new NotificationBL();
+
+            return oNotificationBL.ObtenerNroNoNotificados(user.user_id);
         }
         public static bool VerificarPerfil(params Permission[] permissions)
         {

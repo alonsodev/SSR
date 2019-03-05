@@ -17,6 +17,7 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public concepts()
         {
+            this.concept_debate_speakers = new HashSet<concept_debate_speakers>();
             this.concepts_status_logs = new HashSet<concepts_status_logs>();
             this.concepts_tags = new HashSet<concepts_tags>();
         }
@@ -36,7 +37,11 @@ namespace Infrastructure.Data
         public string reason_reject_description { get; set; }
         public Nullable<double> qualification { get; set; }
         public string pdf_path { get; set; }
+        public string certification_path { get; set; }
+        public Nullable<System.Guid> hash { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concept_debate_speakers> concept_debate_speakers { get; set; }
         public virtual concepts_status concepts_status { get; set; }
         public virtual draft_laws draft_laws { get; set; }
         public virtual investigators investigators { get; set; }

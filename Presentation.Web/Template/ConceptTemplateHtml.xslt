@@ -1,215 +1,387 @@
 <?xml version='1.0'?>
-<xsl:stylesheet version="1.0"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:formatHelper="urn:xsltExtension-FormatHelper" >
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:formatHelper="urn:xsltExtension-FormatHelper">
 
-  <xsl:output method="html"/>
+  <xsl:output method="html" />
 
   <!-- Get config.file -->
 
 
   <xsl:template match="/">
-
     <html>
       <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=8"></meta>
+        <style>
+          @font-face {
+          font-family: SourceSansPro;
+          src: url(@url_site/Assets/SourceSansPro-Regular.ttf);
+          }
+
+          .clearfix:after {
+          content: "";
+          display: table;
+          clear: both;
+          }
+          .div-with-bg
+          {
+          background: #DDDDDD;
+          height: 70px;
+          }
+          a {
+          color: #0087C3;
+          text-decoration: none;
+          }
+
+          body {
+          position: relative;
+          width: 21cm;
+          height: 29.7cm;
+          margin: 0 auto;
+          color: #555555;
+          background: #FFFFFF;
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          font-family: SourceSansPro;
+          }
+
+          header {
+          padding: 10px 0;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #AAAAAA;
+          }
+
+          #logo {
+          float: left;
+          margin-top: 8px;
+          }
+
+          #logo img {
+          height: 120px;
+          }
+
+          #company {
+          float: right;
+          text-align: right;
+
+          }
+
+
+          .details {
+          margin-bottom: 50px;
+          }
+
+          #client {
+          float: right;
+          padding-left: 6px;
+          border-left: 6px solid #725030;
+          margin-top: 15px;
+          margin-right: 20px;
+
+          }
+          #client2 {
+          padding-left: 6px;
+          border-left: 6px solid #725030;
+          float: left;
+          }
+
+          #client .to {
+          color: #777777;
+          }
+
+          h2.name {
+          font-size: 1.4em;
+          font-weight: normal;
+          margin: 0;
+          }
+
+          #invoice {
+          float: left;
+          text-align: right;
+
+          color: #000;
+          font-size: 12px;
+          padding: 23px 5px 5px 16px;
+
+          }
+          #invoice2{
+          float: left;
+          text-align: right;
+
+          font-size: 10px;
+          color: #000;
+          padding: 9px 5px 5px 22px;
+          }
+
+          #invoice h1 {
+          color: #000;
+          font-size: 20px;
+          line-height: 1em;
+          font-weight: normal;
+          margin: 0  0 10px 0;
+          }
+
+          #invoice .date {
+          font-size: 1.1em;
+          color: #777777;
+          }
+
+          table {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+          margin-bottom: 20px;
+          float: left;
+          }
+
+          table th,
+          table td {
+          padding: 5px;
+          background: #EEEEEE;
+          text-align: center;
+
+          }
+
+          table th {
+          white-space: nowrap;
+          font-weight: normal;
+          }
+
+          table td {
+          text-align: left;
+          border-right: 4px  solid #FFFFFF;
+          }
+
+          table td h3{
+          color: #57B223;
+          font-size: 1.2em;
+          font-weight: normal;
+          margin: 0 0 0.2em 0;
+          }
+
+          table .no {
+          color: #FFFFFF;
+          font-size: 1.6em;
+          background: #BC9E54;
+          border: 4px solid #FFFFFF;
+          }
+
+          table .desc {
+          color: #FFFFFF;
+          font-size: 1.6em;
+          background: #BC9E54;
+          border: 4px solid #FFFFFF;
+          }
+
+          table .unit {
+          background: #DDDDDD;
+          }
+
+          table .qty {
+          }
+
+          table .total {
+          background: #BC9E54;
+          color: #FFFFFF;
+          }
+
+          table td.unit,
+          table td.qty,
+          table td.total {
+          font-size: 1.2em;
+          }
+
+          table tbody tr:last-child td {
+          border: none;
+          }
+
+          table tfoot td {
+          padding: 10px 20px;
+          background: #FFFFFF;
+          border-bottom: none;
+          font-size: 1.2em;
+          white-space: nowrap;
+          border-top: 1px solid #AAAAAA;
+          }
+
+          table tfoot tr:first-child td {
+          border-top: none;
+          }
+
+          table tfoot tr:last-child td {
+          color: #57B223;
+          font-size: 1.4em;
+          border-top: 1px solid #57B223;
+
+          }
+
+          table tfoot tr td:first-child {
+          border: none;
+          }
+
+          #thanks{
+          font-size: 20px;
+          margin-bottom: 50px;
+          text-align: center;
+          }
+
+          #notices{
+          padding-left: 6px;
+          border-left: 6px solid #ffc400;
+          text-align: justify;
+          }
+
+          #notices .notice {
+          font-size: 1.2em;
+          }
+
+          footer {
+          color: #777777;
+          width: 100%;
+          height: 30px;
+
+          bottom: 0;
+          border-top: 1px solid #AAAAAA;
+          padding: 8px 0;
+          text-align: center;
+          }
+
+          .investigator_project td{
+            max-width:50%;          
+          }
+
+
+        </style>
       </head>
       <body>
+        <main>
+          <div i="" class="div-with-bg details clearfix">
 
-        <div id="print-section-has" style="font-family: Arial, Helvetica, sans-serif;color: #000;font-size: 12px;">
-          <table align="center" bgcolor="#ffffff" cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif;color: #000;font-size: 12px;" width="100%">
-            <tbody>
-              <tr>
-                <td align="center">
-                  <table bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" width="900">
-                    <tbody>
-                      <tr>
-                        <td align="left" bgcolor="#fff" colspan="2" valign="middle">
+            <div id="invoice">
+              <h1>
+                <strong>Concepto Técnico</strong>
+              </h1>
 
-                        </td>
-                      </tr>
-                      <tr>
-                        <td align="center" bgcolor="#fff" colspan="2" style="font-size: 20px" valign="top">
-                          <b>Aceptación de Servicio  1000090976</b>
-                          <br/>
-                          <br/>
 
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+            </div>
+            <div id="client">
+              <div class="to"># Concepto:  <xsl:value-of select="//@concept_id"/></div>
+              <div class="date">Fecha: <xsl:value-of select="//@fecha_presentacion_txt"/></div>
 
-                  <table bgcolor="#fff" border="0" cellpadding="5" cellspacing="0" class="print-table" style="border:1px solid #999;border-collapse: collapse;" width="900">
-                    <tbody>
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="12" style="border:1px solid #999;font-size: 18px" valign="top">
-                          <b>Datos Generales</b>
-                        </td>
-                      </tr>
-
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="6" style="border:1px solid #999;width: 50%" valign="top">
-                          <b>Organización Compradora:</b>
-                          <br/> INVERSIONES CENTENARIO S.A.A.
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="6" style="border:1px solid #999;width: 50%" valign="top">
-                          <b>Organización Proveedora:</b>
-                          <br/> BURGOS VERGARAY INGENIEROS S.A.C.
-
-                        </td>
-                      </tr>
-
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="6" style="border:1px solid #999;" valign="top">
-                          <b>RUC Organización Compradora:</b>
-                          <br/> 20101045995
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="6" style="border:1px solid #999;" valign="top">
-                          <b>RUC Organización Proveedora:</b>
-                          <br/> 20440251677
-
-                        </td>
-                      </tr>
-
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="3" style="border:1px solid #999;" valign="top">
-                          <b>Moneda:</b>
-                          <br/>  PEN
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="6" style="border:1px solid #999;" valign="top">
-                          <b>Número ERP Documento de Material:</b>
-                          <br/> 5000097765
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="3" style="border:1px solid #999;" valign="top">
-                          <b>Estado:</b>
-                          <br/>  Aceptada
-
-                        </td>
-                      </tr>
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="3" style="border:1px solid #999;" valign="top">
-                          <b>Fecha de Emisión:</b>
-                          <br/> 04/10/2018
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="6" style="border:1px solid #999;" valign="top">
-                          <b>Correo del Proveedor:</b>
-                          <br/> test@ebizlatin.com
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="3" style="border:1px solid #999;" valign="top">
-
-                        </td>
-                      </tr>
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="12" style="border:1px solid #999;font-size: 18px" valign="top">
-                          <b>Datos de la Aceptación</b>
-                        </td>
-                      </tr>
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="4" style="border:1px solid #999;" valign="top">
-                          <b>Aceptado por:</b>
-                          <br/>
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="4" style="border:1px solid #999;" valign="top">
-                          <b>Autorizado por:</b>
-                          <br/>
-
-                        </td>
-                        <td align="left" bgcolor="#fff" colspan="4" style="border:1px solid #999;" valign="top">
-                          <b>Fecha de la Aceptación:</b>
-                          <br/> 04/10/2018
-
-                        </td>
-                      </tr>
-
-                      <tr style="border:1px solid #999;">
-                        <td align="left" bgcolor="#fff" colspan="12" style="border:1px solid #999;font-size: 18px" valign="top">
-                          <b>Detalle de Servicios</b>
-                        </td>
-                      </tr>
-                      <tr style="border:1px solid #999;">
-                        <td align="center" bgcolor="#fff" style="border:1px solid #999;" valign="top">
-                          <b>No. Item</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" style="border:1px solid #999;" valign="top">
-                          <b>No. Orden de Servicio</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" style="border:1px solid #999;" valign="top">
-                          <b>No. Item Orden de Servicio</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="3" style="border:1px solid #999;" valign="top">
-                          <b>Descripción del Servicio</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="1" style="border:1px solid #999;" valign="top">
-                          <b>Estado</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          <b>Cantidad</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          <b>Unidad</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          <b>Valor Recibido</b>
-                        </td>
-                      </tr>
-
-                      <!--bindings={
-  "ng-reflect-ng-for-of": "[object Object]"
-}-->
-                      <tr style="border:1px solid #999;">
-                        <td align="center" bgcolor="#fff" style="border:1px solid #999;" valign="top">
-                          1
-                        </td>
-                        <td align="center" bgcolor="#fff" style="border:1px solid #999;" valign="top">
-                          4590024778
-                        </td>
-                        <td align="center" bgcolor="#fff" style="border:1px solid #999;" valign="top">
-                          10.10
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="3" style="border:1px solid #999;" valign="top">
-                          SRV OBRA CANAL
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="1" style="border:1px solid #999;" valign="top">
-                          Aceptada
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          1.0000
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          SRV
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          80,369.9900
-                        </td>
-                      </tr>
-                      <tr style="border:0px solid #999;">
-                        <td align="center" bgcolor="#fff" colspan="9" style="border:0px solid #999;" valign="top">
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          <b>Total:</b>
-                        </td>
-                        <td align="center" bgcolor="#fff" colspan="2" style="border:1px solid #999;" valign="top">
-                          <b>80,369.9900</b>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            </div>
+          </div>
           <br/>
-		<p>@imagen</p>
-        </div>
+         
+          <div id="thanks"><xsl:value-of select="//@draft_law_title"/> </div>
+
+          <div  class="clearfix">
+            <table class="investigator_project" border="0" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr>
+                  <th class="no" style="width: 50%;">Datos del Investigador</th>
+                  <th class="desc">Datos del Proyecto</th>
+
+                </tr>
+                <tr>
+                  <td> <xsl:value-of select="//@investigador"/></td>
+
+                  <td>  <xsl:value-of select="//@draft_law_number"/></td>
+
+
+
+                </tr>
+                <tr>
+                  <td> <xsl:value-of select="//@cedula"/></td>
+
+                  <td> <xsl:value-of select="//@draf_law_origen"/></td>
+
+
+
+                </tr>
+                <tr>
+                  <td><xsl:value-of select="//@institucion"/></td>
+
+                  <td>
+                    <xsl:value-of select="//@draf_law_fecha_presentacion_txt"/>
+                  </td>
+
+
+                </tr>
+                <tr>
+                  <td>  <xsl:value-of select="//@grupo_vinculado"/></td>
+
+                  <td> <xsl:value-of select="//@draf_law_commission"/></td>
+
+
+
+                </tr>
+                <tr>
+                  <td>
+                    <xsl:value-of select="//@codigo_grupo_vinculado"/>
+                  </td>
+                  <!-- CODIGO DEL GRUPO  -->
+                  <td> <xsl:value-of select="//@draf_law_interested_area"/></td>
+                  <!-- TEMA  -->
+
+
+                </tr>
+              </thead>
+
+
+            </table>
+          </div>
+          <div  class="div-with-bg details clearfix">
+
+            <div id="invoice2">
+              <h1>
+                <strong>
+                  Resumen
+                </strong>
+              </h1>
+
+            </div>
+
+          </div>
+         
+         
+
+          <div id="notices">
+            <xsl:value-of select="//@summary"/>
+          </div>
+
+          
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <div  class="div-with-bg details clearfix">
+
+            <div id="invoice2">
+              <h1>
+                <strong>
+                  Contenido Concepto Técnico
+                </strong>
+              </h1>
+
+            </div>
+
+          </div>
+         
+        
+
+          <div id="notices">
+
+
+            @concept      
+			<b>Bibliografía:</b>
+			 <xsl:value-of select="//@bibliography"/>
+          </div>
+
+
+        </main>
+        <br/>
+        <br/>
       </body>
     </html>
-
   </xsl:template>
 
 </xsl:stylesheet>

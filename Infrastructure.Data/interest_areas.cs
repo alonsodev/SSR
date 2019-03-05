@@ -19,6 +19,7 @@ namespace Infrastructure.Data
         {
             this.draft_laws = new HashSet<draft_laws>();
             this.investigators_interest_areas = new HashSet<investigators_interest_areas>();
+            this.consultations_interest_areas = new HashSet<consultations_interest_areas>();
         }
     
         public int interest_area_id { get; set; }
@@ -32,5 +33,7 @@ namespace Infrastructure.Data
         public virtual ICollection<draft_laws> draft_laws { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<investigators_interest_areas> investigators_interest_areas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<consultations_interest_areas> consultations_interest_areas { get; set; }
     }
 }

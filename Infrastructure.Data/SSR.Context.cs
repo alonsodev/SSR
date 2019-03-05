@@ -59,6 +59,9 @@ namespace Infrastructure.Data
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<merit_ranges> merit_ranges { get; set; }
         public virtual DbSet<notifications> notifications { get; set; }
+        public virtual DbSet<concept_debate_speakers> concept_debate_speakers { get; set; }
         public virtual DbSet<concepts> concepts { get; set; }
+        public virtual DbSet<consultations_interest_areas> consultations_interest_areas { get; set; }
+        public virtual DbSet<consultations> consultations { get; set; }
     }
 }

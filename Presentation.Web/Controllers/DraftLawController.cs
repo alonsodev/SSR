@@ -1,6 +1,7 @@
 ﻿using Business.Logic;
 using CrossCutting.Helper;
 using Domain.Entities;
+using Domain.Entities.Notifications;
 using Presentation.Web.Filters;
 using Presentation.Web.Helpers;
 using System;
@@ -196,7 +197,7 @@ namespace Presentation.Web.Controllers
                                 Dictionary<string, int> interest_areas = oInterestAreaBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.interest_area).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
                                 oDraftLawBL.Import(lista, commisions, interest_areas, AuthorizeUserAttribute.UsuarioLogeado().user_id);
-
+                                NotificacionNuevoProyectoLey(lista);
                             }
 
                         }
@@ -223,6 +224,24 @@ namespace Presentation.Web.Controllers
             else
             {
                 return Json("No files selected.");
+            }
+        }
+        private void NotificacionNuevoProyectoLey(List<DraftLawViewModel> lista) {
+            var request = Request;
+
+            //request.Url.Scheme gives output as https/http 
+            //while request.Url.Authority give us Domain name
+            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
+
+
+            SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
+            foreach (DraftLawViewModel pDraftLawViewModel in lista)
+            {
+                NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
+                oNotificationConceptViewModel.name = "Edison Cuadros";
+                oNotificationConceptViewModel.url_list_draft_law = baseUrl + @"/Investigator/MisProyectosLey";
+                oNotificationConceptViewModel.to = "ecuadros@sbperu.net";
+                oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.draftlaw.new");
             }
         }
         private bool VerificarPonentes(List<DraftLawViewModel> lista, out List<ImportError> oErrores)

@@ -83,7 +83,16 @@
     <Compile Include="concepts_tags.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="concept_debate_speakers.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="configurations.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="consultations.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="consultations_interest_areas.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="debate_speakers.cs">
@@ -151,13 +160,16 @@
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\ConceptStatusLogRepository.cs" />
+    <Compile Include="Repositories\ConceptDebateSpeakerRepository.cs" />
     <Compile Include="Repositories\ConfigurationRepository.cs" />
     <Compile Include="Repositories\DraftLawRepository.cs" />
     <Compile Include="Repositories\AcademicLevelRepository.cs" />
+    <Compile Include="Repositories\ConsultationInterestAreaRepository.cs" />
     <Compile Include="Repositories\InvestigatorInterestAreaRepository.cs" />
     <Compile Include="Repositories\MeritRangeRepository.cs" />
     <Compile Include="Repositories\InvestigatorCommissionRepository.cs" />
     <Compile Include="Repositories\NotificationRepository.cs" />
+    <Compile Include="Repositories\ConsultationRepository.cs" />
     <Compile Include="Repositories\SnieRepository.cs" />
     <Compile Include="Repositories\EducationLevelRepository.cs" />
     <Compile Include="Repositories\KnowledgeAreaRepository.cs" />
