@@ -76,5 +76,8 @@ namespace Domain.Entities
         public List<int> debate_speakers { get; set; }
 
 
+        public int draft_law_status_id { get; set; }
+        
+
     }
 }

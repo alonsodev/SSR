@@ -4,8 +4,8 @@
 
 @{
     ViewBag.HeaderTitleLink = Url.Action("index", "consultation");
-    ViewBag.HeaderTitle = "Consultas";
-    ViewBag.Title = "Crear Consulta";
+    ViewBag.HeaderTitle = "Solicitud de concepto";
+    ViewBag.Title = "Crear solicitud de concepto";
 
     ViewBag.active = "consultations";
 
@@ -18,38 +18,47 @@
             </div>
             @using (Html.BeginForm("Crear", "Consultation", FormMethod.Post, new { id = "form-registrar", title = "Crear Consultation" }))
             {
-                <div class="card-body">
+            <div class="card-body">
 
 
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group has-label">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group has-label">
 
-                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
 
-                    </div>
-                    <div class="form-group has-label">
+                </div>
 
-                        @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
-                        @Html.DropDownList("interest_areas", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { multiple = "multiple", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
-                        <span class="text-danger field-validation-error interest_areas-error"></span>
-                    </div>
-                    <div class="form-group has-label">
+                <div class="form-group has-label">
 
-                        @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "" })
-                        @Html.TextAreaFor(model => model.message, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
-                        
-                    </div>
+                    @Html.LabelFor(model => model.consultation_type_id, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("consultation_type_id", (IEnumerable<SelectListItem>)ViewBag.consultation_types, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.consultation_type_id, "", new { @class = "text-danger" })
+                    
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("interest_areas", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { multiple = "multiple", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error interest_areas-error"></span>
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.message, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+
+                </div>
 
 
 
 
 
-                </div><!-- end content-->
+            </div><!-- end content-->
                 <div class="card-footer text-right">
 
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
@@ -81,6 +90,7 @@
                
                 tokenSeparators: [',']
             });
+            $("#consultation_type_id").select2({});
         });
         $("#btnCancelar").click(function () {
             window.location.href = "/Consultation";

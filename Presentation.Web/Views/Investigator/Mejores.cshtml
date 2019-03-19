@@ -160,7 +160,15 @@
 
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [0,1, 2, 3, 4, 5] },
+                            { 'className': 'text-center', 'targets': [0, 1, 2, 3, 4, 5] },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.institution + '">' + row.institution + '</p>';
+                                },
+                                targets: 3
+                            },
                             {
                                 render: function (data, type, row) {
                                     if (row.avatar && row.avatar != '')

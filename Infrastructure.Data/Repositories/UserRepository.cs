@@ -41,6 +41,20 @@ namespace Infrastructure.Data.Repositories
             return query_select.ToList();
         }
 
+
+      
+        public List<SelectOptionItem> ConsultationTypesSelector()
+        {
+            var lista = this.Context.Set<consultation_types>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.consultation_type_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> EducationLevelsSelector()
         {
             var lista = this.Context.Set<education_levels>();
@@ -110,7 +124,7 @@ namespace Infrastructure.Data.Repositories
             var consulta = lista.Where(a=> a.user_role_id==9).Select(a => new SelectOptionItem
             {
                 Value = a.id.ToString(),
-                Text = a.contact_name,
+                Text = a.user_name,
             }).OrderBy(a => a.Text);
 
             return consulta.ToList();
@@ -291,7 +305,12 @@ namespace Infrastructure.Data.Repositories
                         status_id = a.user_status_id,
                         investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
                         permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
-                        avatar = a.avatar
+                        avatar = a.avatar,
+
+
+                        
+                        role_id = a.user_role_id,
+
 
                     }
                 ).Take(1).FirstOrDefault();
@@ -317,6 +336,7 @@ namespace Infrastructure.Data.Repositories
                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
                        avatar = a.avatar,
                        role_id=a.user_role_id,
+                       first_time=a.user_date_last_login.HasValue?0:1
                    
                    }
                ).Take(1).FirstOrDefault();
@@ -526,10 +546,10 @@ namespace Infrastructure.Data.Repositories
             return query.ToList();
         }
 
-        public List<UserViewModel> ObtenerPorPerfil(int user_role_id)
+        public List<UserViewModel> ObtenerPorPermiso(int permision_id)
         {
             IQueryable<users> queryFilters = Set;
-            var query = queryFilters.Where(a=> a.user_role_id== user_role_id).Select(a => new UserViewModel
+            var query = queryFilters.Where(a=> a.roles.role_permissions.Where(p=> p.id_permission== permision_id).Count()>0).Select(a => new UserViewModel
             {
                 id = a.id,
                 user_name = a.user_name,

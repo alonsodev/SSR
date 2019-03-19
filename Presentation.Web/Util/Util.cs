@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -179,7 +180,7 @@ namespace Presentation.Web.Helpers
         {
 
             DateTime value;
-            string formatDouble = "El campo {0} debe ser una fecha valida";
+            string formatDouble = "El campo {0} debe ser una fecha valida YYYY-MM-DD";
             if (obligatorio)
             {
                 if (String.IsNullOrEmpty(row[column].ToString().Trim()))
@@ -193,8 +194,15 @@ namespace Presentation.Web.Helpers
 
             if (!String.IsNullOrEmpty(row[column].ToString().Trim()))
             {
+                
 
-                if (DateTime.TryParse(row[column].ToString(), out value))
+                
+
+                //the new format
+                string format = "yyyy-MM-dd";
+
+                if (DateTime.TryParseExact(row[column].ToString(), format, CultureInfo.InvariantCulture,
+                       DateTimeStyles.None, out value))
                     return value;
                 else
                 {

@@ -1,8 +1,8 @@
 ﻿
 @{
     ViewBag.HeaderTitleLink = Url.Action("index", "consultation");
-    ViewBag.HeaderTitle = "Consultas";
-    ViewBag.Title = "Lista de Consultas";
+    ViewBag.HeaderTitle = "Solicitud de concepto";
+    ViewBag.Title = "Mis solicitudes de concepto";
 
     ViewBag.active = "consultations";
 
@@ -23,6 +23,7 @@
                             <th>Código</th>
                             <th>Título</th>
                             <th>Áreas de interés</th>
+                            <th>Tipo de solicitud</th>
                             <th>Mensaje</th>
                             <th>Fecha creación</th>
 
@@ -35,6 +36,7 @@
                             <th>Código</th>
                             <th>Título</th>
                             <th>Áreas de interés</th>
+                            <th>Tipo de solicitud</th>
                             <th>Mensaje</th>
                             <th>Fecha creación</th>
 
@@ -85,6 +87,7 @@
 
                     /* Initialize Datatables */
                     datatable = $('#dt-lista').DataTable({
+                        order: [[5, "desc"]],
                         responsive: true,
                         "proccessing": true,
                         "serverSide": true,
@@ -137,12 +140,21 @@
                             { "data": "consultation_id" },
                             { "data": "title" },                        
                             { "data": "interest_areas_str" },
-                            { "data": "message" },
+                            { "data": "consultation_type" },
+                            { "data": "consultation_id" },
                              { "data": "date_created" }
                         ],
 
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [2,3] },
+                            { 'className': 'text-center', 'targets': [2, 3] },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.title + '">' + row.title + '</p>';
+                                },
+                                targets: 1
+                            },
                             {
                                 render: function (data, type, row) {
 
@@ -150,7 +162,7 @@
                                     var actionsHtml = moment(row.date_created).format("DD/MM/YYYY HH:mm");
                                     return actionsHtml;
                                 },
-                                targets: 4
+                                targets: 5
                             },
                             {
                                 render: function (data, type, row) {
@@ -158,7 +170,7 @@
                                         + '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.consultation_id + '" data-toggle="tooltip" title="Ver Mensaje"><i class="now-ui-icons education_paper"></i></a>';
 
                                 },
-                                targets: 3,
+                                targets: 4,
                                 orderable: false
                             }
 
@@ -175,6 +187,7 @@
                         var summary = $('#summary-' + row_id).html();
                         $('#modal-body-summary').html(summary);
                         $("#summary_modal").modal('show');
+                        event.preventDefault();
                     });
 
                     /* Add placeholder attribute to the search input */

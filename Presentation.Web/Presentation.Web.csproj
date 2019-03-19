@@ -238,6 +238,7 @@
     <Content Include="Assets\demo\demo.js" />
     <Content Include="Assets\demo\jquery.sharrre.js" />
     <Content Include="Assets\img\apple-icon.png" />
+    <Content Include="Assets\img\arca_notificacion.png" />
     <Content Include="Assets\img\AU.png" />
     <Content Include="Assets\img\balmain.jpg" />
     <Content Include="Assets\img\bg1.jpg" />
@@ -245,6 +246,8 @@
     <Content Include="Assets\img\bg14.jpg" />
     <Content Include="Assets\img\bg15.jpg" />
     <Content Include="Assets\img\bg16.jpg" />
+    <Content Include="Assets\img\bg16v.jpg" />
+    <Content Include="Assets\img\bg16v1.jpg" />
     <Content Include="Assets\img\bg3.jpg" />
     <Content Include="Assets\img\bg5.jpg" />
     <Content Include="Assets\img\BR.png" />
@@ -544,6 +547,8 @@
     <Content Include="Template\Concept\QRCode\1125.png" />
     <Content Include="Template\Concept\QRCode\1126.png" />
     <Content Include="Template\Concept\style-ce.css" />
+    <Content Include="Template\NuevoUsuarioMailTemplateHtml.xslt" />
+    <Content Include="Template\SolicitudConceptoMailTemplateHtml.xslt" />
     <Content Include="Template\RevisionConceptoMailTemplateHtml.xslt" />
     <Content Include="Template\NewDraftLawMailTemplateHtml.xslt">
       <SubType>Designer</SubType>
@@ -624,6 +629,7 @@
     <Content Include="Views\Consultation\Enviadas.cshtml" />
     <Content Include="Views\Consultation\Ver.cshtml" />
     <Content Include="Template\Concept\SourceSansPro-Regular.ttf" />
+    <Content Include="Views\Concept\VerCalificado.cshtml" />
     <None Include="Views\Permission\Crear.cshtml" />
     <Content Include="Views\User\Crear.cshtml" />
     <Content Include="Views\User\Editar.cshtml" />

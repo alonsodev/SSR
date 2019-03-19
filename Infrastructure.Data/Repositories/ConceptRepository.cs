@@ -15,9 +15,10 @@ namespace Infrastructure.Data.Repositories
             : base(context)
         {
         }
-        public bool ExisteConcepto(int draft_law_id, int investigator_id) {
+        public bool ExisteConcepto(int draft_law_id, int investigator_id)
+        {
             int count = Set.Where(a => a.draft_law_id == draft_law_id && a.investigator_id == investigator_id).Count();
-            return count>0;
+            return count > 0;
 
         }
         public int NumeroPonentes(int concept_id)
@@ -55,7 +56,7 @@ namespace Infrastructure.Data.Repositories
                 speakers = a.draft_laws.debate_speakers.Select(t => t.user_id.ToString()).Distinct().ToList(),
                 user_id_created = a.user_id_created,
                 concept_status_id = a.concept_status_id,
-                hash=a.hash
+                hash = a.hash
             });
 
             return query.Take(1).FirstOrDefault();
@@ -83,8 +84,8 @@ namespace Infrastructure.Data.Repositories
                 draf_law_fecha_presentacion = a.draft_laws.date_presentation,
                 draf_law_interested_area = a.draft_laws.interest_areas.name,
                 draf_law_origen = a.draft_laws.origin,
-                summary = a.summary
-
+                summary = a.summary,
+                tags = a.concepts_tags.Select(b => b.tags.name.ToUpper()).ToList()
             });
 
             return query.Take(1).FirstOrDefault();
@@ -158,10 +159,18 @@ namespace Infrastructure.Data.Repositories
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.concept.ToLower().Contains(srch)));
+
+
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                  || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
+                  s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
+                  || s.concept_id.ToString().ToLower().Contains(srch)));
 
 
                 count_records_filtered = queryFilters.Count();
+
+
             }
 
 
@@ -247,7 +256,13 @@ namespace Infrastructure.Data.Repositories
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.concept.ToLower().Contains(srch)));
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                  || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
+                  s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
+                  || s.concept_id.ToString().ToLower().Contains(srch)));
+
+
 
 
                 count_records_filtered = queryFilters.Count();
@@ -324,7 +339,13 @@ namespace Infrastructure.Data.Repositories
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.concept.ToLower().Contains(srch)));
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
+                     || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                   || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
+                   s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
+                   || s.concept_id.ToString().ToLower().Contains(srch)));
+
+
 
 
                 count_records_filtered = queryFilters.Count();
@@ -371,7 +392,7 @@ namespace Infrastructure.Data.Repositories
 
         public VerifyCertificationViewModel ObtenerVerificacionCertificado(Guid hash)
         {
-           
+
             var query = Set.Where(a => a.hash == hash).Select(a => new VerifyCertificationViewModel
             {
 
@@ -381,10 +402,10 @@ namespace Infrastructure.Data.Repositories
                 cedula = a.investigators.users.doc_nro,
                 institucion = a.investigators.institutions.name,
                 grupo = a.investigators.investigation_groups.name,
-                codigo_grupo = a.investigators.investigation_groups.code,                              
+                codigo_grupo = a.investigators.investigation_groups.code,
                 nro_proyecto = a.draft_laws.draft_law_number.ToString(),
                 titulo_proyecto = a.draft_laws.title,
-                concept_status_id=a.concept_status_id,
+                concept_status_id = a.concept_status_id,
 
             });
 
@@ -423,7 +444,13 @@ namespace Infrastructure.Data.Repositories
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.concept.ToLower().Contains(srch)));
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                  || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
+                  s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
+                  || s.concept_id.ToString().ToLower().Contains(srch)));
+
+
 
 
                 count_records_filtered = queryFilters.Count();
@@ -498,7 +525,13 @@ namespace Infrastructure.Data.Repositories
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.concept.ToLower().Contains(srch)));
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                  || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
+                  s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
+                  || s.concept_id.ToString().ToLower().Contains(srch)));
+
+
 
 
                 count_records_filtered = queryFilters.Count();

@@ -190,7 +190,20 @@ namespace Business.Logic
                                 );
             oUnitOfWork.SaveChanges();
         }
+        public void ActualizarFechaIngreso(int id)
+        {
+            users ousers = new users
+            {
+                id = id,
+                user_date_last_login = DateTime.Now
 
+            };
+            oRepositorio.Update(ousers,
+                                    a => a.id,
+                                    a => a.user_date_last_login
+                                );
+            oUnitOfWork.SaveChanges();
+        }
         public void Agregar(UserViewModel pUserViewModel)
         {
 
@@ -212,11 +225,14 @@ namespace Business.Logic
                 address = pUserViewModel.address,
 
                 date_created = DateTime.Now,
-                user_id_created = pUserViewModel.user_id_created
+                user_id_created = pUserViewModel.user_id_created,
+                user_code_recover=pUserViewModel.user_code_recover
 
             };
+            
             oRepositorio.Add(ousers);
             oUnitOfWork.SaveChanges();
+            pUserViewModel.id = ousers.id;
         }
 
         public int? AgregarInvestigador(InvestigatorViewModel pInvestigatorViewModel)
@@ -419,9 +435,9 @@ namespace Business.Logic
             return oRepositorio.ObtenerPorConcepto(concept_id);
         }
 
-        public List<UserViewModel> ObtenerPorPerfil(int perfil)
+        public List<UserViewModel> ObtenerPorPermiso(int permission_id)
         {
-            return oRepositorio.ObtenerPorPerfil(perfil);
+            return oRepositorio.ObtenerPorPermiso(permission_id);
         }
 
         public InvestigatorViewModel ObtenerInvestigator(int pIntID)

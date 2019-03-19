@@ -13,6 +13,17 @@ namespace CrossCutting.Helper
 {
     public class Helper
     {
+        public static string Substring(string str,int end)
+        {
+            if (String.IsNullOrEmpty(str))
+                return str;
+
+            if (str.Length <= end)
+                return str;
+
+
+            return str.Substring(0, end-1); 
+        }
         public static string ReplaceFirstOccurrence(string Source, string Find, string Replace)
         {
             int Place = Source.IndexOf(Find);

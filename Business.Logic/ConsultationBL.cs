@@ -16,7 +16,7 @@ namespace Business.Logic
         private static ConsultationInterestAreaRepository oRepositorioConsultationInterestArea;
 
         private static InvestigatorRepository oRepositorioInvestigator;
-        
+
         private static UnitOfWork oUnitOfWork;
 
         public ConsultationBL()
@@ -27,15 +27,15 @@ namespace Business.Logic
             oRepositorioInvestigator = oUnitOfWork.InvestigatorRepository;
         }
 
-       
-       
+
+
         public ConsultationViewModel Obtener(int pIntID)
         {
 
             return oRepositorio.Obtener(pIntID);
         }
 
-        public GridModel<ConsultationViewModel> ObtenerLista(DataTableAjaxPostModel filters,int user_id)
+        public GridModel<ConsultationViewModel> ObtenerLista(DataTableAjaxPostModel filters, int user_id)
         {
             return oRepositorio.ObtenerLista(filters, user_id);
         }
@@ -43,7 +43,7 @@ namespace Business.Logic
 
         public GridModel<ConsultationViewModel> ObtenerListaEnviados(DataTableAjaxPostModel filters)
         {
-            return oRepositorio.ObtenerListaEnviados(filters );
+            return oRepositorio.ObtenerListaEnviados(filters);
         }
 
         public GridModel<InvestigatorViewModel> ObtenerInvestigadores(DataTableAjaxPostModel filters, List<int> interest_areas)
@@ -62,10 +62,10 @@ namespace Business.Logic
                 consultation_id = 0,
                 title = pConsultationViewModel.title,
                 message = pConsultationViewModel.message,
-                attended= false,
-                
-                date_created =DateTime.Now,
-                user_id_created= pConsultationViewModel.user_id_created
+                consultation_type_id = pConsultationViewModel.consultation_type_id,
+
+                date_created = DateTime.Now,
+                user_id_created = pConsultationViewModel.user_id_created
 
             };
             oRepositorio.Add(oconsultations);
@@ -84,6 +84,7 @@ namespace Business.Logic
             }
 
             oUnitOfWork.SaveChanges();
+            pConsultationViewModel.consultation_id = oconsultations.consultation_id;
         }
 
 

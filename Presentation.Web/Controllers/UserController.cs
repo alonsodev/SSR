@@ -1,9 +1,11 @@
 ﻿using Business.Logic;
 using CrossCutting.Helper;
 using Domain.Entities;
+using Domain.Entities.Notifications;
 using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -61,10 +63,22 @@ namespace Presentation.Web.Controllers
             pUserViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             
             pUserViewModel.user_pass = Helper.Encripta("1234Abcd");
+            string user_code = Guid.NewGuid().ToString();
+            pUserViewModel.user_code_recover= user_code;
+            UserBL oUserBL = new UserBL();
 
-            UserBL oBL = new UserBL();
+            oUserBL.Agregar(pUserViewModel);
 
-            oBL.Agregar(pUserViewModel);
+            SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
+
+          
+            
+            NotificationGeneralAccountViewModel oNotification = new NotificationGeneralAccountViewModel();
+
+            oNotification.url_recuperar_cuenta = ConfigurationManager.AppSettings["site.url"] + "/Account/CambiarPassword/?code=" + user_code;
+            oNotification.name = pUserViewModel.contact_name;
+            oNotification.to = pUserViewModel.user_email;
+            oSendEmailNotificationBL.EnviarNotificacionNuevaCuenta(oNotification);
 
             return RedirectToAction("Index");
 
@@ -129,7 +143,9 @@ namespace Presentation.Web.Controllers
                 }
             }
             oUserBL.ModificarMicuenta(pUserViewModel);
-            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = oUserBL.GetCurrentUser(pUserViewModel.id);
+            CurrentUserViewModel result = oUserBL.GetCurrentUser(pUserViewModel.id);
+            result.name_abbre = Helper.Substring(result.name, 20);
+            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = result;
 
             return Redirect("/User/MiCuenta/");
             

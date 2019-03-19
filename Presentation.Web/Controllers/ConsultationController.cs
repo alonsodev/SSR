@@ -3,9 +3,11 @@
 using Business.Logic;
 using CrossCutting.Helper;
 using Domain.Entities;
+using Domain.Entities.Notifications;
 using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -37,15 +39,19 @@ namespace Presentation.Web.Controllers
             List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
             List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", false, "", "");
             ViewBag.interest_areas = interest_areas;
+
+            List<SelectOptionItem> oConsultationTypes = oSelectorBL.ConsultationTypesSelector();
+            List<SelectListItem> consultation_types = Helper.ConstruirDropDownList<SelectOptionItem>(oConsultationTypes, "Value", "Text", "", true, "", "");
+            ViewBag.consultation_types = consultation_types;
             return View();
         }
 
-
+       
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_consultation })]
-        public ActionResult Crear([Bind(Include = "consultation_id,title,message,interest_areas")] ConsultationViewModel pConsultationViewModel)
+        public ActionResult Crear([Bind(Include = "consultation_id,title,message,interest_areas,consultation_type_id")] ConsultationViewModel pConsultationViewModel)
         {
             // TODO: Add insert logic here
 
@@ -58,11 +64,47 @@ namespace Presentation.Web.Controllers
 
             ConsultationBL oBL = new ConsultationBL();
             oBL.Agregar(pConsultationViewModel);
+
+            NotificacionNuevaSolicitud(pConsultationViewModel);
             return RedirectToAction("Index");
 
         }
 
+        private void NotificacionNuevaSolicitud(ConsultationViewModel pConsultationViewModel)
+        {
 
+
+
+            var base_url = ConfigurationManager.AppSettings["site.url"];
+
+            UserBL userBL = new UserBL();
+
+            List<UserViewModel> evaluadores = userBL.ObtenerPorPermiso((int)AuthorizeUserAttribute.Permission.view_consultation);// 12 = perfil evaluador
+
+            foreach (UserViewModel evaluador in evaluadores)
+            {
+                SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
+
+                NotificationGeneralAccountViewModel oNotificationConceptViewModel = new NotificationGeneralAccountViewModel();
+                oNotificationConceptViewModel.name = evaluador.user_name;
+                oNotificationConceptViewModel.url_solicitud_concepto = base_url + @"/Consultation/Ver/" + pConsultationViewModel.consultation_id;
+                oNotificationConceptViewModel.to = evaluador.user_email;
+                oSendEmailNotificationBL.EnviarNotificacionSolicitudConcepto(oNotificationConceptViewModel);
+
+
+                NotificationBL oNotificationBL = new NotificationBL();
+                NotificationViewModel pNotificationViewModel = new NotificationViewModel();
+                pNotificationViewModel.user_id = evaluador.id;
+                pNotificationViewModel.message = "Hay una nueva solicitud de concepto con número '" + pConsultationViewModel.consultation_id + "'";
+                pNotificationViewModel.url = @"/Consultation/Ver/" + pConsultationViewModel.consultation_id;
+
+                oNotificationBL.Agregar(pNotificationViewModel);
+            }
+
+
+
+
+        }
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.view_consultation })]
         public ActionResult Ver(string id)
@@ -74,27 +116,15 @@ namespace Presentation.Web.Controllers
 
             SelectorBL oSelectorBL = new SelectorBL();
             pConsultationViewModel.interest_areasMultiSelectList = new MultiSelectList(oSelectorBL.InterestAreasSelector(), "Value", "Text");
+
+
+            List<SelectOptionItem> oConsultationTypes = oSelectorBL.ConsultationTypesSelector();
+            List<SelectListItem> consultation_types = Helper.ConstruirDropDownList<SelectOptionItem>(oConsultationTypes, "Value", "Text", "", false, "", "");
+            ViewBag.consultation_types = consultation_types;
             return View(pConsultationViewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //[AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_consultations })]
-        public ActionResult Editar([Bind(Include = "consultation_id,name")] ConsultationViewModel pConsultationViewModel)
-        {
-            // TODO: Add insert logic here
-
-            if (pConsultationViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            ConsultationBL oConsultationBL = new ConsultationBL();
-            pConsultationViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
-            // oConsultationBL.Modificar(pConsultationViewModel);
-            return RedirectToAction("Index");
-
-        }
-
+       
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_consultation_realized })]
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
@@ -114,7 +144,7 @@ namespace Presentation.Web.Controllers
                     consultation_id = a.consultation_id,
                     title = a.title,
                     message = a.message,
-                    attended = a.attended,
+                    consultation_type=a.consultation_type,
                     date_created = a.date_created,
                     interest_areas_str = string.Join(", ", a.interest_areas_list),
                 }).ToList()
@@ -140,8 +170,9 @@ namespace Presentation.Web.Controllers
                     consultation_id = a.consultation_id,
                     title = a.title,
                     message = a.message,
-                    attended = a.attended,
+                    consultation_type = a.consultation_type,
                     date_created = a.date_created,
+                    debate_speaker=a.debate_speaker,
                     interest_areas_str = string.Join(", ", a.interest_areas_list),
                 }).ToList()
             });

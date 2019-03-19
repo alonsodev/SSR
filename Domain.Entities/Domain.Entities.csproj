@@ -76,6 +76,7 @@
     <Compile Include="CambiarPasswordViewModel.cs" />
     <Compile Include="CertificationHtmlViewModel.cs" />
     <Compile Include="ConceptHtmlViewModel.cs" />
+    <Compile Include="DraftLawStatusViewModel.cs" />
     <Compile Include="MeritRangeViewModel.cs" />
     <Compile Include="ConfigurationViewModel.cs" />
     <Compile Include="Notifications\NotificacionConfig.cs" />

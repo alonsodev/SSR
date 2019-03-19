@@ -19,46 +19,49 @@
             @using (Html.BeginForm("Editar", "Concept", FormMethod.Post, new { id = "form-registro", title = "Editar Concepto" }))
             {
 
-            <div class="card-body">
+                <div class="card-body">
 
 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.concept_id)
-                @Html.HiddenFor(model => model.draft_law_id)
-                @Html.HiddenFor(model => model.investigator_id)
-                @Html.HiddenFor(model => model.reject)
-                @Html.HiddenFor(model => model.bad_languages)
-                @Html.HiddenFor(model => model.concept_status_id)
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.concept_id)
+                    @Html.HiddenFor(model => model.draft_law_id)
+                    @Html.HiddenFor(model => model.investigator_id)
+                    @Html.HiddenFor(model => model.reject)
+                    @Html.HiddenFor(model => model.bad_languages)
+                    @Html.HiddenFor(model => model.concept_status_id)
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="box box-blue box-example-movie">
-                            <div class="box-header"> Calificación</div>
-                            <div class="box-body">
-                                @Html.DropDownListFor(model => model.qualification, (IEnumerable<SelectListItem>)ViewBag.qualifications, new { @class = "form-control" })
-                                <br />
-                                @Html.ValidationMessageFor(model => model.qualification, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="box box-blue box-example-movie">
+                                <div class="box-header"> Calificación</div>
+                                <div class="box-body">
+                                    @Html.ValidationMessageFor(model => model.qualification, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.qualification, (IEnumerable<SelectListItem>)ViewBag.qualifications, new { @class = "form-control" })
+                                    <div class="card-footer text-right">
+                                        <button id="btnGuardar2" type="button" class="btn btn-primary">Calificar</button>
+                                    </div>
+                                    <br />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
 
-                        <embed onload="javascript: alert(1);" src="/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#toolbar=1&navpanes=1&scrollbar=1&zoom=100" type="application/pdf" width="100%" height="600px" />
+                            <embed onload="javascript: alert(1);" src="/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#toolbar=1&navpanes=1&scrollbar=1&zoom=100" type="application/pdf" width="100%" height="600px" />
+                        </div>
                     </div>
+
+
+                </div><!-- end content-->
+                <div class="card-footer text-right">
+
+
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    <button id="btnGuardar" type="button" class="btn btn-primary">Calificar</button>
                 </div>
-
-
-            </div><!-- end content-->
-            <div class="card-footer text-right">
-
-
-                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                <button id="btnGuardar" type="button" class="btn btn-primary">Calificar</button>
-            </div>
             }
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -68,9 +71,9 @@
 
 @section Scripts {
 
-  
+
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Assets/css/fontawesome-stars.css">   
+    <link rel="stylesheet" href="/Assets/css/fontawesome-stars.css">
     <script src="/Scripts/jquery.barrating.min.js"></script>
     <script type="text/javascript">
 
@@ -80,8 +83,15 @@
         }
         $(document).ready(function () {
             debugger;
+
+
+            $('#qualification').barrating({
+                theme: 'fontawesome-stars'
+            });
+
+
             var concept_status_id = $('#concept_status_id').val();
-            if (!(concept_status_id == 2 || concept_status_id == 4 || concept_status_id == 5 )) {
+            if (!(concept_status_id == 2 || concept_status_id == 4 || concept_status_id == 5)) {
                 $(".card-footer :button").attr("disabled", true);
                 swal({
                     title: 'Concepto Calificado!',
@@ -92,31 +102,9 @@
                     onClose: RedirectConceptPorCalificar
                 }).then(function () {
                     RedirectConceptPorCalificar();
-                    }).catch(swal.noop);
-                return;
+                }).catch(swal.noop);
+
             }
-
-
-            $('#qualification').barrating({
-                theme: 'fontawesome-stars'
-            });
-            // Initialize Editor
-            $('.textarea-editor').summernote({
-                toolbar: [],
-                lang: 'es-ES',
-                height: 400, // set editor height
-                minHeight: null, // set minimum height of editor
-                maxHeight: null, // set maximum height of editor
-                focus: false // set focus to editable area after initializing summernote
-            });
-            $('.textarea-editor').summernote('disable');
-            //setTimeout(function () { $('div .note-editable').focus(); }, 5000);
-            $("#tags").select2({
-                tags: true,
-                tokenSeparators: [',']
-            });
-            $("#commission_id").select2();
-            $("#reason_reject_id").select2();
 
 
         });
@@ -125,8 +113,8 @@
             window.location.href = "/Concept";
         });
 
-        $("#btnGuardar").click(function () {
-          
+        $("#btnGuardar,#btnGuardar2").click(function () {
+
             $("#qualification").valid()
             if ($("#form-registro").valid()) {
                  $.ajax(
@@ -142,9 +130,10 @@
                         text: 'El concepto ha sido calificado con éxito.',
                         type: 'success',
                         confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
+                        buttonsStyling: false,
+                        onClose: RedirectConceptPorCalificar
                     }).then(function () {
-                        window.location.href = "/Concept/PorCalificar";
+                        RedirectConceptPorCalificar();
 
 
                         }).catch(swal.noop);;

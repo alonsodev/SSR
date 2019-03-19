@@ -28,6 +28,12 @@ namespace Business.Logic
             return oRepositorio.ProgramsSelector();
         }
 
+        public List<SelectOptionItem> ConsultationTypesSelector()
+        {
+            return oRepositorio.ConsultationTypesSelector();
+        }
+
+       
 
         public List<SelectOptionItem> EducationLevelsSelector()
         {

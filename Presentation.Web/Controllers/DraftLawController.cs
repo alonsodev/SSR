@@ -192,11 +192,13 @@ namespace Presentation.Web.Controllers
                                 DraftLawBL oDraftLawBL = new DraftLawBL();
                                 CommissionBL oCommissionBL = new CommissionBL();
                                 InterestAreaBL oInterestAreaBL = new InterestAreaBL();
-
+                                DraftLawStatusBL oDraftLawStatusBL = new DraftLawStatusBL();
                                 Dictionary<string, int> commisions = oCommissionBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.commission).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
                                 Dictionary<string, int> interest_areas = oInterestAreaBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.interest_area).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
-                                oDraftLawBL.Import(lista, commisions, interest_areas, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                                Dictionary<string, DraftLawStatusViewModel> draftlaw_status = oDraftLawStatusBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.status).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
+                                oDraftLawBL.Import(lista, commisions, interest_areas, draftlaw_status, AuthorizeUserAttribute.UsuarioLogeado().user_id);
                                 NotificacionNuevoProyectoLey(lista);
                             }
 

@@ -51,6 +51,14 @@ namespace Presentation.Web.Controllers
             ViewBag.merit_ranges = oMeritRange;
             ConceptBL oConceptBL = new ConceptBL();
             MyHistoryViewModel oMyHistoryViewModel = oConceptBL.ObtenerMiHistorial(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
+
+            if (oMyHistoryViewModel == null || oMyHistoryViewModel.my_points == null) {
+                oMyHistoryViewModel = new MyHistoryViewModel();
+
+                oMyHistoryViewModel.my_points = 0;
+                oMyHistoryViewModel.qualified_concepts = 0;
+
+            }
             ViewBag.my_points = oMyHistoryViewModel.my_points;
             return View(oMyHistoryViewModel);
         }

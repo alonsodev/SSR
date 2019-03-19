@@ -23,12 +23,13 @@ namespace Infrastructure.Data
         public int consultation_id { get; set; }
         public string title { get; set; }
         public string message { get; set; }
-        public Nullable<bool> attended { get; set; }
+        public Nullable<int> consultation_type_id { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
         public Nullable<System.DateTime> date_modified { get; set; }
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
+        public virtual consultation_types consultation_types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<consultations_interest_areas> consultations_interest_areas { get; set; }
         public virtual users users { get; set; }

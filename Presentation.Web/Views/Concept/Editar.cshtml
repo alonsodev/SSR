@@ -16,94 +16,97 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Editar", "Concept", FormMethod.Post, new { id = "form-registro", title = "Editar Concepto" }))
+            
+            @using (Ajax.BeginForm("Editar", "Concept", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Showmessage" }, new { @id = "form-registro" }))
             {
-            <div class="card-body">
+                <div class="card-body">
 
 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.concept_id)
-                @Html.HiddenFor(model => model.draft_law_id)
-                @Html.HiddenFor(model => model.investigator_id)
-                @Html.HiddenFor(model => model.bad_languages)
-                @Html.HiddenFor(model => model.concept_status_id)
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.concept_id)
+                    @Html.HiddenFor(model => model.draft_law_id)
+                    @Html.HiddenFor(model => model.investigator_id)
+                    @Html.HiddenFor(model => model.bad_languages)
+                    @Html.HiddenFor(model => model.concept_status_id)
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
-                    <div class="col-sm-4">
+                        <div class="col-sm-4">
 
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                            @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
+
+                            </div>
 
                         </div>
 
-                    </div>
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
 
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
+                        <div class="col-sm-4">
 
-                    <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
+                            </div>
 
-                        <div class="form-group">
-                            @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
-                            @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
                         </div>
+                    </div>
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error name-error"></span>
+                    </div>
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error name-error"></span>
+                    </div>
+                    <div class="form-group has-label">
+
+
+                        @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
+
+                        @Html.ListBoxFor(model => model.tags, Model.tagsMultiSelectList, new { size = 8, @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error tags-error"></span>
+                    </div>
+
+
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
+
+                        @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor" })
+                        @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error concept-error"></span>
+                    </div>
+
+
+
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
 
                     </div>
-                </div>
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
-                </div>
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
-                </div>
-                <div class="form-group has-label">
 
 
-                    @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
-
-                    @Html.ListBoxFor(model => model.tags, Model.tagsMultiSelectList, new { size = 8, @class = "form-control" })
-
-                    @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
-
-                </div>
-
-
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
-
-                    @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor" })
-                    @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
-                </div>
-
-
-
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
-
-                </div>
-
-
-            </div><!-- end content-->
+                </div><!-- end content-->
                 <div class="card-footer text-right">
 
 
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    
+
+                    <input type='button' id="btnCrear" class='btn btn-finish btn-fill btn-primary btn-wd' name='btnCrear' value='Actualizar' />
                 </div>
             }
         </div><!--  end card  -->
@@ -155,6 +158,59 @@
     <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <script type="text/javascript">
+        function ValidarTags() {
+            $('.tags-error').html('');
+            var tags = $('#tags').val();
+            if (tags && tags.length > 0)
+                return true;
+            $('.tags-error').html('Las Palabras Claves son obligatorios.');
+            return false;
+        }
+        function ValidarConcept() {
+            $('.concept-error').html('');
+            var concept = ConvertirHtmlToText($('#concept').val());
+            if (concept && concept.trim() != '')
+                return true;
+            $('.concept-error').html('El Concepto es obligatorio.');
+            return false;
+        }
+
+        var concept_id = 0;
+        function RedirectVerConcept() {
+            window.location.href = "/Concept/Ver/" + concept_id;
+        }
+        function Showmessage(data) {
+            debugger;
+            console.log(data);
+            concept_id = data.concept_id;
+            if (data.status == 1) {
+                swal({
+                    title: 'Actualizado!',
+                    html: 'El concepto se ha actualizado con éxito.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectVerConcept,
+                }).then(function () {
+                    RedirectVerConcept();
+                }, function (dismiss) { // dismiss can be 'cancel', 'overlay',
+                    // 'close', and 'timer'
+                    RedirectVerConcept();
+
+
+                });
+            }
+            else {
+                swal({
+                    title: 'Error!',
+                    html: data.message_error,
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+            }
+
+        }
          function MostrarRechazo(concept_id) {
 
              $.ajax(
@@ -287,14 +343,13 @@
             window.location.href = "/Concept";
         });
 
-        $('#form-registro').on('submit', function (e) { //use on if jQuery 1.7+
+        $("#btnCrear").click(function () {
             //prevent form from submitting
+            debugger;
 
-            e.preventDefault();
-            var form = this;
+            if (ValidarConcept() && ValidarTags() && $("#form-registro").valid()) {
 
-            if ($("#form-registro").valid()) {
-
+           
                 var message = ValidarPalabrasNoAdecuadas($('#summary').val());
 
                 if (message != "") {
@@ -308,6 +363,20 @@
 
                     return false;
                 }
+                message = ValidarPalabrasNoAdecuadas($('#bibliography').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">La bibliografía contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+
                 message = ValidarPalabrasNoAdecuadas($('#concept').val());
 
                 if (message != "") {
@@ -321,9 +390,21 @@
 
                     return false;
                 }
+                debugger;
+                message = ValidarPalabrasNoAdecuadas($('#tags').val().join(' '));
 
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
 
-                form.submit();
+                    return false;
+                }
+                $('#form-registro').trigger('submit');
 
 
 

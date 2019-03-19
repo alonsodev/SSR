@@ -34,10 +34,31 @@ namespace Business.Logic
             }
             return string.Empty;
         }
+
+        public void EnviarNotificacionSolicitudConcepto(NotificationGeneralAccountViewModel oNotification)
+        {
+            NotificacionConfig oNotificacionConfig = new NotificacionConfig("notificacion.solicitud.concepto");
+
+            string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
+
+            EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null);
+        }
+
+
         public void EnviarNotificacionRecuperarCuenta(NotificationGeneralAccountViewModel oNotification)
         {
             NotificacionConfig oNotificacionConfig = new NotificacionConfig("notificacion.recuperar.cuenta");
           
+            string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
+
+            EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null);
+        }
+
+
+        public void EnviarNotificacionNuevaCuenta(NotificationGeneralAccountViewModel oNotification)
+        {
+            NotificacionConfig oNotificacionConfig = new NotificacionConfig("notificacion.nueva.cuenta");
+
             string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
 
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null);

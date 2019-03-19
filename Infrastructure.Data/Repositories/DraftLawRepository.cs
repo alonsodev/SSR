@@ -41,6 +41,24 @@ namespace Infrastructure.Data.Repositories
 
             return query.Take(1).FirstOrDefault();
         }
+
+        public DraftLawViewModel ObtenerPorNroProyectoMigrar(int draft_law_number, int draft_law_status_id)
+        {
+            var query = Set.Where(a => a.draft_law_number == draft_law_number && a.status_id== draft_law_status_id).Select(a => new DraftLawViewModel
+            {
+
+                draft_law_id = a.draft_law_id,
+                draft_law_number = a.draft_law_number,
+
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
         public DraftLawViewModel Obtener(int draft_law_id)
         {
             var query = Set.Where(a => a.draft_law_id == draft_law_id).Select(a => new DraftLawViewModel
@@ -55,7 +73,7 @@ namespace Infrastructure.Data.Repositories
                 commission_id = a.commission_id,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
-                status = a.status,
+                status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,
                 initiative = a.initiative,
@@ -103,7 +121,7 @@ namespace Infrastructure.Data.Repositories
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.title.ToLower().Contains(srch) || s.author.ToLower().Contains(srch) ||
                     s.origin.ToLower().Contains(srch) || s.commissions.name.ToLower().Contains(srch) || s.interest_areas.name.ToLower().Contains(srch) ||
-                    s.status.ToLower().Contains(srch)));
+                    s.draft_laws_status.name.ToLower().Contains(srch) || s.draft_law_number.ToString().ToLower().Contains(srch)));
 
 
                 count_records_filtered = queryFilters.Count();
@@ -122,7 +140,7 @@ namespace Infrastructure.Data.Repositories
                 commission = a.commissions.name,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
-                status = a.status,
+                status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,
                 interest_area = a.interest_areas.name,
@@ -178,7 +196,7 @@ namespace Infrastructure.Data.Repositories
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.title.ToLower().Contains(srch) || s.author.ToLower().Contains(srch) ||
                     s.origin.ToLower().Contains(srch) || s.commissions.name.ToLower().Contains(srch) || s.interest_areas.name.ToLower().Contains(srch) || 
-                    s.status.ToLower().Contains(srch)));
+                    s.draft_laws_status.name.ToLower().Contains(srch)));
 
 
                 count_records_filtered = queryFilters.Count();
@@ -197,7 +215,7 @@ namespace Infrastructure.Data.Repositories
                 commission=a.commissions.name,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
-                status = a.status,
+                status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,
                 interest_area=a.interest_areas.name,

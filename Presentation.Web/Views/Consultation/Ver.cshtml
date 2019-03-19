@@ -4,8 +4,8 @@
 
 @{
     ViewBag.HeaderTitleLink = Url.Action("index", "consultation");
-    ViewBag.HeaderTitle = "Consultas";
-    ViewBag.Title = "Ver Consulta";
+    ViewBag.HeaderTitle = "solicitud de concepto";
+    ViewBag.Title = "Ver solicitud de concepto";
 
     ViewBag.active = "consultations";
 
@@ -30,6 +30,13 @@
                 </div>
                 <div class="form-group has-label">
 
+                    @Html.LabelFor(model => model.consultation_type_id, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("consultation_type_id", (IEnumerable<SelectListItem>)ViewBag.consultation_types, new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.consultation_type_id, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group has-label">
+
                     @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
 
 
@@ -38,6 +45,14 @@
 
                     @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
                     <span class="text-danger field-validation-error interest_areas-error"></span>
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.debate_speaker, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.debate_speaker, new { htmlAttributes = new { @class = "form-control", maxlength = "1000", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.debate_speaker, "", new { @class = "text-danger" })
+
                 </div>
                 <div class="form-group has-label">
 
@@ -110,7 +125,7 @@
 
                 tokenSeparators: [',']
             });
-
+            $("#consultation_type_id").select2({});
             $("#btnCancelar").click(function () {
                 window.location.href = "/Consultation/Enviadas";
             });

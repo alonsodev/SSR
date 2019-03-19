@@ -88,21 +88,16 @@ namespace Presentation.Web.Controllers
             oCertification.year = today.Year;
             oCertification.day = today.Day;
 
-            oCertification.day_name= oCertification.day.ToWords();
-            oCertification.year_name = (oCertification.year -2000).ToWords();
+            oCertification.day_name = oCertification.day.ToWords();
+            oCertification.year_name = (oCertification.year - 2000).ToWords();
 
 
-            string[] meses = new string[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo","Junio", "Julio","Agosto","Septiembre", "Octubre","Noviembre","Diciembre" };
+            string[] meses = new string[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 
-            oCertification.month_name = meses[today.Month-1];
+            oCertification.month_name = meses[today.Month - 1];
 
-            var request = Request;
 
-            //request.Url.Scheme gives output as https/http 
-            //while request.Url.Authority give us Domain name
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
-
-            oCertification.base_url = baseUrl;
+            oCertification.base_url = ConfigurationManager.AppSettings["site.url"];
 
             GenerarCertificactionPdf(oCertification);
 
@@ -161,7 +156,7 @@ namespace Presentation.Web.Controllers
             oConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
 
 
-            oConceptViewModel.existe_concepto= oConceptBL.ExisteConcepto(oDraftLawViewModel.draft_law_id, AuthorizeUserAttribute.UsuarioLogeado().investigator_id)? 1: 0;
+            oConceptViewModel.existe_concepto = oConceptBL.ExisteConcepto(oDraftLawViewModel.draft_law_id, AuthorizeUserAttribute.UsuarioLogeado().investigator_id) ? 1 : 0;
 
             SelectorBL oSelectorBL = new SelectorBL();
             List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
@@ -210,14 +205,10 @@ namespace Presentation.Web.Controllers
             oConcept.fecha_elaboracion_txt = oConcept.fecha_elaboracion.Value.ToString("dd/MM/yyyy");
             oConcept.pdf_path = pConceptViewModel.pdf_path;
             oConcept.draf_law_fecha_presentacion_txt = oConcept.draf_law_fecha_presentacion.Value.ToString("dd/MM/yyyy");
+            oConcept.tag_names = String.Join(", ", oConcept.tags);
 
-            var request = Request;
 
-            //request.Url.Scheme gives output as https/http 
-            //while request.Url.Authority give us Domain name
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
-
-            oConcept.base_url = baseUrl;
+            oConcept.base_url = ConfigurationManager.AppSettings["site.url"];
 
 
             /* HostingEnvironment.QueueBackgroundWorkItem(
@@ -240,8 +231,8 @@ namespace Presentation.Web.Controllers
         private void NotificacionRechazadoConcepto(ConceptViewModel pConceptViewModel)
         {
 
-            var request = Request;
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
+
+            var base_url = ConfigurationManager.AppSettings["site.url"];
 
             UserBL userBL = new UserBL();
 
@@ -256,7 +247,7 @@ namespace Presentation.Web.Controllers
             NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
 
             oNotificationConceptViewModel.name = investigador.user_name;
-            oNotificationConceptViewModel.url_edit_concept = baseUrl + @"/Concept/Editar/" + pConceptViewModel.concept_id;
+            oNotificationConceptViewModel.url_edit_concept = base_url + @"/Concept/Editar/" + pConceptViewModel.concept_id;
             oNotificationConceptViewModel.to = investigador.user_email;
             oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.rechazado");
 
@@ -273,11 +264,8 @@ namespace Presentation.Web.Controllers
 
         private void NotificacionAprobadoConcepto(ConceptViewModel pConceptViewModel)
         {
-            var request = Request;
 
-            //request.Url.Scheme gives output as https/http 
-            //while request.Url.Authority give us Domain name
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
+            var base_url = ConfigurationManager.AppSettings["site.url"];
             UserBL userBL = new UserBL();
 
             UserViewModel investigador = userBL.ObtenerUser(pConceptViewModel.user_id_created.Value);
@@ -285,7 +273,7 @@ namespace Presentation.Web.Controllers
 
             NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
             oNotificationConceptViewModel.name = investigador.user_name;
-            oNotificationConceptViewModel.url_view_concept = baseUrl + @"/Concept";
+            oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept";
             oNotificationConceptViewModel.to = investigador.user_email;
             oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.aprobado");
 
@@ -301,11 +289,8 @@ namespace Presentation.Web.Controllers
 
         private void NotificacionPorCalificarConcepto(ConceptViewModel pConceptViewModel)
         {
-            var request = Request;
 
-            //request.Url.Scheme gives output as https/http 
-            //while request.Url.Authority give us Domain name
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
+            var base_url = ConfigurationManager.AppSettings["site.url"];
 
             UserBL userBL = new UserBL();
 
@@ -317,7 +302,7 @@ namespace Presentation.Web.Controllers
 
                 NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
                 oNotificationConceptViewModel.name = ponente.user_name;
-                oNotificationConceptViewModel.url_calificar_concept = baseUrl + @"/Concept/Calificar/" + pConceptViewModel.concept_id;
+                oNotificationConceptViewModel.url_calificar_concept = base_url + @"/Concept/Calificar/" + pConceptViewModel.concept_id;
                 oNotificationConceptViewModel.to = ponente.user_email;
                 oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificar");
 
@@ -333,18 +318,15 @@ namespace Presentation.Web.Controllers
 
         private void NotificacionCalificadoConcepto(ConceptViewModel pConceptViewModel)
         {
-            var request = Request;
 
-            //request.Url.Scheme gives output as https/http 
-            //while request.Url.Authority give us Domain name
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
+            var base_url = ConfigurationManager.AppSettings["site.url"];
             UserBL userBL = new UserBL();
             UserViewModel investigador = userBL.ObtenerUser(pConceptViewModel.user_id_created.Value);
             SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
             NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
             oNotificationConceptViewModel.name = investigador.user_name;
-            oNotificationConceptViewModel.url_view_concept = baseUrl + @"/Concept";
+            oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept";
             oNotificationConceptViewModel.to = investigador.user_email;
             oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificado");
 
@@ -361,12 +343,12 @@ namespace Presentation.Web.Controllers
         {
 
 
-            var request = Request;
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
+
+            var base_url = ConfigurationManager.AppSettings["site.url"];
 
             UserBL userBL = new UserBL();
 
-            List<UserViewModel> evaluadores = userBL.ObtenerPorPerfil(12);// 12 = perfil evaluador
+            List<UserViewModel> evaluadores = userBL.ObtenerPorPermiso((int)AuthorizeUserAttribute.Permission.evaluate_concept);// 12 = perfil evaluador
 
             foreach (UserViewModel evaluador in evaluadores)
             {
@@ -374,7 +356,7 @@ namespace Presentation.Web.Controllers
 
                 NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
                 oNotificationConceptViewModel.name = evaluador.user_name;
-                oNotificationConceptViewModel.url_view_concept = baseUrl + @"/Concept/Evaluar/" + pConceptViewModel.concept_id;
+                oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept/Evaluar/" + pConceptViewModel.concept_id;
                 oNotificationConceptViewModel.to = evaluador.user_email;
                 oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.eval");
 
@@ -428,9 +410,9 @@ namespace Presentation.Web.Controllers
             //converter.Options.WebPageHeight = 950;
             converter.Options.AutoFitHeight = HtmlToPdfPageFitMode.AutoFit;
 
-            
-            
-             var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+
+
+            var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
 
             var url_Verificar_certificacion = oCertification.base_url + "/Concept/VerificarCertificacion/" + oCertification.hash.ToString();
             var qrCode = qrEncoder.Encode(url_Verificar_certificacion);
@@ -442,10 +424,11 @@ namespace Presentation.Web.Controllers
                 renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
             oCertification.qr_url = qr_url;
 
-            
+            oCertification.base_url = ConfigurationManager.AppSettings["site.url"];
             string html = ConceptBL.ObtenerHtmlCertification(oCertification, ConfigurationManager.AppSettings["certification.html.xslPath"]);
+            html = html.Replace("@url_site", oCertification.base_url);
 
-        
+
 
             SelectPdf.PdfDocument doc = converter.ConvertHtmlString(html, oCertification.base_url + @"/Template/Concept/");
             doc.Save(oCertification.pdf_path);
@@ -524,7 +507,7 @@ namespace Presentation.Web.Controllers
             footer_content = footer_content.Replace("@qr_url", qr_url);
             footer_content = footer_content.Replace("@concep_id", oConcept.concept_id.ToString());
 
-            PdfHtmlSection footerHtml = new PdfHtmlSection(footer_content, oConcept.base_url + @"/Template/Concept/");
+            PdfHtmlSection footerHtml = new PdfHtmlSection(footerUrl);
             //footerHtml.AutoFitHeight = HtmlToPdfPageFitMode.AutoFit;
             footerHtml.WebPageWidth = 850;
             converter.Footer.Add(footerHtml);
@@ -552,60 +535,7 @@ namespace Presentation.Web.Controllers
             doc.Close();
         }
 
-        /*  private void GenerarPdf(ConceptViewModel pConceptViewModel)
-          {
-              string strHtml = string.Empty;
-              ConceptHtmlViewModel oConcept = new ConceptHtmlViewModel();
-              string htmlText = ConceptBL.ObtenerHtmlConcept(oConcept, ConfigurationManager.AppSettings["concept.html.xslPath"]);
-              htmlText = htmlText.Replace("@imagen", pConceptViewModel.concept);
-
-              Document document = new Document();
-              try
-              {
-                  PdfWriter.GetInstance(document, new FileStream(pConceptViewModel.pdf_path, FileMode.Create));
-                  document.Open();
-                  WebClient wc = new WebClient();
-
-                  List<IElement> htmlarraylist = HTMLWorker.ParseToList(new StringReader(htmlText), null);
-                  for (int k = 0; k < htmlarraylist.Count; k++)
-                  {
-                      document.Add((IElement)htmlarraylist[k]);
-                  }
-
-                  document.Close();
-              }
-              catch (Exception ex)
-              {
-              }
-
-
-
-          }*/
-
-        /*
-         private async Task<int> GenerarPdf(ConceptViewModel pConceptViewModel)
-         {
-             HtmlToPdf converter = new HtmlToPdf();
-             PdfPageSize pageSize = (PdfPageSize)Enum.Parse(typeof(PdfPageSize),
-                "A4", true);
-             PdfPageOrientation pdfOrientation =
-                 (PdfPageOrientation)Enum.Parse(typeof(PdfPageOrientation),
-                 "Portrait", true);
-             // set converter options
-             converter.Options.PdfPageSize = pageSize;
-             converter.Options.PdfPageOrientation = pdfOrientation;
-             converter.Options.WebPageWidth = 1024;
-             converter.Options.WebPageHeight = 0;
-             ConceptHtmlViewModel oConcept = new ConceptHtmlViewModel();
-             string html = ConceptBL.ObtenerHtmlConcept(oConcept, ConfigurationManager.AppSettings["concept.html.xslPath"]);
-             html = html.Replace("@imagen", pConceptViewModel.concept);
-             // create a new pdf document converting an url
-             PdfDocument doc = converter.ConvertHtmlString(html, String.Empty);
-
-             doc.Save(pConceptViewModel.pdf_path);
-             doc.Close();
-             return 1;
-         }*/
+        
         [HttpPost]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
         public JsonResult ObtenerRechazo(int concept_id)
@@ -627,7 +557,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.evaluate_concept })]
         public JsonResult Aprobar(int concept_id, string speakers)
         {
 
@@ -654,7 +584,7 @@ namespace Presentation.Web.Controllers
         }
 
         [HttpPost]
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { })]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.evaluate_concept })]
         public JsonResult Rechazar(int concept_id, int reason_reject_id, string reason_reject_description)
         {
 
@@ -686,7 +616,7 @@ namespace Presentation.Web.Controllers
             var pdf_path = Path.Combine(Server.MapPath("~/PDF/"), fileName);
 
 
-            
+
             ConceptBL oConceptBL = new ConceptBL();
             var calificado = oConceptBL.VerificarCalificado(concept_id);
             ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
@@ -736,16 +666,18 @@ namespace Presentation.Web.Controllers
         public ActionResult VerificarCertificacion(string id)
         {
             VerifyCertificationViewModel pVerifyCertificationViewModel = new VerifyCertificationViewModel();
-            
+
             ConceptBL oBL = new ConceptBL();
-            
+
             Guid pIntID;
-            bool valido=Guid.TryParse(id, out pIntID);
-            if (valido) {
+            bool valido = Guid.TryParse(id, out pIntID);
+            if (valido)
+            {
                 pVerifyCertificationViewModel = oBL.ObtenerVerificacionCertificado(pIntID);
                 if (pVerifyCertificationViewModel == null || pVerifyCertificationViewModel.concept_id == 0)
                     valido = false;
-                else {
+                else
+                {
                     if (!(pVerifyCertificationViewModel.concept_status_id == 2 || pVerifyCertificationViewModel.concept_status_id == 4 || pVerifyCertificationViewModel.concept_status_id == 5 || pVerifyCertificationViewModel.concept_status_id == 6))
                         valido = false;
                 }
@@ -828,8 +760,33 @@ namespace Presentation.Web.Controllers
             ViewBag.concept_id = pConceptViewModel.concept_id;
             return View(pConceptViewModel);
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.view_concept })]
+        public ActionResult VerCalificado(string id)
+        {
+            BadLanguageBL oBadLanguageBL = new BadLanguageBL();
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
+            pConceptViewModel.reject = 0;
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
+            ViewBag.commissions = commissions;
 
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.view_concept })] // falta corregir
+            pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
+
+
+
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
+            List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
+            ViewBag.reason_rejects = reason_rejects;
+            ViewBag.concept_id = pConceptViewModel.concept_id;
+            return View(pConceptViewModel);
+        }
+
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.evaluate_concept })] // falta corregir
         public ActionResult Evaluar(string id)
         {
 
@@ -889,21 +846,22 @@ namespace Presentation.Web.Controllers
 
             ConceptBL oConceptBL = new ConceptBL();
 
-            if (pConceptViewModel.concept_status_id == 2 || pConceptViewModel.concept_status_id == 4 || pConceptViewModel.concept_status_id == 5) {
+            if (pConceptViewModel.concept_status_id == 2 || pConceptViewModel.concept_status_id == 4 || pConceptViewModel.concept_status_id == 5)
+            {
                 ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
                 oConceptStatusLogViewModel.concept_id = pConceptViewModel.concept_id;
                 oConceptStatusLogViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
 
-                ViewBag.concept_id = pConceptViewModel.concept_id;
+
                 oConceptBL.Leido(oConceptStatusLogViewModel);
             }
-            var calificado=oConceptBL.VerificarCalificado(pConceptViewModel.concept_id, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+            var calificado = oConceptBL.VerificarCalificado(pConceptViewModel.concept_id, AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
 
             if (calificado)
                 pConceptViewModel.concept_status_id = 6;
 
-
+            ViewBag.concept_id = pConceptViewModel.concept_id;
 
             return View(pConceptViewModel);
         }
@@ -911,13 +869,20 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_concept })]
-        public ActionResult Editar([Bind(Include = "concept_id,summary,concept,investigator_id,draft_law_id,tags,bibliography")] ConceptViewModel pConceptViewModel)
+        public JsonResult Editar([Bind(Include = "concept_id,summary,concept,investigator_id,draft_law_id,tags,bibliography")] ConceptViewModel pConceptViewModel)
         {
             // TODO: Add insert logic here
 
             if (pConceptViewModel == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+
+                return Json(new
+                {
+                    message_error = "Datos inavalidos",
+                    status = "0",
+
+                });
             }
             ConceptBL oConceptBL = new ConceptBL();
             pConceptViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
@@ -939,23 +904,24 @@ namespace Presentation.Web.Controllers
             oConcept.fecha_elaboracion_txt = oConcept.fecha_elaboracion.Value.ToString("dd/MM/yyyy");
             oConcept.pdf_path = pConceptViewModel.pdf_path;
             oConcept.draf_law_fecha_presentacion_txt = oConcept.draf_law_fecha_presentacion.Value.ToString("dd/MM/yyyy");
-
-            var request = Request;
-
-            //request.Url.Scheme gives output as https/http 
-            //while request.Url.Authority give us Domain name
-            var baseUrl = request.Url.Scheme + "://" + request.Url.Authority;
-
-            oConcept.base_url = baseUrl;
+            oConcept.tag_names = String.Join(", ", oConcept.tags);
 
 
-            HostingEnvironment.QueueBackgroundWorkItem(
-                 token => GenerarPdfBackground(oConcept, token)
-             );
+            oConcept.base_url = ConfigurationManager.AppSettings["site.url"];
 
+
+          
+            GenerarPdf(oConcept);
             NotificacionNuevoConcepto(pConceptViewModel);
 
-            return RedirectToAction("Index");
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                concept_id = pConceptViewModel.concept_id,
+                status = "1",
+
+            });
 
         }
 

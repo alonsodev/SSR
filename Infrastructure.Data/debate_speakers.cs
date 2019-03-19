@@ -21,7 +21,7 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        public virtual draft_laws draft_laws { get; set; }
         public virtual users users { get; set; }
+        public virtual draft_laws draft_laws { get; set; }
     }
 }

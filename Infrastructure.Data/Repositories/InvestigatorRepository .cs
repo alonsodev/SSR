@@ -107,6 +107,7 @@ namespace Infrastructure.Data.Repositories
                 commissions = a.investigators_commissions.Select(c => c.commission_id).ToList(),
                 interest_areas = a.investigators_interest_areas.Select(ia => ia.interest_area_id).ToList(),
 
+                user_id= a.user_id,
                 user_name = a.users.user_name,
                 user_email = a.users.user_email,
                 user_pass = a.users.user_pass,

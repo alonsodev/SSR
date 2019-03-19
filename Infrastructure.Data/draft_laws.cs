@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public draft_laws()
         {
-            this.debate_speakers = new HashSet<debate_speakers>();
             this.concepts = new HashSet<concepts>();
+            this.debate_speakers = new HashSet<debate_speakers>();
         }
     
         public int draft_law_id { get; set; }
@@ -30,7 +30,7 @@ namespace Infrastructure.Data
         public Nullable<int> commission_id { get; set; }
         public string debate_speaker { get; set; }
         public string debate_speaker2 { get; set; }
-        public string status { get; set; }
+        public Nullable<int> status_id { get; set; }
         public string status_comment { get; set; }
         public Nullable<int> interest_area_id { get; set; }
         public string initiative { get; set; }
@@ -41,12 +41,15 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
         public string dev_name { get; set; }
+        public Nullable<bool> notified { get; set; }
+        public Nullable<bool> active { get; set; }
     
         public virtual commissions commissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concepts> concepts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<debate_speakers> debate_speakers { get; set; }
         public virtual interest_areas interest_areas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concepts> concepts { get; set; }
+        public virtual draft_laws_status draft_laws_status { get; set; }
     }
 }

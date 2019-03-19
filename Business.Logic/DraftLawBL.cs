@@ -66,7 +66,7 @@ namespace Business.Logic
             odraft_laws.commission_id = pDraftLawViewModel.commission_id;
             odraft_laws.debate_speaker = pDraftLawViewModel.debate_speaker;
             odraft_laws.debate_speaker2 = pDraftLawViewModel.debate_speaker2;
-            odraft_laws.status = pDraftLawViewModel.status;
+            //odraft_laws.status = pDraftLawViewModel.draft_laws_status.name;// corregir
             odraft_laws.status_comment = pDraftLawViewModel.status_comment;
             odraft_laws.interest_area_id = pDraftLawViewModel.interest_area_id;
             odraft_laws.initiative = pDraftLawViewModel.initiative;
@@ -103,7 +103,7 @@ namespace Business.Logic
                 commission_id = pDraftLawViewModel.commission_id,
                 debate_speaker = pDraftLawViewModel.debate_speaker,
                 debate_speaker2 = pDraftLawViewModel.debate_speaker2,
-                status = pDraftLawViewModel.status,
+                //status = pDraftLawViewModel.status, // corregir
                 status_comment = pDraftLawViewModel.status_comment,
                 interest_area_id = pDraftLawViewModel.interest_area_id,
                 initiative = pDraftLawViewModel.initiative,
@@ -117,7 +117,7 @@ namespace Business.Logic
             oUnitOfWork.SaveChanges();
         }
 
-        public void Import(List<DraftLawViewModel> lista, Dictionary<string, int> commisions, Dictionary<string, int> interest_areas, int user_id)
+        public void Import(List<DraftLawViewModel> lista, Dictionary<string, int> commisions, Dictionary<string, int> interest_areas, Dictionary<string, DraftLawStatusViewModel> draftlaw_status, int user_id)
         {
             using (var scope = new TransactionScope())
             {
@@ -129,110 +129,134 @@ namespace Business.Logic
                     if (interest_areas.ContainsKey(pDraftLawViewModel.interest_area))
                         pDraftLawViewModel.interest_area_id = interest_areas[pDraftLawViewModel.interest_area];
 
+                    if (draftlaw_status.ContainsKey(pDraftLawViewModel.status))
+                        pDraftLawViewModel.draft_law_status_id = draftlaw_status[pDraftLawViewModel.status].draft_law_status_id;
 
                     DraftLawViewModel pDraftLawComplementViewModel = oRepositorio.ObtenerPorNroProyectoMigrar(pDraftLawViewModel.draft_law_number);
                     if (pDraftLawComplementViewModel != null && pDraftLawComplementViewModel.draft_law_id != 0)
                     {
-                        draft_laws odraft_laws = new draft_laws
+                        DraftLawViewModel pDraftLawComplementViewModel2 = oRepositorio.ObtenerPorNroProyectoMigrar(pDraftLawViewModel.draft_law_number, pDraftLawViewModel.draft_law_status_id);
+                        if (pDraftLawComplementViewModel2 != null && pDraftLawComplementViewModel2.draft_law_id != 0)
                         {
-                            draft_law_id = pDraftLawComplementViewModel.draft_law_id,
-                            draft_law_number = pDraftLawViewModel.draft_law_number,
-                            title = pDraftLawViewModel.title,
-                            author = pDraftLawViewModel.author,
-                            origin = pDraftLawViewModel.origin,
-                            date_presentation = pDraftLawViewModel.date_presentation,
-                            commission_id = pDraftLawViewModel.commission_id,
-                            debate_speaker = pDraftLawViewModel.debate_speaker,
-                            debate_speaker2 = pDraftLawViewModel.debate_speaker2,
-                            status = pDraftLawViewModel.status,
-                            status_comment = pDraftLawViewModel.status_comment,
-                            interest_area_id = pDraftLawViewModel.interest_area_id,
-                            initiative = pDraftLawViewModel.initiative,
-                            summary = pDraftLawViewModel.summary,
-                            link = pDraftLawViewModel.link,
-                            date_created = pDraftLawComplementViewModel.date_created,
-                            user_id_created = pDraftLawComplementViewModel.user_id_created,
-                            date_modified = DateTime.Now,
-                            user_id_modified = user_id
-
-                        };
-                        oRepositorio.Update(odraft_laws,
-
-                                            a => a.draft_law_number,
-                                            a => a.title,
-                                            a => a.author,
-                                            a => a.origin,
-                                            a => a.date_presentation,
-                                            a => a.commission_id,
-                                            a => a.debate_speaker,
-                                            a => a.debate_speaker2,
-                                            a => a.status,
-                                            a => a.status_comment,
-                                            a => a.interest_area_id,
-                                            a => a.initiative,
-                                            a => a.summary,
-                                            a => a.date_created,
-                                            a => a.user_id_created,
-                                            a => a.date_modified,
-                                             a => a.user_id_modified
-                                            );
-                        oDebateSpeakerRepositorio.DeleteMultiple(pDraftLawComplementViewModel.draft_law_id);
-                        foreach (int debate_user_id in pDraftLawViewModel.debate_speakers)
-                        {
-                            debate_speakers odebate_speakers = new debate_speakers
+                            draft_laws odraft_laws = new draft_laws
                             {
-                                user_id = debate_user_id,
-                                draft_law_id = odraft_laws.draft_law_id,
-                                date_created = DateTime.Now,
-                                user_id_created = user_id
+                                draft_law_id = pDraftLawComplementViewModel.draft_law_id,
+                                draft_law_number = pDraftLawViewModel.draft_law_number,
+                                title = pDraftLawViewModel.title,
+                                author = pDraftLawViewModel.author,
+                                origin = pDraftLawViewModel.origin,
+                                date_presentation = pDraftLawViewModel.date_presentation,
+                                commission_id = pDraftLawViewModel.commission_id,
+                                debate_speaker = pDraftLawViewModel.debate_speaker,
+                                debate_speaker2 = pDraftLawViewModel.debate_speaker2,
+                                status_id = pDraftLawViewModel.draft_law_status_id,
+                                status_comment = pDraftLawViewModel.status_comment,
+                                interest_area_id = pDraftLawViewModel.interest_area_id,
+                                initiative = pDraftLawViewModel.initiative,
+                                summary = pDraftLawViewModel.summary,
+                                link = pDraftLawViewModel.link,
+
+                                date_modified = DateTime.Now,
+                                user_id_modified = user_id
+
                             };
-                            oDebateSpeakerRepositorio.Add(odebate_speakers);
+                            oRepositorio.Update(odraft_laws,
+                                               
+                                                a => a.draft_law_number,
+                                                a => a.title,
+                                                a => a.author,
+                                                a => a.origin,
+                                                a => a.date_presentation,
+                                                a => a.commission_id,
+                                                a => a.debate_speaker,
+                                                a => a.debate_speaker2,
+                                                a => a.status_id,
+                                                a => a.status_comment,
+                                                a => a.interest_area_id,
+                                                a => a.initiative,
+                                                a => a.summary,
+                                                a => a.link,
+                                                a => a.date_modified,
+                                                a => a.user_id_modified
+                                                );
+                            oDebateSpeakerRepositorio.DeleteMultiple(pDraftLawComplementViewModel.draft_law_id);
+                            foreach (int debate_user_id in pDraftLawViewModel.debate_speakers)
+                            {
+                                debate_speakers odebate_speakers = new debate_speakers
+                                {
+                                    user_id = debate_user_id,
+                                    draft_law_id = odraft_laws.draft_law_id,
+                                    date_created = DateTime.Now,
+                                    user_id_created = user_id
+                                };
+                                oDebateSpeakerRepositorio.Add(odebate_speakers);
+                            }
+
                         }
+                        else
+                        {
+                            draft_laws odraft_laws = new draft_laws
+                            {
+                                draft_law_id = pDraftLawComplementViewModel.draft_law_id,
+                                active = false
+                            };
+                            oRepositorio.Update(odraft_laws, a => a.active);
+                            AddDraftLaw(user_id, pDraftLawViewModel);
+                        }
+
                     }
                     else
                     {
-                        draft_laws odraft_laws = new draft_laws
-                        {
-                            draft_law_id = 0,
-                            draft_law_number = pDraftLawViewModel.draft_law_number,
-                            title = pDraftLawViewModel.title,
-                            author = pDraftLawViewModel.author,
-                            origin = pDraftLawViewModel.origin,
-                            date_presentation = pDraftLawViewModel.date_presentation,
-                            commission_id = pDraftLawViewModel.commission_id,
-                            debate_speaker = pDraftLawViewModel.debate_speaker,
-                            debate_speaker2 = pDraftLawViewModel.debate_speaker2,
-                            status = pDraftLawViewModel.status,
-                            status_comment = pDraftLawViewModel.status_comment,
-                            interest_area_id = pDraftLawViewModel.interest_area_id,
-                            initiative = pDraftLawViewModel.initiative,
-                            summary = pDraftLawViewModel.summary,
-                            link = pDraftLawViewModel.link,
-                            date_created = DateTime.Now,
-                            user_id_created = user_id
+                        AddDraftLaw(user_id, pDraftLawViewModel);
 
-                        };
-
-                        odraft_laws = oRepositorio.Add(odraft_laws);
-
-                        foreach (int debate_user_id in pDraftLawViewModel.debate_speakers)
-                        {
-                            debate_speakers odebate_speakers = new debate_speakers
-                            {
-                                user_id = debate_user_id,
-                                draft_law_id = odraft_laws.draft_law_id,
-                                date_created = DateTime.Now,
-                                user_id_created = user_id
-                            };
-                            oDebateSpeakerRepositorio.Add(odebate_speakers);
-                        }
                     }
-
+                    oUnitOfWork.SaveChanges();
                 }
-                oUnitOfWork.SaveChanges();
+                // oUnitOfWork.SaveChanges();
 
 
                 scope.Complete();
+            }
+        }
+
+        private static void AddDraftLaw(int user_id, DraftLawViewModel pDraftLawViewModel)
+        {
+            draft_laws odraft_laws = new draft_laws
+            {
+                draft_law_id = 0,
+                draft_law_number = pDraftLawViewModel.draft_law_number,
+                title = pDraftLawViewModel.title,
+                author = pDraftLawViewModel.author,
+                origin = pDraftLawViewModel.origin,
+                date_presentation = pDraftLawViewModel.date_presentation,
+                commission_id = pDraftLawViewModel.commission_id,
+                debate_speaker = pDraftLawViewModel.debate_speaker,
+                debate_speaker2 = pDraftLawViewModel.debate_speaker2,
+                status_id = pDraftLawViewModel.draft_law_status_id,
+                status_comment = pDraftLawViewModel.status_comment,
+                interest_area_id = pDraftLawViewModel.interest_area_id,
+                initiative = pDraftLawViewModel.initiative,
+                summary = pDraftLawViewModel.summary,
+                link = pDraftLawViewModel.link,
+                date_created = DateTime.Now,
+                user_id_created = user_id,
+                notified = false,
+                active = true,
+
+            };
+
+            odraft_laws = oRepositorio.Add(odraft_laws);
+
+            foreach (int debate_user_id in pDraftLawViewModel.debate_speakers)
+            {
+                debate_speakers odebate_speakers = new debate_speakers
+                {
+                    user_id = debate_user_id,
+                    draft_law_id = odraft_laws.draft_law_id,
+                    date_created = DateTime.Now,
+                    user_id_created = user_id
+                };
+                oDebateSpeakerRepositorio.Add(odebate_speakers);
             }
         }
     }

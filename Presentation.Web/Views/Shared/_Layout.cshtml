@@ -112,9 +112,9 @@
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <span>
+                                <span title="@AuthorizeUserAttribute.UsuarioLogeado().name">
 
-                                    @AuthorizeUserAttribute.UsuarioLogeado().name
+                                    @AuthorizeUserAttribute.UsuarioLogeado().name_abbre
                                     <b class="caret"></b>
                                 </span>
                             </a>
@@ -160,15 +160,15 @@
 
                         <!-- <li class=" @ViewBag.dashboard">
 
-           <a href="dashboard.html">
+                               <a href="dashboard.html">
 
-               <i class="now-ui-icons design_app"></i>
+                                   <i class="now-ui-icons design_app"></i>
 
-               <p>Dashboard</p>
-           </a>
+                                   <p>Dashboard</p>
+                               </a>
 
-       </li>
-    -->
+                           </li>
+                        -->
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
                         {
@@ -236,14 +236,14 @@
 
                         }
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law, AuthorizeUserAttribute.Permission.module_institution,
-                            AuthorizeUserAttribute.Permission.module_interest_areas, AuthorizeUserAttribute.Permission.module_programs,
-                            AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttribute.Permission.module_commissions,
-                            AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.Permission.module_education_levels,
-                            AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
-                            AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
-                             AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config))
+AuthorizeUserAttribute.Permission.module_interest_areas, AuthorizeUserAttribute.Permission.module_programs,
+AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttribute.Permission.module_commissions,
+AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.Permission.module_education_levels,
+AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
+AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
+         AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config))
                         {
-                            <li class="@(ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges"||ViewBag.active == "snies" ||ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas"||ViewBag.active == "educational_institutions"||ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
+                            <li class="@(ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
 
                                 <a data-toggle="collapse" href="#management">
                                     <i class="now-ui-icons loader_gear"></i>
@@ -252,7 +252,7 @@
                                     </p>
                                 </a>
 
-                                <div class="@("collapse " + (ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges"||ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels"||ViewBag.active == "knowledge_areas"||ViewBag.active == "educational_institutions"||ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
+                                <div class="@("collapse " + (ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
 
                                     <ul class="nav">
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
@@ -508,7 +508,7 @@
 
                                     <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Mis Consultas</p>
+                                    <p>Mis solicitudes de concepto</p>
                                 </a>
 
                             </li>
@@ -522,7 +522,7 @@
 
                                     <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Consultas Enviadas</p>
+                                    <p>Solicitudes de concepto</p>
                                 </a>
 
                             </li>
@@ -572,8 +572,8 @@
                             ViewBag.notificaciones = notifications;
                             ViewBag.num_notificaciones = notifications.Count();
 
-                           // ViewBag.num_notificaciones_pendientes = AuthorizeUserAttribute.ObtenerNroNoNotificados();
-                            
+                            // ViewBag.num_notificaciones_pendientes = AuthorizeUserAttribute.ObtenerNroNoNotificados();
+
                         }
                         <div class="row">
 
@@ -582,7 +582,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                        <i class="now-ui-icons location_world"></i>
+                                        <i class="now-ui-icons  ui-1_bell-53"></i>
                                         <p>
                                             <span class="d-lg-none d-md-block">Notificaciones</span>
                                             @if (@ViewBag.num_notificaciones > 0)
@@ -646,6 +646,75 @@
 
         </div>
 
+    </div>
+
+    <!-- Classic Modal -->
+    <div class="modal fade" id="bienvenido_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                    <h4 class="title title-up"> Bienvenido a ARCA</h4>
+                </div>
+                <div id="modal-body-summary" class="modal-body">
+                    <p>
+                        <h5> Estimado(a) "@AuthorizeUserAttribute.UsuarioLogeado().name"</h5>
+                    </p>
+                    <div style="text-align: center;">
+                        <img src="@Url.Content("/assets/img/arca_notificacion.png")" width="300">
+
+                    </div>
+                    <p style="text-align: justify;text-justify: inter-word;">
+                        El Centro de investigaciones y Altos Estudios legislativos- CAEL, adscrito a la Secretaría General del Senado de la República, se complace en darle la bienvenida al Sistema ARCA (Articulación Congreso-Academia), el cual busca brindar la infraestructura tecnológica para que, a través de la plataforma, usted pueda presentar conceptos técnicos sobre los proyectos de Ley en trámite en el Congreso de la República.  Sus valiosos aportes académicos podrán ser certificados como insumo general de apoyo a la labor legislativa por parte del CAEL- reconocido como Centro de Conocimiento Legislativo mediante resolución 750 del 18 de julio de 2018 del Departamento de Ciencia Tecnología e Innovación COLCIENCIAS.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Classic Modal -->
+    <div class="modal fade" id="bienvenido_modal_congresista" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                    <h4 class="title title-up"> Bienvenido a ARCA</h4>
+                </div>
+                <div id="modal-body-summary" class="modal-body">
+                    <p>
+                        <h5> Estimado(a) "@AuthorizeUserAttribute.UsuarioLogeado().name"</h5>
+                    </p>
+                    <div style="text-align: center;">
+                        <img src="@Url.Content("/assets/img/arca_notificacion.png")" width="300">
+
+                    </div>
+                    <p style="text-align: justify;text-justify: inter-word;">
+                        Honorable Congresista de la República de Colombia el Centro de Investigaciones y Altos Estudios Legislativos – CAEL le da la Bienvenida a la Plataforma de servicios de apoyo a la labor legislativa – Articulación Congreso Academia – ARCA.
+                        <br />
+                        <br />
+                        Usted podrá recibir a partir de este instante, conceptos técnicos sobre diferentes proyectos de ley que cursan trámite en el Congreso y en sus respectivas Comisiones Constitucionales.
+                        <br />
+                        <br />
+                        Estos conceptos son presentados por parte de los investigadores del país reconocidos por parte de COLCIENCIAS y adscritos a diferentes Instituciones de educación superior y centros de investigaciones de alto prestigio.
+                        <br />
+                        <br />
+                        Usted podrá solicitar el acompañamiento en la discusión de iniciativas legislativas para el control político y audiencias públicas a través de estos recursos.
+                        
+
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <!--<div class="fixed-plugin">
@@ -785,6 +854,18 @@
             ignore: null
         });
         $(document).ready(function () {
+            var first_time =@AuthorizeUserAttribute.UsuarioLogeado().first_time;
+            var role_id=@AuthorizeUserAttribute.UsuarioLogeado().role_id;
+            if (first_time == 1 && role_id == 11)
+                $("#bienvenido_modal").modal('show');
+            if (first_time == 1 && role_id == 9)
+                $("#bienvenido_modal_congresista").modal('show');
+
+             @{
+                 CurrentUserViewModel user = AuthorizeUserAttribute.UsuarioLogeado();
+                 user.first_time =0;
+                 Session[ConfigurationManager.AppSettings["session.usuario.actual"]] = user;
+             }
 
 
             $('#facebook').sharrre({

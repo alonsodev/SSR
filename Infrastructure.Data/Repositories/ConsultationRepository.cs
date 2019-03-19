@@ -27,7 +27,8 @@ namespace Infrastructure.Data.Repositories
                 consultation_id = a.consultation_id,
                 title = a.title,
                 message = a.message,
-                attended = a.attended,
+                consultation_type_id = a.consultation_type_id,
+                debate_speaker = a.users.contact_name,
                 interest_areas = a.consultations_interest_areas.Select(b => b.interest_area_id).ToList()
             });
 
@@ -80,8 +81,9 @@ namespace Infrastructure.Data.Repositories
                 consultation_id = a.consultation_id,
                 title = a.title,
                 message = a.message,
-                attended = a.attended,
+                consultation_type_id = a.consultation_type_id,
                 date_created = a.date_created,
+                consultation_type = a.consultation_types.name,
                 interest_areas_list = a.consultations_interest_areas.Select(b => b.interest_areas.name).ToList()
             });
 
@@ -90,6 +92,7 @@ namespace Infrastructure.Data.Repositories
             string sortExpression = sortBy.Trim() + " " + sortDir.Trim();
             if (sortExpression.Trim() != "")
                 query = OrderByDinamic.OrderBy<ConsultationViewModel>(query, sortExpression.Trim());
+
             resultado.rows = query.Skip(filters.start).Take(filters.length).ToList();
 
 
@@ -100,7 +103,7 @@ namespace Infrastructure.Data.Repositories
             return resultado;
         }
 
-       
+
         public GridModel<ConsultationViewModel> ObtenerListaEnviados(DataTableAjaxPostModel filters)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
@@ -145,8 +148,10 @@ namespace Infrastructure.Data.Repositories
                 consultation_id = a.consultation_id,
                 title = a.title,
                 message = a.message,
-                attended = a.attended,
+                consultation_type_id = a.consultation_type_id,
                 date_created = a.date_created,
+                consultation_type = a.consultation_types.name,
+                debate_speaker = a.users.contact_name,
                 interest_areas_list = a.consultations_interest_areas.Select(b => b.interest_areas.name).ToList()
             });
 

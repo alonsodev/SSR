@@ -117,7 +117,9 @@ namespace Presentation.Web.Filters
             list_consultation_send = 116,
             new_consultation = 117,
             view_consultation = 118,
-            attend_consultation = 119
+            //attend_consultation = 119,
+            evaluate_concept = 120,
+            
         }
         public Permission[] Permissions { get; set; }
 

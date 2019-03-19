@@ -33,7 +33,6 @@ namespace Infrastructure.Data
         public virtual DbSet<debate_speakers> debate_speakers { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<document_types> document_types { get; set; }
-        public virtual DbSet<draft_laws> draft_laws { get; set; }
         public virtual DbSet<education_levels> education_levels { get; set; }
         public virtual DbSet<educational_institutions> educational_institutions { get; set; }
         public virtual DbSet<genders> genders { get; set; }
@@ -62,6 +61,10 @@ namespace Infrastructure.Data
         public virtual DbSet<concept_debate_speakers> concept_debate_speakers { get; set; }
         public virtual DbSet<concepts> concepts { get; set; }
         public virtual DbSet<consultations_interest_areas> consultations_interest_areas { get; set; }
+        public virtual DbSet<initiatives> initiatives { get; set; }
+        public virtual DbSet<consultation_types> consultation_types { get; set; }
         public virtual DbSet<consultations> consultations { get; set; }
+        public virtual DbSet<draft_laws> draft_laws { get; set; }
+        public virtual DbSet<draft_laws_status> draft_laws_status { get; set; }
     }
 }

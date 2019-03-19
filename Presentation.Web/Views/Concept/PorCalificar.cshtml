@@ -20,27 +20,29 @@
                 <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
+                            <th>Nro. Concepto</th>
                             <th>Nro. Proyecto</th>
                             <th>Título del proyecto de ley</th>
                             <th>Fecha de elab.</th>
                             <th>Nombre Investigador</th>
                             <th>Nombre Institución</th>
-                            <th>Comisión</th>                            
+                            <th>Comisión</th>
                             <th>Área de interés</th>
-                            <th>Calificación</th>
+                           
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>Nro. Concepto</th>
                             <th>Nro. Proyecto</th>
                             <th>Título del proyecto de ley</th>
                             <th>Fecha de elab.</th>
                             <th>Nombre Investigador</th>
                             <th>Nombre Institución</th>
-                            <th>Comisión</th>                            
+                            <th>Comisión</th>
                             <th>Área de interés</th>
-                            <th>Calificación</th>
+                          
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </tfoot>
@@ -95,6 +97,7 @@
 
                     /* Initialize Datatables */
                     datatable = $('#dt-lista').DataTable({
+                        order: [[3, "desc"]],
                         responsive: true,
                         "proccessing": true,
                         "serverSide": true,
@@ -131,29 +134,45 @@
                             }
                         ],
                         "columns": [
+                            { "data": "concept_id" },
                             { "data": "draft_law_number" },
                             { "data": "title" },
-                            { "data": "date_presentation" },
+                            { "data": "date_created" },
                             { "data": "investigator" },
                             { "data": "institution" },
                             { "data": "commission" },
                             
                             { "data": "interest_area" },
-                            { "data": "qualification" },
+                           
                             { "data": "concept_id" },
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [7,8] },
+                            { 'className': 'text-center', 'targets': [0, 1, 8] },
                             {
                                 render: function (data, type, row) {
 
-                                    if (row.date_presentation == null) { return "" };
-                                    var actionsHtml = moment(row.date_presentation).format("DD/MM/YYYY");
-                                    return actionsHtml;
+
+                                    return '<p class="overflow-friendly" title="' + row.title + '">' + row.title + '</p>';
                                 },
                                 targets: 2
                             },
-                          
+                            {
+                                render: function (data, type, row) {
+
+                                    if (row.date_created == null) { return "" };
+                                    var actionsHtml = moment(row.date_created).format("DD/MM/YYYY");
+                                    return actionsHtml;
+                                },
+                                targets: 3
+                            },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.institution + '">' + row.institution + '</p>';
+                                },
+                                targets: 5
+                            },
                             {
                                 render: function (data, type, row) {
                                     return '<a href="/Concept/Calificar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Calificar Concepto Técnico"><i class="now-ui-icons design-2_ruler-pencil"></i></a>';
@@ -176,6 +195,7 @@
                         var summary = $('#summary-' + row_id).html();
                         $('#modal-body-summary').html(summary);
                         $("#summary_modal").modal('show');
+                        event.preventDefault();
                     });
                    
                     /* Add placeholder attribute to the search input */

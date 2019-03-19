@@ -246,7 +246,7 @@
           }
 
           .investigator_project td{
-            max-width:50%;          
+          max-width:50%;
           }
 
 
@@ -264,14 +264,20 @@
 
             </div>
             <div id="client">
-              <div class="to"># Concepto:  <xsl:value-of select="//@concept_id"/></div>
-              <div class="date">Fecha: <xsl:value-of select="//@fecha_presentacion_txt"/></div>
+              <div class="to">
+                # Concepto:  <xsl:value-of select="//@concept_id"/>
+              </div>
+              <div class="date">
+                Fecha: <xsl:value-of select="//@fecha_presentacion_txt"/>
+              </div>
 
             </div>
           </div>
           <br/>
-         
-          <div id="thanks"><xsl:value-of select="//@draft_law_title"/> </div>
+
+          <div id="thanks">
+            <xsl:value-of select="//@draft_law_title"/>
+          </div>
 
           <div  class="clearfix">
             <table class="investigator_project" border="0" cellspacing="0" cellpadding="0">
@@ -282,23 +288,33 @@
 
                 </tr>
                 <tr>
-                  <td> <xsl:value-of select="//@investigador"/></td>
+                  <td>
+                    <xsl:value-of select="//@investigador"/>
+                  </td>
 
-                  <td>  <xsl:value-of select="//@draft_law_number"/></td>
-
-
-
-                </tr>
-                <tr>
-                  <td> <xsl:value-of select="//@cedula"/></td>
-
-                  <td> <xsl:value-of select="//@draf_law_origen"/></td>
+                  <td>
+                    <xsl:value-of select="//@draft_law_number"/>
+                  </td>
 
 
 
                 </tr>
                 <tr>
-                  <td><xsl:value-of select="//@institucion"/></td>
+                  <td>
+                    <xsl:value-of select="//@cedula"/>
+                  </td>
+
+                  <td>
+                    <xsl:value-of select="//@draf_law_origen"/>
+                  </td>
+
+
+
+                </tr>
+                <tr>
+                  <td>
+                    <xsl:value-of select="//@institucion"/>
+                  </td>
 
                   <td>
                     <xsl:value-of select="//@draf_law_fecha_presentacion_txt"/>
@@ -307,9 +323,13 @@
 
                 </tr>
                 <tr>
-                  <td>  <xsl:value-of select="//@grupo_vinculado"/></td>
+                  <td>
+                    <xsl:value-of select="//@grupo_vinculado"/>
+                  </td>
 
-                  <td> <xsl:value-of select="//@draf_law_commission"/></td>
+                  <td>
+                    <xsl:value-of select="//@draf_law_commission"/>
+                  </td>
 
 
 
@@ -319,7 +339,9 @@
                     <xsl:value-of select="//@codigo_grupo_vinculado"/>
                   </td>
                   <!-- CODIGO DEL GRUPO  -->
-                  <td> <xsl:value-of select="//@draf_law_interested_area"/></td>
+                  <td>
+                    <xsl:value-of select="//@draf_law_interested_area"/>
+                  </td>
                   <!-- TEMA  -->
 
 
@@ -334,6 +356,28 @@
             <div id="invoice2">
               <h1>
                 <strong>
+                  Palabras claves
+                </strong>
+              </h1>
+
+            </div>
+
+          </div>
+
+
+
+          <div id="notices">
+            <xsl:value-of select="//@tag_names"/>
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <div  class="div-with-bg details clearfix">
+
+            <div id="invoice2">
+              <h1>
+                <strong>
                   Resumen
                 </strong>
               </h1>
@@ -341,14 +385,14 @@
             </div>
 
           </div>
-         
-         
+
+
 
           <div id="notices">
             <xsl:value-of select="//@summary"/>
           </div>
 
-          
+
           <br/>
           <br/>
           <br/>
@@ -365,15 +409,15 @@
             </div>
 
           </div>
-         
-        
+
+
 
           <div id="notices">
 
 
-            @concept      
-			<b>Bibliografía:</b>
-			 <xsl:value-of select="//@bibliography"/>
+            @concept
+            <b>Bibliografía:</b>
+            <xsl:value-of select="//@bibliography"/>
           </div>
 
 

@@ -63,16 +63,16 @@
       </HEAD>
       <BODY>
         <div align="center"  style="margin:15px">
-          <table style="border:1px solid #BC9E54; max-height:1016px;" cellpadding="0" cellspacing="0" width="776px" height="1016px">
+          <table style="border:1px solid #BC9E54; max-height:1116px;" cellpadding="0" cellspacing="0" width="776px" height="1116px">
             <thead>
               <tr>
                 <td>
                   <header class="clearfix">
                     <div id="logo">
-                      <img src="logoc.png"/>
+                      <img src="@url_site/Template/Concept/logoc.png"/>
                     </div>
                     <div id="company">
-                      <img src="logo.png"/>
+                      <img src="@url_site/Template/Concept/logo.png"/>
                     </div>
 
                   </header>
@@ -80,49 +80,52 @@
                 </td>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody style="max-height: 700px;">
+              <tr style="vertical-align:top">
                 <td>
-                  <P class="p1 ft2">
-                    El (La) doctor(a) <SPAN class="ft1">
-                      <xsl:value-of select="//@investigador"/>
-                    </SPAN>, identificado (a) con cédula de
-                  </P>
-                  <P class="p2 ft2">
-                    Ciudadanía <xsl:value-of select="//@cedula"/>, de la ciudad de <xsl:value-of select="//@ciudad"/>, y vinculado a <SPAN class="ft1">
-                      (<xsl:value-of select="//@institucion"/>)
-                    </SPAN>,
-                    <SPAN class="ft2">del Grupo de investigación </SPAN>(<xsl:value-of select="//@grupo_vinculado"/>)<SPAN class="ft2">
-                      ,
-                      presento en calidad de investigador, concepto técnico sobre el proyecto de ley
-                    </SPAN>
-                    <SPAN class="ft3">(</SPAN><SPAN class="ft4">
-                      <xsl:value-of select="//@draft_law_title"/> : <xsl:value-of select="//@draft_law_id"/>
-                    </SPAN><SPAN class="ft3">)</SPAN>
-                    <SPAN class="ft2"> como insumo general de apoyo a la labor legislativa, con fecha (</SPAN><xsl:value-of select="//@fecha_aceptacion_txt"/><SPAN class="ft2">).</SPAN>
-                  </P>
-                  <P class="p4 ft2">Se expide la certificación a los <xsl:value-of select="//@day_name"/> (<xsl:value-of select="//@day"/>) días del mes de <xsl:value-of select="//@month_name"/> de dos mil <xsl:value-of select="//@year_name"/> (<xsl:value-of select="//@year"/>).</P>
-                  <P class="p6 ft1">GREGORIO ELJACH PACHECO</P>
-                  <P class="p7 ft1">SECRETARIO GENERAL DEL SENADO</P>
-                  <P class="p8 ft1">DIRECTOR– CAEL</P>
-
+                  <div style="width:776px;height:700px;overflow-y:hidden;">
+                    <P class="p1 ft2">
+                      El (La) doctor(a) <SPAN class="ft1">
+                        <xsl:value-of select="//@investigador"/>
+                      </SPAN>, identificado (a) con cédula de
+                    </P>
+                    <P class="p2 ft2">
+                      Ciudadanía <xsl:value-of select="//@cedula"/>, de la ciudad de <xsl:value-of select="//@ciudad"/>, y vinculado a <SPAN class="ft1">
+                        (<xsl:value-of select="//@institucion"/>)
+                      </SPAN>,
+                      <SPAN class="ft2">del Grupo de investigación </SPAN>(<xsl:value-of select="//@grupo_vinculado"/>)<SPAN class="ft2">
+                        ,
+                        presento en calidad de investigador, concepto técnico sobre el proyecto de ley
+                      </SPAN>
+                      <SPAN class="ft3">(</SPAN><SPAN class="ft4">
+                        <xsl:value-of select="//@draft_law_title"/> : <xsl:value-of select="//@draft_law_id"/>
+                      </SPAN><SPAN class="ft3">)</SPAN>
+                      <SPAN class="ft2"> como insumo general de apoyo a la labor legislativa, con fecha (</SPAN><xsl:value-of select="//@fecha_aceptacion_txt"/><SPAN class="ft2">).</SPAN>
+                    </P>
+                    <P class="p4 ft2">
+                      Se expide la certificación a los <xsl:value-of select="//@day_name"/> (<xsl:value-of select="//@day"/>) días del mes de <xsl:value-of select="//@month_name"/> de dos mil <xsl:value-of select="//@year_name"/> (<xsl:value-of select="//@year"/>).
+                    </P>
+                    <P class="p6 ft1">GREGORIO ELJACH PACHECO</P>
+                    <P class="p7 ft1">SECRETARIO GENERAL DEL SENADO</P>
+                    <P class="p8 ft1">DIRECTOR– CAEL</P>
+                  </div>
                 </td>
               </tr>
             </tbody>
-            <tfoot>
+            <tfoot style="max-height: 135px;">
               <tr>
                 <td>
                   <table width="100%" cellpadding="0" cellspacing="0" style="padding-left:40px;padding-right:40px;padding-bottom:15px;">
                     <tr>
                       <td>
-                        <img src="{//@qr_url}" width="120" />
+                        <img src="@url_site/Template/Concept/{//@qr_url}" width="120" />
                       </td>
                       <td width="100%" style="vertical-align: bottom;">
 
 
                       </td>
                       <td>
-                        <img src="arcalogo.jpg"/>
+                        <img src="@url_site/Template/Concept/arcalogo.jpg"/>
                       </td>
                     </tr>
                   </table>

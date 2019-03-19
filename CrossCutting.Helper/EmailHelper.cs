@@ -59,6 +59,7 @@ namespace CrossCutting.Helper
                 }
             }
             SmtpClient smtp = new SmtpClient();
+            
             logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments!=null ? oMailMessage.Attachments.Count().ToString(): "0"));
             smtp.Send(oMailMessage);
             logger.Info("Enviar Notificacion: exitoso");

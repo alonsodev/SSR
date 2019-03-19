@@ -65,5 +65,9 @@ namespace Domain.Entities
 
         public string pdf_path { get; set; }
         public string base_url { get; set; }
+
+        public List<string> tags { get; set; }
+        [XmlAttribute]
+        public string tag_names { get; set; }
     }
 }

@@ -102,7 +102,7 @@ div.dataTables_wrapper div.dataTables_info {
 
 .box .box-body {
     padding-top: 2em;
-    height: 120px;
+    height: 130px;
     position: relative;
 }
 
@@ -134,4 +134,15 @@ div.dataTables_wrapper div.dataTables_info {
     position: relative;
     top: -20px;
     left: -10px;
+}
+
+#dt-lista .overflow-friendly {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    vertical-align: middle;
+}
+
+table#dt-lista td {
+    font-size: 12px;
 }

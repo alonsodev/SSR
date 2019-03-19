@@ -24,7 +24,8 @@ namespace Domain.Entities.Notifications
 
         [XmlAttribute]
         public string to { get; set; }
-
-       
+        [XmlAttribute]
+        public string url_solicitud_concepto { get; set; }
+        
     }
 }

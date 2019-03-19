@@ -20,7 +20,7 @@
             {
                 <!-- Classic Modal -->
                 <div class="modal fade" id="reject_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header justify-content-center">
 
@@ -196,9 +196,10 @@
                             text: 'El concepto ha sido aprobado para su próxima calificación.',
                             type: 'success',
                             confirmButtonClass: "btn btn-success",
-                            buttonsStyling: false
+                            buttonsStyling: false,
+                            onClose: RedirectConceptEmitidos
                         }).then(function () {
-                            window.location.href = "/Concept/Emitidos";
+                            RedirectConceptEmitidos();
 
 
                         }).catch(swal.noop);;
@@ -260,9 +261,10 @@
                         text: 'El concepto ha sido rechazado con éxito.',
                         type: 'success',
                         confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
+                        buttonsStyling: false,
+                        onClose: RedirectConceptEmitidos
                     }).then(function () {
-                        window.location.href = "/Concept/Emitidos";
+                        RedirectConceptEmitidos();
                     }).catch(swal.noop);
                 })
                  .fail(function (data) {
