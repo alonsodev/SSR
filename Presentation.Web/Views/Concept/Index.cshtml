@@ -252,7 +252,7 @@
                             },
                             {
                                 render: function (data, type, row) {
-                                    debugger;
+                                    //debugger;
                                     return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.concept_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'
                                         + '<div style="display:none" id="summary-' + row.concept_id + '">' + row.summary + '</div>';
 
@@ -278,7 +278,7 @@
                         lengthMenu: [[10, 20, 50], [10, 20, 50]]
                     });
                     datatable.on('click', '.summary', function (event) {
-                        debugger;
+                        //debugger;
                         var $tr = $(this).closest('tr');
                         var row_id = $(this).attr('row-id');
 
