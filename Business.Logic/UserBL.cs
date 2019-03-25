@@ -29,6 +29,11 @@ namespace Business.Logic
 
         }
 
+        public List<InvestigatorViewModel> ObtenerInvestigadores()
+        {
+            return oRepositorioInvestigator.ObtenerInvestigadores();
+        }
+
         public void ActivarCuenta(int id)
         {
             users ousers = new users

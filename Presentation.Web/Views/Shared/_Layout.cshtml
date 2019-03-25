@@ -160,15 +160,15 @@
 
                         <!-- <li class=" @ViewBag.dashboard">
 
-                               <a href="dashboard.html">
+           <a href="dashboard.html">
 
-                                   <i class="now-ui-icons design_app"></i>
+               <i class="now-ui-icons design_app"></i>
 
-                                   <p>Dashboard</p>
-                               </a>
+               <p>Dashboard</p>
+           </a>
 
-                           </li>
-                        -->
+       </li>
+    -->
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
                         {
@@ -241,9 +241,9 @@ AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttr
 AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.Permission.module_education_levels,
 AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
 AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
-         AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config))
+         AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config, AuthorizeUserAttribute.Permission.module_period))
                         {
-                            <li class="@(ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
+                            <li class="@(ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
 
                                 <a data-toggle="collapse" href="#management">
                                     <i class="now-ui-icons loader_gear"></i>
@@ -252,7 +252,7 @@ AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUser
                                     </p>
                                 </a>
 
-                                <div class="@("collapse " + (ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
+                                <div class="@("collapse " + (ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
 
                                     <ul class="nav">
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
@@ -373,6 +373,16 @@ AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUser
                                                 <a href="/MeritRange">
                                                     <span class="sidebar-mini-icon">RM</span>
                                                     <span class="sidebar-normal"> Rango de Méritos </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_period))
+                                        {
+                                            <li class="@(ViewBag.active == "periods" ? "active" : "")">
+                                                <a href="/MeritRange">
+                                                    <span class="sidebar-mini-icon">P</span>
+                                                    <span class="sidebar-normal"> Periodos </span>
                                                 </a>
                                             </li>
                                         }
@@ -527,6 +537,17 @@ AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUser
 
                             </li>
                         }
+                        <li class="@(ViewBag.active == "draft_law_report" ? "active" : "")">
+
+                            <a href="/Report">
+
+                                <i class="now-ui-icons education_paper"></i>
+
+                                <p>Reporte</p>
+                            </a>
+
+                        </li>
+                        
                     </ul>
                 }
             </div>

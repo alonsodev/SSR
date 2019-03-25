@@ -67,7 +67,30 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
-       
+        public List<SelectOptionItem> StatusSelector()
+        {
+            var lista = this.Context.Set<draft_laws_status>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.draft_law_status_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> OriginSelector()
+        {
+            var lista = this.Context.Set<draft_laws>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.origin.ToString(),
+                Text = a.origin,
+            }).Distinct().OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
         {
             var lista = this.Context.Set<snies>();
@@ -516,6 +539,7 @@ namespace Infrastructure.Data.Repositories
                 user_id_created = a.user_id_created,
                 user_id_modified = a.user_id_modified,
                 document_type_id = a.document_type_id,
+               
 
                 doc_nro = a.doc_nro,
                 nationality_id = a.nationality_id,
@@ -541,6 +565,7 @@ namespace Infrastructure.Data.Repositories
                 document_type = a.document_types.name,
                 doc_nro = a.doc_nro,
                 user_status = a.user_status.name,
+                contact_name=a.contact_name
 
             });
             return query.ToList();
@@ -559,6 +584,7 @@ namespace Infrastructure.Data.Repositories
                 document_type = a.document_types.name,
                 doc_nro = a.doc_nro,
                 user_status = a.user_status.name,
+                contact_name=a.contact_name,
 
             });
             return query.ToList();

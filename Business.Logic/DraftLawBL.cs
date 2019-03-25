@@ -29,6 +29,11 @@ namespace Business.Logic
             oDebateSpeakerRepositorio = oUnitOfWork.DebateSpeakerRepository;
         }
 
+        public List<DraftLawViewModel> ObtenerNotificables()
+        {
+            return oRepositorio.ObtenerNotificables();
+        }
+
         public bool VerificarDuplicado(int id_draft_law, int draft_law_number)
         {
             return oRepositorio.VerificarDuplicado(id_draft_law, draft_law_number);
@@ -76,6 +81,13 @@ namespace Business.Logic
             odraft_laws.date_modified = DateTime.Now;
             oRepositorio.Update(odraft_laws);
             oUnitOfWork.SaveChanges();
+        }
+
+        public void ActualizarNotificacion(List<DraftLawViewModel> list)
+        {
+
+             oRepositorio.ActualizarNotificacion(list);
+
         }
 
         public void Eliminar(int id)

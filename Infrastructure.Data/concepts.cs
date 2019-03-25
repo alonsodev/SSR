@@ -43,12 +43,12 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concept_debate_speakers> concept_debate_speakers { get; set; }
         public virtual concepts_status concepts_status { get; set; }
-        public virtual investigators investigators { get; set; }
         public virtual reason_rejects reason_rejects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concepts_status_logs> concepts_status_logs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concepts_tags> concepts_tags { get; set; }
+        public virtual investigators investigators { get; set; }
         public virtual draft_laws draft_laws { get; set; }
     }
 }

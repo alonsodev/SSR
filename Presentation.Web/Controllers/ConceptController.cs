@@ -246,9 +246,18 @@ namespace Presentation.Web.Controllers
 
             NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
 
-            oNotificationConceptViewModel.name = investigador.user_name;
+            oNotificationConceptViewModel.name = investigador.contact_name;
             oNotificationConceptViewModel.url_edit_concept = base_url + @"/Concept/Editar/" + pConceptViewModel.concept_id;
             oNotificationConceptViewModel.to = investigador.user_email;
+
+            oNotificationConceptViewModel.url_home = ConfigurationManager.AppSettings["site.url"];
+
+            oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+            oNotificationConceptViewModel.draft_law_title = pConceptViewModel.title;
+            oNotificationConceptViewModel.reject_reason = pConceptViewModel.reason_reject_description;
             oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.rechazado");
 
 
@@ -272,9 +281,19 @@ namespace Presentation.Web.Controllers
             SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
             NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
-            oNotificationConceptViewModel.name = investigador.user_name;
-            oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept";
+            oNotificationConceptViewModel.name = investigador.contact_name;
+            oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept/Certificado/"+pConceptViewModel.concept_id;
             oNotificationConceptViewModel.to = investigador.user_email;
+            
+            oNotificationConceptViewModel.url_home = ConfigurationManager.AppSettings["site.url"];
+
+            oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+            oNotificationConceptViewModel.draft_law_title = pConceptViewModel.title;
+
+
             oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.aprobado");
 
 
@@ -301,9 +320,17 @@ namespace Presentation.Web.Controllers
                 SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
                 NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
-                oNotificationConceptViewModel.name = ponente.user_name;
+                oNotificationConceptViewModel.name = ponente.contact_name;
                 oNotificationConceptViewModel.url_calificar_concept = base_url + @"/Concept/Calificar/" + pConceptViewModel.concept_id;
                 oNotificationConceptViewModel.to = ponente.user_email;
+
+                oNotificationConceptViewModel.url_home = ConfigurationManager.AppSettings["site.url"];
+
+                oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+                oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+                oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+                oNotificationConceptViewModel.draft_law_title = pConceptViewModel.title;
                 oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificar");
 
                 NotificationBL oNotificationBL = new NotificationBL();
@@ -325,9 +352,16 @@ namespace Presentation.Web.Controllers
             SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
             NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
-            oNotificationConceptViewModel.name = investigador.user_name;
+            oNotificationConceptViewModel.name = investigador.contact_name;
             oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept";
             oNotificationConceptViewModel.to = investigador.user_email;
+
+
+            oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+            oNotificationConceptViewModel.draft_law_title = pConceptViewModel.title;
             oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificado");
 
             NotificationBL oNotificationBL = new NotificationBL();
@@ -355,9 +389,14 @@ namespace Presentation.Web.Controllers
                 SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
                 NotificationConceptViewModel oNotificationConceptViewModel = new NotificationConceptViewModel();
-                oNotificationConceptViewModel.name = evaluador.user_name;
+                oNotificationConceptViewModel.name = evaluador.contact_name;
                 oNotificationConceptViewModel.url_view_concept = base_url + @"/Concept/Evaluar/" + pConceptViewModel.concept_id;
                 oNotificationConceptViewModel.to = evaluador.user_email;
+
+                oNotificationConceptViewModel.url_home = ConfigurationManager.AppSettings["site.url"];
+                oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+                oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+                oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
                 oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.eval");
 
 
@@ -598,7 +637,10 @@ namespace Presentation.Web.Controllers
             oConceptBL.ActualizarStatus(oConceptStatusLogViewModel);
 
             ConceptViewModel pConceptViewModel = oConceptBL.Obtener(oConceptStatusLogViewModel.concept_id);
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
 
+            pConceptViewModel.reason_reject_description = oReasonRejects.Where(a => a.Value == reason_reject_id.ToString()).Take(1).FirstOrDefault().Text;
             NotificacionRechazadoConcepto(pConceptViewModel);
             return Json(new
             {

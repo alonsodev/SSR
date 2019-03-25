@@ -5,20 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 
 namespace Domain.Entities
 {
+    [XmlRootAttribute("DraftLawViewModel")]
+    [Serializable]
     public class DraftLawViewModel : BaseViewModel
     {
+        [XmlAttribute]
         public int draft_law_id { get; set; }
 
         [Display(Name = "Nro. de Proyecto")]
         [Required(ErrorMessage = "El Nro. de Proyecto es obligatorio.")]
+        [XmlAttribute]
         public int draft_law_number { get; set; }
 
         
         [Display(Name = "Título")]
         [Required(ErrorMessage = "El Título es obligatorio.")]
+        [XmlAttribute]
         public string title { get; set; }
 
 
@@ -39,7 +45,7 @@ namespace Domain.Entities
         [Display(Name = "Comision")]
         [Required(ErrorMessage = "La Comision es obligatoria.")]
         public Nullable<int> commission_id { get; set; }
-        
+        [XmlAttribute]
         public string commission { get; set; }
         [Display(Name = "Ponente de debate 1")]
         [Required(ErrorMessage = "El Ponente de debate 1 es obligatorio.")]
@@ -51,6 +57,7 @@ namespace Domain.Entities
 
         [Display(Name = "Estado")]
         [Required(ErrorMessage = "El Estado es obligatorio.")]
+        [XmlAttribute]
         public string status { get; set; }
 
         [Display(Name = "Comentario de estado")]
@@ -60,6 +67,7 @@ namespace Domain.Entities
         [Display(Name = "Área de Interés")]
         [Required(ErrorMessage = "El Área de Interés es obligatorio.")]
         public Nullable<int> interest_area_id { get; set; }
+        [XmlAttribute]
         public string interest_area { get; set; }
 
         [Display(Name = "Iniciativa")]

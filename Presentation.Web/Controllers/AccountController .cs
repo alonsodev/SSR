@@ -172,6 +172,10 @@ namespace Presentation.Web.Controllers
             NotificationGeneralAccountViewModel oNotification = new NotificationGeneralAccountViewModel();
 
             oNotification.url_recuperar_cuenta = ConfigurationManager.AppSettings["site.url"] + "/Account/CambiarPassword/?code=" + user_code;
+            oNotification.url_home = ConfigurationManager.AppSettings["site.url"];
+            oNotification.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotification.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotification.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
             oNotification.name = oUserViewModel.contact_name;
             oNotification.to = oUserViewModel.user_email;
             oSendEmailNotificationBL.EnviarNotificacionRecuperarCuenta(oNotification);
@@ -382,6 +386,11 @@ namespace Presentation.Web.Controllers
 
 
             oNotification.url_activar_cuenta = ConfigurationManager.AppSettings["site.url"] + "/Account/Activar/?code=" + user_code;
+            oNotification.url_home = ConfigurationManager.AppSettings["site.url"];
+
+            oNotification.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotification.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotification.url_privacidad= ConfigurationManager.AppSettings["site.url.privacidad"];
             oNotification.name = pViewModel.contact_name;
             oNotification.to = pViewModel.user_email;
             oSendEmailNotificationBL.EnviarNotificacionActivarCuenta(oNotification);

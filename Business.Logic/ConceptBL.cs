@@ -52,6 +52,14 @@ namespace Business.Logic
             }
             return string.Empty;
         }
+
+        public GridModel<ReportViewModel> ObtenerReporte(DataTableAjaxPostModel ofilters, ReportFilterViewModel Reportefiltros)
+        {
+            return oRepositorio.ObtenerReporte(ofilters, Reportefiltros);
+        }
+        public List<ReportViewModel> ObtenerExportarReporte(ReportFilterViewModel filtros) {
+            return oRepositorio.ObtenerExportarReporte(filtros);
+        }
         public static string ObtenerHtmlCertification(CertificationHtmlViewModel oCertification, string xslPath)
         {
             StringBuilder msgBody = new StringBuilder();

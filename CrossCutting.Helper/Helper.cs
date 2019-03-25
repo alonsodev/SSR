@@ -13,6 +13,15 @@ namespace CrossCutting.Helper
 {
     public class Helper
     {
+        public static int CalculateAge(DateTime dateOfBirth)
+        {
+            int age = 0;
+            age = DateTime.Now.Year - dateOfBirth.Year;
+            if (DateTime.Now.DayOfYear < dateOfBirth.DayOfYear)
+                age = age - 1;
+
+            return age;
+        }
         public static string Substring(string str,int end)
         {
             if (String.IsNullOrEmpty(str))

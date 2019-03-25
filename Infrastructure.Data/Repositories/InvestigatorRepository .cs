@@ -38,19 +38,12 @@ namespace Infrastructure.Data.Repositories
             queryFilters = queryFilters.Where(a => a.users.user_role_id == 11 && a.users.user_status_id==1);
             queryFilters = queryFilters.Where(a => a.investigators_interest_areas.Where(b => interest_areas.Contains(b.interest_area_id)).Count() > 0);
 
-
-
-
             if (String.IsNullOrWhiteSpace(searchBy) == false)
             {
                 // as we only have 2 cols allow the user type in name 'firstname lastname' then use the list to search the first and last name of dbase
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
-
-
-                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.users.user_name.ToLower().Contains(srch))
-                    );
-
-
+                queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.users.user_name.ToLower().Contains(srch)));
+                
             }
 
 
@@ -76,6 +69,38 @@ namespace Infrastructure.Data.Repositories
             resultado.recordsFiltered = count_records_filtered;
             return resultado;
         }
+
+       
+
+        public List<InvestigatorViewModel> ObtenerInvestigadores()
+        {
+            var query = Set.Where(a => a.users.user_status_id==1 ).Select(a => new InvestigatorViewModel
+            {
+
+                investigator_id = a.investigator_id,
+                first_name = a.first_name,
+                second_name = a.second_name,
+                last_name = a.last_name,
+                second_last_name = a.second_last_name,
+               
+
+                commissions = a.investigators_commissions.Select(c => c.commission_id).ToList(),
+                interest_areas = a.investigators_interest_areas.Select(ia => ia.interest_area_id).ToList(),
+
+                user_id = a.user_id,
+                user_name = a.users.user_name,
+                user_email = a.users.user_email,
+                user_pass = a.users.user_pass,              
+
+                contact_name = a.users.contact_name,
+
+              
+
+            });
+
+            return query.ToList();
+        }
+
         public InvestigatorViewModel Obtener(int investigator_id)
         {
             var query = Set.Where(a => a.investigator_id == investigator_id).Select(a => new InvestigatorViewModel

@@ -76,9 +76,13 @@
     <Compile Include="CambiarPasswordViewModel.cs" />
     <Compile Include="CertificationHtmlViewModel.cs" />
     <Compile Include="ConceptHtmlViewModel.cs" />
+    <Compile Include="PeriodViewModel.cs" />
+    <Compile Include="ReportFilterViewModel.cs" />
+    <Compile Include="ReportViewModel.cs" />
     <Compile Include="DraftLawStatusViewModel.cs" />
     <Compile Include="MeritRangeViewModel.cs" />
     <Compile Include="ConfigurationViewModel.cs" />
+    <Compile Include="NotificationDraftLawViewModel.cs" />
     <Compile Include="Notifications\NotificacionConfig.cs" />
     <Compile Include="Notifications\NotificationConceptViewModel.cs" />
     <Compile Include="Notifications\NotificationGeneralAccountViewModel.cs" />

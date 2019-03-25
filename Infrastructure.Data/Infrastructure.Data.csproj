@@ -158,6 +158,9 @@
     <Compile Include="notifications.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="periods.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="permissions.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
@@ -180,6 +183,7 @@
     <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\ConsultationRepository.cs" />
     <Compile Include="Repositories\DraftLawStatusRepository.cs" />
+    <Compile Include="Repositories\PeriodRepository.cs" />
     <Compile Include="Repositories\SnieRepository.cs" />
     <Compile Include="Repositories\EducationLevelRepository.cs" />
     <Compile Include="Repositories\KnowledgeAreaRepository.cs" />
@@ -230,6 +234,9 @@
     </Compile>
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="users.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_institutionss.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="user_status.cs">

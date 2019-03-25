@@ -86,9 +86,17 @@ namespace Presentation.Web.Controllers
                 SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
                 NotificationGeneralAccountViewModel oNotificationConceptViewModel = new NotificationGeneralAccountViewModel();
-                oNotificationConceptViewModel.name = evaluador.user_name;
+                oNotificationConceptViewModel.name = evaluador.contact_name;
                 oNotificationConceptViewModel.url_solicitud_concepto = base_url + @"/Consultation/Ver/" + pConsultationViewModel.consultation_id;
                 oNotificationConceptViewModel.to = evaluador.user_email;
+
+                oNotificationConceptViewModel.url_home = ConfigurationManager.AppSettings["site.url"];
+
+                oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+                oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+                oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+
                 oSendEmailNotificationBL.EnviarNotificacionSolicitudConcepto(oNotificationConceptViewModel);
 
 

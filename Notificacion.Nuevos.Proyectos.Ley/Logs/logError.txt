@@ -1,0 +1,90 @@
+ERROR 2019-03-18 22:24:56,453 35302ms Program                Main               - Notificacion.Nuevos.Proyectos.Ley: 
+System.Data.Entity.Core.MetadataException: Schema specified is not valid. Errors: 
+SSR.ssdl(2,2) : error 0152: No Entity Framework provider found for the ADO.NET provider with invariant name 'System.Data.SqlClient'. Make sure the provider is registered in the 'entityFramework' section of the application config file. See http://go.microsoft.com/fwlink/?LinkId=260882 for more information.
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Loader.ThrowOnNonWarningErrors()
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Loader.LoadItems(IEnumerable`1 xmlReaders, IEnumerable`1 sourceFilePaths)
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Loader..ctor(IEnumerable`1 xmlReaders, IEnumerable`1 sourceFilePaths, Boolean throwOnError, IDbDependencyResolver resolver)
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Init(IEnumerable`1 xmlReaders, IEnumerable`1 filePaths, Boolean throwOnError, IDbDependencyResolver resolver, DbProviderManifest& providerManifest, DbProviderFactory& providerFactory, String& providerInvariantName, String& providerManifestToken, Memoizer`2& cachedCTypeFunction)
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection..ctor(IEnumerable`1 xmlReaders, IEnumerable`1 filePaths)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataCache.LoadStoreCollection(EdmItemCollection edmItemCollection, MetadataArtifactLoader loader)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataCache.<>c__DisplayClass5.<>c__DisplayClass7.<GetMetadataWorkspace>b__1()
+   en System.Lazy`1.CreateValue()
+   en System.Lazy`1.LazyInitValue()
+   en System.Lazy`1.get_Value()
+   en System.Data.Entity.Core.Metadata.Edm.MetadataCache.<>c__DisplayClass5.<>c__DisplayClass7.<GetMetadataWorkspace>b__4()
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.LoadAndCheckItemCollection[T](Func`1 itemCollectionLoader)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.<>c__DisplayClass16.<.ctor>b__f()
+   en System.Lazy`1.CreateValue()
+   en System.Lazy`1.LazyInitValue()
+   en System.Lazy`1.get_Value()
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.GetItemCollection(DataSpace dataSpace, Boolean required)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.GetItemCollection(DataSpace dataSpace)
+   en System.Data.Entity.Core.Objects.ObjectContext.InitializeMappingViewCacheFactory(DbContext owner)
+   en System.Data.Entity.Core.Objects.ObjectContext..ctor(EntityConnection connection, Boolean isConnectionConstructor, ObjectQueryExecutionPlanFactory objectQueryExecutionPlanFactory, Translator translator, ColumnMapFactory columnMapFactory)
+   en System.Data.Entity.Internal.InternalConnection.CreateObjectContextFromConnectionModel()
+   en System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   en System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   en System.Data.Entity.Internal.InternalContext.Initialize()
+   en System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   en System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   en System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   en System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   en System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   en Infrastructure.Data.Repositories.DraftLawRepository.ObtenerNotificables() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\DraftLawRepository.cs:línea 47
+   en Business.Logic.DraftLawBL.ObtenerNotificables() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\DraftLawBL.cs:línea 34
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 38
+ERROR 2019-03-18 22:32:56,612 80649ms Program                Main               - Notificacion.Nuevos.Proyectos.Ley: 
+System.NotImplementedException: No se puede implementar el método o la operación.
+   en Infrastructure.Data.Repositories.InvestigatorRepository.ObtenerTodos() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\InvestigatorRepository .cs:línea 82
+   en Business.Logic.UserBL.ObtenerInvestigadores() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\UserBL.cs:línea 34
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 41
+ERROR 2019-03-18 22:33:10,423  9127ms Program                Main               - Notificacion.Nuevos.Proyectos.Ley: 
+System.NotImplementedException: No se puede implementar el método o la operación.
+   en Infrastructure.Data.Repositories.InvestigatorRepository.ObtenerTodos() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\InvestigatorRepository .cs:línea 82
+   en Business.Logic.UserBL.ObtenerInvestigadores() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\UserBL.cs:línea 34
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 41
+ERROR 2019-03-18 22:36:57,960 27824ms Program                Main               - Notificacion.Nuevos.Proyectos.Ley: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en CrossCutting.Helper.EmailHelper.SendMail(String strMessage, String strFromAddress, String strToAddress, String strCcAddress, String strBccAddress, String strSubject, String[] arrAttachmentPath) en D:\EDISON\Proyectos\bitbucket-repos\SSR\CrossCutting.Helper\EmailHelper.cs:línea 35
+   en Business.Logic.SendEmailNotificationBL.EnviarNotificacionInvestigadorProyectosNuevos(NotificationDraftLawViewModel oNotification) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\SendEmailNotificationBL.cs:línea 54
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 57
+ERROR 2019-03-18 22:36:57,995 27859ms Program                Main               - Notificacion.Nuevos.Proyectos.Ley: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en CrossCutting.Helper.EmailHelper.SendMail(String strMessage, String strFromAddress, String strToAddress, String strCcAddress, String strBccAddress, String strSubject, String[] arrAttachmentPath) en D:\EDISON\Proyectos\bitbucket-repos\SSR\CrossCutting.Helper\EmailHelper.cs:línea 35
+   en Business.Logic.SendEmailNotificationBL.EnviarNotificacionInvestigadorProyectosNuevos(NotificationDraftLawViewModel oNotification) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\SendEmailNotificationBL.cs:línea 54
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 57
+ERROR 2019-03-18 22:38:22,374 71457ms Program                Main               - Notificacion.Nuevos.Proyectos.Ley: 
+System.AggregateException: Se han producido uno o varios errores. ---> System.Data.SqlClient.SqlException: El nombre de columna 'draft_law_id' no es válido.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en EntityFramework.Batch.SqlServerBatchRunner.<InternalUpdate>d__15`1.MoveNext()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   en System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   en System.Threading.Tasks.Task`1.get_Result()
+   en EntityFramework.Batch.SqlServerBatchRunner.Update[TEntity](ObjectContext objectContext, EntityMap entityMap, ObjectQuery`1 query, Expression`1 updateExpression)
+   en EntityFramework.Extensions.BatchExtensions.Update[TEntity](IQueryable`1 source, Expression`1 updateExpression)
+   en Infrastructure.Data.Repositories.DraftLawRepository.ActualizarNotificacion(List`1 list) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\DraftLawRepository.cs:línea 119
+   en Business.Logic.DraftLawBL.ActualizarNotificacion(List`1 list) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\DraftLawBL.cs:línea 89
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 71
+---> (Nº de excepción interna 0) System.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'draft_law_id' no es válido.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en EntityFramework.Batch.SqlServerBatchRunner.<InternalUpdate>d__15`1.MoveNext()
+ClientConnectionId:cc7f214c-d339-4d45-ae3c-5f9c4db6a4c8
+Error Number:207,State:1,Class:16<---
+

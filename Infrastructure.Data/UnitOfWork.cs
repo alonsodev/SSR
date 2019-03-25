@@ -61,7 +61,9 @@ namespace Infrastructure.Data
 
         private DraftLawStatusRepository _draftLawStatusRepository;
 
-        
+        private PeriodRepository _periodRepository;
+
+
         #endregion
 
         #region Constructors
@@ -72,6 +74,11 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public PeriodRepository PeriodRepository
+        {
+            get { return _periodRepository ?? (_periodRepository = new PeriodRepository(_context)); }
+
+        }
         public DraftLawStatusRepository DraftLawStatusRepository
         {
             get { return _draftLawStatusRepository ?? (_draftLawStatusRepository = new DraftLawStatusRepository(_context)); }
@@ -298,6 +305,7 @@ namespace Infrastructure.Data
             this._consultationRepository = null;
             this._consultationInterestAreaRepository = null;
             this._draftLawStatusRepository = null;
+            this._periodRepository = null;
             _context.Dispose();
         }
         #endregion

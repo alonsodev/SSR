@@ -30,6 +30,22 @@ namespace Domain.Entities.Notifications
         [XmlAttribute]
         public string to { get; set; }
 
-       
+
+        [XmlAttribute]
+        public string url_home { get; set; }
+
+        [XmlAttribute]
+        public string url_privacidad { get; set; }
+        [XmlAttribute]
+        public string url_contacto { get; set; }
+        [XmlAttribute]
+        public string url_politicas { get; set; }
+
+        [XmlAttribute]
+        public string draft_law_title { get; set; }
+        [XmlAttribute]
+        public string reject_reason { get; set; }
+
+
     }
 }

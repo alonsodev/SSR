@@ -43,13 +43,16 @@ namespace Infrastructure.Data
         public string dev_name { get; set; }
         public Nullable<bool> notified { get; set; }
         public Nullable<bool> active { get; set; }
+        public Nullable<int> number_approved_concepts { get; set; }
+        public Nullable<int> period_id { get; set; }
     
         public virtual commissions commissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concepts> concepts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<debate_speakers> debate_speakers { get; set; }
-        public virtual interest_areas interest_areas { get; set; }
         public virtual draft_laws_status draft_laws_status { get; set; }
+        public virtual interest_areas interest_areas { get; set; }
+        public virtual periods periods { get; set; }
     }
 }

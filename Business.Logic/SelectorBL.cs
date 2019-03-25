@@ -53,10 +53,21 @@ namespace Business.Logic
             return oRepositorio.KnowledgeAreasSelector();
         }
 
+        public List<SelectOptionItem> StatusSelector()
+        {
+            return oRepositorio.StatusSelector();
+        }
+
         public List<SelectOptionItem> ReasonRejectsSelector()
         {
             return oRepositorio.ReasonRejectsSelector();
         }
+
+        public List<SelectOptionItem> OriginSelector()
+        {
+            return oRepositorio.OriginSelector();
+        }
+
         public List<SelectOptionItem> TagsSelector()
         {
             return oRepositorio.TagsSelector();
