@@ -33,7 +33,6 @@ namespace Infrastructure.Data
         public virtual DbSet<debate_speakers> debate_speakers { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<document_types> document_types { get; set; }
-        public virtual DbSet<draft_laws> draft_laws { get; set; }
         public virtual DbSet<education_levels> education_levels { get; set; }
         public virtual DbSet<educational_institutions> educational_institutions { get; set; }
         public virtual DbSet<genders> genders { get; set; }
@@ -52,13 +51,22 @@ namespace Infrastructure.Data
         public virtual DbSet<tags> tags { get; set; }
         public virtual DbSet<user_status> user_status { get; set; }
         public virtual DbSet<concepts_status_logs> concepts_status_logs { get; set; }
-        public virtual DbSet<investigators> investigators { get; set; }
         public virtual DbSet<investigators_commissions> investigators_commissions { get; set; }
         public virtual DbSet<investigators_interest_areas> investigators_interest_areas { get; set; }
         public virtual DbSet<configurations> configurations { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<merit_ranges> merit_ranges { get; set; }
         public virtual DbSet<notifications> notifications { get; set; }
+        public virtual DbSet<concept_debate_speakers> concept_debate_speakers { get; set; }
         public virtual DbSet<concepts> concepts { get; set; }
+        public virtual DbSet<consultations_interest_areas> consultations_interest_areas { get; set; }
+        public virtual DbSet<initiatives> initiatives { get; set; }
+        public virtual DbSet<consultation_types> consultation_types { get; set; }
+        public virtual DbSet<consultations> consultations { get; set; }
+        public virtual DbSet<draft_laws_status> draft_laws_status { get; set; }
+        public virtual DbSet<investigators> investigators { get; set; }
+        public virtual DbSet<draft_laws> draft_laws { get; set; }
+        public virtual DbSet<periods> periods { get; set; }
+        public virtual DbSet<user_institutionss> user_institutionss { get; set; }
     }
 }

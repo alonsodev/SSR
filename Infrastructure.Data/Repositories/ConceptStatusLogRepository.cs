@@ -36,7 +36,18 @@ namespace Infrastructure.Data.Repositories
 
             return count>0;
         }
+        public Boolean VerificarCalificado(int concept_id)
+        {
+            var count = Set.Where(a => a.concept_id == concept_id && a.concept_status_id == 5 ).Count();
 
+            return count > 0;
+        }
+        public Boolean VerificarCalificado(int concept_id, int user_id)
+        {
+            var count = Set.Where(a => a.concept_id == concept_id && a.concept_status_id == 5 && a.user_id_created == user_id).Count();
+
+            return count > 0;
+        }
         public RejectConceptViewModel ObtenerRechazo(int concept_id)
         {
             return Set.Where(a=> a.concept_id==concept_id && a.concept_status_id==3).OrderByDescending(a=> a.concept_status_log_id).Select(

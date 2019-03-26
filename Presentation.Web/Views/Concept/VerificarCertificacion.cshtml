@@ -1,0 +1,135 @@
+﻿@model Domain.Entities.VerifyCertificationViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "concept");
+    ViewBag.HeaderTitle = "Certificado de Concepto Técnico";
+    ViewBag.Title = "Verificar Certificado";
+
+    ViewBag.active = "concepts";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+<div class="col-md-12 mr-auto">
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">@ViewBag.Title</h4>
+                </div>
+
+                <div class="card-body">
+                    @if (!ViewBag.valido)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                No existe un certificado para el hash proporcionado.
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    Existe un certificado para el hash proporcionado, por favor verifique que los datos del certificado son los mismo al que se presenta a continuación:
+                                </p>
+                            </div>
+                        </div>
+                      
+                            @Html.HiddenFor(model => model.concept_id)
+
+
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.investigador, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.investigador, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.investigador, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.cedula, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.institucion, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.institucion, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.institucion, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.grupo, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.grupo, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.grupo, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.codigo_grupo, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.codigo_grupo, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.codigo_grupo, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.concept_id, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.concept_id, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.concept_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.fecha_presentacion_concepto, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.fecha_presentacion_concepto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.fecha_presentacion_concepto, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.nro_proyecto, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.nro_proyecto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.nro_proyecto, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group has-label">
+
+                                @Html.LabelFor(model => model.titulo_proyecto, htmlAttributes: new { @class = "" })
+                                @Html.TextAreaFor(model => model.titulo_proyecto, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.titulo_proyecto, "", new { @class = "text-danger" })
+
+                            </div>
+                      
+
+                    }
+                </div><!-- end content-->
+
+
+            </div><!--  end card  -->
+        </div> <!-- end col-md-12 -->
+    </div> <!-- end row -->
+</div>
+
+
+@section Scripts {
+
+
+}

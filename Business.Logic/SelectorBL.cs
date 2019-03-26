@@ -28,6 +28,12 @@ namespace Business.Logic
             return oRepositorio.ProgramsSelector();
         }
 
+        public List<SelectOptionItem> ConsultationTypesSelector()
+        {
+            return oRepositorio.ConsultationTypesSelector();
+        }
+
+       
 
         public List<SelectOptionItem> EducationLevelsSelector()
         {
@@ -47,14 +53,31 @@ namespace Business.Logic
             return oRepositorio.KnowledgeAreasSelector();
         }
 
+        public List<SelectOptionItem> StatusSelector()
+        {
+            return oRepositorio.StatusSelector();
+        }
+
         public List<SelectOptionItem> ReasonRejectsSelector()
         {
             return oRepositorio.ReasonRejectsSelector();
         }
+
+        public List<SelectOptionItem> OriginSelector()
+        {
+            return oRepositorio.OriginSelector();
+        }
+
         public List<SelectOptionItem> TagsSelector()
         {
             return oRepositorio.TagsSelector();
         }
+        public List<SelectOptionItem> DebateSpeakersSelector()
+        {
+            return oRepositorio.DebateSpeakersSelector();
+        }
+
+        
         public List<SelectOptionItem> DepartmentsSelector()
         {
             return oRepositorio.DepartmentsSelector();

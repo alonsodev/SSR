@@ -1,0 +1,117 @@
+﻿@model Domain.Entities.ConsultationViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "consultation");
+    ViewBag.HeaderTitle = "Solicitud de concepto";
+    ViewBag.Title = "Crear solicitud de concepto";
+
+    ViewBag.active = "consultations";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Crear", "Consultation", FormMethod.Post, new { id = "form-registrar", title = "Crear Consultation" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.consultation_type_id, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("consultation_type_id", (IEnumerable<SelectListItem>)ViewBag.consultation_types, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.consultation_type_id, "", new { @class = "text-danger" })
+                    
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("interest_areas", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { multiple = "multiple", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.interest_areas, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error interest_areas-error"></span>
+                </div>
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.message, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+
+                </div>
+
+
+
+
+
+            </div><!-- end content-->
+                <div class="card-footer text-right">
+
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function ValidarInterestAreas() {
+            $('.interest_areas-error').html('');
+            var tags = $('#interest_areas').val();
+            if (tags && tags.length > 0)
+                return true;
+            $('.interest_areas-error').html('Las Áreas de interés son obligatorios.');
+            return false;
+        }
+
+        $(document).ready(function () {
+            $("#interest_areas").select2({
+               
+                tokenSeparators: [',']
+            });
+            $("#consultation_type_id").select2({});
+        });
+        $("#btnCancelar").click(function () {
+            window.location.href = "/Consultation";
+        });
+
+        $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+
+            if (ValidarInterestAreas() && $("#form-registrar").valid()) {
+
+                form.submit();
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

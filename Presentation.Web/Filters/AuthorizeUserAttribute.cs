@@ -113,6 +113,50 @@ namespace Presentation.Web.Filters
             new_merit_ranges = 112,
             edit_merit_ranges = 113,
             delete_merit_ranges = 114,
+            list_consultation_realized = 115,
+            list_consultation_send = 116,
+            new_consultation = 117,
+            view_consultation = 118,
+            //attend_consultation = 119,
+            evaluate_concept = 120,
+            general_report = 1120,
+            general_report_title = 1121,
+            general_report_number_approved_concepts = 1122,
+            general_report_interest_area = 1123,
+            general_report_commission = 1124,
+            general_report_status = 1125,
+            general_report_origin = 1126,
+            general_report_institution = 1127,
+            general_report_investigator = 1128,
+            general_report_gender = 1129,
+            general_report_age = 1130,
+            general_report_nationality = 1131,
+            general_report_program = 1132,
+            general_report_interest_areas = 1133,
+            general_report_address = 1134,
+            general_report_institution_support = 1135,
+            general_report_investigation_group = 1136,
+            general_report_approved_concepts = 1137,
+            general_report_reject_concepts = 1138,
+            general_report_qualified_concepts = 1139,
+            general_report_ranking = 1140,
+            general_report_correo = 1141,
+            general_report_telefono = 1142,
+            general_report_movil = 1143,
+            general_report_filter_interest_area = 1144,
+            general_report_filter_commission = 1145,
+            general_report_filter_status = 1146,
+            general_report_filter_origin = 1147,
+
+            general_report_all_institution_support = 1148,
+            general_report_own_institution_support = 1149,
+
+
+            module_period = 1150,
+            list_period = 1151,
+            new_period = 1152,
+            edit_period = 1153,
+            delete_period = 1154,
         }
         public Permission[] Permissions { get; set; }
 
@@ -127,10 +171,17 @@ namespace Presentation.Web.Filters
         }
         public static List<NotificationViewModel> Notificaciones()
         {
-            CurrentUserViewModel user=(CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
+            CurrentUserViewModel user = (CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
             NotificationBL oNotificationBL = new NotificationBL();
 
             return oNotificationBL.ObtenerPorUsuario(user.user_id);
+        }
+        public static int ObtenerNroNoNotificados()
+        {
+            CurrentUserViewModel user = (CurrentUserViewModel)HttpContext.Current.Session[ConfigurationManager.AppSettings["session.usuario.actual"]];
+            NotificationBL oNotificationBL = new NotificationBL();
+
+            return oNotificationBL.ObtenerNroNoNotificados(user.user_id);
         }
         public static bool VerificarPerfil(params Permission[] permissions)
         {

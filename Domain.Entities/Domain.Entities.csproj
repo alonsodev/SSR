@@ -74,12 +74,20 @@
   <ItemGroup>
     <Compile Include="AcademicLevelViewModel.cs" />
     <Compile Include="CambiarPasswordViewModel.cs" />
+    <Compile Include="CertificationHtmlViewModel.cs" />
     <Compile Include="ConceptHtmlViewModel.cs" />
+    <Compile Include="PeriodViewModel.cs" />
+    <Compile Include="ReportFilterViewModel.cs" />
+    <Compile Include="ReportViewModel.cs" />
+    <Compile Include="DraftLawStatusViewModel.cs" />
     <Compile Include="MeritRangeViewModel.cs" />
     <Compile Include="ConfigurationViewModel.cs" />
+    <Compile Include="NotificationDraftLawViewModel.cs" />
     <Compile Include="Notifications\NotificacionConfig.cs" />
+    <Compile Include="Notifications\NotificationConceptViewModel.cs" />
     <Compile Include="Notifications\NotificationGeneralAccountViewModel.cs" />
     <Compile Include="NotificationViewModel.cs" />
+    <Compile Include="ConsultationViewModel.cs" />
     <Compile Include="RejectConceptViewModel.cs" />
     <Compile Include="SnieViewModel.cs" />
     <Compile Include="EducationLevelViewModel.cs" />
@@ -98,6 +106,7 @@
     <Compile Include="InvestigationGroupViewModel.cs" />
     <Compile Include="BadLanguageViewModel.cs" />
     <Compile Include="ConceptStatusLogViewModel.cs" />
+    <Compile Include="VerifyCertificationViewModel.cs" />
     <Compile Include="TagViewModel.cs" />
     <Compile Include="ProgramViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />

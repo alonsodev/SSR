@@ -35,7 +35,7 @@ namespace Presentation.Web.Controllers
 
             List<MeritRangeViewModel> oMeritRange= oMeritRangeBL.ObtenerTodos();
             List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
-            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", false, "", "");
+            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "0", true, "0", "TODOS");
             ViewBag.interest_areas = interest_areas;
             ViewBag.merit_ranges_json = JsonConvert.SerializeObject(oMeritRange);
             ViewBag.merit_ranges = oMeritRange;
@@ -51,6 +51,14 @@ namespace Presentation.Web.Controllers
             ViewBag.merit_ranges = oMeritRange;
             ConceptBL oConceptBL = new ConceptBL();
             MyHistoryViewModel oMyHistoryViewModel = oConceptBL.ObtenerMiHistorial(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
+
+            if (oMyHistoryViewModel == null || oMyHistoryViewModel.my_points == null) {
+                oMyHistoryViewModel = new MyHistoryViewModel();
+
+                oMyHistoryViewModel.my_points = 0;
+                oMyHistoryViewModel.qualified_concepts = 0;
+
+            }
             ViewBag.my_points = oMyHistoryViewModel.my_points;
             return View(oMyHistoryViewModel);
         }

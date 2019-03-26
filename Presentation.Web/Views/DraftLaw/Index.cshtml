@@ -20,7 +20,8 @@
                 <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>Nro. Proyecto</th>
+                           
+                            <th>Nro.<br />Proyecto</th>
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Origen</th>
@@ -34,6 +35,7 @@
                     </thead>
                     <tfoot>
                         <tr>
+                          
                             <th>Nro. Proyecto</th>
                             <th>Título</th>
                             <th>Autor</th>
@@ -54,7 +56,7 @@
 </div> <!-- end row -->
 <!-- Classic Modal -->
 <div class="modal fade" id="summary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -262,6 +264,7 @@
                             }
                         ],
                         "columns": [
+                           
                             { "data": "draft_law_number" },
                             { "data": "title" },
                             { "data": "author" },
@@ -274,7 +277,8 @@
                             { "data": "summary" },
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [8,9] },
+                            { 'className': 'text-center', 'targets': [8, 9] },
+                          
                             {
                                 render: function (data, type, row) {
 

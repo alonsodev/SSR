@@ -20,7 +20,7 @@
                 <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>Nro. Proyecto</th>
+                            <th>Nro.<br /> Proyecto</th>
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Origen</th>
@@ -54,7 +54,7 @@
 </div> <!-- end row -->
 <!-- Classic Modal -->
 <div class="modal fade" id="summary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -97,6 +97,7 @@
 
                     /* Initialize Datatables */
                     datatable = $('#dt-lista').DataTable({
+                        order: [[4, "desc"]],
                         responsive: true,
                         "proccessing": true,
                         "serverSide": true,
@@ -145,7 +146,23 @@
                             { "data": "summary" },
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [8,9] },
+                            { 'className': 'text-center', 'targets': [0,8, 9] },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.title + '">' + row.title + '</p>';
+                                },
+                                targets: 1
+                            },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.author + '">' + row.author + '</p>';
+                                },
+                                targets: 2
+                            },
                             {
                                 render: function (data, type, row) {
 
@@ -155,6 +172,7 @@
                                 },
                                 targets: 4
                             },
+                           
                             {
                                 render: function (data, type, row) {
                                     return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.draft_law_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'
@@ -166,7 +184,8 @@
                             },
                             {
                                 render: function (data, type, row) {
-                                    return '<a href="/Concept/Crear/' + row.draft_law_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Presentar Concepto Técnico"><i class="now-ui-icons ui-1_simple-add"></i></a>';
+                                    return '<a href="/Concept/Crear/' + row.draft_law_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Presentar Concepto Técnico"><i class="now-ui-icons ui-1_simple-add"></i></a>' +
+                                        ' <a href="' + row.link + '" target="_blank" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Ver texto radicado"><i class="now-ui-icons files_paper"></i></a>';
                                         
                                 },
                                 targets: 9,

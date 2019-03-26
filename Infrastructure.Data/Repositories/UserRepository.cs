@@ -41,6 +41,20 @@ namespace Infrastructure.Data.Repositories
             return query_select.ToList();
         }
 
+
+      
+        public List<SelectOptionItem> ConsultationTypesSelector()
+        {
+            var lista = this.Context.Set<consultation_types>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.consultation_type_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> EducationLevelsSelector()
         {
             var lista = this.Context.Set<education_levels>();
@@ -53,7 +67,30 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
-       
+        public List<SelectOptionItem> StatusSelector()
+        {
+            var lista = this.Context.Set<draft_laws_status>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.draft_law_status_id.ToString(),
+                Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> OriginSelector()
+        {
+            var lista = this.Context.Set<draft_laws>();
+            var consulta = lista.Select(a => new SelectOptionItem
+            {
+                Value = a.origin.ToString(),
+                Text = a.origin,
+            }).Distinct().OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> EducationLevelsSelector(int educational_institution_id, int program_id)
         {
             var lista = this.Context.Set<snies>();
@@ -99,6 +136,18 @@ namespace Infrastructure.Data.Repositories
             {
                 Value = a.tag_id.ToString(),
                 Text = a.name,
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
+        public List<SelectOptionItem> DebateSpeakersSelector()
+        {
+            var lista = this.Context.Set<users>();
+            var consulta = lista.Where(a=> a.user_role_id==9).Select(a => new SelectOptionItem
+            {
+                Value = a.id.ToString(),
+                Text = a.user_name,
             }).OrderBy(a => a.Text);
 
             return consulta.ToList();
@@ -279,7 +328,12 @@ namespace Infrastructure.Data.Repositories
                         status_id = a.user_status_id,
                         investigator_id = a.investigators.Select(i => i.investigator_id).Take(1).FirstOrDefault(),
                         permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
-                        avatar = a.avatar
+                        avatar = a.avatar,
+
+
+                        
+                        role_id = a.user_role_id,
+
 
                     }
                 ).Take(1).FirstOrDefault();
@@ -305,6 +359,7 @@ namespace Infrastructure.Data.Repositories
                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
                        avatar = a.avatar,
                        role_id=a.user_role_id,
+                       first_time=a.user_date_last_login.HasValue?0:1
                    
                    }
                ).Take(1).FirstOrDefault();
@@ -484,6 +539,7 @@ namespace Infrastructure.Data.Repositories
                 user_id_created = a.user_id_created,
                 user_id_modified = a.user_id_modified,
                 document_type_id = a.document_type_id,
+               
 
                 doc_nro = a.doc_nro,
                 nationality_id = a.nationality_id,
@@ -494,6 +550,44 @@ namespace Infrastructure.Data.Repositories
             });
 
             return query.Take(1).FirstOrDefault();
+        }
+
+        public List<UserViewModel> ObtenerPorConcepto(int concept_id)
+        {
+            IQueryable<users> queryFilters = Set;
+            var query = queryFilters.Where(a => a.concept_debate_speakers.Where( b=> b.concept_id==concept_id).Count()>0).Select(a => new UserViewModel
+            {
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role = a.roles.role,
+                document_type = a.document_types.name,
+                doc_nro = a.doc_nro,
+                user_status = a.user_status.name,
+                contact_name=a.contact_name
+
+            });
+            return query.ToList();
+        }
+
+        public List<UserViewModel> ObtenerPorPermiso(int permision_id)
+        {
+            IQueryable<users> queryFilters = Set;
+            var query = queryFilters.Where(a=> a.roles.role_permissions.Where(p=> p.id_permission== permision_id).Count()>0).Select(a => new UserViewModel
+            {
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_pass = a.user_pass,
+                user_role = a.roles.role,
+                document_type = a.document_types.name,
+                doc_nro = a.doc_nro,
+                user_status = a.user_status.name,
+                contact_name=a.contact_name,
+
+            });
+            return query.ToList();
         }
 
         public GridModel<UserViewModel> ObtenerLista(UserFiltersViewModel filters)

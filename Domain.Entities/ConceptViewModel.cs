@@ -105,5 +105,15 @@ namespace Domain.Entities
         public int concept_status_id { get; set; }
 
         public string pdf_path { get; set; }
+        public string certification_path { get; set; }
+
+        [Display(Name = "Destinatarios")]
+        public List<string> speakers { get; set; }
+        public MultiSelectList speakersMultiSelectList { get; set; }
+        public List<int> speakers_ids { get; set; }
+
+        public Guid? hash { get; set; }
+
+        public int existe_concepto { get; set; }
     }
 }

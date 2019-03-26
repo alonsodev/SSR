@@ -54,8 +54,16 @@ namespace Infrastructure.Data
         private ConfigurationRepository _configurationRepository;
 
         private NotificationRepository _notificationRepository;
+        private ConceptDebateSpeakerRepository _conceptDebateSpeakerRepository;
 
-        
+        private ConsultationRepository _consultationRepository;
+        private ConsultationInterestAreaRepository _consultationInterestAreaRepository;
+
+        private DraftLawStatusRepository _draftLawStatusRepository;
+
+        private PeriodRepository _periodRepository;
+
+
         #endregion
 
         #region Constructors
@@ -66,6 +74,32 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+        public PeriodRepository PeriodRepository
+        {
+            get { return _periodRepository ?? (_periodRepository = new PeriodRepository(_context)); }
+
+        }
+        public DraftLawStatusRepository DraftLawStatusRepository
+        {
+            get { return _draftLawStatusRepository ?? (_draftLawStatusRepository = new DraftLawStatusRepository(_context)); }
+
+        }
+
+        public ConsultationInterestAreaRepository ConsultationInterestAreaRepository
+        {
+            get { return _consultationInterestAreaRepository ?? (_consultationInterestAreaRepository = new ConsultationInterestAreaRepository(_context)); }
+
+        }
+        public ConsultationRepository ConsultationRepository
+        {
+            get { return _consultationRepository ?? (_consultationRepository = new ConsultationRepository(_context)); }
+
+        }
+        public ConceptDebateSpeakerRepository ConceptDebateSpeakerRepository
+        {
+            get { return _conceptDebateSpeakerRepository ?? (_conceptDebateSpeakerRepository = new ConceptDebateSpeakerRepository(_context)); }
+
+        }
         public NotificationRepository NotificationRepository
         {
             get { return _notificationRepository ?? (_notificationRepository = new NotificationRepository(_context)); }
@@ -267,6 +301,11 @@ namespace Infrastructure.Data
             this._investigatorInterestAreaRepository = null;
             this._configurationRepository = null;
             this._notificationRepository = null;
+            this._conceptDebateSpeakerRepository = null;
+            this._consultationRepository = null;
+            this._consultationInterestAreaRepository = null;
+            this._draftLawStatusRepository = null;
+            this._periodRepository = null;
             _context.Dispose();
         }
         #endregion

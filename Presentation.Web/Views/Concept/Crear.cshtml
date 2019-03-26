@@ -5,7 +5,7 @@
 @{
     ViewBag.HeaderTitleLink = Url.Action("index", "concept");
     ViewBag.HeaderTitle = "Concepto Técnico";
-    ViewBag.Title = "Prenstar Concepto técnico";
+    ViewBag.Title = "Presentar Concepto técnico";
 
     ViewBag.active = "concepts";
 
@@ -16,7 +16,8 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Crear", "Concept", FormMethod.Post, new { id = "form-registrar", title = "Crear Concepto" }))
+            @using (Ajax.BeginForm("Crear", "Concept", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Showmessage" }, new { @id = "form-registrar" }))
+            
             {
             <div class="card-body">
 
@@ -26,6 +27,8 @@
                 @Html.HiddenFor(model => model.draft_law_id)
                 @Html.HiddenFor(model => model.investigator_id)
                 @Html.HiddenFor(model => model.bad_languages)
+                @Html.HiddenFor(model => model.existe_concepto)
+                
                 <div class="row">
                     <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
@@ -94,12 +97,13 @@
 
 
             </div><!-- end content-->
-            <div class="card-footer text-right">
+                <div class="card-footer text-right">
 
 
-                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                <button type="submit" class="btn btn-primary">Crear</button>
-            </div>
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    
+                    <input type='button' id="btnCrear" class='btn btn-finish btn-fill btn-primary btn-wd' name='btnCrear' value='Crear' />
+                </div>
             }
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -117,6 +121,37 @@
     <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <script type="text/javascript">
+        function Showmessage(data) {
+            debugger;
+            console.log(data);
+            if (data.status == 1) {
+                swal({
+                    title: 'Registrado!',
+                    html: 'El concepto se ha registrado con éxito.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                }).then(function () {
+                    window.location.href = "/Concept/Ver/" + data.concept_id;
+                }, function (dismiss) { // dismiss can be 'cancel', 'overlay',
+                    // 'close', and 'timer'
+                    window.location.href = "/Concept/Ver/" + data.concept_id;
+
+
+                });
+            }
+            else {
+                swal({
+                    title: 'Error!',
+                    html: data.message_error,
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+            }
+
+        }
+
         function ObtenerNumeroPalabras(text) {
             text = text.replace(/\r?\n/g, " ");            
             text = text.replace(/[ ]+/g, " ");            
@@ -192,6 +227,9 @@
                 message = "<ul>" + message + "</ul>";
             return message;
         }
+        function RedirectConcepts() {
+            window.location.href = "/Concept";
+        }
         $(document).ready(function () {
             // Initialize Editor
             $('.textarea-editor').summernote({
@@ -212,12 +250,102 @@
             });
 
             $("#commission_id").select2();
+
+            var existe_concepto = $('#existe_concepto').val();
+            if (existe_concepto == "1") {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Concepto ya presentado!',
+                    text: 'Usted ya ha presentado un concepto para este proyecto de ley.',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectConcepts
+                }).then(function () {
+                    RedirectConceptPorCalificar();
+                }).catch(swal.noop);
+                return;
+            }
         });
 
         $("#btnCancelar").click(function () {
             window.location.href = "/Concept";
         });
 
+        $("#btnCrear").click(function () {
+            //prevent form from submitting
+            debugger;
+           
+            if (ValidarConcept() && ValidarTags() && $("#form-registrar").valid()) {
+
+                var message = ValidarPalabrasNoAdecuadas($('#summary').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Resumen contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+                message = ValidarPalabrasNoAdecuadas($('#bibliography').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">La bibliografía contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+
+                message = ValidarPalabrasNoAdecuadas($('#concept').val());
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+                debugger;
+                message = ValidarPalabrasNoAdecuadas($('#tags').val().join(' '));
+
+                if (message != "") {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+                $('#form-registrar').trigger('submit');
+
+
+
+
+            }
+         
+           
+
+            return false;
+        });
+
+
+        /*
         $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
             //prevent form from submitting
            
@@ -289,6 +417,6 @@
 
             return false;
         });
-
+        */
     </script>
 }

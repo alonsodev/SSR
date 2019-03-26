@@ -18,8 +18,11 @@ namespace Infrastructure.Data
         public users()
         {
             this.debate_speakers = new HashSet<debate_speakers>();
-            this.investigators = new HashSet<investigators>();
             this.notifications = new HashSet<notifications>();
+            this.concept_debate_speakers = new HashSet<concept_debate_speakers>();
+            this.consultations = new HashSet<consultations>();
+            this.investigators = new HashSet<investigators>();
+            this.user_institutionss = new HashSet<user_institutionss>();
         }
     
         public int id { get; set; }
@@ -49,8 +52,6 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<debate_speakers> debate_speakers { get; set; }
         public virtual document_types document_types { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
         public virtual municipalities municipalities { get; set; }
         public virtual nationalities nationalities { get; set; }
         public virtual nationalities nationalities1 { get; set; }
@@ -58,5 +59,13 @@ namespace Infrastructure.Data
         public virtual user_status user_status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<notifications> notifications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concept_debate_speakers> concept_debate_speakers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<consultations> consultations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<investigators> investigators { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user_institutionss> user_institutionss { get; set; }
     }
 }

@@ -1,0 +1,96 @@
+﻿@model Domain.Entities.ConceptViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "concept");
+    ViewBag.HeaderTitle = "Concepto Técnico";
+    ViewBag.Title = "Certificado Concepto técnico";
+
+    ViewBag.active = "concepts";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Editar", "Concept", FormMethod.Post, new { id = "form-registro", title = "Editar Concepto" }))
+            {
+
+                <div class="card-body">
+
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.concept_id)
+                    @Html.HiddenFor(model => model.draft_law_id)
+                    @Html.HiddenFor(model => model.investigator_id)
+                    @Html.HiddenFor(model => model.reject)
+                    @Html.HiddenFor(model => model.bad_languages)
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <embed id="pdf_viewer" src="" type="application/pdf" width="100%" height="600px" />
+                        </div>
+                    </div>
+
+                </div><!-- end content-->
+                <div class="card-footer text-right">
+
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+@section Scripts {
+
+
+
+    <script type="text/javascript">
+        function GenerarCertificado(concept_id) {
+
+             $.ajax(
+                    {
+                        url: "@Url.Action("GenerarCertificationPDF", "Concept")",
+                        type: "POST",
+                        data: { concept_id: concept_id }
+                    })
+                    .done(function (data) {                       
+                        console.log(data);
+                        var parent = $('embed#pdf_viewer').parent();
+                        var newImage = '<embed id="pdf_viewer" src="' + data.path+'" type="application/pdf" width="100%" height="600px" />';
+                        var newElement = $(newImage);
+
+                        $('embed#pdf_viewer').remove();
+                        parent.append(newElement);
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+        }
+        $(document).ready(function () {
+
+            var concept_id = $('#concept_id').val();
+            GenerarCertificado(concept_id)
+        });
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/Concept/Certificados";
+        });
+
+
+
+
+    </script>
+}

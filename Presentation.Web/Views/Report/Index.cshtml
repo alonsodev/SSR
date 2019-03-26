@@ -1,0 +1,378 @@
+﻿@using System.Configuration;
+@using Presentation.Web.Filters;
+
+@model Domain.Entities.ReportFilterViewModel
+@{
+    ViewBag.HeaderTitleLink = Url.Action("Index", "Report");
+    ViewBag.HeaderTitle = "Reportes";
+    ViewBag.Title = "Reporte por proyecto de ley";
+
+    ViewBag.active = "draft_law_report";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Index", "Report", FormMethod.Post, new { id = "form-filters" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+
+                        <div class="col-sm-4" style="display:@(@AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_filter_interest_area)?"":"none")">
+                            <div class="form-group has-label">
+                                @Html.LabelFor(model => model.interest_area_id, htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("interest_area_id", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.interest_area_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-4" style="display:@(@AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_filter_commission)?"":"none")">
+                            <div class="form-group has-label">
+                                @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-4" style="display:@(@AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_filter_status)?"":"none")">
+                            <div class="form-group has-label">
+                                @Html.LabelFor(model => model.status_id, htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("status_id", (IEnumerable<SelectListItem>)ViewBag.estados, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.status_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-4" style="display:@(@AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_filter_origin)?"":"none")">
+                            <div class="form-group has-label">
+                                @Html.LabelFor(model => model.origin_id, htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("origin_id", (IEnumerable<SelectListItem>)ViewBag.origins, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.interest_area_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div class="form-group has-label">
+                                @Html.LabelFor(model => model.period_id, htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("period_id", (IEnumerable<SelectListItem>)ViewBag.periods, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.period_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+                <div class="card-footer text-right">
+                    <button id="btnLimpiar" type="button" class="btn btn-finish btn-fill btn-primary btn-wd">Limpiar</button>
+                    <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
+                    <input type='button' id="btnExportar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Exportar' />
+                </div>
+                <div class="toolbar">
+                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_title))
+                            {
+                                <th>TITULO PL</th>
+                            }
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_number_approved_concepts))
+                            {
+                                <th>CONCEPTOS APROBADOS</th>
+                            }
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_interest_area))
+                            {
+                                <th>ÁREA DE INTÉRES</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_commission))
+                            {
+                                <th>COMISIÓN</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_status))
+                            {
+                                <th>ESTADO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_origin))
+                            {
+                                <th>ORIGEN</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_institution))
+                            {
+                                <th>UNIVERSIDAD (ESTUDIADO)</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_investigator))
+                            {
+                                <th>NOMBRE INVESTIGADOR</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_gender))
+                            {
+                                <th>GÉNERO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_age))
+                            {
+                                <th>EDAD</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_nationality))
+                            {
+                                <th>NACIONALIDAD</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_program))
+                            {
+                                <th>NOMBRE DEL PROGRAMA AL QUE PERTENECE</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_interest_areas))
+                            {
+                                <th>ÁREAS DE INTÉRES</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_address))
+                            {
+                                <th>LUGAR DE RESIDENCIA</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_institution_support))
+                            {
+                                <th>INSTITUCIÓN QUE LO AVALA </th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_investigation_group))
+                            {
+                                <th>GRUPO DE INVESTIGACIÓN AL QUE PERTENECE</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_approved_concepts))
+                            {
+                                <th>CONCEPTOS APROBADOS</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_reject_concepts))
+                            {
+                                <th>CONCEPTOS RECHAZADOS</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_qualified_concepts))
+                            {
+                                <th>CONCEPTOS CALIFICADOS</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_ranking))
+                            {
+                                <th>RANKING DE INVESTIGADORES POR POSICIÓN</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_correo))
+                            {
+                                <th>CORREO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_telefono))
+                            {
+                                <th>TÉLEFONO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_movil))
+                            {
+                                <th>MÓVIL</th>}
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_title))
+                            {
+                                <th>TITULO PL</th>
+                            }
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_number_approved_concepts))
+                            {
+                                <th>CONCEPTOS APROBADOS</th>
+                            }
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_interest_area))
+                            {
+                                <th>ÁREA DE INTÉRES</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_commission))
+                            {
+                                <th>COMISIÓN</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_status))
+                            {
+                                <th>ESTADO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_origin))
+                            {
+                                <th>ORIGEN</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_institution))
+                            {
+                                <th>UNIVERSIDAD (ESTUDIADO)</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_investigator))
+                            {
+                                <th>NOMBRE INVESTIGADOR</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_gender))
+                            {
+                                <th>GÉNERO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_age))
+                            {
+                                <th>EDAD</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_nationality))
+                            {
+                                <th>NACIONALIDAD</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_program))
+                            {
+                                <th>NOMBRE DEL PROGRAMA AL QUE PERTENECE</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_interest_areas))
+                            {
+                                <th>ÁREAS DE INTÉRES</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_address))
+                            {
+                                <th>LUGAR DE RESIDENCIA</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_institution_support))
+                            {
+                                <th>INSTITUCIÓN QUE LO AVALA </th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_investigation_group))
+                            {
+                                <th>GRUPO DE INVESTIGACIÓN AL QUE PERTENECE</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_approved_concepts))
+                            {
+                                <th>CONCEPTOS APROBADOS</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_reject_concepts))
+                            {
+                                <th>CONCEPTOS RECHAZADOS</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_qualified_concepts))
+                            {
+                                <th>CONCEPTOS CALIFICADOS</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_ranking))
+                            {
+                                <th>RANKING DE INVESTIGADORES POR POSICIÓN</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_correo))
+                            {
+                                <th>CORREO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_telefono))
+                            {
+                                <th>TÉLEFONO</th>}
+                            @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_movil))
+                            {
+                                <th>MÓVIL</th>}
+
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var datatable;
+
+        $(function () {
+            $("#commission_id").select2();
+            $("#interest_area_id").select2();
+            $("#status_id").select2();
+            $("#origin_id").select2();
+            $("#period_id").select2();
+            UiFormulario.init();
+            $form = $('#form-filters')
+            $("#btnExportar").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ExportExcel", "Report")', //call your controller and action
+                    data: $form.serialize(),
+                }).done(function (data) {
+
+                    console.log(data);
+
+
+                    if (data && data.fileName && data.fileName != "") {
+                        //use window.location.href for redirect to download action for download the file
+                        window.location.href = "@Url.RouteUrl(new
+                                               { Controller = "Report",
+                                                   Action = "Download"})/?file=" + data.fileName;
+                    }
+
+
+
+                });
+
+            });
+            $("#btnBuscar").click(function () {
+                datatable.ajax.reload();
+            });
+            $("#btnLimpiar").click(function () {
+                debugger;
+                $('#commission_id').val("0").trigger('change');
+                $('#interest_area_id').val("0").trigger('change');
+                $('#status_id').val("0").trigger('change');
+                $('#origin_id').val("0").trigger('change');
+                $('#period_id').val("0").trigger('change');
+            });
+
+
+        })
+
+        var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+
+                       // responsive: true,
+                        "scrollX": true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ordering": false,
+                        "searching": false,
+                        "ajax": {
+                            url: "@Url.Action("ObtenerLista", "Report")",
+                            type: 'POST',
+                            data: function (d) {
+                                d.commission_id = $('#commission_id').val();
+                                d.interest_area_id = $('#interest_area_id').val();
+                                d.status_id = $('#status_id').val();
+                                d.origin_id = $('#origin_id').val();
+                                d.period_id = $('#period_id').val();
+                            }
+                        },
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [],
+                        columns: [
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_title)){<text> { "data": "title" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_number_approved_concepts)){<text> { "data": "number_approved_concepts" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_interest_area)){<text> { "data": "interest_area" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_commission)){<text> { "data": "commission" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_status)){<text> { "data": "status" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_origin)){<text> { "data": "origin" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_institution)){<text> { "data": "institution" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_investigator)){<text> { "data": "investigator" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_gender)){<text> { "data": "gender" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_age)){<text> { "data": "age" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_nationality)){<text> { "data": "nationality" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_program)){<text> { "data": "program" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_interest_areas)){<text> { "data": "interest_areas" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_address)){<text> { "data": "address" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_institution_support)){<text> { "data": "institution_support" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_investigation_group)){<text> { "data": "investigation_group" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_approved_concepts)){<text> { "data": "approved_concepts" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_reject_concepts)){<text> { "data": "reject_concepts" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_qualified_concepts)){<text> { "data": "qualified_concepts" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_ranking)){<text> { "data": "position" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_correo)){<text> { "data": "correo" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_telefono)){<text> { "data": "telefono" },</text>}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_movil)){<text> { "data": "movil" },</text>}
+
+                        ],
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+
+
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+    </script>
+}
+
+
+

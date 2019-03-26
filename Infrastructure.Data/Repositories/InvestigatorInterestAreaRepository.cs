@@ -22,6 +22,6 @@ namespace Infrastructure.Data.Repositories
            
             Set.Where(a => a.investigator_id == investigator_id).Delete();
         }
-
+       
     }
 }

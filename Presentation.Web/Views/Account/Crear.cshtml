@@ -60,13 +60,38 @@
                     <div class="tab-content">
                         <div class="tab-pane show active" id="politicas">
                             <h5 class="info-text"> Políticas de Uso</h5>
-                            <p>
-                                El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
-                                y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
-                                El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
-                                y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
-                            </p>
 
+                            <div style="width: 100%; height: 250px; overflow-y: scroll;overflow-x:hidden">
+                                <p>
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                </p>
+                                <p>
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                </p>
+                                <p>
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                </p>
+                                <p>
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                </p><p>
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                    El siguiente documento enuncia a las políticas de publicación de cualquier sitio que forme parte de ARCA
+                                    y que emplean el dominio arca.co. Los temas que aquí se tratan van de lo general, aplicable para cualquier sitio de la Red, a lo particular del sitio.
+                                </p>
+                            </div>
                             <div class="form-check mt-3">
                                 <label class="form-check-label">
                                     <input id="chkPoliticasUso" class="form-check-input" type="checkbox">
@@ -181,7 +206,7 @@
                                 <div class="col-sm-4">
 
                                     <div class="form-group">
-                                        @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control", maxlength = "20" } })
+                                        @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control", maxlength = "20"} })
                                         @Html.ValidationMessageFor(model => model.mobile_phone, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -316,9 +341,7 @@
                             <div class="form-group has-label">
 
                                 @Html.LabelFor(model => model.commissions, htmlAttributes: new { @class = "" })
-
                                 @Html.DropDownList("commissions", (IEnumerable<SelectListItem>)ViewBag.commissions, new { multiple = "multiple", @class = "form-control" })
-
                                 @Html.ValidationMessageFor(model => model.commissions, "", new { @class = "text-danger" })
 
                             </div>
@@ -420,7 +443,7 @@
 @section Scripts {
     <script>
         function Showmessage(data) {
-            //debugger;
+            debugger;
             console.log(data);
             if (data.status == 1) {
                 swal({
@@ -474,7 +497,7 @@
                     return valid;
             }
             if (index >= 2) {
-                //debugger;
+                debugger;
                 var valid = $('#institution_id').valid() & $('#investigation_group_id').valid()
                     & $('#commissions').valid() ;
                 if (!valid)
@@ -482,7 +505,7 @@
             }
 
             if (index >= 3) {
-                //debugger;
+                debugger;
                 var valid = $('#user_email').valid() & $('#user_pass').valid() & $('#user_pass2').valid();
                 if (!valid)
                 return valid;
@@ -647,7 +670,7 @@
             });
         });
         $("#address_country_id").on('select2:select', function (e) {
-            //debugger;
+            debugger;
             if ($("#address_country_id").val() == "45") {
                 $(".address_department").show();
             }
@@ -746,9 +769,9 @@
         $('.email-error').html('');
         $("#btnRegistrarse").click(function () {
             //prevent form from submitting
-            //debugger;
-           
-           
+            debugger;
+
+
             $('.aceptar-error').html('');
             var checked = $('#chkPoliticasUso').prop('checked')
 

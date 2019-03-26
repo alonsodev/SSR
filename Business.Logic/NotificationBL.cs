@@ -29,7 +29,11 @@ namespace Business.Logic
             return oRepositorio.ObtenerPorUsuario(user_id);
         }
 
-        
+        public int ObtenerNroNoNotificados(int user_id)
+        {
+
+            return oRepositorio.ObtenerNroNoNotificados(user_id);
+        }
 
         public void Modificar(NotificationViewModel pNotificationViewModel)
         {
@@ -41,6 +45,9 @@ namespace Business.Logic
             
 
             onotifications.user_id_modified = pNotificationViewModel.user_id_modified;
+            onotifications.url = pNotificationViewModel.url;
+            onotifications.message = pNotificationViewModel.message;
+          
 
             onotifications.date_modified = DateTime.Now;
             oRepositorio.Update(onotifications);
@@ -66,8 +73,10 @@ namespace Business.Logic
                 notification_id = 0,
                 user_id= pNotificationViewModel.user_id,               
                 date_created=DateTime.Now,
-                user_id_created= pNotificationViewModel.user_id_created
-
+                user_id_created= pNotificationViewModel.user_id_created,
+                url = pNotificationViewModel.url,
+                message = pNotificationViewModel.message,
+                notified=false,
             };
             oRepositorio.Add(onotifications);
             oUnitOfWork.SaveChanges();
@@ -87,6 +96,11 @@ namespace Business.Logic
                                     a => a.notified                                 
                                 );
             oUnitOfWork.SaveChanges();
+        }
+
+        public GridModel<NotificationViewModel> ObtenerLista(DataTableAjaxPostModel filters,int user_id)
+        {
+            return oRepositorio.ObtenerLista(filters,user_id);
         }
     }
 }

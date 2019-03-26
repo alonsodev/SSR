@@ -15,12 +15,12 @@ namespace Domain.Entities
         public string investigator { get; set; }
         public string institution { get; set; }
         public double? point { get; set; }
-        public string level { get; set; }  
+        public string level { get; set; }
 
 
 
 
-
+        public int? user_id { get; set; }
 
 
     }

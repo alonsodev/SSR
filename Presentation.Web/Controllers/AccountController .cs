@@ -172,6 +172,10 @@ namespace Presentation.Web.Controllers
             NotificationGeneralAccountViewModel oNotification = new NotificationGeneralAccountViewModel();
 
             oNotification.url_recuperar_cuenta = ConfigurationManager.AppSettings["site.url"] + "/Account/CambiarPassword/?code=" + user_code;
+            oNotification.url_home = ConfigurationManager.AppSettings["site.url"];
+            oNotification.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotification.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotification.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
             oNotification.name = oUserViewModel.contact_name;
             oNotification.to = oUserViewModel.user_email;
             oSendEmailNotificationBL.EnviarNotificacionRecuperarCuenta(oNotification);
@@ -183,9 +187,25 @@ namespace Presentation.Web.Controllers
             });
 
         }
-        public ActionResult Login()
+        
+        public ActionResult Login(string returnUrl)
         {
+           
+            ViewBag.ReturnUrl = returnUrl;
+            //
             return View();
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -197,31 +217,53 @@ namespace Presentation.Web.Controllers
             int tipo_error = 0;
             UserBL oUserBL = new UserBL();
             CurrentUserViewModel result = oUserBL.ValidarUsuario(pLoginModel.user_email, Helper.Encripta(pLoginModel.user_pass), ref tipo_error);
+ 
             //List<UsuarioAccion> result = oLoginBL.ValidarUsuario(oLoginModel.usuario, oLoginModel.clave, ref tipo_error);
 
             if (result != null && tipo_error == 0)
             {
                 Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = null;
 
-
+                result.name_abbre = Helper.Substring(result.name, 20);
                 Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = result;
 
-                return RedirectToAction("Index", "Home");
+                oUserBL.ActualizarFechaIngreso(result.user_id);
 
-                /* if (result.perfiles.Count() > 0)
-                 {
-                     if (String.IsNullOrEmpty(returnUrl))
-                         returnUrl = ObtenerUrlRedirectInicio();
-                     string strRedirect = returnUrl;
 
-                     return RedirectToLocal(strRedirect);
-                 }
 
-                 else
-                 {
-                     ModelState.AddModelError("", "Usted no tiene permisos a ninguna página del sistema.Comuníquese con el Administrador si desea acceder.");
-                 }
-                 */
+                if (result.permissions.Count() > 0)
+                {
+                    if (String.IsNullOrEmpty(returnUrl) || returnUrl=="/")
+                    {
+                        if (result.permissions.Contains((int)AuthorizeUserAttribute.Permission.list_draft_law))
+                            return RedirectToAction("Index", "DraftLaw");
+
+                        if (result.permissions.Contains((int)AuthorizeUserAttribute.Permission.my_draft_laws))
+                            return RedirectToAction("MisProyectosLey", "Investigator");
+
+                        if (result.permissions.Contains((int)AuthorizeUserAttribute.Permission.my_concepts))
+                            return RedirectToAction("Index", "Concept");
+
+                        if (result.permissions.Contains((int)AuthorizeUserAttribute.Permission.concepts_to_qualify))
+                            return RedirectToAction("PorCalificar", "Concept");
+
+                        if (result.permissions.Contains((int)AuthorizeUserAttribute.Permission.concepts_emited))
+                            return RedirectToAction("Emitidos", "Concept");
+
+
+
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    string strRedirect = returnUrl;
+                    return RedirectToLocal(strRedirect);
+                }
+
+                else
+                {
+                    ModelState.AddModelError("", "Usted no tiene permisos a ninguna página del sistema.Comuníquese con el Administrador si desea acceder.");
+                }
+
 
 
 
@@ -344,6 +386,11 @@ namespace Presentation.Web.Controllers
 
 
             oNotification.url_activar_cuenta = ConfigurationManager.AppSettings["site.url"] + "/Account/Activar/?code=" + user_code;
+            oNotification.url_home = ConfigurationManager.AppSettings["site.url"];
+
+            oNotification.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+            oNotification.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+            oNotification.url_privacidad= ConfigurationManager.AppSettings["site.url.privacidad"];
             oNotification.name = pViewModel.contact_name;
             oNotification.to = pViewModel.user_email;
             oSendEmailNotificationBL.EnviarNotificacionActivarCuenta(oNotification);
@@ -476,7 +523,7 @@ namespace Presentation.Web.Controllers
                 {
                     var extension = Path.GetExtension(file.FileName);
                     var fileName = Guid.NewGuid().ToString() + "." + extension;
-                    
+
 
                     pViewModel.avatar = "/Avatars/" + fileName;
                     var path = Path.Combine(Server.MapPath("~/Avatars/"), fileName);
@@ -509,7 +556,7 @@ namespace Presentation.Web.Controllers
 
         }
         [HttpPost]
-        
+
         public JsonResult ActualizarNotificacion(int notification_id)
         {
 

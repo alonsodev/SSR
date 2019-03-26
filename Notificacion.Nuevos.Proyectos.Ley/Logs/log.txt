@@ -1,0 +1,292 @@
+INFO  2019-03-18 22:24:25,709  4558ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:24:56,452 35301ms Program                Main               - Error en Notificacion.Nuevos.Proyectos.Ley:
+INFO  2019-03-18 22:24:56,452 35301ms Program                Main               - Mensaje: Schema specified is not valid. Errors: 
+SSR.ssdl(2,2) : error 0152: No Entity Framework provider found for the ADO.NET provider with invariant name 'System.Data.SqlClient'. Make sure the provider is registered in the 'entityFramework' section of the application config file. See http://go.microsoft.com/fwlink/?LinkId=260882 for more information.
+INFO  2019-03-18 22:24:56,452 35301ms Program                Main               - StackTrace:    en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Loader.ThrowOnNonWarningErrors()
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Loader.LoadItems(IEnumerable`1 xmlReaders, IEnumerable`1 sourceFilePaths)
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Loader..ctor(IEnumerable`1 xmlReaders, IEnumerable`1 sourceFilePaths, Boolean throwOnError, IDbDependencyResolver resolver)
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection.Init(IEnumerable`1 xmlReaders, IEnumerable`1 filePaths, Boolean throwOnError, IDbDependencyResolver resolver, DbProviderManifest& providerManifest, DbProviderFactory& providerFactory, String& providerInvariantName, String& providerManifestToken, Memoizer`2& cachedCTypeFunction)
+   en System.Data.Entity.Core.Metadata.Edm.StoreItemCollection..ctor(IEnumerable`1 xmlReaders, IEnumerable`1 filePaths)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataCache.LoadStoreCollection(EdmItemCollection edmItemCollection, MetadataArtifactLoader loader)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataCache.<>c__DisplayClass5.<>c__DisplayClass7.<GetMetadataWorkspace>b__1()
+   en System.Lazy`1.CreateValue()
+   en System.Lazy`1.LazyInitValue()
+   en System.Lazy`1.get_Value()
+   en System.Data.Entity.Core.Metadata.Edm.MetadataCache.<>c__DisplayClass5.<>c__DisplayClass7.<GetMetadataWorkspace>b__4()
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.LoadAndCheckItemCollection[T](Func`1 itemCollectionLoader)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.<>c__DisplayClass16.<.ctor>b__f()
+   en System.Lazy`1.CreateValue()
+   en System.Lazy`1.LazyInitValue()
+   en System.Lazy`1.get_Value()
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.GetItemCollection(DataSpace dataSpace, Boolean required)
+   en System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.GetItemCollection(DataSpace dataSpace)
+   en System.Data.Entity.Core.Objects.ObjectContext.InitializeMappingViewCacheFactory(DbContext owner)
+   en System.Data.Entity.Core.Objects.ObjectContext..ctor(EntityConnection connection, Boolean isConnectionConstructor, ObjectQueryExecutionPlanFactory objectQueryExecutionPlanFactory, Translator translator, ColumnMapFactory columnMapFactory)
+   en System.Data.Entity.Internal.InternalConnection.CreateObjectContextFromConnectionModel()
+   en System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   en System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   en System.Data.Entity.Internal.InternalContext.Initialize()
+   en System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   en System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   en System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   en System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   en System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   en Infrastructure.Data.Repositories.DraftLawRepository.ObtenerNotificables() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\DraftLawRepository.cs:línea 47
+   en Business.Logic.DraftLawBL.ObtenerNotificables() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\DraftLawBL.cs:línea 34
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 38
+INFO  2019-03-18 22:25:04,533  2942ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:26:30,010  3299ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:31:38,560  2598ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:32:56,611 80648ms Program                Main               - Error en Notificacion.Nuevos.Proyectos.Ley:
+INFO  2019-03-18 22:32:56,611 80648ms Program                Main               - Mensaje: No se puede implementar el método o la operación.
+INFO  2019-03-18 22:32:56,612 80649ms Program                Main               - StackTrace:    en Infrastructure.Data.Repositories.InvestigatorRepository.ObtenerTodos() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\InvestigatorRepository .cs:línea 82
+   en Business.Logic.UserBL.ObtenerInvestigadores() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\UserBL.cs:línea 34
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 41
+INFO  2019-03-18 22:33:03,804  2507ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:33:07,192  5896ms Program                Main               - Error en Notificacion.Nuevos.Proyectos.Ley:
+INFO  2019-03-18 22:33:09,001  7705ms Program                Main               - Mensaje: No se puede implementar el método o la operación.
+INFO  2019-03-18 22:33:10,423  9127ms Program                Main               - StackTrace:    en Infrastructure.Data.Repositories.InvestigatorRepository.ObtenerTodos() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\InvestigatorRepository .cs:línea 82
+   en Business.Logic.UserBL.ObtenerInvestigadores() en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\UserBL.cs:línea 34
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 41
+INFO  2019-03-18 22:33:18,530  2583ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:36:33,031  2894ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:36:47,861 17725ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:36:57,827 27691ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:36:57,827 27691ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:36:57,827 27691ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:36:57,828 27692ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 22:36:57,958 27822ms Program                Main               - Error en Notificacion.Nuevos.Proyectos.Ley:
+INFO  2019-03-18 22:36:57,958 27822ms Program                Main               - Mensaje: Referencia a objeto no establecida como instancia de un objeto.
+INFO  2019-03-18 22:36:57,960 27824ms Program                Main               - StackTrace:    en CrossCutting.Helper.EmailHelper.SendMail(String strMessage, String strFromAddress, String strToAddress, String strCcAddress, String strBccAddress, String strSubject, String[] arrAttachmentPath) en D:\EDISON\Proyectos\bitbucket-repos\SSR\CrossCutting.Helper\EmailHelper.cs:línea 35
+   en Business.Logic.SendEmailNotificationBL.EnviarNotificacionInvestigadorProyectosNuevos(NotificationDraftLawViewModel oNotification) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\SendEmailNotificationBL.cs:línea 54
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 57
+INFO  2019-03-18 22:36:57,988 27851ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Inicio Investigador: Ricardo Barros
+INFO  2019-03-18 22:36:57,988 27852ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 22:36:57,994 27858ms Program                Main               - Error en Notificacion.Nuevos.Proyectos.Ley:
+INFO  2019-03-18 22:36:57,995 27859ms Program                Main               - Mensaje: Referencia a objeto no establecida como instancia de un objeto.
+INFO  2019-03-18 22:36:57,995 27859ms Program                Main               - StackTrace:    en CrossCutting.Helper.EmailHelper.SendMail(String strMessage, String strFromAddress, String strToAddress, String strCcAddress, String strBccAddress, String strSubject, String[] arrAttachmentPath) en D:\EDISON\Proyectos\bitbucket-repos\SSR\CrossCutting.Helper\EmailHelper.cs:línea 35
+   en Business.Logic.SendEmailNotificationBL.EnviarNotificacionInvestigadorProyectosNuevos(NotificationDraftLawViewModel oNotification) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\SendEmailNotificationBL.cs:línea 54
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 57
+INFO  2019-03-18 22:36:58,201 28064ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:37:13,790  2872ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:37:24,541 13623ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:37:24,541 13623ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,541 13623ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:37:24,541 13623ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:37:24,541 13623ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,541 13623ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,542 13624ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Inicio Investigador: Ricardo Barros
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:37:24,543 13625ms Program                Main               - Fin Investigador: Ricardo Barros
+INFO  2019-03-18 22:38:22,370 71453ms Program                Main               - Error en Notificacion.Nuevos.Proyectos.Ley:
+INFO  2019-03-18 22:38:22,370 71453ms Program                Main               - Mensaje: Se han producido uno o varios errores.
+INFO  2019-03-18 22:38:22,373 71456ms Program                Main               - StackTrace:    en System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   en System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   en System.Threading.Tasks.Task`1.get_Result()
+   en EntityFramework.Batch.SqlServerBatchRunner.Update[TEntity](ObjectContext objectContext, EntityMap entityMap, ObjectQuery`1 query, Expression`1 updateExpression)
+   en EntityFramework.Extensions.BatchExtensions.Update[TEntity](IQueryable`1 source, Expression`1 updateExpression)
+   en Infrastructure.Data.Repositories.DraftLawRepository.ActualizarNotificacion(List`1 list) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Infrastructure.Data\Repositories\DraftLawRepository.cs:línea 119
+   en Business.Logic.DraftLawBL.ActualizarNotificacion(List`1 list) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Business.Logic\DraftLawBL.cs:línea 89
+   en Notificacion.Nuevos.Proyectos.Ley.Program.Main(String[] args) en D:\EDISON\Proyectos\bitbucket-repos\SSR\Notificacion.Nuevos.Proyectos.Ley\Program.cs:línea 71
+INFO  2019-03-18 22:38:29,556  1761ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:40:37,625  3553ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:40:40,929  6856ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-03-18 22:41:19,970 45898ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:41:28,584 54512ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:41:28,585 54513ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:41:28,585 54513ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:41:36,556 62484ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 22:43:08,555 23709ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:43:09,030 24184ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 0
+INFO  2019-03-18 22:43:09,031 24185ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:43:38,063  6130ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:43:38,543  6610ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 0
+INFO  2019-03-18 22:43:38,543  6610ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:44:06,468  2293ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 22:44:07,030  2855ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-03-18 22:44:07,059  2883ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:44:07,059  2883ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:44:07,059  2883ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 22:44:07,060  2884ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:44:07,060  2884ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 22:44:15,414 11239ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador4@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 22:44:19,941 15766ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 22:44:19,957 15782ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 22:44:19,957 15782ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-18 22:44:19,957 15782ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:44:19,957 15782ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-18 22:44:19,957 15782ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-18 22:44:19,957 15782ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-18 22:44:19,958 15783ms Program                Main               - Inicio Investigador: Ricardo Barros
+INFO  2019-03-18 22:44:19,959 15784ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 22:44:24,201 20026ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador55@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 22:44:25,679 21504ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 22:44:25,684 21509ms Program                Main               - Fin Investigador: Ricardo Barros
+INFO  2019-03-18 22:44:25,868 21693ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 23:10:29,576  2553ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 23:10:30,283  3259ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-03-18 23:10:30,318  3294ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 23:10:30,319  3295ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:10:30,319  3295ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 23:10:30,319  3295ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 23:10:30,319  3295ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 23:10:31,522  4498ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador4@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 23:10:35,227  8203ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 23:10:35,241  8218ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 23:10:35,241  8218ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-18 23:10:35,242  8219ms Program                Main               - Inicio Investigador: Ricardo Barros
+INFO  2019-03-18 23:10:35,243  8220ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 23:10:36,388  9364ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador55@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 23:10:37,635 10612ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 23:10:37,640 10617ms Program                Main               - Fin Investigador: Ricardo Barros
+INFO  2019-03-18 23:10:37,817 10794ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 23:16:28,887  2320ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 23:16:29,499  2932ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-03-18 23:16:29,548  2981ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 23:16:29,548  2981ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:16:29,549  2982ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 23:16:29,549  2982ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 23:16:29,549  2982ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 23:16:31,526  4959ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador4@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 23:16:35,127  8560ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 23:16:35,142  8574ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-18 23:16:35,143  8575ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-18 23:16:35,144  8577ms Program                Main               - Inicio Investigador: Ricardo Barros
+INFO  2019-03-18 23:16:35,145  8577ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 23:16:36,595 10028ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador55@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 23:16:38,923 12356ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 23:16:38,928 12361ms Program                Main               - Fin Investigador: Ricardo Barros
+INFO  2019-03-18 23:16:39,108 12540ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 23:20:01,343  2126ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-18 23:20:01,923  2705ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-03-18 23:20:01,955  2738ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-18 23:20:01,956  2739ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:20:01,956  2739ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-18 23:20:01,956  2739ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 23:20:01,956  2739ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 23:20:03,262  4044ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador4@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 23:20:06,213  6996ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-18 23:20:06,218  7001ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Inicio Investigador: Ricardo Barros
+INFO  2019-03-18 23:20:06,219  7002ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-18 23:20:07,560  8342ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador55@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-18 23:20:08,616  9399ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-18 23:20:08,622  9404ms Program                Main               - Fin Investigador: Ricardo Barros
+INFO  2019-03-18 23:20:08,819  9601ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-23 12:28:53,103  4483ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-03-23 12:28:53,742  5122ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-03-23 12:28:53,773  5153ms Program                Main               - Inicio Investigador: Eduardo  CRuzado
+INFO  2019-03-23 12:28:53,773  5153ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:53,773  5153ms Program                Main               - Fin Investigador: Eduardo  CRuzado
+INFO  2019-03-23 12:28:53,773  5153ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-23 12:28:53,774  5154ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-23 12:28:53,959  5339ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador4@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-23 12:28:56,195  7574ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Inicio Investigador: Eduardo Gomez 
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Fin Investigador: Eduardo Gomez 
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Inicio Investigador: Luis Vivanco
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Fin Investigador: Luis Vivanco
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Inicio Investigador: Javier Paravicino
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Fin Investigador: Javier Paravicino
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Inicio Investigador: Edison Cuadros
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:56,227  7606ms Program                Main               - Fin Investigador: Edison Cuadros
+INFO  2019-03-23 12:28:56,228  7607ms Program                Main               - Inicio Investigador: Luis Lopez
+INFO  2019-03-23 12:28:56,228  7607ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:56,228  7607ms Program                Main               - Fin Investigador: Luis Lopez
+INFO  2019-03-23 12:28:56,228  7607ms Program                Main               - Inicio Investigador: Joel Gonzales
+INFO  2019-03-23 12:28:56,228  7607ms Program                Main               - Proyectyso Nuevos: 2
+INFO  2019-03-23 12:28:56,230  7609ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador55@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos Proyectos de ley de su interes- ARCA, ATTACHMENTS:0
+INFO  2019-03-23 12:28:57,487  8867ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-03-23 12:28:57,496  8876ms Program                Main               - Fin Investigador: Joel Gonzales
+INFO  2019-03-23 12:28:57,496  8876ms Program                Main               - Inicio Investigador: ssss s
+INFO  2019-03-23 12:28:57,496  8876ms Program                Main               - Proyectyso Nuevos: 0
+INFO  2019-03-23 12:28:57,496  8876ms Program                Main               - Fin Investigador: ssss s
+INFO  2019-03-23 12:28:57,701  9081ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley

@@ -16,11 +16,11 @@ namespace Infrastructure.Data.Repositories
         {
         }
 
-        public bool VerificarDuplicado(int draft_law_id,int draft_law_number)
+        public bool VerificarDuplicado(int draft_law_id, int draft_law_number)
         {
 
-            
-            var count = Set.Where(a => a.draft_law_id != draft_law_id && a.draft_law_number== draft_law_number).Count();
+
+            var count = Set.Where(a => a.draft_law_id != draft_law_id && a.draft_law_number == draft_law_number).Count();
 
             return count == 0;
         }
@@ -31,7 +31,49 @@ namespace Infrastructure.Data.Repositories
 
                 draft_law_id = a.draft_law_id,
                 draft_law_number = a.draft_law_number,
-               
+
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
+
+        public List<DraftLawViewModel> ObtenerNotificables()
+        {
+            var query = Set.Where(a => a.active == true && a.notified == false && a.draft_laws_status.notifiable == true).Select(a => new DraftLawViewModel
+            {
+
+                draft_law_id = a.draft_law_id,
+                draft_law_number = a.draft_law_number,
+                interest_area = a.interest_areas.name,
+                interest_area_id = a.interest_area_id,
+                origin = a.origin,
+                title = a.title,
+                commission_id = a.commission_id,
+                commission = a.commissions.name,
+                status=a.draft_laws_status.name,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+
+            });
+
+            return query.ToList();
+        }
+
+        public DraftLawViewModel ObtenerPorNroProyectoMigrar(int draft_law_number, int draft_law_status_id)
+        {
+            var query = Set.Where(a => a.draft_law_number == draft_law_number && a.status_id == draft_law_status_id).Select(a => new DraftLawViewModel
+            {
+
+                draft_law_id = a.draft_law_id,
+                draft_law_number = a.draft_law_number,
+
                 date_created = a.date_created,
                 date_modified = a.date_modified,
                 user_id_created = a.user_id_created,
@@ -55,7 +97,7 @@ namespace Infrastructure.Data.Repositories
                 commission_id = a.commission_id,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
-                status = a.status,
+                status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,
                 initiative = a.initiative,
@@ -69,6 +111,14 @@ namespace Infrastructure.Data.Repositories
             });
 
             return query.Take(1).FirstOrDefault();
+        }
+
+        public void ActualizarNotificacion(List<DraftLawViewModel> list)
+        {
+
+            List<int> draft_law_ids = list.Select(a => a.draft_law_id).ToList();
+            Set.Where(t => draft_law_ids.Contains(t.draft_law_id))
+            .Update(t => new draft_laws { notified = true });
         }
 
         public GridModel<DraftLawViewModel> ObtenerMisProyectosLey(DataTableAjaxPostModel filters, List<int> commissions, List<int> interest_areas)
@@ -90,7 +140,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<DraftLawViewModel> resultado = new GridModel<DraftLawViewModel>();
             IQueryable<draft_laws> queryFilters = Set;
 
-            queryFilters= queryFilters.Where(a => commissions.Contains(a.commission_id.HasValue ? a.commission_id.Value : -1) && interest_areas.Contains(a.interest_area_id.HasValue ? a.interest_area_id.Value : -1));
+            queryFilters = queryFilters.Where(a => commissions.Contains(a.commission_id.HasValue ? a.commission_id.Value : -1) && interest_areas.Contains(a.interest_area_id.HasValue ? a.interest_area_id.Value : -1));
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -103,7 +153,7 @@ namespace Infrastructure.Data.Repositories
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.title.ToLower().Contains(srch) || s.author.ToLower().Contains(srch) ||
                     s.origin.ToLower().Contains(srch) || s.commissions.name.ToLower().Contains(srch) || s.interest_areas.name.ToLower().Contains(srch) ||
-                    s.status.ToLower().Contains(srch)));
+                    s.draft_laws_status.name.ToLower().Contains(srch) || s.draft_law_number.ToString().ToLower().Contains(srch)));
 
 
                 count_records_filtered = queryFilters.Count();
@@ -122,7 +172,7 @@ namespace Infrastructure.Data.Repositories
                 commission = a.commissions.name,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
-                status = a.status,
+                status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,
                 interest_area = a.interest_areas.name,
@@ -177,8 +227,8 @@ namespace Infrastructure.Data.Repositories
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.title.ToLower().Contains(srch) || s.author.ToLower().Contains(srch) ||
-                    s.origin.ToLower().Contains(srch) || s.commissions.name.ToLower().Contains(srch) || s.interest_areas.name.ToLower().Contains(srch) || 
-                    s.status.ToLower().Contains(srch)));
+                    s.origin.ToLower().Contains(srch) || s.commissions.name.ToLower().Contains(srch) || s.interest_areas.name.ToLower().Contains(srch) ||
+                    s.draft_laws_status.name.ToLower().Contains(srch)));
 
 
                 count_records_filtered = queryFilters.Count();
@@ -188,19 +238,19 @@ namespace Infrastructure.Data.Repositories
             var query = queryFilters.Select(a => new DraftLawViewModel
             {
                 draft_law_id = a.draft_law_id,
-                draft_law_number=a.draft_law_number,
+                draft_law_number = a.draft_law_number,
                 title = a.title,
                 author = a.author,
                 origin = a.origin,
                 date_presentation = a.date_presentation,
                 commission_id = a.commission_id,
-                commission=a.commissions.name,
+                commission = a.commissions.name,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
-                status = a.status,
+                status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,
-                interest_area=a.interest_areas.name,
+                interest_area = a.interest_areas.name,
                 initiative = a.initiative,
                 summary = a.summary,
                 link = a.link,
