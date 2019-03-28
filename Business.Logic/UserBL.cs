@@ -17,6 +17,7 @@ namespace Business.Logic
         private static InvestigatorRepository oRepositorioInvestigator;
         private static InvestigatorCommissionRepository oRepositorioInvestigatorCommission;
         private static InvestigatorInterestAreaRepository oRepositorioInvestigatorInterestArea;
+        private static UserInstitutionRepository oRepositorioUserInstitution;
         private static UnitOfWork oUnitOfWork;
 
         public UserBL()
@@ -26,7 +27,7 @@ namespace Business.Logic
             oRepositorioInvestigator = oUnitOfWork.InvestigatorRepository;
             oRepositorioInvestigatorCommission = oUnitOfWork.InvestigatorCommissionRepository;
             oRepositorioInvestigatorInterestArea = oUnitOfWork.InvestigatorInterestAreaRepository;
-
+            oRepositorioUserInstitution = oUnitOfWork.UserInstitutionRepository;
         }
 
         public List<InvestigatorViewModel> ObtenerInvestigadores()
@@ -122,28 +123,53 @@ namespace Business.Logic
         }
         public void Modificar(UserViewModel pUserViewModel)
         {
+            using (var scope = new TransactionScope())
+            {
 
 
+                users ousers = oRepositorio.FindById(pUserViewModel.id);
+                ousers.user_name = pUserViewModel.user_name;
+                ousers.user_email = pUserViewModel.user_email;
+                ousers.user_role_id = pUserViewModel.user_role_id;
+                ousers.user_status_id = pUserViewModel.user_status_id;
 
-            users ousers = oRepositorio.FindById(pUserViewModel.id);
-            ousers.user_name = pUserViewModel.user_name;
-            ousers.user_email = pUserViewModel.user_email;
-            ousers.user_role_id = pUserViewModel.user_role_id;
-            ousers.user_status_id = pUserViewModel.user_status_id;
+                ousers.document_type_id = pUserViewModel.document_type_id;
 
-            ousers.document_type_id = pUserViewModel.document_type_id;
-
-            ousers.doc_nro = pUserViewModel.doc_nro;
-            ousers.nationality_id = pUserViewModel.nationality_id;
-            ousers.contact_name = pUserViewModel.contact_name;
-            ousers.phone = pUserViewModel.phone;
-            ousers.address = pUserViewModel.address;
+                ousers.doc_nro = pUserViewModel.doc_nro;
+                ousers.nationality_id = pUserViewModel.nationality_id;
+                ousers.contact_name = pUserViewModel.contact_name;
+                ousers.phone = pUserViewModel.phone;
+                ousers.address = pUserViewModel.address;
 
 
-            ousers.user_id_modified = pUserViewModel.user_id_modified;
-            ousers.date_modified = DateTime.Now;
-            oRepositorio.Update(ousers);
-            oUnitOfWork.SaveChanges();
+                ousers.user_id_modified = pUserViewModel.user_id_modified;
+                ousers.date_modified = DateTime.Now;
+                oRepositorio.Update(ousers);
+
+                oRepositorioUserInstitution.DeleleMultiple(pUserViewModel.id);
+                if (pUserViewModel.institution_ids != null && pUserViewModel.institution_ids.Count() > 0)
+                {
+                    foreach (int institution_id in pUserViewModel.institution_ids)
+                    {
+                        user_institutions ouser_institutions = new user_institutions
+                        {
+                            user_id = ousers.id,
+                            institution_id = institution_id,
+                            date_created = DateTime.Now,
+                            user_id_created = pUserViewModel.user_id_created,
+                        };
+
+                        oRepositorioUserInstitution.Add(ouser_institutions);
+                    }
+
+
+                }
+
+
+                oUnitOfWork.SaveChanges();
+
+                scope.Complete();
+            }
         }
 
 
@@ -159,12 +185,20 @@ namespace Business.Logic
 
         public void Eliminar(int id)
         {
-            users oUser = new users
+            using (var scope = new TransactionScope())
             {
-                id = id,
-            };
-            oRepositorio.Delete(oUser);
-            oUnitOfWork.SaveChanges();
+                oRepositorioUserInstitution.DeleleMultiple(id);
+                oRepositorioInvestigatorCommission.DeleteMultipleByUser(id);
+                oRepositorioInvestigatorInterestArea.DeleteMultipleByUser(id);
+                oRepositorioInvestigator.DeleteByUser(id);
+                users oUser = new users
+                {
+                    id = id,
+                };
+                oRepositorio.Delete(oUser);
+                oUnitOfWork.SaveChanges();
+                scope.Complete();
+            }
         }
 
         public void ActualizarCodigoRecuperar(int id, string user_code)
@@ -211,33 +245,50 @@ namespace Business.Logic
         }
         public void Agregar(UserViewModel pUserViewModel)
         {
-
-
-            users ousers = new users
+            using (var scope = new TransactionScope())
             {
-                id = 0,
-                user_name = pUserViewModel.user_name,
-                user_pass = pUserViewModel.user_pass,
-                user_email = pUserViewModel.user_email,
-                user_role_id = pUserViewModel.user_role_id,
-                user_status_id = pUserViewModel.user_status_id,
-                document_type_id = pUserViewModel.document_type_id,
+                users ousers = new users
+                {
+                    id = 0,
+                    user_name = pUserViewModel.user_name,
+                    user_pass = pUserViewModel.user_pass,
+                    user_email = pUserViewModel.user_email,
+                    user_role_id = pUserViewModel.user_role_id,
+                    user_status_id = pUserViewModel.user_status_id,
+                    document_type_id = pUserViewModel.document_type_id,
 
-                doc_nro = pUserViewModel.doc_nro,
-                nationality_id = pUserViewModel.nationality_id,
-                contact_name = pUserViewModel.contact_name,
-                phone = pUserViewModel.phone,
-                address = pUserViewModel.address,
+                    doc_nro = pUserViewModel.doc_nro,
+                    nationality_id = pUserViewModel.nationality_id,
+                    contact_name = pUserViewModel.contact_name,
+                    phone = pUserViewModel.phone,
+                    address = pUserViewModel.address,
 
-                date_created = DateTime.Now,
-                user_id_created = pUserViewModel.user_id_created,
-                user_code_recover=pUserViewModel.user_code_recover
+                    date_created = DateTime.Now,
+                    user_id_created = pUserViewModel.user_id_created,
+                    user_code_recover = pUserViewModel.user_code_recover
 
-            };
-            
-            oRepositorio.Add(ousers);
-            oUnitOfWork.SaveChanges();
-            pUserViewModel.id = ousers.id;
+                };
+
+                oRepositorio.Add(ousers);
+                foreach (int institution_id in pUserViewModel.institution_ids)
+                {
+                    user_institutions ouser_institutions = new user_institutions
+                    {
+                        user_id = ousers.id,
+                        institution_id = institution_id,
+                        date_created = DateTime.Now,
+                        user_id_created = pUserViewModel.user_id_created,
+                    };
+
+                    oRepositorioUserInstitution.Add(ouser_institutions);
+                }
+
+
+                oUnitOfWork.SaveChanges();
+                pUserViewModel.id = ousers.id;
+
+                scope.Complete();
+            }
         }
 
         public int? AgregarInvestigador(InvestigatorViewModel pInvestigatorViewModel)
@@ -390,8 +441,8 @@ namespace Business.Logic
                 oinvestigators.education_level_id = pInvestigatorViewModel.education_level_id;
                 oinvestigators.CVLAC = pInvestigatorViewModel.CVLAC;
 
-                oRepositorioInvestigatorCommission.deleteMultiple(pInvestigatorViewModel.investigator_id);
-                oRepositorioInvestigatorInterestArea.deleteMultiple(pInvestigatorViewModel.investigator_id);
+                oRepositorioInvestigatorCommission.DeleteMultiple(pInvestigatorViewModel.investigator_id);
+                oRepositorioInvestigatorInterestArea.DeleteMultiple(pInvestigatorViewModel.investigator_id);
                 foreach (int interest_area_id in pInvestigatorViewModel.interest_areas)
                 {
                     oRepositorioInvestigatorInterestArea.Add(new investigators_interest_areas

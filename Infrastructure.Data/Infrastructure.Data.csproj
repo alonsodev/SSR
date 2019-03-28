@@ -158,6 +158,9 @@
     <Compile Include="notifications.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="origins.cs">
+      <DependentUpon>SSR.tt</DependentUpon>
+    </Compile>
     <Compile Include="periods.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
@@ -171,6 +174,8 @@
     <Compile Include="reason_rejects.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\ConsultationTypeRepository.cs" />
+    <Compile Include="Repositories\UserInstitutionRepository.cs" />
     <Compile Include="Repositories\ConceptStatusLogRepository.cs" />
     <Compile Include="Repositories\ConceptDebateSpeakerRepository.cs" />
     <Compile Include="Repositories\ConfigurationRepository.cs" />
@@ -184,6 +189,7 @@
     <Compile Include="Repositories\ConsultationRepository.cs" />
     <Compile Include="Repositories\DraftLawStatusRepository.cs" />
     <Compile Include="Repositories\PeriodRepository.cs" />
+    <Compile Include="Repositories\OriginRepository.cs" />
     <Compile Include="Repositories\SnieRepository.cs" />
     <Compile Include="Repositories\EducationLevelRepository.cs" />
     <Compile Include="Repositories\KnowledgeAreaRepository.cs" />
@@ -236,7 +242,7 @@
     <Compile Include="users.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
-    <Compile Include="user_institutionss.cs">
+    <Compile Include="user_institutions.cs">
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="user_status.cs">

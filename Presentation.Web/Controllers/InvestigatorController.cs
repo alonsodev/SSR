@@ -25,7 +25,20 @@ namespace Presentation.Web.Controllers
 
         public ActionResult MisProyectosLey()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
+            
         }
 
         public ActionResult Mejores()
@@ -66,14 +79,14 @@ namespace Presentation.Web.Controllers
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_draft_laws })]
 
-        public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             DraftLawBL oDraftLawBL = new DraftLawBL();
             //DraftLawFiltersViewModel ofilters = new DraftLawFiltersViewModel();
 
             UserBL oUserBL = new UserBL();
             InvestigatorViewModel oInvestigatorViewModel= oUserBL.ObtenerInvestigator(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
-            GridModel<DraftLawViewModel> grid = oDraftLawBL.ObtenerMisProyectosLey(ofilters, oInvestigatorViewModel.commissions, oInvestigatorViewModel.interest_areas);
+            GridModel<DraftLawViewModel> grid = oDraftLawBL.ObtenerMisProyectosLey(ofilters, oInvestigatorViewModel.commissions, oInvestigatorViewModel.interest_areas, generalfiltros);
 
             return Json(new
             {

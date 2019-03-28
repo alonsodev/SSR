@@ -82,15 +82,17 @@ namespace Infrastructure.Data.Repositories
                 queryFilters = queryFilters.Where(a => a.draft_laws.status_id == filtros.status_id);
             }
 
-            if (filtros.origin_id != "0")
+            if (filtros.origin_id != 0)
             {
-                queryFilters = queryFilters.Where(a => a.draft_laws.origin == filtros.origin_id.ToString());
+                queryFilters = queryFilters.Where(a => a.draft_laws.origin_id == filtros.origin_id);
             }
 
             if (filtros.period_id != 0)
             {
-                queryFilters = queryFilters.Where(a => a.draft_laws.status_id == filtros.status_id);
+                queryFilters = queryFilters.Where(a => a.draft_laws.period_id == filtros.period_id);
             }
+            if (filtros.institution_ids != null)
+                queryFilters = queryFilters.Where(a => filtros.institution_ids.Contains(a.investigators.institution_id.Value));
 
             var query = queryFilters.Select(a => new ReportViewModel
             {
@@ -99,7 +101,8 @@ namespace Infrastructure.Data.Repositories
                 interest_area = a.draft_laws.interest_areas.name,
                 commission = a.draft_laws.commissions.name,
                 status = a.draft_laws.draft_laws_status.name,
-                origin = a.draft_laws.origin,
+                origin = a.draft_laws.origins.name,
+                
                 institution = a.investigators.educational_institutions.name,
                 investigator = a.investigators.users.contact_name,
                 gender = a.investigators.genders.name,
@@ -143,8 +146,8 @@ namespace Infrastructure.Data.Repositories
 
             GridModel<ReportViewModel> resultado = new GridModel<ReportViewModel>();
             IQueryable<concepts> queryFilters = Set;
-
-            //queryFilters = queryFilters.Where(a => a.investigator_id == investigator_id);
+            if (Reportefiltros.institution_ids!=null)
+                 queryFilters = queryFilters.Where(a => Reportefiltros.institution_ids.Contains( a.investigators.institution_id.Value ));
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -158,7 +161,7 @@ namespace Infrastructure.Data.Repositories
 
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
-                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origins.name.ToLower().Contains(srch)
                   || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
                   s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
                   || s.concept_id.ToString().ToLower().Contains(srch)));
@@ -187,14 +190,14 @@ namespace Infrastructure.Data.Repositories
                 queryFilters = queryFilters.Where(a => a.draft_laws.status_id == Reportefiltros.status_id);
             }
 
-            if (Reportefiltros.origin_id !="0")
+            if (Reportefiltros.origin_id !=0)
             {
-                queryFilters = queryFilters.Where(a => a.draft_laws.origin == Reportefiltros.origin_id.ToString());
+                queryFilters = queryFilters.Where(a => a.draft_laws.origin_id == Reportefiltros.origin_id);
             }
 
             if (Reportefiltros.period_id != 0)
             {
-                queryFilters = queryFilters.Where(a => a.draft_laws.status_id == Reportefiltros.status_id);
+                queryFilters = queryFilters.Where(a => a.draft_laws.period_id == Reportefiltros.period_id);
             }
 
             var query = queryFilters.Select(a => new ReportViewModel
@@ -204,7 +207,7 @@ namespace Infrastructure.Data.Repositories
                 interest_area = a.draft_laws.interest_areas.name,
                 commission = a.draft_laws.commissions.name,
                 status = a.draft_laws.draft_laws_status.name,
-                origin = a.draft_laws.origin,
+                origin = a.draft_laws.origins.name,
                 institution = a.investigators.educational_institutions.name,
                 investigator = a.investigators.users.contact_name,
                 gender = a.investigators.genders.name,
@@ -263,7 +266,7 @@ namespace Infrastructure.Data.Repositories
                 draf_law_commission = a.draft_laws.commissions.name,
                 draf_law_fecha_presentacion = a.draft_laws.date_presentation,
                 draf_law_interested_area = a.draft_laws.interest_areas.name,
-                draf_law_origen = a.draft_laws.origin,
+                draf_law_origen = a.draft_laws.origins.name,
                 summary = a.summary,
                 tags = a.concepts_tags.Select(b => b.tags.name.ToUpper()).ToList()
             });
@@ -309,7 +312,7 @@ namespace Infrastructure.Data.Repositories
             return query.Take(1).FirstOrDefault();
         }
 
-        public GridModel<ConceptViewModel> ObtenerLista(DataTableAjaxPostModel filters, int investigator_id)
+        public GridModel<ConceptViewModel> ObtenerLista(DataTableAjaxPostModel filters, int investigator_id, GeneralFilterViewModel generalfiltros)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -328,7 +331,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<ConceptViewModel> resultado = new GridModel<ConceptViewModel>();
             IQueryable<concepts> queryFilters = Set;
 
-            queryFilters = queryFilters.Where(a => a.investigator_id == investigator_id);
+            queryFilters = queryFilters.Where(a => a.investigator_id == investigator_id && a.draft_laws.period_id==generalfiltros.period_id);
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -342,7 +345,7 @@ namespace Infrastructure.Data.Repositories
 
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
-                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origins.name.ToLower().Contains(srch)
                   || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
                   s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
                   || s.concept_id.ToString().ToLower().Contains(srch)));
@@ -406,7 +409,7 @@ namespace Infrastructure.Data.Repositories
             return oMyHistoryViewModel;
         }
 
-        public GridModel<ConceptViewModel> ObtenerEmitidos(DataTableAjaxPostModel filters)
+        public GridModel<ConceptViewModel> ObtenerEmitidos(DataTableAjaxPostModel filters, GeneralFilterViewModel generalfiltros)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -425,7 +428,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<ConceptViewModel> resultado = new GridModel<ConceptViewModel>();
             IQueryable<concepts> queryFilters = Set;
 
-            queryFilters = queryFilters.Where(a => a.concept_status_id == 1);
+            queryFilters = queryFilters.Where(a => a.concept_status_id == 1 && a.draft_laws.period_id==generalfiltros.period_id);
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -437,7 +440,7 @@ namespace Infrastructure.Data.Repositories
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
-                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origins.name.ToLower().Contains(srch)
                   || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
                   s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
                   || s.concept_id.ToString().ToLower().Contains(srch)));
@@ -487,7 +490,7 @@ namespace Infrastructure.Data.Repositories
             return resultado;
         }
 
-        public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel filters, int user_id)
+        public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel filters, int user_id, GeneralFilterViewModel generalfiltros)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -506,7 +509,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<ConceptViewModel> resultado = new GridModel<ConceptViewModel>();
             IQueryable<concepts> queryFilters = Set;
             queryFilters = queryFilters.Where(a => a.concept_debate_speakers.Select(d => d.user_id).Contains(user_id));
-            queryFilters = queryFilters.Where(a => a.concept_status_id == 2 || (a.concept_status_id == 4) || (a.concept_status_id == 5 && a.concepts_status_logs.Where(l => l.concept_status_id == 5 && l.user_id_created == user_id).Count() == 0));//falta mejorar
+            queryFilters = queryFilters.Where(a => a.draft_laws.period_id==generalfiltros.period_id&& a.concept_status_id == 2 || (a.concept_status_id == 4) || (a.concept_status_id == 5 && a.concepts_status_logs.Where(l => l.concept_status_id == 5 && l.user_id_created == user_id).Count() == 0));//falta mejorar
 
 
 
@@ -520,7 +523,7 @@ namespace Infrastructure.Data.Repositories
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
-                     || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                     || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origins.name.ToLower().Contains(srch)
                    || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
                    s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
                    || s.concept_id.ToString().ToLower().Contains(srch)));
@@ -592,7 +595,7 @@ namespace Infrastructure.Data.Repositories
             return query.Take(1).FirstOrDefault();
         }
 
-        public GridModel<ConceptViewModel> ObtenerRecibidos(DataTableAjaxPostModel filters, int user_id)
+        public GridModel<ConceptViewModel> ObtenerRecibidos(DataTableAjaxPostModel filters, int user_id,GeneralFilterViewModel generalfiltros)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -613,7 +616,7 @@ namespace Infrastructure.Data.Repositories
 
             queryFilters = queryFilters.Where(a => a.concepts_status_logs.Where(b => (b.concept_status_id == 5 || b.concept_status_id == 6) && b.user_id_created == user_id).Count() > 0);//falta mejorar
 
-            queryFilters = queryFilters.Where(a => a.draft_laws.debate_speakers.Select(d => d.user_id).Contains(user_id));
+            queryFilters = queryFilters.Where(a => a.draft_laws.period_id == generalfiltros.period_id && a.concept_debate_speakers.Select(d => d.user_id).Contains(user_id));
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -625,7 +628,7 @@ namespace Infrastructure.Data.Repositories
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
-                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origins.name.ToLower().Contains(srch)
                   || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
                   s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
                   || s.concept_id.ToString().ToLower().Contains(srch)));
@@ -675,7 +678,7 @@ namespace Infrastructure.Data.Repositories
             return resultado;
         }
 
-        public GridModel<ConceptViewModel> ObtenerCertificados(DataTableAjaxPostModel filters, int investigator_id)
+        public GridModel<ConceptViewModel> ObtenerCertificados(DataTableAjaxPostModel filters, int investigator_id,GeneralFilterViewModel generalfiltros)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -694,7 +697,7 @@ namespace Infrastructure.Data.Repositories
             GridModel<ConceptViewModel> resultado = new GridModel<ConceptViewModel>();
             IQueryable<concepts> queryFilters = Set;
 
-            queryFilters = queryFilters.Where(a => a.investigator_id == investigator_id && (a.concept_status_id == 2 || a.concept_status_id == 4 || a.concept_status_id == 5 || a.concept_status_id == 6));
+            queryFilters = queryFilters.Where(a => a.draft_laws.period_id==generalfiltros.period_id &&  a.investigator_id == investigator_id && (a.concept_status_id == 2 || a.concept_status_id == 4 || a.concept_status_id == 5 || a.concept_status_id == 6));
 
             int count_records = queryFilters.Count();
             int count_records_filtered = count_records;
@@ -706,7 +709,7 @@ namespace Infrastructure.Data.Repositories
                 var searchTerms = searchBy.Split(' ').ToList().ConvertAll(x => x.ToLower());
 
                 queryFilters = queryFilters.Where(s => searchTerms.Any(srch => s.draft_laws.title.ToLower().Contains(srch)
-                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origin.ToLower().Contains(srch)
+                    || s.draft_laws.author.ToLower().Contains(srch) || s.draft_laws.origins.name.ToLower().Contains(srch)
                   || s.draft_laws.commissions.name.ToLower().Contains(srch) || s.draft_laws.interest_areas.name.ToLower().Contains(srch) ||
                   s.draft_laws.draft_laws_status.name.ToLower().Contains(srch) || s.draft_laws.draft_law_number.ToString().ToLower().Contains(srch)
                   || s.concept_id.ToString().ToLower().Contains(srch)));
@@ -800,6 +803,15 @@ namespace Infrastructure.Data.Repositories
             resultado.total = count_records;
             resultado.recordsFiltered = count_records_filtered;
             return resultado;
+        }
+
+        public void ActualizarTablasReporte(int period_id)
+        {
+            using (var context = new SSREntities())
+            {
+                var results = context.ActualizarTablasReporte(period_id);
+            }
+
         }
     }
 }

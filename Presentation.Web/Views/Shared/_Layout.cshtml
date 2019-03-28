@@ -241,9 +241,9 @@ AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttr
 AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.Permission.module_education_levels,
 AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
 AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
-         AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config, AuthorizeUserAttribute.Permission.module_period))
+         AuthorizeUserAttribute.Permission.module_consultation_types, AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config, AuthorizeUserAttribute.Permission.module_period))
                         {
-                            <li class="@(ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
+                            <li class="@(ViewBag.active == "consultation_types" || ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
 
                                 <a data-toggle="collapse" href="#management">
                                     <i class="now-ui-icons loader_gear"></i>
@@ -252,7 +252,7 @@ AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUser
                                     </p>
                                 </a>
 
-                                <div class="@("collapse " + (ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
+                                <div class="@("collapse " + (ViewBag.active == "consultation_types" ||ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
 
                                     <ul class="nav">
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
@@ -380,9 +380,19 @@ AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUser
                                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_period))
                                         {
                                             <li class="@(ViewBag.active == "periods" ? "active" : "")">
-                                                <a href="/MeritRange">
+                                                <a href="/Period">
                                                     <span class="sidebar-mini-icon">P</span>
                                                     <span class="sidebar-normal"> Periodos </span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_consultation_types))
+                                        {
+                                            <li class="@(ViewBag.active == "consultation_types" ? "active" : "")">
+                                                <a href="/ConsultationType">
+                                                    <span class="sidebar-mini-icon">TS</span>
+                                                    <span class="sidebar-normal"> Tipos de solicitud </span>
                                                 </a>
                                             </li>
                                         }

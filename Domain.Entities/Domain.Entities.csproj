@@ -77,6 +77,9 @@
     <Compile Include="CertificationHtmlViewModel.cs" />
     <Compile Include="ConceptHtmlViewModel.cs" />
     <Compile Include="PeriodViewModel.cs" />
+    <Compile Include="OriginViewModel.cs" />
+    <Compile Include="GeneralFilterViewModel.cs" />
+    <Compile Include="ConsultationTypeViewModel.cs" />
     <Compile Include="ReportFilterViewModel.cs" />
     <Compile Include="ReportViewModel.cs" />
     <Compile Include="DraftLawStatusViewModel.cs" />

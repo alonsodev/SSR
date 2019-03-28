@@ -1,0 +1,114 @@
+﻿@model Domain.Entities.ConsultationTypeViewModel
+
+
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("index", "consultation_type");
+    ViewBag.HeaderTitle = "Tipo de Solicitud";
+    ViewBag.Title = "Editar Tipo de Solicitud";
+    ViewBag.active = "consultation_types";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            @using (Html.BeginForm("Editar", "ConsultationType", FormMethod.Post, new { id = "form-edit" }))
+            {
+            <div class="card-body">
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.consultation_type_id)
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error name-error"></span>
+                </div>
+
+              
+
+
+
+
+            </div><!-- end content-->
+            <div class="card-footer text-right">
+
+                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+            }
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+
+        $("#btnCancelar").click(function () {
+            window.location.href = "/ConsultationType";
+        });
+
+        $('#form-edit').on('submit', function (e) { //use on if jQuery 1.7+
+            //prevent form from submitting
+            debugger;
+            e.preventDefault();
+            var form = this;
+            $('.name-error').html('');
+            if ($("#form-edit").valid()) {
+
+
+                 var valido = false;
+                $.ajaxSetup({
+                    async: false
+                });
+                 $.ajax({
+                        url: "@Url.Action("Verificar", "ConsultationType")",
+                        type: "POST",
+                     data: { id_consultation_type: $('#consultation_type_id').val(), name: $('#name').val() }
+                    })
+                    .done(function (data) {
+                        valido = data.valido;
+                    })
+                    .fail(function (data) {
+                        console.log("error");
+                    })
+                    .always(function (data) {
+                        console.log("complete");
+                    });
+
+
+
+                // Volvemos a dejar las llamadas AJAX síncronas
+               $.ajaxSetup({
+                    async: true
+                });
+
+                if (valido) {
+                    form.submit();
+                }
+                else {
+                    $('.name-error').html('<span id="name-error" class="">Ya existe un tipo de solicitud con el mismo nombre.</span>');
+                    return false;
+                }
+
+
+
+
+            }
+
+            return false;
+        });
+
+    </script>
+}

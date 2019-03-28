@@ -63,12 +63,18 @@ namespace Presentation.Web.Controllers
             ViewBag.origins = origins;
 
 
-            List<SelectOptionItem> oPeriods = oSelectorBL.CommissionsSelector();
-            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", true, "0", "TODOS");
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
             ViewBag.commissions = commissions;
             ViewBag.periods = periods;
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
 
-            return View();
+
+
+            ReportFilterViewModel oReportFilterViewModel = new ReportFilterViewModel();
+            oReportFilterViewModel.period_id = oPeriod.period_id;
+            return View(oReportFilterViewModel);
         }
         [HttpPost]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.general_report })]
@@ -76,17 +82,17 @@ namespace Presentation.Web.Controllers
         public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters, [Bind(Include = "interest_area_id,commission_id,status_id,origin_id,period_id")]  ReportFilterViewModel Reportefiltros)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
+            UserBL oUserBL = new UserBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
             GridModel<ReportViewModel> grid = new GridModel<ReportViewModel>();
-
+            Reportefiltros.institution_ids = new List<int>();
             if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_own_institution_support))
-                Reportefiltros.institution_id = AuthorizeUserAttribute.UsuarioLogeado().investigator_id;
-
+                Reportefiltros.institution_ids = oUserBL.ObtenerUser(AuthorizeUserAttribute.UsuarioLogeado().user_id).institution_ids;
             if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_all_institution_support))
-                Reportefiltros.institution_id = 0;
+                Reportefiltros.institution_ids = null;
 
-            
-                grid = oConceptBL.ObtenerReporte(ofilters, Reportefiltros);
+            oConceptBL.ActualizarTablasReporte(Reportefiltros.period_id);
+            grid = oConceptBL.ObtenerReporte(ofilters, Reportefiltros);
 
             grid.rows.ForEach(x => x.age = Helper.CalculateAge(x.birthdate.Value));
 
@@ -120,8 +126,14 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.general_report })]
         public JsonResult ExportExcel([Bind(Include = "interest_area_id,commission_id,status_id,origin_id,period_id")]  ReportFilterViewModel filtros)
         {
+            UserBL oUserBL = new UserBL();
             var fileName = "Reporte_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".xlsx";
             string errorMessage = "";
+            filtros.institution_ids = new List<int>();
+            if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_own_institution_support))
+                filtros.institution_ids = oUserBL.ObtenerUser(AuthorizeUserAttribute.UsuarioLogeado().user_id).institution_ids;
+            if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_all_institution_support))
+                filtros.institution_ids = null;
 
 
             ConceptBL oConceptBL = new ConceptBL();

@@ -37,7 +37,7 @@ namespace Infrastructure.Data
         public Nullable<int> program_id { get; set; }
         public Nullable<int> education_level_id { get; set; }
         public string CVLAC { get; set; }
-        public Nullable<int> points { get; set; }
+        public Nullable<double> points { get; set; }
         public Nullable<int> position { get; set; }
         public Nullable<int> total { get; set; }
     

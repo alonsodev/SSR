@@ -19,7 +19,7 @@ namespace Infrastructure.Data
         {
             this.investigation_groups = new HashSet<investigation_groups>();
             this.investigators = new HashSet<investigators>();
-            this.user_institutionss = new HashSet<user_institutionss>();
+            this.user_institutions = new HashSet<user_institutions>();
         }
     
         public int institution_id { get; set; }
@@ -34,6 +34,6 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<investigators> investigators { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_institutionss> user_institutionss { get; set; }
+        public virtual ICollection<user_institutions> user_institutions { get; set; }
     }
 }

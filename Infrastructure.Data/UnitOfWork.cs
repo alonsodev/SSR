@@ -62,7 +62,11 @@ namespace Infrastructure.Data
         private DraftLawStatusRepository _draftLawStatusRepository;
 
         private PeriodRepository _periodRepository;
+        private OriginRepository _originRepository;
+        private UserInstitutionRepository _userInstitutionRepository;
+        private ConsultationTypeRepository _consultationTypeRepository;
 
+        
 
         #endregion
 
@@ -74,6 +78,24 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+
+        public ConsultationTypeRepository ConsultationTypeRepository
+        {
+            get { return _consultationTypeRepository ?? (_consultationTypeRepository = new ConsultationTypeRepository(_context)); }
+
+        }
+        public UserInstitutionRepository UserInstitutionRepository
+        {
+            get { return _userInstitutionRepository ?? (_userInstitutionRepository = new UserInstitutionRepository(_context)); }
+
+        }
+
+
+        public OriginRepository OriginRepository
+        {
+            get { return _originRepository ?? (_originRepository = new OriginRepository(_context)); }
+
+        }
         public PeriodRepository PeriodRepository
         {
             get { return _periodRepository ?? (_periodRepository = new PeriodRepository(_context)); }
@@ -306,6 +328,9 @@ namespace Infrastructure.Data
             this._consultationInterestAreaRepository = null;
             this._draftLawStatusRepository = null;
             this._periodRepository = null;
+            this._originRepository = null;
+            this._userInstitutionRepository = null;
+            this._consultationTypeRepository = null;
             _context.Dispose();
         }
         #endregion

@@ -25,12 +25,25 @@ namespace Infrastructure.Data.Repositories
 
             return count == 0;
         }
+        public PeriodViewModel Obtener(DateTime date)
+        {
+            var query = Set.Where(a => a.start_date <= date && a.end_date>=date).Select(a => new PeriodViewModel
+            {
+                start_date = a.start_date,
+                end_date = a.end_date,
+                period_id = a.period_id,
+                name = a.name
+            });
+
+            return query.Take(1).FirstOrDefault();
+        }
 
         public PeriodViewModel Obtener(int period_id)
         {
             var query = Set.Where(a => a.period_id == period_id).Select(a => new PeriodViewModel
             {
-
+                start_date=a.start_date,
+                end_date=a.end_date,
                 period_id = a.period_id,
                 name = a.name
             });
@@ -79,6 +92,8 @@ namespace Infrastructure.Data.Repositories
 
             var query = queryFilters.Select(a => new PeriodViewModel
             {
+                start_date = a.start_date,
+                end_date = a.end_date,
                 period_id = a.period_id,
                 name = a.name
             });

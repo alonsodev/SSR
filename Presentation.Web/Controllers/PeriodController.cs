@@ -5,6 +5,7 @@ using Domain.Entities;
 using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -49,7 +50,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_period })]
-        public ActionResult Crear([Bind(Include = "period_id,name")] PeriodViewModel pPeriodViewModel)
+        public ActionResult Crear([Bind(Include = "period_id,name,start_date_text, end_date_text")] PeriodViewModel pPeriodViewModel)
         {
             // TODO: Add insert logic here
 
@@ -59,7 +60,10 @@ namespace Presentation.Web.Controllers
             }
             pPeriodViewModel.period_id = 0;
             pPeriodViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
-            
+            pPeriodViewModel.start_date = DateTime.ParseExact(pPeriodViewModel.start_date_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            pPeriodViewModel.end_date = DateTime.ParseExact(pPeriodViewModel.end_date_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+
             PeriodBL oBL = new PeriodBL();
             oBL.Agregar(pPeriodViewModel);
             return RedirectToAction("Index");
@@ -75,14 +79,17 @@ namespace Presentation.Web.Controllers
             int pIntID = 0;
             int.TryParse(id, out pIntID);
             PeriodViewModel pPeriodViewModel = oBL.Obtener(pIntID);
-
+            if (pPeriodViewModel.start_date.HasValue)
+                pPeriodViewModel.start_date_text = pPeriodViewModel.start_date.Value.ToString("dd/MM/yyyy");
+            if (pPeriodViewModel.end_date.HasValue)
+                pPeriodViewModel.end_date_text = pPeriodViewModel.end_date.Value.ToString("dd/MM/yyyy");
             return View(pPeriodViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_period })]
-        public ActionResult Editar([Bind(Include = "period_id,name")] PeriodViewModel pPeriodViewModel)
+        public ActionResult Editar([Bind(Include = "period_id,name,start_date_text, end_date_text")] PeriodViewModel pPeriodViewModel)
         {
             // TODO: Add insert logic here
 
@@ -92,6 +99,9 @@ namespace Presentation.Web.Controllers
             }
             PeriodBL oPeriodBL = new PeriodBL();
             pPeriodViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
+
+            pPeriodViewModel.start_date = DateTime.ParseExact(pPeriodViewModel.start_date_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            pPeriodViewModel.end_date = DateTime.ParseExact(pPeriodViewModel.end_date_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             oPeriodBL.Modificar(pPeriodViewModel);
             return RedirectToAction("Index");
 

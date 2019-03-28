@@ -33,7 +33,10 @@ namespace Business.Logic
             return oRepositorio.ConsultationTypesSelector();
         }
 
-       
+        public List<SelectOptionItem> PeriodsSelector()
+        {
+            return oRepositorio.PeriodsSelector();
+        }
 
         public List<SelectOptionItem> EducationLevelsSelector()
         {
@@ -61,6 +64,11 @@ namespace Business.Logic
         public List<SelectOptionItem> ReasonRejectsSelector()
         {
             return oRepositorio.ReasonRejectsSelector();
+        }
+
+        public List<SelectOptionItem> InstitutionsSelector(List<int> institution_ids)
+        {
+            return oRepositorio.InstitutionsSelector(institution_ids);
         }
 
         public List<SelectOptionItem> OriginSelector()

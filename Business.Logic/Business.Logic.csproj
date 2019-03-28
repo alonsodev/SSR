@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OriginBL.cs" />
     <Compile Include="CommissionBL.cs" />
     <Compile Include="AcademicLevelBL.cs" />
     <Compile Include="MeritRangeBL.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="ConsultationBL.cs" />
     <Compile Include="DraftLawStatusBL.cs" />
     <Compile Include="PeriodBL.cs" />
+    <Compile Include="ConsultationTypeBL.cs" />
     <Compile Include="SendEmailNotificationBL.cs" />
     <Compile Include="SnieBL.cs" />
     <Compile Include="EducationLevelBL.cs" />

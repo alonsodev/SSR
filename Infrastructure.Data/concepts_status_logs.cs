@@ -23,8 +23,8 @@ namespace Infrastructure.Data
         public Nullable<int> reason_reject_id { get; set; }
         public Nullable<int> qualification { get; set; }
     
+        public virtual concepts concepts { get; set; }
         public virtual concepts_status concepts_status { get; set; }
         public virtual reason_rejects reason_rejects { get; set; }
-        public virtual concepts concepts { get; set; }
     }
 }

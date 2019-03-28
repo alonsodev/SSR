@@ -38,7 +38,7 @@
                                 <div class="editable-text">
                                   <span class="text_container">
                                     <multiline>
-                                      Estimado(a) "<xsl:value-of select="//@name" />":
+                                      Estimado Administrador:
                                     </multiline>
                                   </span>
                                 </div>
@@ -147,8 +147,9 @@
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
-                               
-                                Se ha registrado una nueva solicitud de concepto. Para revisar la solicitud hacer clic en ingresar:
+
+                                
+                                Se ha creado una nueva solicitud de parte de un Congresista. Para mayor detalle de la solicitud hacer clic en ingresar:
                               </multiline>
                             </span>
                           </div>

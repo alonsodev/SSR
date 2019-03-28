@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Domain.Entities
 {
@@ -36,6 +37,7 @@ namespace Domain.Entities
 
         [Display(Name = "Número de Documento")]
         [Required(ErrorMessage = "Número de Documento es obligatorio.")]
+        [RegularExpression(@"^[0-9]{8,20}", ErrorMessage = "Número de Documento solo permite números mayores a 8 dígitos")]
         public string doc_nro { get; set; }
 
         [Display(Name = "Nacionalidad")]
@@ -48,6 +50,7 @@ namespace Domain.Entities
 
         [Display(Name = "Telefóno de contacto")]
         [Required(ErrorMessage = "Telefóno de contacto es obligatorio.")]
+        [RegularExpression(@"^[0-9]{7,20}", ErrorMessage = "Telefóno de contacto solo permite números mayores a 7 dígitos")]
         public string phone { get; set; }
         [Display(Name = "Dirección - Lugar de residencia")]
         [Required(ErrorMessage = "Dirección - Lugar de residencia es obligatorio.")]
@@ -75,6 +78,11 @@ namespace Domain.Entities
         public string user_code_recover { get; set; }
         public string avatar { get; set; }
 
-        
+        [Display(Name = "Instituciones que representa")]
+        public List<string> institutions { get; set; }
+        public MultiSelectList institutionsMultiSelectList { get; set; }
+        [Display(Name = "Instituciones que representa")]
+        public List<int> institution_ids { get; set; }
+
     }
 }

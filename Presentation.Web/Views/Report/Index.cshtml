@@ -81,7 +81,7 @@
 
                 }
                 <div class="card-footer text-right">
-                    <button id="btnLimpiar" type="button" class="btn btn-finish btn-fill btn-primary btn-wd">Limpiar</button>
+                    
                     <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
                     <input type='button' id="btnExportar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Exportar' />
                 </div>
@@ -288,14 +288,7 @@
             $("#btnBuscar").click(function () {
                 datatable.ajax.reload();
             });
-            $("#btnLimpiar").click(function () {
-                debugger;
-                $('#commission_id').val("0").trigger('change');
-                $('#interest_area_id').val("0").trigger('change');
-                $('#status_id').val("0").trigger('change');
-                $('#origin_id').val("0").trigger('change');
-                $('#period_id').val("0").trigger('change');
-            });
+          
 
 
         })

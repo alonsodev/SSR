@@ -24,6 +24,7 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.draft_law_id)
+                @Html.HiddenFor(model => model.period_closed)
                 <div class="form-group has-label">
 
                     @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
@@ -196,7 +197,10 @@
 @section Scripts {
 
     <script type="text/javascript">
+        function RedirectLista(){
 
+            window.location.href = "/DraftLaw";
+        }
 
         $(function () {
             $('.datepicker').datetimepicker({
@@ -220,8 +224,24 @@
             $("#commission_id").select2({ theme: "bootstrap" });
 
             $("#btnCancelar").click(function () {
-                window.location.href = "/DraftLaw";
+                RedirectLista();
             });
+            var period_closed = $('#period_closed').val();
+            if (period_closed == "1") {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Periodo Cerrado!',
+                    text: 'El proyecto de ley seleccionado pertenece a un periodo cerrado.No se puede modificar proyectos de ley de periodos cerrados.',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectLista
+                }).then(function () {
+                    RedirectLista();
+                }).catch(swal.noop);
+                return;
+            }
+
 
             $('#form-edit').on('submit', function (e) { //use on if jQuery 1.7+
                 //prevent form from submitting

@@ -195,6 +195,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\PeriodController.cs" />
+    <Compile Include="Controllers\ConsultationTypeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ConceptController.cs" />
     <Compile Include="Controllers\AcademicLevelController.cs" />
@@ -671,6 +672,9 @@
     <Content Include="Views\Period\Crear.cshtml" />
     <Content Include="Views\Period\Editar.cshtml" />
     <Content Include="Views\Period\Index.cshtml" />
+    <Content Include="Views\ConsultationType\Crear.cshtml" />
+    <Content Include="Views\ConsultationType\Editar.cshtml" />
+    <Content Include="Views\ConsultationType\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

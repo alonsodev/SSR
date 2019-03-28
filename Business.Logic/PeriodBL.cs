@@ -33,6 +33,13 @@ namespace Business.Logic
             return oRepositorio.Obtener(pIntID);
         }
 
+
+        public PeriodViewModel ObtenerVigente()
+        {
+
+            return oRepositorio.Obtener(DateTime.Today);
+        }
+
         public GridModel<PeriodViewModel> ObtenerLista(DataTableAjaxPostModel filters)
         {
             return oRepositorio.ObtenerLista(filters);
@@ -47,6 +54,8 @@ namespace Business.Logic
             operiods.name = pPeriodViewModel.name;
             
             operiods.user_id_modified = pPeriodViewModel.user_id_modified;
+            operiods.start_date = pPeriodViewModel.start_date;
+            operiods.end_date = pPeriodViewModel.end_date;
 
             operiods.date_modified = DateTime.Now;
             oRepositorio.Update(operiods);
@@ -72,7 +81,9 @@ namespace Business.Logic
                 period_id = 0,
                 name= pPeriodViewModel.name,               
                 date_created=DateTime.Now,
-                user_id_created= pPeriodViewModel.user_id_created
+                user_id_created= pPeriodViewModel.user_id_created,
+                end_date= pPeriodViewModel.end_date,
+                start_date = pPeriodViewModel.start_date,
 
             };
             oRepositorio.Add(operiods);

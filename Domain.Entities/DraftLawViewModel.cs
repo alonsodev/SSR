@@ -34,6 +34,7 @@ namespace Domain.Entities
 
         [Display(Name = "Origen")]
         [Required(ErrorMessage = "El Origen es obligatorio.")]
+        public int? origin_id { get; set; }
         public string origin { get; set; }
 
         [Display(Name = "Fecha Presentación")]
@@ -85,7 +86,11 @@ namespace Domain.Entities
 
 
         public int draft_law_status_id { get; set; }
-        
 
+        public int period_id { get; set; }
+
+        public int period_closed { get; set; }
+        public DateTime? start_date { get; set; }
+        public DateTime? end_date { get; set; }
     }
 }

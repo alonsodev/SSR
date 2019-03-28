@@ -65,12 +65,15 @@ namespace Presentation.Web.Controllers
             ConsultationBL oBL = new ConsultationBL();
             oBL.Agregar(pConsultationViewModel);
 
-            NotificacionNuevaSolicitud(pConsultationViewModel);
+            ConsultationTypeBL oConsultationTypeBL = new ConsultationTypeBL();
+
+            var subject = oConsultationTypeBL.Obtener(pConsultationViewModel.consultation_type_id.Value).name;
+            NotificacionNuevaSolicitud(pConsultationViewModel,subject);
             return RedirectToAction("Index");
 
         }
 
-        private void NotificacionNuevaSolicitud(ConsultationViewModel pConsultationViewModel)
+        private void NotificacionNuevaSolicitud(ConsultationViewModel pConsultationViewModel, string subject)
         {
 
 
@@ -97,7 +100,7 @@ namespace Presentation.Web.Controllers
                 oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
 
 
-                oSendEmailNotificationBL.EnviarNotificacionSolicitudConcepto(oNotificationConceptViewModel);
+                oSendEmailNotificationBL.EnviarNotificacionSolicitudConcepto(oNotificationConceptViewModel, subject);
 
 
                 NotificationBL oNotificationBL = new NotificationBL();

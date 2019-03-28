@@ -38,7 +38,7 @@
                                 <div class="editable-text">
                                   <span class="text_container">
                                     <multiline>
-                                      Apreciado(a)  "<xsl:value-of select="//@name" />":
+                                      Estimado (a)  "<xsl:value-of select="//@name" />":
                                     </multiline>
                                   </span>
                                 </div>
@@ -148,7 +148,7 @@
                             <span class="text_container">
                               <multiline>
 
-                                Su concepto técnico emitido sobre el proyecto de ley "<xsl:value-of select="//@draft_law_title" />" ha sido rechazado por "<xsl:value-of select="//@reject_reason" />", para editar su concepto hacer clic en el siguiente enlace:
+                                Su concepto técnico emitido sobre el proyecto de ley "<xsl:value-of select="//@draft_law_title" />"  no ha sido aceptado por "<xsl:value-of select="//@reject_reason" />",para ver motivos de no aprobación y corregir su concepto hacer clic en el siguiente enlace:
                               </multiline>
                             </span>
                           </div>
