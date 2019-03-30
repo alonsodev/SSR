@@ -64,6 +64,7 @@
     <Compile Include="DraftLawStatusBL.cs" />
     <Compile Include="PeriodBL.cs" />
     <Compile Include="ConsultationTypeBL.cs" />
+    <Compile Include="ReasonRejectBL.cs" />
     <Compile Include="SendEmailNotificationBL.cs" />
     <Compile Include="SnieBL.cs" />
     <Compile Include="EducationLevelBL.cs" />

@@ -215,13 +215,17 @@ namespace Presentation.Web.Controllers
             oConceptViewModel.title = oDraftLawViewModel.title;
             oConceptViewModel.commission_id = oDraftLawViewModel.commission_id;
             oConceptViewModel.draft_law_id = oDraftLawViewModel.draft_law_id;
+            oConceptViewModel.status = oDraftLawViewModel.status;
             oConceptViewModel.investigator_id = AuthorizeUserAttribute.UsuarioLogeado().investigator_id;
             oConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
             oConceptViewModel.period_closed = 1;
             if (oDraftLawViewModel.start_date <= DateTime.Today && oDraftLawViewModel.end_date >= DateTime.Today) {
                 oConceptViewModel.period_closed = 0;
             }
-
+            oConceptViewModel.notificable = 0;
+            if (oDraftLawViewModel.notifiable)
+                oConceptViewModel.notificable = 1;
+            
 
             oConceptViewModel.existe_concepto = oConceptBL.ExisteConcepto(oDraftLawViewModel.draft_law_id, AuthorizeUserAttribute.UsuarioLogeado().investigator_id) ? 1 : 0;
 
@@ -398,7 +402,7 @@ namespace Presentation.Web.Controllers
                 oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
 
                 oNotificationConceptViewModel.draft_law_title = pConceptViewModel.title;
-                oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificar");
+                //oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificar");/*Removido a pedido de DIANA */
 
                 NotificationBL oNotificationBL = new NotificationBL();
                 NotificationViewModel pNotificationViewModel = new NotificationViewModel();

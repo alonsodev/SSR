@@ -62,6 +62,11 @@ namespace Business.Logic
             oUnitOfWork.SaveChanges();
         }
 
+        public bool VerificarDuplicado(PeriodViewModel pPeriodViewModel)
+        {
+            return oRepositorio.VerificarDuplicado( pPeriodViewModel);
+        }
+
         public void Eliminar(int id)
         {
             periods oPeriod = new periods

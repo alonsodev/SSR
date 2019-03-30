@@ -185,20 +185,22 @@ namespace Business.Logic
 
         public void Eliminar(int id)
         {
-            using (var scope = new TransactionScope())
-            {
-                oRepositorioUserInstitution.DeleleMultiple(id);
-                oRepositorioInvestigatorCommission.DeleteMultipleByUser(id);
-                oRepositorioInvestigatorInterestArea.DeleteMultipleByUser(id);
-                oRepositorioInvestigator.DeleteByUser(id);
-                users oUser = new users
+            
+                using (var scope = new TransactionScope())
                 {
-                    id = id,
-                };
-                oRepositorio.Delete(oUser);
-                oUnitOfWork.SaveChanges();
-                scope.Complete();
-            }
+                    oRepositorioUserInstitution.DeleleMultiple(id);
+                    oRepositorioInvestigatorCommission.DeleteMultipleByUser(id);
+                    oRepositorioInvestigatorInterestArea.DeleteMultipleByUser(id);
+                    oRepositorioInvestigator.DeleteByUser(id);
+                    users oUser = new users
+                    {
+                        id = id,
+                    };
+                    oRepositorio.Delete(oUser);
+                    oUnitOfWork.SaveChanges();
+                    scope.Complete();
+                }
+           
         }
 
         public void ActualizarCodigoRecuperar(int id, string user_code)

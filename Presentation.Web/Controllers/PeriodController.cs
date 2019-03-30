@@ -32,16 +32,19 @@ namespace Presentation.Web.Controllers
 
         [HttpPost]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_period, AuthorizeUserAttribute.Permission.edit_period })]
-        public JsonResult Verificar(int id_period, string name)
+        public JsonResult Verificar([Bind(Include = "period_id,name,start_date_text, end_date_text")] PeriodViewModel pPeriodViewModel)
         {
-
+            pPeriodViewModel.start_date = DateTime.ParseExact(pPeriodViewModel.start_date_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            pPeriodViewModel.end_date = DateTime.ParseExact(pPeriodViewModel.end_date_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             PeriodBL oBL = new PeriodBL();
-            var resultado = oBL.VerificarDuplicado(id_period, name);
+            var valido_duplicado = oBL.VerificarDuplicado(pPeriodViewModel.period_id, pPeriodViewModel.name);
+            var valido_fechas= oBL.VerificarDuplicado(pPeriodViewModel);
 
             return Json(new
             {
                 // this is what datatables wants sending back
-                valido = resultado,
+                valido_duplicado = valido_duplicado,
+                valido_fechas = valido_fechas,
 
             });
 

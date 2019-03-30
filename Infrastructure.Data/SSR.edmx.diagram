@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="SSRModel.departments" Width="1.5" PointX="1.5" PointY="13.625" />
         <EntityTypeShape EntityType="SSRModel.document_types" Width="1.5" PointX="0.75" PointY="28.5" />
         <EntityTypeShape EntityType="SSRModel.draft_laws" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="SSRModel.draft_laws_status" Width="1.5" PointX="3.75" PointY="4.5" />
         <EntityTypeShape EntityType="SSRModel.education_levels" Width="1.5" PointX="3" PointY="41.625" />
         <EntityTypeShape EntityType="SSRModel.educational_institutions" Width="1.5" PointX="3" PointY="57" />
         <EntityTypeShape EntityType="SSRModel.genders" Width="1.5" PointX="3" PointY="60.25" />
@@ -70,7 +69,6 @@
         <AssociationConnector Association="SSRModel.FK_debate_speakers_users" />
         <AssociationConnector Association="SSRModel.FK_municipalities_departments" />
         <AssociationConnector Association="SSRModel.FK_users_document_types" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_draft_laws_status" />
         <AssociationConnector Association="SSRModel.FK_draft_laws_interest_areas" />
         <AssociationConnector Association="SSRModel.FK_draft_laws_origins" />
         <AssociationConnector Association="SSRModel.FK_draft_laws_periods" />
@@ -100,6 +98,8 @@
         <EntityTypeShape EntityType="SSRModel.user_institutions" Width="1.5" PointX="5.25" PointY="16.75" />
         <AssociationConnector Association="SSRModel.FK_user_institutionss_institutions" />
         <AssociationConnector Association="SSRModel.FK_user_institutionss_users" />
+        <EntityTypeShape EntityType="SSRModel.draft_laws_status" Width="1.5" PointX="10.375" PointY="7.875" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_draft_laws_status" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

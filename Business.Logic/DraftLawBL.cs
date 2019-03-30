@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Movil;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using System;
@@ -49,6 +50,11 @@ namespace Business.Logic
         public GridModel<DraftLawViewModel> ObtenerMisProyectosLey(DraftLawFiltersViewModel ofilters, List<int> commissions, List<int> interest_areas, GeneralFilterViewModel generalfiltros)
         {
             return oRepositorio.ObtenerMisProyectosLey(ofilters, commissions, interest_areas, generalfiltros);
+        }
+
+        public List<DraftLawLiteViewModel> ObtenerProyectosLeyConConceptosPorCalificar(DraftLawFilterLiteViewModel filter)
+        {
+            return oRepositorio.ObtenerProyectosLeyConConceptosPorCalificar(filter);
         }
 
         public GridModel<DraftLawViewModel> ObtenerLista(DraftLawFiltersViewModel filters, GeneralFilterViewModel generalfiltros)
@@ -140,6 +146,7 @@ namespace Business.Logic
             {
                 foreach (DraftLawViewModel pDraftLawViewModel in lista)
                 {
+                    pDraftLawViewModel.debate_speakers = pDraftLawViewModel.debate_speakers.Distinct().ToList();
                     pDraftLawViewModel.period_id = oPeriod.period_id;
                     if (origins.ContainsKey(pDraftLawViewModel.origin))
                         pDraftLawViewModel.origin_id = origins[pDraftLawViewModel.origin];

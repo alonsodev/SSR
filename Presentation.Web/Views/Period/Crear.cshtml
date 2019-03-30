@@ -47,7 +47,7 @@
 
                     @Html.EditorFor(model => model.end_date_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
                     @Html.ValidationMessageFor(model => model.end_date_text, "", new { @class = "text-danger" })
-
+                    <span class="text-danger field-validation-error end_date-error"></span>
 
                 </div>
 
@@ -70,6 +70,33 @@
 @section Scripts {
 
     <script type="text/javascript">
+        function CambiarFormato(currVal) {
+            var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+            var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+            if (dtArray == null)
+                return false;
+
+            //Checks for dd/mm/yyyy format.
+            dtDay = dtArray[1];
+            dtMonth = dtArray[3];
+            dtYear = dtArray[5];
+
+            return dtYear + '/' + dtMonth + '/' + dtDay;
+        }
+        ea.addMethod('ValidarFechaFin', function () {
+
+            if ($('#end_date_text').val() == '' || $('#start_date_text').val() == '') {
+                return true;
+            }
+            var arrayFecInicio = $("#start_date_text").val();
+            var sdFecInicio = CambiarFormato(arrayFecInicio) ;
+            var arrayFecFin = $("#end_date_text").val();
+            var sdFecFin = CambiarFormato(arrayFecFin);
+            return sdFecFin > sdFecInicio;
+
+        });
+
         $(function () {
             $('.datepicker').datetimepicker({
                 locale: 'es',
@@ -98,6 +125,8 @@
             e.preventDefault();
             var form = this;
             $('.name-error').html('');
+            $('.end_date-error').html('');
+            
             if ($("#form-registrar").valid()) {
 
 
@@ -108,10 +137,20 @@
                  $.ajax({
                         url: "@Url.Action("Verificar", "Period")",
                         type: "POST",
-                     data: { id_period: 0, name: $('#name').val() }
+                     data: { period_id: 0, name: $('#name').val(), start_date_text: $('#start_date_text').val(), end_date_text: $('#end_date_text').val()}
                     })
                     .done(function (data) {
-                        valido = data.valido;
+                        valido = data.valido_fechas && data.valido_duplicado;
+
+                        if (!data.valido_duplicado) {
+                            $('.name-error').html('<span id="name-error" class="">Ya existe un periodo con el mismo nombre.</span>');
+                            return false;
+                        }
+
+                        if (!data.valido_fechas) {
+                            $('.end_date-error').html('<span id="end_date-error" class="">Ya existe un periodo que se cruza con el rango de fechas ingresado.</span>');
+                            return false;
+                        }
                     })
                     .fail(function (data) {
                         console.log("error");
@@ -130,10 +169,7 @@
                 if (valido) {
                     form.submit();
                 }
-                else {
-                    $('.name-error').html('<span id="name-error" class="">Ya existe un perioda con el mismo nombre.</span>');
-                    return false;
-                }
+               
 
 
 

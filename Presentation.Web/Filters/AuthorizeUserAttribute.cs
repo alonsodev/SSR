@@ -160,7 +160,12 @@ namespace Presentation.Web.Filters
             list_consultation_types = 1156,
             new_consultation_types = 1157,
             edit_consultation_types = 1158,
-            delete_consultation_types = 1159
+            delete_consultation_types = 1159,
+            module_reason_rejects = 1160,
+            list_reason_rejects = 1161,
+            new_reason_rejects = 1162,
+            edit_reason_rejects = 1163,
+            delete_reason_rejects = 1164,
         }
         public Permission[] Permissions { get; set; }
 

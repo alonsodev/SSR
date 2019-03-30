@@ -84,7 +84,7 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 .box-blue .box-header {
-    background-color: #4278f5;
+    background-color: #E3B513;
     color: white;
 }
 
@@ -96,7 +96,7 @@ div.dataTables_wrapper div.dataTables_info {
 
 .box-blue .box-body {
     background-color: white;
-    border: 2px solid #8bacf9;
+    border: 2px solid #E3B513;
     border-top: 0;
 }
 
@@ -145,4 +145,33 @@ div.dataTables_wrapper div.dataTables_info {
 
 table#dt-lista td {
     font-size: 12px;
+}
+
+.status-red {
+    height: 25px;
+    width: 25px;
+    background-color: #FF0000;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-green {
+    height: 25px;
+    width: 25px;
+    background-color: #137d04;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-yellow {
+    height: 25px;
+    width: 25px;
+    background-color: #FFFF00;
+    border-radius: 50%;
+    display: inline-block;
+}
+.table-status, .table-status tr, .table-status td {
+    border: none;
+    background-color: transparent !important;
+    padding:0px;
 }

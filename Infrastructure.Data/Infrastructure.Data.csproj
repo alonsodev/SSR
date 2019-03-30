@@ -175,6 +175,7 @@
       <DependentUpon>SSR.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\ConsultationTypeRepository.cs" />
+    <Compile Include="Repositories\ReasonRejectRepository.cs" />
     <Compile Include="Repositories\UserInstitutionRepository.cs" />
     <Compile Include="Repositories\ConceptStatusLogRepository.cs" />
     <Compile Include="Repositories\ConceptDebateSpeakerRepository.cs" />

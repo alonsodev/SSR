@@ -27,7 +27,7 @@ namespace Infrastructure.Data.Repositories
         }
         public PeriodViewModel Obtener(DateTime date)
         {
-            var query = Set.Where(a => a.start_date <= date && a.end_date>=date).Select(a => new PeriodViewModel
+            var query = Set.Where(a => a.start_date <= date && a.end_date >= date).Select(a => new PeriodViewModel
             {
                 start_date = a.start_date,
                 end_date = a.end_date,
@@ -42,8 +42,8 @@ namespace Infrastructure.Data.Repositories
         {
             var query = Set.Where(a => a.period_id == period_id).Select(a => new PeriodViewModel
             {
-                start_date=a.start_date,
-                end_date=a.end_date,
+                start_date = a.start_date,
+                end_date = a.end_date,
                 period_id = a.period_id,
                 name = a.name
             });
@@ -113,5 +113,20 @@ namespace Infrastructure.Data.Repositories
             return resultado;
         }
 
+        public bool VerificarDuplicado(PeriodViewModel pPeriodViewModel)
+        {
+
+
+            var count = Set.Where(a => a.period_id != pPeriodViewModel.period_id && (
+            (a.start_date >= pPeriodViewModel.start_date && a.start_date <= pPeriodViewModel.end_date) ||
+            (a.end_date >= pPeriodViewModel.start_date && a.end_date <= pPeriodViewModel.end_date) ||
+
+             (pPeriodViewModel.start_date >= a.start_date && pPeriodViewModel.start_date <= a.end_date) ||
+            (pPeriodViewModel.end_date >= a.start_date && pPeriodViewModel.end_date <= a.end_date)
+
+            )).Count();
+
+            return count == 0;
+        }
     }
 }

@@ -72,6 +72,38 @@
                     </tfoot>
 
                 </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row well pull-right" style="width: 600px;">
+
+                            <div class="col text-center">
+                                <div><span class="status-red"></span></div>
+                                <div>
+                                    Archivado
+                                </div>
+
+
+                            </div>
+                            <div class="col text-center">
+                                <div><span class="status-yellow"></span></div>
+                                <div>
+                                    Pendiente de designar/ enviar  ponentes / comision  en senado
+                                </div>
+
+
+                            </div>
+                            <div class="col text-center">
+                                <div><span class="status-green"></span></div>
+                                <div>
+                                    Todo lo demás
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div><!-- end content-->
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -205,6 +237,20 @@
                                 targets: 4
                             },
 
+                            {
+                                render: function (data, type, row) {
+
+                                    
+                                    if (row.notifiable==true)
+                                        return '<table class="table-status" border=0 style="width: 100%;"><tbody><tr><td>' + row.status + '</td><td style="vertical-align:middle"> <span class="status-yellow pull-right"></span> </td></tr></tbody></table>';
+                                    if (row.status.toLowerCase().includes("archivado"))
+                                        return '<table class="table-status" border=0 style="width: 100%;"><tbody><tr><td>' + row.status + '</td><td style="vertical-align:middle"> <span class="status-red pull-right"></span> </td></tr></tbody></table>';
+                                                                                                              
+                                    return '<table class="table-status" border=0 style="width: 100%;"><tbody><tr><td>' + row.status + '</td><td style="vertical-align:middle"> <span class="status-green pull-right"></span> </td></tr></tbody></table>';
+                                },
+                                targets: 6
+                            },
+                           
                             {
                                 render: function (data, type, row) {
                                     return '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.draft_law_id + '" data-toggle="tooltip" title="Ver Resumen"><i class="now-ui-icons education_paper"></i></a>'

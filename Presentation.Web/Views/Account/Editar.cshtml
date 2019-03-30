@@ -299,7 +299,9 @@
             <div class="form-group has-label">
 
                 @Html.LabelFor(model => model.interest_areas, htmlAttributes: new { @class = "" })
-
+                <div>
+                    <span class="text-danger field-validation-error interest-areas-error"></span>
+                </div>
                 <div style="width: 100%; height: 350px; overflow-y: scroll;overflow-x:hidden">
                     <div class="row">
                         @foreach (var g in ViewBag.interest_areas)
@@ -431,6 +433,32 @@
 
 
         <script type="text/javascript">
+            function InicializarResidencia() {
+                //debugger;
+                if ($("#address_country_id").val() == "45") {
+                    $(".address_department").show();
+                }
+
+                else {
+                    $(".address_department").hide();
+                    $("#department_id").each(function () { //added a each loop here
+                        $(this).select2('val', '')
+                    });
+                    $("#address_municipality_id").each(function () { //added a each loop here
+                        $(this).select2('val', '')
+                    });
+                    $('#department_id').val('');
+                    $('#address_municipality_id').val('');
+                }
+            }
+            function ValidarAreasInteres() {
+                var interest_areas = $("input[name='interest_areas']:checked");
+                $('.interest-areas-error').html('');
+                if (interest_areas && interest_areas.length > 0)
+                    return true;
+                $('.interest-areas-error').html('Debe seleccionar al menos una Área de interés.');
+
+            }
             var current_tab;
             function ValidarTabActivo(index) {
 
@@ -476,6 +504,9 @@
                 //debugger;
                 if ($("#address_country_id").val() == "45") {
                     $(".address_department").show();
+                }
+                else {
+                    $(".address_department").hide();
                 }
 
 
@@ -727,7 +758,7 @@
                 //debugger;
                 e.preventDefault();
                 var form = this;
-                if ($("#form-investigator").valid()) {
+                if ($("#form-investigator").valid() & ValidarAreasInteres() ) {
                     form.submit();
                 }
 

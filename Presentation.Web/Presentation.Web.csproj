@@ -95,6 +95,9 @@
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -165,9 +168,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\PeriodController.cs" />
     <Compile Include="Controllers\ConsultationTypeController.cs" />
+    <Compile Include="Controllers\ReasonRejectController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ConceptController.cs" />
     <Compile Include="Controllers\AcademicLevelController.cs" />
@@ -266,6 +267,7 @@
     <Content Include="Assets\img\image_placeholder.jpg" />
     <Content Include="Assets\img\james.jpg" />
     <Content Include="Assets\img\logoarca.jpg" />
+    <Content Include="Assets\img\merit_ranges\bronce..png" />
     <Content Include="Assets\img\merit_ranges\ddddd..jpg" />
     <Content Include="Assets\img\merit_ranges\dddddddddddd..jpg" />
     <Content Include="Assets\img\merit_ranges\dddddddddddd..png" />
@@ -273,8 +275,13 @@
     <Content Include="Assets\img\merit_ranges\GEMA_de_topacio_flamingo_.png" />
     <Content Include="Assets\img\merit_ranges\kisscc0-gemstone-computer-icons-yellow-diamond.png" />
     <Content Include="Assets\img\merit_ranges\kisspng-sapphire-gemstone-cobalt-blue-cardinal-gem-sapphire-gem-png.jpg" />
+    <Content Include="Assets\img\merit_ranges\oro..png" />
+    <Content Include="Assets\img\merit_ranges\plata..png" />
     <Content Include="Assets\img\merit_ranges\ruby-icon.png" />
     <Content Include="Assets\img\mike.jpg" />
+    <Content Include="Assets\img\monedas\coin-bronce.png" />
+    <Content Include="Assets\img\monedas\coin-gold.png" />
+    <Content Include="Assets\img\monedas\coin-plate.png" />
     <Content Include="Assets\img\now-logo.png" />
     <Content Include="Assets\img\options.png" />
     <Content Include="Assets\img\placeholder.jpg" />
@@ -321,11 +328,15 @@
     <Content Include="Assets\use.fontawesome.com\releases\v5.0.6\css\all.css" />
     <Content Include="Avatars\12614_4721624952870_918492468_n.jpg" />
     <Content Include="Avatars\13034911jpg.jpg" />
+    <Content Include="Avatars\27b9b0b5-dc04-4254-bae5-5b87a33d4885..png" />
     <Content Include="Avatars\4579b2a7-03a6-4bde-9a6c-988e1f444db8..jpg" />
+    <Content Include="Avatars\5ddcb5ad-0826-49d6-9d57-34ec27697a46..jpg" />
     <Content Include="Avatars\982e4272-9c45-42be-b3f4-44f18dbc72fb..jpg" />
     <Content Include="Avatars\c8264c35-3af9-4a25-9ff4-72aa26d86644..jpg" />
+    <Content Include="Avatars\cc96abe8-9b08-49b1-a69e-b8622628d169..png" />
     <Content Include="Avatars\de45bc84-dadf-4cd9-9bc1-a0e1c8adec17..jpg" />
     <Content Include="Avatars\default_avatar_male.jpg" />
+    <Content Include="Avatars\f4edf121-3461-44a4-b19d-b8021b7a16e8..jpg" />
     <Content Include="Avatars\ff14ffde-8348-4e9f-a8b9-19164be2044a..jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -675,6 +686,9 @@
     <Content Include="Views\ConsultationType\Crear.cshtml" />
     <Content Include="Views\ConsultationType\Editar.cshtml" />
     <Content Include="Views\ConsultationType\Index.cshtml" />
+    <Content Include="Views\ReasonReject\Crear.cshtml" />
+    <Content Include="Views\ReasonReject\Editar.cshtml" />
+    <Content Include="Views\ReasonReject\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

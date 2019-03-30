@@ -54,6 +54,7 @@ namespace Presentation.Web.Controllers
             ViewBag.merit_ranges = oMeritRange;
             return View();
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_backgrounds })]
         public ActionResult MiHistorial()
         {
             SelectorBL oSelectorBL = new SelectorBL();
@@ -65,11 +66,13 @@ namespace Presentation.Web.Controllers
             ConceptBL oConceptBL = new ConceptBL();
             MyHistoryViewModel oMyHistoryViewModel = oConceptBL.ObtenerMiHistorial(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
 
-            if (oMyHistoryViewModel == null || oMyHistoryViewModel.my_points == null) {
+            if (oMyHistoryViewModel == null ) {
                 oMyHistoryViewModel = new MyHistoryViewModel();
-
+                
+                oMyHistoryViewModel.nro_concepts = 0;
                 oMyHistoryViewModel.my_points = 0;
                 oMyHistoryViewModel.qualified_concepts = 0;
+                oMyHistoryViewModel.approved_concepts = 0;
 
             }
             ViewBag.my_points = oMyHistoryViewModel.my_points;

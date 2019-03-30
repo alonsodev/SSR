@@ -23,6 +23,7 @@ namespace Infrastructure.Data
         public int draft_law_status_id { get; set; }
         public string name { get; set; }
         public bool notifiable { get; set; }
+        public string sub_type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<draft_laws> draft_laws { get; set; }

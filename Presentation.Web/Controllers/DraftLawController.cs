@@ -55,24 +55,67 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law })]
-        public ActionResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
+        public JsonResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
         {
             // TODO: Add insert logic here
 
+
             if (pDraftLawViewModel == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+
+                return Json(new
+                {
+                    message_error = "Datos inavalidos",
+                    status = "0",
+
+                });
             }
             pDraftLawViewModel.date_presentation = DateTime.ParseExact(pDraftLawViewModel.date_presentation_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             pDraftLawViewModel.draft_law_id = 0;
 
             pDraftLawViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
 
+            pDraftLawViewModel.commission = "";
+            pDraftLawViewModel.interest_area= "";
+            List<ImportError> oErrores = null;
             DraftLawBL oBL = new DraftLawBL();
+            List<DraftLawViewModel> lista = new List<DraftLawViewModel>();
+            lista.Add(pDraftLawViewModel);
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
 
-            oBL.Agregar(pDraftLawViewModel);
+            oErrores = ValidarPeriodo(oPeriod, oErrores);
+            if (oErrores.Count > 0)
+                return Json(new { successfully = 0, errores = oErrores });
 
-            return RedirectToAction("Index");
+            if (VerificarPonentes(lista, out oErrores))
+            {
+
+                DraftLawBL oDraftLawBL = new DraftLawBL();
+                CommissionBL oCommissionBL = new CommissionBL();
+                InterestAreaBL oInterestAreaBL = new InterestAreaBL();
+                DraftLawStatusBL oDraftLawStatusBL = new DraftLawStatusBL();
+                OriginBL oOriginBL = new OriginBL();
+                Dictionary<string, int> commisions = new Dictionary<string, int>();
+                Dictionary<string, int> origins = oOriginBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.origin).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                Dictionary<string, int> interest_areas = new Dictionary<string, int>();
+                Dictionary<string, DraftLawStatusViewModel> draftlaw_status = oDraftLawStatusBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.status).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
+                oDraftLawBL.Import(oPeriod, lista, origins, commisions, interest_areas, draftlaw_status, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                // NotificacionNuevoProyectoLey(lista);
+            }
+
+
+            // oBL.Agregar(pDraftLawViewModel);
+            if (oErrores.Count == 0)
+                return Json(new { successfully = 1 });
+            else
+            {
+                return Json(new { successfully = 0, errores = oErrores });
+            }
+
+            // return RedirectToAction("Index");
 
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_draft_law })]
@@ -288,7 +331,19 @@ namespace Presentation.Web.Controllers
                 List<string> errores = new List<string>();
                 string mensaje = "";
                 i++;
-                var authors = obj.author.Split(',');
+                var authors = obj.author.Split(',').ToList();
+                
+               
+                if (!String.IsNullOrEmpty(obj.debate_speaker)) {
+                    var debate_speaker = obj.debate_speaker.Split(',').ToList();
+                    authors.AddRange(debate_speaker);
+                }
+                if (!String.IsNullOrEmpty(obj.debate_speaker2))
+                {
+                    var debate_speaker2 = obj.debate_speaker2.Split(',').ToList();
+
+                    authors.AddRange(debate_speaker2);
+                }
                 List<int> debate_speakers = new List<int>();
                 foreach (string author in authors)
                 {
@@ -302,7 +357,7 @@ namespace Presentation.Web.Controllers
 
                         if (!user_id.HasValue || user_id == 0)
                         {
-                            mensaje = "El autor '" + author_aux + "' no esta registrado como usuario del sistema.";
+                            mensaje = "El Autor, Ponente de debate 1 o Ponente de debate 2 '" + author_aux + "' no esta registrado como usuario del sistema.";
                             errores.Add(mensaje);
                         }
 

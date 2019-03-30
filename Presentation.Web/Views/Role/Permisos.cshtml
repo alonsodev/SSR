@@ -39,7 +39,7 @@
                         @foreach (var item in ViewBag.permisos)
                         {
                             <tr>
-                                <td>@item.Name</td>
+                                <td>@Html.Raw(item.Name)</td>
                                 <td class="text-center">
                                     <div class="row">
 

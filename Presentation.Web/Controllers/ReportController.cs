@@ -138,7 +138,7 @@ namespace Presentation.Web.Controllers
 
             ConceptBL oConceptBL = new ConceptBL();
 
-
+            oConceptBL.ActualizarTablasReporte(filtros.period_id);
             List<ReportViewModel> resultado = oConceptBL.ObtenerExportarReporte(filtros);
             //   resultado.ForEach(RecalcularCampos);
 

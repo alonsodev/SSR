@@ -16,176 +16,177 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Editar", "DraftLaw", FormMethod.Post, new { id = "form-edit", title = "Editar Proyecto de Ley" }))
+            
+            @using (Ajax.BeginForm("Crear", "DraftLaw", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Showmessage" }, new { @id = "form-registrar" }))
             {
-            <div class="card-body">
+                <div class="card-body">
 
 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.draft_law_id)
-                @Html.HiddenFor(model => model.period_closed)
-                <div class="form-group has-label">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.draft_law_id)
+                    @Html.HiddenFor(model => model.period_closed)
+                    <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
 
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
+                                <span class="text-danger field-validation-error draft_law_number-error"></span>
+                            </div>
+
+                        </div>
+
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.author, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                                @Html.ValidationMessageFor(model => model.author, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.origin, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.origin, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                                @Html.ValidationMessageFor(model => model.origin, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.date_presentation_text, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.date_presentation_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.date_presentation_text, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.debate_speaker, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.debate_speaker, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
+                                @Html.ValidationMessageFor(model => model.debate_speaker, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.debate_speaker2, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.debate_speaker2, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
+                                @Html.ValidationMessageFor(model => model.debate_speaker2, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
+                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.status_comment, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.status_comment, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                        @Html.ValidationMessageFor(model => model.status_comment, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.interest_area_id, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.DropDownList("interest_area_id", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.interest_area_id, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.initiative, htmlAttributes: new { @class = "" })</label>
+
+                        <div class="col-sm-4">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.initiative, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                                @Html.ValidationMessageFor(model => model.initiative, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
+                        @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+
+                </div><!-- end content-->
+                <div class="card-footer text-right">
+
+
+                    <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
                 </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
-                            <span class="text-danger field-validation-error draft_law_number-error"></span>
-                        </div>
-
-                    </div>
-
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.author, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                            @Html.ValidationMessageFor(model => model.author, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.origin, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.origin, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                            @Html.ValidationMessageFor(model => model.origin, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.date_presentation_text, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.date_presentation_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                            @Html.ValidationMessageFor(model => model.date_presentation_text, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.debate_speaker, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.debate_speaker, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
-                            @Html.ValidationMessageFor(model => model.debate_speaker, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.debate_speaker2, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.debate_speaker2, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
-                            @Html.ValidationMessageFor(model => model.debate_speaker2, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
-                            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                </div>
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.status_comment, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.status_comment, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                    @Html.ValidationMessageFor(model => model.status_comment, "", new { @class = "text-danger" })
-
-                </div>
-
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.interest_area_id, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.DropDownList("interest_area_id", (IEnumerable<SelectListItem>)ViewBag.interest_areas, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.interest_area_id, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.initiative, htmlAttributes: new { @class = "" })</label>
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.initiative, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                            @Html.ValidationMessageFor(model => model.initiative, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control", maxlength = "1000" } })
-                    @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
-
-                </div>
-
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-
-                </div>
-
-
-
-
-            </div><!-- end content-->
-            <div class="card-footer text-right">
-
-
-                <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-            </div>
             }
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -197,10 +198,60 @@
 @section Scripts {
 
     <script type="text/javascript">
-        function RedirectLista(){
-
+        function RedirectLista() {
             window.location.href = "/DraftLaw";
         }
+        function obtenerErrores(errores) {
+            var mensaje = "";
+            for (i = 0; i < errores.length; i++) {
+                //mensaje = mensaje + '<li>Fila número ' + errores[i].nroFila;
+                var lista = errores[i].errores;
+                mensaje = mensaje + '<ul>';
+                for (j = 0; j < lista.length; j++) {
+                    mensaje = mensaje + '<li>' + lista[j] + '</li>';
+                }
+                mensaje = mensaje + '</ul></li>';
+            }
+            return mensaje;
+        }
+        function Showmessage(result) {
+            debugger;
+            console.log(result);
+
+            if (result.successfully == 1) {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Registrado!',
+                    html: 'El proyecto de ley se ha registrado con éxito.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectLista
+                }).then(function () {
+                    RedirectLista();
+                }).catch(swal.noop);
+            }
+            else {
+                if (result.successfully == -1) {
+                    alert(result.message);
+                }
+                else {
+                    var mensaje = obtenerErrores(result.errores);
+                    swal({
+                        title: 'Error!',
+                        html: '<div class="text-left" style="font-size:14px">Ocurrio un error, por favor corrija los errores mostrados e intente de nuevamente.<br/>' + mensaje + '</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                }
+            }
+
+
+
+        }
+       
 
         $(function () {
             $('.datepicker').datetimepicker({
@@ -243,53 +294,21 @@
             }
 
 
-            $('#form-edit').on('submit', function (e) { //use on if jQuery 1.7+
+            $("#btnCrear").click(function () {
                 //prevent form from submitting
-                //debugger;
-                e.preventDefault();
-                var form = this;
-                $('.draft_law_number-error').html('');
-                if ($("#form-edit").valid()) {
+                debugger;
+
+                if ($("#form-registrar").valid()) {
 
 
-                     var valido = false;
-                    $.ajaxSetup({
-                        async: false
-                    });
-                     $.ajax({
-                            url: "@Url.Action("Verificar", "DraftLaw")",
-                            type: "POST",
-                         data: { draft_law_id: $('#draft_law_id').val(), draft_law_number: $('#draft_law_number').val() }
-                        })
-                        .done(function (data) {
-                            valido = data.valido;
-                        })
-                        .fail(function (data) {
-                            console.log("error");
-                        })
-                        .always(function (data) {
-                            console.log("complete");
-                        });
-
-
-
-                    // Volvemos a dejar las llamadas AJAX síncronas
-                   $.ajaxSetup({
-                        async: true
-                    });
-
-                    if (valido) {
-                        form.submit();
-                    }
-                    else {
-                        $('.draft_law_number-error').html('<span id="draft_law_number-error" class="">Ya existe un proyecto de ley con el mismo Nro. de Proyecto.</span>');
-                        return false;
-                    }
+                    $('#form-registrar').trigger('submit');
 
 
 
 
                 }
+
+
 
                 return false;
             });

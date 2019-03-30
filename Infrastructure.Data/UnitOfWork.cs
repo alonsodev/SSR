@@ -66,6 +66,7 @@ namespace Infrastructure.Data
         private UserInstitutionRepository _userInstitutionRepository;
         private ConsultationTypeRepository _consultationTypeRepository;
 
+        private ReasonRejectRepository _reasonRejectRepository;
         
 
         #endregion
@@ -79,6 +80,11 @@ namespace Infrastructure.Data
 
         #region IUnitOfWork Members
 
+        public ReasonRejectRepository ReasonRejectRepository
+        {
+            get { return _reasonRejectRepository ?? (_reasonRejectRepository = new ReasonRejectRepository(_context)); }
+
+        }
         public ConsultationTypeRepository ConsultationTypeRepository
         {
             get { return _consultationTypeRepository ?? (_consultationTypeRepository = new ConsultationTypeRepository(_context)); }
@@ -296,16 +302,12 @@ namespace Infrastructure.Data
             this._userRepository = null;
             this._permissionRepository = null;
             this._roleRepository = null;
-
             this._rolePermissionRepository = null;
-
             this._investigatorRepository = null;
-
             this._institutionRepository = null;
             this._interestAreaRepository = null;
             this._programRepository = null;
             this._investigationGroupRepository = null;
-
             this._commissionRepository = null;
             this._draftLawRepository = null;
             this._conceptRepository = null;
@@ -331,6 +333,7 @@ namespace Infrastructure.Data
             this._originRepository = null;
             this._userInstitutionRepository = null;
             this._consultationTypeRepository = null;
+            this._reasonRejectRepository = null;
             _context.Dispose();
         }
         #endregion

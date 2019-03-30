@@ -345,7 +345,15 @@ namespace Presentation.Web.Controllers
             ViewBag.academic_levels = academic_levels;
             ViewBag.commissions = commissions;
 
-            return View();
+            
+
+            InvestigatorViewModel pViewModel = new InvestigatorViewModel();
+            ConfigurationBL oConfigurationBL = new ConfigurationBL();
+            pViewModel.terms_conditions = oConfigurationBL.Obtener().terms_conditions;
+
+            pViewModel.commissionsMultiSelectList = new MultiSelectList(oSelectorBL.CommissionsSelector(), "Value", "Text");
+
+            return View(pViewModel);
         }
 
         [HttpPost]
@@ -373,7 +381,7 @@ namespace Presentation.Web.Controllers
             var user_pass = pViewModel.user_pass;
             pViewModel.user_pass = Helper.Encripta(pViewModel.user_pass);
             pViewModel.user_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
-            pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.last_name;
+            pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
             string user_code = Guid.NewGuid().ToString();
             pViewModel.user_code_activate = user_code;
             UserBL oBL = new UserBL();
@@ -422,7 +430,7 @@ namespace Presentation.Web.Controllers
             List<SelectOptionItem> oPrograms = oSelectorBL.ProgramsSelector(pViewModel.educational_institution_id.Value);
             List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
             List<SelectOptionItem> oDepartments = oSelectorBL.DepartmentsSelector();
-            List<SelectOptionItem> oMunicipalities = oSelectorBL.MunicipalitiesSelector(pViewModel.department_id.Value);
+            List<SelectOptionItem> oMunicipalities = oSelectorBL.MunicipalitiesSelector(pViewModel.department_id.HasValue? pViewModel.department_id.Value:0);
 
             List<SelectOptionItem> oAcademicLevels = oSelectorBL.AcademicLevelsSelector();
             List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
@@ -491,7 +499,7 @@ namespace Presentation.Web.Controllers
             ViewBag.documentTypes = documentTypes;
             ViewBag.genders = genders;
             ViewBag.academic_levels = academic_levels;
-            pViewModel.commissionsMultiSelectList = new MultiSelectList(oSelectorBL.CommissionsSelector(), "Value", "Text"); ;
+            pViewModel.commissionsMultiSelectList = new MultiSelectList(oSelectorBL.CommissionsSelector(), "Value", "Text");
 
             return View(pViewModel);
         }
@@ -512,7 +520,7 @@ namespace Presentation.Web.Controllers
             UserBL oUserBL = new UserBL();
             pViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             pViewModel.user_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
-            pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.last_name;
+            pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
             pViewModel.birthdate = DateTime.ParseExact(pViewModel.birthdate_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             pViewModel.avatar = null;
             if (Request.Files.Count > 0)
@@ -532,8 +540,10 @@ namespace Presentation.Web.Controllers
             }
 
             oUserBL.ModificarInvestigator(pViewModel);
-
-            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = oUserBL.GetCurrentUser(pViewModel.user_id.Value);
+            CurrentUserViewModel result = oUserBL.GetCurrentUser(pViewModel.user_id.Value);
+            result.name_abbre = Helper.Substring(result.name, 20);
+            Session[System.Configuration.ConfigurationManager.AppSettings["session.usuario.actual"]] = result;
+            
 
             return Redirect("/Account/Editar/" + pViewModel.investigator_id);
 

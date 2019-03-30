@@ -137,8 +137,8 @@ namespace Domain.Entities
         [AssertThat("user_pass2==user_pass", ErrorMessage = "Confirmar Contraseña no coincide con la contraseña ingresada previamente.")]
         public string user_pass2 { get; set; }
 
-        [Display(Name = "Nombre de institución")]
-        [Required(ErrorMessage = "Nombre de institución es obligatorio.")]
+        [Display(Name = "Nombre de institución que lo avala")]
+        [Required(ErrorMessage = "Nombre de institución que lo avala es obligatorio.")]
         public Nullable<int> institution_id { get; set; }
         public string institution { get; set; }
         [Display(Name = "Grupo de investigación a la que pertenece")]
@@ -156,8 +156,8 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Áreas de interés es obligatorio.")]
         public List<int> interest_areas { get; set; }
 
-        [Display(Name = "Institución educativa")]
-        [Required(ErrorMessage = "Institución educativa es obligatorio.")]
+        [Display(Name = "Egresado de la institución educativa")]
+        [Required(ErrorMessage = "Egresado de la institución educativa es obligatorio.")]
         public Nullable<int> educational_institution_id { get; set; }
 
         [Display(Name = "Nombre de programa")]
@@ -177,5 +177,6 @@ namespace Domain.Entities
         public string user_code_activate { get; set; }
         public string user_code_recover { get; set; }
         public string avatar { get; set; }
+        public string terms_conditions { get; set; }
     }
 }

@@ -9,6 +9,10 @@ namespace Domain.Entities
 {
     public class MyHistoryViewModel
     {
+        [Display(Name = "Conceptos presentados")]
+        public int nro_concepts { get; set; }
+        [Display(Name = "Conceptos aprobados")]
+        public int approved_concepts { get; set; }
         [Display(Name = "Conceptos calificados")]
         public int qualified_concepts { get; set; }
 

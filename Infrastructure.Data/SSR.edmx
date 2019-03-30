@@ -219,6 +219,7 @@
           <Property Name="draft_law_status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="notifiable" Type="bit" Nullable="false" />
+          <Property Name="sub_type" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="education_levels">
           <Key>
@@ -1450,7 +1451,6 @@
           <EntitySet Name="departments" EntityType="SSRModel.departments" />
           <EntitySet Name="document_types" EntityType="SSRModel.document_types" />
           <EntitySet Name="draft_laws" EntityType="SSRModel.draft_laws" />
-          <EntitySet Name="draft_laws_status" EntityType="SSRModel.draft_laws_status" />
           <EntitySet Name="education_levels" EntityType="SSRModel.education_levels" />
           <EntitySet Name="educational_institutions" EntityType="SSRModel.educational_institutions" />
           <EntitySet Name="genders" EntityType="SSRModel.genders" />
@@ -1564,10 +1564,6 @@
           <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
             <End Role="document_types" EntitySet="document_types" />
             <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
-            <End Role="draft_laws_status" EntitySet="draft_laws_status" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
           </AssociationSet>
           <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
             <End Role="interest_areas" EntitySet="interest_areas" />
@@ -1683,8 +1679,13 @@
             <End Role="user_institutions" EntitySet="user_institutions" />
           </AssociationSet>
           <FunctionImport Name="ActualizarTablasReporte">
-            <Parameter Name="period_id" Mode="In" Type="Int32" />
+          <Parameter Name="period_id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="draft_laws_status" EntityType="SSRModel.draft_laws_status" />
+          <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
+            <End Role="draft_laws_status" EntitySet="draft_laws_status" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="academic_levels">
           <Key>
@@ -1924,19 +1925,10 @@
           <NavigationProperty Name="commissions" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="draft_laws" ToRole="commissions" />
           <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
           <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="draft_laws" ToRole="debate_speakers" />
-          <NavigationProperty Name="draft_laws_status" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws" ToRole="draft_laws_status" />
           <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="draft_laws" ToRole="interest_areas" />
           <NavigationProperty Name="origins" Relationship="SSRModel.FK_draft_laws_origins" FromRole="draft_laws" ToRole="origins" />
           <NavigationProperty Name="periods" Relationship="SSRModel.FK_draft_laws_periods" FromRole="draft_laws" ToRole="periods" />
-        </EntityType>
-        <EntityType Name="draft_laws_status">
-          <Key>
-            <PropertyRef Name="draft_law_status_id" />
-          </Key>
-          <Property Name="draft_law_status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="notifiable" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws_status" ToRole="draft_laws" />
+          <NavigationProperty Name="draft_laws_status" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws" ToRole="draft_laws_status" />
         </EntityType>
         <EntityType Name="education_levels">
           <Key>
@@ -2597,18 +2589,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_draft_laws_draft_laws_status">
-          <End Type="SSRModel.draft_laws_status" Role="draft_laws_status" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws_status">
-              <PropertyRef Name="draft_law_status_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_draft_laws_interest_areas">
           <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="0..1" />
           <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
@@ -2959,6 +2939,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="draft_laws_status">
+          <Key>
+            <PropertyRef Name="draft_law_status_id" />
+          </Key>
+          <Property Name="draft_law_status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="notifiable" Type="Boolean" Nullable="false" />
+          <Property Name="sub_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws_status" ToRole="draft_laws" />
+        </EntityType>
+        <Association Name="FK_draft_laws_draft_laws_status">
+          <End Type="SSRModel.draft_laws_status" Role="draft_laws_status" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws_status">
+              <PropertyRef Name="draft_law_status_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3181,15 +3183,6 @@
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="draft_law_number" ColumnName="draft_law_number" />
                 <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="draft_laws_status">
-            <EntityTypeMapping TypeName="SSRModel.draft_laws_status">
-              <MappingFragment StoreEntitySet="draft_laws_status">
-                <ScalarProperty Name="notifiable" ColumnName="notifiable" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="draft_law_status_id" ColumnName="draft_law_status_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3561,6 +3554,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ActualizarTablasReporte" FunctionName="SSRModel.Store.ActualizarTablasReporte" />
+          <EntitySetMapping Name="draft_laws_status">
+            <EntityTypeMapping TypeName="SSRModel.draft_laws_status">
+              <MappingFragment StoreEntitySet="draft_laws_status">
+                <ScalarProperty Name="sub_type" ColumnName="sub_type" />
+                <ScalarProperty Name="notifiable" ColumnName="notifiable" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="draft_law_status_id" ColumnName="draft_law_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

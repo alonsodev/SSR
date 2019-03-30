@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Movil;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using System;
@@ -22,6 +23,11 @@ namespace Business.Logic
         private static ConceptDebateSpeakerRepository oRepositorioConceptDebateSpeaker;
 
         private static UnitOfWork oUnitOfWork;
+
+        public ConceptDetailLiteViewModel ObtenerLite(ConceptFilterLiteViewModel filter)
+        {
+            return oRepositorio.ObtenerLite(filter);
+        }
 
         public ConceptBL()
         {
@@ -343,6 +349,11 @@ namespace Business.Logic
         public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel ofilters, int user_id, GeneralFilterViewModel generalfiltros)
         {
             return oRepositorio.ObtenerPorCalificar(ofilters, user_id, generalfiltros);
+        }
+
+        public List<ConceptLiteViewModel> ObtenerPorCalificarMovil(ConceptsFilterLiteViewModel filter)
+        {
+            return oRepositorio.ObtenerPorCalificarMovil(filter);
         }
 
         public GridModel<ConceptViewModel> ObtenerCertificados(DataTableAjaxPostModel ofilters, int investigator_id, GeneralFilterViewModel generalfiltros)
