@@ -41,8 +41,19 @@ namespace Infrastructure.Data.Repositories
             return query_select.ToList();
         }
 
+        public List<SelectOptionItem> PeriodsSelector()
+        {
+            var lista = this.Context.Set<periods>();
 
-      
+            var query_select = lista.OrderByDescending(a=>a.start_date).Select(a => new SelectOptionItem
+            {
+                Value = a.period_id.ToString(),
+                Text = a.name,
+            });
+
+            return query_select.ToList();
+        }
+
         public List<SelectOptionItem> ConsultationTypesSelector()
         {
             var lista = this.Context.Set<consultation_types>();
@@ -67,6 +78,19 @@ namespace Infrastructure.Data.Repositories
             return consulta.ToList();
         }
 
+        public List<SelectOptionItem> InstitutionsSelector(List<int> institution_ids)
+        {
+            var lista = this.Context.Set<institutions>();
+            var consulta = lista.Where(a=> institution_ids.Contains(a.institution_id)).Select(a => new SelectOptionItem
+            {
+                Value = a.institution_id.ToString(),
+                Text = a.name,
+               
+            }).OrderBy(a => a.Text);
+
+            return consulta.ToList();
+        }
+
         public List<SelectOptionItem> StatusSelector()
         {
             var lista = this.Context.Set<draft_laws_status>();
@@ -81,11 +105,11 @@ namespace Infrastructure.Data.Repositories
 
         public List<SelectOptionItem> OriginSelector()
         {
-            var lista = this.Context.Set<draft_laws>();
+            var lista = this.Context.Set<origins>();
             var consulta = lista.Select(a => new SelectOptionItem
             {
-                Value = a.origin.ToString(),
-                Text = a.origin,
+                Value = a.origin_id.ToString(),
+                Text = a.name,
             }).Distinct().OrderBy(a => a.Text);
 
             return consulta.ToList();
@@ -546,7 +570,8 @@ namespace Infrastructure.Data.Repositories
                 contact_name = a.contact_name,
                 phone = a.phone,
                 address = a.address,
-                avatar=a.avatar
+                avatar=a.avatar,
+                institution_ids=a.user_institutions.Select(b=> b.institution_id).ToList(),
             });
 
             return query.Take(1).FirstOrDefault();

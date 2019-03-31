@@ -17,12 +17,12 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public users()
         {
-            this.debate_speakers = new HashSet<debate_speakers>();
-            this.notifications = new HashSet<notifications>();
             this.concept_debate_speakers = new HashSet<concept_debate_speakers>();
             this.consultations = new HashSet<consultations>();
+            this.debate_speakers = new HashSet<debate_speakers>();
             this.investigators = new HashSet<investigators>();
-            this.user_institutionss = new HashSet<user_institutionss>();
+            this.notifications = new HashSet<notifications>();
+            this.user_institutions = new HashSet<user_institutions>();
         }
     
         public int id { get; set; }
@@ -50,22 +50,22 @@ namespace Infrastructure.Data
         public string avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<debate_speakers> debate_speakers { get; set; }
-        public virtual document_types document_types { get; set; }
-        public virtual municipalities municipalities { get; set; }
-        public virtual nationalities nationalities { get; set; }
-        public virtual nationalities nationalities1 { get; set; }
-        public virtual roles roles { get; set; }
-        public virtual user_status user_status { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<notifications> notifications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concept_debate_speakers> concept_debate_speakers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<consultations> consultations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<investigators> investigators { get; set; }
+        public virtual ICollection<debate_speakers> debate_speakers { get; set; }
+        public virtual document_types document_types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_institutionss> user_institutionss { get; set; }
+        public virtual ICollection<investigators> investigators { get; set; }
+        public virtual municipalities municipalities { get; set; }
+        public virtual nationalities nationalities { get; set; }
+        public virtual nationalities nationalities1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<notifications> notifications { get; set; }
+        public virtual roles roles { get; set; }
+        public virtual user_status user_status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user_institutions> user_institutions { get; set; }
     }
 }

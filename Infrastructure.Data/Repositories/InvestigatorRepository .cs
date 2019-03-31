@@ -157,5 +157,10 @@ namespace Infrastructure.Data.Repositories
 
             return query.Take(1).FirstOrDefault();
         }
+
+        public void DeleteByUser(int user_id)
+        {
+            Set.Where(a => a.user_id == user_id).Delete();
+        }
     }
 }

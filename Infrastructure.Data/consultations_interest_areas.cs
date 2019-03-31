@@ -21,7 +21,7 @@ namespace Infrastructure.Data
         public Nullable<int> user_id_created { get; set; }
         public Nullable<int> user_id_modified { get; set; }
     
-        public virtual interest_areas interest_areas { get; set; }
         public virtual consultations consultations { get; set; }
+        public virtual interest_areas interest_areas { get; set; }
     }
 }

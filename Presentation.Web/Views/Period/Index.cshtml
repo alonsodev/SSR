@@ -21,19 +21,20 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            
-                           
+                            <th>Inicio</th>
+                            <th>Fin</th>
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Nombre</th>
-
+                            <th>Inicio</th>
+                            <th>Fin</th>
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </tfoot>
-                  
+
                 </table>
             </div><!-- end content-->
         </div><!--  end card  -->
@@ -109,8 +110,10 @@
                             }
                         ],
                         "columns": [
-                            
+
                             { "data": "name" },
+                            { "data": "start_date" },
+                            { "data": "end_date" },
                             { "data": "period_id" }
                         ],
                         columnDefs: [
@@ -120,11 +123,29 @@
                                     return '<a href="/Period/Editar/' + row.period_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
                                         + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.period_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
                                 },
-                                targets: 1,
+                                targets: 3,
                                 orderable: false
+                            },
+                            {
+                                render: function (data, type, row) {
+
+                                    if (row.start_date == null) { return "" };
+                                    var actionsHtml = moment(row.start_date).format("DD/MM/YYYY");
+                                    return actionsHtml;
+                                },
+                                targets: 1
+                            },
+                            {
+                                render: function (data, type, row) {
+
+                                    if (row.end_date == null) { return "" };
+                                    var actionsHtml = moment(row.end_date).format("DD/MM/YYYY");
+                                    return actionsHtml;
+                                },
+                                targets: 2
                             }
                         ],
-                      
+
 
                         pageLength: 10,
                         lengthMenu: [[10, 20, 50], [10, 20, 50]]
@@ -133,10 +154,10 @@
                     datatable.on('click', '.delete', function (event) {
                         debugger;
                         var $tr = $(this).closest('tr');
-                      
+
 
                         var row_id = $(this).attr('row-id');
-                       
+
 
                         swal({
                             title: '¿Estás Seguro?',
@@ -165,8 +186,8 @@
                                         confirmButtonClass: "btn btn-success",
                                         buttonsStyling: false
                                     });
-                                    
-                                    
+
+
                                 })
                                 .fail(function (data) {
                                     console.log("error");
@@ -174,9 +195,9 @@
                                 .always(function (data) {
                                     console.log("complete");
                                 });
-                           
+
                         }).catch(swal.noop);
-                     
+
                     });
                     /* Add placeholder attribute to the search input */
                     $('.dataTables_filter input').attr('placeholder', 'Buscar');

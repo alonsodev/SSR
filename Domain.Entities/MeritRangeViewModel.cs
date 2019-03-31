@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Domain.Entities
 {
@@ -12,7 +13,7 @@ namespace Domain.Entities
         public int merit_range_id { get; set; }
         
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombre"), AllowHtml]
         [Required(ErrorMessage = "El Nombre es obligatorio.")]
         public string name { get; set; }
         [Display(Name = "Límite inferior")]

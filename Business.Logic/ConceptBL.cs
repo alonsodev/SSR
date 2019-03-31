@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Movil;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using System;
@@ -23,6 +24,11 @@ namespace Business.Logic
 
         private static UnitOfWork oUnitOfWork;
 
+        public ConceptDetailLiteViewModel ObtenerLite(ConceptFilterLiteViewModel filter)
+        {
+            return oRepositorio.ObtenerLite(filter);
+        }
+
         public ConceptBL()
         {
             oUnitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["SSREntities"].ConnectionString);
@@ -38,7 +44,7 @@ namespace Business.Logic
         {
             return oRepositorio.ExisteConcepto(draft_law_id, investigator_id);
         }
-            public static string ObtenerHtmlConcept(ConceptHtmlViewModel oConcept, string xslPath)
+        public static string ObtenerHtmlConcept(ConceptHtmlViewModel oConcept, string xslPath)
         {
             StringBuilder msgBody = new StringBuilder();
             if (File.Exists(xslPath))
@@ -53,11 +59,17 @@ namespace Business.Logic
             return string.Empty;
         }
 
+        public List<ConceptLiteViewModel> ObtenerMovil(ConceptsFilterLiteViewModel filter)
+        {
+            return oRepositorio.ObtenerMovil(filter);
+        }
+
         public GridModel<ReportViewModel> ObtenerReporte(DataTableAjaxPostModel ofilters, ReportFilterViewModel Reportefiltros)
         {
             return oRepositorio.ObtenerReporte(ofilters, Reportefiltros);
         }
-        public List<ReportViewModel> ObtenerExportarReporte(ReportFilterViewModel filtros) {
+        public List<ReportViewModel> ObtenerExportarReporte(ReportFilterViewModel filtros)
+        {
             return oRepositorio.ObtenerExportarReporte(filtros);
         }
         public static string ObtenerHtmlCertification(CertificationHtmlViewModel oCertification, string xslPath)
@@ -113,21 +125,21 @@ namespace Business.Logic
                 scope.Complete();
             }
         }
-       
+
         public MyHistoryViewModel ObtenerMiHistorial(int investigator_id)
         {
-           return  oRepositorio.ObtenerMiHistorial(investigator_id);
+            return oRepositorio.ObtenerMiHistorial(investigator_id);
         }
 
         public void Calificar(ConceptStatusLogViewModel oConceptStatusLogViewModel)
         {
             using (var scope = new TransactionScope())
             {
-               
+
 
                 concepts_status_logs oconcepts_status_logs = new concepts_status_logs();
                 oconcepts_status_logs.concept_status_log_id = 0;
-                oconcepts_status_logs.concept_id = oConceptStatusLogViewModel.concept_id;             
+                oconcepts_status_logs.concept_id = oConceptStatusLogViewModel.concept_id;
                 oconcepts_status_logs.concept_status_id = 5;
                 oconcepts_status_logs.date_created = DateTime.Now;
                 oconcepts_status_logs.user_id_created = oConceptStatusLogViewModel.user_id_created;
@@ -137,22 +149,24 @@ namespace Business.Logic
                 oUnitOfWork.SaveChanges();
                 List<ConceptStatusLogViewModel> calificaciones = oRepositorioConceptStatusLog.ObtenerCalificaciones(oConceptStatusLogViewModel.concept_id);
                 int NumeroPonentes = oRepositorio.NumeroPonentes(oConceptStatusLogViewModel.concept_id);
-                int NumeroCalificaciones = calificaciones!=null? calificaciones.Count():0;
+                int NumeroCalificaciones = calificaciones != null ? calificaciones.Count() : 0;
                 int concept_status_id = 5;
-                if (NumeroPonentes == NumeroCalificaciones) {
+                if (NumeroPonentes == NumeroCalificaciones)
+                {
                     concept_status_id = 6;
                 }
 
-                
+
 
                 concepts oconcepts = oRepositorio.FindById(oConceptStatusLogViewModel.concept_id);
                 oconcepts.concept_status_id = concept_status_id;
                 oconcepts.certification_path = oConceptStatusLogViewModel.certification_path;
-                if (NumeroCalificaciones > 0) {
+                if (NumeroCalificaciones > 0)
+                {
                     double qualification = calificaciones.Select(a => a.qualification).ToList().Average();
-                    oconcepts.qualification = Math.Round(qualification,2);
+                    oconcepts.qualification = Math.Round(qualification, 2);
                 }
-                
+
                 oRepositorio.Update(oconcepts);
 
                 oUnitOfWork.SaveChanges();
@@ -166,7 +180,7 @@ namespace Business.Logic
         }
         public Boolean VerificarCalificado(int concept_id, int user_id)
         {
-            return oRepositorioConceptStatusLog.VerificarCalificado(concept_id,user_id);
+            return oRepositorioConceptStatusLog.VerificarCalificado(concept_id, user_id);
         }
 
         public Boolean VerificarCalificado(int concept_id)
@@ -176,7 +190,8 @@ namespace Business.Logic
 
         public void Leido(ConceptStatusLogViewModel oConceptStatusLogViewModel)
         {
-            if (oRepositorioConceptStatusLog.VerificarLeido(oConceptStatusLogViewModel.concept_id, oConceptStatusLogViewModel.user_id_created.Value)) {
+            if (oRepositorioConceptStatusLog.VerificarLeido(oConceptStatusLogViewModel.concept_id, oConceptStatusLogViewModel.user_id_created.Value))
+            {
                 return;
             }
             using (var scope = new TransactionScope())
@@ -193,17 +208,17 @@ namespace Business.Logic
 
                 oRepositorioConceptStatusLog.Add(oconcepts_status_logs);
 
-               
+
                 int NumeroCalificaciones = oRepositorio.NumeroCalificaciones(oConceptStatusLogViewModel.concept_id);
                 int concept_status_id = 4;
-                if ( NumeroCalificaciones==0)
+                if (NumeroCalificaciones == 0)
                 {
                     concepts oconcepts = oRepositorio.FindById(oConceptStatusLogViewModel.concept_id);
                     oconcepts.concept_status_id = concept_status_id;
                     oRepositorio.Update(oconcepts);
                 }
 
-                
+
 
                 oUnitOfWork.SaveChanges();
                 scope.Complete();
@@ -229,9 +244,9 @@ namespace Business.Logic
 
             return oRepositorio.ObtenerCertificadoPdfpath(pIntID);
         }
-        public GridModel<ConceptViewModel> ObtenerLista(DataTableAjaxPostModel filters, int investigator_id)
+        public GridModel<ConceptViewModel> ObtenerLista(DataTableAjaxPostModel filters, int investigator_id, GeneralFilterViewModel generalfiltros)
         {
-            return oRepositorio.ObtenerLista(filters, investigator_id);
+            return oRepositorio.ObtenerLista(filters, investigator_id, generalfiltros);
         }
 
         public void Modificar(ConceptViewModel pConceptViewModel)
@@ -252,7 +267,7 @@ namespace Business.Logic
                 oRepositorio.Update(oconcepts);
 
                 //oconcepts.tags = oRepositorioTag.TagsByfilters(pConceptViewModel.tag_ids);
-               // oconcepts = oRepositorio.Add(oconcepts);
+                // oconcepts = oRepositorio.Add(oconcepts);
 
                 oRepositorioConceptTag.DeleleMultiple(oconcepts.concept_id);
                 foreach (int tag_id in pConceptViewModel.tag_ids)
@@ -326,42 +341,55 @@ namespace Business.Logic
                 pConceptViewModel.concept_id = oconcepts.concept_id;
             }
         }
-        public ConceptHtmlViewModel ObtenerHtmlConcept(int concept_id) {
+        public ConceptHtmlViewModel ObtenerHtmlConcept(int concept_id)
+        {
             return oRepositorio.ObtenerHtmlConcept(concept_id);
         }
-        public GridModel<ConceptViewModel> ObtenerEmitidos(DataTableAjaxPostModel ofilters)
+        public GridModel<ConceptViewModel> ObtenerEmitidos(DataTableAjaxPostModel ofilters, GeneralFilterViewModel generalfiltros)
         {
 
-            return oRepositorio.ObtenerEmitidos(ofilters);
+            return oRepositorio.ObtenerEmitidos(ofilters, generalfiltros);
         }
 
-        public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel ofilters,int user_id)
+        public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel ofilters, int user_id, GeneralFilterViewModel generalfiltros)
         {
-            return oRepositorio.ObtenerPorCalificar(ofilters, user_id);
+            return oRepositorio.ObtenerPorCalificar(ofilters, user_id, generalfiltros);
         }
 
-        public GridModel<ConceptViewModel> ObtenerCertificados(DataTableAjaxPostModel ofilters, int investigator_id)
+        public List<ConceptLiteViewModel> ObtenerPorCalificarMovil(ConceptsFilterLiteViewModel filter)
         {
-            return oRepositorio.ObtenerCertificados(ofilters, investigator_id);
+            return oRepositorio.ObtenerPorCalificarMovil(filter);
+        }
+
+        public GridModel<ConceptViewModel> ObtenerCertificados(DataTableAjaxPostModel ofilters, int investigator_id, GeneralFilterViewModel generalfiltros)
+        {
+            return oRepositorio.ObtenerCertificados(ofilters, investigator_id, generalfiltros);
         }
         public GridModel<RankingViewModel> ObtenerRanking(DataTableAjaxPostModel filters, int interest_area_id)
         {
             GridModel<RankingViewModel> lista = oRepositorio.ObtenerRanking(filters, interest_area_id);
-            int i = filters.start+1;
-            foreach (var row in lista.rows) {
+            int i = filters.start + 1;
+            foreach (var row in lista.rows)
+            {
                 row.position = i++;
             }
             return lista;
         }
 
-        public GridModel<ConceptViewModel> ObtenerRecibidos(DataTableAjaxPostModel ofilters, int user_id)
+        public GridModel<ConceptViewModel> ObtenerRecibidos(DataTableAjaxPostModel ofilters, int user_id, GeneralFilterViewModel generalfiltros)
         {
-            return oRepositorio.ObtenerRecibidos(ofilters, user_id);
+            return oRepositorio.ObtenerRecibidos(ofilters, user_id, generalfiltros);
         }
 
         public VerifyCertificationViewModel ObtenerVerificacionCertificado(Guid hash)
         {
             return oRepositorio.ObtenerVerificacionCertificado(hash);
+        }
+
+        public void ActualizarTablasReporte(int period_id)
+        {
+             oRepositorio.ActualizarTablasReporte(period_id);
+
         }
     }
 }

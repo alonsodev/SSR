@@ -17,10 +17,16 @@ namespace Infrastructure.Data.Repositories
         {
         }
 
-        public void deleteMultiple(int investigator_id)
+        public void DeleteMultiple(int investigator_id)
         {
            
             Set.Where(a => a.investigator_id == investigator_id).Delete();
+        }
+
+        public void DeleteMultipleByUser(int user_id)
+        {
+
+            Set.Where(a => a.investigators.user_id == user_id).Delete();
         }
 
     }

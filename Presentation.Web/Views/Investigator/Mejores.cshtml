@@ -60,16 +60,17 @@
                             <div class="row well pull-right" style="width: 400px;">
                                 @foreach (var merit_range in ViewBag.merit_ranges)
                                 {
-                                    <div class="col text-center">
-                                        <div><img src="@merit_range.url_image" title=" @merit_range.name" height="40"></div>
-                                        <div>
-                                            @merit_range.name
-                                        </div>
-                                        <div>
-
-                                            @merit_range.description
-                                        </div>
+                                <div class="col text-center">
+                                    <div><img src="@merit_range.url_image" title=" @merit_range.name" height="40"></div>
+                                    <div>
+                                        @merit_range.name
                                     </div>
+                                    <div>
+
+                                        @merit_range.lower_limit -  @merit_range.upper_limit
+                                    </div>
+                                   
+                                </div>
                                 }
                             </div>
                         </div>

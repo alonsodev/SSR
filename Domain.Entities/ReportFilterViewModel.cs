@@ -21,12 +21,12 @@ namespace Domain.Entities
         public int  status_id { get; set; }
 
         [Display(Name = "Origen")]
-        public string origin_id { get; set; }
+        public int origin_id { get; set; }
 
         [Display(Name = "Periodo")]
         public int period_id { get; set; }
 
-        public int institution_id { get; set; }
+        public List<int> institution_ids { get; set; }
 
     }
 }

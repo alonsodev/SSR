@@ -28,7 +28,10 @@
                 @Html.HiddenFor(model => model.investigator_id)
                 @Html.HiddenFor(model => model.bad_languages)
                 @Html.HiddenFor(model => model.existe_concepto)
-                
+                @Html.HiddenFor(model => model.period_closed)
+                @Html.HiddenFor(model => model.notificable)
+                @Html.HiddenFor(model => model.status)
+
                 <div class="row">
                     <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
@@ -230,16 +233,39 @@
         function RedirectConcepts() {
             window.location.href = "/Concept";
         }
+
+        function RedirectMisProyectosLey() {
+            window.location.href = "/Investigator/MisProyectosLey";
+        }
+
+        
         $(document).ready(function () {
             // Initialize Editor
             $('.textarea-editor').summernote({
 
+                maximumImageFileSize: 1048576,
                 lang: 'es-ES',
                 height: 400, // set editor height
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor
-                focus: false // set focus to editable area after initializing summernote
+                focus: false, // set focus to editable area after initializing summernote
+
+                callbacks: {
+                    onImageUpload: function (files) {
+                        debugger;
+                        console.log(files);
+                        // upload image to server and create imgNode...
+
+                        //context.invoke('editor.insertText', 'hello');
+                        $('.textarea-editor').summernote('editor.insertImagesAsDataURL', files);
+                        //$summernote.summernote('insertNode', imgNode);
+                    }
+                }
+
             });
+
+          
+
             $('.textarea-editor').on('summernote.change', function (we, contents, $editable) {
                 $("#concept").valid();
             });
@@ -250,6 +276,40 @@
             });
 
             $("#commission_id").select2();
+          
+
+
+            var period_closed = $('#period_closed').val();
+            if (period_closed == "1") {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Periodo Cerrado!',
+                    text: 'El proyecto de ley seleccionado pertenece a un periodo cerrado.No se puede Presentar conceptos a proyectos de ley de periodos cerrados',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectMisProyectosLey
+                }).then(function () {
+                    RedirectMisProyectosLey();
+                }).catch(swal.noop);
+                return;
+            }
+            var status = $('#status').val();
+            var notificable = $('#notificable').val();
+            if (notificable == "0") {
+                $(".card-footer :button").attr("disabled", true);
+                swal({
+                    title: 'Proyecto de ley en estado "' + status + '"',
+                    text: 'El proyecto de ley seleccionado pertenece a un estado en el cual no se puede presentar conceptos.',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    onClose: RedirectMisProyectosLey
+                }).then(function () {
+                    RedirectMisProyectosLey();
+                }).catch(swal.noop);
+                return;
+            }
 
             var existe_concepto = $('#existe_concepto').val();
             if (existe_concepto == "1") {
@@ -260,16 +320,17 @@
                     type: 'error',
                     confirmButtonClass: "btn btn-success",
                     buttonsStyling: false,
-                    onClose: RedirectConcepts
+                    onClose: RedirectMisProyectosLey
                 }).then(function () {
-                    RedirectConceptPorCalificar();
+                    RedirectMisProyectosLey();
                 }).catch(swal.noop);
                 return;
             }
+
         });
 
         $("#btnCancelar").click(function () {
-            window.location.href = "/Concept";
+            RedirectMisProyectosLey();
         });
 
         $("#btnCrear").click(function () {

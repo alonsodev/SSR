@@ -14,6 +14,30 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
             <div class="card-body">
+                <div class="row">
+
+
+
+
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-label">
+                            @Html.LabelFor(model => model.period_id, htmlAttributes: new { @class = "" })
+                            @Html.DropDownList("period_id", (IEnumerable<SelectListItem>)ViewBag.periods, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.period_id, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="card-footer text-right">
+
+                            <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
+
+                        </div>
+                    </div>
+                </div>
                 <div class="toolbar">
                     <!--        Here you can write extra buttons/actions for the toolbar              -->
                 </div>
@@ -148,6 +172,12 @@
         $(function () {
             UiFormulario.init();
             $("#reason_reject_id").select2();
+
+            $("#period_id").select2();
+            
+            $("#btnBuscar").click(function () {
+                datatable.ajax.reload();
+            });
         })
 
         var UiFormulario = function () {
@@ -167,7 +197,11 @@
                         "serverSide": true,
                         "ajax": {
                             url: "@Url.Action("ObtenerLista", "Concept")",
-                            type: 'POST'
+                            type: 'POST',
+                            data: function (d) {
+
+                                d.period_id = $('#period_id').val();
+                            }
                         },
                         language: {
                             "url": "/Assets/media/language/spanish.json"

@@ -17,16 +17,16 @@ namespace Infrastructure.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public concepts_status()
         {
-            this.concepts_status_logs = new HashSet<concepts_status_logs>();
             this.concepts = new HashSet<concepts>();
+            this.concepts_status_logs = new HashSet<concepts_status_logs>();
         }
     
         public int concept_status_id { get; set; }
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concepts_status_logs> concepts_status_logs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concepts> concepts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concepts_status_logs> concepts_status_logs { get; set; }
     }
 }

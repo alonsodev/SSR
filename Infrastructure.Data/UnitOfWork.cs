@@ -62,7 +62,12 @@ namespace Infrastructure.Data
         private DraftLawStatusRepository _draftLawStatusRepository;
 
         private PeriodRepository _periodRepository;
+        private OriginRepository _originRepository;
+        private UserInstitutionRepository _userInstitutionRepository;
+        private ConsultationTypeRepository _consultationTypeRepository;
 
+        private ReasonRejectRepository _reasonRejectRepository;
+        
 
         #endregion
 
@@ -74,6 +79,29 @@ namespace Infrastructure.Data
         #endregion
 
         #region IUnitOfWork Members
+
+        public ReasonRejectRepository ReasonRejectRepository
+        {
+            get { return _reasonRejectRepository ?? (_reasonRejectRepository = new ReasonRejectRepository(_context)); }
+
+        }
+        public ConsultationTypeRepository ConsultationTypeRepository
+        {
+            get { return _consultationTypeRepository ?? (_consultationTypeRepository = new ConsultationTypeRepository(_context)); }
+
+        }
+        public UserInstitutionRepository UserInstitutionRepository
+        {
+            get { return _userInstitutionRepository ?? (_userInstitutionRepository = new UserInstitutionRepository(_context)); }
+
+        }
+
+
+        public OriginRepository OriginRepository
+        {
+            get { return _originRepository ?? (_originRepository = new OriginRepository(_context)); }
+
+        }
         public PeriodRepository PeriodRepository
         {
             get { return _periodRepository ?? (_periodRepository = new PeriodRepository(_context)); }
@@ -274,16 +302,12 @@ namespace Infrastructure.Data
             this._userRepository = null;
             this._permissionRepository = null;
             this._roleRepository = null;
-
             this._rolePermissionRepository = null;
-
             this._investigatorRepository = null;
-
             this._institutionRepository = null;
             this._interestAreaRepository = null;
             this._programRepository = null;
             this._investigationGroupRepository = null;
-
             this._commissionRepository = null;
             this._draftLawRepository = null;
             this._conceptRepository = null;
@@ -306,6 +330,10 @@ namespace Infrastructure.Data
             this._consultationInterestAreaRepository = null;
             this._draftLawStatusRepository = null;
             this._periodRepository = null;
+            this._originRepository = null;
+            this._userInstitutionRepository = null;
+            this._consultationTypeRepository = null;
+            this._reasonRejectRepository = null;
             _context.Dispose();
         }
         #endregion

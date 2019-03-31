@@ -25,7 +25,20 @@ namespace Presentation.Web.Controllers
 
         public ActionResult MisProyectosLey()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
+            
         }
 
         public ActionResult Mejores()
@@ -41,6 +54,7 @@ namespace Presentation.Web.Controllers
             ViewBag.merit_ranges = oMeritRange;
             return View();
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_backgrounds })]
         public ActionResult MiHistorial()
         {
             SelectorBL oSelectorBL = new SelectorBL();
@@ -52,11 +66,13 @@ namespace Presentation.Web.Controllers
             ConceptBL oConceptBL = new ConceptBL();
             MyHistoryViewModel oMyHistoryViewModel = oConceptBL.ObtenerMiHistorial(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
 
-            if (oMyHistoryViewModel == null || oMyHistoryViewModel.my_points == null) {
+            if (oMyHistoryViewModel == null ) {
                 oMyHistoryViewModel = new MyHistoryViewModel();
-
+                
+                oMyHistoryViewModel.nro_concepts = 0;
                 oMyHistoryViewModel.my_points = 0;
                 oMyHistoryViewModel.qualified_concepts = 0;
+                oMyHistoryViewModel.approved_concepts = 0;
 
             }
             ViewBag.my_points = oMyHistoryViewModel.my_points;
@@ -66,14 +82,14 @@ namespace Presentation.Web.Controllers
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_draft_laws })]
 
-        public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             DraftLawBL oDraftLawBL = new DraftLawBL();
             //DraftLawFiltersViewModel ofilters = new DraftLawFiltersViewModel();
 
             UserBL oUserBL = new UserBL();
             InvestigatorViewModel oInvestigatorViewModel= oUserBL.ObtenerInvestigator(AuthorizeUserAttribute.UsuarioLogeado().investigator_id);
-            GridModel<DraftLawViewModel> grid = oDraftLawBL.ObtenerMisProyectosLey(ofilters, oInvestigatorViewModel.commissions, oInvestigatorViewModel.interest_areas);
+            GridModel<DraftLawViewModel> grid = oDraftLawBL.ObtenerMisProyectosLey(ofilters, oInvestigatorViewModel.commissions, oInvestigatorViewModel.interest_areas, generalfiltros);
 
             return Json(new
             {

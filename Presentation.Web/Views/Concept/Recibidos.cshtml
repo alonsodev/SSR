@@ -1,4 +1,4 @@
-﻿
+﻿@model Domain.Entities.GeneralFilterViewModel
 @{
     ViewBag.HeaderTitleLink = Url.Action("Recibidos", "Concept");
     ViewBag.HeaderTitle = "Conceptos Técnicos";
@@ -14,6 +14,30 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
             <div class="card-body">
+                <div class="row">
+
+
+
+
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-label">
+                            @Html.LabelFor(model => model.period_id, htmlAttributes: new { @class = "" })
+                            @Html.DropDownList("period_id", (IEnumerable<SelectListItem>)ViewBag.periods, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.period_id, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="card-footer text-right">
+
+                            <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
+
+                        </div>
+                    </div>
+                </div>
                 <div class="toolbar">
                     <!--        Here you can write extra buttons/actions for the toolbar              -->
                 </div>
@@ -74,16 +98,21 @@
 <div style="display:none">
 
     <input type="file" id="NewFileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="checkfile(this,'N');" />
-    
+
 </div>
 @section Scripts {
 
     <script type="text/javascript">
         var datatable;
-       
+
 
         $(function () {
+            $("#period_id").select2();
             UiFormulario.init();
+            $("#btnBuscar").click(function () {
+                datatable.ajax.reload();
+            });
+
         })
 
         var UiFormulario = function () {
@@ -103,7 +132,11 @@
                         "serverSide": true,
                         "ajax": {
                             url: "@Url.Action("ObtenerRecibidos", "Concept")",
-                            type: 'POST'
+                            type: 'POST',
+                            data: function (d) {
+
+                                d.period_id = $('#period_id').val();
+                            }
                         },
                         language: {
                             "url": "/Assets/media/language/spanish.json"
@@ -141,7 +174,7 @@
                             { "data": "investigator" },
                             { "data": "institution" },
                             { "data": "commission" },
-                            
+
                             { "data": "interest_area" },
                             { "data": "qualification" },
                             { "data": "concept_id" },
@@ -174,11 +207,11 @@
                                 },
                                 targets: 5
                             },
-                          
+
                             {
                                 render: function (data, type, row) {
                                     return '<a href="/Concept/VerCalificado/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Ver Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
-                                        
+
                                 },
                                 targets: 9,
                                 orderable: false
@@ -198,7 +231,7 @@
                         $('#modal-body-summary').html(summary);
                         $("#summary_modal").modal('show');
                     });
-                   
+
                     /* Add placeholder attribute to the search input */
                     $('.dataTables_filter input').attr('placeholder', 'Buscar');
                 }

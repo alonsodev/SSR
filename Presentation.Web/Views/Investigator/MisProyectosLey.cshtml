@@ -1,4 +1,4 @@
-﻿
+﻿@model Domain.Entities.GeneralFilterViewModel
 @{
     ViewBag.HeaderTitleLink = Url.Action("MisProyectosLey", "Investigator");
     ViewBag.HeaderTitle = "Proyectos de Ley";
@@ -14,6 +14,30 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
             <div class="card-body">
+                <div class="row">
+
+
+
+
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-label">
+                            @Html.LabelFor(model => model.period_id, htmlAttributes: new { @class = "" })
+                            @Html.DropDownList("period_id", (IEnumerable<SelectListItem>)ViewBag.periods, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.period_id, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="card-footer text-right">
+
+                            <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
+
+                        </div>
+                    </div>
+                </div>
                 <div class="toolbar">
                     <!--        Here you can write extra buttons/actions for the toolbar              -->
                 </div>
@@ -48,6 +72,38 @@
                     </tfoot>
 
                 </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row well pull-right" style="width: 600px;">
+
+                            <div class="col text-center">
+                                <div><span class="status-red"></span></div>
+                                <div>
+                                    Archivado
+                                </div>
+
+
+                            </div>
+                            <div class="col text-center">
+                                <div><span class="status-yellow"></span></div>
+                                <div>
+                                    Pendiente de designar/ enviar  ponentes / comision  en senado
+                                </div>
+
+
+                            </div>
+                            <div class="col text-center">
+                                <div><span class="status-green"></span></div>
+                                <div>
+                                    Todo lo demás
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div><!-- end content-->
         </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
@@ -74,16 +130,20 @@
 <div style="display:none">
 
     <input type="file" id="NewFileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="checkfile(this,'N');" />
-    
+
 </div>
 @section Scripts {
 
     <script type="text/javascript">
         var datatable;
-       
+
 
         $(function () {
+            $("#period_id").select2();
             UiFormulario.init();
+            $("#btnBuscar").click(function () {
+                datatable.ajax.reload();
+            });
         })
 
         var UiFormulario = function () {
@@ -103,7 +163,11 @@
                         "serverSide": true,
                         "ajax": {
                             url: "@Url.Action("ObtenerLista", "Investigator")",
-                            type: 'POST'
+                            type: 'POST',
+                            data: function (d) {
+
+                                d.period_id = $('#period_id').val();
+                            }
                         },
                         language: {
                             "url": "/Assets/media/language/spanish.json"
@@ -172,6 +236,20 @@
                                 },
                                 targets: 4
                             },
+
+                            {
+                                render: function (data, type, row) {
+
+                                    
+                                    if (row.notifiable==true)
+                                        return '<table class="table-status" border=0 style="width: 100%;"><tbody><tr><td>' + row.status + '</td><td style="vertical-align:middle"> <span class="status-yellow pull-right"></span> </td></tr></tbody></table>';
+                                    if (row.status.toLowerCase().includes("archivado"))
+                                        return '<table class="table-status" border=0 style="width: 100%;"><tbody><tr><td>' + row.status + '</td><td style="vertical-align:middle"> <span class="status-red pull-right"></span> </td></tr></tbody></table>';
+                                                                                                              
+                                    return '<table class="table-status" border=0 style="width: 100%;"><tbody><tr><td>' + row.status + '</td><td style="vertical-align:middle"> <span class="status-green pull-right"></span> </td></tr></tbody></table>';
+                                },
+                                targets: 6
+                            },
                            
                             {
                                 render: function (data, type, row) {
@@ -186,7 +264,7 @@
                                 render: function (data, type, row) {
                                     return '<a href="/Concept/Crear/' + row.draft_law_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Presentar Concepto Técnico"><i class="now-ui-icons ui-1_simple-add"></i></a>' +
                                         ' <a href="' + row.link + '" target="_blank" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Ver texto radicado"><i class="now-ui-icons files_paper"></i></a>';
-                                        
+
                                 },
                                 targets: 9,
                                 orderable: false
@@ -206,7 +284,7 @@
                         $('#modal-body-summary').html(summary);
                         $("#summary_modal").modal('show');
                     });
-                   
+
                     /* Add placeholder attribute to the search input */
                     $('.dataTables_filter input').attr('placeholder', 'Buscar');
                 }

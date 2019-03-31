@@ -151,12 +151,21 @@ namespace Presentation.Web.Filters
             general_report_all_institution_support = 1148,
             general_report_own_institution_support = 1149,
 
-
             module_period = 1150,
             list_period = 1151,
             new_period = 1152,
             edit_period = 1153,
             delete_period = 1154,
+            module_consultation_types = 1155,
+            list_consultation_types = 1156,
+            new_consultation_types = 1157,
+            edit_consultation_types = 1158,
+            delete_consultation_types = 1159,
+            module_reason_rejects = 1160,
+            list_reason_rejects = 1161,
+            new_reason_rejects = 1162,
+            edit_reason_rejects = 1163,
+            delete_reason_rejects = 1164,
         }
         public Permission[] Permissions { get; set; }
 

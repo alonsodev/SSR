@@ -115,5 +115,8 @@ namespace Domain.Entities
         public Guid? hash { get; set; }
 
         public int existe_concepto { get; set; }
+        public int period_closed { get; set; }
+        public int notificable { get; set; }
+
     }
 }

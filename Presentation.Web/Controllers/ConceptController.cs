@@ -35,7 +35,36 @@ namespace Presentation.Web.Controllers
 {
     public class ConceptController : Controller
     {
+        public FileResult OpenPDF2(string id)
+        {
 
+            id = id.Replace(".pdf", "");
+
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            string file_path = oBL.ObtenerPdfpath(pIntID);
+            if (!System.IO.File.Exists(file_path))
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Thread.Sleep(1000);
+                    if (System.IO.File.Exists(file_path))
+                    {
+                        break;
+                    }
+                }
+            }
+            if (!System.IO.File.Exists(file_path))
+            {
+                ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+                ConceptHtmlViewModel oConcept = new ConceptHtmlViewModel();
+
+
+                GenerarPdf(oConcept);
+            }
+            return File(file_path, "application/pdf");
+        }
         public FileResult OpenPDF(string id)
         {
 
@@ -112,27 +141,90 @@ namespace Presentation.Web.Controllers
             List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
             List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
             ViewBag.reason_rejects = reason_rejects;
-            return View();
+
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            RejectConceptViewModel oRejectConceptViewModel = new RejectConceptViewModel();
+            oRejectConceptViewModel.period_id = oPeriod.period_id;
+            return View(oRejectConceptViewModel);
+
+            
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited })]
         public ActionResult Emitidos()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_received })]
         public ActionResult Recibidos()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
         public ActionResult PorCalificar()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_certificates })]
         public ActionResult Certificados()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
         }
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_concept })]
@@ -152,9 +244,17 @@ namespace Presentation.Web.Controllers
             oConceptViewModel.title = oDraftLawViewModel.title;
             oConceptViewModel.commission_id = oDraftLawViewModel.commission_id;
             oConceptViewModel.draft_law_id = oDraftLawViewModel.draft_law_id;
+            oConceptViewModel.status = oDraftLawViewModel.status;
             oConceptViewModel.investigator_id = AuthorizeUserAttribute.UsuarioLogeado().investigator_id;
             oConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
-
+            oConceptViewModel.period_closed = 1;
+            if (oDraftLawViewModel.start_date <= DateTime.Today && oDraftLawViewModel.end_date >= DateTime.Today) {
+                oConceptViewModel.period_closed = 0;
+            }
+            oConceptViewModel.notificable = 0;
+            if (oDraftLawViewModel.notifiable)
+                oConceptViewModel.notificable = 1;
+            
 
             oConceptViewModel.existe_concepto = oConceptBL.ExisteConcepto(oDraftLawViewModel.draft_law_id, AuthorizeUserAttribute.UsuarioLogeado().investigator_id) ? 1 : 0;
 
@@ -331,7 +431,7 @@ namespace Presentation.Web.Controllers
                 oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
 
                 oNotificationConceptViewModel.draft_law_title = pConceptViewModel.title;
-                oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificar");
+                //oSendEmailNotificationBL.EnviarNotificacionConcepto(oNotificationConceptViewModel, "notificacion.concept.calificar");/*Removido a pedido de DIANA */
 
                 NotificationBL oNotificationBL = new NotificationBL();
                 NotificationViewModel pNotificationViewModel = new NotificationViewModel();
@@ -970,12 +1070,12 @@ namespace Presentation.Web.Controllers
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_concepts })]
         // GET: User
-        public JsonResult ObtenerCertificados(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerCertificados(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
             int investigator_id = AuthorizeUserAttribute.UsuarioLogeado().investigator_id;
-            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerCertificados(ofilters, investigator_id);
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerCertificados(ofilters, investigator_id,generalfiltros);
 
             return Json(new
             {
@@ -991,12 +1091,12 @@ namespace Presentation.Web.Controllers
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.my_concepts })]
         // GET: User
-        public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerLista(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
             int investigator_id = AuthorizeUserAttribute.UsuarioLogeado().investigator_id;
-            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerLista(ofilters, investigator_id);
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerLista(ofilters, investigator_id,generalfiltros);
 
             return Json(new
             {
@@ -1012,12 +1112,12 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited })]
         // GET: User
 
-        public JsonResult ObtenerEmitidos(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerEmitidos(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
 
-            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerEmitidos(ofilters);
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerEmitidos(ofilters,generalfiltros);
 
             return Json(new
             {
@@ -1033,12 +1133,12 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
         // GET: User
 
-        public JsonResult ObtenerPorCalificar(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerPorCalificar(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
 
-            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerPorCalificar(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerPorCalificar(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id, generalfiltros);
 
             return Json(new
             {
@@ -1055,12 +1155,12 @@ namespace Presentation.Web.Controllers
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_received })]
         // GET: User
 
-        public JsonResult ObtenerRecibidos(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerRecibidos(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
 
-            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerRecibidos(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerRecibidos(ofilters, AuthorizeUserAttribute.UsuarioLogeado().user_id, generalfiltros);
 
             return Json(new
             {

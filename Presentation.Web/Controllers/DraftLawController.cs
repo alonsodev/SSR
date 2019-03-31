@@ -24,7 +24,19 @@ namespace Presentation.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+            
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
         }
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law })]
@@ -43,24 +55,67 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law })]
-        public ActionResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
+        public JsonResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
         {
             // TODO: Add insert logic here
 
+
             if (pDraftLawViewModel == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+
+                return Json(new
+                {
+                    message_error = "Datos inavalidos",
+                    status = "0",
+
+                });
             }
             pDraftLawViewModel.date_presentation = DateTime.ParseExact(pDraftLawViewModel.date_presentation_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             pDraftLawViewModel.draft_law_id = 0;
 
             pDraftLawViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
-            
+
+            pDraftLawViewModel.commission = "";
+            pDraftLawViewModel.interest_area= "";
+            List<ImportError> oErrores = null;
             DraftLawBL oBL = new DraftLawBL();
+            List<DraftLawViewModel> lista = new List<DraftLawViewModel>();
+            lista.Add(pDraftLawViewModel);
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
 
-            oBL.Agregar(pDraftLawViewModel);
+            oErrores = ValidarPeriodo(oPeriod, oErrores);
+            if (oErrores.Count > 0)
+                return Json(new { successfully = 0, errores = oErrores });
 
-            return RedirectToAction("Index");
+            if (VerificarPonentes(lista, out oErrores))
+            {
+
+                DraftLawBL oDraftLawBL = new DraftLawBL();
+                CommissionBL oCommissionBL = new CommissionBL();
+                InterestAreaBL oInterestAreaBL = new InterestAreaBL();
+                DraftLawStatusBL oDraftLawStatusBL = new DraftLawStatusBL();
+                OriginBL oOriginBL = new OriginBL();
+                Dictionary<string, int> commisions = new Dictionary<string, int>();
+                Dictionary<string, int> origins = oOriginBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.origin).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                Dictionary<string, int> interest_areas = new Dictionary<string, int>();
+                Dictionary<string, DraftLawStatusViewModel> draftlaw_status = oDraftLawStatusBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.status).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
+                oDraftLawBL.Import(oPeriod, lista, origins, commisions, interest_areas, draftlaw_status, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                // NotificacionNuevoProyectoLey(lista);
+            }
+
+
+            // oBL.Agregar(pDraftLawViewModel);
+            if (oErrores.Count == 0)
+                return Json(new { successfully = 1 });
+            else
+            {
+                return Json(new { successfully = 0, errores = oErrores });
+            }
+
+            // return RedirectToAction("Index");
 
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_draft_law })]
@@ -79,6 +134,13 @@ namespace Presentation.Web.Controllers
             ViewBag.interest_areas = interest_areas;
             if (pDraftLawViewModel.date_presentation.HasValue)
                 pDraftLawViewModel.date_presentation_text = pDraftLawViewModel.date_presentation.Value.ToString("dd/MM/yyyy");
+
+            pDraftLawViewModel.period_closed = 1;
+            if (pDraftLawViewModel.start_date <= DateTime.Today && pDraftLawViewModel.end_date >= DateTime.Today)
+            {
+                pDraftLawViewModel.period_closed = 0;
+            }
+
             return View(pDraftLawViewModel);
         }
 
@@ -105,11 +167,19 @@ namespace Presentation.Web.Controllers
         {
 
             DraftLawBL oDraftLawBL = new DraftLawBL();
+            DraftLawViewModel pDraftLawViewModel = oDraftLawBL.Obtener(id);
 
-            oDraftLawBL.Eliminar(id);
+            var period_closed = 1;
+            if (pDraftLawViewModel.start_date <= DateTime.Today && pDraftLawViewModel.end_date >= DateTime.Today)
+            {
+                period_closed = 0;
+            }
+            if(period_closed==0)
+                oDraftLawBL.Eliminar(id);
 
             return Json(new
             {
+                period_closed = period_closed,
                 // this is what datatables wants sending back
                 status = "1",
 
@@ -140,11 +210,11 @@ namespace Presentation.Web.Controllers
 
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_draft_law })]
 
-        public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters)//DataTableAjaxPostModel model
+        public JsonResult ObtenerLista(DraftLawFiltersViewModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
         {
             DraftLawBL oDraftLawBL = new DraftLawBL();
             //DraftLawFiltersViewModel ofilters = new DraftLawFiltersViewModel();
-            GridModel<DraftLawViewModel> grid = oDraftLawBL.ObtenerLista(ofilters);
+            GridModel<DraftLawViewModel> grid = oDraftLawBL.ObtenerLista(ofilters, generalfiltros);
 
             return Json(new
             {
@@ -182,8 +252,15 @@ namespace Presentation.Web.Controllers
                         fname = Path.Combine(Server.MapPath("~/Uploads/"), fname);
                         file.SaveAs(fname);
                         DataTable dt = Util.ReadExcelToDataTable(fname);
+                        PeriodBL oPeriodBL = new PeriodBL();
+                        PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
 
-                        List<DraftLawViewModel> lista = ConvertirDatatable(dt, out oErrores);
+                        oErrores= ValidarPeriodo(oPeriod,  oErrores);
+                        List<DraftLawViewModel> lista= new List<DraftLawViewModel>();
+                        if (oErrores.Count == 0)
+                        {
+                            lista = ConvertirDatatable(dt, out oErrores);
+                        }
                         if (oErrores.Count == 0)
                         {
                             if (VerificarPonentes(lista, out oErrores))
@@ -193,13 +270,14 @@ namespace Presentation.Web.Controllers
                                 CommissionBL oCommissionBL = new CommissionBL();
                                 InterestAreaBL oInterestAreaBL = new InterestAreaBL();
                                 DraftLawStatusBL oDraftLawStatusBL = new DraftLawStatusBL();
+                                OriginBL oOriginBL = new OriginBL();
                                 Dictionary<string, int> commisions = oCommissionBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.commission).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                                Dictionary<string, int> origins = oOriginBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.origin).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
                                 Dictionary<string, int> interest_areas = oInterestAreaBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.interest_area).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
-
                                 Dictionary<string, DraftLawStatusViewModel> draftlaw_status = oDraftLawStatusBL.ObtenerDiccionarioPorNombre(lista.Select(a => a.status).Distinct().ToList(), AuthorizeUserAttribute.UsuarioLogeado().user_id);
 
-                                oDraftLawBL.Import(lista, commisions, interest_areas, draftlaw_status, AuthorizeUserAttribute.UsuarioLogeado().user_id);
-                               // NotificacionNuevoProyectoLey(lista);
+                                oDraftLawBL.Import(oPeriod, lista, origins, commisions, interest_areas, draftlaw_status, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+                                // NotificacionNuevoProyectoLey(lista);
                             }
 
                         }
@@ -228,21 +306,21 @@ namespace Presentation.Web.Controllers
                 return Json("No files selected.");
             }
         }
-       
+
         private bool VerificarPonentes(List<DraftLawViewModel> lista, out List<ImportError> oErrores)
         {
             ConfigurationBL oConfigurationBL = new ConfigurationBL();
-            ConfigurationViewModel oConfigurationViewModel= oConfigurationBL.Obtener();
+            ConfigurationViewModel oConfigurationViewModel = oConfigurationBL.Obtener();
             List<string> IgnorarPonentes = oConfigurationViewModel.exclude_speakers.Split(',').ToList();
             //IgnorarPonentes.Add("Ministro de Justicia y del Derecho");
             //IgnorarPonentes.Add("Ministro de Hacienda y Crédito Público");
 
             List<string> ExcluirTitulos = oConfigurationViewModel.remove_titles_speaker.Split(',').ToList();
-           /* ExcluirTitulos.Add("HR");
-            ExcluirTitulos.Add("HS");
-            ExcluirTitulos.Add("H.R.");
-            ExcluirTitulos.Add("H.S.");
-            ExcluirTitulos.Add("Dr.");*/
+            /* ExcluirTitulos.Add("HR");
+             ExcluirTitulos.Add("HS");
+             ExcluirTitulos.Add("H.R.");
+             ExcluirTitulos.Add("H.S.");
+             ExcluirTitulos.Add("Dr.");*/
 
 
             oErrores = new List<ImportError>();
@@ -253,7 +331,19 @@ namespace Presentation.Web.Controllers
                 List<string> errores = new List<string>();
                 string mensaje = "";
                 i++;
-                var authors = obj.author.Split(',');
+                var authors = obj.author.Split(',').ToList();
+                
+               
+                if (!String.IsNullOrEmpty(obj.debate_speaker)) {
+                    var debate_speaker = obj.debate_speaker.Split(',').ToList();
+                    authors.AddRange(debate_speaker);
+                }
+                if (!String.IsNullOrEmpty(obj.debate_speaker2))
+                {
+                    var debate_speaker2 = obj.debate_speaker2.Split(',').ToList();
+
+                    authors.AddRange(debate_speaker2);
+                }
                 List<int> debate_speakers = new List<int>();
                 foreach (string author in authors)
                 {
@@ -267,11 +357,12 @@ namespace Presentation.Web.Controllers
 
                         if (!user_id.HasValue || user_id == 0)
                         {
-                            mensaje = "El autor '" + author_aux + "' no esta registrado como usuario del sistema.";
+                            mensaje = "El Autor, Ponente de debate 1 o Ponente de debate 2 '" + author_aux + "' no esta registrado como usuario del sistema.";
                             errores.Add(mensaje);
                         }
 
-                        else {
+                        else
+                        {
                             debate_speakers.Add(user_id.Value);
                         }
                     }
@@ -311,11 +402,14 @@ namespace Presentation.Web.Controllers
             //throw new NotImplementedException();
         }
 
+       
         private List<DraftLawViewModel> ConvertirDatatable(DataTable dt, out List<ImportError> oErrores)
         {
             List<DraftLawViewModel> lista = new List<DraftLawViewModel>();
             oErrores = new List<ImportError>();
             List<string> erroresCabecera = new List<string>();
+
+           
             ValidarCabecera(dt, out erroresCabecera);
             if (erroresCabecera.Count > 0)
             {
@@ -374,7 +468,27 @@ namespace Presentation.Web.Controllers
             }
             return lista;
         }
+        private List<ImportError> ValidarPeriodo(PeriodViewModel oPeriod,  List<ImportError> oErrores)
+        {
+            oErrores = new List<ImportError>();
+            List<string> oErrorCabecera = new List<string>();
+            string formatError = "No hay un periodo vigente para hoy \"" + DateTime.Today.ToString("dd/MM/yyyy") + "\"";
+            oErrorCabecera = new List<string>();
+            if (oPeriod == null || oPeriod.period_id <= 0)
+                oErrorCabecera.Add(formatError);
 
+            if (oErrorCabecera.Count > 0)
+            {
+                oErrores.Add(new ImportError
+                {
+                    nroFila = 0,
+                    errores = oErrorCabecera,
+
+                });
+              
+            }
+            return oErrores;
+        }
         private void ValidarCabecera(DataTable dt, out List<string> oErrores)
         {
             string formatError = "El archivo Excel no tiene la columna {0}";

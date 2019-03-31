@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{CB11403C-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notificacion.Nuevos.Proyectos.Ley", "Notificacion.Nuevos.Proyectos.Ley\Notificacion.Nuevos.Proyectos.Ley.csproj", "{7E48B834-A599-4E83-8CF5-14E96BD7CC90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arca.WebApi", "Arca.WebApi\Arca.WebApi.csproj", "{11A378F9-681E-45C4-AB76-B807B5B55527}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{7E48B834-A599-4E83-8CF5-14E96BD7CC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E48B834-A599-4E83-8CF5-14E96BD7CC90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E48B834-A599-4E83-8CF5-14E96BD7CC90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A378F9-681E-45C4-AB76-B807B5B55527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A378F9-681E-45C4-AB76-B807B5B55527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A378F9-681E-45C4-AB76-B807B5B55527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A378F9-681E-45C4-AB76-B807B5B55527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{17A9B60F-26E9-40C7-85A3-9FAABE9FD161} = {96D0AFD7-FDEA-47BA-A568-DAECABF5F397}
 		{CB11403C-9270-48B3-8F06-9D57A2D4653D} = {C1C21233-5CF2-4D77-92BA-3D1890AD0AA2}
 		{7E48B834-A599-4E83-8CF5-14E96BD7CC90} = {CB11403C-9270-48B3-8F06-9D57A2D4653D}
+		{11A378F9-681E-45C4-AB76-B807B5B55527} = {96D0AFD7-FDEA-47BA-A568-DAECABF5F397}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5749C860-2B1A-4EEF-8B3E-A366F8E48EEF}

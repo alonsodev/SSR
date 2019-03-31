@@ -39,10 +39,10 @@ namespace Business.Logic
             return string.Empty;
         }
 
-        public void EnviarNotificacionSolicitudConcepto(NotificationGeneralAccountViewModel oNotification)
+        public void EnviarNotificacionSolicitudConcepto(NotificationGeneralAccountViewModel oNotification,string subject)
         {
             NotificacionConfig oNotificacionConfig = new NotificacionConfig("notificacion.solicitud.concepto");
-
+            oNotificacionConfig.Asunto = subject;
             string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
             List<string> images = new List<string>();
             images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");

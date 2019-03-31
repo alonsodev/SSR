@@ -9,29 +9,29 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Repositories
 {
-    public class ProgramRepository : Repository<programs>
+    public class ReasonRejectRepository : Repository<reason_rejects>
     {
 
-        internal ProgramRepository(ApplicationDbContext context)
+        internal ReasonRejectRepository(ApplicationDbContext context)
             : base(context)
         {
         }
 
-        public bool VerificarDuplicado(int program_id, string name)
+        public bool VerificarDuplicado(int reason_reject_id, string name)
         {
 
             name = name.Trim().ToLower();
-            var count = Set.Where(a => a.program_id != program_id && a.name.ToLower() == name).Count();
+            var count = Set.Where(a => a.reason_reject_id != reason_reject_id && a.name.ToLower() == name).Count();
 
             return count == 0;
         }
 
-        public ProgramViewModel Obtener(int program_id)
+        public ReasonRejectViewModel Obtener(int reason_reject_id)
         {
-            var query = Set.Where(a => a.program_id == program_id).Select(a => new ProgramViewModel
+            var query = Set.Where(a => a.reason_reject_id == reason_reject_id).Select(a => new ReasonRejectViewModel
             {
 
-                program_id = a.program_id,
+                reason_reject_id = a.reason_reject_id,
                 name = a.name
             });
 
@@ -40,7 +40,7 @@ namespace Infrastructure.Data.Repositories
 
 
 
-        public GridModel<ProgramViewModel> ObtenerLista(DataTableAjaxPostModel filters)
+        public GridModel<ReasonRejectViewModel> ObtenerLista(DataTableAjaxPostModel filters)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
 
@@ -56,8 +56,8 @@ namespace Infrastructure.Data.Repositories
             }
 
 
-            GridModel<ProgramViewModel> resultado = new GridModel<ProgramViewModel>();
-            IQueryable<programs> queryFilters = Set;
+            GridModel<ReasonRejectViewModel> resultado = new GridModel<ReasonRejectViewModel>();
+            IQueryable<reason_rejects> queryFilters = Set;
 
 
 
@@ -77,17 +77,17 @@ namespace Infrastructure.Data.Repositories
             }
 
 
-            var query = queryFilters.Select(a => new ProgramViewModel
+            var query = queryFilters.Select(a => new ReasonRejectViewModel
             {
-                program_id = a.program_id,
+                reason_reject_id = a.reason_reject_id,
                 name = a.name
             });
 
-            if (String.IsNullOrEmpty(sortBy)) sortBy = "program_id";
+            if (String.IsNullOrEmpty(sortBy)) sortBy = "reason_reject_id";
             if (String.IsNullOrEmpty(sortDir)) sortDir = "asc";
             string sortExpression = sortBy.Trim() + " " + sortDir.Trim();
             if (sortExpression.Trim() != "")
-                query = OrderByDinamic.OrderBy<ProgramViewModel>(query, sortExpression.Trim());
+                query = OrderByDinamic.OrderBy<ReasonRejectViewModel>(query, sortExpression.Trim());
             resultado.rows = query.Skip(filters.start).Take(filters.length).ToList();
 
 

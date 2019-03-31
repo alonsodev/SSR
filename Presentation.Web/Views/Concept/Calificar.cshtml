@@ -84,7 +84,16 @@
         $(document).ready(function () {
             debugger;
 
-
+            /*$(window).bind('beforeunload', function (e) {
+                var dialogText = '¿Seguro que quieres salissssssssssr?';
+                e.returnValue = dialogText;
+                return dialogText;
+            });*/
+           /* window.onbeforeunload = function (e) {
+                var dialogText = '¿Seguro que quieres salir?';
+                e.returnValue = dialogText;
+                return dialogText;
+            };*/
             $('#qualification').barrating({
                 theme: 'fontawesome-stars'
             });
@@ -110,7 +119,26 @@
         });
 
         $("#btnCancelar").click(function () {
-            window.location.href = "/Concept";
+
+             swal({
+                            title: '¿Estás seguro desea salir sin calificar?',
+                            text: "No olvide calificar el concepto, para ARCA es muy importante su apreciación!",
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonClass: 'btn btn-success',
+                            cancelButtonClass: 'btn btn-danger',
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonText: 'Si, salir sin Calificar!',
+                            buttonsStyling: false
+                        }).then(function () {
+
+                            RedirectConceptPorCalificar();
+                           
+                        }).catch(swal.noop);
+                     
+     
+
+            
         });
 
         $("#btnGuardar,#btnGuardar2").click(function () {

@@ -1,13 +1,13 @@
-﻿@model Domain.Entities.ProgramViewModel
+﻿@model Domain.Entities.PeriodViewModel
 
 
 
 @{
-    ViewBag.HeaderTitleLink = Url.Action("index", "program");
-    ViewBag.HeaderTitle = "Programas";
-    ViewBag.Title = "Crear Programa";
+    ViewBag.HeaderTitleLink = Url.Action("index", "period");
+    ViewBag.HeaderTitle = "Periodos";
+    ViewBag.Title = "Crear Periodo";
 
-    ViewBag.active = "programs";
+    ViewBag.active = "periods";
 
 }
 <div class="row">
@@ -16,7 +16,7 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Crear", "Program", FormMethod.Post, new { id = "form-registrar", title = "Crear Program" }))
+            @using (Html.BeginForm("Crear", "Period", FormMethod.Post, new { id = "form-registrar" }))
             {
             <div class="card-body">
 
@@ -31,9 +31,25 @@
                     <span class="text-danger field-validation-error name-error"></span>
                 </div>
 
-              
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.start_date_text, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.start_date_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.start_date_text, "", new { @class = "text-danger" })
 
 
+                </div>
+
+                <div class="form-group has-label">
+
+                    @Html.LabelFor(model => model.end_date_text, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.end_date_text, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.end_date_text, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error end_date-error"></span>
+
+                </div>
 
 
 
@@ -54,10 +70,53 @@
 @section Scripts {
 
     <script type="text/javascript">
+        function CambiarFormato(currVal) {
+            var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+            var dtArray = currVal.match(rxDatePattern); // is format OK?
 
+            if (dtArray == null)
+                return false;
+
+            //Checks for dd/mm/yyyy format.
+            dtDay = dtArray[1];
+            dtMonth = dtArray[3];
+            dtYear = dtArray[5];
+
+            return dtYear + '/' + dtMonth + '/' + dtDay;
+        }
+        ea.addMethod('ValidarFechaFin', function () {
+
+            if ($('#end_date_text').val() == '' || $('#start_date_text').val() == '') {
+                return true;
+            }
+            var arrayFecInicio = $("#start_date_text").val();
+            var sdFecInicio = CambiarFormato(arrayFecInicio) ;
+            var arrayFecFin = $("#end_date_text").val();
+            var sdFecFin = CambiarFormato(arrayFecFin);
+            return sdFecFin > sdFecInicio;
+
+        });
+
+        $(function () {
+            $('.datepicker').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY',
+                icons: {
+                    time: "now-ui-icons tech_watch-time",
+                    date: "now-ui-icons ui-1_calendar-60",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'now-ui-icons arrows-1_minimal-left',
+                    next: 'now-ui-icons arrows-1_minimal-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        });
 
         $("#btnCancelar").click(function () {
-            window.location.href = "/Program";
+            window.location.href = "/Period";
         });
 
         $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
@@ -66,6 +125,8 @@
             e.preventDefault();
             var form = this;
             $('.name-error').html('');
+            $('.end_date-error').html('');
+            
             if ($("#form-registrar").valid()) {
 
 
@@ -74,12 +135,22 @@
                     async: false
                 });
                  $.ajax({
-                        url: "@Url.Action("Verificar", "Program")",
+                        url: "@Url.Action("Verificar", "Period")",
                         type: "POST",
-                     data: { id_program: 0, name: $('#name').val() }
+                     data: { period_id: 0, name: $('#name').val(), start_date_text: $('#start_date_text').val(), end_date_text: $('#end_date_text').val()}
                     })
                     .done(function (data) {
-                        valido = data.valido;
+                        valido = data.valido_fechas && data.valido_duplicado;
+
+                        if (!data.valido_duplicado) {
+                            $('.name-error').html('<span id="name-error" class="">Ya existe un periodo con el mismo nombre.</span>');
+                            return false;
+                        }
+
+                        if (!data.valido_fechas) {
+                            $('.end_date-error').html('<span id="end_date-error" class="">Ya existe un periodo que se cruza con el rango de fechas ingresado.</span>');
+                            return false;
+                        }
                     })
                     .fail(function (data) {
                         console.log("error");
@@ -98,10 +169,7 @@
                 if (valido) {
                     form.submit();
                 }
-                else {
-                    $('.name-error').html('<span id="name-error" class="">Ya existe un programa con el mismo nombre.</span>');
-                    return false;
-                }
+               
 
 
 

@@ -44,13 +44,18 @@ namespace Presentation.Web.Controllers
             ViewBag.roles = roles;
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
+
+
+            List<SelectListItem> institutions = new List<SelectListItem>();
+            ViewBag.institutions = institutions;
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_user })]
-        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,institution_ids")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
@@ -62,7 +67,7 @@ namespace Presentation.Web.Controllers
 
             pUserViewModel.user_id_created = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             
-            pUserViewModel.user_pass = Helper.Encripta("1234Abcd");
+            pUserViewModel.user_pass = Helper.Encripta(Guid.NewGuid().ToString());
             string user_code = Guid.NewGuid().ToString();
             pUserViewModel.user_code_recover= user_code;
             UserBL oUserBL = new UserBL();
@@ -183,13 +188,16 @@ namespace Presentation.Web.Controllers
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
 
+            pUserViewModel.institutionsMultiSelectList = new MultiSelectList(oSelectorBL.InstitutionsSelector(pUserViewModel.institution_ids), "Value", "Text");
+
+
             return View(pUserViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_user })]
-        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,institution_ids")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
