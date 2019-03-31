@@ -59,6 +59,11 @@ namespace Business.Logic
             return string.Empty;
         }
 
+        public List<ConceptLiteViewModel> ObtenerMovil(ConceptsFilterLiteViewModel filter)
+        {
+            return oRepositorio.ObtenerMovil(filter);
+        }
+
         public GridModel<ReportViewModel> ObtenerReporte(DataTableAjaxPostModel ofilters, ReportFilterViewModel Reportefiltros)
         {
             return oRepositorio.ObtenerReporte(ofilters, Reportefiltros);

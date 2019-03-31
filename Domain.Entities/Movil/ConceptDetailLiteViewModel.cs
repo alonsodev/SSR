@@ -23,6 +23,6 @@ namespace Domain.Entities.Movil
         public string concept { get; set; }
         public string bibliography { get; set; }
 
-
+        public string pdf_file { get; set; }
     }
 }

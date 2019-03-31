@@ -89,6 +89,12 @@ namespace Business.Logic
             oUnitOfWork.SaveChanges();
         }
 
+        public List<DraftLawLiteViewModel> ObtenerProyectosLeyMovil(DraftLawSearchFilterLiteViewModel filter)
+        {
+
+           return  oRepositorio.ObtenerProyectosLeyMovil(filter);
+        }
+
         public void ActualizarNotificacion(List<DraftLawViewModel> list)
         {
 

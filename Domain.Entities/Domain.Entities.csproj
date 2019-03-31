@@ -79,6 +79,7 @@
     <Compile Include="Movil\ConceptFilterLiteViewModel.cs" />
     <Compile Include="Movil\ConceptDetailLiteViewModel.cs" />
     <Compile Include="Movil\ConceptsFilterLiteViewModel.cs" />
+    <Compile Include="Movil\DraftLawSearchFilterLiteViewModel.cs" />
     <Compile Include="Movil\DraftLawFilterLiteViewModel.cs" />
     <Compile Include="Movil\DraftLawLiteViewModel.cs" />
     <Compile Include="Movil\ConceptLiteViewModel.cs" />

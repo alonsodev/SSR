@@ -3,6 +3,7 @@ using Domain.Entities;
 using Domain.Entities.Movil;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,7 +27,8 @@ namespace Arca.WebApi.Controllers
 
             ConceptDetailLiteViewModel obj = oConceptBL.ObtenerLite(filter);
 
-
+            var path = ConfigurationManager.AppSettings["pdf.path"];
+            obj.pdf_file = obj.pdf_file.Replace(path, "");
 
             var adminFake = new
             {
@@ -42,15 +44,39 @@ namespace Arca.WebApi.Controllers
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
-          
+
             List<ConceptLiteViewModel> lista = oConceptBL.ObtenerPorCalificarMovil(filter);
 
-            
+            var path = ConfigurationManager.AppSettings["pdf.path"];
+            lista.ForEach(a => a.pdf_file = a.pdf_file.Replace(path, ""));
+
 
             var adminFake = new
             {
                 // this is what datatables wants sending back
-              
+
+                data = lista
+            };
+            return Ok(adminFake);
+        }
+
+        [HttpPost]
+        [Route("concepts_all")]
+        public IHttpActionResult ConceptsAll(ConceptsFilterLiteViewModel filter)
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+
+            List<ConceptLiteViewModel> lista = oConceptBL.ObtenerMovil(filter);
+
+            var path = ConfigurationManager.AppSettings["pdf.path"];
+            lista.ForEach(a => a.pdf_file = a.pdf_file.Replace(path, ""));
+
+
+            var adminFake = new
+            {
+                // this is what datatables wants sending back
+
                 data = lista
             };
             return Ok(adminFake);
@@ -61,7 +87,7 @@ namespace Arca.WebApi.Controllers
         public IHttpActionResult DraftLaw(DraftLawFilterLiteViewModel filter)
         {
             DraftLawBL oBL = new DraftLawBL();
-           
+
             List<DraftLawLiteViewModel> lista = oBL.ObtenerProyectosLeyConConceptosPorCalificar(filter);
 
 
@@ -69,12 +95,29 @@ namespace Arca.WebApi.Controllers
             var result = new
             {
                 // this is what datatables wants sending back
-               
+
                 data = lista
             };
             return Ok(result);
         }
+        [HttpPost]
+        [Route("draftlaw_search")]
+        public IHttpActionResult DraftLawSearch(DraftLawSearchFilterLiteViewModel filter)
+        {
+            DraftLawBL oBL = new DraftLawBL();
 
+            List<DraftLawLiteViewModel> lista = oBL.ObtenerProyectosLeyMovil(filter);
+
+
+
+            var result = new
+            {
+                // this is what datatables wants sending back
+
+                data = lista
+            };
+            return Ok(result);
+        }
         [HttpGet]
         public IHttpActionResult GetAll()
         {

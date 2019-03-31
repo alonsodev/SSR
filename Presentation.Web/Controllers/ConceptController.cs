@@ -35,7 +35,36 @@ namespace Presentation.Web.Controllers
 {
     public class ConceptController : Controller
     {
+        public FileResult OpenPDF2(string id)
+        {
 
+            id = id.Replace(".pdf", "");
+
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            string file_path = oBL.ObtenerPdfpath(pIntID);
+            if (!System.IO.File.Exists(file_path))
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Thread.Sleep(1000);
+                    if (System.IO.File.Exists(file_path))
+                    {
+                        break;
+                    }
+                }
+            }
+            if (!System.IO.File.Exists(file_path))
+            {
+                ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+                ConceptHtmlViewModel oConcept = new ConceptHtmlViewModel();
+
+
+                GenerarPdf(oConcept);
+            }
+            return File(file_path, "application/pdf");
+        }
         public FileResult OpenPDF(string id)
         {
 

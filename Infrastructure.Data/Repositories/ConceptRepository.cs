@@ -45,7 +45,8 @@ namespace Infrastructure.Data.Repositories
 
                 bibliography = a.bibliography,
                 institution = a.investigators.institutions.name,
-                origin = a.draft_laws.origins.name
+                origin = a.draft_laws.origins.name,
+                pdf_file = a.pdf_path
 
             });
 
@@ -84,6 +85,31 @@ namespace Infrastructure.Data.Repositories
 
             return query.Take(1).FirstOrDefault();
         }
+
+        public List<ConceptLiteViewModel> ObtenerMovil(ConceptsFilterLiteViewModel filter)
+        {
+            IQueryable<concepts> queryFilters = Set;
+            queryFilters = queryFilters.Where(a => a.draft_laws.draft_law_number == filter.draft_law_number);
+            
+            queryFilters = queryFilters.Where(a => a.draft_laws.period_id == filter.period_id && a.concept_status_id == 2 || (a.concept_status_id == 4) || a.concept_status_id == 5 || a.concept_status_id == 6);//falta mejorar
+
+            var query = queryFilters.Select(a => new ConceptLiteViewModel
+            {
+                concept_id = a.concept_id,
+                //  concept = a.concept,
+                summary = a.summary,
+
+                draft_law_status = a.draft_laws.draft_laws_status.name,
+                draft_law_status_id = a.draft_laws.status_id,
+                sub_type = a.draft_laws.draft_laws_status.sub_type,
+
+                pdf_file = a.pdf_path
+            });
+
+
+            return query.ToList();
+        }
+
         public List<ReportViewModel> ObtenerExportarReporte(ReportFilterViewModel filtros)
         {
             GridModel<ReportViewModel> resultado = new GridModel<ReportViewModel>();
@@ -549,6 +575,8 @@ namespace Infrastructure.Data.Repositories
                 draft_law_status = a.draft_laws.draft_laws_status.name,
                 draft_law_status_id = a.draft_laws.status_id,
                 sub_type = a.draft_laws.draft_laws_status.sub_type,
+
+                pdf_file = a.pdf_path
             });
 
 

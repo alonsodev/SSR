@@ -108,6 +108,38 @@ namespace Infrastructure.Data.Repositories
 
             return query.Take(1).FirstOrDefault();
         }
+
+        public List<DraftLawLiteViewModel> ObtenerProyectosLeyMovil(DraftLawSearchFilterLiteViewModel filter)
+        {
+            IQueryable<draft_laws> queryFilters = Set;
+
+            queryFilters = queryFilters.Where(a => a.period_id == filter.period_id);
+
+            
+            if (!String.IsNullOrEmpty( filter.draft_law_title))
+                queryFilters = queryFilters.Where(a =>a.title.ToUpper().Contains(filter.draft_law_title.ToUpper()) );
+
+            if (!String.IsNullOrEmpty(filter.commission))
+                queryFilters = queryFilters.Where(a => a.commissions.name.ToUpper().Contains(filter.commission.ToUpper()));
+
+            if (!String.IsNullOrEmpty(filter.origin))
+                queryFilters = queryFilters.Where(a => a.origins.name.ToUpper().Contains(filter.origin.ToUpper()));
+
+            if (filter.draft_law_number >0)
+                queryFilters = queryFilters.Where(a => a.draft_law_number== filter.draft_law_number);
+
+
+            var query = queryFilters.Select(a => new DraftLawLiteViewModel
+            {
+                draft_law_number = a.draft_law_number,
+                title = a.title,
+                period_id = a.period_id
+
+            }).Distinct();
+
+            return query.ToList();
+        }
+
         public DraftLawViewModel Obtener(int draft_law_id)
         {
             var query = Set.Where(a => a.draft_law_id == draft_law_id).Select(a => new DraftLawViewModel
