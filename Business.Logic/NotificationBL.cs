@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Movil;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using System;
@@ -101,6 +102,11 @@ namespace Business.Logic
         public GridModel<NotificationViewModel> ObtenerLista(DataTableAjaxPostModel filters,int user_id)
         {
             return oRepositorio.ObtenerLista(filters,user_id);
+        }
+
+        public NotificationViewModel ObtenerPorUrl(ConceptQualificationViewModel filter)
+        {
+            return oRepositorio.ObtenerPorUrl(filter);
         }
     }
 }

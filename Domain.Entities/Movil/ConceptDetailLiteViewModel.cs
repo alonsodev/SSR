@@ -11,6 +11,7 @@ namespace Domain.Entities.Movil
 {
     public class ConceptDetailLiteViewModel
     {
+        public int calificado { get; set; }
         public int concept_id { get; set; }
 
         public string draft_law_title { get; set; }
@@ -24,5 +25,7 @@ namespace Domain.Entities.Movil
         public string bibliography { get; set; }
 
         public string pdf_file { get; set; }
+
+        public string draft_law_link { get; set; }
     }
 }

@@ -76,6 +76,8 @@
     <Compile Include="CambiarPasswordViewModel.cs" />
     <Compile Include="CertificationHtmlViewModel.cs" />
     <Compile Include="ConceptHtmlViewModel.cs" />
+    <Compile Include="Movil\ConceptSendNotification.cs" />
+    <Compile Include="Movil\ConceptQualificationViewModel.cs" />
     <Compile Include="Movil\ConceptFilterLiteViewModel.cs" />
     <Compile Include="Movil\ConceptDetailLiteViewModel.cs" />
     <Compile Include="Movil\ConceptsFilterLiteViewModel.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Movil\DraftLawFilterLiteViewModel.cs" />
     <Compile Include="Movil\DraftLawLiteViewModel.cs" />
     <Compile Include="Movil\ConceptLiteViewModel.cs" />
+    <Compile Include="Movil\NotificationConceptMovil.cs" />
     <Compile Include="PeriodViewModel.cs" />
     <Compile Include="OriginViewModel.cs" />
     <Compile Include="GeneralFilterViewModel.cs" />

@@ -81,6 +81,7 @@ namespace Infrastructure.Data.Repositories
             {
                 draft_law_number = a.draft_law_number,
                 title=a.title,
+                link = a.link,
                 period_id = a.period_id
 
             }).Distinct();
@@ -133,7 +134,8 @@ namespace Infrastructure.Data.Repositories
             {
                 draft_law_number = a.draft_law_number,
                 title = a.title,
-                period_id = a.period_id
+                period_id = a.period_id,
+                link=a.link
 
             }).Distinct();
 

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Movil;
 using EntityFramework.Extensions;
 using Infrastructure.Core;
 using System;
@@ -103,6 +104,20 @@ namespace Infrastructure.Data.Repositories
 
             resultado.recordsFiltered = count_records_filtered;
             return resultado;
+        }
+
+        public NotificationViewModel ObtenerPorUrl(ConceptQualificationViewModel filter)
+        {
+            string url = "/Concept/Calificar/" + filter.concept_id.ToString();
+            return Set.Where(a=> a.url==url && a.user_id==filter.user_id && a.notified ==false ).Select(a => new NotificationViewModel
+            {
+                notification_id = a.notification_id,
+                user_id = a.user_id,
+                url = a.url,
+                notified = a.notified,
+                message = a.message,
+                date_created = a.date_created
+            }).Take(1).FirstOrDefault();
         }
     }
 }

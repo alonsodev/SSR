@@ -17,6 +17,7 @@ namespace Domain.Entities.Movil
         public string summary { get; set; }
         public string sub_type { get; set; }
         public string pdf_file { get; set; }
+        
 
     }
 }
