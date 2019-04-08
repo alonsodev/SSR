@@ -152,6 +152,10 @@
       <Project>{332a8f15-0a51-4ac7-ba53-a65de9888ecf}</Project>
       <Name>Business.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CrossCutting.Helper\CrossCutting.Helper.csproj">
+      <Project>{3ecde0a3-b8ca-46b7-ae2e-1a52502f057f}</Project>
+      <Name>CrossCutting.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
       <Project>{56e37732-a6c5-4e0c-8ec7-72e399f92814}</Project>
       <Name>Domain.Entities</Name>

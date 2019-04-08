@@ -1,5 +1,6 @@
 ﻿using CrossCutting.Helper;
 using Domain.Entities;
+using Domain.Entities.Movil;
 using Domain.Entities.Notifications;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,32 @@ namespace Business.Logic
 {
     public class SendEmailNotificationBL
     {
+        public void EnviarNotificacionMovil(NotificationConceptMovil  oNotification, string key) //"notificacion.recuperar.cuenta"
+        {
+            NotificacionConfig oNotificacionConfig = new NotificacionConfig(key);
+
+            string mensaje = ObtenerMensajeMovil(oNotification, oNotificacionConfig.xslPath);
+
+            List<string> images = new List<string>();
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
+        }
+
+        private static string ObtenerMensajeMovil(NotificationConceptMovil oNotification, string xslPath)
+        {
+            StringBuilder msgBody = new StringBuilder();
+            if (File.Exists(xslPath))
+            {
+                MailGenerator mailGenerator = new MailGenerator(xslPath);
+                //string serialize = ConvertObjectToXMLString(oAsignacionLancha);
+
+                string message = mailGenerator.Generate(oNotification, typeof(NotificationConceptMovil));
+                msgBody.Append(message);
+                return msgBody.ToString();
+            }
+            return string.Empty;
+        }
+
         public void EnviarNotificacionConcepto(NotificationConceptViewModel oNotification, string key) //"notificacion.recuperar.cuenta"
         {
             NotificacionConfig oNotificacionConfig = new NotificacionConfig(key);

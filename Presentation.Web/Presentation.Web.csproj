@@ -567,7 +567,9 @@
     <Content Include="Template\Concept\QRCode\1125.png" />
     <Content Include="Template\Concept\QRCode\1126.png" />
     <Content Include="Template\Concept\style-ce.css" />
+    <Content Include="Template\EnviarDatosCongresistaMailTemplateHtml.xslt" />
     <Content Include="Template\NuevoUsuarioMailTemplateHtml.xslt" />
+    <Content Include="Template\EnviarDatosInvestigadorMailTemplateHtml.xslt" />
     <Content Include="Template\SolicitudConceptoMailTemplateHtml.xslt" />
     <Content Include="Template\RevisionConceptoMailTemplateHtml.xslt" />
     <Content Include="Template\NewDraftLawMailTemplateHtml.xslt">

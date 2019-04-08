@@ -9,18 +9,14 @@ using System.Web.Mvc;
 
 namespace Domain.Entities.Movil
 {
-    public class DraftLawLiteViewModel
+    public class ConceptSendNotification
     {
-      
-
-       
-        public int? period_id { get; set; }      
-        public int draft_law_number { get; set; }
-        public string title { get; set; }
-        public string link { get; set; }
+        public int concept_id { get; set; }
 
      
-
-
+        public int user_id { get; set; }
+        public int solicitud_datos_investigador { get; set; }
+        public int solicitud_ampliacion { get; set; }
+        
     }
 }

@@ -46,7 +46,9 @@ namespace Infrastructure.Data.Repositories
                 bibliography = a.bibliography,
                 institution = a.investigators.institutions.name,
                 origin = a.draft_laws.origins.name,
-                pdf_file = a.pdf_path
+                pdf_file = a.pdf_path,
+                calificado = a.concepts_status_logs.Where(l => l.user_id_created == filter.user_id && (l.concept_status_id == 5 || l.concept_status_id == 6)).Count() > 0 ? 1 : 0,
+                draft_law_link=a.draft_laws.link,
 
             });
 
