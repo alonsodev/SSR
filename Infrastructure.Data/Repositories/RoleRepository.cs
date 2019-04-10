@@ -33,7 +33,9 @@ namespace Infrastructure.Data.Repositories
                 date_created = a.date_created,
                 date_modified=a.date_modified,
                 user_id_created=a.user_id_created,
-                user_id_modified=a.user_id_modified
+                user_id_modified=a.user_id_modified,
+                manual_file=a.manual_file,
+                manual_file2 = a.manual_file
             });
 
             return query.Take(1).FirstOrDefault();
@@ -80,6 +82,7 @@ namespace Infrastructure.Data.Repositories
             {
                 role_id = a.role_id,
                 role = a.role,
+                manual_file = a.manual_file,
             });
 
             if (String.IsNullOrEmpty(sortBy)) sortBy = "role_id";

@@ -17,94 +17,94 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
             @using (Ajax.BeginForm("Crear", "Concept", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Showmessage" }, new { @id = "form-registrar" }))
-            
+
             {
-            <div class="card-body">
+                <div class="card-body">
 
 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.draft_law_id)
-                @Html.HiddenFor(model => model.investigator_id)
-                @Html.HiddenFor(model => model.bad_languages)
-                @Html.HiddenFor(model => model.existe_concepto)
-                @Html.HiddenFor(model => model.period_closed)
-                @Html.HiddenFor(model => model.notificable)
-                @Html.HiddenFor(model => model.status)
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.draft_law_id)
+                    @Html.HiddenFor(model => model.investigator_id)
+                    @Html.HiddenFor(model => model.bad_languages)
+                    @Html.HiddenFor(model => model.existe_concepto)
+                    @Html.HiddenFor(model => model.period_closed)
+                    @Html.HiddenFor(model => model.notificable)
+                    @Html.HiddenFor(model => model.status)
 
-                <div class="row">
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
-                    <div class="col-sm-4">
+                        <div class="col-sm-4">
 
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                            @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
+
+                            </div>
 
                         </div>
 
-                    </div>
+                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
 
-                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
+                        <div class="col-sm-4">
 
-                    <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
+                            </div>
 
-                        <div class="form-group">
-                            @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
-                            @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
                         </div>
+                    </div>
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
 
                     </div>
-                </div>
-                <div class="form-group has-label">
+                    <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
-                </div>
-                <div class="form-group has-label">
+                        @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
 
-                    @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error name-error"></span>
-                </div>
-                <div class="form-group has-label">
+                    </div>
+                    <div class="form-group has-label">
 
 
-                    @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
-                    @Html.DropDownList("tags", (IEnumerable<SelectListItem>)ViewBag.tags, new { multiple = "multiple", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error tags-error"></span>
+                        @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
+                        @Html.DropDownList("tags", (IEnumerable<SelectListItem>)ViewBag.tags, new { multiple = "multiple", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error tags-error"></span>
 
-                </div>
+                    </div>
 
-                <div class="form-group has-label">
+                    <div class="form-group has-label">
 
-                    @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
+                        @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
 
-                    @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor" })
-                    @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
-                    <span class="text-danger field-validation-error concept-error"></span>
-                </div>
-
-
-                <div class="form-group has-label">
-
-                    @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
-                    @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
-
-                </div>
+                        @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor" })
+                        @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
+                        <span class="text-danger field-validation-error concept-error"></span>
+                    </div>
 
 
-            </div><!-- end content-->
+                    <div class="form-group has-label">
+
+                        @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
+                        @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                </div><!-- end content-->
                 <div class="card-footer text-right">
 
 
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                    
+
                     <input type='button' id="btnCrear" class='btn btn-finish btn-fill btn-primary btn-wd' name='btnCrear' value='Crear' />
                 </div>
             }
@@ -112,18 +112,23 @@
     </div> <!-- end col-md-12 -->
 </div> <!-- end row -->
 
+<div id="html_concept" style="display:none">
 
+</div>
 
 
 @section Scripts {
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>-->
+
+    <script src="@Url.Content("/assets/js/plugins/summernote/popper.min.js")"></script>
+    <script src="@Url.Content("/assets/js/plugins/summernote/summernote-bs4.min.js")"></script>
     <script type="text/javascript" src="/Scripts/summernote-es-ES.js"></script>
-    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
+
+    <link href="@Url.Content("/assets/js/plugins/summernote/summernote-bs4.css")" rel="stylesheet" />
     <script type="text/javascript">
+        var maximumImageFileSize = 1048576;
         function Showmessage(data) {
             debugger;
             console.log(data);
@@ -156,13 +161,19 @@
         }
 
         function ObtenerNumeroPalabras(text) {
-            text = text.replace(/\r?\n/g, " ");            
-            text = text.replace(/[ ]+/g, " ");            
-            text = text.replace(/^ /, "");
-            text = text.replace(/ $/, "");
+            if (text && text != null) {
+                text = text.replace(/\r?\n/g, " ");
+                text = text.replace(/[ ]+/g, " ");
+                text = text.replace(/^ /, "");
+                text = text.replace(/ $/, "");
+                var res = text.split(" ");
+                return res.length;
+            }
+            else
+                return 0;
 
-            var res = text.split(" ");
-            return res.length;
+
+
         }
         function ConvertirHtmlToText(html) {
             var temp = document.createElement("div");
@@ -178,25 +189,25 @@
                 $('#summary').attr("data-val-assertthat", message_error);
                 $('#summary-error').html(message_error);
             }, 50);
-            return !(nro_palabras_resumen>200);
+            return !(nro_palabras_resumen > 200);
 
         });
         var nro_palabras = 0;
         ea.addMethod('ValidarConcepto', function () {
-           
+
             var concept = ConvertirHtmlToText($('#concept').val());
             nro_palabras = ObtenerNumeroPalabras(concept);
-           
+
             setTimeout(function () {
                 var message_error = 'El Concepto tiene ' + nro_palabras + ' palabras, este campo debe contener máximo 3000 palabras.'
                 $('#concept').attr("data-val-assertthat", message_error);
                 $('#concept-error').html(message_error);
-                }, 50);
+            }, 50);
             return !(nro_palabras > 3000);
 
 
         });
-       
+
         function ValidarTags() {
             $('.tags-error').html('');
             var tags = $('#tags').val();
@@ -208,25 +219,33 @@
         function ValidarConcept() {
             $('.concept-error').html('');
             var concept = ConvertirHtmlToText($('#concept').val());
-            if (concept && concept.trim()!='')
+            if (concept && concept.trim() != '')
                 return true;
             $('.concept-error').html('El Concepto es obligatorio.');
+            return false;
+        }
+        function ValidarSummary() {
+            $('.summary-error').html('');
+            var summary = ConvertirHtmlToText($('#summary').val());
+            if (summary && summary.trim() != '')
+                return true;
+            $('.summary-error').html('El resumen es obligatorio.');
             return false;
         }
         function ValidarPalabrasNoAdecuadas(text) {
             var bad_languages = $('#bad_languages').val();
             var bad_languages_list = bad_languages.split(",");
-            
+
             text = text.toLowerCase();
             var message = "";
-            for (i = 0; i < bad_languages_list.length; i++) { 
+            for (i = 0; i < bad_languages_list.length; i++) {
                 var bad_language = bad_languages_list[i].toLowerCase();
                 if (text.includes(bad_language)) {
                     //list.push(bad_language);
-                    message += "<li>" + bad_language+"</li>";
+                    message += "<li>" + bad_language + "</li>";
                 }
             }
-            if (message!="")
+            if (message != "")
                 message = "<ul>" + message + "</ul>";
             return message;
         }
@@ -238,33 +257,55 @@
             window.location.href = "/Investigator/MisProyectosLey";
         }
 
-        
+        function ValidarImagenes(concept) {
+
+            $('#html_concept').html(concept);
+
+            var imgs = $('#html_concept img');
+            console.log(imgs);
+
+            var file_size = 0;
+            for (i = 0; i < imgs.length; i++) {
+                var img = $(imgs[i]);
+
+                var src = img.attr('src');
+                console.log('src', src);
+                if (src.includes("data:image")) {
+                    var parts = src.split(',');
+                    var base64str = parts[1];
+                    var decoded = atob(base64str);
+
+                    console.log("FileSize: " + decoded.length);
+
+                    file_size = file_size + decoded.length;
+                }
+
+
+
+            }
+
+            if (file_size > maximumImageFileSize)
+                return false;
+            return true;
+        }
+
+
         $(document).ready(function () {
             // Initialize Editor
             $('.textarea-editor').summernote({
 
-                maximumImageFileSize: 1048576,
+                maximumImageFileSize: maximumImageFileSize,
                 lang: 'es-ES',
                 height: 400, // set editor height
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor
                 focus: false, // set focus to editable area after initializing summernote
 
-                callbacks: {
-                    onImageUpload: function (files) {
-                        debugger;
-                        console.log(files);
-                        // upload image to server and create imgNode...
 
-                        //context.invoke('editor.insertText', 'hello');
-                        $('.textarea-editor').summernote('editor.insertImagesAsDataURL', files);
-                        //$summernote.summernote('insertNode', imgNode);
-                    }
-                }
 
             });
 
-          
+
 
             $('.textarea-editor').on('summernote.change', function (we, contents, $editable) {
                 $("#concept").valid();
@@ -276,7 +317,7 @@
             });
 
             $("#commission_id").select2();
-          
+
 
 
             var period_closed = $('#period_closed').val();
@@ -336,8 +377,8 @@
         $("#btnCrear").click(function () {
             //prevent form from submitting
             debugger;
-           
-            if (ValidarConcept() && ValidarTags() && $("#form-registrar").valid()) {
+
+            if (ValidarConcept() & ValidarTags() & $("#form-registrar").valid()) {
 
                 var message = ValidarPalabrasNoAdecuadas($('#summary').val());
 
@@ -393,91 +434,105 @@
 
                     return false;
                 }
+
+
+
+                if (!ValidarImagenes($('#concept').val())) {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Concepto contiene imagenes mayor al limite permitido(1MB):<br>' + message + 'Por favor elimine algunas imágenes e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
                 $('#form-registrar').trigger('submit');
 
 
 
 
             }
-         
-           
+
+
 
             return false;
         });
 
 
-        /*
-        $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
-            //prevent form from submitting
-           
-            e.preventDefault();
-            var form = this;
-            
-            if (ValidarConcept() &&ValidarTags() && $("#form-registrar").valid()) {
-                
-                var message = ValidarPalabrasNoAdecuadas($('#summary').val());
+                                    /*
+                                    $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
+                                        //prevent form from submitting
 
-                if (message != "") {
-                    swal({
-                        title: 'Error!',
-                        html: '<div style="text-align:left;">El Resumen contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                        type: 'error',
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    });
+                                        e.preventDefault();
+                                        var form = this;
 
-                    return false;
-                }
-                message = ValidarPalabrasNoAdecuadas($('#bibliography').val());
-                
-                if (message != "") {
-                    swal({
-                        title: 'Error!',
-                        html: '<div style="text-align:left;">La bibliografia contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                        type: 'error',
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    });
-                    
-                    return false;
-                }
-                
-                message = ValidarPalabrasNoAdecuadas($('#concept').val());
+                                        if (ValidarConcept() &&ValidarTags() && $("#form-registrar").valid()) {
 
-                if (message != "") {
-                    swal({
-                        title: 'Error!',
-                        html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                        type: 'error',
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    });
+                                            var message = ValidarPalabrasNoAdecuadas($('#summary').val());
 
-                    return false;
-                }
-                //debugger;
-                message = ValidarPalabrasNoAdecuadas($('#tags').val().join(' '));
+                                            if (message != "") {
+                                                swal({
+                                                    title: 'Error!',
+                                                    html: '<div style="text-align:left;">El Resumen contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                                                    type: 'error',
+                                                    confirmButtonClass: "btn btn-success",
+                                                    buttonsStyling: false
+                                                });
 
-                if (message != "") {
-                    swal({
-                        title: 'Error!',
-                        html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                        type: 'error',
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    });
+                                                return false;
+                                            }
+                                            message = ValidarPalabrasNoAdecuadas($('#bibliography').val());
 
-                    return false;
-                }
-               form.submit();
+                                            if (message != "") {
+                                                swal({
+                                                    title: 'Error!',
+                                                    html: '<div style="text-align:left;">La bibliografia contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                                                    type: 'error',
+                                                    confirmButtonClass: "btn btn-success",
+                                                    buttonsStyling: false
+                                                });
 
+                                                return false;
+                                            }
 
+                                            message = ValidarPalabrasNoAdecuadas($('#concept').val());
+
+                                            if (message != "") {
+                                                swal({
+                                                    title: 'Error!',
+                                                    html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                                                    type: 'error',
+                                                    confirmButtonClass: "btn btn-success",
+                                                    buttonsStyling: false
+                                                });
+
+                                                return false;
+                                            }
+                                            //debugger;
+                                            message = ValidarPalabrasNoAdecuadas($('#tags').val().join(' '));
+
+                                            if (message != "") {
+                                                swal({
+                                                    title: 'Error!',
+                                                    html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                                                    type: 'error',
+                                                    confirmButtonClass: "btn btn-success",
+                                                    buttonsStyling: false
+                                                });
+
+                                                return false;
+                                            }
+                                           form.submit();
 
 
-            }
 
-            return false;
-        });
-        */
+
+                                        }
+
+                                        return false;
+                                    });
+                                    */
     </script>
 }

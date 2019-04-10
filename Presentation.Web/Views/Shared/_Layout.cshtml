@@ -6,7 +6,7 @@
 
 <!-- Mirrored from demos.creative-tim.com/now-ui-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Aug 2018 20:53:28 GMT -->
 <!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
 
 
@@ -14,7 +14,7 @@
 
 
 
-
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -46,30 +46,15 @@
 
 
     <link rel="stylesheet" href="@Url.Content("/assets/css/select2.min.css")">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="@Url.Content("/assets/css/select2-bootstrap.min.css")" >
 
 
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    '../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');</script>
-    <!-- End Google Tag Manager -->
+
 
 </head>
 <body class=" sidebar-mini ">
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+   
 
 
     <div class="wrapper ">
@@ -158,17 +143,7 @@
 
                     <ul class="nav">
 
-                        <!-- <li class=" @ViewBag.dashboard">
-
-                               <a href="dashboard.html">
-
-                                   <i class="now-ui-icons design_app"></i>
-
-                                   <p>Dashboard</p>
-                               </a>
-
-                           </li>
-                        -->
+                     
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
                         {
@@ -572,7 +547,20 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                             </li>
                         }
-                    </ul>
+                        @if (!String.IsNullOrEmpty(AuthorizeUserAttribute.UsuarioLogeado().manual_url))
+                        {
+                            <li class="@(ViewBag.active == "user_manual" ? "active" : "")">
+
+                                <a href="@AuthorizeUserAttribute.UsuarioLogeado().manual_url" target="_blank">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Manual de usuario</p>
+                                </a>
+
+                            </li>
+                        }
+                        </ul>
                 }
             </div>
 
@@ -762,62 +750,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
         </div>
     </div>
 
-    <!--<div class="fixed-plugin">
-        <div class="dropdown show-dropdown">
-            <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"> </i>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="header-title"> Sidebar Background</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
-                        <div class="badge-colors text-center">
-                            <span class="badge filter badge-yellow" data-color="yellow"></span>
-                            <span class="badge filter badge-blue" data-color="blue"></span>
-                            <span class="badge filter badge-green" data-color="green"></span>
-                            <span class="badge filter badge-orange active" data-color="orange"></span>
-                            <span class="badge filter badge-red" data-color="red"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
-
-                <li class="header-title">
-                    Sidebar Mini
-                </li>
-                <li class="adjustments-line">
-                    <div class="togglebutton switch-sidebar-mini">
-                        <span class="label-switch">OFF</span>
-                        <input type="checkbox" name="checkbox" checked class="bootstrap-switch"
-                               data-on-label=""
-                               data-off-label="" />
-                        <span class="label-switch label-right">ON</span>
-                    </div>
-                </li>
-                <li class="button-container">
-                    <a href="https://www.creative-tim.com/product/now-ui-dashboard-pro" target="_blank" class="btn btn-primary btn-block btn-round">Buy Now</a>
-                    <a href="https://demos.creative-tim.com/now-ui-dashboard-pro/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
-                        <i class="now-ui-icons files_single-copy-04"></i>
-                        Documentation
-                    </a>
-                    <a href="https://www.creative-tim.com/product/now-ui-dashboard" target="_blank" class="btn btn-info btn-block btn-round">
-                        <i class="now-ui-icons files_single-copy-04"></i>
-                        Get Free Demo!
-                    </a>
-                </li>
-
-
-                <li class="header-title">Thank you for 95 shares!</li>
-                <li class="button-container text-center">
-                    <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-                    <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-                    <br>
-                    <br>
-                    <a class="github-button" href="https://github.com/creativetimofficial/ct-now-ui-dashboard-pro" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-                </li>
-            </ul>
-        </div>
-    </div>-->
+   
     <!--   Core JS Files   -->
     <script src="@Url.Content("/assets/js/core/jquery.min.js")"></script>
     <script src="@Url.Content("/assets/js/core/popper.min.js")"></script>
@@ -912,92 +845,9 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                  Session[ConfigurationManager.AppSettings["session.usuario.actual"]] = user;
              }
 
-
-            $('#facebook').sharrre({
-                share: {
-                    facebook: true
-                },
-                enableHover: false,
-                enableTracking: false,
-                enableCounter: false,
-                click: function (api, options) {
-                    api.simulateClick();
-                    api.openPopup('facebook');
-                },
-                template: '<i class="fab fa-facebook-f"></i> Facebook',
-                url: 'https://demos.creative-tim.com/now-ui-dashboard-pro/examples/dashboard.html'
-            });
-
-            $('#google').sharrre({
-                share: {
-                    googlePlus: true
-                },
-                enableCounter: false,
-                enableHover: false,
-                enableTracking: true,
-                click: function (api, options) {
-                    api.simulateClick();
-                    api.openPopup('googlePlus');
-                },
-                template: '<i class="fab fa-google-plus"></i> Google',
-                url: 'https://demos.creative-tim.com/now-ui-dashboard-pro/examples/dashboard.html'
-            });
-
-            $('#twitter').sharrre({
-                share: {
-                    twitter: true
-                },
-                enableHover: false,
-                enableTracking: false,
-                enableCounter: false,
-                buttons: { twitter: { via: 'CreativeTim' } },
-                click: function (api, options) {
-                    api.simulateClick();
-                    api.openPopup('twitter');
-                },
-                template: '<i class="fab fa-twitter"></i> Twitter',
-                url: 'https://demos.creative-tim.com/now-ui-dashboard-pro/examples/dashboard.html'
-            });
-
-
-
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-46172202-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function () {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
-
-            // Facebook Pixel Code Don't Delete
-            !function (f, b, e, v, n, t, s) {
-                if (f.fbq) return; n = f.fbq = function () {
-                    n.callMethod ?
-                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-                }; if (!f._fbq) f._fbq = n;
-                n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
-                t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
-            }(window,
-                document, 'script', '../../../connect.facebook.net/en_US/fbevents.js');
-
-            try {
-                fbq('init', '111649226022273');
-                fbq('track', "PageView");
-
-            } catch (err) {
-                console.log('Facebook Track Error:', err);
-            }
-
+   
         });</script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-             src="https://www.facebook.com/tr?id=111649226022273&amp;ev=PageView&amp;noscript=1" />
-    </noscript>
+   
     <script>
         $(document).ready(function () {
             $().ready(function () {
@@ -1127,11 +977,11 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                     if (sidebar_mini_active == true) {
                         $('body').removeClass('sidebar-mini');
                         sidebar_mini_active = false;
-                        nowuiDashboard.showSidebarMessage('Sidebar mini deactivated...');
+                        //nowuiDashboard.showSidebarMessage('Sidebar mini deactivated...');
                     } else {
                         $('body').addClass('sidebar-mini');
                         sidebar_mini_active = true;
-                        nowuiDashboard.showSidebarMessage('Sidebar mini activated...');
+                        //nowuiDashboard.showSidebarMessage('Sidebar mini activated...');
                     }
 
                     // we simulate the window Resize so the charts will get updated in realtime.
@@ -1160,6 +1010,16 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
             // demo.initDashboardPageCharts();
 
             //demo.initVectorMap();
+
+            $.extend(true, $.fn.dataTable.defaults, {
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                        type: 'none',
+                        target: ''
+                    }
+                },
+            });
 
         });</script>
 
@@ -1198,5 +1058,5 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
 </body>
 
-<!-- Mirrored from demos.creative-tim.com/now-ui-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Aug 2018 20:53:49 GMT -->
+
 </html>

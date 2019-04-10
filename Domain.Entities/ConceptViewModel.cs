@@ -83,7 +83,8 @@ namespace Domain.Entities
         public MultiSelectList tagsMultiSelectList { get; set; }
         public List<int> tag_ids { get; set; }
         
-        [Display(Name = "Bibliografía")]              
+        [Display(Name = "Bibliografía")]
+        [Required(ErrorMessage = "La bibliografía es obligatoria.")]
         public string bibliography { get; set; }
         [Display(Name = "Motivo de Rechazo")]
         [RequiredIf("reject == 1", ErrorMessage = "El Motivo de Rechazo es obligatorio.")]
@@ -109,6 +110,10 @@ namespace Domain.Entities
 
         [Display(Name = "Destinatarios")]
         public List<string> speakers { get; set; }
+
+        public List<int> speakers_concept { get; set; }
+
+        
         public MultiSelectList speakersMultiSelectList { get; set; }
         public List<int> speakers_ids { get; set; }
 

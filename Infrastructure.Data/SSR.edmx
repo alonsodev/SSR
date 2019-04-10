@@ -486,6 +486,7 @@
           <Property Name="user_id_created" Type="int" />
           <Property Name="user_id_modified" Type="int" />
           <Property Name="dev_name" Type="varchar" MaxLength="100" />
+          <Property Name="manual_file" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="snies">
           <Key>
@@ -1472,7 +1473,6 @@
           <EntitySet Name="programs" EntityType="SSRModel.programs" />
           <EntitySet Name="reason_rejects" EntityType="SSRModel.reason_rejects" />
           <EntitySet Name="role_permissions" EntityType="SSRModel.role_permissions" />
-          <EntitySet Name="roles" EntityType="SSRModel.roles" />
           <EntitySet Name="snies" EntityType="SSRModel.snies" />
           <EntitySet Name="tags" EntityType="SSRModel.tags" />
           <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
@@ -1657,14 +1657,6 @@
             <End Role="programs" EntitySet="programs" />
             <End Role="snies" EntitySet="snies" />
           </AssociationSet>
-          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
           <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
@@ -1685,6 +1677,15 @@
           <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
             <End Role="draft_laws_status" EntitySet="draft_laws_status" />
             <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
+          <EntitySet Name="roles" EntityType="SSRModel.roles" />
+          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="academic_levels">
@@ -2226,20 +2227,6 @@
           <NavigationProperty Name="permissions" Relationship="SSRModel.FK_role_permissions_permissions" FromRole="role_permissions" ToRole="permissions" />
           <NavigationProperty Name="roles" Relationship="SSRModel.FK_role_permissions_roles" FromRole="role_permissions" ToRole="roles" />
         </EntityType>
-        <EntityType Name="roles">
-          <Key>
-            <PropertyRef Name="role_id" />
-          </Key>
-          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_roles" FromRole="roles" ToRole="role_permissions" />
-          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_roles" FromRole="roles" ToRole="users" />
-        </EntityType>
         <EntityType Name="snies">
           <Key>
             <PropertyRef Name="snie_id" />
@@ -2321,9 +2308,9 @@
           <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
           <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
           <NavigationProperty Name="notifications" Relationship="SSRModel.FK_notifications_users" FromRole="users" ToRole="notifications" />
-          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
           <NavigationProperty Name="user_institutions" Relationship="SSRModel.FK_user_institutionss_users" FromRole="users" ToRole="user_institutions" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
         </EntityType>
         <Association Name="FK_snies_academic_levels">
           <End Type="SSRModel.academic_levels" Role="academic_levels" Multiplicity="0..1" />
@@ -2865,30 +2852,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_role_permissions_roles">
-          <End Type="SSRModel.roles" Role="roles" Multiplicity="1" />
-          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="roles">
-              <PropertyRef Name="role_id" />
-            </Principal>
-            <Dependent Role="role_permissions">
-              <PropertyRef Name="id_role" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_roles">
-          <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="roles">
-              <PropertyRef Name="role_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="user_role_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_users_user_status">
           <End Type="SSRModel.user_status" Role="user_status" Multiplicity="0..1" />
           <End Type="SSRModel.users" Role="users" Multiplicity="*" />
@@ -2958,6 +2921,45 @@
             </Principal>
             <Dependent Role="draft_laws">
               <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="manual_file" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="role_permissions" Relationship="SSRModel.FK_role_permissions_roles" FromRole="roles" ToRole="role_permissions" />
+          <NavigationProperty Name="users" Relationship="SSRModel.FK_users_roles" FromRole="roles" ToRole="users" />
+        </EntityType>
+        <Association Name="FK_role_permissions_roles">
+          <End Type="SSRModel.roles" Role="roles" Multiplicity="1" />
+          <End Type="SSRModel.role_permissions" Role="role_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="role_permissions">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_roles">
+          <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="user_role_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3458,19 +3460,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="SSRModel.roles">
-              <MappingFragment StoreEntitySet="roles">
-                <ScalarProperty Name="dev_name" ColumnName="dev_name" />
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="role_id" ColumnName="role_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="snies">
             <EntityTypeMapping TypeName="SSRModel.snies">
               <MappingFragment StoreEntitySet="snies">
@@ -3561,6 +3550,20 @@
                 <ScalarProperty Name="notifiable" ColumnName="notifiable" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="draft_law_status_id" ColumnName="draft_law_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="SSRModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="manual_file" ColumnName="manual_file" />
+                <ScalarProperty Name="dev_name" ColumnName="dev_name" />
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

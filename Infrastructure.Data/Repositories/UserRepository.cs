@@ -357,7 +357,7 @@ namespace Infrastructure.Data.Repositories
 
                         
                         role_id = a.user_role_id,
-
+                        manual_url = a.roles.manual_file,
 
                     }
                 ).Take(1).FirstOrDefault();
@@ -383,8 +383,9 @@ namespace Infrastructure.Data.Repositories
                        permissions = a.roles.role_permissions.Select(p => p.permissions.id_permission).ToList(),
                        avatar = a.avatar,
                        role_id=a.user_role_id,
-                       first_time=a.user_date_last_login.HasValue?0:1
-                   
+                       first_time=a.user_date_last_login.HasValue?0:1,
+                       manual_url=a.roles.manual_file,
+
                    }
                ).Take(1).FirstOrDefault();
 

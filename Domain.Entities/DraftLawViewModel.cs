@@ -97,6 +97,6 @@ namespace Domain.Entities
         public DateTime? end_date { get; set; }
 
         public bool notifiable { get; set; }
-        
+        public string sub_type { get; set; }
     }
 }

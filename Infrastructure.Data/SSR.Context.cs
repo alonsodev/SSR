@@ -64,13 +64,13 @@ namespace Infrastructure.Data
         public virtual DbSet<programs> programs { get; set; }
         public virtual DbSet<reason_rejects> reason_rejects { get; set; }
         public virtual DbSet<role_permissions> role_permissions { get; set; }
-        public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<snies> snies { get; set; }
         public virtual DbSet<tags> tags { get; set; }
         public virtual DbSet<user_status> user_status { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<user_institutions> user_institutions { get; set; }
         public virtual DbSet<draft_laws_status> draft_laws_status { get; set; }
+        public virtual DbSet<roles> roles { get; set; }
     
         public virtual int ActualizarTablasReporte(Nullable<int> period_id)
         {

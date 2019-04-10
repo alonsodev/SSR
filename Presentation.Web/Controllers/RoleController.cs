@@ -5,6 +5,7 @@ using Domain.Entities;
 using Presentation.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -48,7 +49,7 @@ namespace Presentation.Web.Controllers
             });
 
         }
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role })]
+       //[AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -59,6 +60,21 @@ namespace Presentation.Web.Controllers
             if (pRoleViewModel == null)
             {
                 return HttpNotFound();
+            }
+           if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+                
+                if (file != null && file.ContentLength > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = Guid.NewGuid().ToString() + "." + extension;
+
+
+                    pRoleViewModel.manual_file = "/Manual/" + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Manual/"), fileName);
+                    file.SaveAs(path);
+                }
             }
             pRoleViewModel.role_id = 0;
 
@@ -131,6 +147,18 @@ namespace Presentation.Web.Controllers
 
             return View(pRoleViewModel);
         }
+
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_role })]
+        public ActionResult EditarManual(string id)
+        {
+            RoleBL oBL = new RoleBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            RoleViewModel pRoleViewModel = oBL.ObtenerRole(pIntID);
+
+            return View(pRoleViewModel);
+        }
+
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_role })]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -143,6 +171,23 @@ namespace Presentation.Web.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = Guid.NewGuid().ToString() + "." + extension;
+
+
+                    pRoleViewModel.manual_file = "/Manual/" + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Manual/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+
             RoleBL oRoleBL = new RoleBL();
             pRoleViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             oRoleBL.Modificar(pRoleViewModel);

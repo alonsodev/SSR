@@ -56,13 +56,17 @@ namespace Business.Logic
 
         public void Modificar(RoleViewModel pRoleViewModel)
         {
-         
 
-        
-            roles oroles =oRepositorio.FindById(pRoleViewModel.role_id);
-            oroles.role = pRoleViewModel.role;         
+
+
+            roles oroles = oRepositorio.FindById(pRoleViewModel.role_id);
+           // oroles.role = pRoleViewModel.role;
             oroles.user_id_modified = pRoleViewModel.user_id_modified;
             oroles.date_modified = DateTime.Now;
+            if (!String.IsNullOrEmpty(pRoleViewModel.role))
+                oroles.role = pRoleViewModel.role;
+            if (!String.IsNullOrEmpty(pRoleViewModel.manual_file))
+                oroles.manual_file = pRoleViewModel.manual_file;
             oRepositorio.Update(oroles);
             oUnitOfWork.SaveChanges();
         }
@@ -83,11 +87,11 @@ namespace Business.Logic
 
             roles oroles = new roles
             {
-                role_id=0,
-                role= pRoleViewModel.role,
-             
-                date_created=DateTime.Now,
-                user_id_created= pRoleViewModel.user_id_created
+                role_id = 0,
+                role = pRoleViewModel.role,
+                manual_file = pRoleViewModel.manual_file,
+                date_created = DateTime.Now,
+                user_id_created = pRoleViewModel.user_id_created
 
             };
             oRepositorio.Add(oroles);

@@ -82,7 +82,9 @@ namespace Infrastructure.Data.Repositories
                 speakers = a.draft_laws.debate_speakers.Select(t => t.user_id.ToString()).Distinct().ToList(),
                 user_id_created = a.user_id_created,
                 concept_status_id = a.concept_status_id,
-                hash = a.hash
+                hash = a.hash,
+                speakers_concept= a.concept_debate_speakers.Select(t => t.user_id).Distinct().ToList(),
+
             });
 
             return query.Take(1).FirstOrDefault();

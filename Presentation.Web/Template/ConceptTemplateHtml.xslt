@@ -249,7 +249,9 @@
           max-width:50%;
           }
 
-
+          #notices img{
+          max-width: 100%;
+          }
         </style>
       </head>
       <body>
