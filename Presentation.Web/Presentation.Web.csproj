@@ -194,6 +194,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\PoliticasUsoController.cs" />
     <Compile Include="Controllers\PeriodController.cs" />
     <Compile Include="Controllers\ConsultationTypeController.cs" />
     <Compile Include="Controllers\ReasonRejectController.cs" />
@@ -610,6 +611,15 @@
     <Content Include="Assets\js\plugins\font-awesome-4.7.0\scss\_screen-reader.scss" />
     <Content Include="Assets\js\plugins\font-awesome-4.7.0\scss\_stacked.scss" />
     <Content Include="Assets\js\plugins\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Manual\0bda47a8-d96a-42e4-9c20-17a949f62501..pdf" />
+    <Content Include="Manual\2f164cad-2c1a-400f-a848-718191d59b38..pdf" />
+    <Content Include="Manual\376ca205-1a2b-4d23-bacb-65b4345c76eb..xlsx" />
+    <Content Include="Manual\491b86a5-7ab3-4f0c-8134-4cccad0556e6..pdf" />
+    <Content Include="Manual\64bde679-304d-4084-8bcd-53b0b0f78bc4..pdf" />
+    <Content Include="Manual\de002164-49bb-4a89-a97d-e476d5cd9750..pdf" />
+    <Content Include="Manual\e44adca7-d091-48c1-b466-05c21a3d246e..pdf" />
+    <Content Include="Manual\f3ddd5f4-c1cf-4e61-9937-8c6cc69215d4..pdf" />
+    <Content Include="Manual\fb2fbd78-4127-43f0-afc5-a072a68632bc..pdf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\expressive.annotations.validate.js" />
@@ -832,11 +842,11 @@
     <Content Include="Views\ReasonReject\Editar.cshtml" />
     <Content Include="Views\ReasonReject\Index.cshtml" />
     <Content Include="Views\Role\EditarManual.cshtml" />
+    <Content Include="Views\PoliticasUso\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Logs\" />
-    <Folder Include="Manual\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
