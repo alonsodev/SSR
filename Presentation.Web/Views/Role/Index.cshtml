@@ -21,15 +21,16 @@
                     <thead>
                         <tr>
                             <th>Rol</th>
-                            
-                           
+                            <th>Manual</th>
+
+
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Rol</th>
-
+                            <th>Manual</th>
                             <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </tfoot>
@@ -111,17 +112,31 @@
                         "columns": [
                             
                             { "data": "role" },
+                            { "data": "manual_file" },
+                            
                             { "data": "role_id" }
                         ],
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [1] },
+                            { 'className': 'text-center', 'targets': [1, 2] },
+                            {
+                                render: function (data, type, row) {
+                                    debugger;
+                                    if (row!=null  &&row.manual_file != null && row.manual_file!='')
+                                        return '<a style="color: burlywood;" href="' + row.manual_file + '" target="_blank">' + row.manual_file + '</a> ';   
+                                    return '';
+                                },
+                                targets: 1,
+                                orderable: false
+                            },
                             {
                                 render: function (data, type, row) {
                                     return '<a href="/Role/Permisos/' + row.role_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Permisos"><i class="now-ui-icons loader_gear"></i></a> ' +
-                                        '<a href="/Role/Editar/' + row.role_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '
+                                     
+                                        '<a href="/Role/Editar/' + row.role_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar"><i class="now-ui-icons shopping_tag-content"></i></a> '+
+                                        '<a href="/Role/EditarManual/' + row.role_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Cambiar Manual"><i class="now-ui-icons arrows-1_share-66"></i></a> ' 
                                         + '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.role_id +'" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
                                 },
-                                targets: 1,
+                                targets: 2,
                                 orderable: false
                             }
                         ],

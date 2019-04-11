@@ -16,7 +16,7 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Crear", "Role", FormMethod.Post, new { id = "form-registrar-role", title = "Crear Role" }))
+            @using (Html.BeginForm("Crear", "Role", FormMethod.Post, new { id = "form-registrar-role", title = "Crear Role", enctype = "multipart/form-data" }))
             {
             <div class="card-body">
 
@@ -31,8 +31,14 @@
                     <span class="text-danger field-validation-error role-error"></span>
                 </div>
 
-              
+                <div class="form-group has-label">
 
+                    @Html.LabelFor(model => model.manual_file, htmlAttributes: new { @class = "" })
+                    
+
+                    <input id="manual_file" name="manual_file" type="file">
+
+                </div>
 
 
 

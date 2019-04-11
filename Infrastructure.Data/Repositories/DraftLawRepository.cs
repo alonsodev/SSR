@@ -202,7 +202,7 @@ namespace Infrastructure.Data.Repositories
 
             GridModel<DraftLawViewModel> resultado = new GridModel<DraftLawViewModel>();
             IQueryable<draft_laws> queryFilters = Set;
-
+            queryFilters = queryFilters.Where(a => a.draft_laws_status.notifiable == true);
             queryFilters = queryFilters.Where(a => a.active == true && a.period_id == generalfiltros.period_id && commissions.Contains(a.commission_id.HasValue ? a.commission_id.Value : -1) && interest_areas.Contains(a.interest_area_id.HasValue ? a.interest_area_id.Value : -1));
 
             int count_records = queryFilters.Count();
@@ -243,7 +243,8 @@ namespace Infrastructure.Data.Repositories
                 initiative = a.initiative,
                 summary = a.summary,
                 link = a.link,
-                notifiable = a.draft_laws_status.notifiable
+                notifiable = a.draft_laws_status.notifiable,
+                sub_type=a.draft_laws_status.sub_type,
             });
 
             if (String.IsNullOrEmpty(sortBy)) sortBy = "draft_law_id";

@@ -26,6 +26,16 @@ namespace Presentation.Web.Controllers
             return View();
         }
 
+
+        public ActionResult NoAutorizadoEditarConcepto()
+        {
+            return View();
+        }
+        public ActionResult NoAutorizadoCalificarConcepto()
+        {
+            return View();
+        }
+        
         public ActionResult NoSesion()
         {
             return View();

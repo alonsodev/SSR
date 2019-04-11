@@ -16,7 +16,7 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("Editar", "Role", FormMethod.Post, new { id = "form-role", title = "Editar Role" }))
+            @using (Html.BeginForm("Editar", "Role", FormMethod.Post, new { id = "form-role", title = "Editar Role", enctype = "multipart/form-data" }))
             {
             <div class="card-body">
 
@@ -24,6 +24,7 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.role_id)
+                @Html.HiddenFor(model => model.manual_file2)
                 <div class="form-group has-label">
 
                     @Html.LabelFor(model => model.role, htmlAttributes: new { @class = "" })
@@ -31,8 +32,6 @@
                     @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
                     <span class="text-danger field-validation-error role-error"></span>
                 </div>
-
-              
 
 
 
@@ -54,8 +53,7 @@
 @section Scripts {
 
     <script type="text/javascript">
-
-
+       
         $("#btnCancelar").click(function () {
             window.location.href = "/Role";
         });

@@ -72,7 +72,8 @@
 @section Scripts {
 
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">-->
+    <link href="@Url.Content("/assets/js/plugins/font-awesome-4.7.0/css/font-awesome.min.css")" rel="stylesheet" />
     <link rel="stylesheet" href="/Assets/css/fontawesome-stars.css">
     <script src="/Scripts/jquery.barrating.min.js"></script>
     <script type="text/javascript">
@@ -133,12 +134,12 @@
                         }).then(function () {
 
                             RedirectConceptPorCalificar();
-                           
-                        }).catch(swal.noop);
-                     
-     
 
-            
+                        }).catch(swal.noop);
+
+
+
+
         });
 
         $("#btnGuardar,#btnGuardar2").click(function () {

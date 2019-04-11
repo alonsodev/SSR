@@ -23,6 +23,7 @@ namespace Domain.Entities
         public List<int> permissions { get; set; }
 
         public int first_time { get; set; }
-        
+        public string manual_url { get; set; }
+
     }
 }

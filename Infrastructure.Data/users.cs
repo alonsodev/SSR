@@ -63,9 +63,9 @@ namespace Infrastructure.Data
         public virtual nationalities nationalities1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<notifications> notifications { get; set; }
-        public virtual roles roles { get; set; }
         public virtual user_status user_status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_institutions> user_institutions { get; set; }
+        public virtual roles roles { get; set; }
     }
 }

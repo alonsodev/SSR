@@ -16,11 +16,15 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El Nombre del Role es obligatorio.")]
         public string role { get; set; }
 
-      
+        [Display(Name = "Manual de usuario")]
+       // [Required(ErrorMessage = "El Nombre del Role es obligatorio.")]
+        public string manual_file { get; set; }
 
-     
+
+        public string manual_file2 { get; set; }
+
         
 
-       
+
     }
 }

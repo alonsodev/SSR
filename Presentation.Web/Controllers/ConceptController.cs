@@ -794,6 +794,13 @@ namespace Presentation.Web.Controllers
             int pIntID = 0;
             int.TryParse(id, out pIntID);
             ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+
+            if (pConceptViewModel.user_id_created != AuthorizeUserAttribute.UsuarioLogeado().user_id)
+
+                return Redirect("/Error/NoAutorizadoEditarConcepto");
+            //
+
+
             pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
             SelectorBL oSelectorBL = new SelectorBL();
             List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
@@ -960,6 +967,9 @@ namespace Presentation.Web.Controllers
             int pIntID = 0;
             int.TryParse(id, out pIntID);
             ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            if (!pConceptViewModel.speakers_concept.Contains(AuthorizeUserAttribute.UsuarioLogeado().user_id))
+                return Redirect("/Error/NoAutorizadoCalificarConcepto");
+
             pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
             pConceptViewModel.reject = 0;
             SelectorBL oSelectorBL = new SelectorBL();

@@ -16,7 +16,7 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            
+
             @using (Ajax.BeginForm("Editar", "Concept", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Showmessage" }, new { @id = "form-registro" }))
             {
                 <div class="card-body">
@@ -65,7 +65,7 @@
                         @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
                         @Html.TextAreaFor(model => model.summary, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-                        <span class="text-danger field-validation-error name-error"></span>
+                        <span class="text-danger field-validation-error summary-error"></span>
                     </div>
                     <div class="form-group has-label">
 
@@ -104,7 +104,7 @@
 
 
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
-                    
+
 
                     <input type='button' id="btnCrear" class='btn btn-finish btn-fill btn-primary btn-wd' name='btnCrear' value='Actualizar' />
                 </div>
@@ -151,12 +151,12 @@
 
 @section Scripts {
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    <script src="@Url.Content("/assets/js/plugins/summernote/popper.min.js")"></script>
+    <script src="@Url.Content("/assets/js/plugins/summernote/summernote-bs4.min.js")"></script>
     <script type="text/javascript" src="/Scripts/summernote-es-ES.js"></script>
-    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
+
+    <link href="@Url.Content("/assets/js/plugins/summernote/summernote-bs4.css")" rel="stylesheet" />
     <script type="text/javascript">
         function ValidarTags() {
             $('.tags-error').html('');
@@ -237,14 +237,53 @@
         }
 
         function ObtenerNumeroPalabras(text) {
-            text = text.replace(/\r?\n/g, " ");
-            text = text.replace(/[ ]+/g, " ");
-            text = text.replace(/^ /, "");
-            text = text.replace(/ $/, "");
+            if (text && text != null) {
+                text = text.replace(/\r?\n/g, " ");
+                text = text.replace(/[ ]+/g, " ");
+                text = text.replace(/^ /, "");
+                text = text.replace(/ $/, "");
+                var res = text.split(" ");
+                return res.length;
+            }
+            else
+                return 0;
 
-            var res = text.split(" ");
-            return res.length;
+
+
         }
+
+        function ValidarImagenes(concept) {
+
+            $('#html_concept').html(concept);
+
+            var imgs = $('#html_concept img');
+            console.log(imgs);
+
+            var file_size = 0;
+            for (i = 0; i < imgs.length; i++) {
+                var img = $(imgs[i]);
+
+                var src = img.attr('src');
+                console.log('src', src);
+                if (src.includes("data:image")) {
+                    var parts = src.split(',');
+                    var base64str = parts[1];
+                    var decoded = atob(base64str);
+
+                    console.log("FileSize: " + decoded.length);
+
+                    file_size = file_size + decoded.length;
+                }
+
+
+
+            }
+
+            if (file_size > maximumImageFileSize)
+                return false;
+            return true;
+        }
+
         function ConvertirHtmlToText(html) {
             var temp = document.createElement("div");
             temp.innerHTML = html;
@@ -264,7 +303,7 @@
         });
         var nro_palabras = 0;
         ea.addMethod('ValidarConcepto', function () {
-
+            debugger;
             var concept = ConvertirHtmlToText($('#concept').val());
             nro_palabras = ObtenerNumeroPalabras(concept);
 
@@ -347,9 +386,9 @@
             //prevent form from submitting
             debugger;
 
-            if (ValidarConcept() && ValidarTags() && $("#form-registro").valid()) {
+            if (ValidarConcept() & ValidarTags() & $("#form-registro").valid()) {
 
-           
+
                 var message = ValidarPalabrasNoAdecuadas($('#summary').val());
 
                 if (message != "") {
@@ -397,6 +436,18 @@
                     swal({
                         title: 'Error!',
                         html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+
+                    return false;
+                }
+
+                if (!ValidarImagenes($('#concept').val())) {
+                    swal({
+                        title: 'Error!',
+                        html: '<div style="text-align:left;">El Concepto contiene imagenes mayor al limite permitido(1MB):<br>' + message + 'Por favor elimine algunas imágenes e intente nuevamente.</div>',
                         type: 'error',
                         confirmButtonClass: "btn btn-success",
                         buttonsStyling: false
