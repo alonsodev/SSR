@@ -1065,7 +1065,15 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
+        String.prototype.includes = function (str) {
+            var returnValue = false;
 
+            if (this.indexOf(str) !== -1) {
+                returnValue = true;
+            }
+
+            return returnValue;
+        }
         $.blockUI.defaults.message = '<h1>Por favor espere...</h1>';
         $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 

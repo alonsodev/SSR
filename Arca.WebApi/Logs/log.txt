@@ -1,0 +1,6 @@
+INFO  2019-04-17 13:50:08,836 64252ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:evaluador@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:SOLICITUD DE CONCEPTO PARA ELABORACIÓN DE PROYECTO DE LEY, ATTACHMENTS:0
+INFO  2019-04-17 13:50:12,629 68046ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-04-17 16:23:37,712 9273129ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:evaluador@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:SOLICITUD DE CONCEPTO PARA ELABORACIÓN DE PROYECTO DE LEY, ATTACHMENTS:0
+INFO  2019-04-17 16:23:39,887 9275304ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-04-17 16:37:13,478 10088895ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:evaluador@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:SOLICITUD DE CONCEPTO PARA ELABORACIÓN DE PROYECTO DE LEY, ATTACHMENTS:0
+INFO  2019-04-17 16:37:15,916 10091333ms EmailHelper            SendMail           - Enviar Notificacion: exitoso

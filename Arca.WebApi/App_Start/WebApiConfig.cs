@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using Arca.WebApi.App_Start;
 using Arca.WebApi.Security;
 
 namespace Arca.WebApi
@@ -13,6 +15,7 @@ namespace Arca.WebApi
             config.MapHttpAttributeRoutes();
 
             config.MessageHandlers.Add(new TokenValidationHandler());
+            config.Services.Add(typeof(IExceptionLogger), new TraceExceptionLogger());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -71,9 +71,14 @@ namespace Infrastructure.Data.Repositories
         public List<DraftLawLiteViewModel> ObtenerProyectosLeyConConceptosPorCalificar(DraftLawFilterLiteViewModel filter)
         {
             IQueryable<draft_laws> queryFilters = Set;
-            queryFilters = queryFilters.Where(a => a.period_id == filter.period_id &&
+           /* queryFilters = queryFilters.Where(a => a.period_id == filter.period_id &&
                 a.concepts.Where(c => c.concept_debate_speakers.Select(d => d.user_id).Contains(filter.user_id) &&
                 (c.concept_status_id == 2 || (c.concept_status_id == 4) || (c.concept_status_id == 5 && c.concepts_status_logs.Where(l => l.concept_status_id == 5 && l.user_id_created == filter.user_id).Count() == 0))
+                ).Count() > 0);*/
+
+            queryFilters = queryFilters.Where(a => a.period_id == filter.period_id &&
+                a.concepts.Where(c => c.concept_debate_speakers.Select(d => d.user_id).Contains(filter.user_id) &&
+                (c.concept_status_id == 2 || (c.concept_status_id == 4) || (c.concept_status_id == 5) || (c.concept_status_id == 6))
                 ).Count() > 0);
 
 

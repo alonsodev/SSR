@@ -38,13 +38,20 @@ namespace Arca.WebApi.Controllers
         [Route("authenticate")]
         public IHttpActionResult Authenticate(LoginRequest login)
         {
+
+
             if (login == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
 
+
             int tipo_error = 0;
             UserBL oUserBL = new UserBL();
+
             CurrentUserViewModel result = oUserBL.ValidarUsuario(login.Username, Helper.Encripta(login.Password), ref tipo_error);
+
+
+
 
             //List<UsuarioAccion> result = oLoginBL.ValidarUsuario(oLoginModel.usuario, oLoginModel.clave, ref tipo_error);
 
@@ -75,7 +82,7 @@ namespace Arca.WebApi.Controllers
 
                         return Ok(new
                         {
-                            user_id= result.user_id,
+                            user_id = result.user_id,
                             status = 1,
                             token = token,
                         });

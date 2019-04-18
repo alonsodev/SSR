@@ -59,7 +59,7 @@ namespace Arca.WebApi.Controllers
             var result = new
             {
                 num_notificaciones_pendientes = num_notificaciones_pendientes,
-              
+
             };
             return Ok(result);
         }
@@ -84,11 +84,11 @@ namespace Arca.WebApi.Controllers
         {
 
             NotificationBL oNotificationBL = new NotificationBL();
-           
 
-            NotificationViewModel notification= oNotificationBL.ObtenerPorUrl(filter); 
 
-            if (notification !=null && notification.notification_id>=0)
+            NotificationViewModel notification = oNotificationBL.ObtenerPorUrl(filter);
+
+            if (notification != null && notification.notification_id >= 0)
                 oNotificationBL.ActualizarLeido(notification.notification_id);
             var result = new
             {
@@ -101,8 +101,8 @@ namespace Arca.WebApi.Controllers
         [Route("calificar")]
         public IHttpActionResult Calificar(ConceptQualificationViewModel filter)
         {
-           
 
+            // falta validar q ya lo haya calificado
             ConceptBL oConceptBL = new ConceptBL();
             var calificado = oConceptBL.VerificarCalificado(filter.concept_id);
             ConceptStatusLogViewModel oConceptStatusLogViewModel = new ConceptStatusLogViewModel();
@@ -135,15 +135,16 @@ namespace Arca.WebApi.Controllers
             UserBL userBL = new UserBL();
             UserViewModel congresista = userBL.ObtenerUser(filter.user_id);
 
-           
+
 
 
             ConceptBL oConceptBL = new ConceptBL();
-            var concept=oConceptBL.Obtener(filter.concept_id);
+            var concept = oConceptBL.Obtener(filter.concept_id);
             InvestigatorViewModel investigador = userBL.ObtenerInvestigator(concept.investigator_id.Value);
             SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
 
-            if (filter.solicitud_datos_investigador == 1) {
+            if (filter.solicitud_datos_investigador == 1)
+            {
                 NotificationConceptMovil oNotificationViewModel = new NotificationConceptMovil();
 
                 oNotificationViewModel.concept_id = concept.concept_id;
@@ -205,9 +206,9 @@ namespace Arca.WebApi.Controllers
         {
             ConceptBL oConceptBL = new ConceptBL();
             //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
-          
-            ConceptDetailLiteViewModel obj = oConceptBL.ObtenerLite(filter);
 
+            ConceptDetailLiteViewModel obj = oConceptBL.ObtenerLite(filter);
+            obj.tags = String.Join(", ", obj.tags_list);
             var path = ConfigurationManager.AppSettings["pdf.path"];
             obj.pdf_file = obj.pdf_file.Replace(path, "");
 
@@ -219,6 +220,97 @@ namespace Arca.WebApi.Controllers
             };
             return Ok(result);
         }
+        [HttpGet]
+        [Route("consultation_selectors")]
+        public IHttpActionResult ConsultationSelectors()
+        {
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
+          
+
+            List<SelectOptionItem> oConsultationTypes = oSelectorBL.ConsultationTypesSelector();
+
+
+            var result = new
+            {
+                interest_areas = oInterestAreas,
+                consultation_types = oConsultationTypes,
+            };
+            return Ok(result);
+        }
+        [HttpPost]
+        [Route("consultation_crear")]
+        public IHttpActionResult ConsultationCrear(ConsultationViewModel pConsultationViewModel)
+        {
+            // TODO: Add insert logic here
+
+            pConsultationViewModel.consultation_id = 0;
+
+
+            ConsultationBL oBL = new ConsultationBL();
+            oBL.Agregar(pConsultationViewModel);
+
+            ConsultationTypeBL oConsultationTypeBL = new ConsultationTypeBL();
+
+            var subject = oConsultationTypeBL.Obtener(pConsultationViewModel.consultation_type_id.Value).name;
+            NotificacionNuevaSolicitud(pConsultationViewModel, subject);
+
+
+
+            var result = new
+            {
+
+                status = 1
+            };
+            return Ok(result);
+
+
+        }
+
+        private void NotificacionNuevaSolicitud(ConsultationViewModel pConsultationViewModel, string subject)
+        {
+
+
+
+            var base_url = ConfigurationManager.AppSettings["site.url"];
+
+            UserBL userBL = new UserBL();
+
+            List<UserViewModel> evaluadores = userBL.ObtenerPorPermiso(118);// 12 = perfil evaluador
+
+            foreach (UserViewModel evaluador in evaluadores)
+            {
+                SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
+
+                NotificationGeneralAccountViewModel oNotificationConceptViewModel = new NotificationGeneralAccountViewModel();
+                oNotificationConceptViewModel.name = evaluador.contact_name;
+                oNotificationConceptViewModel.url_solicitud_concepto = base_url + @"/Consultation/Ver/" + pConsultationViewModel.consultation_id;
+                oNotificationConceptViewModel.to = evaluador.user_email;
+
+                oNotificationConceptViewModel.url_home = ConfigurationManager.AppSettings["site.url"];
+
+                oNotificationConceptViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+                oNotificationConceptViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+                oNotificationConceptViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+
+                oSendEmailNotificationBL.EnviarNotificacionSolicitudConcepto(oNotificationConceptViewModel, subject);
+
+
+                NotificationBL oNotificationBL = new NotificationBL();
+                NotificationViewModel pNotificationViewModel = new NotificationViewModel();
+                pNotificationViewModel.user_id = evaluador.id;
+                pNotificationViewModel.message = "Hay una nueva solicitud de concepto con número '" + pConsultationViewModel.consultation_id + "'";
+                pNotificationViewModel.url = @"/Consultation/Ver/" + pConsultationViewModel.consultation_id;
+
+                oNotificationBL.Agregar(pNotificationViewModel);
+            }
+
+
+
+
+        }
+
         [HttpPost]
         [Route("concepts")]
         public IHttpActionResult Concepts(ConceptsFilterLiteViewModel filter)
@@ -311,6 +403,9 @@ namespace Arca.WebApi.Controllers
             };
             return Ok(result);
         }
+       
+
+
         [HttpGet]
         public IHttpActionResult GetAll()
         {

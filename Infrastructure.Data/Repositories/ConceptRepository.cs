@@ -47,8 +47,9 @@ namespace Infrastructure.Data.Repositories
                 institution = a.investigators.institutions.name,
                 origin = a.draft_laws.origins.name,
                 pdf_file = a.pdf_path,
-                calificado = a.concepts_status_logs.Where(l => l.user_id_created == filter.user_id && (l.concept_status_id == 5 || l.concept_status_id == 6)).Count() > 0 ? 1 : 0,
+                calificado = a.concepts_status_logs.Where(l => l.user_id_created == filter.user_id && (l.concept_status_id == 5 || l.concept_status_id == 6)).Count() > 0 ? 1 :(a.concept_debate_speakers.Select(d => d.user_id).Contains(filter.user_id)?0:1),
                 draft_law_link=a.draft_laws.link,
+                tags_list= a.concepts_tags.Select(t=> t.tags.name).ToList(),
 
             });
 
@@ -107,7 +108,8 @@ namespace Infrastructure.Data.Repositories
                 draft_law_status_id = a.draft_laws.status_id,
                 sub_type = a.draft_laws.draft_laws_status.sub_type,
 
-                pdf_file = a.pdf_path
+                pdf_file = a.pdf_path,
+                qualification = a.concepts_status_logs.Where(b => (b.concept_status_id == 5 || b.concept_status_id == 6) && b.user_id_created == filter.user_id).Select(c => c.qualification).Take(1).FirstOrDefault()
             });
 
 
@@ -561,7 +563,9 @@ namespace Infrastructure.Data.Repositories
             IQueryable<concepts> queryFilters = Set;
             queryFilters = queryFilters.Where(a => a.draft_laws.draft_law_number == filter.draft_law_number);
             queryFilters = queryFilters.Where(a => a.concept_debate_speakers.Select(d => d.user_id).Contains(filter.user_id));
-            queryFilters = queryFilters.Where(a => a.draft_laws.period_id == filter.period_id && a.concept_status_id == 2 || (a.concept_status_id == 4) || (a.concept_status_id == 5 && a.concepts_status_logs.Where(l => l.concept_status_id == 5 && l.user_id_created == filter.user_id).Count() == 0));//falta mejorar
+            // queryFilters = queryFilters.Where(a => a.draft_laws.period_id == filter.period_id && a.concept_status_id == 2 || (a.concept_status_id == 4) || (a.concept_status_id == 5 && a.concepts_status_logs.Where(l => l.concept_status_id == 5 && l.user_id_created == filter.user_id).Count() == 0));//falta mejorar
+
+            queryFilters = queryFilters.Where(a => a.draft_laws.period_id == filter.period_id &&( (a.concept_status_id == 2) || (a.concept_status_id == 4) || (a.concept_status_id == 5) || (a.concept_status_id == 6)));//falta mejorar
 
 
 
@@ -580,7 +584,8 @@ namespace Infrastructure.Data.Repositories
                 draft_law_status_id = a.draft_laws.status_id,
                 sub_type = a.draft_laws.draft_laws_status.sub_type,
 
-                pdf_file = a.pdf_path
+                pdf_file = a.pdf_path,
+                qualification = a.concepts_status_logs.Where(b => (b.concept_status_id == 5 || b.concept_status_id == 6) && b.user_id_created == filter.user_id).Select(c => c.qualification).Take(1).FirstOrDefault()
             });
 
 

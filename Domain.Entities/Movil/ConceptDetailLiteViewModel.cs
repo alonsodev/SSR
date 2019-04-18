@@ -27,5 +27,7 @@ namespace Domain.Entities.Movil
         public string pdf_file { get; set; }
 
         public string draft_law_link { get; set; }
+        public string tags { get; set; }
+        public List<string> tags_list { get; set; }
     }
 }
