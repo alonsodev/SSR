@@ -358,7 +358,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                                             <li class="@(ViewBag.active == "periods" ? "active" : "")">
                                                 <a href="/Period">
                                                     <span class="sidebar-mini-icon">P</span>
-                                                    <span class="sidebar-normal"> Periodos </span>
+                                                    <span class="sidebar-normal"> Periodos legislativo </span>
                                                 </a>
                                             </li>
                                         }
@@ -464,6 +464,19 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                             </li>
                         }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
+                        {
+                            <li class="@(ViewBag.active == "concepts_evaluated" ? "active" : "")">
+
+                                <a href="/Concept/Evaluados">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Historial de conceptos</p>
+                                </a>
+
+                            </li>
+                        }
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_to_qualify))
                         {
@@ -473,7 +486,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                                     <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Conceptos Por Calificar</p>
+                                    <p>Concepto recibidos</p>
                                 </a>
 
                             </li>
@@ -486,7 +499,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                                     <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Conceptos Recibidos</p>
+                                    <p>Historial de conceptos </p>
                                 </a>
 
                             </li>
@@ -560,9 +573,19 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                             </li>
                         }
+                        <li class="@(ViewBag.active == "concept_repository" ? "active" : "")">
+
+                            <a href="/concept/repositorio">
+
+                                <i class="now-ui-icons education_paper"></i>
+
+                                <p>Repositorio de Conceptos</p>
+                            </a>
+
+                        </li>
                         <li class="@(ViewBag.active == "PoliticasUso" ? "active" : "")">
 
-                            <a href="/politicasuso" target="_blank">
+                            <a href="/politicasuso">
 
                                 <i class="now-ui-icons education_paper"></i>
 
@@ -570,14 +593,25 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                             </a>
 
                         </li>
+
                     </ul>
                 }
                 else
                 {
                     <ul class="nav">
+                        <li class="@(ViewBag.active == "concept_repository" ? "active" : "")">
+
+                            <a href="/concept/repositorio">
+
+                                <i class="now-ui-icons education_paper"></i>
+
+                                <p>Repositorio de Conceptos</p>
+                            </a>
+
+                        </li>
                         <li class="@(ViewBag.active == "PoliticasUso" ? "active" : "")">
 
-                            <a href="/politicasuso" target="_blank">
+                            <a href="/politicasuso">
 
                                 <i class="now-ui-icons education_paper"></i>
 
@@ -628,10 +662,10 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                         {
 
                             var notifications = AuthorizeUserAttribute.Notificaciones();
-                            ViewBag.notificaciones = notifications;
+                            ViewBag.notificaciones = notifications.Take(10).ToList();
                             ViewBag.num_notificaciones = notifications.Count();
 
-                            // ViewBag.num_notificaciones_pendientes = AuthorizeUserAttribute.ObtenerNroNoNotificados();
+                            //ViewBag.num_notificaciones_pendientes = AuthorizeUserAttribute.ObtenerNroNoNotificados();
 
 
                             <div class="row">
@@ -659,7 +693,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                                             {
                                                 foreach (var x in (List<NotificationViewModel>)ViewBag.notificaciones)
                                                 {
-                                                    <a class="dropdown-item" href="javascript:void(0);" style="border-bottom: 1px solid #dddfe2; " onclick="ActualizarNotificacion(@x.notification_id,'@x.url')">@x.message</a>
+                                                    <a class="dropdown-item" href="@x.url" style="border-bottom: 1px solid #dddfe2; ">@x.message</a>
                                                 }
 
 
@@ -698,7 +732,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                     <div class="copyright" id="copyright">
                         &copy;
-                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Desiñado por Raycom Soluciones SAS.
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Todos los derechos reservados - CAEL.
                     </div>
                 </div>
 
@@ -863,7 +897,8 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
         </script>
     }
     <script>
-        function ActualizarNotificacion(notification_id, url) {
+        function ActualizarNotificacion(notification_id, url)
+         {
              $.ajax(
                 {
                     url: "@Url.Action("ActualizarNotificacion", "Account")",
@@ -1074,7 +1109,8 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
             return returnValue;
         }
-        $.blockUI.defaults.message = '<h1>Por favor espere...</h1>';
+        $.blockUI.defaults.baseZ = 9000;
+        $.blockUI.defaults.message = '  <img class="responsive-img" src="/assets/img/loading.gif" width="128px" />';
         $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
         $(document).bind("ajaxError", function (evt, jqXHR, settings, err, arguments) {
@@ -1099,7 +1135,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
         });
     </script>
 
-
+   
 
 </body>
 

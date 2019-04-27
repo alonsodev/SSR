@@ -179,7 +179,7 @@ namespace Presentation.Web.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var extension = Path.GetExtension(file.FileName);
-                    var fileName = Guid.NewGuid().ToString() + "." + extension;
+                    var fileName = Guid.NewGuid().ToString() + extension;
 
 
                     pRoleViewModel.manual_file = "/Manual/" + fileName;

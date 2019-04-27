@@ -40,7 +40,8 @@ namespace Presentation.Web.Controllers
             return View(oGeneralFilterViewModel);
             
         }
-
+        // GET: User
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.ranking_investigator })]
         public ActionResult Mejores()
         {
             SelectorBL oSelectorBL = new SelectorBL();
@@ -102,6 +103,7 @@ namespace Presentation.Web.Controllers
 
 
         }
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.ranking_investigator })]
         public JsonResult ObtenerRanking(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {
             ConceptBL oConceptBL = new ConceptBL();

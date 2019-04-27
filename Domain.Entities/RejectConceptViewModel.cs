@@ -23,7 +23,7 @@ namespace Domain.Entities
 
         public string reason_reject { get; set; }
 
-        [Display(Name = "Periodo")]
+        [Display(Name = "Periodo legislativo")]
         public int period_id { get; set; }
         
 

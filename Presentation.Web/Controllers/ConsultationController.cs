@@ -125,6 +125,11 @@ namespace Presentation.Web.Controllers
             int.TryParse(id, out pIntID);
             ConsultationViewModel pConsultationViewModel = oBL.Obtener(pIntID);
 
+
+            NotificationBL oNotificationBL = new NotificationBL();
+            oNotificationBL.ActualizarNotificacionLeido("/Consultation/Ver/" + id, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
+
             SelectorBL oSelectorBL = new SelectorBL();
             pConsultationViewModel.interest_areasMultiSelectList = new MultiSelectList(oSelectorBL.InterestAreasSelector(), "Value", "Text");
 
@@ -163,6 +168,25 @@ namespace Presentation.Web.Controllers
 
 
         }
+
+        [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_consultation_realized })]
+        public JsonResult Eliminar(int id)
+        {
+
+            ConsultationBL oBL = new ConsultationBL();
+
+            oBL.Eliminar(id);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                status = "1",
+
+            });
+
+        }
+
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.list_consultation_send })]
         public JsonResult ObtenerListaEnviados(DataTableAjaxPostModel ofilters)//DataTableAjaxPostModel model
         {

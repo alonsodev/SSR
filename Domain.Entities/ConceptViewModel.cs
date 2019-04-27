@@ -123,5 +123,11 @@ namespace Domain.Entities
         public int period_closed { get; set; }
         public int notificable { get; set; }
 
+
+
+        [Display(Name = "Mensaje")]
+        
+        
+        public string message { get; set; }
     }
 }

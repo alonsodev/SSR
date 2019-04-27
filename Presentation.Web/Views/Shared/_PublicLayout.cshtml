@@ -162,7 +162,7 @@
                     </nav>
                     <div class="copyright" id="copyright">
                         &copy;
-                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Desiñado por Raycom Soluciones SAS.
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>, Todos los derechos reservados - CAEL.
                     </div>
                 </div>
 
@@ -402,9 +402,10 @@
 
 
     <script type="text/javascript">
-
-        $.blockUI.defaults.message = '<h1>Por favor espere...</h1>';
+        $.blockUI.defaults.baseZ = 9000;
+        $.blockUI.defaults.message = '  <img class="responsive-img" src="/assets/img/loading.gif" width="128px" />';
         $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
 
         $(document).bind("ajaxError", function (evt, jqXHR, settings, err, arguments) {
 

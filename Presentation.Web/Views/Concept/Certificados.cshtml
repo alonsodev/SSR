@@ -31,11 +31,7 @@
                     </div>
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-                        <div class="card-footer text-right">
-
-                            <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
-
-                        </div>
+                      
                     </div>
                 </div>
                 <div class="toolbar">
@@ -111,7 +107,7 @@
         $(function () {
             $("#period_id").select2();
             UiFormulario.init();
-            $("#btnBuscar").click(function () {
+            $('#period_id').on('select2:select', function (e) {
                 datatable.ajax.reload();
             });
         })
@@ -222,7 +218,7 @@
                             },
                             {
                                 render: function (data, type, row) {
-                                    return '<a href="/Concept/Certificado/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Generar Certificado"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
+                                    return '<a href="/Concept/Certificado/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Generar Certificado"><i class="now-ui-icons education_agenda-bookmark"></i></a>';
 
                                 },
                                 targets: 10,

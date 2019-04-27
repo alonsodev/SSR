@@ -23,6 +23,10 @@ namespace Business.Logic
         }
 
 
+        public void ActualizarNotificacionLeido(string url, int user_id)
+        {
+             oRepositorio.ActualizarNotificacionLeido(url, user_id);
+        }
 
         public List<NotificationViewModel> ObtenerPorUsuario(int user_id)
         {

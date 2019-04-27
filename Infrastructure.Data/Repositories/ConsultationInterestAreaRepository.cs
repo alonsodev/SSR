@@ -17,8 +17,9 @@ namespace Infrastructure.Data.Repositories
         {
         }
 
-       
-
-       
+        public void DeleteByConsultation(int consultation_id)
+        {
+            Set.Where(a => a.consultation_id == consultation_id).Delete();
+        }
     }
 }

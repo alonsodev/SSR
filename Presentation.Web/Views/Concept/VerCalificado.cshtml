@@ -66,83 +66,16 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <embed onload="javascript: alert(1);" src="/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#toolbar=1&navpanes=1&scrollbar=1&zoom=100" type="application/pdf" width="100%" height="600px" />
+
+                            <iframe src="~/Assets/js/plugins/pdf_viewer/web/viewer.html?file=/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#zoom=100" style="width:100%;height:600px;"></iframe>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.draft_law_number, htmlAttributes: new { @class = "" })</label>
 
-                            <div class="col-sm-4">
-
-                                <div class="form-group">
-                                    @Html.EditorFor(model => model.draft_law_number, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                                    @Html.ValidationMessageFor(model => model.draft_law_number, "", new { @class = "text-danger" })
-
-                                </div>
-
-                            </div>
-
-                            <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.commission_id, htmlAttributes: new { @class = "" })</label>
-
-                            <div class="col-sm-4">
-
-                                <div class="form-group">
-                                    @Html.DropDownList("commission_id", (IEnumerable<SelectListItem>)ViewBag.commissions, new { @class = "form-control", @disabled = "disabled" })
-                                    @Html.ValidationMessageFor(model => model.commission_id, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group has-label">
-
-                            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "" })
-                            @Html.TextAreaFor(model => model.title, new { @class = "form-control", @disabled = "disabled" })
-                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                            <span class="text-danger field-validation-error name-error"></span>
-                        </div>
-                        <div class="form-group has-label">
-
-                            @Html.LabelFor(model => model.summary, htmlAttributes: new { @class = "" })
-                            @Html.TextAreaFor(model => model.summary, new { @class = "form-control", @disabled = "disabled" })
-                            @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-                            <span class="text-danger field-validation-error name-error"></span>
-                        </div>
-                        <div class="form-group has-label">
-
-
-                            @Html.LabelFor(model => model.tags, htmlAttributes: new { @class = "" })
-
-                            @Html.ListBoxFor(model => model.tags, Model.tagsMultiSelectList, new { size = 8, @class = "form-control", @disabled = "disabled" })
-
-                            @Html.ValidationMessageFor(model => model.tags, "", new { @class = "text-danger" })
-
-                        </div>
-
-
-                        <div class="form-group has-label">
-
-                            @Html.LabelFor(model => model.concept, htmlAttributes: new { @class = "" })
-
-                            @Html.TextAreaFor(model => model.concept, new { @class = "textarea-editor", @disabled = "disabled" })
-                            @Html.ValidationMessageFor(model => model.concept, "", new { @class = "text-danger" })
-                            <span class="text-danger field-validation-error name-error"></span>
-                        </div>
-
-
-
-                        <div class="form-group has-label">
-
-                            @Html.LabelFor(model => model.bibliography, htmlAttributes: new { @class = "" })
-                            @Html.TextAreaFor(model => model.bibliography, new { @class = "form-control", @disabled = "disabled" })
-                            @Html.ValidationMessageFor(model => model.bibliography, "", new { @class = "text-danger" })
-
-                        </div>
-
-    -->
                 </div><!-- end content-->
                 <div class="card-footer text-right">
 
                     <button id="btnCancelar" type="button" class="btn btn-primary">Regresar</button>
+                    <button id="btnSolicitud" type="button" class="btn btn-primary">Consultar</button>
                 </div>
             }
         </div><!--  end card  -->
@@ -150,7 +83,60 @@
 </div> <!-- end row -->
 
 
+<div class="modal fade" id="solicitud_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up">Consultar Concepto</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" id="concept_email_investigator" style="text-align : center;">Concepto presentado por: @Model.investigator</div>
+                    <div class="col-md-12" id="concept_email_institution" style="text-align : center;">@Model.institution</div>
+                </div>
+
+                <div class="row">
+                    <div class="form-check mt-3">
+                        <label class="form-check-label">
+                            <input id="ch_solicitud_ampliacion" class="form-check-input" type="checkbox">
+                            <span class="form-check-sign"></span>
+                            Solicitud de ampliaci&oacute;n o actualizaci&oacute;n del concepto
+                        </label>
+                    </div>
+
+                </div>
+                <div class="form-group has-label message">
+
+                    @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "" })
+                    @Html.TextAreaFor(model => model.message, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+                    <span class="text-danger field-validation-error message-error"></span>
+
+                </div>
+                <div class="row">
+                    <div class="form-check mt-3">
+                        <label class="form-check-label">
+                            <input id="ch_solicitud_datos_investigador" class="form-check-input" type="checkbox">
+                            <span class="form-check-sign"></span>
+                            Solicitud de los datos de contacto del investigador
+                        </label>
+                    </div>
+
+                </div>
+                <br />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id="btnSolicitudEnviar" type="button" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -160,7 +146,7 @@
     <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
     <script type="text/javascript">
-        
+
         var rechazo = false;
         ea.addMethod('ValidarRazonRechazo', function () {
             debugger;
@@ -171,7 +157,7 @@
 
             return false;
 
-           
+
 
         });
         ea.addMethod('ValidarRazonRechazoDescripcion', function () {
@@ -207,6 +193,92 @@
                 $('#commission_id').css('width', "100%");
             });
 
+            $('#ch_solicitud_ampliacion').change(function () {
+                if ($(this).is(":checked")) {
+                    $('.message').show();
+                }
+                else {
+                    $('.message').hide();
+                }
+
+            });
+        });
+
+         $("#btnSolicitud").click(function () {
+             $("#ch_solicitud_ampliacion").prop('checked', false);  // Checks the box
+             $("#ch_solicitud_datos_investigador").prop('checked', false);
+             $('#message').val('');
+             $('.message').hide();
+             $('#solicitud_modal').modal('show');
+
+        });
+
+        $("#btnSolicitudEnviar").click(function () {
+            $('.message-error').html('');
+            var solicitud_datos_investigador = $('#ch_solicitud_datos_investigador').is(':checked') ? 1 : 0;
+            var solicitud_ampliacion = $('#ch_solicitud_ampliacion').is(':checked') ? 1 : 0;
+            var concept_id = $('#concept_id').val();
+            if (solicitud_ampliacion == 0 && solicitud_datos_investigador == 0) {
+                swal({
+                    title: 'Error!',
+                    html: 'Debe seleccionar al menos una solicitud.',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+                return false;
+            }
+
+            if (solicitud_ampliacion == 1 && $('#message').val().trim()=='') {
+                $('.message-error').html('El Mensaje es obligatorio.');
+                return false;
+            }
+
+            if (solicitud_ampliacion == 1 && $('#message').val().length > 650 ) {
+                $('.message-error').html('El Mensaje debe tener máximo 650 caracteres.');
+                return false;
+            }
+
+            $.ajax({
+                url: "@Url.Action("EnviarNotificacion", "Concept")",
+                type: "POST",
+
+                data: {
+
+                    concept_id: concept_id,
+                    solicitud_datos_investigador: solicitud_datos_investigador,
+                    solicitud_ampliacion: solicitud_ampliacion,
+                    message: $('#message').val()
+                }
+            })
+                .done(function (result) {
+                    //debugger;
+
+
+
+
+                    swal({
+                        title: 'Solictud enviada!',
+                        text: "Se ha enviado su(s) solictud(es) con éxito. ",
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false,
+                    }).then(function () {
+
+                        $('#solicitud_modal').modal('hide');
+
+                    }).catch(swal.noop);;
+
+
+                })
+                .fail(function (data) {
+                    console.log("error");
+                })
+                .always(function (data) {
+                    console.log("complete");
+                });
+
+
         });
 
         $("#btnCancelar").click(function () {
@@ -214,7 +286,7 @@
         });
 
         $("#btnAprobar").click(function () {
-          
+
 
                 $.ajax(
                     {
@@ -244,13 +316,13 @@
                 .always(function (data) {
                     console.log("complete");
                 });
-            
+
         });
 
         $("#btnRechazar").click(function () {
             $("#reject_modal").modal('show');
             $("#reject").val("1");
-            
+
         });
 
         $("#btnEnviarRechazo").click(function () {
@@ -277,7 +349,7 @@
                     }).catch(swal.noop);
                 })
                  .fail(function (data) {
-                     
+
                     console.log("error");
                 })
                  .always(function (data) {

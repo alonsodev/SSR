@@ -157,7 +157,7 @@
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
-                                Se solicita una ampliación o actualización de su concepto técnico emitido con número "<xsl:value-of select="//@concept_id" />", a continuación los datos del congresista que envío dicha solicitud:
+                                Se solicita una ampliación o actualización del concepto técnico emitido con número "<xsl:value-of select="//@concept_id" />", a continuación los datos del congresista que envío dicha solicitud:
                               </multiline>
                             </span>
                           </div>
@@ -171,7 +171,16 @@
                       <tr>
                         <td align="center">
 
-                          <table class="TableWithOutBorder">
+                          <table class="TableWithOutBorder" style="max-width:90%">
+                            <tr>
+                              <td  style="width:40%">
+                                <b>Mensaje:</b>
+                              </td>
+                              <td>
+                                <xsl:value-of select="//@message" />
+                              </td>
+
+                            </tr>
                             <tr>
                               <td>
                                 <b>Nombre de Congresista:</b>
@@ -211,7 +220,7 @@
                         <td height="45"></td>
                       </tr>
                       <tr>
-                        <td  align="CENTER" class="center_content text_color_282828" style="color: #282828; font-size: 15px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                        <td  align="CENTER" class="center_content text_color_282828" style="color: #a1a2a5; font-size: 15px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                           <div class="editable-text">
                             <span class="text_container">
                               <multiline>
@@ -244,9 +253,8 @@
           </tr>
           <tr>
             <td>
-
-              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#BC9E54" width="600" align="center" border="0" cellspacing="0"
-                  cellpadding="0" style="margin: 0 auto;">
+              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#DDDDDD" width="600" align="center" border="0" cellspacing="0"
+                            cellpadding="0" style="margin: 0 auto;">
 
                 <tr>
                   <td height="25"></td>
@@ -256,7 +264,7 @@
 
                     <table class="table1" width="520" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
                       <tr>
-                        <td  align="center" class="text_color_a1a2a5" style="color: #FFFFFF; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                        <td  align="center" class="text_color_a1a2a5" style="color: #282828; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
@@ -272,7 +280,7 @@
                       </tr>
 
                       <tr>
-                        <td  align="center" class="text_color_a1a2a5" style="color: #FFFFFF; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                        <td  align="center" class="text_color_a1a2a5" style="color: #282828; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
@@ -289,7 +297,7 @@
                       </tr>
 
                       <tr>
-                        <td  align="center" class="text_color_a1a2a5" style="color: #FFFFFF; font-size: 12px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                        <td  align="center" class="text_color_a1a2a5" style="color: #282828; font-size: 12px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
@@ -317,8 +325,8 @@
           <tr>
             <td>
 
-              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#DDDDDD" width="600" align="center" border="0" cellspacing="0"
-                  cellpadding="0" style="margin: 0 auto;">
+              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#BC9E54" width="600" align="center" border="0" cellspacing="0"
+                          cellpadding="0" style="margin: 0 auto;">
 
                 <tr>
                   <td height="15"></td>
@@ -332,7 +340,7 @@
 
                           <table width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                              <td  align="justify" class="text_color_282828" style="color: #282828; font-size: 11px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                              <td  align="justify" class="text_color_282828" style="color: #FFFFFF; font-size: 11px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                 <div class="editable-text">
                                   <span class="text_container">
                                     <multiline>

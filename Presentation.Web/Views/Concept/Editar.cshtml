@@ -158,6 +158,7 @@
 
     <link href="@Url.Content("/assets/js/plugins/summernote/summernote-bs4.css")" rel="stylesheet" />
     <script type="text/javascript">
+        var maximumImageFileSize = 1048576;
         function ValidarTags() {
             $('.tags-error').html('');
             var tags = $('#tags').val();
@@ -455,10 +456,24 @@
 
                     return false;
                 }
-                $('#form-registro').trigger('submit');
+              
 
 
+                swal({
+                    title: '¿Estás Seguro de emitir este concepto?',
+                    text: "No se podrá revertir!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Si, emitir concepto!',
+                    buttonsStyling: false
+                }).then(function () {
 
+                    $('#form-registro').trigger('submit');
+
+                }).catch(swal.noop);
 
             }
 

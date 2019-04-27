@@ -14,7 +14,7 @@
             <div class="card-header">
                 <h4 class="card-title">@ViewBag.Title</h4>
             </div>
-            @using (Html.BeginForm("MiCuenta", "User", FormMethod.Post, new { id = "form-user", title = "Subir Avatar", enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("MiCuenta", "User", FormMethod.Post, new { id = "form-user", title = "Subir imagen de perfil", enctype = "multipart/form-data" }))
             {
                 <div class="card-body">
 
@@ -106,7 +106,7 @@
                         <div class="col-sm-4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <label class="" for="avatar_image">Avatar</label>
+                                    <label class="" for="avatar_image">Imagen de perfil</label>
                                 </div>
 
                             </div>
@@ -221,7 +221,7 @@
 
             elErrorContainer: '#kv-avatar-errors-2',
             msgErrorClass: 'alert alert-block alert-danger',
-            defaultPreviewContent: '<img src="' + avatar_image + '" alt="Your Avatar">',
+            defaultPreviewContent: '<img src="' + avatar_image + '" alt="Tu imagen de perfil">',
             layoutTemplates: { main2: '{preview} {remove} {browse}' },
             allowedFileExtensions: ["jpg", "png", "gif"]
         });

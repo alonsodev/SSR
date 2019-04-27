@@ -80,5 +80,18 @@ namespace Infrastructure.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarTablasReporte", period_idParameter);
         }
+    
+        public virtual int ActualizarNotificacionLeido(string url, Nullable<int> user_id)
+        {
+            var urlParameter = url != null ?
+                new ObjectParameter("url", url) :
+                new ObjectParameter("url", typeof(string));
+    
+            var user_idParameter = user_id.HasValue ?
+                new ObjectParameter("user_id", user_id) :
+                new ObjectParameter("user_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarNotificacionLeido", urlParameter, user_idParameter);
+        }
     }
 }

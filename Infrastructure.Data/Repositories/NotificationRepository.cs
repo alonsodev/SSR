@@ -30,7 +30,7 @@ namespace Infrastructure.Data.Repositories
                 url=a.url,
                 notified=a.notified,
                 message=a.message
-            }).Take(10);
+            });
 
             return query.ToList();
         }
@@ -118,6 +118,16 @@ namespace Infrastructure.Data.Repositories
                 message = a.message,
                 date_created = a.date_created
             }).Take(1).FirstOrDefault();
+        }
+
+
+        public void ActualizarNotificacionLeido(string url,int user_id)
+        {
+            using (var context = new SSREntities())
+            {
+                var results = context.ActualizarNotificacionLeido(url,user_id);
+            }
+
         }
     }
 }

@@ -381,7 +381,8 @@ namespace Presentation.Web.Controllers
             var user_pass = pViewModel.user_pass;
             pViewModel.user_pass = Helper.Encripta(pViewModel.user_pass);
             pViewModel.user_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
-            pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
+            pViewModel.user_name = pViewModel.user_name.Replace("  ", " ").Replace("  ", " ");
+            pViewModel.contact_name = pViewModel.user_name;
             string user_code = Guid.NewGuid().ToString();
             pViewModel.user_code_activate = user_code;
             UserBL oBL = new UserBL();
@@ -520,7 +521,9 @@ namespace Presentation.Web.Controllers
             UserBL oUserBL = new UserBL();
             pViewModel.user_id_modified = AuthorizeUserAttribute.UsuarioLogeado().user_id;
             pViewModel.user_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
-            pViewModel.contact_name = pViewModel.first_name + " " + pViewModel.second_name + " " + pViewModel.last_name + " " + pViewModel.second_last_name;
+            
+            pViewModel.user_name = pViewModel.user_name.Replace("  ", " ").Replace("  ", " ");
+            pViewModel.contact_name = pViewModel.user_name;
             pViewModel.birthdate = DateTime.ParseExact(pViewModel.birthdate_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             pViewModel.avatar = null;
             if (Request.Files.Count > 0)

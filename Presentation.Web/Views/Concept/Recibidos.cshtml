@@ -2,7 +2,7 @@
 @{
     ViewBag.HeaderTitleLink = Url.Action("Recibidos", "Concept");
     ViewBag.HeaderTitle = "Conceptos Técnicos";
-    ViewBag.Title = "Conceptos Técnicos Recibidos";
+    ViewBag.Title = "Historial de conceptos,  calificados";
 
     ViewBag.active = "concepts_received";
 
@@ -31,11 +31,7 @@
                     </div>
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-                        <div class="card-footer text-right">
-
-                            <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
-
-                        </div>
+                       
                     </div>
                 </div>
                 <div class="toolbar">
@@ -109,7 +105,7 @@
         $(function () {
             $("#period_id").select2();
             UiFormulario.init();
-            $("#btnBuscar").click(function () {
+            $('#period_id').on('select2:select', function (e) {
                 datatable.ajax.reload();
             });
 

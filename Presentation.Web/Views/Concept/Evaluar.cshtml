@@ -96,7 +96,9 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <embed onload="javascript: alert(1);" src="/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#toolbar=1&navpanes=1&scrollbar=1&zoom=100" type="application/pdf" width="100%" height="600px" />
+                            
+
+                            <iframe src="~/Assets/js/plugins/pdf_viewer/web/viewer.html?file=/Concept/OpenPDF/@Html.Raw(ViewBag.concept_id)#zoom=100" style="width:100%;height:600px;"></iframe>
                         </div>
                     </div>
 

@@ -27,7 +27,7 @@
                             <th>Mensaje</th>
                             <th>Fecha creación</th>
 
-
+                            <th class="disabled-sorting text-right">Acciones</th>
 
                         </tr>
                     </thead>
@@ -39,8 +39,7 @@
                             <th>Tipo de solicitud</th>
                             <th>Mensaje</th>
                             <th>Fecha creación</th>
-
-
+                            <th class="disabled-sorting text-right">Acciones</th>
                         </tr>
                     </tfoot>
 
@@ -138,15 +137,16 @@
                         ],
                         "columns": [
                             { "data": "consultation_id" },
-                            { "data": "title" },                        
+                            { "data": "title" },
                             { "data": "interest_areas_str" },
                             { "data": "consultation_type" },
                             { "data": "consultation_id" },
-                             { "data": "date_created" }
+                            { "data": "date_created" },
+                            { "data": "consultation_id" }
                         ],
 
                         columnDefs: [
-                            { 'className': 'text-center', 'targets': [2, 3] },
+                            { 'className': 'text-center', 'targets': [2, 3,4,5,6] },
                             {
                                 render: function (data, type, row) {
 
@@ -154,6 +154,16 @@
                                     return '<p class="overflow-friendly" title="' + row.title + '">' + row.title + '</p>';
                                 },
                                 targets: 1
+                            },
+
+                            {
+                                render: function (data, type, row) {
+                                    return '<p style="display:none" id="summary-' + row.consultation_id + '">' + row.message + '</p>'
+                                        + '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.consultation_id + '" data-toggle="tooltip" title="Ver Mensaje"><i class="now-ui-icons education_paper"></i></a>';
+
+                                },
+                                targets: 4,
+                                orderable: false
                             },
                             {
                                 render: function (data, type, row) {
@@ -166,11 +176,9 @@
                             },
                             {
                                 render: function (data, type, row) {
-                                    return '<p style="display:none" id="summary-' + row.consultation_id + '">' + row.message + '</p>'
-                                        + '<a href="#" class="btn btn-effect-ripple btn-xs btn-warning summary" row-id="' + row.consultation_id + '" data-toggle="tooltip" title="Ver Mensaje"><i class="now-ui-icons education_paper"></i></a>';
-
+                                    return '<a href="#" class="btn btn-effect-ripple btn-xs btn-danger delete" row-id="' + row.consultation_id + '" data-toggle="tooltip" title="Eliminar"><i class="now-ui-icons ui-1_simple-remove"></i></a>';
                                 },
-                                targets: 4,
+                                targets: 6,
                                 orderable: false
                             }
 
@@ -189,7 +197,54 @@
                         $("#summary_modal").modal('show');
                         event.preventDefault();
                     });
+                     datatable.on('click', '.delete', function (event) {
+                        debugger;
+                        var $tr = $(this).closest('tr');
+                      
 
+                        var row_id = $(this).attr('row-id');
+                       
+
+                        swal({
+                            title: '¿Estás seguro de eliminarlo permanentemente?',
+                            text: "No se podrá revertir el cambio!",
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonClass: 'btn btn-success',
+                            cancelButtonClass: 'btn btn-danger',
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonText: 'Si, Eliminar Registro!',
+                            buttonsStyling: false
+                        }).then(function () {
+
+                            $.ajax(
+                                {
+                                    url: "@Url.Action("Eliminar", "consultation")",
+                                    type: "POST",
+                                    data: { id: row_id }
+                                })
+                                .done(function (data) {
+                                    datatable.ajax.reload();
+                                    swal({
+                                        title: 'Eliminado!',
+                                        text: 'El registro ha sido eliminado.',
+                                        type: 'success',
+                                        confirmButtonClass: "btn btn-success",
+                                        buttonsStyling: false
+                                    });
+                                    
+                                    
+                                })
+                                .fail(function (data) {
+                                    console.log("error");
+                                })
+                                .always(function (data) {
+                                    console.log("complete");
+                                });
+                           
+                        }).catch(swal.noop);
+                     
+                    });
                     /* Add placeholder attribute to the search input */
                     $('.dataTables_filter input').attr('placeholder', 'Buscar');
                 }

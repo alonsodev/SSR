@@ -189,7 +189,7 @@
                         <td height="45"></td>
                       </tr>
                       <tr>
-                        <td  align="CENTER" class="center_content text_color_282828" style="color: #282828; font-size: 15px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                        <td  align="CENTER" class="center_content text_color_282828" style="color: #a1a2a5; font-size: 15px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                           <div class="editable-text">
                             <span class="text_container">
                               <multiline>
@@ -222,70 +222,54 @@
           </tr>
           <tr>
             <td>
-
-              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#BC9E54" width="600" align="center" border="0" cellspacing="0"
-                  cellpadding="0" style="margin: 0 auto;">
-
+              <table class="table1" width="520" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
                 <tr>
-                  <td height="25"></td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <table class="table1" width="520" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
-                      <tr>
-                        <td  align="center" class="text_color_a1a2a5" style="color: #FFFFFF; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
-                          <div class="editable-text" style="line-height: 2;">
-                            <span class="text_container">
-                              <multiline>
-                                Declaración de Privacidad
-                              </multiline>
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td height="5"></td>
-                      </tr>
-
-                      <tr>
-                        <td  align="center" class="text_color_a1a2a5" style="color: #FFFFFF; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
-                          <div class="editable-text" style="line-height: 2;">
-                            <span class="text_container">
-                              <multiline>
-                                Ha recibido esta notificación única porque ha creado una cuenta en ARCA.
-                              </multiline>
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-
-
-                      <tr>
-                        <td height="10"></td>
-                      </tr>
-
-                      <tr>
-                        <td  align="center" class="text_color_a1a2a5" style="color: #FFFFFF; font-size: 12px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
-                          <div class="editable-text" style="line-height: 2;">
-                            <span class="text_container">
-                              <multiline>
-                                <a href="{//@url_privacidad}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Ver declaración de privacidad - </a>
-                                <a href="{//@url_contacto}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Contacto: xxx-xxx-xxx </a>
-                                <a href="{//@url_politicas}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Políticas de uso-términos y condiciones </a>
-                              </multiline>
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-
-
-
-                    </table>
-
+                  <td  align="center" class="text_color_a1a2a5" style="color: #282828; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                    <div class="editable-text" style="line-height: 2;">
+                      <span class="text_container">
+                        <multiline>
+                          Declaración de Privacidad
+                        </multiline>
+                      </span>
+                    </div>
                   </td>
                 </tr>
+
+                <tr>
+                  <td height="5"></td>
+                </tr>
+
+                <tr>
+                  <td  align="center" class="text_color_a1a2a5" style="color: #282828; font-size: 14px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                    <div class="editable-text" style="line-height: 2;">
+                      <span class="text_container">
+                        <multiline>
+                          Ha recibido esta notificación única porque ha creado una cuenta en ARCA.
+                        </multiline>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td height="10"></td>
+                </tr>
+
+                <tr>
+                  <td  align="center" class="text_color_a1a2a5" style="color: #282828; font-size: 12px;line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                    <div class="editable-text" style="line-height: 2;">
+                      <span class="text_container">
+                        <multiline>
+                          <a href="{//@url_privacidad}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Ver declaración de privacidad - </a>
+                          <a href="{//@url_contacto}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Contacto: xxx-xxx-xxx </a>
+                          <a href="{//@url_politicas}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Políticas de uso-términos y condiciones </a>
+                        </multiline>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+
 
 
               </table>
@@ -295,8 +279,8 @@
           <tr>
             <td>
 
-              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#DDDDDD" width="600" align="center" border="0" cellspacing="0"
-                  cellpadding="0" style="margin: 0 auto;">
+              <table class="table1 editable-bg-color bg_color_303f9f" bgcolor="#BC9E54" width="600" align="center" border="0" cellspacing="0"
+                        cellpadding="0" style="margin: 0 auto;">
 
                 <tr>
                   <td height="15"></td>
@@ -310,7 +294,7 @@
 
                           <table width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                              <td  align="justify" class="text_color_282828" style="color: #282828; font-size: 11px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                              <td  align="justify" class="text_color_282828" style="color: #FFFFFF; font-size: 11px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                 <div class="editable-text">
                                   <span class="text_container">
                                     <multiline>

@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Business.Logic
 {
@@ -87,6 +88,20 @@ namespace Business.Logic
             pConsultationViewModel.consultation_id = oconsultations.consultation_id;
         }
 
+        public void Eliminar(int id)
+        {
+            using (var scope = new TransactionScope())
+            {
+                consultations oConsultation = new consultations
+                {
+                    consultation_id = id,
+                };
+                oRepositorio.Delete(oConsultation);
+                oRepositorioConsultationInterestArea.DeleteByConsultation(id);
+                oUnitOfWork.SaveChanges();
+                scope.Complete();
+            }
 
+        }
     }
 }

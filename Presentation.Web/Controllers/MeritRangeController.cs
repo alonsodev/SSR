@@ -117,7 +117,7 @@ namespace Presentation.Web.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var extension = Path.GetExtension(file.FileName);
-                    var fileName = pMeritRangeViewModel.name.Trim().Replace(" ", "_").ToLower() + "." + extension;
+                    var fileName = pMeritRangeViewModel.name.Trim().Replace(" ", "_").ToLower() + extension;
 
 
                     pMeritRangeViewModel.url_image = "/Assets/img/merit_ranges/" + fileName;

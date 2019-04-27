@@ -353,7 +353,10 @@ namespace Presentation.Web.Controllers
                 }
                 if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_ranking))
                 {
-                    ws.Cell(row, col).Value = obj.ranking.ToString(); col++;
+                    
+                    ws.Cell(row, col).Value = obj.position.ToString();
+                    
+                    col++;
                 }
                 if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report_correo))
                 {

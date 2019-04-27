@@ -17,6 +17,6 @@ namespace Domain.Entities.Movil
         public int user_id { get; set; }
         public int solicitud_datos_investigador { get; set; }
         public int solicitud_ampliacion { get; set; }
-        
+        public string message { get; set; }
     }
 }

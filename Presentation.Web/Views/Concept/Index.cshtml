@@ -31,11 +31,7 @@
                     </div>
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-                        <div class="card-footer text-right">
-
-                            <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
-
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="toolbar">
@@ -86,7 +82,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
                 </button>
-                <h4 class="title title-up">Resumen</h4>
+                <h4 class="title title-up">Resumen del concepto</h4>
             </div>
             <div id="modal-body-summary" class="modal-body">
                 <p>
@@ -174,10 +170,12 @@
             $("#reason_reject_id").select2();
 
             $("#period_id").select2();
-            
-            $("#btnBuscar").click(function () {
+
+            $('#period_id').on('select2:select', function (e) {
                 datatable.ajax.reload();
             });
+
+            
         })
 
         var UiFormulario = function () {
@@ -280,7 +278,7 @@
                                     var actionsHtml = row.status;
                                     if (row.status == 'Rechazado')
                                         actionsHtml = '<a href="javascript:void(0);" onclick="MostrarRechazo(' + row.concept_id +')">' + row.status+'</a>';
-                                    return actionsHtml;
+                                    return row.status;
                                 },
                                 targets: 7
                             },
@@ -298,7 +296,7 @@
                                 render: function (data, type, row) {
                                     var html = '<a href="/Concept/Ver/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Ver Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
                                     if (row.status =='Rechazado')
-                                        html += ' <a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar Concepto Técnico"><i class="now-ui-icons shopping_tag-content"></i></a>';
+                                        html = ' <a href="/Concept/Editar/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-success" data-toggle="tooltip" title="Editar Concepto Técnico"><i class="now-ui-icons shopping_tag-content"></i></a>';
 
                                     return html;
                                 },

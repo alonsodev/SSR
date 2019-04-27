@@ -22,8 +22,8 @@ namespace Business.Logic
             string mensaje = ObtenerMensajeMovil(oNotification, oNotificacionConfig.xslPath);
 
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
-            EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
+            EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotificacionConfig.To, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
         }
 
         private static string ObtenerMensajeMovil(NotificationConceptMovil oNotification, string xslPath)
@@ -48,7 +48,7 @@ namespace Business.Logic
             string mensaje = ObtenerMensajeConcepto(oNotification, oNotificacionConfig.xslPath);
             
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
         }
         private static string ObtenerMensajeConcepto(NotificationConceptViewModel oNotification, string xslPath)
@@ -72,7 +72,7 @@ namespace Business.Logic
             oNotificacionConfig.Asunto = subject;
             string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
         }
 
@@ -82,7 +82,7 @@ namespace Business.Logic
 
             string mensaje = ObtenerMensajeProyectosNuevos(oNotification, oNotificacionConfig.xslPath);
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
         }
 
@@ -92,7 +92,7 @@ namespace Business.Logic
 
             string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
         }
 
@@ -103,7 +103,7 @@ namespace Business.Logic
 
             string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
 
         }
@@ -114,7 +114,7 @@ namespace Business.Logic
 
             string mensaje = ObtenerMensajeGeneralAccount(oNotification, oNotificacionConfig.xslPath);
             List<string> images = new List<string>();
-            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logoarca.jpg");
+            images.Add(ConfigurationManager.AppSettings["site.path"] + @"\Assets\img\logo-cael-arca.png");
             EmailHelper.SendMail(mensaje, oNotificacionConfig.From, oNotification.to, oNotificacionConfig.Cc, oNotificacionConfig.Bcc, oNotificacionConfig.Asunto, null, images.ToArray());
         }
         private static string ObtenerMensajeGeneralAccount(NotificationGeneralAccountViewModel oNotification, string xslPath)

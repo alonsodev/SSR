@@ -212,7 +212,7 @@
                         <td height="45"></td>
                       </tr>
                       <tr>
-                        <td  align="CENTER" class="center_content text_color_282828" style="color: #282828; font-size: 15px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                        <td  align="CENTER" class="center_content text_color_282828" style="color: #a1a2a5; font-size: 15px; font-weight: 700; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;">
                           <div class="editable-text">
                             <span class="text_container">
                               <multiline>

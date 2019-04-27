@@ -351,6 +351,12 @@ namespace Business.Logic
             return oRepositorio.ObtenerEmitidos(ofilters, generalfiltros);
         }
 
+        public GridModel<ConceptViewModel> ObtenerEvaluados(DataTableAjaxPostModel ofilters, GeneralFilterViewModel generalfiltros)
+        {
+
+            return oRepositorio.ObtenerEvaluados(ofilters, generalfiltros);
+        }
+        
         public GridModel<ConceptViewModel> ObtenerPorCalificar(DataTableAjaxPostModel ofilters, int user_id, GeneralFilterViewModel generalfiltros)
         {
             return oRepositorio.ObtenerPorCalificar(ofilters, user_id, generalfiltros);
@@ -390,6 +396,13 @@ namespace Business.Logic
         {
              oRepositorio.ActualizarTablasReporte(period_id);
 
+        }
+
+      
+
+        public GridModel<ConceptViewModel> ObtenerRepositorio(DataTableAjaxPostModel filters, GeneralFilterViewModel generalfiltros)
+        {
+            return oRepositorio.ObtenerRepositorio(filters, generalfiltros);
         }
     }
 }

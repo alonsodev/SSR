@@ -43,7 +43,9 @@ namespace Domain.Entities.Movil
 
         [XmlAttribute]
         public int concept_id { get; set; }
-        
+
+        [XmlAttribute]
+        public string message { get; set; }
 
     }
 }

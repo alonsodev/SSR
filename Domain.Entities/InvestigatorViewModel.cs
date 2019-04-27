@@ -48,7 +48,7 @@ namespace Domain.Entities
         public string first_name { get; set; }
 
         [Display(Name = "Segundo Nombre")]
-        [Required(ErrorMessage = "Segundo Nombre es obligatorio.")]
+        //[Required(ErrorMessage = "Segundo Nombre es obligatorio.")]
 
         public string second_name { get; set; }
 
@@ -58,7 +58,7 @@ namespace Domain.Entities
         public string last_name { get; set; }
 
         [Display(Name = "Segundo Apellido")]
-        [Required(ErrorMessage = "Segundo Apellido es obligatorio.")]
+        //[Required(ErrorMessage = "Segundo Apellido es obligatorio.")]
 
         public string second_last_name { get; set; }
         [Display(Name = "Género")]
@@ -95,8 +95,8 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Nivel Académico es obligatorio.")]
         public Nullable<int> academic_level_id { get; set; }
 
-        [Display(Name = "Comisión")]
-        [Required(ErrorMessage = "Comisión es obligatorio.")]
+        [Display(Name = "Comisión Constitucional de Interés")]
+        [Required(ErrorMessage = "Comisión Constitucional de Interés es obligatorio.")]
         public List<int> commissions { get; set; }
         public MultiSelectList commissionsMultiSelectList { get; set; }
         [Display(Name = "Pais de residencia")]
@@ -107,13 +107,13 @@ namespace Domain.Entities
         [RequiredIf("address_country_id == 45", ErrorMessage = "Departamento de residencia es obligatorio.")]
         public Nullable<int> department_id { get; set; }
 
-        [Display(Name = "Municipalidad de residencia")]
+        [Display(Name = "Municipio de residencia")]
         
-        [RequiredIf("address_country_id == 45", ErrorMessage = "Municipalidad de residencia es obligatorio.")]
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Municipio de residencia es obligatorio.")]
         public Nullable<int> address_municipality_id { get; set; }
 
-        [Display(Name = "Lugar de residencia")]
-        [Required(ErrorMessage = "Lugar de residencia es obligatorio.")]
+        [Display(Name = "Dirección de residencia")]
+        [Required(ErrorMessage = "Dirección de residencia es obligatorio.")]
         public string address { get; set; }
 
 

@@ -125,7 +125,9 @@
 
                       </td>
                       <td>
-                        <img src="@url_site/Template/Concept/arcalogo.jpg"/>
+                        <img src="@url_site/Template/Concept/logo-cael-arca.png" width="250"/>
+
+                       
                       </td>
                     </tr>
                   </table>

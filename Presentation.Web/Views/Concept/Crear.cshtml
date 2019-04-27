@@ -448,8 +448,22 @@
 
                     return false;
                 }
-                $('#form-registrar').trigger('submit');
 
+                swal({
+                    title: '¿Estás Seguro de emitir este concepto?',
+                    text: "No se podrá revertir!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Si, emitir concepto!',
+                    buttonsStyling: false
+                }).then(function () {
+
+                    $('#form-registrar').trigger('submit');
+
+                }).catch(swal.noop);
 
 
 
@@ -461,78 +475,6 @@
         });
 
 
-                                    /*
-                                    $('#form-registrar').on('submit', function (e) { //use on if jQuery 1.7+
-                                        //prevent form from submitting
 
-                                        e.preventDefault();
-                                        var form = this;
-
-                                        if (ValidarConcept() &&ValidarTags() && $("#form-registrar").valid()) {
-
-                                            var message = ValidarPalabrasNoAdecuadas($('#summary').val());
-
-                                            if (message != "") {
-                                                swal({
-                                                    title: 'Error!',
-                                                    html: '<div style="text-align:left;">El Resumen contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                                                    type: 'error',
-                                                    confirmButtonClass: "btn btn-success",
-                                                    buttonsStyling: false
-                                                });
-
-                                                return false;
-                                            }
-                                            message = ValidarPalabrasNoAdecuadas($('#bibliography').val());
-
-                                            if (message != "") {
-                                                swal({
-                                                    title: 'Error!',
-                                                    html: '<div style="text-align:left;">La bibliografia contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                                                    type: 'error',
-                                                    confirmButtonClass: "btn btn-success",
-                                                    buttonsStyling: false
-                                                });
-
-                                                return false;
-                                            }
-
-                                            message = ValidarPalabrasNoAdecuadas($('#concept').val());
-
-                                            if (message != "") {
-                                                swal({
-                                                    title: 'Error!',
-                                                    html: '<div style="text-align:left;">El Concepto contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                                                    type: 'error',
-                                                    confirmButtonClass: "btn btn-success",
-                                                    buttonsStyling: false
-                                                });
-
-                                                return false;
-                                            }
-                                            //debugger;
-                                            message = ValidarPalabrasNoAdecuadas($('#tags').val().join(' '));
-
-                                            if (message != "") {
-                                                swal({
-                                                    title: 'Error!',
-                                                    html: '<div style="text-align:left;">Las Palabras Claves contiene las siguientes palabras no adecuadas:<br>' + message + 'Por favor elimine dichas palabras e intente nuevamente.</div>',
-                                                    type: 'error',
-                                                    confirmButtonClass: "btn btn-success",
-                                                    buttonsStyling: false
-                                                });
-
-                                                return false;
-                                            }
-                                           form.submit();
-
-
-
-
-                                        }
-
-                                        return false;
-                                    });
-                                    */
     </script>
 }

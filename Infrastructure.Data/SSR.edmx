@@ -1178,6 +1178,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ActualizarNotificacionLeido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="url" Type="varchar" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="ActualizarTablasReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="period_id" Type="int" Mode="In" />
         </Function>
@@ -1687,6 +1691,10 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <FunctionImport Name="ActualizarNotificacionLeido">
+            <Parameter Name="url" Mode="In" Type="String" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="academic_levels">
           <Key>
@@ -3567,6 +3575,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarNotificacionLeido" FunctionName="SSRModel.Store.ActualizarNotificacionLeido" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

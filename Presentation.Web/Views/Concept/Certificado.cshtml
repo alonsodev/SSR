@@ -32,7 +32,9 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <embed id="pdf_viewer" src="" type="application/pdf" width="100%" height="600px" />
+                          
+
+                            <iframe id="pdf_viewer" src="~/Assets/js/plugins/pdf_viewer/web/viewer.html?file=#zoom=100" style="width:100%;height:600px;"></iframe>
                         </div>
                     </div>
 
@@ -63,11 +65,11 @@
                     })
                     .done(function (data) {                       
                         console.log(data);
-                        var parent = $('embed#pdf_viewer').parent();
-                        var newImage = '<embed id="pdf_viewer" src="' + data.path+'" type="application/pdf" width="100%" height="600px" />';
+                        var parent = $('iframe#pdf_viewer').parent();
+                        var newImage = '<iframe id="pdf_viewer" src="/Assets/js/plugins/pdf_viewer/web/viewer.html?file=' + data.path +'#zoom=100" style="width:100%;height:600px;"></iframe>';
                         var newElement = $(newImage);
 
-                        $('embed#pdf_viewer').remove();
+                        $('iframe#pdf_viewer').remove();
                         parent.append(newElement);
                     })
                     .fail(function (data) {

@@ -1,0 +1,241 @@
+﻿@model Domain.Entities.GeneralFilterViewModel
+@{
+    ViewBag.HeaderTitleLink = Url.Action("Recibidos", "Concept");
+    ViewBag.HeaderTitle = "Conceptos Técnicos";
+    ViewBag.Title = "Historial de conceptos,  evaluados";
+
+    ViewBag.active = "concepts_evaluated";
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+
+
+
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-label">
+                            @Html.LabelFor(model => model.period_id, htmlAttributes: new { @class = "" })
+                            @Html.DropDownList("period_id", (IEnumerable<SelectListItem>)ViewBag.periods, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.period_id, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                       
+                    </div>
+                </div>
+                <div class="toolbar">
+                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                </div>
+                <table id="dt-lista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nro. Concepto</th>
+                            <th>Nro. Proyecto</th>
+                            <th>Título del proyecto de ley</th>
+                            <th>Fecha de elab.</th>
+                            <th>Nombre Investigador</th>
+                            <th>Nombre Institución</th>
+                            <th>Comisión</th>
+                            <th>Estado</th>
+                            <th>Área de interés</th>
+                            <th>Calificación</th>
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nro. Concepto</th>
+                            <th>Nro. Proyecto</th>
+                            <th>Título del proyecto de ley</th>
+                            <th>Fecha de elab.</th>
+                            <th>Nombre Investigador</th>
+                            <th>Nombre Institución</th>
+                            <th>Comisión</th>
+                            <th>Estado</th>
+                            <th>Área de interés</th>
+                            <th>Calificación</th>
+                            <th class="disabled-sorting text-right">Acciones</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+<!-- Classic Modal -->
+<div class="modal fade" id="summary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up">Resumen</h4>
+            </div>
+            <div id="modal-body-summary" class="modal-body">
+                <p>
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="display:none">
+
+    <input type="file" id="NewFileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="checkfile(this,'N');" />
+
+</div>
+@section Scripts {
+
+    <script type="text/javascript">
+        var datatable;
+
+
+        $(function () {
+            $("#period_id").select2();
+            UiFormulario.init();
+            $('#period_id').on('select2:select', function (e) {
+                datatable.ajax.reload();
+            });
+
+        })
+
+        var UiFormulario = function () {
+
+            return {
+                init: function () {
+                    /* Initialize Bootstrap Datatables Integration */
+                    //App.datatables();
+
+
+
+                    /* Initialize Datatables */
+                    datatable = $('#dt-lista').DataTable({
+                        order: [[3, "desc"]],
+                        responsive: true,
+                        "proccessing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            url: "@Url.Action("ObtenerEvaluados", "Concept")",
+                            type: 'POST',
+                            data: function (d) {
+
+                                d.period_id = $('#period_id').val();
+                            }
+                        },
+                        language: {
+                            "url": "/Assets/media/language/spanish.json"
+                        },
+                        "sDom": "<'row'<'col-12'B>><'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
+                        buttons: [
+
+                            {
+                                extend: 'csvHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: "btn btn-effect-ripple btn-default toggle-bordered enable-tooltip",
+                                init: function (api, node, config) {
+                                    $(node).removeClass('dt-button')
+                                }
+                            }
+                        ],
+                        "columns": [
+                            { "data": "concept_id" },
+                            { "data": "draft_law_number" },
+                            { "data": "title" },
+                            { "data": "date_created" },
+                            { "data": "investigator" },
+                            { "data": "institution" },
+                            { "data": "commission" },
+                            { "data": "status" },
+                            { "data": "interest_area" },
+                            { "data": "qualification" },
+                            { "data": "concept_id" },
+                        ],
+                        columnDefs: [
+                            { 'className': 'text-center', 'targets': [0, 1, 9, 10] },
+
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.title + '">' + row.title + '</p>';
+                                },
+                                targets: 2
+                            },
+                            {
+                                render: function (data, type, row) {
+
+                                    if (row.date_created == null) { return "" };
+                                    var actionsHtml = moment(row.date_created).format("DD/MM/YYYY");
+                                    return actionsHtml;
+                                },
+                                targets: 3
+                            },
+                            {
+                                render: function (data, type, row) {
+
+
+                                    return '<p class="overflow-friendly" title="' + row.institution + '">' + row.institution + '</p>';
+                                },
+                                targets: 5
+                            },
+
+                            {
+                                render: function (data, type, row) {
+                                    return '<a href="/Concept/VerEvaluado/' + row.concept_id + '" class="btn btn-effect-ripple btn-xs btn-warning" data-toggle="tooltip" title="Ver Concepto Técnico"><i class="now-ui-icons ui-1_zoom-bold"></i></a>';
+
+                                },
+                                targets:10,
+                                orderable: false
+                            }
+                        ],
+
+
+                        pageLength: 10,
+                        lengthMenu: [[10, 20, 50], [10, 20, 50]]
+                    });
+                    datatable.on('click', '.summary', function (event) {
+                        //debugger;
+                        var $tr = $(this).closest('tr');
+                        var row_id = $(this).attr('row-id');
+
+                        var summary = $('#summary-' + row_id).html();
+                        $('#modal-body-summary').html(summary);
+                        $("#summary_modal").modal('show');
+                    });
+
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Buscar');
+                }
+            };
+        }();
+    </script>
+}
+
+

@@ -239,6 +239,7 @@ table#dt-lista td {
     .table-status td {
         border: none !important;
         background-color: transparent !important;
+        font-size: 12px !important;
     }
 
         .table-status tr,
@@ -247,6 +248,21 @@ table#dt-lista td {
         }
 
 
-.buttons-pdf {
+.buttons-pdf, .buttons-csv {
     display: none;
+}
+div.dataTables_wrapper {
+    width: 100% !important;
+    margin: 0 auto;
+}
+.dataTables_scroll {
+    -ms-overflow-style: scrollbar;
+}
+
+.btn, .navbar .navbar-nav > a.btn {
+    padding: .375rem .75rem !important;
+}
+
+.form-group .form-control, .input-group .form-control {
+    padding: .375rem .75rem !important;
 }

@@ -30,6 +30,7 @@ using Gma.QrCodeNet.Encoding.Windows.Render;
 using System.Drawing.Imaging;
 using Domain.Entities.Notifications;
 using Humanizer;
+using Domain.Entities.Movil;
 
 namespace Presentation.Web.Controllers
 {
@@ -137,6 +138,11 @@ namespace Presentation.Web.Controllers
         // GET: User
         public ActionResult Index()
         {
+
+
+            NotificationBL oNotificationBL = new NotificationBL();
+            oNotificationBL.ActualizarNotificacionLeido("/Concept", AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
             SelectorBL oSelectorBL = new SelectorBL();
             List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
             List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
@@ -158,6 +164,56 @@ namespace Presentation.Web.Controllers
 
             
         }
+
+        
+        // GET: User
+        public ActionResult Repositorio()
+        {
+
+
+            
+            SelectorBL oSelectorBL = new SelectorBL();
+         
+
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+
+
+          
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "0", "TODOS");
+            ViewBag.commissions = commissions;
+
+            List<SelectListItem> tags = Helper.ConstruirDropDownList<SelectOptionItem>(oSelectorBL.TagsSelector(), "Value", "Text", "", true, "0", "TODOS");
+            ViewBag.tags = tags;
+
+
+            List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
+            List<SelectListItem> interest_areas = Helper.ConstruirDropDownList<SelectOptionItem>(oInterestAreas, "Value", "Text", "", true, "0", "TODOS");
+            ViewBag.interest_areas = interest_areas;
+
+
+            List<SelectOptionItem> oOrigins = oSelectorBL.OriginSelector();
+            List<SelectListItem> origins = Helper.ConstruirDropDownList<SelectOptionItem>(oOrigins, "Value", "Text", "", true, "0", "TODOS");
+            ViewBag.origins = origins;
+
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+
+            return View(oGeneralFilterViewModel);
+
+
+        }
+
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited })]
         public ActionResult Emitidos()
         {
@@ -177,6 +233,24 @@ namespace Presentation.Web.Controllers
         }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_received })]
         public ActionResult Recibidos()
+        {
+            PeriodBL oPeriodBL = new PeriodBL();
+            PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
+
+
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oPeriods = oSelectorBL.PeriodsSelector();
+            List<SelectListItem> periods = Helper.ConstruirDropDownList<SelectOptionItem>(oPeriods, "Value", "Text", "", false, "", "");
+
+            ViewBag.periods = periods;
+
+            GeneralFilterViewModel oGeneralFilterViewModel = new GeneralFilterViewModel();
+            oGeneralFilterViewModel.period_id = oPeriod.period_id;
+            return View(oGeneralFilterViewModel);
+        }
+
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { /*AuthorizeUserAttribute.Permission.concepts_received*/ })]
+        public ActionResult Evaluados()
         {
             PeriodBL oPeriodBL = new PeriodBL();
             PeriodViewModel oPeriod = oPeriodBL.ObtenerVigente();
@@ -800,6 +874,9 @@ namespace Presentation.Web.Controllers
                 return Redirect("/Error/NoAutorizadoEditarConcepto");
             //
 
+            NotificationBL oNotificationBL = new NotificationBL();
+            oNotificationBL.ActualizarNotificacionLeido("/Concept/Editar/" + id, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
 
             pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
             SelectorBL oSelectorBL = new SelectorBL();
@@ -935,6 +1012,33 @@ namespace Presentation.Web.Controllers
             return View(pConceptViewModel);
         }
 
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.view_concept })]
+        public ActionResult VerEvaluado(string id)
+        {
+            BadLanguageBL oBadLanguageBL = new BadLanguageBL();
+            ConceptBL oBL = new ConceptBL();
+            int pIntID = 0;
+            int.TryParse(id, out pIntID);
+            ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
+            pConceptViewModel.bad_languages = String.Join(",", oBadLanguageBL.ObtenerPalabrasNoAdecuadas());
+            pConceptViewModel.reject = 0;
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
+            List<SelectListItem> commissions = Helper.ConstruirDropDownList<SelectOptionItem>(oCommissions, "Value", "Text", "", true, "", "");
+            ViewBag.commissions = commissions;
+
+            pConceptViewModel.tagsMultiSelectList = new MultiSelectList(oSelectorBL.TagsSelector(), "Value", "Text");
+
+
+
+            List<SelectOptionItem> oReasonRejects = oSelectorBL.ReasonRejectsSelector();
+            List<SelectListItem> reason_rejects = Helper.ConstruirDropDownList<SelectOptionItem>(oReasonRejects, "Value", "Text", "", true, "", "");
+            ViewBag.reason_rejects = reason_rejects;
+            ViewBag.concept_id = pConceptViewModel.concept_id;
+            return View(pConceptViewModel);
+        }
+
+        
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.evaluate_concept })] // falta corregir
         public ActionResult Evaluar(string id)
         {
@@ -942,6 +1046,10 @@ namespace Presentation.Web.Controllers
             ConceptBL oBL = new ConceptBL();
             int pIntID = 0;
             int.TryParse(id, out pIntID);
+
+            NotificationBL oNotificationBL = new NotificationBL();
+            oNotificationBL.ActualizarNotificacionLeido("/Concept/Evaluar/"+id, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
             ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
 
             pConceptViewModel.reject = 0;
@@ -966,6 +1074,10 @@ namespace Presentation.Web.Controllers
             ConceptBL oBL = new ConceptBL();
             int pIntID = 0;
             int.TryParse(id, out pIntID);
+
+            NotificationBL oNotificationBL = new NotificationBL();
+            oNotificationBL.ActualizarNotificacionLeido("/Concept/Calificar/" + id, AuthorizeUserAttribute.UsuarioLogeado().user_id);
+
             ConceptViewModel pConceptViewModel = oBL.Obtener(pIntID);
             if (!pConceptViewModel.speakers_concept.Contains(AuthorizeUserAttribute.UsuarioLogeado().user_id))
                 return Redirect("/Error/NoAutorizadoCalificarConcepto");
@@ -1119,6 +1231,27 @@ namespace Presentation.Web.Controllers
 
 
         }
+
+        
+        // GET: User
+        public JsonResult ObtenerRepositorio(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id,commission_id,origin_id,interest_area_id,draft_law_number,tag_id,draft_law_title")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+           
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerRepositorio(ofilters, generalfiltros);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = ofilters.draw,
+                recordsTotal = grid.total,
+                recordsFiltered = grid.recordsFiltered,
+                data = grid.rows
+            });
+
+
+        }
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_emited })]
         // GET: User
 
@@ -1140,6 +1273,30 @@ namespace Presentation.Web.Controllers
 
 
         }
+
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { /*AuthorizeUserAttribute.Permission.concepts_emited */})]
+        // GET: User
+
+        public JsonResult ObtenerEvaluados(DataTableAjaxPostModel ofilters, [Bind(Include = "period_id")]  GeneralFilterViewModel generalfiltros)//DataTableAjaxPostModel model
+        {
+            ConceptBL oConceptBL = new ConceptBL();
+            //ConceptFiltersViewModel ofilters = new ConceptFiltersViewModel();
+
+            GridModel<ConceptViewModel> grid = oConceptBL.ObtenerEvaluados(ofilters, generalfiltros);
+
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = ofilters.draw,
+                recordsTotal = grid.total,
+                recordsFiltered = grid.recordsFiltered,
+                data = grid.rows
+            });
+
+
+        }
+
+        
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.concepts_to_qualify })]
         // GET: User
 
@@ -1182,6 +1339,79 @@ namespace Presentation.Web.Controllers
             });
 
 
+        }
+        [HttpPost]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.qualify_concepts, AuthorizeUserAttribute.Permission.view_concept })]
+        public JsonResult EnviarNotificacion([Bind(Include = "user_id,concept_id,solicitud_ampliacion,solicitud_datos_investigador,message")] ConceptSendNotification filter)
+        {
+
+            filter.user_id= AuthorizeUserAttribute.UsuarioLogeado().user_id;
+            var base_url = ConfigurationManager.AppSettings["site.url"];
+            UserBL userBL = new UserBL();
+            UserViewModel congresista = userBL.ObtenerUser(filter.user_id);
+
+
+
+
+            ConceptBL oConceptBL = new ConceptBL();
+            var concept = oConceptBL.Obtener(filter.concept_id);
+            InvestigatorViewModel investigador = userBL.ObtenerInvestigator(concept.investigator_id.Value);
+            SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
+
+            if (filter.solicitud_datos_investigador == 1)
+            {
+                NotificationConceptMovil oNotificationViewModel = new NotificationConceptMovil();
+
+                oNotificationViewModel.concept_id = concept.concept_id;
+                oNotificationViewModel.contact_data_name = investigador.contact_name;
+                oNotificationViewModel.contact_data_phone = investigador.phone;
+                oNotificationViewModel.contact_data_email = investigador.user_email;
+
+
+                oNotificationViewModel.name = congresista.contact_name;
+
+              //  oNotificationViewModel.to = congresista.user_email;
+
+
+                oNotificationViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+                oNotificationViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+                oNotificationViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+
+                oSendEmailNotificationBL.EnviarNotificacionMovil(oNotificationViewModel, "notificacion.movil.investigator.data");
+            }
+
+
+            if (filter.solicitud_ampliacion == 1)
+            {
+                NotificationConceptMovil oNotificationViewModel = new NotificationConceptMovil();
+
+                oNotificationViewModel.concept_id = concept.concept_id;
+                oNotificationViewModel.contact_data_name = congresista.contact_name;
+                oNotificationViewModel.contact_data_phone = congresista.phone;
+                oNotificationViewModel.contact_data_email = congresista.user_email;
+                oNotificationViewModel.message = filter.message;
+
+                oNotificationViewModel.name = investigador.contact_name;
+
+              //  oNotificationViewModel.to = investigador.user_email;
+
+
+                oNotificationViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
+                oNotificationViewModel.url_contacto = ConfigurationManager.AppSettings["site.url.contacto"];
+                oNotificationViewModel.url_privacidad = ConfigurationManager.AppSettings["site.url.privacidad"];
+
+
+                oSendEmailNotificationBL.EnviarNotificacionMovil(oNotificationViewModel, "notificacion.movil.congresista.data");
+            }
+
+
+
+          
+            return  Json(new
+            {
+                status = 1
+            });
         }
     }
 }
