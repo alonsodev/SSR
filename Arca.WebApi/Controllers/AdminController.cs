@@ -155,7 +155,7 @@ namespace Arca.WebApi.Controllers
 
                 oNotificationViewModel.name = congresista.contact_name;
 
-                oNotificationViewModel.to = congresista.user_email;
+             //   oNotificationViewModel.to = congresista.user_email;
 
 
                 oNotificationViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
@@ -178,8 +178,7 @@ namespace Arca.WebApi.Controllers
 
 
                 oNotificationViewModel.name = investigador.contact_name;
-
-                oNotificationViewModel.to = investigador.user_email;
+                oNotificationViewModel.message = filter.message;
 
 
                 oNotificationViewModel.url_politicas = ConfigurationManager.AppSettings["site.url.politicas"];
