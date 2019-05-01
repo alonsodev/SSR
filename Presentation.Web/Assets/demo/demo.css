@@ -190,12 +190,20 @@ table#dt-lista td {
     display: inline-block;
 }
 
-.table-status, .table-status tr, .table-status td {
+., .table-status tr, .table-status td {
     border: none;
     background-color: transparent !important;
     padding: 0px;
+    font-size: 12px;
 }
 
+    .table-status-draft-law tr, .table-status-draft-law td {
+        font-size: 10px !important;
+    }
+
+    td.table-status-draft-law-header {
+        font-size: 12px !important;
+    }
 
 .status-discutir_primer_debate {
     height: 25px;

@@ -146,70 +146,70 @@
 
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users, AuthorizeUserAttribute.Permission.module_access_roles, AuthorizeUserAttribute.Permission.module_access_permissions))
-                        {
-                            <li class="@(ViewBag.active == "users" || ViewBag.active == "permissions" || ViewBag.active == "roles" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "users" || ViewBag.active == "permissions" || ViewBag.active == "roles" ? "active" : "")">
 
-                                <a data-toggle="collapse" href="#security">
+                        <a data-toggle="collapse" href="#security">
 
-                                    <i class="now-ui-icons users_circle-08"></i>
+                            <i class="now-ui-icons users_circle-08"></i>
 
-                                    <p>
-                                        Seguridad <b class="caret"></b>
-                                    </p>
-                                </a>
+                            <p>
+                                Seguridad <b class="caret"></b>
+                            </p>
+                        </a>
 
-                                <div class="@("collapse " + (ViewBag.active == "users" || ViewBag.active == "permissions" || ViewBag.active == "roles" ? "show" : ""))" id="security">
+                        <div class="@("collapse " + (ViewBag.active == "users" || ViewBag.active == "permissions" || ViewBag.active == "roles" ? "show" : ""))" id="security">
 
-                                    <ul class="nav">
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users))
-                                        {
-                                            <li class="@(ViewBag.active == "users" ? "active" : "")">
-                                                <a href="/User">
-                                                    <span class="sidebar-mini-icon">U</span>
-                                                    <span class="sidebar-normal"> Usuarios </span>
+                            <ul class="nav">
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_users))
+            {
+                    <li class="@(ViewBag.active == "users" ? "active" : "")">
+                        <a href="/User">
+                            <span class="sidebar-mini-icon">U</span>
+                            <span class="sidebar-normal"> Usuarios </span>
 
-                                                </a>
-
-
-
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_roles))
-                                        {
-                                            <li class="@(ViewBag.active == "roles" ? "active" : "")">
-                                                <a href="/Role">
+                        </a>
 
 
 
-                                                    <span class="sidebar-mini-icon">R</span>
-                                                    <span class="sidebar-normal"> Roles </span>
-                                                </a>
-
-
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_permissions))
-                                        {
-                                            <li class="@(ViewBag.active == "permissions" ? "active" : "")">
-                                                <a href="/Permission">
-                                                    <span class="sidebar-mini-icon">P</span>
-                                                    <span class="sidebar-normal"> Permisos </span>
-
-                                                </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_roles))
+            {
+                    <li class="@(ViewBag.active == "roles" ? "active" : "")">
+                        <a href="/Role">
 
 
 
-                                            </li>
-                                        }
+                            <span class="sidebar-mini-icon">R</span>
+                            <span class="sidebar-normal"> Roles </span>
+                        </a>
 
 
-                                    </ul>
-                                </div>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_access_permissions))
+            {
+                    <li class="@(ViewBag.active == "permissions" ? "active" : "")">
+                        <a href="/Permission">
+                            <span class="sidebar-mini-icon">P</span>
+                            <span class="sidebar-normal"> Permisos </span>
+
+                        </a>
 
 
-                            </li>
 
-                        }
+                    </li>
+}
+
+
+                            </ul>
+                        </div>
+
+
+                    </li>
+
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law, AuthorizeUserAttribute.Permission.module_institution,
 AuthorizeUserAttribute.Permission.module_interest_areas, AuthorizeUserAttribute.Permission.module_programs,
 AuthorizeUserAttribute.Permission.module_investigation_groups, AuthorizeUserAttribute.Permission.module_commissions,
@@ -217,372 +217,377 @@ AuthorizeUserAttribute.Permission.module_bad_languages, AuthorizeUserAttribute.P
 AuthorizeUserAttribute.Permission.module_academic_levels, AuthorizeUserAttribute.Permission.module_knowledge_areas,
 AuthorizeUserAttribute.Permission.module_educational_institutions, AuthorizeUserAttribute.Permission.module_snies,
 AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.Permission.module_consultation_types, AuthorizeUserAttribute.Permission.module_merit_ranges, AuthorizeUserAttribute.Permission.edit_config, AuthorizeUserAttribute.Permission.module_period))
-                        {
+    {
 
-                            <li class="@(ViewBag.active == "reason_rejects" || ViewBag.active == "consultation_types" || ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
+                    <li class="@(ViewBag.active == "reason_rejects" || ViewBag.active == "consultation_types" || ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "bad_languages" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "active" : "")">
 
-                                <a data-toggle="collapse" href="#management">
-                                    <i class="now-ui-icons loader_gear"></i>
-                                    <p>
-                                        Mantenimientos <b class="caret"></b>
-                                    </p>
-                                </a>
+                        <a data-toggle="collapse" href="#management">
+                            <i class="now-ui-icons loader_gear"></i>
+                            <p>
+                                Mantenimientos <b class="caret"></b>
+                            </p>
+                        </a>
 
-                                <div class="@("collapse " + (ViewBag.active == "reason_rejects" || ViewBag.active == "consultation_types" || ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
+                        <div class="@("collapse " + (ViewBag.active == "reason_rejects" || ViewBag.active == "consultation_types" || ViewBag.active == "periods" || ViewBag.active == "edit_config" || ViewBag.active == "merit_ranges" || ViewBag.active == "snies" || ViewBag.active == "education_levels" || ViewBag.active == "academic_levels" || ViewBag.active == "knowledge_areas" || ViewBag.active == "educational_institutions" || ViewBag.active == "draft_laws" || ViewBag.active == "institutions" || ViewBag.active == "interest_areas" || ViewBag.active == "programs" || ViewBag.active == "investigation_groups" || ViewBag.active == "commissions" ? "show" : ""))" id="management">
 
-                                    <ul class="nav">
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
-                                        {
-                                            <li class="@(ViewBag.active == "draft_laws" ? "active" : "")">
-                                                <a href="/DraftLaw">
-                                                    <span class="sidebar-mini-icon">PL</span>
-                                                    <span class="sidebar-normal"> Proyectos de Ley </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_institution))
-                                        {
-                                            <li class="@(ViewBag.active == "institutions" ? "active" : "")">
-                                                <a href="/Institution">
-                                                    <span class="sidebar-mini-icon">I</span>
-                                                    <span class="sidebar-normal"> Instituciones </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_investigation_groups))
-                                        {
-                                            <li class="@(ViewBag.active == "investigation_groups" ? "active" : "")">
-                                                <a href="/InvestigationGroup">
-                                                    <span class="sidebar-mini-icon">GI</span>
-                                                    <span class="sidebar-normal"> Grupos de Investigación </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_interest_areas))
-                                        {
-                                            <li class="@(ViewBag.active == "interest_areas" ? "active" : "")">
-                                                <a href="/InterestArea">
-                                                    <span class="sidebar-mini-icon">AI</span>
-                                                    <span class="sidebar-normal"> Áreas de Interés </span>
-                                                </a>
-                                            </li>
-                                        }
+                            <ul class="nav">
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_draft_law))
+            {
+                    <li class="@(ViewBag.active == "draft_laws" ? "active" : "")">
+                        <a href="/DraftLaw">
+                            <span class="sidebar-mini-icon">PL</span>
+                            <span class="sidebar-normal"> Proyectos de Ley </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_institution))
+            {
+                    <li class="@(ViewBag.active == "institutions" ? "active" : "")">
+                        <a href="/Institution">
+                            <span class="sidebar-mini-icon">I</span>
+                            <span class="sidebar-normal"> Instituciones </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_investigation_groups))
+            {
+                    <li class="@(ViewBag.active == "investigation_groups" ? "active" : "")">
+                        <a href="/InvestigationGroup">
+                            <span class="sidebar-mini-icon">GI</span>
+                            <span class="sidebar-normal"> Grupos de Investigación </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_interest_areas))
+            {
+                    <li class="@(ViewBag.active == "interest_areas" ? "active" : "")">
+                        <a href="/InterestArea">
+                            <span class="sidebar-mini-icon">AI</span>
+                            <span class="sidebar-normal"> Áreas de Interés </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_commissions))
-                                        {
-                                            <li class="@(ViewBag.active == "commissions" ? "active" : "")">
-                                                <a href="/Commission">
-                                                    <span class="sidebar-mini-icon">C</span>
-                                                    <span class="sidebar-normal"> Comisiones </span>
-                                                </a>
-                                            </li>
-                                        }
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_commissions))
+            {
+                    <li class="@(ViewBag.active == "commissions" ? "active" : "")">
+                        <a href="/Commission">
+                            <span class="sidebar-mini-icon">C</span>
+                            <span class="sidebar-normal"> Comisiones </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_educational_institutions))
-                                        {
-                                            <li class="@(ViewBag.active == "educational_institutions" ? "active" : "")">
-                                                <a href="/EducationalInstitution">
-                                                    <span class="sidebar-mini-icon">IE</span>
-                                                    <span class="sidebar-normal"> Instituciones Educativas </span>
-                                                </a>
-                                            </li>
-                                        }
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_educational_institutions))
+            {
+                    <li class="@(ViewBag.active == "educational_institutions" ? "active" : "")">
+                        <a href="/EducationalInstitution">
+                            <span class="sidebar-mini-icon">IE</span>
+                            <span class="sidebar-normal"> Instituciones Educativas </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_knowledge_areas))
-                                        {
-                                            <li class="@(ViewBag.active == "knowledge_areas" ? "active" : "")">
-                                                <a href="/KnowledgeArea">
-                                                    <span class="sidebar-mini-icon">AC</span>
-                                                    <span class="sidebar-normal"> Áreas de conocimiento </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_programs))
-                                        {
-                                            <li class="@(ViewBag.active == "programs" ? "active" : "")">
-                                                <a href="/Program">
-                                                    <span class="sidebar-mini-icon">P</span>
-                                                    <span class="sidebar-normal"> Programas </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_academic_levels))
-                                        {
-                                            <li class="@(ViewBag.active == "academic_levels" ? "active" : "")">
-                                                <a href="/AcademicLevel">
-                                                    <span class="sidebar-mini-icon">NA</span>
-                                                    <span class="sidebar-normal"> Niveles académicos </span>
-                                                </a>
-                                            </li>
-                                        }
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_knowledge_areas))
+            {
+                    <li class="@(ViewBag.active == "knowledge_areas" ? "active" : "")">
+                        <a href="/KnowledgeArea">
+                            <span class="sidebar-mini-icon">AC</span>
+                            <span class="sidebar-normal"> Áreas de conocimiento </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_programs))
+            {
+                    <li class="@(ViewBag.active == "programs" ? "active" : "")">
+                        <a href="/Program">
+                            <span class="sidebar-mini-icon">P</span>
+                            <span class="sidebar-normal"> Programas </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_academic_levels))
+            {
+                    <li class="@(ViewBag.active == "academic_levels" ? "active" : "")">
+                        <a href="/AcademicLevel">
+                            <span class="sidebar-mini-icon">NA</span>
+                            <span class="sidebar-normal"> Niveles académicos </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_education_levels))
-                                        {
-                                            <li class="@(ViewBag.active == "education_levels" ? "active" : "")">
-                                                <a href="/EducationLevel">
-                                                    <span class="sidebar-mini-icon">NF</span>
-                                                    <span class="sidebar-normal"> Niveles de formación </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_snies))
-                                        {
-                                            <li class="@(ViewBag.active == "snies" ? "active" : "")">
-                                                <a href="/Snie">
-                                                    <span class="sidebar-mini-icon">S</span>
-                                                    <span class="sidebar-normal"> Snies </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_bad_languages))
-                                        {
-                                            <li class="@(ViewBag.active == "bad_languages" ? "active" : "")">
-                                                <a href="/BadLanguage">
-                                                    <span class="sidebar-mini-icon">PNA</span>
-                                                    <span class="sidebar-normal"> Palabras no adecuadas </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_merit_ranges))
-                                        {
-                                            <li class="@(ViewBag.active == "merit_ranges" ? "active" : "")">
-                                                <a href="/MeritRange">
-                                                    <span class="sidebar-mini-icon">RM</span>
-                                                    <span class="sidebar-normal"> Rango de Méritos </span>
-                                                </a>
-                                            </li>
-                                        }
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_education_levels))
+            {
+                    <li class="@(ViewBag.active == "education_levels" ? "active" : "")">
+                        <a href="/EducationLevel">
+                            <span class="sidebar-mini-icon">NF</span>
+                            <span class="sidebar-normal"> Niveles de formación </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_snies))
+            {
+                    <li class="@(ViewBag.active == "snies" ? "active" : "")">
+                        <a href="/Snie">
+                            <span class="sidebar-mini-icon">S</span>
+                            <span class="sidebar-normal"> Snies </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_bad_languages))
+            {
+                    <li class="@(ViewBag.active == "bad_languages" ? "active" : "")">
+                        <a href="/BadLanguage">
+                            <span class="sidebar-mini-icon">PNA</span>
+                            <span class="sidebar-normal"> Palabras no adecuadas </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_merit_ranges))
+            {
+                    <li class="@(ViewBag.active == "merit_ranges" ? "active" : "")">
+                        <a href="/MeritRange">
+                            <span class="sidebar-mini-icon">RM</span>
+                            <span class="sidebar-normal"> Rango de Méritos </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_period))
-                                        {
-                                            <li class="@(ViewBag.active == "periods" ? "active" : "")">
-                                                <a href="/Period">
-                                                    <span class="sidebar-mini-icon">P</span>
-                                                    <span class="sidebar-normal"> Periodos legislativo </span>
-                                                </a>
-                                            </li>
-                                        }
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_period))
+            {
+                    <li class="@(ViewBag.active == "periods" ? "active" : "")">
+                        <a href="/Period">
+                            <span class="sidebar-mini-icon">P</span>
+                            <span class="sidebar-normal"> Periodos legislativo </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_consultation_types))
-                                        {
-                                            <li class="@(ViewBag.active == "consultation_types" ? "active" : "")">
-                                                <a href="/ConsultationType">
-                                                    <span class="sidebar-mini-icon">TS</span>
-                                                    <span class="sidebar-normal"> Tipos de solicitud </span>
-                                                </a>
-                                            </li>
-                                        }
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_consultation_types))
+            {
+                    <li class="@(ViewBag.active == "consultation_types" ? "active" : "")">
+                        <a href="/ConsultationType">
+                            <span class="sidebar-mini-icon">TS</span>
+                            <span class="sidebar-normal"> Tipos de solicitud </span>
+                        </a>
+                    </li>
+}
 
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_reason_rejects))
-                                        {
-                                            <li class="@(ViewBag.active == "reason_rejects" ? "active" : "")">
-                                                <a href="/ReasonReject">
-                                                    <span class="sidebar-mini-icon">MR</span>
-                                                    <span class="sidebar-normal"> Motivos de rechazo </span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.edit_config))
-                                        {
-                                            <li class="@(ViewBag.active == "edit_config" ? "active" : "")">
-                                                <a href="/Configuration">
-                                                    <span class="sidebar-mini-icon">C</span>
-                                                    <span class="sidebar-normal"> Configuraciones </span>
-                                                </a>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.module_reason_rejects))
+            {
+                    <li class="@(ViewBag.active == "reason_rejects" ? "active" : "")">
+                        <a href="/ReasonReject">
+                            <span class="sidebar-mini-icon">MR</span>
+                            <span class="sidebar-normal"> Motivos de rechazo </span>
+                        </a>
+                    </li>
+}
+                                @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.edit_config))
+            {
+                    <li class="@(ViewBag.active == "edit_config" ? "active" : "")">
+                        <a href="/Configuration">
+                            <span class="sidebar-mini-icon">C</span>
+                            <span class="sidebar-normal"> Configuraciones </span>
+                        </a>
+                    </li>
+}
+                            </ul>
+                        </div>
 
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_draft_laws))
-                        {
-                            <li class="@(ViewBag.active == "my_draft_laws" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "my_draft_laws" ? "active" : "")">
 
-                                <a href="/Investigator/MisProyectosLey">
+                        <a href="/Investigator/MisProyectosLey">
 
-                                    <i class="now-ui-icons files_single-copy-04"></i>
+                            <i class="now-ui-icons files_single-copy-04"></i>
 
-                                    <p>Mis Proyectos de Ley</p>
-                                </a>
+                            <p>Mis Proyectos de Ley</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_concepts))
-                        {
-                            <li class="@(ViewBag.active == "my_concepts" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "my_concepts" ? "active" : "")">
 
-                                <a href="/Concept">
+                        <a href="/Concept">
 
-                                    <i class="now-ui-icons files_paper"></i>
+                            <i class="now-ui-icons files_paper"></i>
 
-                                    <p>Mis Conceptos</p>
-                                </a>
+                            <p>Mis Conceptos</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_certificates))
-                        {
-                            <li class="@(ViewBag.active == "my_certificates" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "my_certificates" ? "active" : "")">
 
-                                <a href="/Concept/Certificados">
+                        <a href="/Concept/Certificados">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Mis Certificados</p>
-                                </a>
+                            <p>Mis Certificados</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.my_backgrounds))
-                        {
-                            <li class="@(ViewBag.active == "my_backgrounds" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "my_backgrounds" ? "active" : "")">
 
-                                <a href="/Investigator/MiHistorial">
+                        <a href="/Investigator/MiHistorial">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Mi Historial</p>
-                                </a>
+                            <p>Mi Historial</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
 
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
-                        {
-                            <li class="@(ViewBag.active == "concepts_emited" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "concepts_emited" ? "active" : "")">
 
-                                <a href="/Concept/Emitidos">
+                        <a href="/Concept/Emitidos">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Conceptos Emitidos</p>
-                                </a>
+                            <p>Conceptos Emitidos</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_emited))
-                        {
-                            <li class="@(ViewBag.active == "concepts_evaluated" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "concepts_evaluated" ? "active" : "")">
 
-                                <a href="/Concept/Evaluados">
+                        <a href="/Concept/Evaluados">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Historial de conceptos</p>
-                                </a>
+                            <p>Historial de conceptos</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_to_qualify))
-                        {
-                            <li class="@(ViewBag.active == "concepts_to_qualify" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "concepts_to_qualify" ? "active" : "")">
 
-                                <a href="/Concept/PorCalificar">
+                        <a href="/Concept/PorCalificar">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Concepto recibidos</p>
-                                </a>
+                            <p>Concepto recibidos</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.concepts_received))
-                        {
-                            <li class="@(ViewBag.active == "concepts_received" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "concepts_received" ? "active" : "")">
 
-                                <a href="/Concept/Recibidos">
+                        <a href="/Concept/Recibidos">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Historial de conceptos </p>
-                                </a>
+                            <p>Historial de conceptos </p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.ranking_investigator))
-                        {
-                            <li class="@(ViewBag.active == "ranking_investigator" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "ranking_investigator" ? "active" : "")">
 
-                                <a href="/Investigator/Mejores">
+                        <a href="/Investigator/Mejores">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Ranking</p>
-                                </a>
+                            <p>Ranking</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
 
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.list_consultation_realized))
-                        {
-                            <li class="@(ViewBag.active == "consultations" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "consultations" ? "active" : "")">
 
-                                <a href="/Consultation">
+                        <a href="/Consultation">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Mis solicitudes de concepto</p>
-                                </a>
+                            <p>Mis solicitudes de concepto</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.list_consultation_send))
-                        {
-                            <li class="@(ViewBag.active == "consultations" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "consultations" ? "active" : "")">
 
-                                <a href="/Consultation/Enviadas">
+                        <a href="/Consultation/Enviadas">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Solicitudes de concepto</p>
-                                </a>
+                            <p>Solicitudes de concepto</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
 
                         @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.general_report))
-                        {
-                            <li class="@(ViewBag.active == "draft_law_report" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "draft_law_report" ? "active" : "")">
 
-                                <a href="/Report">
+                        <a href="/Report">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Reporte</p>
-                                </a>
+                            <p>Reporte</p>
+                        </a>
 
-                            </li>
-                        }
+                    </li>
+}
                         @if (!String.IsNullOrEmpty(AuthorizeUserAttribute.UsuarioLogeado().manual_url))
-                        {
-                            <li class="@(ViewBag.active == "user_manual" ? "active" : "")">
+    {
+                    <li class="@(ViewBag.active == "user_manual" ? "active" : "")">
 
-                                <a href="@AuthorizeUserAttribute.UsuarioLogeado().manual_url" target="_blank">
+                        <a href="@AuthorizeUserAttribute.UsuarioLogeado().manual_url" target="_blank">
 
-                                    <i class="now-ui-icons education_paper"></i>
+                            <i class="now-ui-icons education_paper"></i>
 
-                                    <p>Manual de usuario</p>
-                                </a>
+                            <p>Manual de usuario</p>
+                        </a>
 
-                            </li>
-                        }
-                        <li class="@(ViewBag.active == "concept_repository" ? "active" : "")">
+                    </li>
+}
+                        <!--
 
-                            <a href="/concept/repositorio">
+    <li class="@(ViewBag.active == "concept_repository" ? "active" : "")">
 
-                                <i class="now-ui-icons education_paper"></i>
+        <a href="/concept/repositorio">
 
-                                <p>Repositorio de Conceptos</p>
-                            </a>
+            <i class="now-ui-icons education_paper"></i>
 
-                        </li>
+            <p>Repositorio de Conceptos</p>
+        </a>
+
+    </li>
+
+        -->
+
                         <li class="@(ViewBag.active == "PoliticasUso" ? "active" : "")">
 
                             <a href="/politicasuso">

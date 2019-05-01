@@ -13,12 +13,13 @@ namespace Presentation.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
+        //[AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] {  })]
         public ActionResult Index()
         {
+            //RedirectPermanent("/index.html");
             /*SendEmailNotificationBL oSendEmailNotificationBL = new SendEmailNotificationBL();
             oSendEmailNotificationBL.EnviarNotificacionActivarCuenta();*/
-            return View();
+            return RedirectPermanent("/index.html");
         }
 
        /* public void ModifyDocument() {

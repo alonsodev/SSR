@@ -19,6 +19,7 @@ namespace Presentation.Web.Controllers
         // GET: User
         public ActionResult Index()
         {
+            //RedirectPermanent("/index.html");
             return View();
         }
         public ActionResult Activar()
