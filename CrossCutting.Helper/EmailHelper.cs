@@ -30,147 +30,165 @@ namespace CrossCutting.Helper
         /// <param name="arrAttachmentPath"></param>
         public static void SendMail(string strMessage, string strFromAddress, string strToAddress, string strCcAddress, string strBccAddress, string strSubject, string[] arrAttachmentPath, string[] arrImage)
         {
-
-            MailMessage oMailMessage = new MailMessage();
-            oMailMessage.From = new MailAddress(strFromAddress);
-            oMailMessage.To.Add(strToAddress.Replace(";", ","));
-            //oMailMessage.Body = strMessage;
-            //oMailMessage.IsBodyHtml = true;
-            oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-            oMailMessage.Subject = strSubject;
-            AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strMessage, null, "text/html");
-            if (arrImage != null)
+            try
             {
-                int i = 1;
-                foreach (string strImagePath in arrImage)
+                MailMessage oMailMessage = new MailMessage();
+                oMailMessage.From = new MailAddress(strFromAddress);
+                oMailMessage.To.Add(strToAddress.Replace(";", ","));
+                //oMailMessage.Body = strMessage;
+                //oMailMessage.IsBodyHtml = true;
+                oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                oMailMessage.Subject = strSubject;
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strMessage, null, "text/html");
+                if (arrImage != null)
                 {
-                    
-                    LinkedResource LinkedImage = new LinkedResource(strImagePath);
-                    LinkedImage.ContentId = "image_"+i.ToString();
-                    i++;
-
-                    //Added the patch for Thunderbird as suggested by Jorge
-                    LinkedImage.ContentType = new ContentType(MediaTypeNames.Image.Jpeg);
-                    htmlView.LinkedResources.Add(LinkedImage);
-                }
-            }
-
-           
-
-            
-            oMailMessage.AlternateViews.Add(htmlView);
-
-            if (!String.IsNullOrEmpty(strCcAddress))
-                oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
-            if (!String.IsNullOrEmpty(strBccAddress))
-                oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
-
-
-
-            if (arrAttachmentPath != null)
-            {
-                foreach (string strAttachmentPath in arrAttachmentPath)
-                {
-                    if (!(String.IsNullOrEmpty(strAttachmentPath)
-                        || Equals(strAttachmentPath, Convert.DBNull)))
+                    int i = 1;
+                    foreach (string strImagePath in arrImage)
                     {
-                        Attachment mlAttachment = new Attachment(strAttachmentPath);
-                        mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
-                        oMailMessage.Attachments.Add(mlAttachment);
+
+                        LinkedResource LinkedImage = new LinkedResource(strImagePath);
+                        LinkedImage.ContentId = "image_" + i.ToString();
+                        i++;
+
+                        //Added the patch for Thunderbird as suggested by Jorge
+                        LinkedImage.ContentType = new ContentType(MediaTypeNames.Image.Jpeg);
+                        htmlView.LinkedResources.Add(LinkedImage);
                     }
                 }
+
+
+
+
+                oMailMessage.AlternateViews.Add(htmlView);
+
+                if (!String.IsNullOrEmpty(strCcAddress))
+                    oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
+                if (!String.IsNullOrEmpty(strBccAddress))
+                    oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
+
+
+
+                if (arrAttachmentPath != null)
+                {
+                    foreach (string strAttachmentPath in arrAttachmentPath)
+                    {
+                        if (!(String.IsNullOrEmpty(strAttachmentPath)
+                            || Equals(strAttachmentPath, Convert.DBNull)))
+                        {
+                            Attachment mlAttachment = new Attachment(strAttachmentPath);
+                            mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                            oMailMessage.Attachments.Add(mlAttachment);
+                        }
+                    }
+                }
+                SmtpClient smtp = new SmtpClient();
+
+                logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
+                smtp.Send(oMailMessage);
+                logger.Info("Enviar Notificacion: exitoso");
+                oMailMessage.Dispose();
+                GC.Collect();
             }
-            SmtpClient smtp = new SmtpClient();
-            
-            logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments!=null ? oMailMessage.Attachments.Count().ToString(): "0"));
-            smtp.Send(oMailMessage);
-            logger.Info("Enviar Notificacion: exitoso");
-            oMailMessage.Dispose();
-            GC.Collect();
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
+
 
         }
 
         public static void SendMail(string strMessage, string strFromAddress, string strToAddress, string strCcAddress, string strBccAddress, string strSubject, string[] arrAttachmentPath)
         {
-
-            MailMessage oMailMessage = new MailMessage();
-            oMailMessage.From = new MailAddress(strFromAddress);
-            oMailMessage.To.Add(strToAddress.Replace(";", ","));
-            oMailMessage.Body = strMessage;
-            oMailMessage.IsBodyHtml = true;
-            oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-            oMailMessage.Subject = strSubject;
-
-
-            
-            if (!String.IsNullOrEmpty(strCcAddress))
-                oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
-            if (!String.IsNullOrEmpty(strBccAddress))
-                oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
-
-
-
-            if (arrAttachmentPath != null)
+            try
             {
-                foreach (string strAttachmentPath in arrAttachmentPath)
+                MailMessage oMailMessage = new MailMessage();
+                oMailMessage.From = new MailAddress(strFromAddress);
+                oMailMessage.To.Add(strToAddress.Replace(";", ","));
+                oMailMessage.Body = strMessage;
+                oMailMessage.IsBodyHtml = true;
+                oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                oMailMessage.Subject = strSubject;
+
+
+
+                if (!String.IsNullOrEmpty(strCcAddress))
+                    oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
+                if (!String.IsNullOrEmpty(strBccAddress))
+                    oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
+
+
+
+                if (arrAttachmentPath != null)
                 {
-                    if (!(String.IsNullOrEmpty(strAttachmentPath)
-                        || Equals(strAttachmentPath, Convert.DBNull)))
+                    foreach (string strAttachmentPath in arrAttachmentPath)
                     {
-                        Attachment mlAttachment = new Attachment(strAttachmentPath);
-                        mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
-                        oMailMessage.Attachments.Add(mlAttachment);
+                        if (!(String.IsNullOrEmpty(strAttachmentPath)
+                            || Equals(strAttachmentPath, Convert.DBNull)))
+                        {
+                            Attachment mlAttachment = new Attachment(strAttachmentPath);
+                            mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                            oMailMessage.Attachments.Add(mlAttachment);
+                        }
                     }
                 }
+                SmtpClient smtp = new SmtpClient();
+
+                logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
+                smtp.Send(oMailMessage);
+                logger.Info("Enviar Notificacion: exitoso");
+                oMailMessage.Dispose();
+                GC.Collect();
+
             }
-            SmtpClient smtp = new SmtpClient();
-
-            logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
-            smtp.Send(oMailMessage);
-            logger.Info("Enviar Notificacion: exitoso");
-            oMailMessage.Dispose();
-            GC.Collect();
-
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         public static void SendMailDisplayName(string strMessage, string strFromAddress, string strFromDisplayName, string strToAddress, string strCcAddress, string strBccAddress, string strSubject, string[] arrAttachmentPath)
         {
-
-            MailMessage oMailMessage = new MailMessage();
-            oMailMessage.From = new MailAddress(strFromAddress, strFromDisplayName);
-            oMailMessage.To.Add(strToAddress.Replace(";", ","));
-            oMailMessage.Body = strMessage;
-            oMailMessage.IsBodyHtml = true;
-            oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-            oMailMessage.Subject = strSubject;
-
-            if (!String.IsNullOrEmpty(strCcAddress))
-                oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
-            if (!String.IsNullOrEmpty(strBccAddress))
-                oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
-
-
-
-            if (arrAttachmentPath != null)
+            try
             {
-                foreach (string strAttachmentPath in arrAttachmentPath)
+                MailMessage oMailMessage = new MailMessage();
+                oMailMessage.From = new MailAddress(strFromAddress, strFromDisplayName);
+                oMailMessage.To.Add(strToAddress.Replace(";", ","));
+                oMailMessage.Body = strMessage;
+                oMailMessage.IsBodyHtml = true;
+                oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                oMailMessage.Subject = strSubject;
+
+                if (!String.IsNullOrEmpty(strCcAddress))
+                    oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
+                if (!String.IsNullOrEmpty(strBccAddress))
+                    oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
+
+
+
+                if (arrAttachmentPath != null)
                 {
-                    if (!(String.IsNullOrEmpty(strAttachmentPath)
-                        || Equals(strAttachmentPath, Convert.DBNull)))
+                    foreach (string strAttachmentPath in arrAttachmentPath)
                     {
-                        Attachment mlAttachment = new Attachment(strAttachmentPath);
-                        mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
-                        oMailMessage.Attachments.Add(mlAttachment);
+                        if (!(String.IsNullOrEmpty(strAttachmentPath)
+                            || Equals(strAttachmentPath, Convert.DBNull)))
+                        {
+                            Attachment mlAttachment = new Attachment(strAttachmentPath);
+                            mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                            oMailMessage.Attachments.Add(mlAttachment);
+                        }
                     }
                 }
+                SmtpClient smtp = new SmtpClient();
+                logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
+                smtp.Send(oMailMessage);
+                logger.Info("Enviar Notificacion: exitoso");
+                oMailMessage.Dispose();
+                GC.Collect();
             }
-            SmtpClient smtp = new SmtpClient();
-            logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
-            smtp.Send(oMailMessage);
-            logger.Info("Enviar Notificacion: exitoso");
-            oMailMessage.Dispose();
-            GC.Collect();
-
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
 
