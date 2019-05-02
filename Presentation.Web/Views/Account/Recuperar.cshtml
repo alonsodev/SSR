@@ -22,8 +22,8 @@
         <div class="row">
             <div class="col-md-12">
               
-                <div class="card" style="padding: 12px; top: 25%; background-color:#ffffff17; text-align:center;">
-                    <h5>@ViewBag.Title</h5>
+                <div class="card" style="padding: 12px; top: 25%; background-color:#786f5759; text-align:center;">
+                    <h5 style="color:white;">@ViewBag.Title</h5>
 
                     <div class="card-body">
 
@@ -31,7 +31,7 @@
 
                         <div class="form-group has-label">
 
-                            <label class="" for="user_email" style="color: black">Ingresa tu correo electrónico para enviarte información sobre como recuperar tu cuenta.</label>
+                            <label class="" for="user_email" style="color: white">Ingresa tu correo electrónico, y te enviaremos información sobre como recuperar tu cuenta.</label>
                             @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control", maxlength = "150" } })
                             @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
                         </div>
