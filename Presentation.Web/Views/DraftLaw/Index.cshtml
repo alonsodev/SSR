@@ -32,11 +32,7 @@
                         </div>
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4">
-                            <div class="card-footer text-right">
-
-                                <input type='button' id="btnBuscar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Buscar' />
-
-                            </div>
+                          
                         </div>
                     </div>
 
@@ -214,7 +210,7 @@
         $(function () {
             $("#period_id").select2();
             UiFormulario.init();
-            $("#btnBuscar").click(function () {
+            $('#period_id').on('select2:select', function (e) {
                 datatable.ajax.reload();
             });
 
