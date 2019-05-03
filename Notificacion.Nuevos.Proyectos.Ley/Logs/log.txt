@@ -290,3 +290,9 @@ INFO  2019-03-23 12:28:57,496  8876ms Program                Main               
 INFO  2019-03-23 12:28:57,496  8876ms Program                Main               - Proyectyso Nuevos: 0
 INFO  2019-03-23 12:28:57,496  8876ms Program                Main               - Fin Investigador: ssss s
 INFO  2019-03-23 12:28:57,701  9081ms Program                Main               - Fin de Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-05-02 16:18:58,138 10927ms Program                Main               - Inicio Proceso: Notificacion.Nuevos.Proyectos.Ley
+INFO  2019-05-02 16:18:58,819 11608ms Program                Main               - Proceso Notificacion.Nuevos.Proyectos.Ley: 5
+INFO  2019-05-02 16:18:58,862 11651ms Program                Main               - Inicio Investigador: Edison Javier Cuadros Paravicino
+INFO  2019-05-02 16:18:58,863 11652ms Program                Main               - Proyectyso Nuevos: 5
+INFO  2019-05-02 16:18:59,013 11802ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@arca.com, TO:investigador4@hotmail.com, CC:, BCC:ecuadros@sbperu.net, SUBJECT:Nuevos proyectos de ley en ARCA, ATTACHMENTS:0
+INFO  2019-05-02 16:19:01,530 14319ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
