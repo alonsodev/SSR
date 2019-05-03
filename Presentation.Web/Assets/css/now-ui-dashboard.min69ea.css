@@ -5549,7 +5549,7 @@ img {
         transform: translate3d(260px, 0, 0)
     }
 }
-@media (min-width: 991px) {
+@media (min-width: 1048px) {
     .main-panel,
     .sidebar,
     .sidebar-wrapper {
