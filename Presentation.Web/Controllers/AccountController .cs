@@ -421,7 +421,7 @@ namespace Presentation.Web.Controllers
             int.TryParse(id, out pIntID);
             InvestigatorViewModel pViewModel = oBL.ObtenerInvestigator(pIntID);
             SelectorBL oSelectorBL = new SelectorBL();
-            pViewModel.birthdate_text = pViewModel.birthdate.HasValue ? pViewModel.birthdate.Value.ToString("dd/MM/YYYY") : String.Empty;
+            pViewModel.birthdate_text = pViewModel.birthdate.HasValue ? pViewModel.birthdate.Value.ToString("dd/MM/yyyy") : String.Empty;
             List<SelectOptionItem> oEstatus = oSelectorBL.EstatusUserSelector();
             List<SelectOptionItem> oRoles = oSelectorBL.RolesSelector();
 

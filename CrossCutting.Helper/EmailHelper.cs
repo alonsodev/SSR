@@ -3,6 +3,7 @@
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -32,62 +33,65 @@ namespace CrossCutting.Helper
         {
             try
             {
-                MailMessage oMailMessage = new MailMessage();
-                oMailMessage.From = new MailAddress(strFromAddress);
-                oMailMessage.To.Add(strToAddress.Replace(";", ","));
-                //oMailMessage.Body = strMessage;
-                //oMailMessage.IsBodyHtml = true;
-                oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-                oMailMessage.Subject = strSubject;
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strMessage, null, "text/html");
-                if (arrImage != null)
-                {
-                    int i = 1;
-                    foreach (string strImagePath in arrImage)
+              
+                    MailMessage oMailMessage = new MailMessage();
+                    oMailMessage.From = new MailAddress(strFromAddress);
+                    oMailMessage.To.Add(strToAddress.Replace(";", ","));
+                    //oMailMessage.Body = strMessage;
+                    //oMailMessage.IsBodyHtml = true;
+                    oMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                    oMailMessage.Subject = strSubject;
+                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strMessage, null, "text/html");
+                    if (arrImage != null)
                     {
-
-                        LinkedResource LinkedImage = new LinkedResource(strImagePath);
-                        LinkedImage.ContentId = "image_" + i.ToString();
-                        i++;
-
-                        //Added the patch for Thunderbird as suggested by Jorge
-                        LinkedImage.ContentType = new ContentType(MediaTypeNames.Image.Jpeg);
-                        htmlView.LinkedResources.Add(LinkedImage);
-                    }
-                }
-
-
-
-
-                oMailMessage.AlternateViews.Add(htmlView);
-
-                if (!String.IsNullOrEmpty(strCcAddress))
-                    oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
-                if (!String.IsNullOrEmpty(strBccAddress))
-                    oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
-
-
-
-                if (arrAttachmentPath != null)
-                {
-                    foreach (string strAttachmentPath in arrAttachmentPath)
-                    {
-                        if (!(String.IsNullOrEmpty(strAttachmentPath)
-                            || Equals(strAttachmentPath, Convert.DBNull)))
+                        int i = 1;
+                        foreach (string strImagePath in arrImage)
                         {
-                            Attachment mlAttachment = new Attachment(strAttachmentPath);
-                            mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
-                            oMailMessage.Attachments.Add(mlAttachment);
+
+                            LinkedResource LinkedImage = new LinkedResource(strImagePath);
+                            LinkedImage.ContentId = "image_" + i.ToString();
+                            i++;
+
+                            //Added the patch for Thunderbird as suggested by Jorge
+                            LinkedImage.ContentType = new ContentType(MediaTypeNames.Image.Jpeg);
+                            htmlView.LinkedResources.Add(LinkedImage);
                         }
                     }
-                }
-                SmtpClient smtp = new SmtpClient();
 
-                logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
-                smtp.Send(oMailMessage);
-                logger.Info("Enviar Notificacion: exitoso");
-                oMailMessage.Dispose();
-                GC.Collect();
+
+
+
+                    oMailMessage.AlternateViews.Add(htmlView);
+
+                    if (!String.IsNullOrEmpty(strCcAddress))
+                        oMailMessage.CC.Add(strCcAddress.Replace(";", ","));
+                    if (!String.IsNullOrEmpty(strBccAddress))
+                        oMailMessage.Bcc.Add(strBccAddress.Replace(";", ","));
+
+
+
+                    if (arrAttachmentPath != null)
+                    {
+                        foreach (string strAttachmentPath in arrAttachmentPath)
+                        {
+                            if (!(String.IsNullOrEmpty(strAttachmentPath)
+                                || Equals(strAttachmentPath, Convert.DBNull)))
+                            {
+                                Attachment mlAttachment = new Attachment(strAttachmentPath);
+                                mlAttachment.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                                oMailMessage.Attachments.Add(mlAttachment);
+                            }
+                        }
+                    }
+                    SmtpClient smtp = new SmtpClient();
+
+                    logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
+                    smtp.Send(oMailMessage);
+                    logger.Info("Enviar Notificacion: exitoso");
+                    oMailMessage.Dispose();
+                    GC.Collect();
+
+               
             }
             catch (Exception ex)
             {
