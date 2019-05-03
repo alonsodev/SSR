@@ -554,6 +554,7 @@ namespace Infrastructure.Data.Repositories
                 id = a.id,
                 user_name = a.user_name,
                 user_email = a.user_email,
+                user_email2 = a.user_email2,
                 user_pass = a.user_pass,
                 user_role_id = a.user_role_id,
                 user_status_id = a.user_status_id,
@@ -564,7 +565,9 @@ namespace Infrastructure.Data.Repositories
                 user_id_created = a.user_id_created,
                 user_id_modified = a.user_id_modified,
                 document_type_id = a.document_type_id,
-               
+                address_country_id=a.address_country_id,
+                address_municipality_id=a.address_municipality_id,
+                department_id=a.municipalities.department_id,
 
                 doc_nro = a.doc_nro,
                 nationality_id = a.nationality_id,

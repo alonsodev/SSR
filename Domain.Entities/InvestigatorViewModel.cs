@@ -119,6 +119,7 @@ namespace Domain.Entities
 
         [Display(Name = "Correo electrónico usuario")]
         [Required(ErrorMessage = "El Correo electrónico usuario es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El Correo electrónico usuario no es válido")]
         public string user_email { get; set; }
 
 

@@ -32,6 +32,7 @@ namespace Presentation.Web.Controllers
 
             List<SelectOptionItem> oNationalities = oSelectorBL.NationalitiesSelector();
             List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
+            List<SelectOptionItem> oDepartments = oSelectorBL.DepartmentsSelector();
 
 
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
@@ -39,12 +40,17 @@ namespace Presentation.Web.Controllers
 
             List<SelectListItem> nationalities = Helper.ConstruirDropDownList<SelectOptionItem>(oNationalities, "Value", "Text", "", true, "", "");
             List<SelectListItem> documentTypes = Helper.ConstruirDropDownList<SelectOptionItem>(oDocumentTypes, "Value", "Text", "", true, "", "");
+            List<SelectListItem> departments = Helper.ConstruirDropDownList<SelectOptionItem>(oDepartments, "Value", "Text", "", true, "", "");
+
+            List<SelectListItem> oListaVacia = Helper.ConstruirDropDownList<SelectOptionItem>(new List<SelectOptionItem>(), "Value", "Text", "", true, "", "");
 
             ViewBag.estatus = estatus;
             ViewBag.roles = roles;
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
 
+            ViewBag.departments = departments;
+            ViewBag.municipalities = oListaVacia;
 
             List<SelectListItem> institutions = new List<SelectListItem>();
             ViewBag.institutions = institutions;
@@ -55,7 +61,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_user })]
-        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,institution_ids")] UserViewModel pUserViewModel)
+        public ActionResult Crear([Bind(Include = "id,user_name,user_email,user_email2,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,institution_ids,address_country_id,department_id,address_municipality_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
@@ -106,6 +112,10 @@ namespace Presentation.Web.Controllers
             List<SelectOptionItem> oNationalities = oSelectorBL.NationalitiesSelector();
             List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
 
+            List<SelectOptionItem> oDepartments = oSelectorBL.DepartmentsSelector();
+            List<SelectOptionItem> oMunicipalities = oSelectorBL.MunicipalitiesSelector(pUserViewModel.department_id.HasValue ? pUserViewModel.department_id.Value : 0);
+
+
 
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
@@ -113,10 +123,16 @@ namespace Presentation.Web.Controllers
             List<SelectListItem> nationalities = Helper.ConstruirDropDownList<SelectOptionItem>(oNationalities, "Value", "Text", "", true, "", "");
             List<SelectListItem> documentTypes = Helper.ConstruirDropDownList<SelectOptionItem>(oDocumentTypes, "Value", "Text", "", true, "", "");
 
+            List<SelectListItem> departments = Helper.ConstruirDropDownList<SelectOptionItem>(oDepartments, "Value", "Text", "", true, "", "");
+            List<SelectListItem> municipalities = Helper.ConstruirDropDownList<SelectOptionItem>(oMunicipalities, "Value", "Text", "", true, "", "");
+
+
             ViewBag.estatus = estatus;
             ViewBag.roles = roles;
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
+            ViewBag.departments = departments;
+            ViewBag.municipalities = municipalities;
 
             return View(pUserViewModel);
         }
@@ -124,7 +140,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public ActionResult MiCuenta([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id")] UserViewModel pUserViewModel)
+        public ActionResult MiCuenta([Bind(Include = "id,user_name,user_email,user_email2,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,address_country_id,department_id,address_municipality_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 
@@ -176,6 +192,10 @@ namespace Presentation.Web.Controllers
             List<SelectOptionItem> oNationalities = oSelectorBL.NationalitiesSelector();
             List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
 
+            List<SelectOptionItem> oDepartments = oSelectorBL.DepartmentsSelector();
+            List<SelectOptionItem> oMunicipalities = oSelectorBL.MunicipalitiesSelector(pUserViewModel.department_id.HasValue ? pUserViewModel.department_id.Value : 0);
+
+
 
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
@@ -183,10 +203,15 @@ namespace Presentation.Web.Controllers
             List<SelectListItem> nationalities = Helper.ConstruirDropDownList<SelectOptionItem>(oNationalities, "Value", "Text", "", true, "", "");
             List<SelectListItem> documentTypes = Helper.ConstruirDropDownList<SelectOptionItem>(oDocumentTypes, "Value", "Text", "", true, "", "");
 
+            List<SelectListItem> departments = Helper.ConstruirDropDownList<SelectOptionItem>(oDepartments, "Value", "Text", "", true, "", "");
+            List<SelectListItem> municipalities = Helper.ConstruirDropDownList<SelectOptionItem>(oMunicipalities, "Value", "Text", "", true, "", "");
+
             ViewBag.estatus = estatus;
             ViewBag.roles = roles;
             ViewBag.nationalities = nationalities;
             ViewBag.documentTypes = documentTypes;
+            ViewBag.departments = departments;
+            ViewBag.municipalities = municipalities;
 
             pUserViewModel.institutionsMultiSelectList = new MultiSelectList(oSelectorBL.InstitutionsSelector(pUserViewModel.institution_ids), "Value", "Text");
 
@@ -197,7 +222,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_user })]
-        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,institution_ids")] UserViewModel pUserViewModel)
+        public ActionResult Editar([Bind(Include = "id,user_name,user_email,user_email2,user_pass,document_type_id,doc_nro,nationality_id,contact_name,phone,address,user_role_id,user_status_id,institution_ids,address_country_id,department_id,address_municipality_id")] UserViewModel pUserViewModel)
         {
             // TODO: Add insert logic here
 

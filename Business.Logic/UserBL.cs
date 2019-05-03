@@ -106,6 +106,11 @@ namespace Business.Logic
             // ousers.user_role_id = pUserViewModel.user_role_id;
             //ousers.user_status_id = pUserViewModel.user_status_id;
 
+            ousers.user_email2 = pUserViewModel.user_email2;
+            ousers.address_country_id = pUserViewModel.address_country_id;
+            ousers.address_municipality_id = pUserViewModel.address_municipality_id;
+
+
             ousers.document_type_id = pUserViewModel.document_type_id;
 
             ousers.doc_nro = pUserViewModel.doc_nro;
@@ -140,6 +145,10 @@ namespace Business.Logic
                 ousers.contact_name = pUserViewModel.contact_name;
                 ousers.phone = pUserViewModel.phone;
                 ousers.address = pUserViewModel.address;
+                ousers.user_email2 = pUserViewModel.user_email2;
+                ousers.address_country_id = pUserViewModel.address_country_id;
+                ousers.address_municipality_id = pUserViewModel.address_municipality_id;
+
 
 
                 ousers.user_id_modified = pUserViewModel.user_id_modified;
@@ -254,6 +263,7 @@ namespace Business.Logic
                     id = 0,
                     user_name = pUserViewModel.user_name,
                     user_pass = pUserViewModel.user_pass,
+                    user_email2 = pUserViewModel.user_email2,
                     user_email = pUserViewModel.user_email,
                     user_role_id = pUserViewModel.user_role_id,
                     user_status_id = pUserViewModel.user_status_id,
@@ -267,7 +277,10 @@ namespace Business.Logic
 
                     date_created = DateTime.Now,
                     user_id_created = pUserViewModel.user_id_created,
-                    user_code_recover = pUserViewModel.user_code_recover
+                    user_code_recover = pUserViewModel.user_code_recover,
+                    address_municipality_id=pUserViewModel.address_municipality_id,
+                    address_country_id = pUserViewModel.address_country_id,
+                    
 
                 };
 

@@ -546,6 +546,7 @@
           <Property Name="user_name" Type="varchar" MaxLength="100" />
           <Property Name="user_email" Type="varchar" MaxLength="150" />
           <Property Name="user_pass" Type="varchar" MaxLength="60" />
+          <Property Name="user_email2" Type="varchar" MaxLength="150" />
           <Property Name="document_type_id" Type="int" />
           <Property Name="doc_nro" Type="varchar" MaxLength="20" />
           <Property Name="nationality_id" Type="int" />
@@ -1480,7 +1481,6 @@
           <EntitySet Name="snies" EntityType="SSRModel.snies" />
           <EntitySet Name="tags" EntityType="SSRModel.tags" />
           <EntitySet Name="user_status" EntityType="SSRModel.user_status" />
-          <EntitySet Name="users" EntityType="SSRModel.users" />
           <AssociationSet Name="FK_snies_academic_levels" Association="SSRModel.FK_snies_academic_levels">
             <End Role="academic_levels" EntitySet="academic_levels" />
             <End Role="snies" EntitySet="snies" />
@@ -1495,10 +1495,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_concept_debate_speakers_concepts" Association="SSRModel.FK_concept_debate_speakers_concepts">
             <End Role="concepts" EntitySet="concepts" />
-            <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_selected_users" Association="SSRModel.FK_debate_speakers_selected_users">
-            <End Role="users" EntitySet="users" />
             <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
           </AssociationSet>
           <AssociationSet Name="FK_concepts_concepts_status" Association="SSRModel.FK_concepts_concepts_status">
@@ -1545,10 +1541,6 @@
             <End Role="consultations" EntitySet="consultations" />
             <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
           </AssociationSet>
-          <AssociationSet Name="FK_consultations_users" Association="SSRModel.FK_consultations_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="consultations" EntitySet="consultations" />
-          </AssociationSet>
           <AssociationSet Name="FK_consultations_interest_areas_interest_areas" Association="SSRModel.FK_consultations_interest_areas_interest_areas">
             <End Role="interest_areas" EntitySet="interest_areas" />
             <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
@@ -1557,17 +1549,9 @@
             <End Role="draft_laws" EntitySet="draft_laws" />
             <End Role="debate_speakers" EntitySet="debate_speakers" />
           </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
-          </AssociationSet>
           <AssociationSet Name="FK_municipalities_departments" Association="SSRModel.FK_municipalities_departments">
             <End Role="departments" EntitySet="departments" />
             <End Role="municipalities" EntitySet="municipalities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
-            <End Role="document_types" EntitySet="document_types" />
-            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
             <End Role="interest_areas" EntitySet="interest_areas" />
@@ -1629,13 +1613,60 @@
             <End Role="programs" EntitySet="programs" />
             <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
-          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="investigators" EntitySet="investigators" />
-          </AssociationSet>
           <AssociationSet Name="FK_snies_knowledge_areas" Association="SSRModel.FK_snies_knowledge_areas">
             <End Role="knowledge_areas" EntitySet="knowledge_areas" />
             <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snies_programs" Association="SSRModel.FK_snies_programs">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="snies" EntitySet="snies" />
+          </AssociationSet>
+          <EntitySet Name="user_institutions" EntityType="SSRModel.user_institutions" />
+          <AssociationSet Name="FK_user_institutionss_institutions" Association="SSRModel.FK_user_institutionss_institutions">
+            <End Role="institutions" EntitySet="institutions" />
+            <End Role="user_institutions" EntitySet="user_institutions" />
+          </AssociationSet>
+          <FunctionImport Name="ActualizarTablasReporte">
+          <Parameter Name="period_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="draft_laws_status" EntityType="SSRModel.draft_laws_status" />
+          <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
+            <End Role="draft_laws_status" EntitySet="draft_laws_status" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
+          <EntitySet Name="roles" EntityType="SSRModel.roles" />
+          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="role_permissions" EntitySet="role_permissions" />
+          </AssociationSet>
+          <FunctionImport Name="ActualizarNotificacionLeido">
+            <Parameter Name="url" Mode="In" Type="String" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="users" EntityType="SSRModel.users" />
+          <AssociationSet Name="FK_debate_speakers_selected_users" Association="SSRModel.FK_debate_speakers_selected_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="concept_debate_speakers" EntitySet="concept_debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_consultations_users" Association="SSRModel.FK_consultations_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="consultations" EntitySet="consultations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_debate_speakers_users" Association="SSRModel.FK_debate_speakers_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_document_types" Association="SSRModel.FK_users_document_types">
+            <End Role="document_types" EntitySet="document_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_investigators_users" Association="SSRModel.FK_investigators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="investigators" EntitySet="investigators" />
           </AssociationSet>
           <AssociationSet Name="FK_users_municipalities" Association="SSRModel.FK_users_municipalities">
             <End Role="municipalities" EntitySet="municipalities" />
@@ -1653,48 +1684,18 @@
             <End Role="users" EntitySet="users" />
             <End Role="notifications" EntitySet="notifications" />
           </AssociationSet>
-          <AssociationSet Name="FK_role_permissions_permissions" Association="SSRModel.FK_role_permissions_permissions">
-            <End Role="permissions" EntitySet="permissions" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_snies_programs" Association="SSRModel.FK_snies_programs">
-            <End Role="programs" EntitySet="programs" />
-            <End Role="snies" EntitySet="snies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
-            <End Role="user_status" EntitySet="user_status" />
+          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
+            <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <EntitySet Name="user_institutions" EntityType="SSRModel.user_institutions" />
-          <AssociationSet Name="FK_user_institutionss_institutions" Association="SSRModel.FK_user_institutionss_institutions">
-            <End Role="institutions" EntitySet="institutions" />
-            <End Role="user_institutions" EntitySet="user_institutions" />
           </AssociationSet>
           <AssociationSet Name="FK_user_institutionss_users" Association="SSRModel.FK_user_institutionss_users">
             <End Role="users" EntitySet="users" />
             <End Role="user_institutions" EntitySet="user_institutions" />
           </AssociationSet>
-          <FunctionImport Name="ActualizarTablasReporte">
-          <Parameter Name="period_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="draft_laws_status" EntityType="SSRModel.draft_laws_status" />
-          <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
-            <End Role="draft_laws_status" EntitySet="draft_laws_status" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
-          </AssociationSet>
-          <EntitySet Name="roles" EntityType="SSRModel.roles" />
-          <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="role_permissions" EntitySet="role_permissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_roles" Association="SSRModel.FK_users_roles">
-            <End Role="roles" EntitySet="roles" />
+          <AssociationSet Name="FK_users_user_status" Association="SSRModel.FK_users_user_status">
+            <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-          <FunctionImport Name="ActualizarNotificacionLeido">
-            <Parameter Name="url" Mode="In" Type="String" />
-            <Parameter Name="user_id" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <EntityType Name="academic_levels">
           <Key>
@@ -2137,7 +2138,7 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_users_address_countries" FromRole="nationalities" ToRole="users" />
           <NavigationProperty Name="users1" Relationship="SSRModel.FK_users_nationalities" FromRole="nationalities" ToRole="users" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="notifications">
           <Key>
             <PropertyRef Name="notification_id" />
@@ -2280,46 +2281,6 @@
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_users_user_status" FromRole="user_status" ToRole="users" />
         </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="document_type_id" Type="Int32" />
-          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="nationality_id" Type="Int32" />
-          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="address_country_id" Type="Int32" />
-          <Property Name="address_municipality_id" Type="Int32" />
-          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="user_role_id" Type="Int32" />
-          <Property Name="user_status_id" Type="Int32" />
-          <Property Name="is_super_admin" Type="Byte" />
-          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <Property Name="user_code_activate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="user_code_recover" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="concept_debate_speakers" Relationship="SSRModel.FK_debate_speakers_selected_users" FromRole="users" ToRole="concept_debate_speakers" />
-          <NavigationProperty Name="consultations" Relationship="SSRModel.FK_consultations_users" FromRole="users" ToRole="consultations" />
-          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
-          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
-          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
-          <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
-          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
-          <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
-          <NavigationProperty Name="notifications" Relationship="SSRModel.FK_notifications_users" FromRole="users" ToRole="notifications" />
-          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
-          <NavigationProperty Name="user_institutions" Relationship="SSRModel.FK_user_institutionss_users" FromRole="users" ToRole="user_institutions" />
-          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
-        </EntityType>
         <Association Name="FK_snies_academic_levels">
           <End Type="SSRModel.academic_levels" Role="academic_levels" Multiplicity="0..1" />
           <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
@@ -2365,18 +2326,6 @@
             </Principal>
             <Dependent Role="concept_debate_speakers">
               <PropertyRef Name="concept_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_debate_speakers_selected_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
-          <End Type="SSRModel.concept_debate_speakers" Role="concept_debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="concept_debate_speakers">
-              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2512,18 +2461,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_consultations_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
-          <End Type="SSRModel.consultations" Role="consultations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="consultations">
-              <PropertyRef Name="user_id_created" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_consultations_interest_areas_interest_areas">
           <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="1" />
           <End Type="SSRModel.consultations_interest_areas" Role="consultations_interest_areas" Multiplicity="*" />
@@ -2548,18 +2485,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_debate_speakers_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_municipalities_departments">
           <End Type="SSRModel.departments" Role="departments" Multiplicity="1" />
           <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="*" />
@@ -2569,18 +2494,6 @@
             </Principal>
             <Dependent Role="municipalities">
               <PropertyRef Name="department_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_document_types">
-          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="document_types">
-              <PropertyRef Name="document_type_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="document_type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2764,18 +2677,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_investigators_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
-          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="investigators">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_snies_knowledge_areas">
           <End Type="SSRModel.knowledge_areas" Role="knowledge_areas" Multiplicity="0..1" />
           <End Type="SSRModel.snies" Role="snies" Multiplicity="*" />
@@ -2785,54 +2686,6 @@
             </Principal>
             <Dependent Role="snies">
               <PropertyRef Name="knowledge_area_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_municipalities">
-          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="municipalities">
-              <PropertyRef Name="municipality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="address_municipality_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_address_countries">
-          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nationalities">
-              <PropertyRef Name="nationality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="address_country_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_nationalities">
-          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="nationalities">
-              <PropertyRef Name="nationality_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="nationality_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_notifications_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
-          <End Type="SSRModel.notifications" Role="notifications" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="notifications">
-              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2860,18 +2713,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_users_user_status">
-          <End Type="SSRModel.user_status" Role="user_status" Multiplicity="0..1" />
-          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user_status">
-              <PropertyRef Name="user_status_id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="user_status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="user_institutions">
           <Key>
             <PropertyRef Name="user_id" />
@@ -2895,18 +2736,6 @@
             </Principal>
             <Dependent Role="user_institutions">
               <PropertyRef Name="institution_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_user_institutionss_users">
-          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
-          <End Type="SSRModel.user_institutions" Role="user_institutions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="user_institutions">
-              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2959,6 +2788,155 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="user_pass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="user_email2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="document_type_id" Type="Int32" />
+          <Property Name="doc_nro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nationality_id" Type="Int32" />
+          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address_country_id" Type="Int32" />
+          <Property Name="address_municipality_id" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_role_id" Type="Int32" />
+          <Property Name="user_status_id" Type="Int32" />
+          <Property Name="is_super_admin" Type="Byte" />
+          <Property Name="user_date_last_login" Type="DateTime" Precision="3" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="user_code_activate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_code_recover" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="concept_debate_speakers" Relationship="SSRModel.FK_debate_speakers_selected_users" FromRole="users" ToRole="concept_debate_speakers" />
+          <NavigationProperty Name="consultations" Relationship="SSRModel.FK_consultations_users" FromRole="users" ToRole="consultations" />
+          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_users" FromRole="users" ToRole="debate_speakers" />
+          <NavigationProperty Name="document_types" Relationship="SSRModel.FK_users_document_types" FromRole="users" ToRole="document_types" />
+          <NavigationProperty Name="investigators" Relationship="SSRModel.FK_investigators_users" FromRole="users" ToRole="investigators" />
+          <NavigationProperty Name="municipalities" Relationship="SSRModel.FK_users_municipalities" FromRole="users" ToRole="municipalities" />
+          <NavigationProperty Name="nationalities" Relationship="SSRModel.FK_users_address_countries" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="nationalities1" Relationship="SSRModel.FK_users_nationalities" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="notifications" Relationship="SSRModel.FK_notifications_users" FromRole="users" ToRole="notifications" />
+          <NavigationProperty Name="roles" Relationship="SSRModel.FK_users_roles" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="user_institutions" Relationship="SSRModel.FK_user_institutionss_users" FromRole="users" ToRole="user_institutions" />
+          <NavigationProperty Name="user_status" Relationship="SSRModel.FK_users_user_status" FromRole="users" ToRole="user_status" />
+        </EntityType>
+        <Association Name="FK_debate_speakers_selected_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.concept_debate_speakers" Role="concept_debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="concept_debate_speakers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_consultations_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.consultations" Role="consultations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="consultations">
+              <PropertyRef Name="user_id_created" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_debate_speakers_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_document_types">
+          <End Type="SSRModel.document_types" Role="document_types" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document_types">
+              <PropertyRef Name="document_type_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="document_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_investigators_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.investigators" Role="investigators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="investigators">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_municipalities">
+          <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipalities">
+              <PropertyRef Name="municipality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="address_municipality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_address_countries">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="address_country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_nationalities">
+          <End Type="SSRModel.nationalities" Role="nationalities" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationality_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="nationality_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_notifications_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="SSRModel.notifications" Role="notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="notifications">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_users_roles">
           <End Type="SSRModel.roles" Role="roles" Multiplicity="0..1" />
           <End Type="SSRModel.users" Role="users" Multiplicity="*" />
@@ -2968,6 +2946,30 @@
             </Principal>
             <Dependent Role="users">
               <PropertyRef Name="user_role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_institutionss_users">
+          <End Type="SSRModel.users" Role="users" Multiplicity="1" />
+          <End Type="SSRModel.user_institutions" Role="user_institutions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_institutions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_status">
+          <End Type="SSRModel.user_status" Role="user_status" Multiplicity="0..1" />
+          <End Type="SSRModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_status">
+              <PropertyRef Name="user_status_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="user_status_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3509,35 +3511,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="SSRModel.users">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="avatar" ColumnName="avatar" />
-                <ScalarProperty Name="user_code_recover" ColumnName="user_code_recover" />
-                <ScalarProperty Name="user_code_activate" ColumnName="user_code_activate" />
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="user_date_last_login" ColumnName="user_date_last_login" />
-                <ScalarProperty Name="is_super_admin" ColumnName="is_super_admin" />
-                <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
-                <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="address_municipality_id" ColumnName="address_municipality_id" />
-                <ScalarProperty Name="address_country_id" ColumnName="address_country_id" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
-                <ScalarProperty Name="nationality_id" ColumnName="nationality_id" />
-                <ScalarProperty Name="doc_nro" ColumnName="doc_nro" />
-                <ScalarProperty Name="document_type_id" ColumnName="document_type_id" />
-                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
-                <ScalarProperty Name="user_email" ColumnName="user_email" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="user_institutions">
             <EntityTypeMapping TypeName="SSRModel.user_institutions">
               <MappingFragment StoreEntitySet="user_institutions">
@@ -3576,6 +3549,36 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ActualizarNotificacionLeido" FunctionName="SSRModel.Store.ActualizarNotificacionLeido" />
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="SSRModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="user_code_recover" ColumnName="user_code_recover" />
+                <ScalarProperty Name="user_code_activate" ColumnName="user_code_activate" />
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="user_date_last_login" ColumnName="user_date_last_login" />
+                <ScalarProperty Name="is_super_admin" ColumnName="is_super_admin" />
+                <ScalarProperty Name="user_status_id" ColumnName="user_status_id" />
+                <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="address_municipality_id" ColumnName="address_municipality_id" />
+                <ScalarProperty Name="address_country_id" ColumnName="address_country_id" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="nationality_id" ColumnName="nationality_id" />
+                <ScalarProperty Name="doc_nro" ColumnName="doc_nro" />
+                <ScalarProperty Name="document_type_id" ColumnName="document_type_id" />
+                <ScalarProperty Name="user_email2" ColumnName="user_email2" />
+                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpressiveAnnotations.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -52,14 +53,36 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Telefóno de contacto es obligatorio.")]
         [RegularExpression(@"^[0-9]{7,20}", ErrorMessage = "Telefóno de contacto solo permite números mayores a 7 dígitos")]
         public string phone { get; set; }
+
+
+        [Display(Name = "Pais de residencia")]
+        [Required(ErrorMessage = "Pais de residencia es obligatorio.")]
+        public Nullable<int> address_country_id { get; set; }
+
+        [Display(Name = "Departamento de residencia")]
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Departamento de residencia es obligatorio.")]
+        public Nullable<int> department_id { get; set; }
+
+        [Display(Name = "Municipio de residencia")]
+
+        [RequiredIf("address_country_id == 45", ErrorMessage = "Municipio de residencia es obligatorio.")]
+        public Nullable<int> address_municipality_id { get; set; }
+
+
         [Display(Name = "Dirección - Lugar de residencia")]
         [Required(ErrorMessage = "Dirección - Lugar de residencia es obligatorio.")]
+        
         public string address { get; set; }
 
 
         [Display(Name = "Correo electrónico usuario")]
         [Required(ErrorMessage = "El Correo electrónico usuario es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El Correo electrónico usuario no es válido")]
         public string user_email { get; set; }
+
+        [Display(Name = "Correo electrónico secundario")]
+        [EmailAddress(ErrorMessage = "El Correo electrónico secundario no es válido")]
+        public string user_email2 { get; set; }
 
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "La Contraseña es obligatorio.")]

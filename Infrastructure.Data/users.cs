@@ -29,6 +29,7 @@ namespace Infrastructure.Data
         public string user_name { get; set; }
         public string user_email { get; set; }
         public string user_pass { get; set; }
+        public string user_email2 { get; set; }
         public Nullable<int> document_type_id { get; set; }
         public string doc_nro { get; set; }
         public Nullable<int> nationality_id { get; set; }
@@ -63,9 +64,9 @@ namespace Infrastructure.Data
         public virtual nationalities nationalities1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<notifications> notifications { get; set; }
-        public virtual user_status user_status { get; set; }
+        public virtual roles roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_institutions> user_institutions { get; set; }
-        public virtual roles roles { get; set; }
+        public virtual user_status user_status { get; set; }
     }
 }

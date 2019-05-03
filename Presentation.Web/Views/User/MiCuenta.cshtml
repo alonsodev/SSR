@@ -16,116 +16,155 @@
             </div>
             @using (Html.BeginForm("MiCuenta", "User", FormMethod.Post, new { id = "form-user", title = "Subir imagen de perfil", enctype = "multipart/form-data" }))
             {
-                <div class="card-body">
+            <div class="card-body">
 
 
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.id)
-                    @Html.HiddenFor(model => model.avatar)
-                    <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
-                    <div class="form-group has-label">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                @Html.HiddenFor(model => model.avatar)
+                <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
+                <div class="form-group has-label">
 
-                        @Html.LabelFor(model => model.user_name, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
-                        @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.user_name, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+                    @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.document_type_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("document_type_id", (IEnumerable<SelectListItem>)ViewBag.documentTypes, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.document_type_id, "", new { @class = "text-danger" })
+                        </div>
 
                     </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.document_type_id, htmlAttributes: new { @class = "" })</label>
 
-                        <div class="col-sm-4">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.doc_nro, htmlAttributes: new { @class = "" })</label>
 
-                            <div class="form-group">
-                                @Html.DropDownList("document_type_id", (IEnumerable<SelectListItem>)ViewBag.documentTypes, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.document_type_id, "", new { @class = "text-danger" })
-                            </div>
+                    <div class="col-sm-4">
 
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.doc_nro, new { htmlAttributes = new { @class = "form-control", maxlength = "20" } })
+                            @Html.ValidationMessageFor(model => model.doc_nro, "", new { @class = "text-danger" })
                         </div>
 
-                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.doc_nro, htmlAttributes: new { @class = "" })</label>
-
-                        <div class="col-sm-4">
-
-                            <div class="form-group">
-                                @Html.EditorFor(model => model.doc_nro, new { htmlAttributes = new { @class = "form-control", maxlength = "20" } })
-                                @Html.ValidationMessageFor(model => model.doc_nro, "", new { @class = "text-danger" })
-                            </div>
-
-                        </div>
                     </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.nationality_id, htmlAttributes: new { @class = "" })</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.nationality_id, htmlAttributes: new { @class = "" })</label>
 
-                        <div class="col-sm-4">
+                    <div class="col-sm-4">
 
-                            <div class="form-group">
-                                @Html.DropDownList("nationality_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.nationality_id, "", new { @class = "text-danger" })
-                            </div>
-
+                        <div class="form-group">
+                            @Html.DropDownList("nationality_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.nationality_id, "", new { @class = "text-danger" })
                         </div>
 
-                        <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "" })</label>
-
-                        <div class="col-sm-4">
-
-                            <div class="form-group">
-                                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", maxlength = "20" } })
-                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
-                            </div>
-
-                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="form-group has-label">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_country_id, htmlAttributes: new { @class = "" })</label>
 
-                                @Html.LabelFor(model => model.contact_name, htmlAttributes: new { @class = "" })
-                                @Html.EditorFor(model => model.contact_name, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
-                                @Html.ValidationMessageFor(model => model.contact_name, "", new { @class = "text-danger" })
+                    <div class="col-sm-4">
 
-                            </div>
-                            <div class="form-group has-label">
+                        <div class="form-group">
+                            @Html.DropDownList("address_country_id", (IEnumerable<SelectListItem>)ViewBag.nationalities, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.address_country_id, "", new { @class = "text-danger" })
+                        </div>
 
-                                @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
-                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
-                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
 
-                            </div>
-                            <div class="form-group has-label">
+                </div>
 
-                                @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "" })
-                                @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control", maxlength = "150", @disabled = "@disabled" } })
-                                @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
-                                <span class="text-danger field-validation-error email-error"></span>
+                <div class="row address_department">
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.department_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("department_id", (IEnumerable<SelectListItem>)ViewBag.departments, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.department_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <label class="col-sm-2 col-form-label"> @Html.LabelFor(model => model.address_municipality_id, htmlAttributes: new { @class = "" })</label>
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            @Html.DropDownList("address_municipality_id", (IEnumerable<SelectListItem>)ViewBag.municipalities, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.address_municipality_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group has-label">
+
+                            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group has-label">
+
+                            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", maxlength = "20" } })
+                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group has-label">
+
+                            @Html.LabelFor(model => model.contact_name, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.contact_name, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+                            @Html.ValidationMessageFor(model => model.contact_name, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group has-label">
+
+                            @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control", maxlength = "150", @disabled = "@disabled" } })
+                            @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+                            <span class="text-danger field-validation-error email-error"></span>
+                        </div>
+                        <div class="form-group has-label">
+
+                            @Html.LabelFor(model => model.user_email2, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.user_email2, new { htmlAttributes = new { @class = "form-control", maxlength = "150" } })
+                            @Html.ValidationMessageFor(model => model.user_email2, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="" for="avatar_image">Imagen de perfil</label>
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <label class="" for="avatar_image">Imagen de perfil</label>
-                                </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
 
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 text-center">
-
-                                    <div class="kv-avatar" id="avatar_image">
-                                        <div class="file-loading">
-                                            <input id="avatar-2" name="avatar-2" type="file">
-                                        </div>
+                                <div class="kv-avatar" id="avatar_image">
+                                    <div class="file-loading">
+                                        <input id="avatar-2" name="avatar-2" type="file">
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                </div>
 
 
-                </div><!-- end content-->
+            </div><!-- end content-->
                 <div class="card-footer text-right">
 
                   
@@ -227,11 +266,85 @@
         });
     </script>
     <script type="text/javascript">
+        function InicializarResidencia() {
+            //debugger;
+            if ($("#address_country_id").val() == "45") {
+                $(".address_department").show();
+            }
+
+            else {
+                $(".address_department").hide();
+                $("#department_id").each(function () { //added a each loop here
+                    $(this).select2('val', '')
+                });
+                $("#address_municipality_id").each(function () { //added a each loop here
+                    $(this).select2('val', '')
+                });
+                $('#department_id').val('');
+                $('#address_municipality_id').val('');
+            }
+        }
         $(function () {
             $("#user_role_id").select2({ theme: "bootstrap" });
             $("#user_status_id").select2({ theme: "bootstrap" });
             $("#nationality_id").select2({ theme: "bootstrap" });
             $("#document_type_id").select2({ theme: "bootstrap" });
+
+
+            $("#address_country_id").select2({ theme: "bootstrap" });
+            $("#department_id").select2({ theme: "bootstrap" });
+            $("#address_municipality_id").select2({ theme: "bootstrap" });
+            InicializarResidencia();
+            $("#address_country_id").on('select2:select', function (e) {
+                //debugger;
+                if ($("#address_country_id").val() == "45") {
+                    $(".address_department").show();
+                }
+
+                else {
+                    $(".address_department").hide();
+                    $("#department_id").each(function () { //added a each loop here
+                        $(this).select2('val', '')
+                    });
+                    $("#address_municipality_id").each(function () { //added a each loop here
+                        $(this).select2('val', '')
+                    });
+                    $('#department_id').val('');
+                    $('#address_municipality_id').val('');
+                }
+            });
+
+            $('#department_id').on('select2:select', function (e) {
+                // Do something
+
+                console.log($("#department_id").val());
+                $('#address_municipality_id').empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '/Account/ObtenerMunicipalities',
+                    data: {
+                        department_id: $("#department_id").val()
+                    }
+                }).then(function (data) {
+                    // create the option and append to Select2
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        var option = new Option(data[i].Text, data[i].Value, false, false);
+                        $("#address_municipality_id").append(option).trigger('change');
+                    }
+
+
+                    // manually trigger the `select2:select` event
+                    $("#address_municipality_id").trigger({
+                        type: 'select2:select',
+                        params: {
+                            data: data
+                        }
+                    });
+                });
+
+
+            });
         });
 
         $("#btnCancelar").click(function () {

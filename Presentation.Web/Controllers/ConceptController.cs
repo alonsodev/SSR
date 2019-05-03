@@ -900,6 +900,7 @@ namespace Presentation.Web.Controllers
             if (valido)
             {
                 pVerifyCertificationViewModel = oBL.ObtenerVerificacionCertificado(pIntID);
+                pVerifyCertificationViewModel.fecha_presentacion_concepto = pVerifyCertificationViewModel.fecha_presentacion.ToString("dd/MM/yyyy");
                 if (pVerifyCertificationViewModel == null || pVerifyCertificationViewModel.concept_id == 0)
                     valido = false;
                 else
