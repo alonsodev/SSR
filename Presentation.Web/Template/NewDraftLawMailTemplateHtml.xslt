@@ -334,8 +334,7 @@
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
-                                <a href="{//@url_privacidad}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Ver declaración de privacidad - </a>
-                                <a href="{//@url_contacto}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Contacto: xxx-xxx-xxx </a>
+                                <a href="mailto:{//@url_contacto}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Correo: sical@senado.gov.co </a>
                                 <a href="{//@url_politicas}" class="text_color_303f9f" style="color:#303f9f; text-decoration: none;"> Políticas de uso-términos y condiciones </a>
                               </multiline>
                             </span>
