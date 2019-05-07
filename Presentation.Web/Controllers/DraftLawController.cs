@@ -55,7 +55,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.new_draft_law })]
-        public JsonResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
+        public JsonResult Crear([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,debate_speaker3,debate_speaker4,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
         {
             // TODO: Add insert logic here
 
@@ -147,7 +147,7 @@ namespace Presentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.edit_draft_law })]
-        public ActionResult Editar([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
+        public ActionResult Editar([Bind(Include = "draft_law_id,draft_law_number,title,author,origin,date_presentation,date_presentation_text,commission_id,debate_speaker,debate_speaker2,debate_speaker3,debate_speaker4,status,status_comment,interest_area_id,initiative,summary,link")] DraftLawViewModel pDraftLawViewModel)
         {
             // TODO: Add insert logic here
             pDraftLawViewModel.date_presentation = DateTime.ParseExact(pDraftLawViewModel.date_presentation_text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -344,6 +344,19 @@ namespace Presentation.Web.Controllers
 
                     authors.AddRange(debate_speaker2);
                 }
+                if (!String.IsNullOrEmpty(obj.debate_speaker3))
+                {
+                    var debate_speaker3 = obj.debate_speaker3.Split(',').ToList();
+
+                    authors.AddRange(debate_speaker3);
+                }
+
+                if (!String.IsNullOrEmpty(obj.debate_speaker4))
+                {
+                    var debate_speaker4 = obj.debate_speaker4.Split(',').ToList();
+
+                    authors.AddRange(debate_speaker4);
+                }
                 List<int> debate_speakers = new List<int>();
                 foreach (string author in authors)
                 {
@@ -357,7 +370,7 @@ namespace Presentation.Web.Controllers
 
                         if (!user_id.HasValue || user_id == 0)
                         {
-                            mensaje = "El Autor, Ponente de debate 1 o Ponente de debate 2 '" + author_aux + "' no esta registrado como usuario del sistema.";
+                            mensaje = "El Autor, Ponente de debate 1, Ponente de debate 2, Ponente de debate en cámara 1 o Ponente de debate en cámara 2  '" + author_aux + "' no esta registrado como usuario del sistema.";
                             errores.Add(mensaje);
                         }
 
@@ -444,6 +457,9 @@ namespace Presentation.Web.Controllers
 
                 obj.debate_speaker = Util.ValidarString(row, "pon_1_debate", errores, false);
                 obj.debate_speaker2 = Util.ValidarString(row, "pon_2_debate", errores, false);
+
+                obj.debate_speaker3 = Util.ValidarString(row, "pon_2_debate_Cam", errores, false);
+                obj.debate_speaker4 = Util.ValidarString(row, "pon_2_debate_Cam", errores, false);
 
 
                 obj.status = Util.ValidarString(row, "Estado", errores, false);

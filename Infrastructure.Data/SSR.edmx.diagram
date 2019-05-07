@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="SSRModel.debate_speakers" Width="1.5" PointX="8.25" PointY="17" />
         <EntityTypeShape EntityType="SSRModel.departments" Width="1.5" PointX="1.5" PointY="13.625" />
         <EntityTypeShape EntityType="SSRModel.document_types" Width="1.5" PointX="0.75" PointY="28.5" />
-        <EntityTypeShape EntityType="SSRModel.draft_laws" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="SSRModel.education_levels" Width="1.5" PointX="3" PointY="41.625" />
         <EntityTypeShape EntityType="SSRModel.educational_institutions" Width="1.5" PointX="3" PointY="57" />
         <EntityTypeShape EntityType="SSRModel.genders" Width="1.5" PointX="3" PointY="60.25" />
@@ -46,11 +45,9 @@
         <EntityTypeShape EntityType="SSRModel.tags" Width="1.5" PointX="10.5" PointY="35" />
         <EntityTypeShape EntityType="SSRModel.user_status" Width="1.5" PointX="0.75" PointY="31.625" />
         <AssociationConnector Association="SSRModel.FK_snies_academic_levels" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_commissions" />
         <AssociationConnector Association="SSRModel.FK_investigators_commissions_commissions" />
         <AssociationConnector Association="SSRModel.FK_concept_debate_speakers_concepts" />
         <AssociationConnector Association="SSRModel.FK_concepts_concepts_status" />
-        <AssociationConnector Association="SSRModel.FK_concepts_draft_laws" />
         <AssociationConnector Association="SSRModel.FK_concepts_investigators" />
         <AssociationConnector Association="SSRModel.FK_concepts_reason_rejects" />
         <AssociationConnector Association="SSRModel.FK_concepts_status_logs_concepts" />
@@ -61,11 +58,7 @@
         <AssociationConnector Association="SSRModel.FK_consultations_consultation_types" />
         <AssociationConnector Association="SSRModel.FK_consultations_interest_areas_consultations" />
         <AssociationConnector Association="SSRModel.FK_consultations_interest_areas_interest_areas" />
-        <AssociationConnector Association="SSRModel.FK_debate_speakers_draft_laws" />
         <AssociationConnector Association="SSRModel.FK_municipalities_departments" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_interest_areas" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_origins" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_periods" />
         <AssociationConnector Association="SSRModel.FK_investigators_education_levels" />
         <AssociationConnector Association="SSRModel.FK_snies_education_levels" />
         <AssociationConnector Association="SSRModel.FK_investigators_educational_institutions" />
@@ -84,7 +77,6 @@
         <EntityTypeShape EntityType="SSRModel.user_institutions" Width="1.5" PointX="5.25" PointY="16.75" />
         <AssociationConnector Association="SSRModel.FK_user_institutionss_institutions" />
         <EntityTypeShape EntityType="SSRModel.draft_laws_status" Width="1.5" PointX="10.375" PointY="7.875" />
-        <AssociationConnector Association="SSRModel.FK_draft_laws_draft_laws_status" />
         <EntityTypeShape EntityType="SSRModel.roles" Width="1.5" PointX="0.75" PointY="20.75" />
         <AssociationConnector Association="SSRModel.FK_role_permissions_roles" />
         <EntityTypeShape EntityType="SSRModel.users" Width="1.5" PointX="3" PointY="17.25" />
@@ -100,6 +92,14 @@
         <AssociationConnector Association="SSRModel.FK_users_roles" />
         <AssociationConnector Association="SSRModel.FK_user_institutionss_users" />
         <AssociationConnector Association="SSRModel.FK_users_user_status" />
+        <EntityTypeShape EntityType="SSRModel.draft_laws" Width="1.5" PointX="5.5" PointY="0.875" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_commissions" />
+        <AssociationConnector Association="SSRModel.FK_concepts_draft_laws" />
+        <AssociationConnector Association="SSRModel.FK_debate_speakers_draft_laws" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_draft_laws_status" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_interest_areas" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_origins" />
+        <AssociationConnector Association="SSRModel.FK_draft_laws_periods" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

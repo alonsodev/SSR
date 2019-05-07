@@ -162,6 +162,8 @@ namespace Infrastructure.Data.Repositories
                 commission_id = a.commission_id,
                 debate_speaker = a.debate_speaker,
                 debate_speaker2 = a.debate_speaker2,
+                debate_speaker3 = a.debate_speaker3,
+                debate_speaker4 = a.debate_speaker4,
                 status = a.draft_laws_status.name,
                 status_comment = a.status_comment,
                 interest_area_id = a.interest_area_id,

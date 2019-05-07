@@ -52,12 +52,21 @@ namespace Domain.Entities
         [XmlAttribute]
         public string commission { get; set; }
         [Display(Name = "Ponente de debate 1")]
-        [Required(ErrorMessage = "El Ponente de debate 1 es obligatorio.")]
+        //[Required(ErrorMessage = "El Ponente de debate 1 es obligatorio.")]
         public string debate_speaker { get; set; }
 
         [Display(Name = "Ponente de debate 2")]
        // [Required(ErrorMessage = "El Ponente de debate 2 es obligatorio.")]
         public string debate_speaker2 { get; set; }
+
+
+        [Display(Name = "Ponente de debate en cámara 1")]
+        // [Required(ErrorMessage = "El Ponente de debate 2 es obligatorio.")]
+        public string debate_speaker3 { get; set; }
+
+        [Display(Name = "Ponente de debate en cámara 2")]
+        // [Required(ErrorMessage = "El Ponente de debate 2 es obligatorio.")]
+        public string debate_speaker4 { get; set; }
 
         [Display(Name = "Estado")]
         [Required(ErrorMessage = "El Estado es obligatorio.")]

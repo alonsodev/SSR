@@ -42,7 +42,6 @@ namespace Infrastructure.Data
         public virtual DbSet<debate_speakers> debate_speakers { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<document_types> document_types { get; set; }
-        public virtual DbSet<draft_laws> draft_laws { get; set; }
         public virtual DbSet<education_levels> education_levels { get; set; }
         public virtual DbSet<educational_institutions> educational_institutions { get; set; }
         public virtual DbSet<genders> genders { get; set; }
@@ -71,6 +70,7 @@ namespace Infrastructure.Data
         public virtual DbSet<draft_laws_status> draft_laws_status { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<draft_laws> draft_laws { get; set; }
     
         public virtual int ActualizarTablasReporte(Nullable<int> period_id)
         {

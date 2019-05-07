@@ -92,7 +92,7 @@ namespace Business.Logic
         public List<DraftLawLiteViewModel> ObtenerProyectosLeyMovil(DraftLawSearchFilterLiteViewModel filter)
         {
 
-           return  oRepositorio.ObtenerProyectosLeyMovil(filter);
+            return oRepositorio.ObtenerProyectosLeyMovil(filter);
         }
 
         public void ActualizarNotificacion(List<DraftLawViewModel> list)
@@ -185,6 +185,8 @@ namespace Business.Logic
                                 commission_id = pDraftLawViewModel.commission_id,
                                 debate_speaker = pDraftLawViewModel.debate_speaker,
                                 debate_speaker2 = pDraftLawViewModel.debate_speaker2,
+                                debate_speaker3 = pDraftLawViewModel.debate_speaker3,
+                                debate_speaker4 = pDraftLawViewModel.debate_speaker4,
                                 status_id = pDraftLawViewModel.draft_law_status_id,
                                 status_comment = pDraftLawViewModel.status_comment,
                                 interest_area_id = pDraftLawViewModel.interest_area_id,
@@ -197,7 +199,7 @@ namespace Business.Logic
 
                             };
                             oRepositorio.Update(odraft_laws,
-
+                                                a => a.draft_law_id,
                                                 a => a.draft_law_number,
                                                 a => a.title,
                                                 a => a.author,
@@ -206,6 +208,8 @@ namespace Business.Logic
                                                 a => a.commission_id,
                                                 a => a.debate_speaker,
                                                 a => a.debate_speaker2,
+                                                a => a.debate_speaker3,
+                                                a => a.debate_speaker4,
                                                 a => a.status_id,
                                                 a => a.status_comment,
                                                 a => a.interest_area_id,
@@ -216,6 +220,7 @@ namespace Business.Logic
                                                 a => a.user_id_modified,
                                                 a => a.period_id
                                                 );
+                            //oUnitOfWork.SaveChanges();
                             oDebateSpeakerRepositorio.DeleteMultiple(pDraftLawComplementViewModel.draft_law_id);
                             foreach (int debate_user_id in pDraftLawViewModel.debate_speakers)
                             {
@@ -269,6 +274,8 @@ namespace Business.Logic
                 commission_id = pDraftLawViewModel.commission_id,
                 debate_speaker = pDraftLawViewModel.debate_speaker,
                 debate_speaker2 = pDraftLawViewModel.debate_speaker2,
+                debate_speaker3 = pDraftLawViewModel.debate_speaker3,
+                debate_speaker4 = pDraftLawViewModel.debate_speaker4,
                 status_id = pDraftLawViewModel.draft_law_status_id,
                 status_comment = pDraftLawViewModel.status_comment,
                 interest_area_id = pDraftLawViewModel.interest_area_id,

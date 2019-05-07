@@ -196,6 +196,8 @@
           <Property Name="commission_id" Type="int" />
           <Property Name="debate_speaker" Type="varchar" MaxLength="500" />
           <Property Name="debate_speaker2" Type="varchar" MaxLength="500" />
+          <Property Name="debate_speaker3" Type="varchar" MaxLength="500" />
+          <Property Name="debate_speaker4" Type="varchar" MaxLength="500" />
           <Property Name="status_id" Type="int" />
           <Property Name="status_comment" Type="varchar" MaxLength="1000" />
           <Property Name="interest_area_id" Type="int" />
@@ -1456,7 +1458,6 @@
           <EntitySet Name="debate_speakers" EntityType="SSRModel.debate_speakers" />
           <EntitySet Name="departments" EntityType="SSRModel.departments" />
           <EntitySet Name="document_types" EntityType="SSRModel.document_types" />
-          <EntitySet Name="draft_laws" EntityType="SSRModel.draft_laws" />
           <EntitySet Name="education_levels" EntityType="SSRModel.education_levels" />
           <EntitySet Name="educational_institutions" EntityType="SSRModel.educational_institutions" />
           <EntitySet Name="genders" EntityType="SSRModel.genders" />
@@ -1485,10 +1486,6 @@
             <End Role="academic_levels" EntitySet="academic_levels" />
             <End Role="snies" EntitySet="snies" />
           </AssociationSet>
-          <AssociationSet Name="FK_draft_laws_commissions" Association="SSRModel.FK_draft_laws_commissions">
-            <End Role="commissions" EntitySet="commissions" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
-          </AssociationSet>
           <AssociationSet Name="FK_investigators_commissions_commissions" Association="SSRModel.FK_investigators_commissions_commissions">
             <End Role="commissions" EntitySet="commissions" />
             <End Role="investigators_commissions" EntitySet="investigators_commissions" />
@@ -1499,10 +1496,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_concepts_concepts_status" Association="SSRModel.FK_concepts_concepts_status">
             <End Role="concepts_status" EntitySet="concepts_status" />
-            <End Role="concepts" EntitySet="concepts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_concepts_draft_laws" Association="SSRModel.FK_concepts_draft_laws">
-            <End Role="draft_laws" EntitySet="draft_laws" />
             <End Role="concepts" EntitySet="concepts" />
           </AssociationSet>
           <AssociationSet Name="FK_concepts_investigators" Association="SSRModel.FK_concepts_investigators">
@@ -1545,25 +1538,9 @@
             <End Role="interest_areas" EntitySet="interest_areas" />
             <End Role="consultations_interest_areas" EntitySet="consultations_interest_areas" />
           </AssociationSet>
-          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="SSRModel.FK_debate_speakers_draft_laws">
-            <End Role="draft_laws" EntitySet="draft_laws" />
-            <End Role="debate_speakers" EntitySet="debate_speakers" />
-          </AssociationSet>
           <AssociationSet Name="FK_municipalities_departments" Association="SSRModel.FK_municipalities_departments">
             <End Role="departments" EntitySet="departments" />
             <End Role="municipalities" EntitySet="municipalities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
-            <End Role="interest_areas" EntitySet="interest_areas" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
-          </AssociationSet>
-          <AssociationSet Name="FK_draft_laws_origins" Association="SSRModel.FK_draft_laws_origins">
-            <End Role="origins" EntitySet="origins" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
-          </AssociationSet>
-          <AssociationSet Name="FK_draft_laws_periods" Association="SSRModel.FK_draft_laws_periods">
-            <End Role="periods" EntitySet="periods" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
           </AssociationSet>
           <AssociationSet Name="FK_investigators_education_levels" Association="SSRModel.FK_investigators_education_levels">
             <End Role="education_levels" EntitySet="education_levels" />
@@ -1634,10 +1611,6 @@
           <Parameter Name="period_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="draft_laws_status" EntityType="SSRModel.draft_laws_status" />
-          <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
-            <End Role="draft_laws_status" EntitySet="draft_laws_status" />
-            <End Role="draft_laws" EntitySet="draft_laws" />
-          </AssociationSet>
           <EntitySet Name="roles" EntityType="SSRModel.roles" />
           <AssociationSet Name="FK_role_permissions_roles" Association="SSRModel.FK_role_permissions_roles">
             <End Role="roles" EntitySet="roles" />
@@ -1696,6 +1669,35 @@
             <End Role="user_status" EntitySet="user_status" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <EntitySet Name="draft_laws" EntityType="SSRModel.draft_laws" />
+          <AssociationSet Name="FK_draft_laws_commissions" Association="SSRModel.FK_draft_laws_commissions">
+            <End Role="commissions" EntitySet="commissions" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
+          <AssociationSet Name="FK_concepts_draft_laws" Association="SSRModel.FK_concepts_draft_laws">
+            <End Role="draft_laws" EntitySet="draft_laws" />
+            <End Role="concepts" EntitySet="concepts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_debate_speakers_draft_laws" Association="SSRModel.FK_debate_speakers_draft_laws">
+            <End Role="draft_laws" EntitySet="draft_laws" />
+            <End Role="debate_speakers" EntitySet="debate_speakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_draft_laws_draft_laws_status" Association="SSRModel.FK_draft_laws_draft_laws_status">
+            <End Role="draft_laws_status" EntitySet="draft_laws_status" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
+          <AssociationSet Name="FK_draft_laws_interest_areas" Association="SSRModel.FK_draft_laws_interest_areas">
+            <End Role="interest_areas" EntitySet="interest_areas" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
+          <AssociationSet Name="FK_draft_laws_origins" Association="SSRModel.FK_draft_laws_origins">
+            <End Role="origins" EntitySet="origins" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
+          <AssociationSet Name="FK_draft_laws_periods" Association="SSRModel.FK_draft_laws_periods">
+            <End Role="periods" EntitySet="periods" />
+            <End Role="draft_laws" EntitySet="draft_laws" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="academic_levels">
           <Key>
@@ -1730,8 +1732,8 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="commissions" ToRole="draft_laws" />
           <NavigationProperty Name="investigators_commissions" Relationship="SSRModel.FK_investigators_commissions_commissions" FromRole="commissions" ToRole="investigators_commissions" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="commissions" ToRole="draft_laws" />
         </EntityType>
         <EntityType Name="concept_debate_speakers">
           <Key>
@@ -1770,11 +1772,11 @@
           <Property Name="hash" Type="Guid" />
           <NavigationProperty Name="concept_debate_speakers" Relationship="SSRModel.FK_concept_debate_speakers_concepts" FromRole="concepts" ToRole="concept_debate_speakers" />
           <NavigationProperty Name="concepts_status" Relationship="SSRModel.FK_concepts_concepts_status" FromRole="concepts" ToRole="concepts_status" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
           <NavigationProperty Name="investigators" Relationship="SSRModel.FK_concepts_investigators" FromRole="concepts" ToRole="investigators" />
           <NavigationProperty Name="reason_rejects" Relationship="SSRModel.FK_concepts_reason_rejects" FromRole="concepts" ToRole="reason_rejects" />
           <NavigationProperty Name="concepts_status_logs" Relationship="SSRModel.FK_concepts_status_logs_concepts" FromRole="concepts" ToRole="concepts_status_logs" />
           <NavigationProperty Name="concepts_tags" Relationship="SSRModel.FK_concepts_tags_concepts" FromRole="concepts" ToRole="concepts_tags" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="concepts" ToRole="draft_laws" />
         </EntityType>
         <EntityType Name="concepts_status">
           <Key>
@@ -1881,8 +1883,8 @@
           <Property Name="date_modified" Type="DateTime" Precision="3" />
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="debate_speakers" ToRole="draft_laws" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_debate_speakers_users" FromRole="debate_speakers" ToRole="users" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="debate_speakers" ToRole="draft_laws" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -1903,42 +1905,6 @@
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="users" Relationship="SSRModel.FK_users_document_types" FromRole="document_types" ToRole="users" />
-        </EntityType>
-        <EntityType Name="draft_laws">
-          <Key>
-            <PropertyRef Name="draft_law_id" />
-          </Key>
-          <Property Name="draft_law_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="draft_law_number" Type="Int32" Nullable="false" />
-          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="author" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="origin_id" Type="Int32" />
-          <Property Name="date_presentation" Type="DateTime" Precision="3" />
-          <Property Name="commission_id" Type="Int32" />
-          <Property Name="debate_speaker" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="debate_speaker2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="status_id" Type="Int32" />
-          <Property Name="status_comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="interest_area_id" Type="Int32" />
-          <Property Name="initiative" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="date_created" Type="DateTime" Precision="3" />
-          <Property Name="date_modified" Type="DateTime" Precision="3" />
-          <Property Name="user_id_created" Type="Int32" />
-          <Property Name="user_id_modified" Type="Int32" />
-          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="notified" Type="Boolean" />
-          <Property Name="active" Type="Boolean" />
-          <Property Name="number_approved_concepts" Type="Int32" />
-          <Property Name="period_id" Type="Int32" />
-          <NavigationProperty Name="commissions" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="draft_laws" ToRole="commissions" />
-          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
-          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="draft_laws" ToRole="debate_speakers" />
-          <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="draft_laws" ToRole="interest_areas" />
-          <NavigationProperty Name="origins" Relationship="SSRModel.FK_draft_laws_origins" FromRole="draft_laws" ToRole="origins" />
-          <NavigationProperty Name="periods" Relationship="SSRModel.FK_draft_laws_periods" FromRole="draft_laws" ToRole="periods" />
-          <NavigationProperty Name="draft_laws_status" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws" ToRole="draft_laws_status" />
         </EntityType>
         <EntityType Name="education_levels">
           <Key>
@@ -2010,8 +1976,8 @@
           <Property Name="user_id_created" Type="Int32" />
           <Property Name="user_id_modified" Type="Int32" />
           <NavigationProperty Name="consultations_interest_areas" Relationship="SSRModel.FK_consultations_interest_areas_interest_areas" FromRole="interest_areas" ToRole="consultations_interest_areas" />
-          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="interest_areas" ToRole="draft_laws" />
           <NavigationProperty Name="investigators_interest_areas" Relationship="SSRModel.FK_investigators_interest_areas_interest_areas" FromRole="interest_areas" ToRole="investigators_interest_areas" />
+          <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="interest_areas" ToRole="draft_laws" />
         </EntityType>
         <EntityType Name="investigation_groups">
           <Key>
@@ -2293,18 +2259,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_draft_laws_commissions">
-          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="commissions">
-              <PropertyRef Name="commission_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="commission_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_investigators_commissions_commissions">
           <End Type="SSRModel.commissions" Role="commissions" Multiplicity="1" />
           <End Type="SSRModel.investigators_commissions" Role="investigators_commissions" Multiplicity="*" />
@@ -2338,18 +2292,6 @@
             </Principal>
             <Dependent Role="concepts">
               <PropertyRef Name="concept_status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_concepts_draft_laws">
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="0..1" />
-          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws">
-              <PropertyRef Name="draft_law_id" />
-            </Principal>
-            <Dependent Role="concepts">
-              <PropertyRef Name="draft_law_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2473,18 +2415,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_debate_speakers_draft_laws">
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="1" />
-          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws">
-              <PropertyRef Name="draft_law_id" />
-            </Principal>
-            <Dependent Role="debate_speakers">
-              <PropertyRef Name="draft_law_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_municipalities_departments">
           <End Type="SSRModel.departments" Role="departments" Multiplicity="1" />
           <End Type="SSRModel.municipalities" Role="municipalities" Multiplicity="*" />
@@ -2494,42 +2424,6 @@
             </Principal>
             <Dependent Role="municipalities">
               <PropertyRef Name="department_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_draft_laws_interest_areas">
-          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="interest_areas">
-              <PropertyRef Name="interest_area_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="interest_area_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_draft_laws_origins">
-          <End Type="SSRModel.origins" Role="origins" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="origins">
-              <PropertyRef Name="origin_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="origin_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_draft_laws_periods">
-          <End Type="SSRModel.periods" Role="periods" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="periods">
-              <PropertyRef Name="period_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="period_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2749,18 +2643,6 @@
           <Property Name="sub_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="draft_laws" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws_status" ToRole="draft_laws" />
         </EntityType>
-        <Association Name="FK_draft_laws_draft_laws_status">
-          <End Type="SSRModel.draft_laws_status" Role="draft_laws_status" Multiplicity="0..1" />
-          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="draft_laws_status">
-              <PropertyRef Name="draft_law_status_id" />
-            </Principal>
-            <Dependent Role="draft_laws">
-              <PropertyRef Name="status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="roles">
           <Key>
             <PropertyRef Name="role_id" />
@@ -2973,6 +2855,128 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="draft_laws">
+          <Key>
+            <PropertyRef Name="draft_law_id" />
+          </Key>
+          <Property Name="draft_law_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="draft_law_number" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="origin_id" Type="Int32" />
+          <Property Name="date_presentation" Type="DateTime" Precision="3" />
+          <Property Name="commission_id" Type="Int32" />
+          <Property Name="debate_speaker" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="debate_speaker2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="debate_speaker3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="debate_speaker4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="status_id" Type="Int32" />
+          <Property Name="status_comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="interest_area_id" Type="Int32" />
+          <Property Name="initiative" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Precision="3" />
+          <Property Name="user_id_created" Type="Int32" />
+          <Property Name="user_id_modified" Type="Int32" />
+          <Property Name="dev_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="notified" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="number_approved_concepts" Type="Int32" />
+          <Property Name="period_id" Type="Int32" />
+          <NavigationProperty Name="commissions" Relationship="SSRModel.FK_draft_laws_commissions" FromRole="draft_laws" ToRole="commissions" />
+          <NavigationProperty Name="concepts" Relationship="SSRModel.FK_concepts_draft_laws" FromRole="draft_laws" ToRole="concepts" />
+          <NavigationProperty Name="debate_speakers" Relationship="SSRModel.FK_debate_speakers_draft_laws" FromRole="draft_laws" ToRole="debate_speakers" />
+          <NavigationProperty Name="draft_laws_status" Relationship="SSRModel.FK_draft_laws_draft_laws_status" FromRole="draft_laws" ToRole="draft_laws_status" />
+          <NavigationProperty Name="interest_areas" Relationship="SSRModel.FK_draft_laws_interest_areas" FromRole="draft_laws" ToRole="interest_areas" />
+          <NavigationProperty Name="origins" Relationship="SSRModel.FK_draft_laws_origins" FromRole="draft_laws" ToRole="origins" />
+          <NavigationProperty Name="periods" Relationship="SSRModel.FK_draft_laws_periods" FromRole="draft_laws" ToRole="periods" />
+        </EntityType>
+        <Association Name="FK_draft_laws_commissions">
+          <End Type="SSRModel.commissions" Role="commissions" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="commissions">
+              <PropertyRef Name="commission_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="commission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_concepts_draft_laws">
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="0..1" />
+          <End Type="SSRModel.concepts" Role="concepts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws">
+              <PropertyRef Name="draft_law_id" />
+            </Principal>
+            <Dependent Role="concepts">
+              <PropertyRef Name="draft_law_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_debate_speakers_draft_laws">
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="1" />
+          <End Type="SSRModel.debate_speakers" Role="debate_speakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws">
+              <PropertyRef Name="draft_law_id" />
+            </Principal>
+            <Dependent Role="debate_speakers">
+              <PropertyRef Name="draft_law_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_draft_laws_draft_laws_status">
+          <End Type="SSRModel.draft_laws_status" Role="draft_laws_status" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="draft_laws_status">
+              <PropertyRef Name="draft_law_status_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_draft_laws_interest_areas">
+          <End Type="SSRModel.interest_areas" Role="interest_areas" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="interest_areas">
+              <PropertyRef Name="interest_area_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="interest_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_draft_laws_origins">
+          <End Type="SSRModel.origins" Role="origins" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="origins">
+              <PropertyRef Name="origin_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="origin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_draft_laws_periods">
+          <End Type="SSRModel.periods" Role="periods" Multiplicity="0..1" />
+          <End Type="SSRModel.draft_laws" Role="draft_laws" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="periods">
+              <PropertyRef Name="period_id" />
+            </Principal>
+            <Dependent Role="draft_laws">
+              <PropertyRef Name="period_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3165,36 +3169,6 @@
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="document_type_id" ColumnName="document_type_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="draft_laws">
-            <EntityTypeMapping TypeName="SSRModel.draft_laws">
-              <MappingFragment StoreEntitySet="draft_laws">
-                <ScalarProperty Name="period_id" ColumnName="period_id" />
-                <ScalarProperty Name="number_approved_concepts" ColumnName="number_approved_concepts" />
-                <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="notified" ColumnName="notified" />
-                <ScalarProperty Name="dev_name" ColumnName="dev_name" />
-                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
-                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
-                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
-                <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="summary" ColumnName="summary" />
-                <ScalarProperty Name="initiative" ColumnName="initiative" />
-                <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
-                <ScalarProperty Name="status_comment" ColumnName="status_comment" />
-                <ScalarProperty Name="status_id" ColumnName="status_id" />
-                <ScalarProperty Name="debate_speaker2" ColumnName="debate_speaker2" />
-                <ScalarProperty Name="debate_speaker" ColumnName="debate_speaker" />
-                <ScalarProperty Name="commission_id" ColumnName="commission_id" />
-                <ScalarProperty Name="date_presentation" ColumnName="date_presentation" />
-                <ScalarProperty Name="origin_id" ColumnName="origin_id" />
-                <ScalarProperty Name="author" ColumnName="author" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="draft_law_number" ColumnName="draft_law_number" />
-                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3576,6 +3550,38 @@
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="draft_laws">
+            <EntityTypeMapping TypeName="SSRModel.draft_laws">
+              <MappingFragment StoreEntitySet="draft_laws">
+                <ScalarProperty Name="period_id" ColumnName="period_id" />
+                <ScalarProperty Name="number_approved_concepts" ColumnName="number_approved_concepts" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="notified" ColumnName="notified" />
+                <ScalarProperty Name="dev_name" ColumnName="dev_name" />
+                <ScalarProperty Name="user_id_modified" ColumnName="user_id_modified" />
+                <ScalarProperty Name="user_id_created" ColumnName="user_id_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="initiative" ColumnName="initiative" />
+                <ScalarProperty Name="interest_area_id" ColumnName="interest_area_id" />
+                <ScalarProperty Name="status_comment" ColumnName="status_comment" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="debate_speaker4" ColumnName="debate_speaker4" />
+                <ScalarProperty Name="debate_speaker3" ColumnName="debate_speaker3" />
+                <ScalarProperty Name="debate_speaker2" ColumnName="debate_speaker2" />
+                <ScalarProperty Name="debate_speaker" ColumnName="debate_speaker" />
+                <ScalarProperty Name="commission_id" ColumnName="commission_id" />
+                <ScalarProperty Name="date_presentation" ColumnName="date_presentation" />
+                <ScalarProperty Name="origin_id" ColumnName="origin_id" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="draft_law_number" ColumnName="draft_law_number" />
+                <ScalarProperty Name="draft_law_id" ColumnName="draft_law_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
