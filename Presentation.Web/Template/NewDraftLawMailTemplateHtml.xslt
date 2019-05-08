@@ -156,7 +156,7 @@
                           <div class="editable-text" style="line-height: 2;">
                             <span class="text_container">
                               <multiline>
-                                Se ha registrado los siguinetes proyecto(s) de ley de sus áreas de interés  y comisiones asociadas a su cuenta:
+                                Se ha registrado los siguientes proyecto(s) de ley de sus áreas de interés  y comisiones asociadas a su cuenta:
 
                               </multiline>
                             </span>

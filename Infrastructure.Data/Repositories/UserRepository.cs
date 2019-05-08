@@ -171,7 +171,7 @@ namespace Infrastructure.Data.Repositories
             var consulta = lista.Where(a=> a.user_role_id==9).Select(a => new SelectOptionItem
             {
                 Value = a.id.ToString(),
-                Text = a.user_name,
+                Text = a.contact_name,
             }).OrderBy(a => a.Text);
 
             return consulta.ToList();
@@ -425,7 +425,7 @@ namespace Infrastructure.Data.Repositories
 
         public int? ObtenerPonente(string author_aux)
         {
-            return Set.Where(a => a.user_name.ToLower() == author_aux.ToLower()).Select(a => a.id).Take(1).FirstOrDefault();
+            return Set.Where(a => a.contact_name.ToLower() == author_aux.ToLower()).Select(a => a.id).Take(1).FirstOrDefault();
         }
 
         public List<SelectOptionItem> RolesSelector()

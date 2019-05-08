@@ -285,18 +285,21 @@ namespace Business.Logic
                 };
 
                 oRepositorio.Add(ousers);
-                foreach (int institution_id in pUserViewModel.institution_ids)
-                {
-                    user_institutions ouser_institutions = new user_institutions
+                if (pUserViewModel.institution_ids != null && pUserViewModel.institution_ids.Count > 0) {
+                    foreach (int institution_id in pUserViewModel.institution_ids)
                     {
-                        user_id = ousers.id,
-                        institution_id = institution_id,
-                        date_created = DateTime.Now,
-                        user_id_created = pUserViewModel.user_id_created,
-                    };
+                        user_institutions ouser_institutions = new user_institutions
+                        {
+                            user_id = ousers.id,
+                            institution_id = institution_id,
+                            date_created = DateTime.Now,
+                            user_id_created = pUserViewModel.user_id_created,
+                        };
 
-                    oRepositorioUserInstitution.Add(ouser_institutions);
+                        oRepositorioUserInstitution.Add(ouser_institutions);
+                    }
                 }
+               
 
 
                 oUnitOfWork.SaveChanges();

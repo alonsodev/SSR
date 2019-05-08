@@ -124,7 +124,7 @@ namespace Presentation.Web.Controllers
 
             string[] meses = new string[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 
-            oCertification.month_name = meses[today.Month - 1];
+            oCertification.month_name = meses[today.Month - 1].ToLower();
 
 
             oCertification.base_url = ConfigurationManager.AppSettings["site.url"];

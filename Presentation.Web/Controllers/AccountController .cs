@@ -252,7 +252,8 @@ namespace Presentation.Web.Controllers
                             return RedirectToAction("Emitidos", "Concept");
 
 
-
+                        if (result.permissions.Contains((int)AuthorizeUserAttribute.Permission.general_report))
+                            return RedirectToAction("Index", "Report");
                         return RedirectToAction("Index", "Home");
                     }
 
