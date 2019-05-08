@@ -171,7 +171,7 @@ namespace Infrastructure.Data.Repositories
             var consulta = lista.Where(a=> a.user_role_id==9).Select(a => new SelectOptionItem
             {
                 Value = a.id.ToString(),
-                Text = a.user_name,
+                Text = a.contact_name,
             }).OrderBy(a => a.Text);
 
             return consulta.ToList();
