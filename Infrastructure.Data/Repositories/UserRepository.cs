@@ -425,7 +425,7 @@ namespace Infrastructure.Data.Repositories
 
         public int? ObtenerPonente(string author_aux)
         {
-            return Set.Where(a => a.user_name.ToLower() == author_aux.ToLower()).Select(a => a.id).Take(1).FirstOrDefault();
+            return Set.Where(a => a.contact_name.ToLower() == author_aux.ToLower()).Select(a => a.id).Take(1).FirstOrDefault();
         }
 
         public List<SelectOptionItem> RolesSelector()
