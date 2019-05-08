@@ -95,7 +95,7 @@
                       </SPAN>,
                       <SPAN class="ft2">del Grupo de investigación </SPAN>(<xsl:value-of select="//@grupo_vinculado"/>)<SPAN class="ft2">
                         ,
-                        presento en calidad de investigador, concepto técnico sobre el proyecto de ley
+                        presentó en calidad de investigador, concepto técnico sobre el proyecto de ley
                       </SPAN>
                       <SPAN class="ft3">(</SPAN><SPAN class="ft4">
                         <xsl:value-of select="//@draft_law_title"/> : <xsl:value-of select="//@draft_law_id"/>
