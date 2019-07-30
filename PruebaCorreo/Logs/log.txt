@@ -1,0 +1,16 @@
+INFO  2019-07-30 17:34:07,876   133ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:34:07,925   182ms EmailHelper            SendMail           - Enviar Notificacion: FROM:ecuadrosp@gmail.com, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 17:34:10,536  2792ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-07-30 17:34:10,538  2794ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:34:58,627   443ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:34:58,707   523ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@senado.gov.co, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 17:35:08,275 10092ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:35:47,517   496ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:35:47,566   545ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@senado.gov.co, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 17:35:54,140  7119ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:37:50,667   476ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:38:18,724 28533ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@senado.gov.co, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 17:44:41,340   491ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 17:44:43,015  2166ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@senado.gov.co, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 17:44:45,306  4457ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-07-30 17:44:45,308  4459ms Program                Main               - Fin de Proceso: PRUEBA:CORREO

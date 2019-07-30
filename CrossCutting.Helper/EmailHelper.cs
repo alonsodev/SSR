@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Configuration;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Reflection;
@@ -33,8 +35,8 @@ namespace CrossCutting.Helper
         {
             try
             {
-              
-                    MailMessage oMailMessage = new MailMessage();
+                SmtpSection secObj = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                MailMessage oMailMessage = new MailMessage();
                     oMailMessage.From = new MailAddress(strFromAddress);
                     oMailMessage.To.Add(strToAddress.Replace(";", ","));
                     //oMailMessage.Body = strMessage;
@@ -84,8 +86,14 @@ namespace CrossCutting.Helper
                         }
                     }
                     SmtpClient smtp = new SmtpClient();
-
-                    logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
+                //smtp.Host = secObj.Network.Host; //---- SMTP Host Details. 
+                //smtp.EnableSsl = secObj.Network.EnableSsl; //---- Specify whether host accepts SSL Connections or not.
+                NetworkCredential NetworkCred = new NetworkCredential(secObj.Network.UserName, secObj.Network.Password);
+                //---Your Email and password
+                //smtp.UseDefaultCredentials = secObj.Network.DefaultCredentials;
+                smtp.Credentials = NetworkCred;
+                //smtp.Port = secObj.Network.Port; //---- SMTP Server port number. This varies from host to host. 
+                logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
                     smtp.Send(oMailMessage);
                     logger.Info("Enviar Notificacion: exitoso");
                     oMailMessage.Dispose();
@@ -105,6 +113,8 @@ namespace CrossCutting.Helper
         {
             try
             {
+                SmtpSection secObj = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+
                 MailMessage oMailMessage = new MailMessage();
                 oMailMessage.From = new MailAddress(strFromAddress);
                 oMailMessage.To.Add(strToAddress.Replace(";", ","));
@@ -136,6 +146,14 @@ namespace CrossCutting.Helper
                     }
                 }
                 SmtpClient smtp = new SmtpClient();
+
+                //smtp.Host = secObj.Network.Host; //---- SMTP Host Details. 
+                //smtp.EnableSsl = secObj.Network.EnableSsl; //---- Specify whether host accepts SSL Connections or not.
+                NetworkCredential NetworkCred = new NetworkCredential(secObj.Network.UserName, secObj.Network.Password);
+                //---Your Email and password
+                //smtp.UseDefaultCredentials = secObj.Network.DefaultCredentials;
+                smtp.Credentials = NetworkCred;
+                //smtp.Port = secObj.Network.Port; //---- SMTP Server port number. This varies from host to host. 
 
                 logger.Info(String.Format("Enviar Notificacion: FROM:{0}, TO:{1}, CC:{2}, BCC:{3}, SUBJECT:{4}, ATTACHMENTS:{5}", oMailMessage.From, oMailMessage.To, oMailMessage.CC, oMailMessage.Bcc, oMailMessage.Subject, oMailMessage.Attachments != null ? oMailMessage.Attachments.Count().ToString() : "0"));
                 smtp.Send(oMailMessage);

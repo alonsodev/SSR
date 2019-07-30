@@ -6956,7 +6956,7 @@ Copyright (c) 2015 Daniel Eden
 .ps-container {
     -ms-touch-action: auto;
     touch-action: auto;
-    /*overflow: hidden!important;*/
+    overflow: hidden!important;
     -ms-overflow-style: none
 }
 @supports (-ms-overflow-style: none) {
