@@ -10,3 +10,9 @@ ERROR 2019-07-30 17:35:54,126  7105ms EmailHelper            SendMail           
    en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
    en System.Net.Mail.SmtpClient.Send(MailMessage message)
    en CrossCutting.Helper.EmailHelper.SendMail(String strMessage, String strFromAddress, String strToAddress, String strCcAddress, String strBccAddress, String strSubject, String[] arrAttachmentPath) en D:\EDISON\Proyectos\bitbucket-repos\SSR\CrossCutting.Helper\EmailHelper.cs:línea 153
+ERROR 2019-07-30 18:05:07,136  5652ms EmailHelper            SendMail           - System.Net.Mail.SmtpException: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.5.1 Authentication Required. Learn more at
+   en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en CrossCutting.Helper.EmailHelper.SendMail(String strMessage, String strFromAddress, String strToAddress, String strCcAddress, String strBccAddress, String strSubject, String[] arrAttachmentPath) en D:\EDISON\Proyectos\bitbucket-repos\SSR\CrossCutting.Helper\EmailHelper.cs:línea 159

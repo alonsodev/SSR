@@ -14,3 +14,22 @@ INFO  2019-07-30 17:44:41,340   491ms Program                Main               
 INFO  2019-07-30 17:44:43,015  2166ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@senado.gov.co, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
 INFO  2019-07-30 17:44:45,306  4457ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
 INFO  2019-07-30 17:44:45,308  4459ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 18:05:02,101   618ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 18:05:04,232  2749ms EmailHelper            SendMail           - Enviar Notificacion: FROM:arca@senado.gov.co, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 18:05:07,149  5666ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 18:47:56,723   603ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 18:48:00,557  4438ms EmailHelper            SendMail           - Enviar Notificacion: FROM:ecuadrosp@gmail.com, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 18:48:07,937 11817ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-07-30 18:48:07,940 11820ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 19:48:45,836   128ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 19:48:50,022  4314ms EmailHelper            SendMail           - Enviar Notificacion: FROM:cael.arca@gmail.com, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 19:48:51,866  6158ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-07-30 19:48:51,869  6161ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-30 19:50:53,784   525ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-30 19:50:56,321  3062ms EmailHelper            SendMail           - Enviar Notificacion: FROM:cael.arca@gmail.com, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-30 19:51:00,529  7270ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-07-30 19:51:00,532  7273ms Program                Main               - Fin de Proceso: PRUEBA:CORREO
+INFO  2019-07-31 15:09:38,003   662ms Program                Main               - Inicio Proceso: PRUEBA:CORREO
+INFO  2019-07-31 15:09:41,837  4496ms EmailHelper            SendMail           - Enviar Notificacion: FROM:cael.arca@gmail.com, TO:ecuadros@sbperu.net, CC:, BCC:, SUBJECT:Prueba, ATTACHMENTS:0
+INFO  2019-07-31 15:09:44,133  6792ms EmailHelper            SendMail           - Enviar Notificacion: exitoso
+INFO  2019-07-31 15:09:44,134  6793ms Program                Main               - Fin de Proceso: PRUEBA:CORREO

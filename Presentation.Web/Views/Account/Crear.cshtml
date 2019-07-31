@@ -473,12 +473,15 @@
                 }
             }
             if (index > 1) {
-               // debugger;
+                debugger;
                 var valid = $('#document_type_id').valid() & $('#doc_nro').valid() & $('#first_name').valid()
                     & $('#second_name').valid() & $('#last_name').valid() & $('#second_last_name').valid() & $('#gender_id').valid()
                     & $('#phone').valid() & $('#mobile_phone').valid() & $('#birthdate_text').valid() & $('#nationality_id').valid()
                     & $('#address_country_id').valid() & $('#address').valid() & $('#educational_institution_id').valid()
-                    & $('#program_id').valid() & $('#education_level_id').valid() & $('#CVLAC').valid();
+                    & $('#program_id').valid() & $('#education_level_id').valid() & $('#CVLAC').valid()
+                    & $('#department_id').valid() & $('#address_municipality_id').valid();
+
+                
                 if (!valid)
                     return valid;
             }
