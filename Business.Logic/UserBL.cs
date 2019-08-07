@@ -514,6 +514,16 @@ namespace Business.Logic
             return oRepositorio.ObtenerPorPermiso(permission_id);
         }
 
+        public List<UserViewModel> ObtenerPorRole(int role_id)
+        {
+            return oRepositorio.ObtenerPorRole(role_id);
+        }
+
+        public List<InvestigatorViewModel> ObtenerInvestigadoresParaExcel()
+        {
+            return oRepositorioInvestigator.ObtenerInvestigadoresParaExcel();
+        }
+
         public InvestigatorViewModel ObtenerInvestigator(int pIntID)
         {
 

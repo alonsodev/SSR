@@ -1489,6 +1489,7 @@
     <Content Include="Views\ReasonReject\Index.cshtml" />
     <Content Include="Views\Role\EditarManual.cshtml" />
     <Content Include="Views\PoliticasUso\Index.cshtml" />
+    <Content Include="Views\Report\Usuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

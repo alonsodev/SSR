@@ -76,6 +76,21 @@ namespace Presentation.Web.Controllers
             oReportFilterViewModel.period_id = oPeriod.period_id;
             return View(oReportFilterViewModel);
         }
+
+        public ActionResult Usuarios()
+        {
+            SelectorBL oSelectorBL = new SelectorBL();
+            List<SelectOptionItem> oRoles = oSelectorBL.RolesSelector();
+            List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "0", "TODOS");
+            ViewBag.roles = roles;
+
+            UsersReportFilterViewModel oUsersReportFilterViewModel = new UsersReportFilterViewModel();
+
+            return View(oUsersReportFilterViewModel);
+        }
+
+
+
         [HttpPost]
         [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.general_report })]
         // GET: User
@@ -120,6 +135,196 @@ namespace Presentation.Web.Controllers
             //so I set the file content type to "application/vnd.ms-excel"
             return File(fullPath, "application/vnd.ms-excel", file);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeUser(Permissions = new AuthorizeUserAttribute.Permission[] { AuthorizeUserAttribute.Permission.users_report })]
+        public JsonResult UsuariosExportExcel([Bind(Include = "role_id")]  UsersReportFilterViewModel filtros)
+        {
+            UserBL oUserBL = new UserBL();
+            var fileName = "Reporte_Usuarios_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".xlsx";
+            string errorMessage = "";
+
+            UserBL oUsertBL = new UserBL();
+            Stream fileBytes;
+            string fullPath = "";
+
+            if (Int32.Parse(ConfigurationManager.AppSettings["role_id"]) == filtros.role_id)
+            {
+                List<InvestigatorViewModel> resultado = oUserBL.ObtenerInvestigadoresParaExcel();
+                fullPath = Path.Combine(Server.MapPath("~/temp"), fileName);
+                fileBytes = CrearInvestigadoresReporteExcel(resultado, fullPath, true);
+            }
+            else
+            {
+                List<UserViewModel> resultado = oUserBL.ObtenerPorRole(filtros.role_id);
+                fullPath = Path.Combine(Server.MapPath("~/temp"), fileName);
+                fileBytes = CrearUsuariosReporteExcel(resultado, fullPath, true);
+            }
+
+            return Json(new { fileName = fileName, errorMessage = errorMessage });
+        }
+
+        private Stream CrearInvestigadoresReporteExcel(List<InvestigatorViewModel> lista, string path, bool saveas)
+        {
+            var wb = new XLWorkbook();
+
+            //Adding a worksheet
+            var ws = wb.Worksheets.Add("Investigadores");
+
+            int col = 1;
+
+            ws.Cell(1, col).Value = "PRIMER NOMBRE"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "SEGUNDO NOMBRE"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "PRIMER APELLIDO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "SEGUNDO APELLIDO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "GÉNERO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "TELÉFONO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "FECHA DE NAC."; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "CVLAC"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "EGRESADO DE LA INSTITUCIÓN EDUCATIVA"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "PROGRAMA"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NIVEL DE FORMACIÓN"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "INSTITUCIÓN QUE LO AVALA"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "GRUPO DE INVESTIGACIÓN"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "GRUPO DE INVESTIGACIÓN CÓDIGO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "COMISIONES"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "ÁREAS DE INTERÉS"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NOMBRE DE USUARIO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "CORREO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NRO. DE DOCUMENTO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NOMBRE DE CONTACTO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NACIONALIDAD"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "PAÍS"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "DEPARTAMENTO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "CIUDAD/MUNICIPIO"; ws.Column(col).Width = 45; col++;
+
+            
+
+            ws.Row(1).Style.Alignment.WrapText = true;
+            ws.Row(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            ws.Row(1).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            ws.Row(1).Style.Font.Bold = true;
+            ws.Range(1, 1, 1, col - 1).Style.Font.FontColor = XLColor.Black;
+            ws.Range(1, 1, 1, col - 1).Style.Fill.BackgroundColor = XLColor.Silver;
+
+            Set_AllBorder(ws.Row(1));
+
+            int row = 2;
+            foreach (InvestigatorViewModel obj in lista)
+            {
+                col = 1;
+
+                ws.Cell(row, col).Value = obj.first_name.ToString(); col++;
+                ws.Cell(row, col).Value = (obj.second_name == null ? "" : obj.second_name.ToString()); col++;
+                ws.Cell(row, col).Value = obj.last_name.ToString(); col++;
+                ws.Cell(row, col).Value = (obj.second_last_name == null ? "" : obj.second_last_name.ToString()); col++;
+                ws.Cell(row, col).Value = obj.gender.ToString(); col++;
+                ws.Cell(row, col).Value = obj.phone.ToString(); col++;
+                ws.Cell(row, col).Value = (obj.birthdate.HasValue ? obj.birthdate.Value.ToString("yyyy-MM-dd") : ""); col++;
+                ws.Cell(row, col).Value = obj.CVLAC.ToString(); col++;
+                ws.Cell(row, col).Value = obj.educational_institution.ToString(); col++;
+                ws.Cell(row, col).Value = obj.programa.ToString(); col++;
+                ws.Cell(row, col).Value = obj.education_level.ToString(); col++;
+                ws.Cell(row, col).Value = obj.institution.ToString(); col++;
+                ws.Cell(row, col).Value = obj.investigation_group.ToString(); col++;
+                ws.Cell(row, col).Value = obj.code_investigation_group.ToString(); col++;
+                ws.Cell(row, col).Value = string.Join(",", obj.commissionsStr); col++;
+                ws.Cell(row, col).Value = string.Join(",", obj.interest_areasStr); col++;
+                ws.Cell(row, col).Value = obj.user_name.ToString(); col++;
+                ws.Cell(row, col).Value = obj.user_email.ToString(); col++;
+                ws.Cell(row, col).Value = obj.doc_nro.ToString(); col++;
+                ws.Cell(row, col).Value = obj.contact_name.ToString(); col++;
+                ws.Cell(row, col).Value = obj.nationality.ToString(); col++;
+                ws.Cell(row, col).Value = (obj.country == null ? "" : obj.country.ToString()); col++;
+                ws.Cell(row, col).Value = (obj.department == null ? "" : obj.department.ToString()); col++;
+                ws.Cell(row, col).Value = (obj.municipality == null ? "" : obj.municipality.ToString()); col++;
+
+                
+
+                ws.Row(row).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Row(row).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+                ws.Row(row).Style.Alignment.WrapText = true;
+
+                Set_AllBorder(ws.Row(row));
+
+                row++;
+            }
+            if (saveas)
+            {
+                wb.SaveAs(path);
+                return null;
+            }
+
+            return GetStream(wb);
+        }
+
+        private Stream CrearUsuariosReporteExcel(List<UserViewModel> lista, string path, bool saveas)
+        {
+            var wb = new XLWorkbook();
+
+            //Adding a worksheet
+            var ws = wb.Worksheets.Add("Usuarios");
+
+            int col = 1;
+
+            ws.Cell(1, col).Value = "NOMBRE/INSTITUCIÓN"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "INSTITUCIONES QUE REPRESENTA"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "TELÉFONO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "CORREO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NRO. DE DOCUMENTO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NOMBRE DE CONTACTO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "NACIONALIDAD"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "PAÍS"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "DEPARTAMENTO"; ws.Column(col).Width = 45; col++;
+            ws.Cell(1, col).Value = "CIUDAD/MUNICIPIO"; ws.Column(col).Width = 45; col++;
+
+
+
+            ws.Row(1).Style.Alignment.WrapText = true;
+            ws.Row(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            ws.Row(1).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            ws.Row(1).Style.Font.Bold = true;
+            ws.Range(1, 1, 1, col - 1).Style.Font.FontColor = XLColor.Black;
+            ws.Range(1, 1, 1, col - 1).Style.Fill.BackgroundColor = XLColor.Silver;
+
+            Set_AllBorder(ws.Row(1));
+
+            int row = 2;
+            foreach (UserViewModel obj in lista)
+            {
+                col = 1;
+
+                ws.Cell(row, col).Value = obj.user_name.ToString(); col++;
+                ws.Cell(row, col).Value = string.Join(",", obj.institutions); col++;
+                ws.Cell(row, col).Value = obj.phone.ToString(); col++;
+                ws.Cell(row, col).Value = obj.user_email.ToString(); col++;
+                ws.Cell(row, col).Value = obj.doc_nro.ToString(); col++;
+                ws.Cell(row, col).Value = obj.contact_name.ToString(); col++;
+                ws.Cell(row, col).Value = (obj.nationality == null ? "" : obj.nationality.ToString()); col++;
+                ws.Cell(row, col).Value = (obj.country == null ? "" : obj.country.ToString()); col++;
+                ws.Cell(row, col).Value = (obj.department == null ? "" : obj.department.ToString()); col++;
+                ws.Cell(row, col).Value = (obj.municipality == null ? "" : obj.municipality.ToString()); col++;
+
+
+                ws.Row(row).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Row(row).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+                ws.Row(row).Style.Alignment.WrapText = true;
+
+                Set_AllBorder(ws.Row(row));
+
+                row++;
+            }
+            if (saveas)
+            {
+                wb.SaveAs(path);
+                return null;
+            }
+
+            return GetStream(wb);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

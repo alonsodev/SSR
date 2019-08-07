@@ -107,5 +107,11 @@ namespace Domain.Entities
         [Display(Name = "Instituciones que representa")]
         public List<int> institution_ids { get; set; }
 
+        public string nationality { get; set; }
+        public string country { get; set; }
+        public string department { get; set; }
+        public string municipality { get; set; }
+
+
     }
 }

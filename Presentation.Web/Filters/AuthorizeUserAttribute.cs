@@ -150,7 +150,7 @@ namespace Presentation.Web.Filters
 
             general_report_all_institution_support = 1148,
             general_report_own_institution_support = 1149,
-
+            users_report = 1165,
             module_period = 1150,
             list_period = 1151,
             new_period = 1152,

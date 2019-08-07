@@ -101,6 +101,88 @@ namespace Infrastructure.Data.Repositories
             return query.ToList();
         }
 
+        public List<InvestigatorViewModel> ObtenerInvestigadoresParaExcel()
+        {
+            /*
+             nivel de formacion = ultimo nivel de formacion
+             */
+
+            /*
+             institucion que lo avala
+grupo investigacion
+codigo del grupo
+cvlac
+pais = colombia (nacionalidad)
+municipalidad = municipio
+             */
+
+             /*
+             placeholder en cvlac http://www. 
+             */
+            var query = Set.Where(a => a.users.user_status_id == 1).Select(a => new InvestigatorViewModel
+            {
+                investigator_id = a.investigator_id,
+                first_name = a.first_name,
+                second_name = a.second_name,
+                last_name = a.last_name,
+                second_last_name = a.second_last_name,
+                gender_id = a.gender_id,
+                phone = a.users.phone,
+                mobile_phone = a.mobile_phone,
+                birthdate = a.birthdate,
+                nationality_id = a.users.nationality_id,
+                address_country_id = a.users.address_country_id,
+                department_id = a.users.municipalities.department_id,
+                address_municipality_id = a.users.address_municipality_id,
+                educational_institution_id = a.educational_institution_id,
+                program_id = a.program_id,
+                education_level_id = a.education_level_id,
+                CVLAC = a.CVLAC,
+                
+                gender = a.genders.name,
+                nationality = a.users.nationalities.name,
+                country = a.users.nationalities1.name,
+                department = a.users.municipalities.departments.name,
+                municipality = a.users.municipalities.name,
+                education_institution = a.users.investigators.FirstOrDefault(i => i.user_id == a.user_id).educational_institutions.name,
+                education_level = a.users.investigators.FirstOrDefault(i => i.user_id == a.user_id).education_levels.name,
+                investigation_group = a.investigation_groups.name,
+
+                institution_id = a.institution_id,
+                institution = a.institutions.name,
+                educational_institution = a.educational_institutions.name,
+                investigation_group_id = a.investigation_group_id,
+                code_investigation_group = a.investigation_groups.code,
+                programa = a.programs.name,
+
+                commissionsStr = a.investigators_commissions.Select(c => c.commissions.name).ToList(),
+                interest_areasStr = a.investigators_interest_areas.Select(ia => ia.interest_areas.name).ToList(),
+
+                user_id = a.user_id,
+                user_name = a.users.user_name,
+                user_email = a.users.user_email,
+                user_pass = a.users.user_pass,
+                // user_role_id = a.users.user_role_id,
+                // user_status_id = a.users.user_status_id,
+                is_super_admin = a.users.is_super_admin,
+                user_date_last_login = a.users.user_date_last_login,
+                date_created = a.users.date_created,
+                date_modified = a.users.date_modified,
+                user_id_created = a.users.user_id_created,
+                user_id_modified = a.users.user_id_modified,
+                document_type_id = a.users.document_type_id,
+
+                doc_nro = a.users.doc_nro,
+
+                contact_name = a.users.contact_name,
+
+                address = a.users.address,
+                avatar = a.users.avatar
+
+            });
+            return query.ToList();
+        }
+
         public InvestigatorViewModel Obtener(int investigator_id)
         {
             var query = Set.Where(a => a.investigator_id == investigator_id).Select(a => new InvestigatorViewModel

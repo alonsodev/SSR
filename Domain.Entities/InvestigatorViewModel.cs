@@ -165,8 +165,9 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Nombre de programa es obligatoria.")]
         public Nullable<int> program_id { get; set; } 
 
-        [Display(Name = "Nivel de formación")]
-        [Required(ErrorMessage = "Nivel de formación es obligatorio.")]
+        [Display(Name = "Último Nivel de formación")]
+        [Required(ErrorMessage = "Último Nivel de formación es obligatorio.")]
+
         public Nullable<int> education_level_id { get; set; }
 
 
@@ -179,5 +180,17 @@ namespace Domain.Entities
         public string user_code_recover { get; set; }
         public string avatar { get; set; }
         public string terms_conditions { get; set; }
+        public string nationality { get; set; }
+        public string country { get; set; }
+        public string department { get; set; }
+        public string municipality { get; set; }
+        public string education_institution { get; set; }
+        public string education_level { get; set; }
+        public string gender { get; set; }
+        public string investigation_group { get; set; }
+        public string educational_institution { get; set; }
+        public string programa { get; set; }
+        public List<String> commissionsStr { get; set; }
+        public List<String> interest_areasStr { get; set; }
     }
 }

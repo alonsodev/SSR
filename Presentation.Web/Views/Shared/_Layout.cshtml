@@ -560,6 +560,19 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
 
                             </li>
                         }
+                        @if (AuthorizeUserAttribute.VerificarPerfil(AuthorizeUserAttribute.Permission.users_report))
+                        {
+                            <li class="@(ViewBag.active == "users_report" ? "active" : "")">
+
+                                <a href="/Report/Usuarios">
+
+                                    <i class="now-ui-icons education_paper"></i>
+
+                                    <p>Reporte de Usuarios</p>
+                                </a>
+
+                            </li>
+                        }
                         @if (!String.IsNullOrEmpty(AuthorizeUserAttribute.UsuarioLogeado().manual_url))
                         {
                             <li class="@(ViewBag.active == "user_manual" ? "active" : "")">
@@ -574,7 +587,7 @@ AuthorizeUserAttribute.Permission.module_reason_rejects, AuthorizeUserAttribute.
                             </li>
                         }
 
-                        @if (AuthorizeUserAttribute.UsuarioLogeado().role_id== 12)/*Rol evaluador*/
+                        @if (AuthorizeUserAttribute.UsuarioLogeado().role_id == 12)/*Rol evaluador*/
                         {
                             <li class="@(ViewBag.active == "concept_repository" ? "active" : "")">
 

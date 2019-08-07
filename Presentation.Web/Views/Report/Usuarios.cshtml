@@ -1,0 +1,79 @@
+﻿@using System.Configuration;
+@using Presentation.Web.Filters;
+
+@model Domain.Entities.UsersReportFilterViewModel
+
+@{
+    ViewBag.HeaderTitleLink = Url.Action("Usuarios", "Report");
+    ViewBag.HeaderTitle = "Reportes";
+    ViewBag.Title = "Reporte de Usuarios";
+
+    ViewBag.active = "users_report";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Usuarios", "Report", FormMethod.Post, new { id = "form-filters" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+
+                        <div class="col-sm-4">
+                            <div class="form-group has-label">
+                                @Html.LabelFor(model => model.role_id, htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("role_id", (IEnumerable<SelectListItem>)ViewBag.roles, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                }
+                <div class="card-footer text-right">
+                    <input type='button' id="btnExportar" class='btn btn-finish btn-fill btn-primary btn-wd' value='Exportar' />
+                </div>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#role_id").select2();
+        $form = $('#form-filters');
+        $("#btnExportar").click(function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UsuariosExportExcel", "Report")', //call your controller and action
+                data: $form.serialize(),
+            }).done(function (data) {
+
+                console.log(data);
+
+
+                if (data && data.fileName && data.fileName != "") {
+                    //use window.location.href for redirect to download action for download the file
+                    window.location.href = "@Url.RouteUrl(new
+                                            { Controller = "Report",
+                                                Action = "Download"})/?file=" + data.fileName;
+                }
+
+
+
+            });
+
+        });
+    </script>
+}

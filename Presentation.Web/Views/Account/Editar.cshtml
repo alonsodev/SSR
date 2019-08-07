@@ -253,7 +253,7 @@
             <div class="form-group has-label">
 
                 @Html.LabelFor(model => model.CVLAC, htmlAttributes: new { @class = "" })
-                @Html.EditorFor(model => model.CVLAC, new { htmlAttributes = new { @class = "form-control", maxlength = "500" } })
+                @Html.EditorFor(model => model.CVLAC, new { htmlAttributes = new { @class = "form-control", maxlength = "500", placeholder = "Ej.: http://www.google.com" } })
                 @Html.ValidationMessageFor(model => model.CVLAC, "", new { @class = "text-danger" })
             </div>
 

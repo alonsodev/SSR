@@ -120,6 +120,7 @@
     <Compile Include="InvestigationGroupViewModel.cs" />
     <Compile Include="BadLanguageViewModel.cs" />
     <Compile Include="ConceptStatusLogViewModel.cs" />
+    <Compile Include="UsersReportFilterViewModel.cs" />
     <Compile Include="VerifyCertificationViewModel.cs" />
     <Compile Include="TagViewModel.cs" />
     <Compile Include="ProgramViewModel.cs" />

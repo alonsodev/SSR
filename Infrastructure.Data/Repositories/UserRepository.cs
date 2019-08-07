@@ -619,6 +619,48 @@ namespace Infrastructure.Data.Repositories
             return query.ToList();
         }
 
+        public List<UserViewModel> ObtenerPorRole(int role_id)
+        {
+            IQueryable<users> queryFilters = Set;
+            var query = queryFilters.Where(a => a.user_role_id == role_id).Select(a => new UserViewModel
+            {
+                id = a.id,
+                user_name = a.user_name,
+                user_email = a.user_email,
+                user_email2 = a.user_email2,
+                user_pass = a.user_pass,
+                user_role_id = a.user_role_id,
+                user_status_id = a.user_status_id,
+                is_super_admin = a.is_super_admin,
+                user_date_last_login = a.user_date_last_login,
+                date_created = a.date_created,
+                date_modified = a.date_modified,
+                user_id_created = a.user_id_created,
+                user_id_modified = a.user_id_modified,
+                document_type_id = a.document_type_id,
+                address_country_id = a.address_country_id,
+                address_municipality_id = a.address_municipality_id,
+                department_id = a.municipalities.department_id,
+
+                nationality = a.nationalities.name,
+                country = a.nationalities1.name,
+                department = a.municipalities.departments.name,
+                municipality = a.municipalities.name,
+
+                doc_nro = a.doc_nro,
+                nationality_id = a.nationality_id,
+                contact_name = a.contact_name,
+                phone = a.phone,
+                address = a.address,
+                avatar = a.avatar,
+                institution_ids = a.user_institutions.Select(b => b.institution_id).ToList(),
+                institutions = a.user_institutions.Select(b => b.institutions.name).ToList(),
+            });
+            return query.ToList();
+        }
+
+        
+
         public GridModel<UserViewModel> ObtenerLista(UserFiltersViewModel filters)
         {
             var searchBy = (filters.search != null) ? filters.search.value : null;
