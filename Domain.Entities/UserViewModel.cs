@@ -38,7 +38,7 @@ namespace Domain.Entities
 
         [Display(Name = "Número de Documento")]
         [Required(ErrorMessage = "Número de Documento es obligatorio.")]
-        [RegularExpression(@"^[0-9]{8,20}", ErrorMessage = "Número de Documento solo permite números mayores a 8 dígitos")]
+        [RegularExpression(@"^[0-9]{4,20}", ErrorMessage = "Número de Documento solo permite números mayores a 8 dígitos")]
         public string doc_nro { get; set; }
 
         [Display(Name = "Nacionalidad")]
