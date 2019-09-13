@@ -46,7 +46,7 @@ namespace Presentation.Web.Helpers
                         //Add rows to DataTable.
 
                         int i = 0;
-                        foreach (IXLCell cell in row.Cells())
+                        foreach (IXLCell cell in row.Cells(false))
                         {
                             if (i == 0 && cell.Value.ToString().Trim() != String.Empty)
                             {
