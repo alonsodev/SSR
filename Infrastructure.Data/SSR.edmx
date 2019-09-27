@@ -190,14 +190,12 @@
           <Property Name="draft_law_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="draft_law_number" Type="int" Nullable="false" />
           <Property Name="title" Type="varchar" MaxLength="1000" />
-          <Property Name="author" Type="varchar" MaxLength="1000" />
+          <Property Name="author" Type="varchar" MaxLength="4000" />
           <Property Name="origin_id" Type="int" />
           <Property Name="date_presentation" Type="datetime" />
           <Property Name="commission_id" Type="int" />
           <Property Name="debate_speaker" Type="varchar" MaxLength="500" />
           <Property Name="debate_speaker2" Type="varchar" MaxLength="500" />
-          <Property Name="debate_speaker3" Type="varchar" MaxLength="500" />
-          <Property Name="debate_speaker4" Type="varchar" MaxLength="500" />
           <Property Name="status_id" Type="int" />
           <Property Name="status_comment" Type="varchar" MaxLength="1000" />
           <Property Name="interest_area_id" Type="int" />
@@ -213,6 +211,8 @@
           <Property Name="active" Type="bit" />
           <Property Name="number_approved_concepts" Type="int" />
           <Property Name="period_id" Type="int" />
+          <Property Name="debate_speaker3" Type="varchar" MaxLength="500" />
+          <Property Name="debate_speaker4" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="draft_laws_status">
           <Key>
@@ -548,7 +548,6 @@
           <Property Name="user_name" Type="varchar" MaxLength="100" />
           <Property Name="user_email" Type="varchar" MaxLength="150" />
           <Property Name="user_pass" Type="varchar" MaxLength="60" />
-          <Property Name="user_email2" Type="varchar" MaxLength="150" />
           <Property Name="document_type_id" Type="int" />
           <Property Name="doc_nro" Type="varchar" MaxLength="20" />
           <Property Name="nationality_id" Type="int" />
@@ -568,6 +567,7 @@
           <Property Name="user_code_activate" Type="varchar" MaxLength="50" />
           <Property Name="user_code_recover" Type="varchar" MaxLength="50" />
           <Property Name="avatar" Type="varchar" MaxLength="500" />
+          <Property Name="user_email2" Type="varchar" MaxLength="150" />
         </EntityType>
         <Association Name="FK_concept_debate_speakers_concepts">
           <End Role="concepts" Type="Self.concepts" Multiplicity="1" />
@@ -2862,7 +2862,7 @@
           <Property Name="draft_law_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="draft_law_number" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="author" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="origin_id" Type="Int32" />
           <Property Name="date_presentation" Type="DateTime" Precision="3" />
           <Property Name="commission_id" Type="Int32" />

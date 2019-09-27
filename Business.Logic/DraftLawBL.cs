@@ -148,10 +148,12 @@ namespace Business.Logic
 
         public void Import(PeriodViewModel oPeriod, List<DraftLawViewModel> lista, Dictionary<string, int> origins, Dictionary<string, int> commisions, Dictionary<string, int> interest_areas, Dictionary<string, DraftLawStatusViewModel> draftlaw_status, int user_id)
         {
+      
             using (var scope = new TransactionScope())
             {
                 foreach (DraftLawViewModel pDraftLawViewModel in lista)
                 {
+                    
                     pDraftLawViewModel.debate_speakers = pDraftLawViewModel.debate_speakers.Distinct().ToList();
                     pDraftLawViewModel.period_id = oPeriod.period_id;
                     if (origins.ContainsKey(pDraftLawViewModel.origin))
@@ -253,12 +255,15 @@ namespace Business.Logic
 
                     }
                     oUnitOfWork.SaveChanges();
+                 
                 }
                 // oUnitOfWork.SaveChanges();
 
 
                 scope.Complete();
             }
+            
+
         }
 
         private static void AddDraftLaw(int user_id, DraftLawViewModel pDraftLawViewModel)
