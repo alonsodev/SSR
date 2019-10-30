@@ -15,7 +15,7 @@ namespace Presentation.Web.Helpers
         {
             //Create a new DataTable.
             DataTable dt;
-
+            int xI = 0;
             //Open the Excel file using ClosedXML.
             using (XLWorkbook workBook = new XLWorkbook(filePath))
             {
@@ -30,7 +30,7 @@ namespace Presentation.Web.Helpers
                 bool lastRow = false;
                 foreach (IXLRow row in workSheet.Rows())
                 {
-                    //Use the first row to add columns to DataTable.
+                    
                     if (firstRow)
                     {
 
@@ -44,29 +44,39 @@ namespace Presentation.Web.Helpers
                     else
                     {
                         //Add rows to DataTable.
-
-                        int i = 0;
-                        foreach (IXLCell cell in row.Cells(false))
-                        {
-                            if (i == 0 && cell.Value.ToString().Trim() != String.Empty)
+                        try {
+                            int i = 0;
+                            foreach (IXLCell cell in row.Cells(false))
                             {
-                                dt.Rows.Add();
-
-                            }
-                            else
-                            {
-                                if (i == 0 && cell.Value.ToString().Trim() == String.Empty)
+                                if (i == 0 && cell.Value.ToString().Trim() != String.Empty)
                                 {
-                                    lastRow = true;
-                                    break;
+                                    dt.Rows.Add();
+
                                 }
+                                else
+                                {
+                                    if (i == 0 && cell.Value.ToString().Trim() == String.Empty)
+                                    {
+                                        lastRow = true;
+                                        break;
+                                    }
+
+                                }
+                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                i++;
 
                             }
-                            dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
-                            i++;
-
                         }
+                        catch (Exception ex)
+                        {
+                            return dt;
+                        }
+                            
                     }
+             
+                    //Use the first row to add columns to DataTable.
+                    
+                    xI++;
                     if (lastRow)
                         break;
 

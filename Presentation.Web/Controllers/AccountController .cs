@@ -421,8 +421,16 @@ namespace Presentation.Web.Controllers
             int pIntID = 0;
             int.TryParse(id, out pIntID);
             InvestigatorViewModel pViewModel = oBL.ObtenerInvestigator(pIntID);
+
+            if(pViewModel == null)
+            {
+                pViewModel = new InvestigatorViewModel();
+            }
+
             SelectorBL oSelectorBL = new SelectorBL();
-            pViewModel.birthdate_text = pViewModel.birthdate.HasValue ? pViewModel.birthdate.Value.ToString("dd/MM/yyyy") : String.Empty;
+            if (pViewModel != null) {
+                pViewModel.birthdate_text = pViewModel.birthdate.HasValue ? pViewModel.birthdate.Value.ToString("dd/MM/yyyy") : String.Empty;
+            }            
             List<SelectOptionItem> oEstatus = oSelectorBL.EstatusUserSelector();
             List<SelectOptionItem> oRoles = oSelectorBL.RolesSelector();
 
@@ -430,18 +438,18 @@ namespace Presentation.Web.Controllers
             List<SelectOptionItem> oDocumentTypes = oSelectorBL.DocumentTypesSelector();
 
             List<SelectOptionItem> oGenders = oSelectorBL.GendersSelector();
-            List<SelectOptionItem> oPrograms = oSelectorBL.ProgramsSelector(pViewModel.educational_institution_id.Value);
+            List<SelectOptionItem> oPrograms = oSelectorBL.ProgramsSelector((pViewModel.educational_institution_id != null ? pViewModel.educational_institution_id.Value : 0));
             List<SelectOptionItem> oInterestAreas = oSelectorBL.InterestAreasSelector();
             List<SelectOptionItem> oDepartments = oSelectorBL.DepartmentsSelector();
-            List<SelectOptionItem> oMunicipalities = oSelectorBL.MunicipalitiesSelector(pViewModel.department_id.HasValue? pViewModel.department_id.Value:0);
+            List<SelectOptionItem> oMunicipalities = oSelectorBL.MunicipalitiesSelector(pViewModel != null && pViewModel.department_id.HasValue? pViewModel.department_id.Value:0);
 
             List<SelectOptionItem> oAcademicLevels = oSelectorBL.AcademicLevelsSelector();
             List<SelectOptionItem> oCommissions = oSelectorBL.CommissionsSelector();
             List<SelectOptionItem> oEducationalInstitutions = oSelectorBL.EducationalInstitutionsSelector();
 
-            List<SelectOptionItem> oEducationLevels = oSelectorBL.EducationLevelsSelector(pViewModel.educational_institution_id.Value, pViewModel.program_id.Value);
+            List<SelectOptionItem> oEducationLevels = oSelectorBL.EducationLevelsSelector((pViewModel.educational_institution_id != null ? pViewModel.educational_institution_id.Value : 0), (pViewModel.program_id != null ? pViewModel.program_id.Value : 0));
 
-            List<SelectOptionItem> oInvestigationGroups = oSelectorBL.InvestigationGroupsSelector(pViewModel.institution_id.Value);
+            List<SelectOptionItem> oInvestigationGroups = oSelectorBL.InvestigationGroupsSelector((pViewModel.institution_id != null ? pViewModel.institution_id.Value : 0));
 
             List<SelectListItem> estatus = Helper.ConstruirDropDownList<SelectOptionItem>(oEstatus, "Value", "Text", "", true, "", "");
             List<SelectListItem> roles = Helper.ConstruirDropDownList<SelectOptionItem>(oRoles, "Value", "Text", "", true, "", "");
@@ -471,18 +479,21 @@ namespace Presentation.Web.Controllers
             {
                 Text = a.Text,
                 Value = a.Value,
-                Selected = pViewModel.interest_areas.Contains(int.Parse(a.Value))
+                Selected = (pViewModel.interest_areas != null ?  pViewModel.interest_areas.Contains(int.Parse(a.Value)) : false)
             }).ToList();
 
 
             List<SelectListItem> institutions = new List<SelectListItem>();
-
-            institutions.Add(new SelectListItem
+            if(pViewModel.institution != null)
             {
-                Text = pViewModel.institution,
-                Value = pViewModel.institution_id.ToString(),
-                Selected = true
-            });
+                institutions.Add(new SelectListItem
+                {
+                    Text = pViewModel.institution,
+                    Value = pViewModel.institution_id.ToString(),
+                    Selected = true
+                });
+            }
+            
 
             ViewBag.programs = programs;
             ViewBag.education_levels = education_levels;
@@ -502,7 +513,10 @@ namespace Presentation.Web.Controllers
             ViewBag.documentTypes = documentTypes;
             ViewBag.genders = genders;
             ViewBag.academic_levels = academic_levels;
+ 
             pViewModel.commissionsMultiSelectList = new MultiSelectList(oSelectorBL.CommissionsSelector(), "Value", "Text");
+           
+                
 
             return View(pViewModel);
         }
